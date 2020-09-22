@@ -1,0 +1,6656 @@
+%PDF-1.3
+%âãÏÓ
+2 0 obj
+<<
+/Length 4146
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 542.4399 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-1)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+/TT4 1 Tf
+18 0 0 18 280.91 762.97 Tm
+(APPENDIX B.  SEDIT—THE LISP)Tj
+11.6156 -1 TD
+(EDITOR)Tj
+ET
+6 w 
+258.01 736.2 m
+558.01 736.2 l
+S
+BT
+/TT2 1 Tf
+10 0 0 10 557.9999 733.2 Tm
+( )Tj
+-30 -5 TD
+0.035 Tw
+[(SEdit is the Xerox Lisp structure editor.  It allows you to edit  Xerox)]TJ
+ET
+570 730.98 0.99 -51.99 re
+f
+BT
+10 0 0 10 258 671.2 Tm
+0.014 Tw
+[(Lisp code directly in memory. This editor replaces DEdit  in Chapter)]TJ
+ET
+570 678.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 659.2 Tm
+0.156 Tw
+(16, Structure Editor, of the)Tj
+/TT6 1 Tf
+12.2968 0 TD
+[( Interlisp-D Reference Manual)]TJ
+/TT2 1 Tf
+13.7517 0 TD
+[(.    First)]TJ
+ET
+570 666.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 647.2 Tm
+0.119 Tw
+[(introduced in Lyric,  the SEdit  structure  editor  has been greatly)]TJ
+ET
+570 654.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 635.2 Tm
+0.054 Tw
+[(enhanced in  the Medley release.    Medley additions are indicated)]TJ
+ET
+570 642.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 623.2 Tm
+0 Tw
+(with revision bars in the right margin.  )Tj
+ET
+570 630.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 604.2 Tm
+0.032 Tw
+(All symbols referenced in this appendix are external in the package)Tj
+ET
+570 618.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 592.2 Tm
+0 Tw
+(named "SEdit", unless otherwise qualified.)Tj
+ET
+570 599.98 0.99 -11.99 re
+f
+2 w 
+54.01 536.99 m
+558.01 536.99 l
+S
+BT
+/TT4 1 Tf
+14 0 0 14 54 525.08 Tm
+(16.1  SEdit - The Structure Editor)Tj
+ET
+1 w 
+54.01 521.49 m
+558.01 521.49 l
+S
+BT
+/TT2 1 Tf
+10 0 0 10 258 492.2 Tm
+0.216 Tw
+(As a structure editor, SEdit alters Lisp code directly in memory.)Tj
+0 -1.2 TD
+0.008 Tw
+(The effect this has on the running system depends on what is being)Tj
+T*
+0 Tw
+(edited.)Tj
+0 -1.9 TD
+0.211 Tw
+[(For Common Lisp definitions,  SEdit always edits a copy of the)]TJ
+0 -1.2 TD
+0.196 Tw
+[(object.  For example, with functions, it edits the definition of the)]TJ
+T*
+0.165 Tw
+[(function.  What the system actually runs is the installed function,)]TJ
+T*
+0.089 Tw
+(either compiled or interpreted. The primary difference between the)Tj
+T*
+0.313 Tw
+(definition and the installed function is that comment forms are)Tj
+T*
+0.134 Tw
+(removed from the definition to produce the installed function. The)Tj
+T*
+0.054 Tw
+(changes made while editing a function will not be installed until the)Tj
+T*
+0 Tw
+(edit session is complete.)Tj
+0 -1.9 TD
+0.091 Tw
+(For Interlisp functions and macros, SEdit edits the actual structure)Tj
+0 -1.2 TD
+0.262 Tw
+[(that will be  run.  An exception to this is an edit of an EXPR)]TJ
+T*
+0.0001 Tc
+0.0039 Tw
+(definition of a compiled function.  In this case, changes are included)Tj
+T*
+0 Tc
+0 Tw
+(and the function is unsaved when the edit session is completed.)Tj
+0 -1.9 TD
+0.027 Tw
+(SEdit edits all other structures, such as variables and property lists,)Tj
+0 -1.2 TD
+0 Tw
+(directly.  SEdit installs all changes as they are made.)Tj
+0 -1.9 TD
+0.097 Tw
+(If an error is made during an SEdit session, abort the edit with an)Tj
+0 -1.2 TD
+0.415 Tw
+[(Abort command \(see Section 16.1.7, Command Keys\).  This)]TJ
+T*
+0.321 Tw
+[(command  undoes all changes from the beginning of the edit)]TJ
+T*
+0 Tw
+(session and exits  from  SEdit without changing your environment.)Tj
+0 -1.9 TD
+0.145 Tw
+(If the definition being edited is redefined while the edit window is)Tj
+0 -1.2 TD
+0.175 Tw
+[(open, SEdit  redisplays the new definition.  Any edits on the old)]TJ
+T*
+0.282 Tw
+[(definition will be lost.  If SEdit was busy when the redefinition)]TJ
+T*
+0.087 Tw
+[(occurred, the SEdit window will be gray.  When SEdit is no longer)]TJ
+T*
+0.161 Tw
+[(busy,  position the cursor in the SEdit window and press the left)]TJ
+T*
+0 Tw
+(mouse button;  SEdit will get the new definition and display it.)Tj
+/TT4 1 Tf
+12 0 0 12 54 94.64 Tm
+(16.1.1  An Edit Session)Tj
+ET
+54.01 91.49 m
+558.01 91.49 l
+S
+BT
+/TT2 1 Tf
+10 0 0 10 258 76.2 Tm
+0.443 Tw
+(The List Structure Editor discussion in Chapter 3, Language)Tj
+T*
+0 Tw
+(Integration,  explains how to start an editor in Xerox Lisp.)Tj
+ET
+endstream
+endobj
+3 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+10 0 obj
+<<
+/Length 3976
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-2)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+10 0 0 10 258 730.2 Tm
+0.2059 Tw
+[(Whenever you call SEdit, a new SEdit window is created.  This)]TJ
+0 -1.2 TD
+0.147 Tw
+(SEdit window has its own process, and thus does not rely on an)Tj
+T*
+0.098 Tw
+[(Exec to run in.  You can make edits in the window, shrink it while)]TJ
+T*
+0.11 Tw
+(you do something else, expand it and edit some more, and finally)Tj
+T*
+0 Tw
+(close the window when you are done.)Tj
+0 -1.9 TD
+0.116 Tw
+(Throughout an edit session, SEdit remembers everything that you)Tj
+0 -1.2 TD
+0.058 Tw
+[(do through a change history.  All  edits can be undone and redone)]TJ
+T*
+0.418 Tw
+[(sequentially.  When an edit session ends, SEdit forgets this)]TJ
+T*
+0 Tw
+(information and installs the changes in the system.)Tj
+0 -1.9 TD
+0.404 Tw
+(The session ends with an event signalling to the editor that)Tj
+0 -1.2 TD
+-0.0002 Tw
+(changes are complete.  Three events signal completion:)Tj
+0 -1.9 TD
+0 Tw
+[(•)-849.9(Closing the window. )]TJ
+T*
+(Do this to terminate the edit  session when you are finished.)Tj
+T*
+[(•)-849.9(Shrinking the window.)]TJ
+T*
+0.044 Tw
+(Shrink the window when you have made some edits and may want)Tj
+0 -1.2 TD
+0 Tw
+(to continue the editing session at a later time.)Tj
+0 -1.9 TD
+[(• )-572.1(Typing one of the Completion Commands, listed below.)]TJ
+ET
+570 503.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 470.2 Tm
+0.06 Tw
+(Each of these commands has the effect of installing your changes,)Tj
+ET
+570 484.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 458.2 Tm
+0.199 Tw
+(completing the edit, and returning the TTY process to the Exec.)Tj
+ET
+570 465.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 446.2 Tm
+0.124 Tw
+[(They vary in what is done in addition to completing.  Using these)]TJ
+ET
+570 453.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 434.2 Tm
+0.029 Tw
+(commands the definition that you were editing can be automatically)Tj
+ET
+570 441.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 422.2 Tm
+0 Tw
+(compiled, the edit window can be closed, or both.)Tj
+ET
+570 429.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 403.2 Tm
+0.11 Tw
+(A new edit session begins when you come back to an SEdit after)Tj
+ET
+570 417.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 391.2 Tm
+0 Tw
+(completing. The change history is discarded at this point.)Tj
+ET
+570 398.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 372.2 Tm
+0.078 Tw
+(If the Exec is waiting for SEdit to return before going on, complete)Tj
+0 -1.2 TD
+0.091 Tw
+(the edit session using any of the methods above to alert the Exec)Tj
+T*
+0 Tw
+(that SEdit is done.  The TTY process passes back to the Exec .)Tj
+/TT4 1 Tf
+12 0 0 12 54 320.64 Tm
+(16.1.2  SEdit Carets)Tj
+ET
+54.01 317.49 m
+558.01 317.49 l
+S
+BT
+/TT2 1 Tf
+10 0 0 10 258 302.2 Tm
+0.017 Tw
+[(There are two carets in SEdit, the edit caret and the structure caret.)]TJ
+T*
+0.11 Tw
+(The edit caret appears when characters are edited within a single)Tj
+T*
+0.05 Tw
+[(structure, such as an atom, string, or comment.  Anything  typed in)]TJ
+T*
+0.047 Tw
+(will appear at the edit caret as part of the structure that the caret is)Tj
+T*
+0 Tw
+(within.  The edit caret  looks like this:)Tj
+ET
+q
+40 0 0 -26 258.01 242.99 cm
+/Im1 Do
+Q
+BT
+10 0 0 10 258 200.2 Tm
+0.443 Tw
+(The structure caret appears when the edit point is between)Tj
+T*
+0.09 Tw
+(structures, so that anything inserted will go into a new structure. It)Tj
+T*
+0 Tw
+(looks like this: )Tj
+ET
+q
+41 0 0 -27 258.01 164.99 cm
+/Im2 Do
+Q
+BT
+10 0 0 10 299 137.99 Tm
+(  )Tj
+-4.1 -1.9 TD
+0.043 Tw
+(SEdit changes the caret frequently, depending on where you are in)Tj
+0 -1.2 TD
+0.033 Tw
+[(the structure you are editing, and how the caret is positioned.   The)]TJ
+T*
+0.258 Tw
+[(left mouse button allows an edit caret position to be set.  The)]TJ
+T*
+0 Tw
+(middle mouse button allows the structure caret position to be set .)Tj
+ET
+endstream
+endobj
+11 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/XObject <<
+/Im1 12 0 R
+/Im2 13 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+15 0 obj
+<<
+/Length 3490
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 542.4399 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-3)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+40.619 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+/TT4 1 Tf
+12 0 0 12 54 728.64 Tm
+(16.1.3 The Mouse)Tj
+ET
+54.01 725.49 m
+558.01 725.49 l
+S
+BT
+/TT2 1 Tf
+10 0 0 10 258 710.2 Tm
+0.155 Tw
+(In SEdit, the mouse buttons are used as follows. The left mouse)Tj
+0 -1.2 TD
+0.46 Tw
+[(button positions the mouse cursor to point to parts of Lisp)]TJ
+T*
+0.015 Tw
+[(structures.  The middle mouse button positions the mouse cursor to)]TJ
+T*
+0.037 Tw
+[(point to whole Lisp structures.  Thus, selecting the Q in LEQ  using)]TJ
+T*
+0.017 Tw
+[(the left mouse button selects that character,  and sets the edit caret)]TJ
+T*
+0 Tw
+(after the Q:)Tj
+ET
+q
+70 0 0 -22 258.01 638.99 cm
+/Im3 Do
+Q
+BT
+10 0 0 10 258 600.2 Tm
+0.216 Tw
+(Any characters typed in at this point would be appended to the)Tj
+T*
+0 Tw
+(atom LEQ.)Tj
+0 -1.9 TD
+0.004 Tw
+(Selecting the same letter using the middle mouse button selects the)Tj
+0 -1.2 TD
+0.554 Tw
+(whole atom \(this convention matches TEdit’s character/word)Tj
+T*
+0.085 Tw
+(selection convention\), and sets a structure caret between the LEQ)Tj
+T*
+0 Tw
+(and the n:)Tj
+ET
+q
+71 0 0 -28 258.01 521.99 cm
+/Im4 Do
+Q
+BT
+10 0 0 10 258 477.2 Tm
+0.297 Tw
+(At this point, any characters typed in would form a new atom)Tj
+T*
+0 Tw
+(between the LEQ and the n.)Tj
+0 -1.9 TD
+0.249 Tw
+(Larger structures can be selected in two ways. Use the middle)Tj
+0 -1.2 TD
+0.148 Tw
+(mouse button to position the mouse cursor on the parenthesis of)Tj
+T*
+0.082 Tw
+[(the desired list  to select that list. Press the mouse button multiple)]TJ
+T*
+0.043 Tw
+[(times, without moving the mouse, extends the selection.  Using the)]TJ
+T*
+0.088 Tw
+(previous example, if the middle button were pressed twice, the list)Tj
+T*
+0 Tw
+(\(LEQ ...\) would be selected:)Tj
+ET
+q
+75 0 0 -25 258.01 374.99 cm
+/Im5 Do
+Q
+BT
+10 0 0 10 258 333.2 Tm
+0.059 Tw
+(Pressing the button a third time would cause the list containing the)Tj
+T*
+0 Tw
+(\(LEQ n 1\) to be selected.  )Tj
+0 -1.9 TD
+0.202 Tw
+[(The right mouse button positions the mouse cursor for selecting)]TJ
+0 -1.2 TD
+0.054 Tw
+[(sequences of structures or substructures.  Extended selections are)]TJ
+T*
+0.032 Tw
+[(indicated by a box enclosing the structures selected.  The selection)]TJ
+T*
+0.08 Tw
+[(is extended in the same mode as the original selection.  That is, if)]TJ
+T*
+0.19 Tw
+(the original selection were a character selection, the right button)Tj
+T*
+0.404 Tw
+(could be used to select more characters in the same atom.)Tj
+T*
+0.221 Tw
+(Extended selections also have the property of being marked for)Tj
+T*
+0.008 Tw
+[(pending deletion.  That is, the selection takes the place of the caret,)]TJ
+T*
+0 Tw
+(and anything typed in is inserted in place of the selection.)Tj
+0 -1.9 TD
+0.008 Tw
+[(For example,  selecting the E by pressing the left mouse button and)]TJ
+0 -1.2 TD
+0 Tw
+(selecting the Q by pressing the right mouse button would produce:)Tj
+ET
+q
+69 0 0 -25 258.01 163.99 cm
+/Im6 Do
+Q
+BT
+10 0 0 10 258 122.2 Tm
+0.023 Tw
+(Similarly, pressing the middle mouse button and then selecting with)Tj
+T*
+0.134 Tw
+(the right mouse button extends the selection by whole structures.)Tj
+T*
+0.11 Tw
+(Thus, in our example, pressing the middle mouse button to select)Tj
+T*
+0.216 Tw
+(LEQ and pressing the right mouse button to select the 1 would)Tj
+T*
+0 Tw
+(produce:)Tj
+ET
+endstream
+endobj
+16 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/XObject <<
+/Im3 17 0 R
+/Im4 18 0 R
+/Im5 19 0 R
+/Im6 20 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+22 0 obj
+<<
+/Length 4652
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-4)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+q
+73 0 0 -32 258.01 737.99 cm
+/Im7 Do
+Q
+BT
+10 0 0 10 258 689.2 Tm
+0.019 Tw
+[(This is not the same as selecting the entire list, as above.   Instead,)]TJ
+0 -1.2 TD
+0.064 Tw
+(the elements in the list are collectively selected, but the list itself is)Tj
+T*
+0 Tw
+(not.)Tj
+/TT4 1 Tf
+12 0 0 12 54 637.64 Tm
+(16.1.4  Gaps)Tj
+ET
+54.01 634.49 m
+558.01 634.49 l
+S
+BT
+/TT2 1 Tf
+10 0 0 10 258 619.2 Tm
+0.005 Tw
+(The SEdit structure editor requires that everything edited must have)Tj
+T*
+0.227 Tw
+(an underlying Lisp structure, even if the structure is not directly)Tj
+T*
+0.239 Tw
+[(displayed.  For example, with quoted forms the actual structure)]TJ
+T*
+0.165 Tw
+(might be \()Tj
+/TT4 1 Tf
+4.7763 0 TD
+0 Tw
+(QUOTE)Tj
+/TT2 1 Tf
+3.5557 0 TD
+0.165 Tw
+[( GREEN\), although this would be displayed as)]TJ
+/TT8 1 Tf
+-8.332 -1.2 TD
+0 Tw
+(’GREEN)Tj
+/TT2 1 Tf
+3.6006 0 TD
+0.011 Tw
+[(.  Even when the user is in the midst of typing in a form, the)]TJ
+-3.6006 -1.329 TD
+0 Tw
+(underlying Lisp structure must exist.)Tj
+0 -1.9 TD
+0.0539 Tw
+(Because of this necessity, SEdit provides gaps to serve as dummy)Tj
+0 -1.2 TD
+0.161 Tw
+[(Lisp objects during typing.  SEdit does not need a gap for every)]TJ
+T*
+0.145 Tw
+[(form typed in, but gaps are necessary for quoted objects.  When)]TJ
+T*
+0.027 Tw
+[(something  is typed that requires SEdit to build a Lisp structure and)]TJ
+T*
+0.031 Tw
+(thus create a gap, as the quote character does, the gap will appear)Tj
+T*
+0.064 Tw
+(marked for pending deletion. This means it is ready to be replaced)Tj
+T*
+0.151 Tw
+[(by the structure to be typed in.  In this way it is possible to type)]TJ
+T*
+0.179 Tw
+(special structures, like quotes, directly, while SEdit maintains the)Tj
+T*
+0 Tw
+(structure.)Tj
+0 -1.9 TD
+(A gap looks like:   )Tj
+ET
+q
+15 0 0 -5 339.16 428.91 cm
+/Im8 Do
+Q
+BT
+10 0 0 10 354.15 423.91 Tm
+(  )Tj
+-9.615 -1.9 TD
+0.17 Tw
+(A gap displayed after a quote has been typed in would look like)Tj
+0 -1.2 TD
+0 Tw
+(this:)Tj
+ET
+q
+21 0 0 -15 258.01 381.7 cm
+/Im9 Do
+Q
+BT
+10 0 0 10 258 349.91 Tm
+0.155 Tw
+(with the gap marked for pending deletion, ready for typein of the)Tj
+T*
+0 Tw
+(object to be quoted.)Tj
+/TT4 1 Tf
+12 0 0 12 54 310.35 Tm
+(16.1.5 Special Characters)Tj
+ET
+54.01 307.2 m
+558.01 307.2 l
+S
+BT
+/TT2 1 Tf
+10 0 0 10 258 291.91 Tm
+0.2099 Tw
+(A few characters have special meaning in Lisp, and are treated)Tj
+T*
+0.1 Tw
+[(specially by SEdit.   SEdit must always have a complete structure)]TJ
+T*
+0.062 Tw
+[(to work on at any level of the edit.  This means that SEdit needs a)]TJ
+T*
+0.064 Tw
+[(special way to type in  structures such as lists, strings, and quoted)]TJ
+T*
+0.025 Tw
+[(objects.  In most instances  these structures can be typed in just as)]TJ
+T*
+0.209 Tw
+(they would be to a regular Exec, but in a few cases this is not)Tj
+T*
+0 Tw
+(possible.)Tj
+/TT4 1 Tf
+12 0 0 12 162.64 199.35 Tm
+(Lists- \( and \))Tj
+/TT2 1 Tf
+10 0 0 10 258 199.35 Tm
+0.132 Tw
+(Lists begin with an open parenthesis character)Tj
+/TT4 1 Tf
+21.4155 0 TD
+0.132 Tc
+0 Tw
+( \()Tj
+/TT2 1 Tf
+0.7428 0 TD
+0 Tc
+0.132 Tw
+(. Typing an open)Tj
+ET
+570 215.69 0.99 -20.99 re
+f
+BT
+10 0 0 10 258 186.91 Tm
+0.004 Tw
+(parenthesis gives a balanced list, that is, SEdit inserts both an open)Tj
+ET
+570 194.69 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 174.91 Tm
+0.15 Tw
+[(and a close parenthesis. The  structure caret is between the two)]TJ
+ET
+570 182.69 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 162.91 Tm
+0.09 Tw
+[(parentheses.  List elements can be typed in at the structure caret.)]TJ
+ET
+570 170.69 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 150.91 Tm
+0.235 Tw
+[(When  a close parenthesis,)]TJ
+/TT4 1 Tf
+13.002 0 TD
+0.235 Tc
+0 Tw
+( \))Tj
+/TT2 1 Tf
+0.8458 0 TD
+0 Tc
+0.235 Tw
+[( is typed, the caret will be moved)]TJ
+ET
+570 158.69 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 138.91 Tm
+0.073 Tw
+(outside the list \(and the close parenthesis\), effectively finishing the)Tj
+ET
+570 146.69 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 126.91 Tm
+0.017 Tw
+[(list.  Square bracket characters, [ and ], have no special meaning in)]TJ
+ET
+570 134.69 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 114.91 Tm
+0 Tw
+(SEdit, as they have no special meaning in Common Lisp. )Tj
+ET
+570 122.69 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 124.65 94.35 Tm
+(Quoted Structures:)Tj
+/TT2 1 Tf
+10 0 0 10 258 94.35 Tm
+0.1869 Tw
+(SEdit handles the quote keys so that it is possible to type in all)Tj
+0 -1.244 TD
+0.08 Tw
+[(quote forms directly.  When typing one of the following quote keys)]TJ
+ET
+endstream
+endobj
+23 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT8 24 0 R
+>>
+/XObject <<
+/Im7 25 0 R
+/Im8 26 0 R
+/Im9 27 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+29 0 obj
+<<
+/Length 5566
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 542.4399 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-5)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+40.619 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+10 0 0 10 258 730.2 Tm
+0.049 Tw
+(at a structure caret, the quote character typed will appear, followed)Tj
+0 -1.2 TD
+0 Tw
+(by a gap to be replaced by the object  to  be quoted. )Tj
+/TT4 1 Tf
+-10.236 -1.9 TD
+(Single Quote – ’)Tj
+/TT2 1 Tf
+7.5566 0 TD
+[( )-2401.5(Use to enter quoted structures.)]TJ
+/TT4 1 Tf
+-6.5006 -1.9 TD
+(Backquote –‘)Tj
+/TT2 1 Tf
+6.2241 0 TD
+[(  )-2400.2(Use to enter backquoted structures.)]TJ
+/TT4 1 Tf
+-5.6131 -1.9 TD
+(Comma – ,)Tj
+/TT2 1 Tf
+5.0571 0 TD
+[(    )-2400.5(Use to enter comma forms, as used with a Backquote form.)]TJ
+/TT4 1 Tf
+-5.0311 -1.9 TD
+(At Sign – @)Tj
+/TT2 1 Tf
+5.5864 0 TD
+0.138 Tw
+[( )138( )-2262.9(Use after a comma to create  a comma-at-sign gap.  This allows)]TJ
+2.9566 -1.2 TD
+0.046 Tw
+(type-in of comma-at forms, e.g. )Tj
+/TT4 1 Tf
+14.3457 0 TD
+0 Tw
+(,@list)Tj
+/TT2 1 Tf
+2.6978 0 TD
+0.046 Tw
+(, as used within a Backquote)Tj
+-17.0435 -1.2 TD
+0 Tw
+(form.)Tj
+/TT4 1 Tf
+-5.734 -1.9 TD
+(Dot – .)Tj
+/TT2 1 Tf
+3.0557 0 TD
+0.142 Tw
+[( )-2258.5(Use  the dot \(period\) after a comma to create a comma-dot gap.)]TJ
+2.6783 -1.2 TD
+0.055 Tw
+[(This allows type-in  of comma-dot forms, e.g. )]TJ
+/TT4 1 Tf
+20.6133 0 TD
+0 Tw
+(,.list)Tj
+/TT2 1 Tf
+2.0005 0 TD
+0.055 Tw
+[(,  as used within)]TJ
+-22.6138 -1.2 TD
+0 Tw
+(a Backquote form.)Tj
+/TT4 1 Tf
+-10.236 -1.9 TD
+(Hash Quote – #’)Tj
+/TT2 1 Tf
+7.5576 0 TD
+0.381 Tw
+[( )-2019.5(Use this two character sequence to enter the )]TJ
+/TT4 1 Tf
+25.8485 0 TD
+0 Tw
+(CL:FUNCTION)Tj
+ET
+570 570.98 0.99 -18.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 544.2 Tm
+(abbreviation hash–quote \(#’\).)Tj
+ET
+570 551.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 160.66 523.64 Tm
+(Dotted Lists:)Tj
+/TT2 1 Tf
+10 0 0 10 258 523.64 Tm
+0.198 Tw
+(The dot, or period, character \()Tj
+/TT4 1 Tf
+14.213 0 TD
+0 Tw
+(.)Tj
+/TT2 1 Tf
+0.2778 0 TD
+0.198 Tw
+[(\)  is used to type dotted lists  in)]TJ
+-14.4908 -1.244 TD
+0.062 Tw
+[(SEdit.  After typing a dot, SEdit inserts a dot and a gap to fill in for)]TJ
+0 -1.2 TD
+0.074 Tw
+[(the tail of the list.  To dot an existing list, point the cursor between)]TJ
+T*
+0.106 Tw
+(the last and second to the last element in the list, and type a dot.)Tj
+T*
+0.017 Tw
+[(To undot a list,  select the tail of the list before the dot while holding)]TJ
+T*
+0 Tw
+(down the SHIFT key.)Tj
+/TT4 1 Tf
+12 0 0 12 151.96 442.64 Tm
+(Escape- \\ or %)Tj
+/TT2 1 Tf
+10 0 0 10 258 442.64 Tm
+0.105 Tw
+(Use to escape from a specific typed in character. Use the escape)Tj
+0 -1.244 TD
+0.235 Tw
+(key to enter characters, like parentheses, which otherwise have)Tj
+0 -1.2 TD
+0.105 Tw
+[(special meaning to the SEdit reader.  Press the  escape key then)]TJ
+T*
+0.337 Tw
+[(type in the character to escape.  SEdit uses the escape key)]TJ
+T*
+0.191 Tw
+(appropriate to the environment it is editing in; it depends on the)Tj
+T*
+0.338 Tw
+[(readtable that was current when the editor was started.  The)]TJ
+T*
+0.282 Tw
+(backslash key \()Tj
+/TT4 1 Tf
+7.4556 0 TD
+0 Tw
+(\\)Tj
+/TT2 1 Tf
+0.2778 0 TD
+0.282 Tw
+(\) is used when editing Common Lisp, and the)Tj
+-7.7334 -1.2 TD
+0 Tw
+(percent key \()Tj
+/TT4 1 Tf
+5.7803 0 TD
+(%)Tj
+/TT2 1 Tf
+0.8892 0 TD
+(\) is used when editing Interlisp.)Tj
+/TT4 1 Tf
+12 0 0 12 132.6 337.64 Tm
+(Multiple Escape- |)Tj
+/TT2 1 Tf
+10 0 0 10 258 337.64 Tm
+0.277 Tw
+(Use the multiple escape key, the vertical bar character \()Tj
+/TT4 1 Tf
+27.1707 0 TD
+0 Tw
+(|)Tj
+/TT2 1 Tf
+0.2798 0 TD
+0.277 Tw
+[(\),  to)]TJ
+-27.4505 -1.244 TD
+0.034 Tw
+[(escape a sequence of typed in characters.   SEdit always balances)]TJ
+0 -1.2 TD
+0.04 Tw
+(multiple escape characters. When one multiple escape character is)Tj
+T*
+0.226 Tw
+[(typed,  SEdit produces a balanced pair, with the caret between)]TJ
+T*
+0.05 Tw
+[(them, ready for typing in the characters to be escaped.  If you type)]TJ
+T*
+0.176 Tw
+[(a second vertical bar, the caret moves after the second  vertical)]TJ
+T*
+0.126 Tw
+[(bar, and is still  within the same atom, so that you can add more)]TJ
+T*
+0 Tw
+(unescaped characters to the atom.)Tj
+/TT4 1 Tf
+12 0 0 12 160.66 232.64 Tm
+(Comments- ;)Tj
+/TT2 1 Tf
+10 0 0 10 258 232.64 Tm
+0.175 Tw
+[(The comment key,  a semicolon \()]TJ
+/TT4 1 Tf
+15.7773 0 TD
+0 Tw
+(;)Tj
+/TT2 1 Tf
+0.333 0 TD
+0.175 Tw
+[(\), starts a comment.  When a)]TJ
+-16.1103 -1.244 TD
+0.055 Tw
+(semicolon is typed, an empty comment is inserted with the caret in)Tj
+0 -1.2 TD
+0.12 Tw
+[(position for typing in the comment.  Comments can be edited like)]TJ
+T*
+0.196 Tw
+(strings. There are three levels of comments supported by SEdit:)Tj
+T*
+0.52 Tw
+[(single, double, and triple.  Single semicolon comments are)]TJ
+T*
+0.073 Tw
+(formatted at the comment column, about three-quarters of the way)Tj
+T*
+0.425 Tw
+[(across the SEdit window, towards the right margin.  Double)]TJ
+T*
+0.029 Tw
+(semicolon comments are formatted at the current indentation of the)Tj
+T*
+0.171 Tw
+[(code that they are in.  Triple semicolon comments are formatted)]TJ
+T*
+0.355 Tw
+[(against the left margin of the SEdit window.  The level of a)]TJ
+T*
+0.313 Tw
+(comment can be increased or decreased by pointing after the)Tj
+T*
+0.26 Tw
+(semicolon, and either typing another semicolon, or backspacing)Tj
+T*
+0.017 Tw
+[(over the preceding semicolon.  Comments can be placed anywhere)]TJ
+T*
+0.116 Tw
+(in your Common Lisp code. However, in Interlisp code, they must)Tj
+T*
+0 Tw
+(follow the placement rules for   Interlisp comments.)Tj
+ET
+endstream
+endobj
+30 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+32 0 obj
+<<
+/Length 5910
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-6)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+/TT4 1 Tf
+12 0 0 12 179.63 728.64 Tm
+(Strings- ")Tj
+/TT2 1 Tf
+10 0 0 10 258 728.64 Tm
+0.047 Tw
+(Enter strings in SEdit by typing a double quote \()Tj
+/TT4 1 Tf
+21.5466 0 TD
+0 Tw
+(")Tj
+/TT2 1 Tf
+0.4741 0 TD
+0.047 Tw
+[(\).  SEdit balances)]TJ
+-22.0207 -1.244 TD
+0.126 Tw
+(the double quotes. When one is typed, SEdit produces a second,)Tj
+0 -1.2 TD
+0.12 Tw
+(with the caret between the two, ready for typing the characters of)Tj
+T*
+0.11 Tw
+[(the string. If  a double quote character is typed in the middle of a)]TJ
+T*
+(string, SEdit breaks the string into two smaller strings, leaving the)Tj
+T*
+0 Tw
+(caret between them.)Tj
+/TT4 1 Tf
+12 0 0 12 54 640.64 Tm
+(16.1.6  Commands)Tj
+ET
+570 663.98 0.99 -25.99 re
+f
+54.01 637.49 m
+558.01 637.49 l
+S
+570 637.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 622.2 Tm
+0.221 Tw
+(SEdit commands are most easily entered through the keyboard.)Tj
+ET
+570 636.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 610.2 Tm
+0.293 Tw
+(When possible, SEdit uses a named key on the keyboard, for)Tj
+ET
+570 617.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 598.2 Tm
+0.071 Tw
+[(example, the DELETE key.  The other commands are either Meta,)]TJ
+ET
+570 605.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 586.2 Tm
+0.346 Tw
+[(Control, or Meta-Contol key combinations.  For the alphabetic)]TJ
+ET
+570 593.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 574.2 Tm
+0 Tw
+(command keys, either uppercase or lowercase will work.)Tj
+ET
+570 581.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 555.2 Tm
+0.01 Tw
+(There are two menus available, as an alternative means of invoking)Tj
+ET
+570 569.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 543.2 Tm
+0.265 Tw
+[(commands.  They are the middle button popup menu, and the)]TJ
+ET
+570 550.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 531.2 Tm
+0.209 Tw
+[(attached command menu.  These menus are described in more)]TJ
+ET
+570 538.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 519.2 Tm
+0 Tw
+(detail below.)Tj
+ET
+570 526.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 491.64 Tm
+(16.1.6  Editing Commands)Tj
+ET
+570 514.98 0.99 -25.99 re
+f
+54.01 488.49 m
+558.01 488.49 l
+S
+570 488.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 126 473.2 Tm
+(Redisplay:   Control-L)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 487.98 0.99 -18.99 re
+f
+126.01 468.49 m
+558.01 468.49 l
+S
+570 468.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 453.2 Tm
+(Redisplays the structure being edited. )Tj
+ET
+570 467.98 0.99 -16.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 443.2 Tm
+(Delete Selection:   DELETE)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 450.98 0.99 -9.99 re
+f
+126.01 440.49 m
+558.01 440.49 l
+S
+570 440.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 425.2 Tm
+(Deletes the current selection.  )Tj
+ET
+570 439.98 0.99 -18.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 413.2 Tm
+(Delete Word:   Control-W)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 420.98 0.99 -9.99 re
+f
+126.01 410.49 m
+558.01 410.49 l
+S
+570 410.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 395.2 Tm
+0.067 Tw
+[(Deletes the previous atom or whole structure.  If the caret is in the)]TJ
+ET
+570 409.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 383.2 Tm
+0.095 Tw
+(middle of an atom, deletes backward to the beginning of the atom)Tj
+ET
+570 390.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 371.2 Tm
+0 Tw
+(only.  )Tj
+ET
+570 378.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 343.64 Tm
+(16.1.7 Completion Commands)Tj
+ET
+570 366.98 0.99 -25.99 re
+f
+54.01 340.49 m
+558.01 340.49 l
+S
+570 340.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 126 325.2 Tm
+(Abort:   Meta-A)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 339.98 0.99 -18.99 re
+f
+126.01 320.49 m
+558.01 320.49 l
+S
+570 320.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 305.2 Tm
+0.085 Tw
+[(Aborts.  This command must be confirmed.  All changes since the)]TJ
+ET
+570 319.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 293.2 Tm
+0 Tw
+(beginning of the edit session are undone, and the edit is closed.)Tj
+ET
+570 300.98 0.99 -34.99 re
+f
+BT
+10 0 0 10 258 247.2 Tm
+0.104 Tw
+(The following commands signal completion of an edit session and)Tj
+ET
+570 265.98 0.99 -22.99 re
+f
+BT
+10 0 0 10 258 235.2 Tm
+0 Tw
+(install the structure you were editing.)Tj
+ET
+570 242.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 221.64 Tm
+(Control-X)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 230.98 0.99 -11.99 re
+f
+126.01 218.49 m
+558.01 218.49 l
+S
+570 218.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 203.2 Tm
+0.055 Tw
+[(Signals the system that this edit is complete.  The window remains)]TJ
+ET
+570 217.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 191.2 Tm
+0.1 Tw
+(open, though, so the user can see the edit and start editing again)Tj
+ET
+570 198.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 179.2 Tm
+0 Tw
+(directly.)Tj
+ET
+570 186.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 165.64 Tm
+(Control-C)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 174.98 0.99 -11.99 re
+f
+126.01 162.49 m
+558.01 162.49 l
+S
+570 162.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 147.2 Tm
+0.277 Tw
+(Signals the system that this edit is complete and compiles the)Tj
+ET
+570 161.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 135.2 Tm
+0.172 Tw
+[(definition being edited.  The variable *compile-fn* determines the)]TJ
+ET
+570 142.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 123.2 Tm
+0.012 Tw
+[(function to be called to do the compilation.  See the Options section)]TJ
+ET
+570 130.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 111.2 Tm
+0 Tw
+(below.)Tj
+ET
+570 118.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 97.64 Tm
+(Meta-Control-X)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 106.98 0.99 -11.99 re
+f
+126.01 94.49 m
+558.01 94.49 l
+S
+570 94.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 79.2 Tm
+0.388 Tw
+(Signals the system that this edit is complete and closes the)Tj
+ET
+570 93.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 67.2 Tm
+0 Tw
+(window.)Tj
+ET
+570 74.98 0.99 -11.99 re
+f
+endstream
+endobj
+33 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+35 0 obj
+<<
+/Length 4659
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 542.4399 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-7)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+40.619 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+/TT4 1 Tf
+10 0 0 10 126 728.64 Tm
+(Meta-Control-C)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 737.98 0.99 -11.99 re
+f
+126.01 725.49 m
+558.01 725.49 l
+S
+570 725.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 710.2 Tm
+0.015 Tw
+(Signals the system that this edit is complete, compiles the definition)Tj
+ET
+570 724.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 698.2 Tm
+0 Tw
+(being editing, and closes the window.)Tj
+ET
+570 705.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 670.64 Tm
+(16.1.8 Undo Commands)Tj
+ET
+570 693.98 0.99 -25.99 re
+f
+54.01 667.49 m
+558.01 667.49 l
+S
+570 667.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 126 652.2 Tm
+(Undo:   Meta-U or UNDO)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 666.98 0.99 -18.99 re
+f
+126.01 647.49 m
+558.01 647.49 l
+S
+570 647.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 632.2 Tm
+0.133 Tw
+[(Undoes the last edit.  All changes since the beginning of the edit)]TJ
+ET
+570 646.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 620.2 Tm
+0 Tw
+(session are remembered, and can be undone sequentially.)Tj
+ET
+570 627.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 599.64 Tm
+(Redo:   Meta-R or AGAIN)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 615.98 0.99 -20.99 re
+f
+126.01 594.49 m
+558.01 594.49 l
+S
+570 594.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 579.2 Tm
+0.16 Tw
+[(Redoes the edit change that was just undone.  Redo only works)]TJ
+ET
+570 593.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 567.2 Tm
+0.082 Tw
+[(directly  following an Undo.   Any number of Undo commands can)]TJ
+ET
+570 574.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 555.2 Tm
+0 Tw
+(be sequentially redone.)Tj
+ET
+570 562.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 527.64 Tm
+(16.1.9 Find Commands)Tj
+ET
+570 550.98 0.99 -25.99 re
+f
+54.01 524.49 m
+558.01 524.49 l
+S
+570 524.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 126 509.2 Tm
+(Find:  Meta-F or FIND)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 523.98 0.99 -18.99 re
+f
+126.01 504.49 m
+558.01 504.49 l
+S
+570 504.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 489.2 Tm
+0.059 Tw
+[(Finds a specified structure, or sequence of structures.  If there is a)]TJ
+ET
+570 503.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 477.2 Tm
+0.354 Tw
+[(current selection, SEdit  looks for the next occurrence of the)]TJ
+ET
+570 484.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 465.2 Tm
+0.145 Tw
+[(selected structure.  If there is no selection, SEdit prompts for the)]TJ
+ET
+570 472.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 453.2 Tm
+0.249 Tw
+(structure to find, and searches forward from the position of the)Tj
+ET
+570 460.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 441.2 Tm
+0.095 Tw
+[(caret.  The found structure will be selected, so the Find command)]TJ
+ET
+570 448.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 429.2 Tm
+0 Tw
+(can be used to easily find the same structure again.)Tj
+ET
+570 436.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 410.2 Tm
+0.101 Tw
+(If a sequence of structures is selected, SEdit will look for the next)Tj
+ET
+570 424.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 398.2 Tm
+0.091 Tw
+[(occurrence of the same sequence.  Similarly, when SEdit prompts)]TJ
+ET
+570 405.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 386.2 Tm
+0.119 Tw
+(for the structure to find, you can type a sequence of structures to)Tj
+ET
+570 393.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 374.2 Tm
+0 Tw
+(look for.)Tj
+ET
+570 381.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 355.2 Tm
+0.235 Tw
+(The variable *wrap-search* controls whether or not SEdit wraps)Tj
+ET
+570 369.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 343.2 Tm
+0.182 Tw
+(around from the end of the structure being edited and continues)Tj
+ET
+570 350.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 331.2 Tm
+0 Tw
+(searching from the beginning.)Tj
+ET
+570 338.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 312.2 Tm
+(Reverse Find:  Control-Meta-F )Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 326.98 0.99 -18.99 re
+f
+126.01 307.49 m
+558.01 307.49 l
+S
+570 307.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 292.2 Tm
+0.122 Tw
+(Finds a specified structure, searching in reverse from the position)Tj
+ET
+570 306.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 280.2 Tm
+0 Tw
+(of the caret.)Tj
+ET
+570 287.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 261.2 Tm
+0.235 Tw
+(The variable *wrap-search* controls whether or not SEdit wraps)Tj
+ET
+570 275.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 249.2 Tm
+0.412 Tw
+(around from the beginning of the structure being edited and)Tj
+ET
+570 256.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 237.2 Tm
+0 Tw
+(continues searching from the end.)Tj
+ET
+570 244.98 0.99 -11.99 re
+f
+endstream
+endobj
+36 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+38 0 obj
+<<
+/Length 6568
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-8)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+/TT4 1 Tf
+10 0 0 10 126 728.64 Tm
+(Find Gap:   Meta-N or SKIP-NEXT)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 744.98 0.99 -20.99 re
+f
+126.01 723.49 m
+558.01 723.49 l
+S
+570 723.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 708.2 Tm
+0.347 Tw
+(Skips to the next gap in the structure, leaving it selected for)Tj
+ET
+570 722.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 696.2 Tm
+0 Tw
+(pending deletion.)Tj
+ET
+570 703.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 677.2 Tm
+(Substitute:   Meta-S or SHIFT-FIND)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 691.98 0.99 -18.99 re
+f
+126.01 672.49 m
+558.01 672.49 l
+S
+570 672.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 657.2 Tm
+0.214 Tw
+(Substitutes one structure, or sequence of structures, for another)Tj
+ET
+570 671.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 645.2 Tm
+0.06 Tw
+[(structure, or sequence, within the current selection.  SEdit prompts)]TJ
+ET
+570 652.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 633.2 Tm
+0.12 Tw
+(you in the SEdit prompt window for the structures to replace, and)Tj
+ET
+570 640.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 621.2 Tm
+0 Tw
+(the structures to replace with.)Tj
+ET
+570 628.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 602.2 Tm
+0.044 Tw
+[(The selection to substitute within must be a structure selection.  To)]TJ
+ET
+570 616.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 590.2 Tm
+0.16 Tw
+(get a structure selection, click with the middle mouse button \(not)Tj
+ET
+570 597.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 578.2 Tm
+0.084 Tw
+[(the left\), and extend it,  if necessary,  with the right mouse button.)]TJ
+ET
+570 585.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 566.2 Tm
+0.322 Tw
+(If you begin with the left button, you will get an informational)Tj
+ET
+570 573.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 554.2 Tm
+0.229 Tw
+(message "Select the structure to substitute within", because the)Tj
+ET
+570 561.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 542.2 Tm
+0 Tw
+(selection was of characters, rather than structures.)Tj
+ET
+570 549.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 523.2 Tm
+(Delete Structure:   Meta-Control-S )Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 537.98 0.99 -18.99 re
+f
+126.01 518.49 m
+558.01 518.49 l
+S
+570 518.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 503.2 Tm
+0.159 Tw
+(Removes all occurences of a structure or sequence of structures)Tj
+ET
+570 517.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 491.2 Tm
+0.16 Tw
+[(within the current selection.  SEdit prompts the user in the SEdit)]TJ
+ET
+570 498.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 479.2 Tm
+0 Tw
+(prompt window for the structures to delete.)Tj
+ET
+570 486.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 451.64 Tm
+(16.1.9 General Commands)Tj
+ET
+570 474.98 0.99 -25.99 re
+f
+54.01 448.49 m
+558.01 448.49 l
+S
+570 448.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 126 431.64 Tm
+(Arglist:  Meta-H or HELP)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 447.98 0.99 -20.99 re
+f
+126.01 426.49 m
+558.01 426.49 l
+S
+570 426.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 411.2 Tm
+0.32 Tw
+(Shows the argument list for the function currently selected, or)Tj
+ET
+570 425.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 399.2 Tm
+0.357 Tw
+[(currently being typed in, in the SEdit prompt window.  If the)]TJ
+ET
+570 406.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 387.2 Tm
+0.007 Tw
+[(argument  list  will not  fit in the SEdit prompt window, it is displayed)]TJ
+ET
+570 394.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 375.2 Tm
+0 Tw
+(in the main Prompt Window.)Tj
+ET
+570 382.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 356.2 Tm
+(Convert Comments:  Meta-;)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 370.98 0.99 -18.99 re
+f
+126.01 351.49 m
+558.01 351.49 l
+S
+570 351.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 336.2 Tm
+0.039 Tw
+[(Converts old style comments in the selected structure  to new style)]TJ
+ET
+570 350.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 324.2 Tm
+0.277 Tw
+[(comments.  This converter notices any list that begins with an)]TJ
+ET
+570 331.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 312.2 Tm
+0.388 Tw
+(asterisk \(*\) in the INTERLISP package \(IL:*\) as an old style)Tj
+ET
+570 319.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 300.2 Tm
+0.572 Tw
+(comment. Section 16.1.11, Options, describes the converter)Tj
+ET
+570 307.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 288.2 Tm
+0 Tw
+(options .)Tj
+ET
+570 295.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 269.2 Tm
+(Edit:   Meta-O)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 283.98 0.99 -18.99 re
+f
+126.01 264.49 m
+558.01 264.49 l
+S
+570 264.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 249.2 Tm
+0.145 Tw
+[(Edits the definition of the current selection.  If the selected name)]TJ
+ET
+570 263.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 237.2 Tm
+0.08 Tw
+(has more than one type of definition, SEdit asks for the type to be)Tj
+ET
+570 244.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 225.2 Tm
+0.153 Tw
+[(edited.  If the selection has no definition, a menu  pops up. This)]TJ
+ET
+570 232.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 213.2 Tm
+0.3 Tw
+[(menu lets the user specify either the type of definition  to be)]TJ
+ET
+570 220.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 201.2 Tm
+0 Tw
+(created, or no definition if none needs to be created.)Tj
+ET
+570 208.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 180.64 Tm
+(Eval:  Meta-E or Do-It)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 196.98 0.99 -20.99 re
+f
+126.01 175.49 m
+558.01 175.49 l
+S
+570 175.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 160.2 Tm
+0.236 Tw
+[(Evaluates the current selection.  If the result is a structure, the)]TJ
+ET
+570 174.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 148.2 Tm
+0.059 Tw
+(inspector is called on it, allowing the user to choose how to look at)Tj
+ET
+570 155.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 136.2 Tm
+0.251 Tw
+[(the result.  Otherwise, the result is printed in the SEdit prompt)]TJ
+ET
+570 143.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 124.2 Tm
+0.05 Tw
+[(window.  The evaluation is done in the process from which the edit)]TJ
+ET
+570 131.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 112.2 Tm
+0.145 Tw
+[(session was started.  Thus, while editing a function from a break)]TJ
+ET
+570 119.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 100.2 Tm
+0 Tw
+(window, evaluations are done in the context of the break.)Tj
+ET
+570 107.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 79.64 Tm
+(Expand:   Meta-X or EXPAND)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 95.98 0.99 -20.99 re
+f
+126.01 74.49 m
+558.01 74.49 l
+S
+570 74.98 0.99 -0.99 re
+f
+endstream
+endobj
+39 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+41 0 obj
+<<
+/Length 6307
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 542.4399 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-9)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+40.619 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+10 0 0 10 258 730.2 Tm
+0.172 Tw
+[(Replaces the current selection with its definition.  This command)]TJ
+ET
+570 744.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 718.2 Tm
+0 Tw
+(can be used to expand macros and translate CLISP.)Tj
+ET
+570 725.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 699.2 Tm
+(Extract:  Meta- /)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 713.98 0.99 -18.99 re
+f
+126.01 694.49 m
+558.01 694.49 l
+S
+570 694.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 679.2 Tm
+0.249 Tw
+(Extracts one level of structure from the current selection. If the)Tj
+ET
+570 693.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 667.2 Tm
+0.189 Tw
+(current selection is an atom, or if there is no selection, the next)Tj
+ET
+570 674.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 655.2 Tm
+0.272 Tw
+[(largest structure containing this atom, or caret,  is used.  This)]TJ
+ET
+570 662.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 643.2 Tm
+0.286 Tw
+(command can be used to strip the parentheses off a list or a)Tj
+ET
+570 650.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 631.2 Tm
+0 Tw
+(comment, or to unquote a quoted structure.)Tj
+ET
+570 638.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 610.64 Tm
+(Inspect:   Meta-I)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 626.98 0.99 -20.99 re
+f
+126.01 605.49 m
+558.01 605.49 l
+S
+570 605.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 590.2 Tm
+(Inspect the current selection.)Tj
+ET
+570 604.98 0.99 -18.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 569.64 Tm
+(Join:   Meta-J)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 585.98 0.99 -20.99 re
+f
+126.01 564.49 m
+558.01 564.49 l
+S
+570 564.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 549.2 Tm
+0.054 Tw
+[(Joins.  This command  joins any number of sequential Lisp objects)]TJ
+ET
+570 563.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 537.2 Tm
+0.013 Tw
+[(of the same type into one object of that type.    Join is supported for)]TJ
+ET
+570 544.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 525.2 Tm
+0.339 Tw
+(atoms, strings, lists, and comments. In addition, SEdit permits)Tj
+ET
+570 532.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 513.2 Tm
+0.14 Tw
+(joining of a sequence of atoms and strings, since either type can)Tj
+ET
+570 520.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 501.2 Tm
+0.046 Tw
+[(easily be coerced into the other.  In this case, the result of the Join)]TJ
+ET
+570 508.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 489.2 Tm
+0.303 Tw
+(will be an atom if the first object in the selection is an atom,)Tj
+ET
+570 496.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 477.2 Tm
+0 Tw
+(otherwise the result will be a string.)Tj
+ET
+570 484.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 458.2 Tm
+(Mutate:   Meta-Z)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 472.98 0.99 -18.99 re
+f
+126.01 453.49 m
+558.01 453.49 l
+S
+570 453.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 438.2 Tm
+0.071 Tw
+[(Mutates.  This command allows the user to do arbitrary operations)]TJ
+ET
+570 452.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 426.2 Tm
+0.203 Tw
+[(on a LISP structure.  First select the structure to be mutated \(it)]TJ
+ET
+570 433.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 414.2 Tm
+0.105 Tw
+[(must be a whole structure, not an extended selection\).  When the)]TJ
+ET
+570 421.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 402.2 Tm
+0.241 Tw
+[(user  presses Meta-Z SEdit prompts for the function to use for)]TJ
+ET
+570 409.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 390.2 Tm
+0.115 Tw
+[(mutating.  This function is called with the selected structure as its)]TJ
+ET
+570 397.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 378.2 Tm
+0.338 Tw
+(argument, and the structure is replaced with the result of the)Tj
+ET
+570 385.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 366.2 Tm
+0 Tw
+(mutation. )Tj
+ET
+570 373.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 347.2 Tm
+0.152 Tw
+(For example, an atom can be put in upper case by selecting the)Tj
+ET
+570 361.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 335.2 Tm
+0.181 Tw
+[(atom and mutating by the function U-CASE.  You can replace a)]TJ
+ET
+570 342.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 323.2 Tm
+0 Tw
+(structure with its value by selecting it and mutating by EVAL.)Tj
+ET
+570 330.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 304.2 Tm
+[(Quote:)-978(Meta-’)]TJ
+ET
+570 318.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 168 290.2 Tm
+(Meta-‘)Tj
+ET
+570 299.98 0.99 -13.99 re
+f
+BT
+10 0 0 10 168 276.2 Tm
+(Meta-,)Tj
+ET
+570 285.98 0.99 -13.99 re
+f
+BT
+10 0 0 10 168 262.2 Tm
+(Meta-.)Tj
+ET
+570 271.98 0.99 -13.99 re
+f
+BT
+10 0 0 10 168 248.2 Tm
+(Meta-@ or Meta-2)Tj
+ET
+570 257.98 0.99 -13.99 re
+f
+BT
+10 0 0 10 168 234.2 Tm
+(Meta-# or Meta-3)Tj
+/TT2 1 Tf
+30.942 0 TD
+([Editor Command])Tj
+ET
+570 243.98 0.99 -13.99 re
+f
+126.01 229.49 m
+558.01 229.49 l
+S
+570 229.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 214.2 Tm
+0.299 Tw
+[(Quotes the current  selection with the specified kind of quote,)]TJ
+ET
+570 228.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 202.2 Tm
+0.078 Tw
+[(respectively,  Single Quote, Backquote, Comma,  Comma-At-Sign,)]TJ
+ET
+570 209.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 190.2 Tm
+0 Tw
+(Comma-Dot, or Hash-Quote.)Tj
+ET
+570 197.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 171.2 Tm
+(Parenthesize:  Meta- \) or Meta-0)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 185.98 0.99 -18.99 re
+f
+126.01 166.49 m
+558.01 166.49 l
+S
+570 166.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 151.2 Tm
+0.116 Tw
+(Parenthesizes the current selection, positioning the caret after the)Tj
+ET
+570 165.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 139.2 Tm
+0 Tw
+(new list.)Tj
+ET
+570 146.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 120.2 Tm
+(Parenthesize:  Meta- \( or Meta-9)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 134.98 0.99 -18.99 re
+f
+126.01 115.49 m
+558.01 115.49 l
+S
+570 115.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 100.2 Tm
+0.262 Tw
+(Parenthesizes the current selection, positioning the caret at the)Tj
+ET
+570 114.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 88.2 Tm
+0.142 Tw
+[(beginning of the new list.  Only a whole structure selection or an)]TJ
+ET
+570 95.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 76.2 Tm
+0.35 Tw
+(extended selection of a sequence of whole structures can be)Tj
+ET
+570 83.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 64.2 Tm
+0 Tw
+(parenthesized.)Tj
+ET
+570 71.98 0.99 -11.99 re
+f
+endstream
+endobj
+42 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+44 0 obj
+<<
+/Length 2692
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-10)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+/TT4 1 Tf
+12 0 0 12 54 728.64 Tm
+(16.1.10  Miscellaneous)Tj
+ET
+570 751.98 0.99 -25.99 re
+f
+54.01 725.49 m
+558.01 725.49 l
+S
+570 725.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 126 710.2 Tm
+(Change Print Base:   Meta-B)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 724.98 0.99 -18.99 re
+f
+126.01 705.49 m
+558.01 705.49 l
+S
+570 705.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 690.2 Tm
+0.042 Tw
+[(Changes Print Base.   Prompts  for entry of the desired Print Base,)]TJ
+ET
+570 704.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 678.2 Tm
+0 Tw
+(in decimal.  SEdit redisplays fixed point numbers in this new base. )Tj
+ET
+570 685.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 657.64 Tm
+(Set Package:   Meta-P)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 673.98 0.99 -20.99 re
+f
+126.01 652.49 m
+558.01 652.49 l
+S
+570 652.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 637.2 Tm
+0.138 Tw
+[(Changes the current package for this edit.  Prompts the user,  in)]TJ
+ET
+570 651.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 625.2 Tm
+0.231 Tw
+[(the SEdit prompt window, for a new package name.  SEdit will)]TJ
+ET
+570 632.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 613.2 Tm
+0 Tw
+(redisplay atoms with respect to that package. )Tj
+ET
+570 620.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 592.64 Tm
+(Attached Menu:   Meta-M)Tj
+/TT2 1 Tf
+35.142 0 TD
+([Editor Command])Tj
+ET
+570 608.98 0.99 -20.99 re
+f
+126.01 587.49 m
+558.01 587.49 l
+S
+570 587.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 572.2 Tm
+0.232 Tw
+[(Attaches a menu of the commonly used commands  \(the SEdit)]TJ
+ET
+570 586.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 560.2 Tm
+0.272 Tw
+[(Command Menu\) to the top of the SEdit window.  Each SEdit)]TJ
+ET
+570 567.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 548.2 Tm
+0 Tw
+(window can have its own menu, if desired.)Tj
+ET
+570 555.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 520.64 Tm
+(16.1.10  Help Menu)Tj
+ET
+570 543.98 0.99 -25.99 re
+f
+54.01 517.49 m
+558.01 517.49 l
+S
+570 517.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 502.2 Tm
+0.082 Tw
+(When the mouse cursor is positioned in the SEdit title bar and the)Tj
+ET
+570 516.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 490.2 Tm
+0.059 Tw
+[(middle mouse button is pressed, a Help Menu of commands  pops)]TJ
+ET
+570 497.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 478.2 Tm
+0 Tw
+(up.  The menu looks like this: )Tj
+ET
+570 485.98 0.99 -11.99 re
+f
+BT
+/TT8 1 Tf
+8 0 0 8 258 80.99 Tm
+( )Tj
+ET
+q
+207 0 0 -386 262.81 466.99 cm
+/Im10 Do
+Q
+570 473.98 0.99 -397.79 re
+f
+endstream
+endobj
+45 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT8 24 0 R
+>>
+/XObject <<
+/Im10 46 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+48 0 obj
+<<
+/Length 5567
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 536.8799 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-11)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+40.619 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+10 0 0 10 258 730.2 Tm
+0.526 Tw
+(The Help Menu lists each command and its corresponding)Tj
+ET
+570 744.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 718.2 Tm
+0.166 Tw
+(Command Key. \(In the menu, the letter C stands for CONTROL,)Tj
+ET
+570 725.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 706.2 Tm
+0.116 Tw
+[(while M indicates Meta.\)  The command selected is executed just)]TJ
+ET
+570 713.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 694.2 Tm
+0.003 Tw
+(as if the command had been entered from the keyboard.  The menu)Tj
+ET
+570 701.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 682.2 Tm
+0.159 Tw
+(remembers which command was selected last, and pops up with)Tj
+ET
+570 689.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 670.2 Tm
+0.181 Tw
+(the mouse cursor next to that same command the next time the)Tj
+ET
+570 677.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 658.2 Tm
+0.132 Tw
+[(menu is used.  This provides a very fast way to repeat the same)]TJ
+ET
+570 665.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 646.2 Tm
+0 Tw
+(command when using the mouse.)Tj
+ET
+570 653.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 618.64 Tm
+(16.1.9  Command Menu)Tj
+ET
+570 641.98 0.99 -25.99 re
+f
+54.01 615.49 m
+558.01 615.49 l
+S
+570 615.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 600.2 Tm
+0.096 Tw
+[(The SEdit Attached Command Menu contains the commonly used)]TJ
+ET
+570 614.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 588.2 Tm
+0.172 Tw
+(commands. Use the Meta-M keyboard command to bring up this)Tj
+ET
+570 595.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 576.2 Tm
+0.348 Tw
+[(menu.  The menu can be closed, independently of the SEdit)]TJ
+ET
+570 583.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 564.2 Tm
+0 Tw
+(window, when desired.  The menu looks like:)Tj
+ET
+570 571.98 0.99 -11.99 re
+f
+q
+327 0 0 -102 231.01 552.99 cm
+/Im11 Do
+Q
+570 559.98 0.99 -110.99 re
+f
+BT
+10 0 0 10 258 434.2 Tm
+0.366 Tw
+(All of the commands in the menu function identically to their)Tj
+ET
+570 448.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 422.2 Tm
+0.832 Tw
+(corresponding keyboard commands, except for Find and)Tj
+ET
+570 429.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 410.2 Tm
+0 Tw
+(Substitute.)Tj
+ET
+570 417.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 391.2 Tm
+0.049 Tw
+(When Find is selected with the mouse cursor, SEdit prompts in the)Tj
+ET
+570 405.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 379.2 Tm
+0.186 Tw
+(menu window, next to the Find button, for the structures to find.)Tj
+ET
+570 386.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 367.2 Tm
+0.115 Tw
+[(Type in the structures then select Find again. The  search begins)]TJ
+ET
+570 374.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 355.2 Tm
+0 Tw
+(from the caret position in the SEdit window.)Tj
+ET
+570 362.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 336.2 Tm
+0.315 Tw
+[(Similarly, Substitute prompts, next to the Find button,  for the)]TJ
+ET
+570 350.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 324.2 Tm
+0.454 Tw
+(structures to find, and next to the Substitute button for the)Tj
+ET
+570 331.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 312.2 Tm
+0.443 Tw
+(structures to substitute with. After both have been typed in,)Tj
+ET
+570 319.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 300.2 Tm
+0.075 Tw
+(selecting Substitute replaces all occurrences of the Find structures)Tj
+ET
+570 307.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 288.2 Tm
+0 Tw
+(with the Substitute structures, within the current selection.)Tj
+ET
+570 295.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 269.2 Tm
+0.256 Tw
+(To do a confirmed substitute, set the edit point before the first)Tj
+ET
+570 283.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 257.2 Tm
+0.019 Tw
+[(desired substitution, and select Find.  Then if you want to substitute)]TJ
+ET
+570 264.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 245.2 Tm
+0.332 Tw
+[(that occurrence of the structure, select Substitute.  Otherwise,)]TJ
+ET
+570 252.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 233.2 Tm
+0 Tw
+(select  Find again to go on.)Tj
+ET
+570 240.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 214.2 Tm
+0.301 Tw
+(Selecting either Find or Substitute with the right mouse button)Tj
+ET
+570 228.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 202.2 Tm
+0.17 Tw
+(erases the old structure to find or substitute from the menu, and)Tj
+ET
+570 209.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 190.2 Tm
+0 Tw
+(prompts  for a new one.)Tj
+ET
+570 197.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 162.64 Tm
+(16.1.11 SEdit Window Region Manager)Tj
+ET
+570 185.98 0.99 -25.99 re
+f
+54.01 159.49 m
+558.01 159.49 l
+S
+570 159.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 144.2 Tm
+0.116 Tw
+(SEdit provides user redefinable functions which control how SEdit)Tj
+ET
+570 158.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 132.2 Tm
+0 Tw
+(chooses the region for a new edit window.)Tj
+ET
+570 139.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 110.2 Tm
+0.0001 Tc
+(\(Get-Window-Region )Tj
+/TT6 1 Tf
+10.1658 0 TD
+0 Tc
+(CONTEXT REASON NAME TYPE)Tj
+/TT4 1 Tf
+15.3354 0 TD
+(\))Tj
+/TT2 1 Tf
+12.8987 0 TD
+([Function)Tj
+/TT4 1 Tf
+4.1133 0 TD
+(])Tj
+ET
+570 127.98 0.99 -19.99 re
+f
+126.01 107.49 m
+558.01 107.49 l
+S
+570 107.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 92.2 Tm
+0.073 Tw
+(This function is called when SEdit wants to know where to place a)Tj
+ET
+570 106.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 80.2 Tm
+0.064 Tw
+(window it is about to open. This happens whenever the user starts)Tj
+ET
+570 87.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 68.2 Tm
+0.17 Tw
+(a new SEdit or expands an Sedit icon.The default behavior is to)Tj
+ET
+570 75.98 0.99 -11.99 re
+f
+endstream
+endobj
+49 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+>>
+/XObject <<
+/Im11 50 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+54 0 obj
+<<
+/Length 7959
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-12)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+10 0 0 10 258 730.2 Tm
+0.17 Tw
+(pop a window region off SEdit’s stack of regions that have been)Tj
+ET
+570 737.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 718.2 Tm
+0.071 Tw
+[(used in the past.  If the stack is empty,  SEdit   prompts for a new)]TJ
+ET
+570 725.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 706.2 Tm
+0 Tw
+(region. )Tj
+ET
+570 713.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 687.2 Tm
+0.182 Tw
+(This function can be redefined to provide different behavior. It is)Tj
+ET
+570 701.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 675.2 Tm
+0.165 Tw
+(called with the edit )Tj
+/TT6 1 Tf
+9.168 0 TD
+0 Tw
+(CONTEXT)Tj
+/TT2 1 Tf
+4.7778 0 TD
+0.165 Tw
+(, a )Tj
+/TT6 1 Tf
+1.7222 0 TD
+0 Tw
+(REASON)Tj
+/TT2 1 Tf
+4.2231 0 TD
+0.165 Tw
+[( for needing a region,)]TJ
+ET
+570 682.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 663.2 Tm
+0 Tw
+(the )Tj
+/TT6 1 Tf
+1.954 0 TD
+(NAME)Tj
+/TT2 1 Tf
+2.8892 0 TD
+0.286 Tw
+[( of the structure to be edited, and the )]TJ
+/TT6 1 Tf
+19.1961 0 TD
+0 Tw
+(TYPE)Tj
+/TT2 1 Tf
+2.6118 0 TD
+0.286 Tw
+[( of the)]TJ
+ET
+570 670.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 651.2 Tm
+0.186 Tw
+[(structure to be edited.  The edit )]TJ
+/TT6 1 Tf
+15.4211 0 TD
+0 Tw
+(CONTEXT)Tj
+/TT2 1 Tf
+4.7778 0 TD
+0.186 Tw
+[( is SEdit’s main data)]TJ
+ET
+570 658.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 639.2 Tm
+0.264 Tw
+(structure and can be useful for associating particular edits with)Tj
+ET
+570 646.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 627.2 Tm
+0.332 Tw
+[(specific regions.  The )]TJ
+/TT6 1 Tf
+11.0546 0 TD
+0 Tw
+(REASON)Tj
+/TT2 1 Tf
+4.2231 0 TD
+0.332 Tw
+[( argument specifies why SEdit)]TJ
+ET
+570 634.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 615.2 Tm
+0.292 Tw
+(wants a region, and will be one of the keywords :CREATE or)Tj
+ET
+570 622.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 603.2 Tm
+0 Tw
+(:EXPAND. )Tj
+ET
+570 610.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 581.2 Tm
+(\(Save-Window-Region )Tj
+/TT6 1 Tf
+10.8338 0 TD
+(CONTEXT REASON NAME TYPE REGION)Tj
+/TT4 1 Tf
+19.5581 0 TD
+(\))Tj
+/TT2 1 Tf
+8.0081 0 TD
+([Function])Tj
+ET
+570 598.98 0.99 -19.99 re
+f
+126.01 578.49 m
+558.01 578.49 l
+S
+570 578.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 563.2 Tm
+0.049 Tw
+(This function is called whenever SEdit is finished with a region and)Tj
+ET
+570 577.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 551.2 Tm
+0.054 Tw
+[(wants to make the region available for other SEdits.  This happens)]TJ
+ET
+570 558.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 539.2 Tm
+0.078 Tw
+[(whenever  an SEdit window is closed or shrunk, or when an SEdit)]TJ
+ET
+570 546.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 527.2 Tm
+0.133 Tw
+[(Icon is closed.  The default behavior is simply to push the region)]TJ
+ET
+570 534.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 515.2 Tm
+0 Tw
+(onto SEdit’s stack of regions. )Tj
+ET
+570 522.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 496.2 Tm
+0.14 Tw
+(This function can be redefined to provide different behavior. )Tj
+/TT4 1 Tf
+27.8874 0 TD
+0 Tw
+( )Tj
+/TT2 1 Tf
+0.4178 0 TD
+0.14 Tw
+(It is)Tj
+ET
+570 510.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 484.2 Tm
+0.11 Tw
+(also called with the edit )Tj
+/TT6 1 Tf
+11.1672 0 TD
+0 Tw
+(CONTEXT)Tj
+/TT2 1 Tf
+4.7778 0 TD
+0.11 Tw
+(, the)Tj
+/TT6 1 Tf
+2.0558 0 TD
+[( REASON)]TJ
+/TT2 1 Tf
+4.611 0 TD
+(, the )Tj
+/TT6 1 Tf
+2.4436 0 TD
+0 Tw
+(NAME)Tj
+/TT2 1 Tf
+2.8892 0 TD
+0.11 Tw
+(, the)Tj
+ET
+570 491.98 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 472.2 Tm
+0 Tw
+(TYPE)Tj
+/TT2 1 Tf
+2.6118 0 TD
+0.036 Tw
+(, and additionally the window )Tj
+/TT6 1 Tf
+13.244 0 TD
+0 Tw
+(REGION)Tj
+/TT2 1 Tf
+3.9448 0 TD
+0.036 Tw
+[( that is being released.)]TJ
+ET
+570 479.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 460.2 Tm
+0 Tw
+(The )Tj
+/TT6 1 Tf
+2.006 0 TD
+(REASON)Tj
+/TT2 1 Tf
+4.2231 0 TD
+0.0001 Tc
+0.0049 Tw
+( argument specifies why SEdit is releasing the region,)Tj
+ET
+570 467.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 448.2 Tm
+0 Tc
+0.177 Tw
+(and will be one of the keywords :CLOSE, :SHRINK, or :CLOSE-)Tj
+ET
+570 455.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 436.2 Tm
+0 Tw
+(ICON.)Tj
+ET
+570 443.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 414.2 Tm
+(Keep-Window-Region)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable)Tj
+/TT4 1 Tf
+3.9468 0 TD
+(])Tj
+ET
+570 431.98 0.99 -19.99 re
+f
+126.01 411.49 m
+558.01 411.49 l
+S
+570 411.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 396.2 Tm
+(Default )Tj
+/TT4 1 Tf
+3.5913 0 TD
+(T)Tj
+/TT2 1 Tf
+0.6108 0 TD
+0.145 Tw
+[(.  This flag determines the behavior of the default SEdit)]TJ
+ET
+570 410.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 384.2 Tm
+0.331 Tw
+(region manager, explained above, for shrinking and expanding)Tj
+ET
+570 391.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 372.2 Tm
+0.089 Tw
+[(windows.  When set to )]TJ
+/TT4 1 Tf
+10.7272 0 TD
+0 Tw
+(T)Tj
+/TT2 1 Tf
+0.6108 0 TD
+0.089 Tw
+[(,  shrinking an SEdit window will not give)]TJ
+ET
+570 379.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 360.2 Tm
+0.09 Tw
+(up that window’s region; the icon will always expand back into the)Tj
+ET
+570 367.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 348.2 Tm
+0.302 Tw
+[(same region.  When set to )]TJ
+/TT4 1 Tf
+13.7622 0 TD
+0 Tw
+(NIL)Tj
+/TT2 1 Tf
+1.6108 0 TD
+0.302 Tw
+(, the window’s region is made)Tj
+ET
+570 355.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 336.2 Tm
+0.05 Tw
+[(available for other SEdits when the window is shrunk.   Then when)]TJ
+ET
+570 343.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 324.2 Tm
+0.036 Tw
+(an SEdit icon is expanded, the window will be reshaped to the next)Tj
+ET
+570 331.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 312.2 Tm
+0 Tw
+(available region.)Tj
+ET
+570 319.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 293.2 Tm
+0.215 Tw
+(This variable is only used by the default implementations of the)Tj
+ET
+570 307.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 281.2 Tm
+0 Tw
+(functions )Tj
+/TT4 1 Tf
+4.6223 0 TD
+(Get-Window-Region)Tj
+/TT2 1 Tf
+9.5537 0 TD
+0.342 Tw
+[( and  )]TJ
+/TT4 1 Tf
+3.528 0 TD
+0 Tw
+(Save-Window-Region)Tj
+/TT2 1 Tf
+10.2222 0 TD
+0.342 Tw
+[(.  If)]TJ
+ET
+570 288.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 269.2 Tm
+0 Tw
+(these functions are redefined, this flag is no longer used.)Tj
+ET
+570 276.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 241.64 Tm
+(16.1.12 Options)Tj
+ET
+570 264.98 0.99 -25.99 re
+f
+54.01 238.49 m
+558.01 238.49 l
+S
+570 238.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 223.2 Tm
+(The following parameters can be set as desired.)Tj
+ET
+570 237.98 0.99 -18.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 201.2 Tm
+(*Wrap-Parens*)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 218.98 0.99 -19.99 re
+f
+126.01 198.49 m
+558.01 198.49 l
+S
+570 198.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 183.2 Tm
+0.283 Tw
+(This SEdit pretty printer flag determines whether or not trailing)Tj
+ET
+570 197.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 171.2 Tm
+0.304 Tw
+(close parenthesis characters, \), are forced to be visible in the)Tj
+ET
+570 178.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 159.2 Tm
+0.11 Tw
+[(window without scrolling.  By default it is set to NIL, meaning that)]TJ
+ET
+570 166.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 147.2 Tm
+0.092 Tw
+(close parens are allowed to "fall off" the right edge of the window.)Tj
+ET
+570 154.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 135.2 Tm
+0.027 Tw
+(If set to T, the pretty printer will start a new line before the structure)Tj
+ET
+570 142.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 123.2 Tm
+0 Tw
+(preceding the close parens, so that all the parens will be visible.)Tj
+ET
+570 130.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 101.2 Tm
+(*Wrap-Search*)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 118.98 0.99 -19.99 re
+f
+126.01 98.49 m
+558.01 98.49 l
+S
+570 98.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 83.2 Tm
+0.105 Tw
+(This flag determines whether or not SEdit find will wrap around to)Tj
+ET
+570 97.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 71.2 Tm
+0.011 Tw
+(the top of the structure when it reaches the end, or vice versa in the)Tj
+ET
+570 78.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 59.2 Tm
+0 Tw
+(case of reverse find.  The default is NIL.)Tj
+ET
+570 66.98 0.99 -11.99 re
+f
+endstream
+endobj
+55 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+57 0 obj
+<<
+/Length 6749
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 536.8799 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-13)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+40.619 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+/TT4 1 Tf
+10 0 0 10 126 730.2 Tm
+(*Clear-Linear-On-Completion*)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 747.98 0.99 -19.99 re
+f
+126.01 727.49 m
+558.01 727.49 l
+S
+570 727.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 712.2 Tm
+0.325 Tw
+(This flag determines whether or not SEdit completely re-pretty)Tj
+ET
+570 726.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 700.2 Tm
+0.09 Tw
+[(prints the structure being edited when you complete the edit.  The)]TJ
+ET
+570 707.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 688.2 Tm
+0 Tw
+(default value is NIL, meaning that SEdit reuses the pretty printing.)Tj
+ET
+570 695.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 666.2 Tm
+(Convert-Upgrade)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 683.98 0.99 -19.99 re
+f
+126.01 663.49 m
+558.01 663.49 l
+S
+570 663.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 648.2 Tm
+0.0001 Tc
+0.0039 Tw
+(Default 100.  When using Meta-; to convert old-style single- asterisk)Tj
+ET
+570 662.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 636.2 Tm
+0 Tc
+0.006 Tw
+(comments, if the length of the comment exceeds )Tj
+/TT4 1 Tf
+21.8366 0 TD
+0 Tw
+(Convert-Upgrade)Tj
+ET
+570 643.98 0.99 -11.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 624.2 Tm
+0.318 Tw
+(characters, the comment is converted into a double semicolon)Tj
+ET
+570 631.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 612.2 Tm
+0.326 Tw
+[(comment.  Otherwise, the comment is converted into a single)]TJ
+ET
+570 619.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 600.2 Tm
+0 Tw
+(semicolon comment.)Tj
+ET
+570 607.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 581.2 Tm
+0.007 Tw
+(Old-style double-asterisk comments are always converted into new-)Tj
+ET
+570 595.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 569.2 Tm
+0 Tw
+(style triple-semicolon comments.)Tj
+ET
+570 576.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 541.64 Tm
+(16.1.13 Control Functions)Tj
+ET
+570 564.98 0.99 -25.99 re
+f
+54.01 538.49 m
+558.01 538.49 l
+S
+570 538.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 126 520.2 Tm
+(\(Reset\))Tj
+/TT2 1 Tf
+38.4 0 TD
+([Function)Tj
+/TT4 1 Tf
+4.1133 0 TD
+(])Tj
+ET
+570 537.98 0.99 -19.99 re
+f
+126.01 517.49 m
+558.01 517.49 l
+S
+570 517.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 502.2 Tm
+0.023 Tw
+[(This function recomputes the SEdit edit environment.  Any changes)]TJ
+ET
+570 516.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 490.2 Tm
+0.515 Tw
+(made in the font profile, or any changes made to SEdit’s)Tj
+ET
+570 497.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 478.2 Tm
+0.258 Tw
+[(commands are captured by resetting.  Close all SEdit windows)]TJ
+ET
+570 485.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 466.2 Tm
+0 Tw
+(before calling this function.)Tj
+ET
+570 473.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 444.2 Tm
+(\(Add-Command )Tj
+/TT6 1 Tf
+8.2078 0 TD
+0.431 Tw
+(KEY-CODE FORM &OPTIONAL KEY-NAME COMMAND-STRING HELP-)Tj
+ET
+570 461.98 0.99 -19.99 re
+f
+BT
+10 0 0 10 126 434.2 Tm
+0 Tw
+(STRING)Tj
+/TT4 1 Tf
+3.7778 0 TD
+(\))Tj
+/TT2 1 Tf
+34.6222 0 TD
+([Function)Tj
+/TT4 1 Tf
+4.1133 0 TD
+(])Tj
+ET
+570 441.98 0.99 -9.99 re
+f
+126.01 431.49 m
+558.01 431.49 l
+S
+570 431.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 416.2 Tm
+0.4989 Tw
+(This function allows you to write your own SEdit keyboard)Tj
+ET
+570 430.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 404.2 Tm
+0.246 Tw
+[(commands.  You can add commands to new keys, or you can)]TJ
+ET
+570 411.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 392.2 Tm
+0.171 Tw
+[(redefine keys that SEdit already uses as command keys.  If you)]TJ
+ET
+570 399.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 380.2 Tm
+0.602 Tw
+(mistakenly redefine an SEdit command, the funtion Reset-)Tj
+ET
+570 387.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 368.2 Tm
+0.205 Tw
+(Commands will remove all user-added commands, leaving SEdit)Tj
+ET
+570 375.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 356.2 Tm
+0 Tw
+(with its default set of commands.)Tj
+ET
+570 363.98 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 337.2 Tm
+(KEY-CODE)Tj
+/TT2 1 Tf
+5.2231 0 TD
+0.227 Tw
+[( can be a character code, or any form acceptible to)]TJ
+ET
+570 351.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 325.2 Tm
+0 Tw
+(il:charcode.)Tj
+ET
+570 332.98 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 306.2 Tm
+(FORM)Tj
+/TT2 1 Tf
+2.9438 0 TD
+0.015 Tw
+[( determines the function to be called when the key command)]TJ
+ET
+570 320.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 294.2 Tm
+0.021 Tw
+[(is typed.  It can be a symbol naming a function, or a list, whose first)]TJ
+ET
+570 301.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 282.2 Tm
+0.027 Tw
+(element is a symbol naming a function and the rest of the elements)Tj
+ET
+570 289.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 270.2 Tm
+0.371 Tw
+[(are extra arguments to the function.  When the command is)]TJ
+ET
+570 277.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 258.2 Tm
+0.193 Tw
+(invoked, SEdit will apply the function to the edit context \(SEdit’s)Tj
+ET
+570 265.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 246.2 Tm
+0.143 Tw
+(main data structure\), the charcode that was typed, and any extra)Tj
+ET
+570 253.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 234.2 Tm
+0.221 Tw
+(arguments supplied in )Tj
+/TT6 1 Tf
+10.7245 0 TD
+0 Tw
+(FORM)Tj
+/TT2 1 Tf
+2.9438 0 TD
+0.221 Tw
+[(.  The extra arguments do not get)]TJ
+ET
+570 241.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 222.2 Tm
+0.093 Tw
+(evaluated, but are useful as keywords or flags, depending on how)Tj
+ET
+570 229.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 210.2 Tm
+0.014 Tw
+[(the command was invoked.  The command function must return T if)]TJ
+ET
+570 217.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 198.2 Tm
+0.241 Tw
+[(it handled the command.  If the function returns NIL, SEdit will)]TJ
+ET
+570 205.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 186.2 Tm
+0 Tw
+(ignore the command and insert the character typed.)Tj
+ET
+570 193.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 167.2 Tm
+0.126 Tw
+(The optional arguments are used to add this command to SEdit’s)Tj
+ET
+570 181.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 155.2 Tm
+0.049 Tw
+[(middle button menu.  When the item is selected fromthe menu, the)]TJ
+ET
+570 162.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 143.2 Tm
+0.326 Tw
+(command function will be called as described above, with the)Tj
+ET
+570 150.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 131.2 Tm
+0 Tw
+(charcode argument set to NIL.)Tj
+ET
+570 138.98 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 112.2 Tm
+(KEY-NAME)Tj
+/TT2 1 Tf
+5.2231 0 TD
+0.054 Tw
+[( is a string to identify the key \(combination\) to be typed)]TJ
+ET
+570 126.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 100.2 Tm
+0.03 Tw
+[(to invoke the command.  For example "M-A" to represent the Meta-)]TJ
+ET
+570 107.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 88.2 Tm
+0 Tw
+(A key combination, and "M-C-A" for Meta-Control-A.)Tj
+ET
+570 95.98 0.99 -11.99 re
+f
+endstream
+endobj
+58 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+60 0 obj
+<<
+/Length 6940
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-14)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+/TT6 1 Tf
+10 0 0 10 258 730.2 Tm
+(COMMAND-NAME)Tj
+/TT2 1 Tf
+8.4995 0 TD
+0.0001 Tc
+0.0049 Tw
+( is a string to identify the command function, and)Tj
+ET
+570 744.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 718.2 Tm
+0 Tc
+0 Tw
+(will appear in the menu next to the )Tj
+/TT6 1 Tf
+15.5093 0 TD
+(KEY-NAME)Tj
+/TT2 1 Tf
+5.2231 0 TD
+(.)Tj
+ET
+570 725.98 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 699.2 Tm
+(HELP-STRING)Tj
+/TT2 1 Tf
+6.7231 0 TD
+0.044 Tw
+[( is a string to be printed in the prompt window when)]TJ
+ET
+570 713.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 687.2 Tm
+0 Tw
+(a mouse button is held down over the menu item.)Tj
+ET
+570 694.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 668.2 Tm
+0.059 Tw
+(After adding all the commands that you want, you must call Reset-)Tj
+ET
+570 682.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 656.2 Tm
+0 Tw
+(Commands to install them.)Tj
+ET
+570 663.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 637.2 Tm
+(For example:)Tj
+ET
+570 651.98 0.99 -18.99 re
+f
+BT
+/TT8 1 Tf
+10 0 0 10 258 619.49 Tm
+(\(add-command "^U" \(my-change-case t\)\))Tj
+ET
+570 632.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 600.49 Tm
+(\(add-command "^Y" \(my-change-case nil\)\))Tj
+ET
+570 613.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 581.49 Tm
+(\(add-command "1,r" my-remove-nil)Tj
+ET
+570 594.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 562.49 Tm
+(  "M-R" "Remove NIL")Tj
+ET
+570 575.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 543.49 Tm
+(  "Remove NIL from the selected structure"\)\))Tj
+ET
+570 556.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 524.49 Tm
+(\(reset-commands\))Tj
+ET
+570 537.98 0.99 -18.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 504.2 Tm
+0.143 Tw
+[(will add three commands.  Suppose )]TJ
+/TT8 1 Tf
+16.9776 0 TD
+0 Tw
+(my-change-case)Tj
+/TT2 1 Tf
+8.4014 0 TD
+0.143 Tw
+[( takes the)]TJ
+ET
+570 518.98 0.99 -20.28 re
+f
+BT
+10 0 0 10 258 490.91 Tm
+0 Tw
+(arguments )Tj
+/TT6 1 Tf
+6.0284 0 TD
+(CONTEXT)Tj
+/TT2 1 Tf
+4.7778 0 TD
+(, )Tj
+/TT6 1 Tf
+1.5817 0 TD
+(CHARCODE)Tj
+/TT2 1 Tf
+5.7227 0 TD
+1.026 Tw
+(, and )Tj
+/TT6 1 Tf
+4.554 0 TD
+0 Tw
+(UPPER-CASE)Tj
+/TT2 1 Tf
+6.5015 0 TD
+(?.)Tj
+ET
+570 498.69 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 478.91 Tm
+(UPPER-CASE)Tj
+/TT2 1 Tf
+6.5015 0 TD
+0.115 Tw
+(? will be set to T when )Tj
+/TT8 1 Tf
+10.9764 0 TD
+0 Tw
+(my-change-case)Tj
+/TT2 1 Tf
+8.4014 0 TD
+0.115 Tw
+[( is called)]TJ
+ET
+570 486.69 0.99 -13.28 re
+f
+BT
+10 0 0 10 258 465.62 Tm
+0.024 Tw
+(from Control-U, and NIL when called from Control-Y.  )Tj
+/TT8 1 Tf
+24.0026 0 TD
+0 Tw
+(my-remove-)Tj
+ET
+570 473.4 0.99 -13.28 re
+f
+BT
+10 0 0 10 258 452.33 Tm
+(nil)Tj
+/TT2 1 Tf
+1.8003 0 TD
+0.009 Tw
+[( will be called with only )]TJ
+/TT6 1 Tf
+10.4476 0 TD
+0 Tw
+(CONTEXT)Tj
+/TT2 1 Tf
+4.7778 0 TD
+0.009 Tw
+[( and )]TJ
+/TT6 1 Tf
+2.2421 0 TD
+0 Tw
+(CHARCODE)Tj
+/TT2 1 Tf
+5.7227 0 TD
+0.009 Tw
+[( arguments)]TJ
+ET
+570 460.11 0.99 -13.28 re
+f
+BT
+10 0 0 10 258 439.04 Tm
+0 Tw
+(when Meta-R is typed.)Tj
+ET
+570 446.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 420.04 Tm
+0.204 Tw
+(Below are some SEdit functions which are useful in writing new)Tj
+ET
+570 434.82 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 408.04 Tm
+0 Tw
+(commands.)Tj
+ET
+570 415.82 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 386.04 Tm
+-0.0001 Tc
+(\(Reset-Commands\))Tj
+/TT2 1 Tf
+38.4 0 TD
+0 Tc
+([Function)Tj
+/TT4 1 Tf
+4.1133 0 TD
+(])Tj
+ET
+570 403.82 0.99 -19.99 re
+f
+126.01 383.33 m
+558.01 383.33 l
+S
+570 383.82 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 368.04 Tm
+0.348 Tw
+(This function installs all commands added by )Tj
+/TT4 1 Tf
+22.5571 0 TD
+0 Tw
+(Add-Command)Tj
+/TT2 1 Tf
+7.166 0 TD
+(.)Tj
+ET
+570 382.82 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 356.04 Tm
+0.019 Tw
+(SEdits which are open at the time of the )Tj
+/TT4 1 Tf
+18.1256 0 TD
+0 Tw
+(Reset-Commands)Tj
+/TT2 1 Tf
+8.502 0 TD
+0.019 Tw
+[( will not)]TJ
+ET
+570 363.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 344.04 Tm
+0.388 Tw
+(see the new commands; only new SEdits will have the new)Tj
+ET
+570 351.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 332.04 Tm
+0 Tw
+(commands available.)Tj
+ET
+570 339.82 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 310.04 Tm
+(\(Default-Commands\))Tj
+/TT2 1 Tf
+38.4 0 TD
+([Function)Tj
+/TT4 1 Tf
+4.1133 0 TD
+(])Tj
+ET
+570 327.82 0.99 -19.99 re
+f
+126.01 307.33 m
+558.01 307.33 l
+S
+570 307.82 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 292.04 Tm
+0.237 Tw
+(This function removes all commands added by )Tj
+/TT4 1 Tf
+22.5579 0 TD
+0 Tw
+(Add-Command)Tj
+/TT2 1 Tf
+7.166 0 TD
+(,)Tj
+ET
+570 306.82 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 280.04 Tm
+0.249 Tw
+[(leaving  SEdit with its default set of commands.  As in )]TJ
+/TT4 1 Tf
+26.9436 0 TD
+0 Tw
+(Reset-)Tj
+ET
+570 287.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 268.04 Tm
+(Commands)Tj
+/TT2 1 Tf
+5.4453 0 TD
+0.043 Tw
+(, open SEdits will not be changed; only new SEdits will)Tj
+ET
+570 275.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 256.04 Tm
+0 Tw
+(have the user commands removed.)Tj
+ET
+570 263.82 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 234.04 Tm
+0.0001 Tc
+(\(Get-Prompt-Window )Tj
+/TT6 1 Tf
+10.2768 0 TD
+0 Tc
+(CONTEXT)Tj
+/TT4 1 Tf
+4.7778 0 TD
+(\))Tj
+/TT2 1 Tf
+23.3453 0 TD
+([Function)Tj
+/TT4 1 Tf
+4.1133 0 TD
+(])Tj
+ET
+570 251.82 0.99 -19.99 re
+f
+126.01 231.33 m
+558.01 231.33 l
+S
+570 231.82 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 216.04 Tm
+0.165 Tw
+(This function returns the attached prompt window for a particular)Tj
+ET
+570 230.82 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 204.04 Tm
+0 Tw
+(SEdit.)Tj
+ET
+570 211.82 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 182.04 Tm
+(\(Get-Selection )Tj
+/TT6 1 Tf
+7.0568 0 TD
+(CONTEXT)Tj
+/TT4 1 Tf
+4.7778 0 TD
+(\))Tj
+/TT2 1 Tf
+26.5653 0 TD
+([Function)Tj
+/TT4 1 Tf
+4.1133 0 TD
+(])Tj
+ET
+570 199.82 0.99 -19.99 re
+f
+126.01 179.33 m
+558.01 179.33 l
+S
+570 179.82 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 164.04 Tm
+0.215 Tw
+(This function returns two values: the selected structure, and the)Tj
+ET
+570 178.82 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 152.04 Tm
+0.082 Tw
+[(type of selection, one of NIL, T, or :SUB-LIST.  The selection type)]TJ
+ET
+570 159.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 140.04 Tm
+0.008 Tw
+(NIL means there is not a valid selection \(in this case the structure is)Tj
+ET
+570 147.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 128.04 Tm
+0.249 Tw
+(meaningless\). T means the selection is one complete structure.)Tj
+ET
+570 135.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 116.04 Tm
+0.013 Tw
+(:SUB-LIST means a series of elements in a list is selected, in which)Tj
+ET
+570 123.82 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 104.04 Tm
+0 Tw
+(case the structure returned is a list of the elements selected.)Tj
+ET
+570 111.82 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 82.04 Tm
+(\(Replace-Selection )Tj
+/TT6 1 Tf
+9.2248 0 TD
+(CONTEXT STRUCTURE SELECTION-TYPE )Tj
+/TT4 1 Tf
+20.3906 0 TD
+(\))Tj
+/TT2 1 Tf
+8.7845 0 TD
+([Function)Tj
+/TT4 1 Tf
+4.1133 0 TD
+(])Tj
+ET
+570 99.82 0.99 -19.99 re
+f
+126.01 79.33 m
+558.01 79.33 l
+S
+570 79.82 0.99 -0.99 re
+f
+endstream
+endobj
+61 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+/TT8 24 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+63 0 obj
+<<
+/Length 7296
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 536.8799 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-15)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+40.619 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+10 0 0 10 258 730.2 Tm
+0.038 Tw
+(This function replaces the current selection with a new structure, or)Tj
+ET
+570 744.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 718.2 Tm
+0.079 Tw
+(multiple structures, by deleting the selection and then inserting the)Tj
+ET
+570 725.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 706.2 Tm
+0.138 Tw
+[(new structure\(s\).  The )]TJ
+/TT6 1 Tf
+10.5549 0 TD
+0 Tw
+(SELECTION-TYPE)Tj
+/TT2 1 Tf
+8.6128 0 TD
+0.138 Tw
+[( argument must be one)]TJ
+ET
+570 713.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 694.2 Tm
+0.296 Tw
+[(of T or :SUB-LIST.  If T the )]TJ
+/TT6 1 Tf
+14.5379 0 TD
+0 Tw
+(STRUCTURE)Tj
+/TT2 1 Tf
+6.1665 0 TD
+0.296 Tw
+[( is inserted as one)]TJ
+ET
+570 701.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 682.2 Tm
+0.038 Tw
+[(complete structure.  If :SUB-LIST, the )]TJ
+/TT6 1 Tf
+17.123 0 TD
+0 Tw
+(STRUCTURE)Tj
+/TT2 1 Tf
+6.1665 0 TD
+0.038 Tw
+[( is treated as a)]TJ
+ET
+570 689.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 670.2 Tm
+0 Tw
+(list of elements, each of which is insertd.)Tj
+ET
+570 677.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 642.64 Tm
+(16.1.13 Programmer’s Interface)Tj
+ET
+570 665.98 0.99 -25.99 re
+f
+54.01 639.49 m
+558.01 639.49 l
+S
+570 639.98 0.99 -0.99 re
+f
+BT
+/TT2 1 Tf
+10 0 0 10 258 624.2 Tm
+0.127 Tw
+[(This programmer’s interface to SEdit provides a way to call SEdit)]TJ
+ET
+570 638.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 612.2 Tm
+0 Tw
+(directly.  This interface is sketchy and will change inthe future.)Tj
+ET
+570 619.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 590.2 Tm
+(*Getdef-Fn*)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 607.98 0.99 -19.99 re
+f
+126.01 587.49 m
+558.01 587.49 l
+S
+570 587.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 572.2 Tm
+0.288 Tw
+[(This function is called  with the arguments )]TJ
+/TT6 1 Tf
+21.1463 0 TD
+0 Tw
+(NAME)Tj
+/TT2 1 Tf
+2.8892 0 TD
+(, )Tj
+/TT6 1 Tf
+0.8437 0 TD
+(TYPE)Tj
+/TT2 1 Tf
+2.6118 0 TD
+0.288 Tw
+(, and)Tj
+ET
+570 586.98 0.99 -18.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 560.2 Tm
+0 Tw
+(OLDDEF)Tj
+/TT2 1 Tf
+4.0562 0 TD
+0.048 Tw
+(, when SEdit needs to refetch the definition for the named)Tj
+ET
+570 567.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 548.2 Tm
+0.096 Tw
+[(object being edited.  When SEdit is first started it gets passed the)]TJ
+ET
+570 555.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 536.2 Tm
+0.082 Tw
+[(structure, so this function doesn’t get called.  But after completion,)]TJ
+ET
+570 543.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 524.2 Tm
+0.143 Tw
+(SEdit refetches because it doesn’t know if the Edit Interface \(File)Tj
+ET
+570 531.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 512.2 Tm
+0.227 Tw
+[(Manager\) changed the definition upon installation.  The function)]TJ
+ET
+570 519.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 500.2 Tm
+0 Tw
+(returns the new definition.)Tj
+ET
+570 507.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 478.2 Tm
+(*Fetch-Definition-Error-Break-Flag*)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 495.98 0.99 -19.99 re
+f
+126.01 475.49 m
+558.01 475.49 l
+S
+570 475.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 460.2 Tm
+0.232 Tw
+[(This  flag, along with the error options listed below, determines)]TJ
+ET
+570 474.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 448.2 Tm
+0.014 Tw
+[(what happens when the Getdef-Fn errors.  The default value is NIL,)]TJ
+ET
+570 455.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 436.2 Tm
+0.067 Tw
+[(causing errors to be suppressed.  When set to T, the break will be)]TJ
+ET
+570 443.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 424.2 Tm
+0 Tw
+(allowed.)Tj
+ET
+570 431.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 402.2 Tm
+(*Getdef-Error-Fn*)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 419.98 0.99 -19.99 re
+f
+126.01 399.49 m
+558.01 399.49 l
+S
+570 399.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 384.2 Tm
+0.464 Tw
+(This function is funcalled with the arguments )Tj
+/TT6 1 Tf
+23.2026 0 TD
+0 Tw
+(NAME)Tj
+/TT2 1 Tf
+2.8892 0 TD
+(, )Tj
+/TT6 1 Tf
+1.0197 0 TD
+(TYPE)Tj
+/TT2 1 Tf
+2.6118 0 TD
+(,)Tj
+ET
+570 398.98 0.99 -18.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 372.2 Tm
+(OLDDEF)Tj
+/TT2 1 Tf
+4.0562 0 TD
+0.314 Tw
+(, and )Tj
+/TT6 1 Tf
+3.13 0 TD
+0 Tw
+(PROMPT-WINDOW)Tj
+/TT2 1 Tf
+8.9985 0 TD
+0.314 Tw
+(, when the Getdef-Fn errors,)Tj
+ET
+570 379.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 360.2 Tm
+0.31 Tw
+[(independent of whether or not the break is suppressed.  This)]TJ
+ET
+570 367.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 348.2 Tm
+0.281 Tw
+(function should return the structure to be used in place of the)Tj
+ET
+570 355.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 336.2 Tm
+0 Tw
+(unavailable new definition.)Tj
+ET
+570 343.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 314.2 Tm
+(*Edit-Fn*)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 331.98 0.99 -19.99 re
+f
+126.01 311.49 m
+558.01 311.49 l
+S
+570 311.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 296.2 Tm
+0.004 Tw
+(This function is funcalled with the selected structure as its argument)Tj
+ET
+570 310.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 284.2 Tm
+0.378 Tw
+[(from the Edit \(M-O\) command.  It should start the editor as)]TJ
+ET
+570 291.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 272.2 Tm
+0.404 Tw
+(appropriate, or else generate an error if the selection is not)Tj
+ET
+570 279.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 260.2 Tm
+0 Tw
+(editable.)Tj
+ET
+570 267.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 238.2 Tm
+(*Compile-Fn*)Tj
+/TT2 1 Tf
+38.4 0 TD
+([Variable])Tj
+ET
+570 255.98 0.99 -19.99 re
+f
+126.01 235.49 m
+558.01 235.49 l
+S
+570 235.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 220.2 Tm
+0.196 Tw
+(This function is funcalled with the arguments )Tj
+/TT6 1 Tf
+21.3266 0 TD
+0 Tw
+(NAME)Tj
+/TT2 1 Tf
+2.8892 0 TD
+(, )Tj
+/TT6 1 Tf
+0.7517 0 TD
+(TYPE)Tj
+/TT2 1 Tf
+2.6118 0 TD
+0.196 Tw
+(, and)Tj
+ET
+570 234.98 0.99 -18.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 208.2 Tm
+0 Tw
+(BODY)Tj
+/TT2 1 Tf
+2.834 0 TD
+0.067 Tw
+[(, from the compile completion commands.  It should compile)]TJ
+ET
+570 215.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 196.2 Tm
+0 Tw
+(the definition, )Tj
+/TT6 1 Tf
+6.2266 0 TD
+(BODY)Tj
+/TT2 1 Tf
+2.834 0 TD
+(, and install the code as appropriate.)Tj
+ET
+570 203.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 126 174.2 Tm
+(\(SEdit )Tj
+/TT6 1 Tf
+3.1665 0 TD
+(STRUCTURE PROPS OPTIONS)Tj
+/TT4 1 Tf
+14.7236 0 TD
+(\))Tj
+/TT2 1 Tf
+20.5099 0 TD
+([Function])Tj
+ET
+570 191.98 0.99 -19.99 re
+f
+126.01 171.49 m
+558.01 171.49 l
+S
+570 171.98 0.99 -0.99 re
+f
+BT
+10 0 0 10 258 156.2 Tm
+0.638 Tw
+(This function provides a means of starting SEdit directly.)Tj
+ET
+570 170.98 0.99 -18.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 144.2 Tm
+0 Tw
+(STRUCTURE)Tj
+/TT2 1 Tf
+6.1665 0 TD
+( is the structure to be edited.)Tj
+ET
+570 151.98 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 125.2 Tm
+(PROPS)Tj
+/TT2 1 Tf
+3.501 0 TD
+0.524 Tw
+[( is a property list, which may specify the following)]TJ
+ET
+570 139.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 113.2 Tm
+0 Tw
+(properties:)Tj
+ET
+570 120.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 270 97.2 Tm
+(:name - the name of the object being edited)Tj
+ET
+570 108.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 270 81.2 Tm
+0.084 Tw
+[(:type - the file manager type of the object  being edited.  If NIL,)]TJ
+ET
+570 92.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 282 69.2 Tm
+0.077 Tw
+(SEdit will not call the file manager when it tries to refetch the)Tj
+ET
+570 76.98 0.99 -11.99 re
+f
+endstream
+endobj
+64 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+66 0 obj
+<<
+/Length 6917
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-16)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+10 0 0 10 282 730.2 Tm
+0.1 Tw
+[(definition it is editing.  Instead, it will just continue to use the)]TJ
+ET
+570 737.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 718.2 Tm
+0 Tw
+(structure that it has.)Tj
+ET
+570 725.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 270 702.2 Tm
+0.016 Tw
+(:completion-fn - the function to be called when the edit session is)Tj
+ET
+570 713.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 282 690.2 Tm
+0.442 Tw
+[(completed.  This function is called with the )]TJ
+/TT6 1 Tf
+22.5453 0 TD
+0 Tw
+(CONTEXT)Tj
+/TT2 1 Tf
+4.7778 0 TD
+(,)Tj
+ET
+570 697.98 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 282 678.2 Tm
+(STRUCTURE)Tj
+/TT2 1 Tf
+6.1665 0 TD
+0.294 Tw
+(, and )Tj
+/TT6 1 Tf
+3.09 0 TD
+0 Tw
+(CHANGED?)Tj
+/TT2 1 Tf
+5.5566 0 TD
+0.294 Tw
+[( arguments.  )]TJ
+/TT6 1 Tf
+6.7179 0 TD
+0 Tw
+(CONTEXT)Tj
+/TT2 1 Tf
+4.7778 0 TD
+0.294 Tw
+[( is)]TJ
+ET
+570 685.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 666.2 Tm
+0.255 Tw
+(SEdits main data structure.  )Tj
+/TT6 1 Tf
+13.836 0 TD
+0 Tw
+(STRUCTURE)Tj
+/TT2 1 Tf
+6.1665 0 TD
+0.255 Tw
+[( is the structure)]TJ
+ET
+570 673.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 654.2 Tm
+0.303 Tw
+(being edited.  )Tj
+/TT6 1 Tf
+7.1917 0 TD
+0 Tw
+(CHANGED?)Tj
+/TT2 1 Tf
+5.5566 0 TD
+0.303 Tw
+[( specifies if any changes have)]TJ
+ET
+570 661.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 642.2 Tm
+0.053 Tw
+(been made, and is one of NIL, T, or :ABORT, where :ABORT)Tj
+ET
+570 649.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 630.2 Tm
+0.175 Tw
+(means the user is aborting the edit and throwing away any)Tj
+ET
+570 637.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 618.2 Tm
+0.096 Tw
+[(changes made.  If the value of this property is a list, the first)]TJ
+ET
+570 625.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 606.2 Tm
+0.425 Tw
+(element is treated as the function, and the rest of the)Tj
+ET
+570 613.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 594.2 Tm
+0.145 Tw
+(elements are extra arguments that the function is applied to)Tj
+ET
+570 601.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 582.2 Tm
+0 Tw
+(following the main arguments above.)Tj
+ET
+570 589.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 270 566.2 Tm
+0.322 Tw
+(:root-changed-fn - the function to be called when the entire)Tj
+ET
+570 577.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 282 554.2 Tm
+0.098 Tw
+[(structure being edited is replaced with a new structure.  This)]TJ
+ET
+570 561.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 542.2 Tm
+0.003 Tw
+(function is called with the new structure as its argument.  If the)Tj
+ET
+570 549.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 530.2 Tm
+0.132 Tw
+(value of this property is a list, the first element is treated as)Tj
+ET
+570 537.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 518.2 Tm
+0.025 Tw
+(the function, and the rest of the elements are extra arguments)Tj
+ET
+570 525.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 506.2 Tm
+0 Tw
+(that the function is applied to following the structure argument. )Tj
+ET
+570 513.98 0.99 -11.99 re
+f
+BT
+/TT6 1 Tf
+10 0 0 10 258 487.2 Tm
+(OPTIONS)Tj
+/TT2 1 Tf
+4.5005 0 TD
+( is one or a list of any number of the followng keywords:)Tj
+ET
+570 501.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 270 471.2 Tm
+0.16 Tw
+(:fetch-definition-suppress-errors - If this option is provided, any)Tj
+ET
+570 482.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 282 459.2 Tm
+0.171 Tw
+(error under the Getdef-Fn will be suppressed, regardless of)Tj
+ET
+570 466.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 447.2 Tm
+0.045 Tw
+(the :fetch-definition-allow-errors option or the value of )Tj
+/TT4 1 Tf
+24.2164 0 TD
+0 Tw
+(*Fetch-)Tj
+ET
+570 454.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 435.2 Tm
+(Definition-Error-Break-Flag*)Tj
+/TT2 1 Tf
+13.2793 0 TD
+(.)Tj
+ET
+570 442.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 270 419.2 Tm
+0.064 Tw
+(:fetch-definition-allow-errors - If this option is provided, any error)Tj
+ET
+570 430.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 282 407.2 Tm
+0 Tw
+(under the Getdef-Fn will be allowed to break.)Tj
+ET
+570 414.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 270 391.2 Tm
+0.229 Tw
+(:dontwait - This option specifies that the call to )Tj
+/TT4 1 Tf
+22.7939 0 TD
+0 Tw
+(SEdit)Tj
+/TT2 1 Tf
+2.5557 0 TD
+0.229 Tw
+[( should)]TJ
+ET
+570 402.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 282 379.2 Tm
+0.003 Tw
+(return as soon as the editor is started, rather than waiting for a)Tj
+ET
+570 386.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 367.2 Tm
+0 Tw
+(completion command.)Tj
+ET
+570 374.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 270 351.2 Tm
+0.248 Tw
+(:close-on-completion - This option specifies that SEdit cannot)Tj
+ET
+570 362.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 282 339.2 Tm
+0.269 Tw
+[(remain active for multiple completions.  That is, the SEdit)]TJ
+ET
+570 346.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 327.2 Tm
+0.025 Tw
+(window cannot be shrunk, and the completion commands that)Tj
+ET
+570 334.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 315.2 Tm
+0.215 Tw
+(normally leave the window open will in this case close the)Tj
+ET
+570 322.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 303.2 Tm
+0 Tw
+(window and terminate the edit.)Tj
+ET
+570 310.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 270 287.2 Tm
+0.097 Tw
+(:compile-on-completion - This option specifies that SEdit should)Tj
+ET
+570 298.98 0.99 -15.99 re
+f
+BT
+10 0 0 10 282 275.2 Tm
+0.212 Tw
+(call the *Compile-Fn* to compile the definition being edited)Tj
+ET
+570 282.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 263.2 Tm
+0.413 Tw
+(upon completion, regardless of the completion command)Tj
+ET
+570 270.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 282 251.2 Tm
+0 Tw
+(used.)Tj
+ET
+570 258.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+12 0 0 12 54 207.64 Tm
+(Fixed ARS)Tj
+ET
+570 230.98 0.99 -25.99 re
+f
+54.01 204.49 m
+558.01 204.49 l
+S
+570 204.98 0.99 -10.99 re
+f
+BT
+10 0 0 10 258 179.2 Tm
+0.051 Tw
+(AR 7471 )Tj
+/TT2 1 Tf
+4.3266 0 TD
+[(----  You no longer have to Ctrl-X out of SEdit to compile.)]TJ
+ET
+570 193.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 167.2 Tm
+0.036 Tw
+[(To compile,  select either of  two new SEdit commands.   The  C-C)]TJ
+ET
+570 174.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 155.2 Tm
+0.105 Tw
+[(command  \(Ctrl -C\)  compiles and leaves the SEdit window open.)]TJ
+ET
+570 162.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 143.2 Tm
+0.162 Tw
+[(The  M-C-C  command  \(Meta-Ctrl- C\)  compiles and closes the)]TJ
+ET
+570 150.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 131.2 Tm
+0 Tw
+(window.  )Tj
+ET
+570 138.98 0.99 -11.99 re
+f
+BT
+/TT4 1 Tf
+10 0 0 10 258 112.2 Tm
+0.0006 Tc
+0.0044 Tw
+(AR  7783 )Tj
+/TT2 1 Tf
+4.5174 0 TD
+0.0004 Tc
+0.0046 Tw
+( ----   After typing Meta-O,  you are  prompted to "Select a)Tj
+ET
+570 126.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 100.2 Tm
+0 Tc
+0.034 Tw
+[(type of dummy definition to install."  The first option is "Optimizers".)]TJ
+ET
+570 107.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 88.2 Tm
+0.059 Tw
+[(This title refers to  XCL:DEFOPTIMIZERS,  and  has nothing to do)]TJ
+ET
+570 95.98 0.99 -11.99 re
+f
+BT
+10 0 0 10 258 76.2 Tm
+0 Tw
+(with  CL:OPTIMIZE. )Tj
+ET
+570 83.98 0.99 -11.99 re
+f
+endstream
+endobj
+67 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+/TT6 6 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+69 0 obj
+<<
+/Length 604
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 536.8799 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-17)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 54 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+40.619 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+/TT4 1 Tf
+10 0 0 10 258 730.2 Tm
+0.0003 Tc
+0.0027 Tw
+(AR  7786  )Tj
+/TT2 1 Tf
+4.7923 0 TD
+0.0002 Tc
+(----  Square bracket characters  ’[’  and  ’]’ are not treated)Tj
+ET
+570 744.98 0.99 -18.99 re
+f
+BT
+10 0 0 10 258 718.2 Tm
+0 Tc
+0 Tw
+(as special characters by SEdit, just as in Common Lisp. )Tj
+ET
+570 725.98 0.99 -11.99 re
+f
+endstream
+endobj
+70 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+/TT4 5 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+72 0 obj
+<<
+/Length 345
+>>
+stream
+BT
+/TT2 1 Tf
+10 0 0 10 54 15 Tm
+0 g
+/GS1 gs
+0 Tc
+0 Tw
+(B-18)Tj
+ET
+0 G
+0 J 0 j 1 w 10 M []0 d
+1 i 
+54.01 27.5 m
+558.01 27.5 l
+S
+BT
+10 0 0 10 344.59 17.21 Tm
+(RELEASE NOTES,  MEDLEY BETA  RELEASE)Tj
+-29.059 74.479 TD
+(APPENDIX B.  SEDIT)Tj
+ET
+54.01 759.29 m
+558.01 759.29 l
+S
+BT
+10 0 0 10 228 494.21 Tm
+([This page intentionally left blank])Tj
+ET
+endstream
+endobj
+73 0 obj
+<<
+/ProcSet [/PDF /Text ]
+/Font <<
+/TT2 4 0 R
+>>
+/ExtGState <<
+/GS1 7 0 R
+>>
+>>
+endobj
+12 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 40
+/Height 26
+/BitsPerComponent 1
+/ImageMask true
+/Length 131
+>>
+stream
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿùÏÿÿÿüŸÿşÿüŸ¿ıÿş?ßığşgßûîÿïûîÿ»ïûğÿ»ïûşÿ›ïûñÿ§ïıÿÿ¿ßıÿÿ¿ßşÿÿÿ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+endstream
+endobj
+13 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 41
+/Height 27
+/BitsPerComponent 1
+/ImageMask true
+/Length 163
+>>
+stream
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÀÿÿÿÿàÿÿÿÿàÿßÿşÿñÿïÿşøqÓïÿı÷{Í÷ÿı÷İ÷ÿıøİ÷ÿıÿÍ÷ÿıøÿÓ÷ÿşÿÿßïÿşÿÿßïÿÿÿÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+endstream
+endobj
+17 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 70
+/Height 22
+/BitsPerComponent 1
+/ImageMask true
+/Length 199
+>>
+stream
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿŸÿÿÿÿÿÿÿ?ÿÿÿÿşÿÿñ?ÿÿûÿıÿÿìÿÿıÿıàÁÄ~ïø=ÿûïßºşïşşÿûïß»şïşşÿûïß»şïşşÿûïÃ»şoşşÿûïß»şŸúşÿıïß»ÿÿüıÿıïÁÇÿÿşıÿşÿÿÿÿÿÿûÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+endstream
+endobj
+18 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 71
+/Height 28
+/BitsPerComponent 1
+/ImageMask true
+/Length 253
+>>
+stream
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿà  ÿÿÿÿÿà  ƒÿÿÿÿÿÿùƒÿÿıÿşÿÿ÷Çÿÿşÿşğ`ãÇwüÿı÷ïİïwÿı÷ïİÿwÿı÷ïİÿwÿı÷áİÿ7ÿı÷ïİÿOış÷ïİÿÿş~ÿş÷àãÿÿÿ~ÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+endstream
+endobj
+19 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 75
+/Height 25
+/BitsPerComponent 1
+/ImageMask true
+/Length 251
+>>
+stream
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿü       ÿü       ÿÿßÿşÿÿÿÿÿ¿ÿıÿÿÿÿ¿ÿÿ¼8ÿİÿ¿ÿÿ}û÷İÿßßÿÿ}û÷İÿßßÿÿ}û÷İÿßßÿÿ}øwÍÿßßÿÿ}û÷Óÿ_ßÿÿ½û÷ÿÿŸ¿ÿÿ½ø8ÿÿÿß¿ÿÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+endstream
+endobj
+20 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 69
+/Height 25
+/BitsPerComponent 1
+/ImageMask true
+/Length 226
+>>
+stream
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ  ÿÿÿÿÿÿÿşÿÿÿÿÿşÿòÿÿÿûÿıÿîÿÿÿıÿıàAÆşïø=ÿûï_ºşïşşÿûï_ºşïşşÿûï_ºşïşşÿûïCºşoşşÿûï_ºşŸúşÿıï_ºÿÿüıÿıïAÆÿÿşıÿşÿşÿÿÿûÿÿÿşÿÿÿÿÿÿÿ  ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+endstream
+endobj
+25 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 73
+/Height 32
+/BitsPerComponent 1
+/ImageMask true
+/Length 321
+>>
+stream
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿà     ÿÿÿïÿÿÿÿÿûÿÿÿ¯ÿüÿÿÿúÿÿÿoÿûÿÿÿûÿÿh0qÿ»şÿşë÷îÿ»ÿ»¿ÿşë÷îÿ»ÿ»¿ÿşë÷îÿ»ÿ»¿ÿşëğîÿ›ÿ»¿ÿşë÷îÿ§ş»¿ÿÿk÷îÿÿÿ;ÿÿkğqÿÿÿ»ÿÿ¯ÿÿÿÿÿúÿÿÿïÿÿÿÿÿûÿÿÿà     ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+endstream
+endobj
+26 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 15
+/Height 5
+/BitsPerComponent 1
+/ImageMask true
+/Length 11
+>>
+stream
+û¿ıÁıû¿
+endstream
+endobj
+27 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 21
+/Height 15
+/BitsPerComponent 1
+/ImageMask true
+/Length 46
+>>
+stream
+ğ ÷ÿ÷÷ÿ÷÷ÿ÷÷ÿ÷÷İ÷÷ë÷ğ6÷ë÷wİ÷·ÿ÷7ÿ÷÷ÿ÷÷ÿ÷ğ 
+endstream
+endobj
+46 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 207
+/Height 386
+/BitsPerComponent 1
+/ImageMask true
+/Length 10037
+>>
+stream
+                         ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıo¹˜±Şû»÷ÿÿÿÿÿÿÿÿÿÿÿİß»¿ıo·wnŞû»vöçÿÿÿÿÿÿÿÿÿÿÿİß»¿ıpwsoŞû[~ö÷ÿÿÿÿÿÿÿÿÿÿÿÚÙµ¿ıww|oŞû[ö÷ÿÿÿÿÿÿÿÿÿÿÿÚßµ¿ız÷wnÎúëvv÷ÿÿÿÿÿÿÿÿÿÿÿ×_®¿ızàñÑúë÷ÿÿÿÿÿÿÿÿÿÿÿ×_®¿ı}÷ÿßùóÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸŸ?ı}÷ÿßùóÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸŸ?ıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿşÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿıïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıpxóßâÇ{.?ÿÿÿÿÿÿÿÿÿÿÿİß¿ÿıo·oßİ»víÍßÿÿÿÿÿÿÿÿÿÿÿİß¿ÿı·ïßÍ¿.míÿÿÿÿÿÿÿÿÿÿÿÿÚÙ¿ÿıpoÁñ¿_ìÿÿÿÿÿÿÿÿÿÿÿÚßƒÿıp÷oŞİ»níÍßÿÿÿÿÿÿÿÿÿÿÿ×_½ÿıoøÃŞãÇw.?ÿÿÿÿÿÿÿÿÿÿÿ×_½ÿıo¿ïŞÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ½ÿıpïÁÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸƒÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıpxóßŞŞçÀñcÇÿÿÿÿÿÿÿÿÿÿİßÿıo·oßŞŞßßnİ»ÿÿÿÿÿÿÿÿÿÿİß¾ÿı·ïßŞŞÜßfı¿ÿÿÿÿÿÿÿÿÿÿÚÙ¾ÿıpoÁŞŞßßxãƒÿÿÿÿÿÿÿÿÿÿÚß¾ÿıp÷oŞÊÎßÀîİ»ÿÿÿÿÿÿÿÿÿÿ×_ÿıoøÃŞÒÑ‡ßqãÇÿÿÿÿÿÿÿÿÿÿ×_¾ÿıo¿ïŞÿÿßßÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿıpïÁşÿßÀÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸÿıÿÿÿşÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıx<\<Çÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßÿÿıw;›Û»ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßÿÿınÛÛÛ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙÿÿıoÛÛÛƒÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚßÿÿıoÛÛÛ»ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ÿÿıoÛÜ0Çÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¿ÿıw¿ÿûÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸßÿıxÿûÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸŸÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿïÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿßÿıoñ_î^ãÇ`ãÿÿÿÿÿÿÿÿÿÿÿİßßÿıoîŞííŞİ»oİÿÿÿÿÿÿÿÿÿÿÿİß¿ÿıoæŞıíŞßûwßÿÿÿÿÿÿÿÿÿÿÿÚÙ¿ÿı`øŞíŞÁÇ{ÁÿÿÿÿÿÿÿÿÿÿÿÚß¿ÿıonÊìíÎİ»}İÿÿÿÿÿÿÿÿÿÿÿ×_¿ÿıoqÓQãÇ`ãÿÿÿÿÿÿÿÿÿÿÿ×_ßÿıoÿÿıßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸßÿı`ÿÿÿıßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸïÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿınî.bÌÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß€ÿıníÍİ»¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßßÿımmíÍ»ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙïÿımmíñ¸?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß÷ÿık­íİ»¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_÷ÿık­ècÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ûÿıgÏıÿ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸıÿıgÏıÿ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ€ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıqáÛßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßÇÿınŞÛßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß»ÿı~ŞÛßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙûÿı~ŞÛßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚßûÿı~ŞÙßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ûÿı~áÚ?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ûÿı~ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸûÿı~ÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸûÿıÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıv÷<yÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßßÿıvöìíÛ·ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßßÿıv÷ííû÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙßÿıv÷ì÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚßßÿıvvìíÛ·ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ßÿıv<aÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ßÿıwÿÿÿÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸßÿıwÿÿÿÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸßÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿı`7rø±çÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¿ÿıoúî÷nßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¿ÿıoıîóoßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙßÿıoıîüoßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚßïÿı`zîWnßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ïÿıo÷B˜ñ‡ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_÷ÿıoÿïÿÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸûÿı`?ïÿÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸûÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿı`7hñ^âÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıoúçnŞÜÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßİÿıoıïfŞŞÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙëÿıoıïxŞŞÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß÷ÿı`zçnÎÜÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_÷ÿıo÷hñÑâÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ëÿıoÿÿÿÿşÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸİÿı`?ÿÿÿşÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿı`=ñ_ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß€ÿıoıîßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¿ÿıoúæßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙ¿ÿıoúøßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß¿ÿı`wnßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ÿıo÷qßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¿ÿıoÿÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¿ÿı`?ÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ€ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿı`8·?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßáÿıo÷6ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßŞÿıo÷¶ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙ¿ıo÷¶ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß¿ı`w6ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¿ıoø´?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¿ıoÿ¾ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸŞÿı`?¶ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸáÿıÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿßÿıxxw½ñß?îİÜw¹ÿÿÿÿÿÿÿİßŸÿıw··½îŞşööîİÛ··ÿÿÿÿÿÿÿİßÿÿıo÷·ºïŞışöîİÛ÷·ÿÿÿÿÿÿÿÚÙÿÿıo÷·ºàŞışöîİØ7·ÿÿÿÿÿÿÿÚßÿÿıo÷³·nÊışöfÌÛ³·ÿÿÿÿÿÿÿ×_¿ÿıoøtwqĞ=ÿ™Ó<taÿÿÿÿÿÿÿ×_¿ÿıw¿ÿÿÿşş÷ÿÿÿÿÿ÷ÿÿÿÿÿÿÿÏŸÿÿıxÿÿÿşÿÿÿÿÿÿ÷ÿÿÿÿÿÿÿÏŸÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÃÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿ½ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıo·Å·ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıo·¹¶íÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıpw½·íÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙ¾ÿıww½·ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß¾ÿızò¹¶íÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_€ÿızôÅ·ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¾ÿı}ÿÿ¿ıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿı}ÿÿ·ıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿıÿÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıoíî/áqQÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıoííÏŞnÎÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¼ÿıoííï¿fŞÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙºÿıoííï¸xŞÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß¶ÿı`ìíÏ¿îÎÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¶ÿıoí/¿ñÑÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_®ÿıoÿÿïßÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸÿı`oÿïàÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿıïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıpx´xòæ.cÿÿÿÿÿÿÿÿÿÿÿÿÿİßÁÿıo·3·nİÍİÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿı··¿nİíßÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙşÿıw·¸îİíÁÿÿÿÿÿÿÿÿÿÿÿÿÿÚßıÿıp÷³·nİíİÿÿÿÿÿÿÿÿÿÿÿÿÿ×_Ãÿıo÷´xÂ…ècÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¿ÿıo¿÷ÿïßıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿıp÷ÿîßıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸÁÿıÿÿÿşÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıo¸îî|ÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßáşo·níï{¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßŞıõo·îíî»ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙ¿Ïõ`pníî¸?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß¿ÿío·fmíÛ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¿şo¸éÜÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¿ııo¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸŞıõ`ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸáşÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıo¸ûã¾<~şŞâÿÿÿÿÿÿÿÿÿÿÿİßáııo·{İ½Û¾şŞÜÿÿÿÿÿÿÿÿÿÿÿİßŞııo·õß¿ÛşşŞŞÿÿÿÿÿÿÿÿÿÿÿÚÙ¿Íı`puÁ¾8>şŞŞÿÿÿÿÿÿÿÿÿÿÿÚß¿ııo·nİ•Û¾ÎÜÿÿÿÿÿÿÿÿÿÿÿ×_¿üo¸îã¦<~şÑâÿÿÿÿÿÿÿÿÿÿÿ×_¿ııo¿ÿÿÿÿşÿÿşÿÿÿÿÿÿÿÿÿÿÿÏŸŞıı`ÿÿÿÿşÿşÿÿÿÿÿÿÿÿÿÿÿÏŸáüÿÿÿÿÿÿşÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıoíî/ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¿ÿıoííÏÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¿ÿıoííïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙ¿ÿıoííïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß¿ÿı`ìíÏÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ƒÿıoí/ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¿ÿıoÿÿïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¿ÿı`oÿïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸÿıïÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıo¸ñpÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıo·noÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıo·ïoÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙ¾ÿı`pooÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚßÿıo·noÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¾ÿıo¸ñpÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¾ÿıo¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿı`ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıpw¸¸ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİßÁÿıo··7¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıo···¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙ¾ÿıo···¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚß¾ÿıo³·7¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¾ÿıo´x¸ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_¾ÿıo¿ÿ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿıo¿ÿ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ¾ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿïÿÿÿıÿÿïÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿ÷ÿÿÿıÿÿ÷ÿÿÿÿÿÿÿÿÿÿÿÿÿı`øw¸çğğîí¸çãáãÇÿÿÿİßáÿow··ïonìí·ÜşöŞİ»ÿÿÿİßŞşõo···ÿßïníí·ÿÜışŞı¿ÿÿÿÚÙ¿Íıo··°ßïníí°êışŞãƒÿÿÿÚß¿ııo·³·ßïflí·óışŞİ»ÿÿÿ×_¿ııo¸txÿßğé¸ÿíışáãÇÿÿÿ×_¿ııoÿÿÿïÿÿÿ¿ÿíşöÿÿÿÿÿÿÏŸŞşõ`ÿÿÿÿğÿÿÿı¿ÿóÿÿÿÿÿÿÿÏŸáÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿı`øw¸ş7ğî<ÿÿÿÿÿÿÿÿÿÿİßáıõow··}ÏïmíÛ¿ÿÿÿÿÿÿÿÿÿÿİßŞşío···ıÏßíïÛÿÿÿÿÿÿÿÿÿÿÿÚÙ¿Ï]o··°~¯ßíî8?ÿÿÿÿÿÿÿÿÿÿÚß¿ÿ½o·³·?ßííÛ¿ÿÿÿÿÿÿÿÿÿÿ×_¿ÿ½o¸txşßßî<ÿÿÿÿÿÿÿÿÿÿ×_¿ÿ]oÿÿşßïoÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸŞşí`ÿÿÿÿ?ğïÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸáıõÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿı`øw¸ş7ğğîí¸ÿÿÿÿÿÿÿÿÿğÿ‡ÿıow··}Ïïonìí·ÿÿÿÿÿÿÿÿï{ÿıo···ıÏßïníí·ÿÿÿÿÿÿÿÿÿßæÿÿıo··°~¯ßïníí°ÿÿÿÿÿÿÿÿßşÿÿıo·³·?ßïflí·ÿÿÿÿÿÿÿÿßşÿÿıo¸txşßßğé¸ÿÿÿÿÿÿÿÿÿßşÿÿıoÿÿşßïÿÿÿ¿ÿÿÿÿÿÿÿÿÿï{ÿı`ÿÿÿÿ?ğÿÿÿı¿ÿÿÿÿÿÿÿÿÿğÿ‡ÿıÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿı`øw¸ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿğşûÿıow··ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿïwÿıo···ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿßç¯ÿıo··°ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿßÿßÿıo·³·ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿßÿßÿıo¸txÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿßÿ¯ÿıoÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿïwÿı`ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿğşûÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıo´xwÏÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıo³··¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿİß¾ÿıpw··¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚÙÁÿıww··¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÚßİÿızó·²¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ëÿızôxtÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ×_ëÿı}÷ÿÿ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ÷ÿı}÷ÿÿ¿ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÏŸ÷ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿı                                                                           "2#$FLà                Q"*"ÖE«                """MD˜                """DDˆà                """DD‰                 3#2$dI                lÆÌØ8à                @                      €                                               
+endstream
+endobj
+50 0 obj
+<<
+/Type /XObject
+/Subtype /Image
+/Width 327
+/Height 102
+/BitsPerComponent 1
+/ImageMask true
+/Length 4183
+>>
+stream
+                                                                                ?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù0p`Áç9àóŸÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3'&Lç9ÎsŸŸÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?'&|ç9ÎsŸÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù<'&pç9ÎsŸÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù8g áç9ÎsƒŸÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù1ç&Gç9ÎsŸŸÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3'&Lç9ÎsŸÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù8g á N@ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3äâ?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3äÂs?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3äÂsÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3ä’sÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù0d’s?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3ä2s?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3ä2sÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù0$rÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù3æIÇ?ğg ÀÿğqÿçÎ`ÎNb@ÿ÷qÁÿ¿ÿÿÿÿÿÿÿÿÿÿÿù3æI‡?ó'&OÿıîÿçÎNLÎLOÿ÷nßÿvíû¿ÿÿÿÿÿÿÿÿÿÿÿù3æI‡?ó0~OÿıæÿçàÎIàÎOÿúîßÿvíûÿÿÿÿÿÿÿÿÿÿÿù0`É'<2xOÿıêÿàäÏÃäÎOÿıïßƒwİúÿÿÿÿÿÿÿÿÿÿÿÿù3&I'<rpÁÿıêÿædÏÇäÌAÿıïßÿw<8ÿÿÿÿÿÿÿÿÿÿÿù3&Hg?ó8ãÏÿõìÿæqÎCñÏÏÿúîßÿvíû¿ÿÿÿÿÿÿÿÿÿÿÿù3&Hg?ó8æOÿùîÿæqÎIñÎOÿ÷nßÿvíû¿ÿÿÿÿÿÿÿÿÿÿÿù0`Èäğ}ğÀÿıñÿàûàÌûàÀÿ÷qßÿwÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù0                 ?ÿü                  ù7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿûù7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿûù7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿûù7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿûù7ƒ8Áÿù pÿœ™‰Aç¿ÿıÀœÿÿÿğ<ó?ÿü	“ç';ù790œœÿù“ç'?ÿœ™1>Lç¿ÿıÏœœÿÿÿóüó“ÿÿüù“ç&›ù790œœÿù“ç'?ÿÁ™9>|ç¿ÿıÏœœÿÿÿóøx3ÿÿüü3ğf›ù79$œœÿø3ç'?ÿÉƒ9>pç¿ÿıÏœœÿÿÿóûy3ÿÿüşprd“›ù79$œœÿùg'?ÿÉ™1>aç¿ÿıÁœœÿÿÿğs93ÿÿüs2d“›ù79œœÿù“ç'?ÿã™?>Gç¿ÿıÏœœÿÿÿóó<sÿÿüü38á“›ù79œœÿù“ç'?ÿã™9>Lç¿ÿıÏœœÿÿÿóçœsÿÿüù“8á“›ù79Áÿø0 pÿ÷ƒƒ>a¿ÿıÀ?ÿÿğ'óÿÿü	}ã;ù7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿûù7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿûù7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿûù0                 ?ÿü                  ù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù0                ?ÿÿü                   7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÙ7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÙ7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿÿıÿÿÿÿÿÿÿŸÿÿÿÿÿÿÿÿÿÿÿÙ7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿÿıÿÿÿÿÿÿÿ?ÿÿÿÿÿÿÿÿÿÿÿÙ7dçÿÿøÄÿœƒƒ3Ÿ¿ÿÿıÏœ™qÿø88<àü	œæN`óÙ7>dçÿÿùÉÉ„ÿÿœ™93Ÿ¿ÿÿıÏœ™>aÿò““œçÿüùœæNNsÙ7?çÿÿùÉÉ„ÿÿÁ™93Ÿ¿ÿÿıÏÁ™>aÿó““œçÿüü<æ`ÎsÙ7?œçÿÿùÉÉ$ÿÿÉ™9Ÿ¿ÿÿıÁÉƒ>Iÿó““œçÿüş|àäÏóÙ7œçÿÿùÉÉ$ÿÉƒ93Ÿ¿ÿÿıÌÉ™Iÿó““œàÿü|ædÏóÙ7?çÿÿùÉÈdÿÿã™93Ÿ¿ÿÿıÌã™>ÿó““œçÿüü<æqÎsÙ7>dçÿÿùÉÈdÿÿã™93Ÿ¿ÿÿıÌã™>ÿó““œçÿüùœæqÎsÙ7dÿÿøäÿ÷ƒƒ¿ÿÿıÁ÷ƒ9ÿø3˜0 ü	 ûàÀÙ7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÙ7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÙ7ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ¿ÿÿıÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÙ0                ?ÿÿü                   ?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù?ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿù                                                                                                                                                                LÌ ñÄFDdˆÉ€ˆ˜F&                       ªª
+$EDZÈµ@ˆ¤EU                        ˜ˆ$DDI¨“ ”²DL                        ˆˆ$DDHˆ‘ ”¨DD                       ˆˆ$DDHˆ‘ ¢¤DD                       I˜&dfDŒ‰ ¢’dÄ                       8Í˜Ùƒ› ÁŒØD                              Á€                         € ğ      €€                                                                 
+endstream
+endobj
+7 0 obj
+<<
+/Type /ExtGState
+/SA false
+/SM 0.02
+/OP false
+/op false
+/OPM 1
+/BG2 /Default
+/UCR2 /Default
+/HT /Default
+/TR2 /Default
+>>
+endobj
+74 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 770
+/CapHeight 718
+/Descent -229
+/Flags 32
+/FontBBox [-166 -225 1000 931]
+/FontName /Helvetica
+/ItalicAngle 0
+/StemV 88
+/XHeight 523
+/StemH 88
+>>
+endobj
+75 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 770
+/CapHeight 718
+/Descent -229
+/Flags 262176
+/FontBBox [-170 -228 1003 962]
+/FontName /Helvetica-Bold
+/ItalicAngle 0
+/StemV 133
+/XHeight 532
+/StemH 140
+>>
+endobj
+76 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 770
+/CapHeight 718
+/Descent -229
+/Flags 96
+/FontBBox [-170 -225 1116 931]
+/FontName /Helvetica-Oblique
+/ItalicAngle -15
+/StemV 88
+/XHeight 523
+/StemH 88
+>>
+endobj
+77 0 obj
+<<
+/Type /FontDescriptor
+/Ascent 753
+/CapHeight 562
+/Descent -246
+/Flags 35
+/FontBBox [-28 -250 628 805]
+/FontName /Courier
+/ItalicAngle 0
+/StemV 51
+/XHeight 426
+/StemH 51
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 150
+/Widths [278 0 355 556 0 0 0 0 333 333 389 0 278 333 278 278 
+556 556 556 556 556 556 556 556 556 556 278 278 0 0 0 556 
+0 667 667 722 722 667 611 778 722 278 500 667 556 833 722 778 
+667 778 722 667 611 722 667 944 667 667 611 278 0 278 0 0 
+0 556 556 500 556 556 278 556 556 222 222 500 222 833 556 556 
+556 556 333 500 278 556 500 722 500 500 500 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 222 0 0 350 556 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Helvetica
+/FontDescriptor 74 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 151
+/Widths [278 0 474 556 0 889 0 0 333 333 389 0 278 333 278 278 
+556 556 556 556 556 556 556 556 556 556 333 333 0 0 0 0 
+975 722 722 722 722 667 611 778 722 278 556 722 611 833 722 778 
+667 778 722 667 611 722 0 944 667 0 611 0 278 333 0 0 
+0 556 611 556 611 556 333 611 611 278 0 556 278 889 611 611 
+611 611 389 556 333 611 556 778 556 556 500 0 280 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 278 278 0 0 0 556 1000 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Helvetica-Bold
+/FontDescriptor 75 0 R
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 117
+/Widths [278 0 0 0 0 0 667 0 0 0 0 0 0 333 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 556 
+0 667 667 722 722 667 611 778 722 278 0 667 556 833 722 778 
+667 0 722 667 611 722 0 944 667 667 0 0 0 0 0 0 
+0 556 0 500 0 556 278 0 0 222 0 0 222 0 556 0 
+556 0 333 500 278 556 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Helvetica-Oblique
+/FontDescriptor 76 0 R
+>>
+endobj
+24 0 obj
+<<
+/Type /Font
+/Subtype /TrueType
+/FirstChar 32
+/LastChar 146
+/Widths [600 0 600 0 0 0 0 0 600 600 0 0 600 600 0 0 
+0 600 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 0 0 0 600 0 600 0 600 0 0 600 600 600 0 
+0 0 600 0 0 600 0 0 0 600 0 0 0 0 600 0 
+0 600 0 600 600 600 600 600 600 600 0 0 600 600 600 600 
+0 0 600 600 600 600 600 0 0 600 0 0 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 0 600 ]
+/Encoding /WinAnsiEncoding
+/BaseFont /Courier
+/FontDescriptor 77 0 R
+>>
+endobj
+1 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 3 0 R
+/Contents 2 0 R
+>>
+endobj
+9 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 11 0 R
+/Contents 10 0 R
+>>
+endobj
+14 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 16 0 R
+/Contents 15 0 R
+>>
+endobj
+21 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 23 0 R
+/Contents 22 0 R
+>>
+endobj
+28 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 30 0 R
+/Contents 29 0 R
+>>
+endobj
+31 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 33 0 R
+/Contents 32 0 R
+>>
+endobj
+34 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 36 0 R
+/Contents 35 0 R
+>>
+endobj
+37 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 39 0 R
+/Contents 38 0 R
+>>
+endobj
+40 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 42 0 R
+/Contents 41 0 R
+>>
+endobj
+43 0 obj
+<<
+/Type /Page
+/Parent 8 0 R
+/Resources 45 0 R
+/Contents 44 0 R
+>>
+endobj
+47 0 obj
+<<
+/Type /Page
+/Parent 52 0 R
+/Resources 49 0 R
+/Contents 48 0 R
+>>
+endobj
+53 0 obj
+<<
+/Type /Page
+/Parent 52 0 R
+/Resources 55 0 R
+/Contents 54 0 R
+>>
+endobj
+56 0 obj
+<<
+/Type /Page
+/Parent 52 0 R
+/Resources 58 0 R
+/Contents 57 0 R
+>>
+endobj
+59 0 obj
+<<
+/Type /Page
+/Parent 52 0 R
+/Resources 61 0 R
+/Contents 60 0 R
+>>
+endobj
+62 0 obj
+<<
+/Type /Page
+/Parent 52 0 R
+/Resources 64 0 R
+/Contents 63 0 R
+>>
+endobj
+65 0 obj
+<<
+/Type /Page
+/Parent 52 0 R
+/Resources 67 0 R
+/Contents 66 0 R
+>>
+endobj
+68 0 obj
+<<
+/Type /Page
+/Parent 52 0 R
+/Resources 70 0 R
+/Contents 69 0 R
+>>
+endobj
+71 0 obj
+<<
+/Type /Page
+/Parent 52 0 R
+/Resources 73 0 R
+/Contents 72 0 R
+>>
+endobj
+78 0 obj
+<<
+/S /D
+>>
+endobj
+79 0 obj
+<<
+/Nums [0 78 0 R ]
+>>
+endobj
+8 0 obj
+<<
+/Type /Pages
+/Kids [1 0 R 9 0 R 14 0 R 21 0 R 28 0 R 31 0 R 34 0 R 37 0 R 40 0 R 43 0 R]
+/Count 10
+/Parent 51 0 R
+>>
+endobj
+52 0 obj
+<<
+/Type /Pages
+/Kids [47 0 R 53 0 R 56 0 R 59 0 R 62 0 R 65 0 R 68 0 R 71 0 R]
+/Count 8
+/Parent 51 0 R
+>>
+endobj
+51 0 obj
+<<
+/Type /Pages
+/Kids [8 0 R 52 0 R ]
+/Count 18
+/MediaBox [0 0 612 792]
+>>
+endobj
+80 0 obj
+<<
+/CreationDate (D:20200720123811-07'00')
+/ModDate (D:20200720123811-07'00')
+/Producer (PSNormalizer.framework)
+>>
+endobj
+81 0 obj
+<<
+/Type /Catalog
+/Pages 51 0 R
+/PageLabels 79 0 R
+>>
+endobj
+xref
+0 82
+0000000000 65535 f 
+0000113923 00000 n 
+0000000016 00000 n 
+0000004214 00000 n 
+0000111888 00000 n 
+0000112455 00000 n 
+0000113030 00000 n 
+0000110951 00000 n 
+0000115489 00000 n 
+0000114003 00000 n 
+0000004331 00000 n 
+0000008360 00000 n 
+0000093586 00000 n 
+0000093857 00000 n 
+0000114085 00000 n 
+0000008514 00000 n 
+0000012057 00000 n 
+0000094160 00000 n 
+0000094499 00000 n 
+0000094892 00000 n 
+0000095283 00000 n 
+0000114168 00000 n 
+0000012235 00000 n 
+0000016940 00000 n 
+0000113453 00000 n 
+0000095649 00000 n 
+0000096110 00000 n 
+0000096259 00000 n 
+0000114251 00000 n 
+0000017118 00000 n 
+0000022737 00000 n 
+0000114334 00000 n 
+0000022844 00000 n 
+0000028807 00000 n 
+0000114417 00000 n 
+0000028914 00000 n 
+0000033626 00000 n 
+0000114500 00000 n 
+0000033733 00000 n 
+0000040354 00000 n 
+0000114583 00000 n 
+0000040461 00000 n 
+0000046821 00000 n 
+0000114666 00000 n 
+0000046928 00000 n 
+0000049673 00000 n 
+0000096444 00000 n 
+0000114749 00000 n 
+0000049828 00000 n 
+0000055448 00000 n 
+0000106625 00000 n 
+0000115747 00000 n 
+0000115624 00000 n 
+0000114833 00000 n 
+0000055602 00000 n 
+0000063614 00000 n 
+0000114917 00000 n 
+0000063732 00000 n 
+0000070534 00000 n 
+0000115001 00000 n 
+0000070652 00000 n 
+0000077645 00000 n 
+0000115085 00000 n 
+0000077775 00000 n 
+0000085124 00000 n 
+0000115169 00000 n 
+0000085242 00000 n 
+0000092212 00000 n 
+0000115253 00000 n 
+0000092330 00000 n 
+0000092986 00000 n 
+0000115337 00000 n 
+0000093093 00000 n 
+0000093490 00000 n 
+0000111091 00000 n 
+0000111286 00000 n 
+0000111492 00000 n 
+0000111697 00000 n 
+0000115421 00000 n 
+0000115449 00000 n 
+0000115838 00000 n 
+0000115970 00000 n 
+trailer
+<<
+/Size 82
+/Root 81 0 R
+/Info 80 0 R
+/ID [<9f8b5fbae80b1659bd332f79b555e885><9f8b5fbae80b1659bd332f79b555e885>]
+>>
+startxref
+116040
+%%EOF
+1 0 obj
+<< /Resources 3 0 R /Type /Page /Contents 2 0 R /Rotate 0 /Parent 8 0 R >>
+endobj
+9 0 obj
+<< /Resources 11 0 R /Type /Page /Contents 10 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+14 0 obj
+<< /Resources 16 0 R /Type /Page /Contents 15 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+21 0 obj
+<< /Resources 23 0 R /Type /Page /Contents 22 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+28 0 obj
+<< /Resources 30 0 R /Type /Page /Contents 29 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+31 0 obj
+<< /Resources 33 0 R /Type /Page /Contents 32 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+34 0 obj
+<< /Resources 36 0 R /Type /Page /Contents 35 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+37 0 obj
+<< /Resources 39 0 R /Type /Page /Contents 38 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+40 0 obj
+<< /Resources 42 0 R /Type /Page /Contents 41 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+43 0 obj
+<< /Resources 45 0 R /Type /Page /Contents 44 0 R /Rotate 0 /Parent 8 0 R
+>>
+endobj
+47 0 obj
+<< /Resources 49 0 R /Type /Page /Contents 48 0 R /Rotate 0 /Parent 52 0 R
+>>
+endobj
+53 0 obj
+<< /Resources 55 0 R /Type /Page /Contents 54 0 R /Rotate 0 /Parent 52 0 R
+>>
+endobj
+56 0 obj
+<< /Resources 58 0 R /Type /Page /Contents 57 0 R /Rotate 0 /Parent 52 0 R
+>>
+endobj
+59 0 obj
+<< /Resources 61 0 R /Type /Page /Contents 60 0 R /Rotate 0 /Parent 52 0 R
+>>
+endobj
+62 0 obj
+<< /Resources 64 0 R /Type /Page /Contents 63 0 R /Rotate 0 /Parent 52 0 R
+>>
+endobj
+65 0 obj
+<< /Resources 67 0 R /Type /Page /Contents 66 0 R /Rotate 0 /Parent 52 0 R
+>>
+endobj
+68 0 obj
+<< /Resources 70 0 R /Type /Page /Contents 69 0 R /Rotate 0 /Parent 52 0 R
+>>
+endobj
+71 0 obj
+<< /Resources 73 0 R /Type /Page /Contents 72 0 R /Rotate 0 /Parent 52 0 R
+>>
+endobj
+80 0 obj
+<< /ModDate (D:20200720193858Z00'00') /Producer (macOS Version 10.15.5 \(Build 19F101\) Quartz PDFContext, AppendMode 1.1)
+/CreationDate (D:20200720123811-07'00') >>
+endobj
+xref
+0 2
+0000000000 65535 f 
+0000117837 00000 n 
+9 1
+0000117927 00000 n 
+14 1
+0000118019 00000 n 
+21 1
+0000118112 00000 n 
+28 1
+0000118205 00000 n 
+31 1
+0000118298 00000 n 
+34 1
+0000118391 00000 n 
+37 1
+0000118484 00000 n 
+40 1
+0000118577 00000 n 
+43 1
+0000118670 00000 n 
+47 1
+0000118763 00000 n 
+53 1
+0000118857 00000 n 
+56 1
+0000118951 00000 n 
+59 1
+0000119045 00000 n 
+62 1
+0000119139 00000 n 
+65 1
+0000119233 00000 n 
+68 1
+0000119327 00000 n 
+71 1
+0000119421 00000 n 
+80 1
+0000119515 00000 n 
+trailer
+<< /ID [<9F8B5FBAE80B1659BD332F79B555E885><B0C21461BA3311879862C5D97943C0BF> ] /Root 81 0 R /Size 82 /Prev 116040 /Info 80 0 R >> 
+startxref
+119697
+%%EOF
