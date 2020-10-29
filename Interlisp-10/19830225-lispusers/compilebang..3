@@ -1,0 +1,77 @@
+(FILECREATED "18-JAN-82 17:08:00" {PHYLUM}<LISPUSERS>COMPILEBANG.;3    2333
+
+     changes to:  COMPILE!
+
+     previous date: "30-NOV-81 12:08:21" {PHYLUM}<LISPUSERS>COMPILEBANG.;2)
+
+
+(* Copyright (c) 1982 by Xerox Corporation)
+
+(PRETTYCOMPRINT COMPILEBANGCOMS)
+
+(RPAQQ COMPILEBANGCOMS ((E (RESETSAVE CLISPIFYPRETTYFLG NIL))
+			(LISPXMACROS C)
+			(FNS COMPILE!)
+			(USERMACROS C)))
+
+(ADDTOVAR LISPXMACROS (C (COND (LISPXLINE (COMPILE! (CAR LISPXLINE)
+						    T NIL T))
+			       (T C))))
+(DEFINEQ
+
+(COMPILE!
+  [LAMBDA (X NOSAVE NOREDEFINE PRINTLAP)                     (* lmm "18-JAN-82 17:07")
+
+          (* In-core compiling for functions and forms, without the interview. If X is a list, we assume that we are being 
+	  called merely to display the lap and machine code. THe form is compiled as the definition of FOO but the compiled 
+	  code is thrown away. -
+	  If X is a litatom, then saving, redefining, and printing is controlled by the flags.)
+
+
+    (DECLARE (GLOBALVARS NLAMA NLAML LAMS LAMA NOFIXFNSLST NOFIXVARSLST))
+    (RESETLST                                                (* RESETLST to provide reset context for macros under 
+							     COMPILE1 as generated e.g. by DECL.)
+	      (RESETVARS [(NLAMA NLAMA)
+			  (NLAML NLAML)
+			  (LAMS LAMS)
+			  (LAMA LAMA)
+			  (NOFIXFNSLST NOFIXFNSLST)
+			  (NOFIXVARSLST NOFIXVARSLST)
+			  (LCFIL)
+			  [LAPFLG (AND PRINTLAP (COND
+					 (BYTECOMPFLG T)
+					 (T 2]
+			  (STRF (NOT NOREDEFINE))
+			  (SVFLG (NOT NOSAVE))
+			  (LSTFIL T)
+			  (SPECVARS T)
+			  (LOCALVARS (COND
+				       ((NEQ LOCALVARS T)
+					 (UNION SYSLOCALVARS LOCALVARS))
+				       (T SYSLOCALVARS]
+		         (RETURN (COMPILE1 (COND
+					     ((LITATOM X)
+					       X)
+					     (T (QUOTE *DUMMY-COMPILED-FUNCTION*)))
+					   (COND
+					     ((NLISTP X)
+					       (VIRGINFN X T))
+					     ((ARGTYPE X)
+					       X)
+					     (T (LIST (QUOTE LAMBDA)
+						      NIL X)))
+					   T])
+)
+
+(ADDTOVAR USERMACROS [C NIL (ORR (UP 1)
+				 NIL)
+			(ORR ((E (COMPILE! (OR (LISTP (##))
+					       (## !0))
+					   T T T)))
+			     ((E (QUOTE C?])
+
+(ADDTOVAR EDITCOMSA C)
+(DECLARE: DONTCOPY (PUTPROPS COMPILEBANG COPYRIGHT ("Xerox Corporation" 1982)))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (520 2035 (COMPILE! 532 . 2032)))))
+STOP

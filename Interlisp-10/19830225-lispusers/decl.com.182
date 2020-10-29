@@ -1,0 +1,1829 @@
+(FILECREATED "14-SEP-82 22:19:44" ("compiled on " <LISPUSERS>DECL.;13) (2 . 2) brecompiled exprs: 
+INITDECLTYPES TESTFORM in WORK dated " 9-SEP-82 19:19:58")
+(FILECREATED "14-SEP-82 22:18:53" <LISPUSERS>DECL.;13 118747 changes to: (FNS INITDECLTYPES) previous 
+date: "28-JUN-82 12:44:59" <LISPUSERS>DECL.;12)
+LCCTYPE BINARY
+'"%-."-.""Zpb"b#,<[w3B+
+,<p[w,<,,<,+
+Zp/+,<w,<w$3B+Zw+,<p,<w$3B+Zp+,<w,<,<,<Zw~-,++ ZXBw,<,<w},,<Zw3B+,<,<w$3B+ZpXBw/[w~XBw~+Zp/+ba	 @(TL . 1)
+(NIL)
+(LINKED-FN-CALL . GETDECLTYPE)
+(NIL)
+(LINKED-FN-CALL . GETCTYPE)
+(NIL)
+(LINKED-FN-CALL . COVERSCTYPE)
+(SKNLST URET2 URET1 BHC KNIL BLKENT ENTER1)"0"x0Hh(
+TYPEMSANAL BINARY
+A'<-.'-.('*Zp2B*+Z*,<ZZXCpQEp,\-,+
+Z,,<,<@+@+ZXBZ,<,uZZ2B+Z,~[,<Z,<[,<Z,<,<,,\d,Z  [2D+ZpQDZp++3B-+
+2B-+L,<.ZpZwXD[,<Z.,<ZZXCpQEp,\-,+(Z,,<,<@+@+;ZXB[Z,<,uZ+Z*2B+0Z,~[.,<Z0,<[-,<Z2,<,<,,\d,Z1  [2D+7ZpQDZp+ ,\XD[,<Z+Z,2B+J@/+J@0+HZ>,<,<,<,<,<Zl1,~ZCZ>,,~,\XBZp/+2B2+t,<2,<pZ3,<ZZXCpQEp,\-,+TZ,,<,<@+@+gZ6XB3[HZ,<,uZWZV2B+\Z,~[Z,<Z\,<[Y,<Z^,<,<,,\d,Z]  [2D+cZpQDZp+ ,\XD[,<[WZb3,<Zp@[2B+o,<p4/,<Zjd5,\XBZp/+6+Zp-,+~[_-,+|Zv,<Z, ,\QD[XBxZpXD+-,+&Zp3B7+3B8+3B8+3B9+2B9+[p,<Zp-,+Z+Zp,<,u[pXBp+/+2B:+Z+Zp,<,u[pZ2B:+[p[-,ZZXBp+u[pZ-,ZZ2B;+Z+2B;+%[pZ[,<Zp-,+
+Z+$Zp,<[pZ,<,u/[pXBp+/+6+6+p("
+
+ AZBAP /~
+$a03 	 (KIND . 1)
+(VARIABLE-VALUE-CELL EXPR . 225)
+(VARIABLE-VALUE-CELL CLISPARRAY . 145)
+(VARIABLE-VALUE-CELL FNNAME . 141)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 217)
+(VARIABLE-VALUE-CELL !SCRATCHTAIL . 248)
+COVERS
+((NIL) . 0)
+(VARIABLE-VALUE-CELL !SCRATCHLIST . 197)
+(VARIABLE-VALUE-CELL !SCRATCHTAIL . 0)
+(NIL)
+(LINKED-FN-CALL . RPLACD)
+type?
+the
+((NIL NIL NIL) . 0)
+((NIL) . 0)
+(NIL VARIABLE-VALUE-CELL FILEPKGFLG . 0)
+(T VARIABLE-VALUE-CELL NOSPELLFLG . 0)
+(T VARIABLE-VALUE-CELL DWIMESSGAG . 0)
+(NIL VARIABLE-VALUE-CELL LISPXHIST . 0)
+(NIL)
+(LINKED-FN-CALL . DWIMIFY0?)
+*DECL
+((NIL NIL) . 0)
+((NIL) . 0)
+(NIL)
+(LINKED-FN-CALL . GETDECLTYPE)
+(NIL)
+(LINKED-FN-CALL . MAKETESTFN)
+(NIL)
+(LINKED-FN-CALL . APPLYFORM)
+(NIL)
+(LINKED-FN-CALL . SHOULDNT)
+ALLOF
+ONEOF
+SHARED
+SUBTYPE
+TUPLE
+MEMQ
+OF
+SATISFIES
+WHOSE
+(SKLST SKLA BHC GETHSH URET1 CONSNL SKNLST KNIL BLKENT ENTER1)pphP#@tLJx&XhhuHh	P<`z
+H((`Sp	
+@zhe\
+XT
+PpF`@5)%Hp8
+p
+MAKETESTFNBLOCK BINARY
+g-.g-.hiZp@ZZ,<Zw@Z-,+
+Zw@Z2B+Zi,<@i@+$,<jZw,<8k3B+ZwZ8@,<ZwZ8@[,<,<ll ,\QD ,~,<`m2Bn++[`,<,<oo,<,<pZp-,+
++(,<,<pZw@[2B+#Zwbp,<Zdq,\XB/[pXBp+/Zp/,<,<r,$+2Bs+T,<sZ$,,<,<tt,<Zw~,<8u3B+B[`[3B+:,<vZ-,<[`,<,<,,<,<,+S,<wZ5,<[`Z3B+A3B+A-,+A,<w,<,,+S[`[3B+K,<xZ:,<[`3B+J3B+J-,+J,<w,<,,+S,<xZD,<[`Z3B+R3B+R-,+R,<w,<,,,+2By+^Z`bt,<[`[[3B+Z[`[+\[`[Zbt,<,s+2By+p[`,<,<zo,<,<pZp-,+d+m,<,<pZw@ [2B+hZwbp,<ZLdq,\XB/[pXBp+b/Zp/,<,<z,$+2B{+Z`bt,<Zp@e[2B+v,<pp/,<Zidq,<[`Z[[3B+Zr[`Z[,+[`Z[Z,,<,<r,$+3B{+3B|+2B|+[`Zbt,<Zp@s[2B+,<pp/+2B}+[`,<,+2B}+Zw,<8Z`,<[`Z[,<,'+~,<ZwZ8@	[,<Zw~Z8@,<Zw3B+ [w,Z,b+ Zw ,\QD //,~+,<w,<,<Zw-,+(+=ZXBp,<w-,ZZZw~2B+.[wb+;Zw,<Zw}2Br7Z,\2B+3Z+;Zw,<Zw}2Bz7Z,\2B+:Zw,/+>Zw,dXBw[wXBw+&Zw/,<,<w,@+,<sZw,,<Zw~-,+FZw2Br7Z+J[w~3B+JZwZw~,+JZw~,+,<w w/",,<,Z,<Zp2B+RZ[p,+2B+UZ[p,+2B+XZ[p,+,<,<w,+Zp0B+]Zw+ p0"+iZp0B+aZ+g0B+cZ+g0B+eZ+g0B+gZ+g~,<,<w,+ p0"+p,<,<w,,< w/",,<,Z+,<,<w w.",,+Zw@[2B+w,<wp,<ZAdq,<,<w,<2B+|,<	,<Zw,<,<
+Zw~@t[2B+,<w~p,,,,<,<r,$+Zp3B+&,<
+Z},<b,,<,<w,<,<,<,<,<Zw}-,++#ZXBwbt,<Zp@[2B+,<pp/,<Z,<,<w,KdqXBwZw~3B+,<Zw~,XBw~,\QB+
+Zw,XBw~XBw~[w}XBw} p.",XBp+Zw~/,,<,<r,$+Z+,<wt,<Zp@[2B+,,<pp/,<Zdq,<,<w,<Zw-,+6ZpZ2B+4 "+6[QD "+dZw,<,<p,<3B+;[pZ+<[pbt,<Zp@)[2B+@,<pp/,<Zw}2B+UZw,<Zp3B+J3B+J3B+J3B+J3B+J2B+M,<Z-,<,+T-,+Q,5"PZ+TZ+RZ+TZK,<,<w,K/+`Zw,<,<w| ,\,3B+^,<,<w|Zw~,,<,<yZR,<,+`Zw,<,<	dq/Zp,XBp[wXBw+0/,,<,<r,$+!V(f CxbF`VB1A,EsH!z ?r9`X1DD
+H@G B;]p0
+MDdd
+(A#%F?~
+U
+!B@F(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 635)
+(VARIABLE-VALUE-CELL BINDINGNAME . 697)
+VALUE
+(0 . 1)
+(VARIABLE-VALUE-CELL BINDINGNAME . 0)
+MAKETESTFNBLOCK
+(NIL)
+(LINKED-FN-CALL . DECLRECURSING)
+.TestFn
+(NIL)
+(LINKED-FN-CALL . PACK*)
+(NIL)
+(LINKED-FN-CALL . TETYPE)
+ALLOF
+DOWN
+(NIL)
+(LINKED-FN-CALL . COLLECTTYPES)
+(NIL)
+(LINKED-FN-CALL . MAKETESTFN)
+(NIL)
+(LINKED-FN-CALL . APPLYFORM)
+AND
+MEMQ
+LAMBDA
+((ONEOF LITATOM SMALLP) . 0)
+(NIL)
+(LINKED-FN-CALL . GETDECLTYPE)
+(NIL)
+(LINKED-FN-CALL . COVERSTB)
+SELECTQ
+EQ
+QUOTE
+MEMBER
+EQUAL
+OF
+ONEOF
+UP
+OR
+SATISFIES
+SHARED
+SUBTYPE
+SYNONYM
+TUPLE
+WHOSE
+(NIL)
+(LINKED-FN-CALL . SHOULDNT)
+LABEL
+(NIL)
+(LINKED-FN-CALL . DOLABEL)
+(NIL)
+(LINKED-FN-CALL . APPEND)
+(NIL)
+(LINKED-FN-CALL . NCONC)
+CDR
+CADR
+CDDR
+CADDR
+CDDDR
+CADDDR
+CAR
+CDDDDR
+FNTH
+EVERYFN
+(NIL)
+(LINKED-FN-CALL . GETTBPROP)
+"OF construction used with non-aggregate type"
+(NIL)
+(LINKED-FN-CALL . DECLERROR)
+FUNCTION
+EQLENGTH
+(NIL)
+(LINKED-FN-CALL . LENGTH)
+1
+NULL
+2
+(NIL)
+(LINKED-FN-CALL . EQLENGTH)
+LISTP
+CAAR
+CDAR
+(NIL)
+(LINKED-FN-CALL . RECORDFIELDNAMES)
+FETCH
+" is not a valid fieldname"
+(COLLCT FMEMB GUNBOX SKI CONSS1 ASZ URET3 MKN URET2 SKLST URET1 CONS21 ALIST2 CONS ALIST3 SKNNM LIST4 
+LIST2 KT CONSNL BHC SKNLST KNIL SKLA BLKENT ENTER1),0+)p)`,`%f@b\h0Y`S"0o` `tjXL(%'Px+@ 0XXR p! 8K
+@S	8BQ	?^ )PmZ
+0K8Qh7P	>#p(;.e, U(-$Hp:@#Pwpn@*'1!hDxch+R*?' 3&00%8"8!H!8 {`H`6810&`0|XgOpDX9H2(((
+DECLTRAN BINARY
+@4-.-.hZXBZp,<[w[,<Z,<@``+0Zw[8ZXB`-,+#,<,<Z`-,++ ZXBpZ`2B+Zp2B+,<[`Z`,Z,,,XB`+ ,<pZ`2B7Z,<Z`3B+7Z,<,1[`XB`+Zw/ZbXB!+,3B++-,++Z`2B++,<`,<,,<,<,<,1ZXBZ`XB"Z`2B+7Z`-,ZXB`Z3B+5Z`Z2B+7[`Z2B+7Z`XB`[`XB`Z`3B+T,<,<,<Z`-,+<+IZXBw-,+>+IZwZ13B+HZw2B+D,<`[wdXB`+HZw2B+I,<p[wdXBp[`XB`+:Z`2B+NZZ`,Z,,XB`Zp3B+SZ`,Z,,XB`Zw/Z,<Zp-,+W+_Zp,<[pXBp3B+]Zpb2B+\b/[pXBp+U/Z3B+dZZ_,Z`,XB`Z3B+hZZd,Z`,XB`Z3B+mZ`,Z,,XB`Z`3B+pZZ`,XB`Z*3B+tbZ,,,<,<`Z,XB`Z3B+|,<`b,<[`d,\QBZ`2B+Z`,XB`Z`3B+Z`,XB`Z?Z,Z`,XB`Z`3B+Z`,XB`Z+Z`,Z,XB`+2B+,<Z,<,<,<`,,XB`Z`3B+[`,<Z`[`[,,\QB+Z`XB`@+Zw,<8,<8,<,<,<Zl,~ZT2B+ Z3B+*Z`Z
+XDZbXB",<`Z
+3B+(Z#3B+(,+(Z%[`,,\QBZ`2B+-Z`,~Zw,<8,<` ZwZ8,~+Zp2B+37Z,<,<,<,<,<,<,<,<,<Zwz-,+OZwzXBw~3B!+<2B!+CZh3B+@,<",<,<",<wy#ZXBw{XBw{Z!XBw~[wzXBwZw{3B+O@$+KZw,<?,<?z,<?,<,<Zl,~Zw,<[wXBw,\XBw+OXBw~Zw~3B+R-,+T,<%,<,<",<wy#,<w,<,<Zw-,+X+3ZXBpZwz3B+Zp2B%+fZw}Zf,3B+c,<&,<w|,<,<",<ww
+#2B+1+Zw}Za,XBc2B+1+2B&+rZw}Zd,3B+n,<',<w|,<,<",<ww
+#2B+1+Zw}Z\,XBo2B+1+-,ZZ2B'+Zw}Zp,3B+{,<(,<w|,<,<",<ww
+#2B+1+Zw}Zh,XB|2B+1+Zp2B(+Zw}Z,3B+Z2B+1+Zw}Z,XB2B+1+3B)+-,ZZ2B)+Z)XBwz2B+1Zp-,ZZ2B*+Zw~3B+,<*,<,<",<ww#ZpXBw~+1Zp-,ZZZ3B+1,<p,<w|+XBw|3B+$Zw{3B+!,<,,<w,<,<",<ww
+#Zw|XBw{ZpXBw{+1Zp-,+.Zp,<,<,,<-,<,<w~
+-3B+.ZJ3B+Y3B.+Y,<,<//+Y,<0,<w,<,<",<ww
+#[wXBw+VZw/Zw|2B+6Z1XBw}Zp3B+@,<w},<,XBw},<,<w~+XBw|2B+@,<1,<w|,<,<",<wx
+#Zw~2B!+DZw}XB<Z/,~Zw{3B+UZ,<Zp-,+H+TZp,<Zw}Zp3B+O,<Zw-,ZZ,\2B+R,<2,<w},<,<",<ww
+#/[pXBp+F/Zw|3B+fZw|[2B+Y,<w|2XBw}3B+fZw{3B+b,<w}Zw~3B+_,+`ZXBwz,XBw+f,<3,<w~,<w|,<w},,Zw,XBeZw}3B1+s,<w~Zw{,,Z(,XBjZw3B+oZw{3B+w+pZw{2B+wZw~Zp,XBq+wZw{3B+wZw~,Zk,XBuZw{3B+~Zw3B+|,<w~,<,+|Zw~ZE,XB|Zw~Z,XB~+B(cqC	
+-&12Y$`.@0	
+#d(%!	s(A ZACApJ`c+a5&PIJ;e!De0`@2DE2H(FORM . 1)
+(VARIABLE-VALUE-CELL CLISPCHANGE . 7)
+(VARIABLE-VALUE-CELL VARS . 767)
+(VARIABLE-VALUE-CELL COMMENTFLG . 561)
+(VARIABLE-VALUE-CELL FAULTFN . 596)
+(VARIABLE-VALUE-CELL NEWSATLIST . 328)
+(VARIABLE-VALUE-CELL RETURNS . 644)
+(VARIABLE-VALUE-CELL LOCALVARS . 490)
+(VARIABLE-VALUE-CELL SPECVARS . 506)
+(VARIABLE-VALUE-CELL GLOBALVARS . 525)
+(VARIABLE-VALUE-CELL PROGDCLS . 763)
+(VARIABLE-VALUE-CELL VARBINDFORMS . 716)
+(VARIABLE-VALUE-CELL SAT . 749)
+(VARIABLE-VALUE-CELL INITVARS . 740)
+(0 . 1)
+(0 . 1)
+(VARIABLE-VALUE-CELL VARS . 0)
+NIL
+NIL
+NIL
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL PROGDCLS . 0)
+(NIL VARIABLE-VALUE-CELL SPECVARS . 0)
+(NIL VARIABLE-VALUE-CELL SAT . 0)
+(NIL VARIABLE-VALUE-CELL INITVARS . 0)
+(NIL VARIABLE-VALUE-CELL VARBINDFORMS . 0)
+(NIL VARIABLE-VALUE-CELL RETURNS . 0)
+(NIL VARIABLE-VALUE-CELL LOCALVARS . 0)
+DPROG
+THEN
+RETURN
+DPROGN
+(NIL)
+(LINKED-FN-CALL . DREVERSE)
+DLAMBDA
+FIXP
+CLISP:
+DECLARATIONS:
+DECLARE
+(NIL)
+(LINKED-FN-CALL . APPEND)
+DECL
+PROG
+(NIL)
+(LINKED-FN-CALL . FINDDECLTYPE)
+(NIL)
+(LINKED-FN-CALL . SHOULDNT)
+(NIL)
+(LINKED-FN-CALL . DECLDWIMTESTFN)
+SPECVARS
+LOCALVARS
+the
+CHKINIT
+(NIL)
+(LINKED-FN-CALL . NCONC)
+PROGN
+((ASSERT: (CLISP DLAMBDA)) . 0)
+LAMBDA
+(NIL VARIABLE-VALUE-CELL NEWSATLIST . 0)
+(NIL)
+(LINKED-FN-CALL . DWIMIFY0?)
+*DECL
+(NIL)
+(LINKED-FN-CALL . REALCLISPTRAN)
+RETURNS
+VALUE
+"Multiple RETURNS/VALUE declaration"
+"   inside "
+(NIL)
+(LINKED-FN-CALL . DECLDWIMERROR)
+(T VARIABLE-VALUE-CELL NOSPELLFLG . 0)
+(T VARIABLE-VALUE-CELL DWIMESSGAG . 0)
+"Illegal variable name"
+SPECIAL
+"Variable can't be both LOCAL and SPECIAL:  "
+LOCAL
+"Variable can't be both LOCAL and SPECIAL:  "
+USEDIN
+"Variable can't be both LOCAL and USEDIN:  "
+GLOBAL
+FREE
+BOUNDIN
+SATISFIES
+"Multiple SATISFIES"
+(NIL)
+(LINKED-FN-CALL . GETDECLTYPE.NOERROR)
+"more than one type declaration:  "
+80
+((SATISFIES BOUNDIN USEDIN) . 0)
+(NIL)
+(LINKED-FN-CALL . FIXSPELL)
+TYPE-IN
+FNS
+(NIL)
+(LINKED-FN-CALL . MARKASCHANGED)
+"invalid declaration: "
+ANY
+"invalid declaration: "
+"more than one binding for "
+(NIL)
+(LINKED-FN-CALL . MAKEBINDFN)
+REALSETQ
+(CONSS1 FMEMB SKNLA URET1 ALIST3 LIST2 SKLA BHC CONSNL ALIST2 CONS21 CONS SKNLST KNIL SKLST KT BLKENT 
+ENTER1)j, (v^R1e/@e' P*XS(@4^
+H!v+x(ptPS	hptHR	`/`w.(k- f p}e  P p8hxd0Q	PHxV`;h/ x.Hp-hm,^+HX*hN(XC'P8&X+% #P"(!`! 0~
+0w8q`j`bhZhVJ E>8x7h6X5@2p%
+H8hrhjXa@Z
+L(:/0)@(P)X%#!(s/@*?&($
+lSx3 0
+PPDECL BINARY
+k-.k-.0kn[p-,+Z3B+	ZpZ,3B+	Zp+Zp2Bn+%^",>j,>o,.Bx,^/,,<Z3B+Zp+Zpbq,<rq[wZ,<,<,4[w[XBw-,+ZwZ3B+,<p,<r,<s,<w,<w,<,<ZjtZ3B+#Zu+#Zubq/+32Bv+o,.",,<,< w.",XBp,<vq[wZ-,+,<wq[wZ,< w.",,<,<,<,<,<Zw}-,+6+~ZXBw-,+p,<w~,<r,<s,<w,<qZw,<,<x[wXBw3B+f,<yy,<,<Zw~-,+D+YZXBp`o,<,<,<Z
+jtZp-,+N[w~Z-,+N[w~Z,<,<yz+UZp-,+S[w~Z-,+TZ+UZ+U,<p,<{zZ,2B+X+Y[w~XBw~+B[w~XBw~Zw/,<wZp-,+^+eZp,<,<yy,<po,<,<,<ZGjt/[pXBp+\/o,,>j,> w~ ,^/2"+m,<w~s,<|q+n,<|}ZXBp+}2B~+v w|.",,<,<r,<s,<~,<q+}Zp3B+z,<w~,<rs+{,<yyZXBp,<wx[w}XBw}+4Zw~/,<~}+[wZbx[w[,<Zp-,++Zp,<Zp-,+,<w~,<,<s,<p,<x+-,ZZZ3B+,<w,<r,<s,<po,<,<,<Zbjt/[pXBp+/,<q/+32B+
+,<q[p,<,<,4,<}+32B+3^",>j,>o,.Bx,^/,,<,<q[wZ,<,<,4[w[XBw-,+/ZwZ3B+/,<p,<r,<s,<w,<w,<,<Zjt,<q/Z+Zw-,+iZp2B+8,<q,<wo,<,<,<,<Zw~-,+=+bZXBw-,+Z,<w~,<r,<s,<,<qZw,<,<x[w,<Zp-,+H+OZp,<,<yy,<po,<,<,<Z1jt/[pXBp+F/o,,>j,> w~ ,^/2"+W,<w~s,<q+X,<}ZXBp+`Zp3B+],<w~,<rs+^,<yyZXBp,<wx[w~XBw~+;Zw~3B+e,<q,<w~xZw/Zp2B+,<}+bx+$T|E O<c@E4#C"VM*|p[bN a	AT7czBT	h+"PE /I>:(FORM . 1)
+(VARIABLE-VALUE-CELL PRETTYTRANFLG . 9)
+(VARIABLE-VALUE-CELL CLISPARRAY . 13)
+(VARIABLE-VALUE-CELL #RPARS . 65)
+(VARIABLE-VALUE-CELL COMMENTFLG . 343)
+(VARIABLE-VALUE-CELL FNSLST . 409)
+(VARIABLE-VALUE-CELL CLISPCHARS . 171)
+DLAMBDA
+(NIL)
+(LINKED-FN-CALL . POSITION)
+"["
+"("
+(NIL)
+(LINKED-FN-CALL . PRIN1)
+"DLAMBDA "
+0
+(NIL)
+(LINKED-FN-CALL . TAB)
+(NIL)
+(LINKED-FN-CALL . PRINTDEF)
+"]"
+")"
+DPROG
+"(DPROG "
+"("
+"("
+(NIL)
+(LINKED-FN-CALL . PRIN2)
+1
+(NIL)
+(LINKED-FN-CALL . SPACES)
+(NIL)
+(LINKED-FN-CALL . NTHCHAR)
+-1
+")"
+")"
+(NIL)
+(LINKED-FN-CALL . PRIN3)
+THEN
+")"
+")"
+DECL
+"(DECL "
+")"
+DPROGN
+"(DPROGN "
+")"
+"("
+"("
+")"
+")"
+" . "
+")"
+(URET2 SKLA FMEMB SKNLST KT MKN BHC IUNBOX URET1 GETHSH KNIL SKLST BLKENT ENTER1)0j
+px=X]
+ P	8C`L@1@o(GP xPs(+gHPh4Hjhd@%x#x'`P
+h8_8MPC;07H/@
+ |vHc
+xT
+0G(B>@:H48) p?`+XI.
+VARASRT BINARY
++$*-.$-.%&,<pZ,<,+,<,<,<Zw~-,+	+#ZXBw,<w~d&XBp2B++"[pXBp2B+Z+[p3B+,<w~[w~,<,Zp,<,<w}',<Zp@[2B+,<p(/,<Zw}Z7@7Z,< ",3B+ +Zp,<,<w})[w~XBw~+Zw+L!@	(VARNAME . 1)
+(VARIABLE-VALUE-CELL SATISFIESLIST . 7)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 45)
+(NIL)
+(LINKED-FN-CALL . ASSOC)
+(NIL)
+(LINKED-FN-CALL . GETDECLTYPE)
+(NIL)
+(LINKED-FN-CALL . MAKETESTFN)
+(NIL)
+(LINKED-FN-CALL . ASSERTFAULT)
+(EVCC KNOB BHC URET5 SKNLST KNIL URET1 BLKENT ENTER1)pP(P
+Hp
+DECLOFBLK BINARY
+zDp-.D-.8DpH#,<wZw2BI+Z+2BI+	Z+2B+Z,<ZpZ7@7Z2BJ+,<p,<ZfJbK3B+Z+Z/3B+Z
++Z+,<L,<,BM,<,
+@[+Zp-,+#2B+
+Z+2B+!ZM+,<,%+-,+,<Zw-,+Zw,<,<HNXBp-,ZZ2BO+2[p-,ZZ3BO+2[pZ,<,<w ",2B++4Zp2B+Zw3BP+62BP+M[wZ,<,%,<,<,<wQ,<Zp@Z2B+>,<pR/XBp2BS+I,<S,<wZw}2BP+F,<T[w}[Z,+H[w}[Z,<,,+L[w~,XBw~/+/+2BT+e[w[,<,<,<,<Zw~XBwZw-,+T+^ZwZXBp3BU+\2BU+X+\Z3B+\Zw2B+[ZXBw+^[wXBw+RZp2BV+d[w2B+dZw[ZXBw}/+ZV/+2BW+i,<wWZXBw/+2BX+[w,<,<,<,<,<,<,<Zw}-,+p+ZXBwbWZ,<,XBw2BV+vZV+Zw2B+xZXBp,<w,<w}Y3B+{+ZwXBw~Zw~3B+,<Zw~,XBw},\QB+Zw~,XBw~XBw}[w}XBw}+nZp2B+ZZw},2B+,<w}Z,dZXBw}[w}3B+Z[Zw},+Zw}/+2B[+2[w[,<,<,<,<,<,<Zw}XBwZw-,++-[w3B+Zw[bWZ+Zw,<,XBp2BV+ ZV+1,<,<w}Y3B+#++ZpXBwZw~3B+),<Zw~,XBw~,\QB++Zw,XBw~XBw~[wXBw+[w~3B+0Z[Zw~,+1Zw~/+3B\+53B\+52B]+8[w[[ZXBw/+2BS+<[w[ZXBw/+3B]+>2B^+K[wZ-,+J[wZ,AC(Bu,0B+EZ^+0B+GZ_+0B+IZ_+ZV+ZV+2B`+O[w[ZXBw/+2B`+S[wZXBw/+2Ba+c[wZ3B+Y[wZZZ-,+Z[wZ+\[wZZ,,<@E +bZw[?[bWZ,<,,~+3Ba+e2Bb+f[wZ+3Bb+h2Bc+j[wZ+2Bc+m,<T[wZ,+Zw,<,<,<dXBw,\3B+uZp3Be+uXBw/+Zw,<,<eN2Bf+yZ_+2Bf+{Z^+ZwZ,2B+Zw,<,<gN3B+@g+Zw,<?,<?iZwZ?Z{,,~+ZXBp3B+
+XBw/+,<wj3B+,<T,<wk,+ZV+Zw-,+ZwZ3Bl+2Bl+Zw[[bWZ+ZwZ,XBp3B+XBw/+ZV/+,<T,<,+-.m,<`,bQ,~,<pZ,<,
++Z[,<,<,<,<,<,<Zw}-,+++=ZXBw~,<w}dn[XBp2B+/+<Zw3B+5Zp,<,<w~,XBwZXBw+:Zw3B+9ZpZw,XBw+:ZpXBw[p2B+<+=[w}XBw}+)Zw3B+AboZS,+Zw2B+ZV+FucQ,P(d	CKD SNP\1y$Y:d^!0D2p2)<0@@LO`8
+Gw~$
+||q,O~4 DV9	HXD2!'(DECLOFBLK#0 . 1)
+(VARIABLE-VALUE-CELL CSATISFIESLIST . 583)
+(VARIABLE-VALUE-CELL SATISFIESLIST . 17)
+(VARIABLE-VALUE-CELL DECLVARSLST . 587)
+(VARIABLE-VALUE-CELL BOUNDPDUMMY . 32)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 119)
+(VARIABLE-VALUE-CELL COMMENTFLG . 176)
+(VARIABLE-VALUE-CELL CLISPARRAY . 560)
+DECLOF
+TYPEBLOCKOF
+COMPILER
+INTERPRETER
+NOBIND
+(NIL)
+(LINKED-FN-CALL . STKSCAN)
+(NIL)
+(LINKED-FN-CALL . RELSTK)
+27
+ERRORX
+((MEMQ T) . 0)
+(NIL)
+(LINKED-FN-CALL . GETP)
+FUNCTION
+SATISFIES
+SETQ
+SETQQ
+(NIL)
+(LINKED-FN-CALL . GETDECLTYPE)
+(NIL)
+(LINKED-FN-CALL . MAKESETFN)
+REALSETQ
+ALLOF
+MEMQ
+PROG
+ASSERT
+DECLARE
+RETURN
+ANY
+PROGN
+(NIL)
+(LINKED-FN-CALL . LAST)
+COND
+(NIL)
+(LINKED-FN-CALL . MEMBER)
+(NIL)
+(LINKED-FN-CALL . NCONC)
+ONEOF
+SELECTQ
+REPLACEFIELD
+FREPLACEFIELD
+/REPLACEFIELD
+FETCHFIELD
+FFETCHFIELD
+FIXP
+FLOATP
+((MEMQ NIL T) . 0)
+REPLACEFIELDVAL
+PROG1
+*DECL
+the
+THE
+create
+CREATE
+QUOTE
+(NIL)
+(LINKED-FN-CALL . EXPANDMACRO)
+IGNOREMACRO
+CTYPE
+FNF
+INF
+CLISPWORD
+(NIL VARIABLE-VALUE-CELL FILEPKGFLG . 0)
+(T VARIABLE-VALUE-CELL NOSPELLFLG . 0)
+(T VARIABLE-VALUE-CELL DWIMESSGAG . 0)
+(NIL)
+(LINKED-FN-CALL . DWIMIFY0?)
+(NIL)
+(LINKED-FN-CALL . DECLCONSTANTP)
+(NIL)
+(LINKED-FN-CALL . EVAL)
+LAMBDA
+NLAMBDA
+*TBOF*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL DECLVARSLST . 0)
+(NIL)
+(LINKED-FN-CALL . ASSOC)
+(NIL)
+(LINKED-FN-CALL . DREVERSE)
+(URET7 CONS21 BINDB GETHSH ASZ MKN IUNBOX SKI FMEMB CONSNL SKNLST CONS ALIST3 ALIST2 EVCC SKLST URET1 
+SKLA URET2 LIST2 BHC KT KNOB KNIL BLKENT ENTER1)(@C(($#
+PFH@(0(0%(S8P0pKIXF1,$&$8"`3#x#@
+PSx<2iXd	PLxpw@ 8`((?'86&H1%p)%(%'#(! }`.`# XHP
+h~0ohnXmHa0Q
+PX:@2P*P
+hH
+
+DECLOF BINARY
+-.,<,~(FORM . 1)
+(DECLCONTEXT . 1)
+DECLOF
+(NIL)
+(LINKED-FN-CALL . DECLOFBLK)
+(ENTER2)
+TYPEBLOCKOF BINARY
+-.,<,~(FORM . 1)
+TYPEBLOCKOF
+(NIL)
+(LINKED-FN-CALL . DECLOFBLK)
+(ENTER1)
+DECLTYPE BINARY
+-.Z`,<[`Z,<[`[F,~(X . 1)
+USERDECLTYPE
+(ENTER1)
+DECLTYPES BINARY
+-.,<`,<Zw-,+	ZpZ2B+ "+[QD "+Zw,<Zp,<[wZ,<[w[F/Zp,XBp[wXBw+E(DTS . 1)
+USERDECLTYPE
+(COLLCT BHC URET2 SKNLST KNIL ENTER1)	X
+DUMPDECLTYPES BINARY
+cU`-.UZ`-,+Z+[`-,Z@V3B+7Z,<Zp3B+,<"V,<W,<$W,<"V,<"VZw3B+ZX+ZX,<,<$W,<`Zp-,++MZp,<Zw~3B+,<Y,<,<&Y,<Z,<$WZp-,+-Zp,<,<$Z,<[,<$[Zp,<,<$Z,<[,<$[[pZ,<,<$Z,<[,<$[Zp,<[wZD\@\,<,<,<(]+H,<,<,<]&^[XBpZp,<,<$Z,<[,<$[[p[@\,<,<,<Zw~XBp[w~Z,<,<w~$]Zp-,+<+G,<w,<,<&YZp,<,<$Z,<[,<$[[pZ@\,<,<,<(][p[XBp+:Zw/Zw~3B+K,<^,<$W/[pXBp+/,<_,<$W,<"VZp3B+T,<_,<$W,<"V/,~EjO#4FFC`i&R
+S((TL . 1)
+OUTPUT
+TERPRI
+"(DECLARE: EVAL@COMPILE"
+PRIN1
+"(DECLTYPES"
+"(DECLTYPE "
+11
+TAB
+"("
+PRIN2
+1
+SPACES
+GETDECLTYPEPROP
+POSITION
+PRINTDEF
+NOCOPY
+GETDECLDEF
+")"
+")"
+")"
+(BHC KNIL SKLST KT SKNLST ENTER1)
+XN	HIT
+8R
+O	8JXB>`7p4(/P,&@"
+80hH `PE@@0
+GETDECLDEF BINARY
+,%+-.%,<`"',<Z(Z`1B+*-,+*,2B7 ,<Zw3B+,<`Zw@ZZ,<Zw3B+Zp+,<p"(/,<Zw~@Z,<Zw~3B+Zp+,<p"(/,,Z),+$Z)Z`1B+ *-,+ *,2B7 3B+#Z+$,<`,<*$*/,~@T,H
+@(NAME . 1)
+(FPTYPE . 1)
+(OPTIONS . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 38)
+FINDDECLTYPE
+NOCOPY
+COPY
+DECLTYPE
+NOERROR
+"is not a DECLTYPE"
+DECLERROR
+(CONS21 CONSS1 BHC KT KNIL FMEMB SKLST ENTER3)0 %!0" `0	h
+COVERS BINARY
+
+	-.,<`",<,<`"D	3B+Z,~Z,~h(HI . 1)
+(LO . 1)
+GETDECLTYPE
+COVERSTB
+(KT KNIL ENTER2)hx
+GETDECLTYPEPROP BINARY
+-.,<`",<,<`$,~@(TYPE . 1)
+(PROP . 1)
+GETDECLTYPE
+GETTBPROP
+(ENTER2)
+SETDECLTYPEPROP BINARY
+-.Z`-,+,<D,<`"2B+,<,<`$,<,<`,<`,D,<`,<`,,<,<$Z`,~VB(NAME . 1)
+(PROP . 1)
+(VAL . 1)
+"Can't set property of non-atomic type:"
+DECLERROR
+FINDDECLTYPE
+"Can't set property of non-existent type:"
+REPROPTB
+DECLTYPES
+MARKASCHANGED
+(LIST2 KNIL SKNLA ENTER3) `0
+SUBTYPESA0003 BINARY
+-.Z`@[-,+Z,<,<`" ,\,3B+Z`@[Z,XB
+,~Z,~D(S . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 18)
+(VARIABLE-VALUE-CELL CT . 8)
+(VARIABLE-VALUE-CELL TYPES . 22)
+GETCTYPE
+(CONS KNIL FMEMB SKLA ENTER1)8P
+SUBTYPES BINARY
+-.,<`",<@ ,~,<`"XB3B+Z`@ZZZ2B+Z`@ZZ[B,~Z,<ZDZ2B+Z,,~Z,~(NAME . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 22)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 28)
+GETDECLTYPE
+(0 . 1)
+(NIL VARIABLE-VALUE-CELL TYPES . 32)
+(NIL VARIABLE-VALUE-CELL CT . 11)
+GETCTYPE
+NONE
+ONEOF
+APPEND
+SUBTYPESA0003
+MAPHASH
+(CONSNL KNIL ENTER1)
+SUPERTYPESA0004 BINARY
+-.Z`@[-,+Z2B+	Z`@[B2B++Z`@Z[Z,3B+Z`@	[Z,XB,~Z,~XX(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 27)
+(VARIABLE-VALUE-CELL CN . 22)
+(VARIABLE-VALUE-CELL TYPES . 31)
+NONE
+SUBTYPES
+(CONS FMEMB KNIL SKLA ENTER1)P
+SUPERTYPES BINARY
+
+-.
+,<`"B,<@ ,~Z2B++	Z,<ZDZ,~G(NAME . 1)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 14)
+GETDECLTYPE
+GETCTYPE
+(VARIABLE-VALUE-CELL CN . 10)
+(NIL VARIABLE-VALUE-CELL TYPES . 18)
+ANY
+SUPERTYPESA0004
+MAPHASH
+(ENTER1)
+CHECKTYPEXP BINARY
+-.,<`"2B+,<,<`$,~P(TE . 1)
+TETYPE
+"Invalid type expression"
+DECLERROR
+(KNIL ENTER1)8
+COLLECTTYPES BINARY
+HBF-.B,<`,<,<,<,<Zw~-,++#ZXBwBCXBw,<p,<,<Zw-,++ZXBpZw~Zp3B+Z`2BD+,<,<w}$D3B++2BE+,<w~,<w$D3B++ E3B+Zp2B+ZXBw+[wXBw+	Zw/3B+
++!ZwZp,XBp[w~XBw~+ZpXBwZXBp,<Zw~2B+(Zp+A[w~,<,<w,<,<Zw-,+,+;ZXBwZ`2BD+2,<wZw|DD3B+9+82BE+6Zw|,<,<w$D3B+9+8 E3B+9ZXBp+;[wXBw+*Zp/3B+?,<w~,<w~$FZw~XBw,\XBw~+%/Zp+@`Yy:$F@1Kbi@(TYPES . 1)
+(MERGE . 1)
+GETDECLTYPE
+UP
+COVERSTB
+DOWN
+SHOULDNT
+RPLACD
+(URET5 CONS BHC KT SKNLST KNIL ENTER2)0 <h0,0=8`1('`%p(
+@0
+COVERSCTYPE BINARY
+-.Z`Z`2B+Z,~Z`-,+2B7Z,~[`3B+,<`,<,<Zw-,++ZXBp,<`D3B+Zp2B+ZXBw+[wXBw+Zw+Z`XB`+)$(H . 1)
+(L . 1)
+NONE
+COVERSCTYPE
+(URET3 KNIL SKNLST KT ENTER2)0	xH
+COVERSTB BINARY
+-.Z`Z`3B77+,<`",<,<`"D2B+Z`@ZZ,<Z`@	ZZD,~)P(H . 1)
+(L . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 23)
+GETCTYPE
+COVERSCTYPE
+COVERSTE
+(KNIL KT ENTER2)
+COVERSTE BINARY
+?:=-.:,<`";2B;+),<`";2B;+[`,<,<,<Zw-,+	+ZXBw[`,<,<,<Zw-,++ZXBp,<,<w}$<3B+Zp2B+ZXBw+[wXBw+Zw/2B+ZXBp+[wXBw+Zp+[`,<,<,<Zw-,+ +(ZXBp,<,<`$<3B+'Zp2B+&ZXBw+([wXBw+Zw+2B<+9,<`";2B<+8[`,<,<,<Zw-,+0+7ZXBw,<[`D=2B+5ZXBp+7[wXBw+.Zp+Z,~Z,~8B"$B&p) (H . 1)
+(L . 1)
+TETYPE
+ONEOF
+COVERS
+MEMQ
+MEMBER
+(URET3 BHC SKNLST KT KNIL ENTER2)*P `	/h 9P4h%@
+h H
+CREATEFNPROP BINARY
+	-.	,<`,<`$
+,<Zp3B+[pZ,<,<`$+Z/,~`(PL . 1)
+(PN . 1)
+FINDPROP
+CREATEFNVAL
+(BHC KNIL ENTER2)
+CREATEFNVAL BINARY
+-.Z`3B+Z3B+Z`-,+,<,<$Z`,~Z`2B+Z,~2B+Z,~Z,~$G8(FVAL . 1)
+(FNAME . 1)
+(VARIABLE-VALUE-CELL DWIMFLG . 6)
+DWIMIFY
+BINDFN
+PROGN
+SETFN
+REALSETQ
+(KT SKLST KNIL ENTER2)x``0
+DECLERROR BINARY
+-.,<ZpZ7@7Z2B+	,<p,<ZFB3B+
+Z+
+Z/3B+ZXB ,~,<`,<`$,~j(MSG1 . 1)
+(MSG2 . 1)
+(VARIABLE-VALUE-CELL BOUNDPDUMMY . 13)
+(VARIABLE-VALUE-CELL DECLERROR . 25)
+DECLERROR
+NOBIND
+STKSCAN
+RELSTK
+ERROR!
+ERROR
+(BHC KT KNIL KNOB ENTER2)8P
+0	pH
+DELETETB BINARY
+-.Z`@[,<Zp3B+2B+,<D,<`",<`",<,<w$Z`@,<,<,<w$ ,\QD /,~?)
+(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 22)
+ANY
+NONE
+"(Futile) attempt to delete"
+DECLERROR
+UNSAVETYPE
+UNCOMPLETE
+NOTICETB
+Deleted
+PACK*
+(BHC KNIL ENTER1)
+
+FINDDECLTYPE BINARY
+-.Z`-,+Z,3B+Z`Z,,~Z,~Z,2B+,<`",~@(TE . 1)
+(VARIABLE-VALUE-CELL CLISPARRAY . 6)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 16)
+RECDTYPE
+(KNIL GETHSH SKLST ENTER1)
+	p
+FINDPROP BINARY
+-.,<Z`2B++Z`Z`2B+	Z`2B+ZXBp+[`[XB`+Zp+DH@(L . 1)
+(P . 1)
+(URET1 KT KNIL ENTER2)Hx(
+FINDTYPEXPA0005 BINARY
+-.Z`@[-,+	Z,<Z`@ZZ,\,3B++
+Z,~Z,<Z`@[,\,2B+Z`@Z
+QD,<`ZD,<,<`$,~@ h(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 31)
+(VARIABLE-VALUE-CELL TYPE . 35)
+NOTICETB
+FINDTYPEXP
+RETFROM
+(KNIL EQUAL SKLST ENTER1)(	@
+FINDTYPEXP BINARY
+-.Z,<ZDZ,~(VARIABLE-VALUE-CELL TYPE . 0)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 3)
+FINDTYPEXPA0005
+MAPHASH
+(KNIL ENTERF)H
+GETCTYPE BINARY
+-.Z`@Z[2B+,<,<`$3B+,<Z`@ZZD2B+Z`@Z,<Z`@ZZBD[,~5B@(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 27)
+GETCTYPE
+DECLRECURSING
+"Invalid recursive type definition"
+DECLERROR
+MAKECTYPE
+RPLACD
+(KNIL ENTER1)p
+GETDECLTYPE BINARY
+-.,<`"2B+Z`-,+	B2B+,<`,<`,<`&2B+,<`,<$,~@(TE . 1)
+(VARNAME . 1)
+FINDDECLTYPE
+FINDTYPEXP
+MAKEDECLTYPE
+"is not a DECLTYPE"
+DECLERROR
+(SKLST KNIL ENTER2)	h
+GETDECLTYPE.NOERROR BINARY
+-.,<@ +,<,<,<@`+ZZXBZw,<8,<8$,<,<p"Zp@[2B+,<p"Zp/+Z2B+Z3B+Z,~ ,~,~JB! (TE . 1)
+(VAR . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 24)
+(VARIABLE-VALUE-CELL DECLERROR . 36)
+((DUMMY) . 0)
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+GETDECLTYPE
+GETCTYPE
+MAKETESTFN
+ERROR!
+(CONSNL BHC CF KT KNIL ENTER2)8`(
+GETTBPROP BINARY
+ 
+-.Z`2B+Z`@[2B+,<`",~2B+Z`@Z2B+,<`",~2B+Z`@[2B+,<`",~Z`@Z,<,<`$,<Zp3B+[pZ+,<`,<`$
+/,~
+a,I(TB . 1)
+(P . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 35)
+BINDFN
+MAKEBINDFN
+SETFN
+MAKESETFN
+TESTFN
+MAKETESTFN
+FINDPROP
+INHERITPROP
+(BHC KNIL ENTER2) `(
+INHERITPROP BINARY
+WIU-.IZ`@ZZ,<Zp-,+HBK3BK+2BL+![pZ,<,<`$L,<,<M,<`$L,<,<MZwZw3B+[w~[,<,<,<Zw-,++ZXBwZw},<,<w,<`$L,\3B+ZXBp+[wXBw+Zp/3B+
+Zw+
+ZwDN/+F3BN+$3BO+$2BO+%Zp+F2BP+:[p,<,<Zw-,+.ZpZ2B+, "+-[QD "+8Zw,<Zp(B{ZA"
+."0B	+3ZP+4,<p"Q/Zp,XBp[wXBw+'/ZL,+F2BQ+@Z`2BR+>,<M,<R$N+F[pZ+F3BS+B2BS+C[pZ+F2BT+EZT+FZM,<,<`$L+HZ/,~a*	?8"t
+wssy(TB . 1)
+(PROP . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 4)
+TETYPE
+ALLOF
+ONEOF
+GETDECLTYPEPROP
+ANY
+INHERITPROP
+RETFROM
+OF
+SATISFIES
+WHOSE
+MEMQ
+LARGEP
+TYPENAME
+SHARED
+BINDFN
+PROGN
+SUBTYPE
+SYNONYM
+TUPLE
+LISTP
+(CONS21 COLLCT ASZ TYPTAB BHC SKNLST KT KNIL SKLST ENTER2) h(21I5)8(	+((` X
+
+INITDECLTYPES BINARY
+Z-.Z,<\Zp-,+ZpZ7@7Z2B\+
+,<p,<ZF]B]3B+Z+Z/3B+ZB^+,<^"_Z$@,XB,<_,<$`@`,~,<aZp-,++1Zp,<,<,<a"bZwQD,<Zw , ,\XD,<,<w$bXBp,<Zw@,<Zc ,\QDZw@!,<Zc ,\XDZw@$,<,<d,<dZw}2Be7Z, ,\QD,\//[pXBp+/,<e,<f,<f&g,<g,<h,<h&g,<i,<i,<j&g,<j,<k,<&g,<k,<l,<l&g,<m,<m,<n&g,<n,<o,<o&g,<p,<p,<&g,<q,<q,<r&g,<r,<s,<s&g,<t,<t,<&g,<u,<u,<v&g,<v,<w,<w&g,<x,<x,<y&g,<y,<z,<z&g,<,<{,<{&g,<|,<|,<}&g,<},<~,<&g,<~,<,<&g,<,<,<&gZ,~"x21@}?}_{(VARIABLE-VALUE-CELL BOUNDPDUMMY . 16)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 34)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 80)
+DECLTYPESARRAY
+NOBIND
+STKSCAN
+RELSTK
+CLRHASH
+128
+HARRAY
+DECLTYPES
+FILEPKGCHANGES
+(NIL VARIABLE-VALUE-CELL FILEPKGFLG . 0)
+((ANY NONE) . 0)
+TYPEBLOCK
+NCREATE
+NOTICETB
+PROGN
+REALSETQ
+LAMBDA
+((VALUE) . 0)
+ANY
+ARRAYP
+((SUBTYPE ANY) . 0)
+((TESTFN ARRAYP) . 0)
+MAKEDECLTYPE
+HARRAYP
+((SUBTYPE ARRAYP) . 0)
+((TESTFN HARRAYP) . 0)
+LISTP
+((SUBTYPE ANY) . 0)
+((TESTFN LISTP EVERYFN EVERY) . 0)
+HASHARRAY
+((ONEOF HARRAYP (LISTP (WHOSE (CAR HARRAYP)))) . 0)
+READTABLEP
+((SUBTYPE ARRAYP) . 0)
+((TESTFN READTABLEP) . 0)
+ATOM
+((SUBTYPE ANY) . 0)
+((TESTFN ATOM) . 0)
+LITATOM
+((SUBTYPE ATOM) . 0)
+((TESTFN LITATOM) . 0)
+BOOL
+((MEMQ NIL T) . 0)
+NUMBERP
+((SUBTYPE ATOM) . 0)
+((TESTFN NUMBERP) . 0)
+FIXP
+((SUBTYPE NUMBERP) . 0)
+((TESTFN FIXP) . 0)
+CARDINAL
+((FIXP (SATISFIES (IGEQ VALUE 0))) . 0)
+SMALLP
+((SUBTYPE FIXP) . 0)
+((TESTFN SMALLP) . 0)
+LARGEP
+((SUBTYPE FIXP) . 0)
+((TESTFN LARGEP) . 0)
+FLOATP
+((SUBTYPE NUMBERP) . 0)
+((TESTFN FLOATP) . 0)
+FUNCTION
+((SUBTYPE ANY) . 0)
+((TESTFN FNTYP) . 0)
+((MEMQ NIL) . 0)
+((TESTFN NULL) . 0)
+LST
+((ONEOF LISTP NIL) . 0)
+((EVERYFN EVERY) . 0)
+ALIST
+((LST OF LISTP) . 0)
+STACKP
+((SUBTYPE ANY) . 0)
+((TESTFN STACKP) . 0)
+STRINGP
+((SUBTYPE ANY) . 0)
+((TESTFN STRINGP EVERYFN EVERYCHAR) . 0)
+(ALIST3 SKNLST CONS ASZ BHC KT KNIL KNOB SKLA ENTER0)PhP2/PHZ
+XPxA,X(
+MAKECTYPE BINARY
+iZf-.Z,<`"[2B[+[`,<,<\$\,<[p3B+,<p,<pZp-,+
++,<,<pZwB],\XB/[pXBp+/Zp/+ZpB]/,~2B]+[`,<,<^$\,<[p3B+[`B^,+ZpB]/,~3B_+2B_+![`ZB`B],~,<`"[2B`+L[`,<,<,<,<,<aZpXBwZw~-,+)+;ZXBw[w2B+1,<w,<wZ, ,\XDZ ,\QD[,<Zw~(B{ZA"
+."0B	+6Za+7,<w~"b ,\XDXBw[w~XBw~+'ZwZp3B+I[p,<[w3B+H,<w[w~,<Zw~ZQDZw~,<Zw~Zw}XD,\[w~QD,\,\QB,\+IZXBw~Zw~/B^+Y,<`"[3Bb+P3Bc+P2Bc+QZ`+X2Bd+S[`Z+X2Bd+X[`3B+WZe+XZ+X eB`B],,~CLbTyN0@P!_n9o(TE . 1)
+TETYPE
+ALLOF
+DOWN
+COLLECTTYPES
+GETCTYPE
+ONEOF
+UP
+LCCTYPE
+SHARED
+SYNONYM
+GETDECLTYPE
+MEMQ
+((NIL) . 0)
+LARGEP
+TYPENAME
+OF
+SATISFIES
+WHOSE
+SUBTYPE
+TUPLE
+LISTP
+SHOULDNT
+(ASZ TYPTAB CONSNL BHC SKNLST KNIL ENTER1)X54Z`KHh
+X
+`J(?X+`%Px
+MAKEDECLTYPE BINARY
+-%,-.%,<`"',<,<,<'"(,<Z`XBw ,\QD,<,<`"( ,\XD,<,<w$)XBp,<Zw@,<,<`"(, ,\XD,\/,<Z`-,+#Zp@,<,<`,<)$* ,\QDZp@,<,<`,<*$* ,\XDZp@,<,<`,<+$* ,\QD,<`,<+$*Zp/,~`C(NAME . 1)
+(DECL . 1)
+(PROPS . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 60)
+CHECKTYPEXP
+TYPEBLOCK
+NCREATE
+COPY
+NOTICETB
+BINDFN
+CREATEFNPROP
+SETFN
+TESTFN
+EVERYFN
+(SKLST BHC CONSNL KNIL ENTER3)HP8
+MAKEBINDFN BINARY
+		-.Z`@,<,<`,<$ ,\QD ,~`(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 4)
+BINDFN
+INHERITPROP
+(ENTER1)
+MAKESETFN BINARY
+		-.Z`@,<,<`,<$ ,\XD ,~`(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 4)
+SETFN
+INHERITPROP
+(ENTER1)
+MAPTYPEUSERSA0006 BINARY
+
+-.
+Z,<Z@ZZD3B+	Z,<Z,< ",,~Z,~(VARIABLE-VALUE-CELL TB . 14)
+(VARIABLE-VALUE-CELL NAME . 3)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 6)
+(VARIABLE-VALUE-CELL FN . 12)
+USESTYPE
+(EVCC KNIL ENTERF)(
+MAPTYPEUSERS BINARY
+-.Z,<ZD,~(VARIABLE-VALUE-CELL NAME . 0)
+(VARIABLE-VALUE-CELL FN . 0)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 3)
+MAPTYPEUSERSA0006
+MAPHASH
+(ENTERF)
+NOTICETB BINARY
+
+
+-.Z`-,+,<,<ZF	,<`,<`ZF	,~(TBLOCK . 1)
+(TEXP . 1)
+(VARIABLE-VALUE-CELL CLISPARRAY . 8)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 12)
+PUTHASH
+(SKLST ENTER2)0
+PPDTYPEA0007 BINARY
+-.Z,<Z`@Z[,\2B+Z`@[,<,<$,<,<$,~Z,~(S . 1)
+(VARIABLE-VALUE-CELL I . 3)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 13)
+PRIN1
+1
+SPACES
+(KNIL ENTER1)(	
+PPDTYPE BINARY
+udr-.d^",>d,> f,.Bx,^/,,<,<`"f2Bg+	Z`+
+,<`"g,<,<h,<$hZp@[,<,<$h,<i,<$hZp@ZZ2B+Zi,<,<$h,<w,<,<&j,<j,<$hZp@Z[3B++,<p"k,<Zp-,+ +*Zp,<@k +)Zw~ ?.",,<,<l,<&jZ,<ZlDm,~[pXBp+/+-,<m,<$hZp@[3B+7,<w,<,<&j,<n,<$hZp@-[@f,<,<,<(nZp@3Z3B+A,<w,<,<&j,<o,<$hZp@7Z@f,<,<,<(nZp@=[3B+K,<w,<,<&j,<o,<$hZp@A[@f,<,<,<(nZp@GZ3B+b,<w,<,<&j,<p,<$hZp@KZ,<Zp-,+U+a,< w~.",,<,<l,<&jZp,<,<$h,<p,<$h[pZ,<,<$q/[p[XBp+S/ qZp/,~u(FA#bh#"!B"h
+4P(TYPE . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 163)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 77)
+POSITION
+TYPENAME
+TYPEBLOCK
+GETDECLTYPE
+"DECLTYPE: "
+PRIN1
+" = "
+"No type expression"
+TAB
+"Suptypes: "
+GETCTYPE
+(VARIABLE-VALUE-CELL I . 0)
+0
+PPDTYPEA0007
+MAPHASH
+"... not completed..."
+"Bindfn:   "
+PRINTDEF
+"Setfn:    "
+"Testfn:   "
+"Property: "
+" = "
+PRIN2
+TERPRI
+(KT SKNLST KNIL MKN BHC IUNBOX ENTER1)J6Txp\0Y
+O	pM	0GXE8AP;09p31x-hx@xWPd(`8
+RECDTYPE BINARY
+O=L-.=,<,<,<?,<`Z?,,,<@@+,<A,<,<@A`+ZZCXBZw~,<8,<C$D+,~3B+<,<`"DXBw,<,<E"EZ`QD,<,<`$FXBp,<Zw@,<,<F,<w}"G,BG, ,\XD,\/XBw,<,<H,<H,<IZ,<,<I,<J,<`,,,<,<J[w}[Z,<Zw|Z,,<,<w|,<Z&FK,\FK,FLZwZ),[[[[[[[[Z[,<Zp-,+5+;,<,<w~Zw,<[wZFL/[p[XBp+3/Zw/,~EJFB 0 (R . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 45)
+(VARIABLE-VALUE-CELL COMMENTFLG . 63)
+(VARIABLE-VALUE-CELL CLISPARRAY . 89)
+type?
+NILL
+(NIL VARIABLE-VALUE-CELL CLISPCHANGE . 0)
+(T VARIABLE-VALUE-CELL DWIMESSGAG . 0)
+((DUMMY) . 0)
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+DTYPE?TRAN
+RECORDTRAN
+RECLOOK
+TYPEBLOCK
+NCREATE
+NOTICETB
+SUBTYPE
+RECDEFTYPE
+COPY
+TESTFN
+LAMBDA
+((VALUE) . 0)
+ASSERT:
+RECORD
+VALUE
+PUTHASH
+SUBST
+SETTBPROP
+(SKNLST ALIST4 GETHSH LIST2 BHC ALIST2 CF ALIST3 CONSNL KNIL ENTER1)4,.0P<#X0Px	(
+DECLCHANGERECORD BINARY
+' &-. ,<`,<`,<`&#Z`3B+
+,<Z`Z,,<Zp3B+Zp@[2B+,<p"$XBw3B+Z,<[w[ZXBwZ,\2B+[wZ2B$+[w[ZXBwZ2B%+Z`[wZ2B77++Z+,<p"%/,~Z,~)&((RNAME . 1)
+(RFIELDS . 1)
+(OLDFLG . 1)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 12)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 19)
+(VARIABLE-VALUE-CELL COMMENTFLG . 28)
+REALCHANGERECORD
+MAKETESTFN
+ASSERT:
+RECORD
+DELETETB
+(BHC KT GETHSH KNIL ENTER3)x@x88	`
+RECDEFTYPE BINARY
+>2<-.2Z`2B2+Z3Z`7[ZZ1H+2D+,<Zp3B+[pZB3+Z4/,~2B4+Z5,~2B5+Z6,~2B6+Z7,~2B7+[`Z-,+[`Z[Z,~Z4,~2B8+Z8,~2B9+Z9,~2B:+/[`[Z,<Zp-,+#Z9+.3B+-,<Z:Z`7[ZZ1H+*2D+&[Z,\2B+-Zp+.Z4/,~2B;+1Z;,~Z4,~"9nl ]lP:(RD . 1)
+ACCESSFNS
+CREATE
+DECLOF
+ANY
+ARRAYRECORD
+ARRAYP
+ASSOCRECORD
+ALIST
+ATOMRECORD
+LITATOM
+DATATYPE
+HASHLINK
+HARRAYP
+PROPRECORD
+LST
+RECORD
+SUBRECORD
+TYPERECORD
+LISTP
+(SKLST BHC KNIL ENTER1)"hp*H
+
+REPROPTBA0008 BINARY
+-.,<`Z,<,<&,~@(X . 1)
+(VARIABLE-VALUE-CELL NEWP . 4)
+REPROPTB
+(KT ENTER1)
+REPROPTB BINARY
+.&,-.&,<Z`2B++Z`3B+
+Z`@Z,<Z`D(3B++[`Z,<Z`@Z,<Z`D(,\,3B++,<p,<`Z`,<[`ZB),<,<`()Z`,<[`Z,D*XBp[`[XB`+Zp/,<@* ,~Z3B+%Zw,<8"+ZwZ8@[,<Z+D,Z,~HFA!`(TB . 1)
+(PROPS . 1)
+(INHERITING . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 69)
+FINDPROP
+LISTGET
+COPY
+SETTBPROP
+NCONC
+(VARIABLE-VALUE-CELL NEWP . 74)
+UNSAVETYPE
+REPROPTBA0008
+MAPTYPEUSERS
+(BHC ALIST2 EQUAL KNIL ENTER3)P8
+SETTBPROP BINARY
+3*2-. *Z`2B-+Z`@,<,<`,<-$- ,\QD+2B.+,<`,<.$-+2B.+Z`@,<,<`,<.$- ,\XD+2B/+Z`@[3B/+2B0+,<0Z`@[D1+Z`@,<,<`,</$- ,\QDZ`2B+*Z`@Z3B+%Z`@
+Z,<,<`,<`&1,~Z`@!,<,<`,<`, ,\XD ,~;pcF @(TB . 1)
+(P . 1)
+(V . 1)
+(BLKONLY . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 75)
+BINDFN
+CREATEFNVAL
+EVERYFN
+SETFN
+TESTFN
+ANY
+NONE
+"(Futile) attempt to change TESTFN of"
+DECLERROR
+LISTPUT
+(LIST2 KNIL ENTER4)
+TBDEFPRINT BINARY
+	-.	Z
+,<,<Z`@[,<,<&@ ,\XCpQEp,\,~(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 7)
+((NIL) . 0)
+"{DECLTYPE: "
+"}"
+CONCAT
+PACK
+(ENTER1)
+TETYPE BINARY
+! -.Z`-,+Z,~-,ZZ3B+3B+3B+3B+3B+3B+2B+Z`,~[`-,+[`Z2B
++Z
+,~[`Z-,ZZ3B
++2B +[`ZZ,~Z,~Z,~x'`(TE . 1)
+PRIMITIVE
+ALLOF
+MEMQ
+ONEOF
+SHARED
+SUBTYPE
+SYNONYM
+TUPLE
+OF
+SATISFIES
+WHOSE
+(KNIL SKLST SKLA ENTER1)(Hp
+UNCOMPLETE BINARY
+"!-.Z`@,<Z`@Z,<,<$ ,\QDZ`@,<Z`@Z,<,<
+$ ,\XDZ`@	,<Z`@Z,<,<
+$ ,\QDZ`@Z[3B+Z`@Z,<,<$ Z`@[,<Z D!,~0 C(TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 52)
+BINDFN
+CREATEFNPROP
+SETFN
+TESTFN
+RPLACD
+UNCOMPLETE
+MAPTYPEUSERS
+(KNIL ENTER1)h
+UNSAVETYPEA0009 BINARY
+
+
+-.,<`,<`ZF	3B+,<`,<ZF	,~"(TRAN . 1)
+(ORIG . 1)
+(VARIABLE-VALUE-CELL TYPE . 5)
+(VARIABLE-VALUE-CELL CLISPARRAY . 11)
+FORMUSESTB
+PUTHASH
+(KNIL ENTER2)`
+UNSAVETYPE BINARY
+-.Z,<ZDZ3B+Z@[,<,<,<&,<,<,<&,~Z,~U(VARIABLE-VALUE-CELL TYPE . 10)
+(VARIABLE-VALUE-CELL CLISPARRAY . 3)
+(VARIABLE-VALUE-CELL MSDATABASELST . 7)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 11)
+UNSAVETYPEA0009
+MAPHASH
+((USE TYPE) . 0)
+GETRELATION
+"type declarations"
+MSNEEDUNSAVE
+(KT KNIL ENTERF)
+@
+USERDECLTYPE BINARY
+/$--.$Z`-,+"Z,,<Z`Z`3B+Zp3B+,<`Zw@ZZ,\,3B+,<`"&,<,<`$'3B+!,<`,<'$(+!Z`3B(+2B)+,<)D*,<`,<'Zw3B+Z*+Z+F(Zp3B+B+,<`Z`-,+
+,<,,<,,<,<`&,/Z`,~,<-D*,~ 
++?'f#(NAME . 1)
+(DECL . 1)
+(PROPS . 1)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 6)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 18)
+GETDECLTYPE
+REPROPTB
+DECLTYPES
+MARKASCHANGED
+ANY
+NONE
+"(Futile) attempt to redefine"
+DECLERROR
+CHANGED
+DEFINED
+DELETETB
+SYNONYM
+MAKEDECLTYPE
+"Non-atomic DECLTYPE name"
+(BHC LIST2 SKNLST EQUAL KNIL GETHSH SKLA ENTER3)" H
+USESTYPE BINARY
+_S\-.SZ`Z`3B77+R,<`"T3BT+
+3BU+
+3BU+
+3BV+
+2BV+[`,<,<,<Zw-,++ZXBp,<`DW3B+Zp2B+ZXBw+[wXBw+Zw+2BW+*[`,<,<,<Zw-,++)ZXBp,<Zw(B{ZA"
+."0B	+"ZX+#,<w"X,\2B+'Zp2B+&ZXBw+)[wXBw+Zw+2BY+0,<`Z`DW2B+R[`[ZXB`+2BY+2Z,~2BZ+6Z`,<ZXB`,\XB`+2BZ+@Z`,<[`3B+;Z[+;Z,\3B77+RZT[`,XB`+2B[+R,<`Z`DW2B+R[`Z,<,<,<Zw-,+H+QZXBp,<`[wZDW3B+OZp2B+NZXBw+Q[wXBw+FZw+ \,~/E$L:I`pp1eA$I(NAME . 1)
+(TE . 1)
+TETYPE
+ALLOF
+ONEOF
+SHARED
+SUBTYPE
+SYNONYM
+USESTYPE
+MEMQ
+LARGEP
+TYPENAME
+OF
+PRIMITIVE
+SATISFIES
+TUPLE
+LISTP
+WHOSE
+SHOULDNT
+(CONS ASZ TYPTAB URET3 SKNLST KNIL KT ENTER2)@!x
+(*x	`	`LpF@>@:P2X&(0PH	p=p@
+MAKETESTFN BINARY
+-.,<`",~(TB . 1)
+MAKETESTFNBLOCK
+(ENTER1)
+EVERYCHAR BINARY
+-.,<`",<,<,<Z"XBw w,>,> w ,^/3b+
++,<`,<`,<w~$,< ",2B+ZXBp+ w.",XBw+Zp+H@(STRNG . 1)
+(FN . 1)
+NCHARS
+NTHCHAR
+(URET3 MKN EVCC BHC ASZ KT KNIL ENTER2)@ `PHx@
+LARGEP BINARY
+-.Z`-,+"+7Z,~Z,~@(X . 1)
+(KNIL KT SMALLT SKI ENTER1)XP@0
+DECLRECURSING BINARY
+-.,<`,<$,<,<,<`,<,<w~,<w~(2B++Z`,<,<,<w~$,\3B++,<w"Z++Zp+e (NAME . 1)
+(ARG . 1)
+-1
+STKPOS
+-2
+1
+STKARG
+RELSTK
+(URET2 KT KNIL ENTER2)H
+SMASHCAR BINARY
+-.,<`Zp-,++
+,<,<p,<`Zw,< ",,\XB/[pXBp+/Z`,~@(L . 1)
+(FN . 1)
+(BHC EVCC SKNLST ENTER2)8	
+ASSERT BINARY
+-.,<`Zp-,+Z+Zp,<Zp-,+B+-,+,<,<$2B+,<p,<$+,<,<,B/[pXBp+k'(ARGS . 1)
+VARASRT
+INTERNAL
+EVAL
+ASSERTFAULT
+27
+ERRORX
+(BHC LIST2 SKLST SKLA URET1 KNIL SKNLST ENTER1)xpPPH8
+ASSERTFAULT BINARY
+-.,<"Z`3B+Z+Z,<,<$,<,<$,<,<$B,<,<$Z,<,<,<Z`3B+,<,<`,+Z`,< ",,~y_(DECL . 1)
+(VARNAME . 1)
+LISPXTERPRI
+"DECLARATION"
+"ASSERTION"
+LISPXPRIN1
+" NOT SATISFIED IN "
+-1
+ASSERTFAULT
+REALSTKNTH
+STKNAME
+LISPXPRIN2
+BREAK1
+(EVCC LIST2 KNIL KT ENTER2)`@p
+ASSERTMAC BINARY
+9/7-./ 03B+Z1,<Z,<,<1,<pZ2,<Z2Z`XCpQEp,\,\XBZp/ ,\XCpQEp,\,~,<`,<,<,<,<Zw~-,+++ZXBp-,+,<3,<,<3Zw~3B+3B+-,+,<4,<,,,+"-,+ ,<B4D5+",<5,<,B6XBwZw3B+',<Zw,XBw~,\QB+)Zw,XBwXBw~[w~XBw~+[w~3B+.Z6Zw~,+Zw~+
+@c%0WH(ARGS . 1)
+(VARIABLE-VALUE-CELL COMMENTFLG . 8)
+IGNOREDECL
+((NIL) . 0)
+((NIL) . 0)
+((NIL) . 0)
+ASSERT
+OR
+ASSERTFAULT
+QUOTE
+TYPEBLOCKOF
+MAKETESTFORM
+27
+ERRORX
+PROGN
+(URET5 CONS CONSNL SKLA ALIST3 ALIST2 LIST2 SKNNM KT SKLST SKNLST BHC KNIL ENTER1)0ph&"@ P(@H$
+*DECL BINARY
+-.Z`3B+Z`ZZ-,+Z`+Z`Z,,<@ ,~Z,<Zw~[8,<,<&,~
+	(ARGS . 1)
+(VARIABLE-VALUE-CELL SATISFIESLIST . 14)
+DECLPROGN
+INTERNAL
+APPLY
+(CONS SKLST KNIL ENTER1)
+*DECLMAC BINARY
+?7=-.7Z,<Z`,<[`[3B+[`Z8,+[`Z,<,<Zw2B+Z+ZwZ-,ZXBp3B+Zw+Zw,<Zp-,++Zp,<[p[2B9+ZpZw},XBw}/[pXBp+/,<9Zw3B+Zw~+
+Zw~Z,3B+$3B+$-,+$,<:,<,,XBw,<:,<Zw}Z2B+)Z+0Z,<;Zw}3B+/3B+/-,+/,<:,<,,,,<Zw~3B+4,<; <,,D<,,<,<w~,+
+@P0`PVTVd(ARGS . 1)
+(VARIABLE-VALUE-CELL FREEVARS . 77)
+(VARIABLE-VALUE-CELL CSATISFIESLIST . 61)
+PROGN
+FREE
+CSATISFIESLIST
+QUOTE
+.CBIND.
+FREEVARS
+COMPILEIGNOREDECL
+IGNOREDECL
+NCONC
+(URET4 LIST3 CONSS1 CONSNL ALIST2 LIST2 SKNNM BHC CONS SKNLST SKLST KT CONS21 KNIL ENTER1)xpXH04%/HX", !@x + Ph 
+CHKINIT BINARY
+-.,<`,<,<,<Zw~-,++ZXBw,<ZD[ZXBp,<,<w$,<Zp@[2B+,<p"/,<ZwZ7@7Z,< ",3B++,<p,<w$[w~XBw~+Zw+ A (ARGS . 1)
+(VARIABLE-VALUE-CELL SATISFIESLIST . 14)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 24)
+ASSOC
+GETDECLTYPE
+MAKETESTFN
+ASSERTFAULT
+(URET4 EVCC KNOB BHC SKNLST KNIL ENTER1)`8
+CHKINITMAC BINARY
+E:C-.: <3B+Z=,<Z,<Z=,<Z>Z`XCpQEp,\ ,\XCpQEp,\,~,<`,<,<,<,<,<,<Zw}-,++6ZXBw,<>,<ZD?[ZXBw,<,<w~$?,<Zp@[2B+,<p"@/,<,<w~$@,<,<AZw~-,+!ZAZw~,+&Zw~3B+&3B+&-,+&,<B,<,,<Zw}3B+,3B+,-,+,,<B,<,,,XBw~Zw~3B+2,<Zw~,XBw},\QB+4Zw~,XBw~XBw}[w}XBw}+[w}3B+9ZBZw},+Zw}+
+H(S0+@@(ARGS . 1)
+(VARIABLE-VALUE-CELL COMMENTFLG . 8)
+(VARIABLE-VALUE-CELL CSATISFIESLIST . 38)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 48)
+IGNOREDECL
+((NIL) . 0)
+((NIL) . 0)
+CHKINIT
+OR
+ASSOC
+GETDECLTYPE
+MAKETESTFN
+APPLYFORM
+ASSERTFAULT
+DECLMSGMAC
+QUOTE
+PROGN
+(URET7 CONSNL ALIST3 LIST2 SKNNM KT CONS SKLST BHC SKNLST KNIL ENTER1)0:4X-,p(%)@!
+7p(0xhX0
+DECLCONSTANTP BINARY
+5,3-.,Z`2B+Z,~3B77+,Z`-,+,-,+,-,++Z`3B-+2B-+Z,~Z`,<,<.$.3B+,<`,<$/+Z`,<ZpZ`3B+3B/+XB`/+Z`3B0+3B0+3B1+3B1+2B2+Z+*Z`,<,<2$.3B+*[`,<Zp-,+$Z+*Zp,<,<w$32B+(Z+*[pXBp+"//,~Z,~UpiKS!E$(X . 1)
+QUOTE
+CONSTANT
+MACRO
+GETP
+EXPANDMACRO
+IGNOREMACRO
+SELECTQ
+CLOSER
+GO
+PROG
+COND
+CTYPE
+DECLCONSTANTP
+(SKNLST BHC SKLST SKNSTP SKNNM KT KNIL ENTER1)#+0	$X@H(x!``
+DD BINARY
+	-.Z`,<[`Z,,,,<,<$,~(X . 1)
+DLAMBDA
+DEFINE
+(KT CONSNL ALIST2 CONS21 ENTER1)hXPH
+DECLCLISPTRAN BINARY
+/*-.,<,<,<,<,< Z`-,+Z`-,ZZ,<,< $!Z2B!+Z`2B"+ZXBwZ`XBw~3B++[`-,Z[-,ZZXBw~Z2B"+[w~-,ZZXBw~Z2B#+Z3B++,<#,<w~$$[,<,<,<Zw-,+ +)ZXBp-,+'ZpZw~,2B+'Zp2B+&ZXBw+)[wXBw+Zw/3B+,<w~Zw~3B+.Z$+.Z%,\XB[w~[,<Zw~3B+4[w~Z+4Z,<,<,<Zw~-,+8+qZXBpZp3B#+;+p[p,<,<,<,<,<Zw~-,+@+lZXBw-,+DZwZw{,3B+GZwZp,XBp+kZwz3B+e,<w|,<,<ZwXBpZp-,+M+aZw}Zp2B+T,<pZw,<Z[w|,,,\XB+dZp-,+`Zw}ZpZ2B+`Zp[-,+]Zp,<Zw[,,\QBZp,<[w}D%+d[pXBp+KZw}Zwx,XBwxZw/+kZw2B&+iZwZw{,XBw{+kZwZwy,XBwy[w~XBw~+>,<w},<w"&,\QBZw~/[w~XBw~+6Zw/Zw~3B+y[w~,<,<w}"&Z',[w~[,D'@(+Zw~Z?3B+,<(B&,<Zw~,<8,ZwXB8,<,<,<,<,<ZL)ZwZ8Z,[[[[Z,<Zw~,<8,<ZF),\ZwXB8,~,<?~,<?~,<,<,<ZL),~Zw~Z
+,XBw~,<,<w~,<ZF),\3B+Zw~Zw~  D+ZXB`/,<`,<`$*,~H00IHpB@1@X H#G B(X . 1)
+(TRAN . 1)
+(VARIABLE-VALUE-CELL NEWSATLIST . 50)
+(VARIABLE-VALUE-CELL FAULTFN . 288)
+(VARIABLE-VALUE-CELL CLISPARRAY . 298)
+((LOCALVARS SPECVARS ADDTOVAR DEFLIST PUTPROPS CONSTANTS SETQQ USEDFREE) . 0)
+CLISPWORD
+GETPROP
+FORWORD
+PROG
+FUNCTION
+LAMBDA
+DECLARE
+ASSOC
+DPROG
+DLAMBDA
+NCONC
+RETURNS
+DREVERSE
+DECL
+RPLACD
+(NIL VARIABLE-VALUE-CELL CLISPRETRANFLG . 0)
+DPROGN
+DWIMIFY0?
+PUTHASH
+REALCLISPTRAN
+(GETHSH LIST3 CONS21 CONSNL CONSS1 CONS BHC FMEMB SKNLST KT SKLST KNIL ENTER2)8w]Sy0h8Rh@se(@$Z	H?x
+'P
+XB (pxx8(|@Q	(J	Dh>X=h6P2P+`$h(0p@0
+DECLMSGA0010 BINARY
+	-.	Z,<Z`@[,\,3B+,<
+Z`@[D,~(TB . 1)
+(VARIABLE-VALUE-CELL DECLMSG . 3)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 14)
+DECLMSG
+RETFROM
+(KNIL EQUAL ENTER1)`X
+DECLMSG BINARY
+-.ZZ,3B+Z,~Z,<ZDZ,<ZD2B+ZZ,XB
+Z,~C
+(VARIABLE-VALUE-CELL DECLMSG . 20)
+(VARIABLE-VALUE-CELL DECLTYPESARRAY . 10)
+(VARIABLE-VALUE-CELL DECLMESSAGES . 23)
+DECLMSGA0010
+MAPHASH
+MEMBER
+(CONS KNIL GETHSH ENTERF)
+@8
+DECLDWIMERROR BINARY
+! -.,<",<,<$
+Z,<,<$
+,<
+,<$
+..,<8,<,<Z"XBp p,>,> w ,^/3b+Zw+ p."`Z2B+,<"+ p."`Z,<,<$
+ p.",XBp+/,<"  ,~F@,&(ARGS . 1)
+(VARIABLE-VALUE-CELL FAULTFN . 8)
+LISPXTERPRI
+"{in "
+LISPXPRIN1
+"} "
+ERROR!
+(MKN BHC ASZ KNIL CF CFARP KT ENTERN)p0(
+	x0`(
+DECLDWIMTESTFN BINARY
+-. Z`@[2B+,<`",<Zp-,+Z2B+ZpZ,2B+,<p,<w,<,<,<ZLZpZ	,2B+,<p,<wZFZp+Q@B (TB . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 4)
+(VARIABLE-VALUE-CELL CLISPRETRANFLG . 14)
+(VARIABLE-VALUE-CELL CLISPARRAY . 36)
+(VARIABLE-VALUE-CELL FAULTFN . 27)
+MAKETESTFN
+DWIMIFY0?
+PUTHASH
+(URET1 GETHSH SKLST KNIL ENTER1)H
+`P
+DECLSET BINARY
+-.,<`",<,<ZpZ`XD[,<,<[pZ`XDZp/,\XBZp/D,<,<`",\,~$(VAR . 1)
+(VAL . 1)
+VARSETFN
+((NIL NIL) . 0)
+((QUOTE Q) . 0)
+APPLY
+VARASRT
+(BHC ENTER2)8	
+DECLSETQ BINARY
+-.Z,<[`,<,<&,<Z`B,<,<ZpZ`XD[,<,<[pZw~XDZp/,\XBZp/,<,<&,<Z`B,\/,~e(U . 1)
+PROG1
+INTERNAL
+APPLY
+VARSETFN
+((NIL NIL) . 0)
+((QUOTE Q) . 0)
+VARASRT
+(BHC ENTER1)0P
+DECLSETQQ BINARY
+
+
+-.Z	,<,<`,<	[pZ`XDZp/,< ",,~(XSET . 1)
+(YSET . 1)
+DECLSETQ
+((QUOTE Q) . 0)
+(EVCC BHC ENTER2)h
+DLAMARGLIST BINARY
+
+-.[`Z-,+[`Z,<,<,<,<Zw~-,+	Zw+Zw~,<Zp-,ZZ3B+Zp-,+Zp+,+Z/XBp-,+Zw3B+ZpQD+ZpXBw  [2D+XBw[w~XBw~+[`Z,~ T$@D(DEF . 1)
+RETURNS
+(BHC CONSNL URET4 SKNLST KNIL SKLST ENTER1) p`08
+DTYPE?TRAN BINARY
+) (-. ZXBZ3B+,<`,<"$#[`ZB#,<[`[,<,<Zw2B+,<$[`ZD$,<w,<`,<,<,<ZL%[w3B+Z%Zw,+ZwXBw,<w"&,<,<w$&XBp,<`3B++Zw-,+,<%,<,<,+Z'D'/Z`,~YdHHf(FORM . 1)
+(VARIABLE-VALUE-CELL CLISPCHANGE . 4)
+(VARIABLE-VALUE-CELL LCASEFLG . 5)
+(VARIABLE-VALUE-CELL FAULTFN . 31)
+type?
+/RPLACA
+GETDECLTYPE.NOERROR
+"invalid type declaration: "
+DECLDWIMERROR
+DWIMIFY0?
+PROGN
+DECLDWIMTESTFN
+APPLYFORM
+((PROGN T) . 0)
+REALCLISPTRAN
+(BHC LIST3 SKLST CONS KNIL KT ENTER1)`8@ x0
+@X(
+EDITNEWSATLIST BINARY
+-.[,<Zp-,+Z+Zp,<,<w/Zp-,+ZpXBp-,+ZpXBp-,+ZpZ,2B+,<p,<$Z2B7Z+Z/3B+Z+[pXBp+@-"(VARIABLE-VALUE-CELL L . 3)
+(VARIABLE-VALUE-CELL DECLATOMS . 26)
+CLISPWORD
+GETPROP
+FORWORD
+(KNIL FMEMB SKLA SKNLA SKLST BHC URET1 KT SKNLST ENTER0)P(
+xhP@
+FORMUSESTB BINARY
+"!-.Z`-,+Z`Z,2B+Z-,+Z3B77+Z`-,ZZ,<,<$
+-,ZZ2B
++ZB ZXB-,ZZ2B +[-,ZZ-,ZZ2B7Z,~Z,~Z,~I$4(FORM . 1)
+(TRANS . 1)
+(TB . 1)
+(VARIABLE-VALUE-CELL TRAN . 40)
+((type? TYPE? the THE DLAMBDA DPROG DPROGN) . 0)
+*DECL
+CLISPWORD
+GETP
+FORWORD
+LAST
+RETURN
+(KT KNIL FMEMB SKLST ENTER3)	(x08	XPp(00
+IGNOREDECL BINARY
+-.Z3B77+Z-,+
+,<,<$,<ZD3B+
+Z,~Z,~O(VARIABLE-VALUE-CELL COMPILEIGNOREDECL . 15)
+FN
+COMPILE1
+EVALV
+MEMB
+(SKLST KNIL KT ENTER0)X8	@(0
+MAKETESTFORM BINARY
+1)0-.)Z`@[2B+,<`"+,<,<`$+,<Zp2B+Z,,<Z,<,<,,<p,<-ZpZ-XD[Z`XDZp/,\XBZp/ ,\XCpQEp,\+(,<.,<,<.Z`@[,<Zp-,+Z/Zp,+!Zp3B+!3B+!-,+!,</,<,/,<Z`3B+'3B+'-,+',</,<,,,/,~RT 2+X(VAR . 1)
+(TYPE . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 46)
+(VARIABLE-VALUE-CELL COMMENTFLG . 19)
+MAKETESTFN
+APPLYFORM
+((NIL) . 0)
+((NIL) . 0)
+((NIL NIL) . 0)
+ASSERT
+OR
+ASSERTFAULT
+DECLMSGMAC
+QUOTE
+(ALIST3 LIST2 SKNNM CONS SKLST BHC KT KNIL ENTER2)('X
+) H8@
+SETQMAC BINARY
+N>K-.>Z`B?,<,<Zw@Z2B+,<w"@Z`,XBp @2B+9Zw@ZZ3BA+9Zw@
+Z2B+,<w"@2BA+0[`ZBB3B+0Zw@[2B+,<w"B,<@C +/,<`"D2B+,<`"E2B+.,<E,<,<@F`+,ZZGXBZw~,<8Zw~[8ZBH,< ",Zw~XB82B++,<HZIZw~Z8,DIZ,~3B+.Z`,~Z,~2B+9,<wZw@Z2B+4,<w"@2BA+6Zw+7[`ZB?DJ3B+:Zp+,<J,<wZ`,<,<w~$K,+
+(*U2P 8DM@(ARGS . 1)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 99)
+TYPEBLOCKOF
+MAKESETFN
+IGNOREDECL
+ANY
+REALSETQ
+DECLCONSTANTP
+MAKETESTFN
+(0 . 1)
+NIL
+(NIL VARIABLE-VALUE-CELL HELPFLAG . 0)
+SUBRP
+FREEVARS
+((DUMMY) . 0)
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+EVAL
+" Warning: Probable type fault in"
+SETQ
+COMPEM
+COVERSTB
+PROG1
+MAKETESTFORM
+(ALIST3 URET2 KT EVCC CF CONS KNIL ENTER1)hp;,'!+3/X(x
+Xhx
+`
+THETRAN BINARY
+@3>-.3ZXBZ3B+,<`,<5$6[`ZB6,<Zp2B+,<7[`ZD7[`[,<,<`[`[,<,<,<ZL8,<p"8,<,<9$9,<[`[[3B+Z:[`[,+[`[Z,<,<`Zw2B+Zw+1,<:,<;,<;,<<,<,<9,,<,<,<<,<9[`Z-,+'Z=[`Z,+-[`Z3B+-3B+--,+-,<=,<,,,,,,<,<w~$9,D>//Z`,~Y@`b>F1
+`
+(FORM . 1)
+(VARIABLE-VALUE-CELL CLISPCHANGE . 4)
+(VARIABLE-VALUE-CELL LCASEFLG . 5)
+(VARIABLE-VALUE-CELL FAULTFN . 31)
+the
+/RPLACA
+GETDECLTYPE.NOERROR
+"invalid type declaration: "
+DECLDWIMERROR
+DWIMIFY0?
+DECLDWIMTESTFN
+VALUE
+APPLYFORM
+PROGN
+CHKVAL
+LAMBDA
+((VALUE) . 0)
+COND
+VALUEERROR
+DECLMSGMAC
+QUOTE
+REALCLISPTRAN
+(BHC ALIST2 ALIST3 SKNNM SKLST LIST2 CONS KNIL KT ENTER1)021hx/`8PX!'*((
+VALUEERROR BINARY
+-.,<,<$,<,<,<Zw2B+Z,<,<,<w~(XBpB-,++,<p",<,<$,<p"++Zw/Z,<,<,<,<,<`,,<,< ",,~&Rr"(VARIABLE-VALUE-CELL VALUE . 0)
+(DECL . 1)
+"
+VALUE ASSERTION NOT SATISFIED IN "
+LISPXPRIN1
+-1
+VALUEERROR
+REALSTKNTH
+STKNAME
+LISPXPRIN2
+RELSTK
+BREAK1
+VALUE
+((EVAL) . 0)
+(EVCC LIST2 BHC SKNLA KNIL KT ENTERF)hH(HX
+VARSETFN BINARY
+-.Z,<,<,<,<,<Zw~-,++ZXBw,<`DXBp2B+
++[pXBp2B+Z+Zp,<,<`$,<Zp@Z2B+,<p"/+[w~XBw~+Z+P`(VARNAME . 1)
+(VARIABLE-VALUE-CELL SATISFIESLIST . 3)
+(VARIABLE-VALUE-CELL TYPEBLOCKDATATYPE . 33)
+ASSOC
+ANY
+GETDECLTYPE
+MAKESETFN
+REALSETQ
+(URET5 BHC SKNLST KNIL ENTER1)xH
+P@
+STARTDECLS BINARY
+ZGX-.(G,<JZp-,++Zp,<,<J,<w$K/[pXBp+/,<KZp-,++Zp,<,<L,<w$K/[pXBp+	/,<LZp-,++
+Zp,<,<p,<M,<w$MDK3B+ZpZ,3B+,<M,<w$MZ,XB/[pXBp+/,<N,<N$O,<Zp3B+%,<O,<NFP+&,<O,<N$P/,<Q,<Q$O,<Zp3B+,,<R,<QFP+.,<R,<Q$P/,<RZpZ7@7Z2BS+6,<p,<ZFSBT3B+7Z+7Z/3B+<Z,<,<T,<U&U3BT+= V,<VZp-,+?+EZp,<Zp,<[w,<ZFW/[pXBp+=/,<"W,~Je
+bh4c}c~AF"?L(VARIABLE-VALUE-CELL SYSLINKEDFNS . 48)
+(VARIABLE-VALUE-CELL LINKEDFNS . 57)
+(VARIABLE-VALUE-CELL BOUNDPDUMMY . 103)
+(VARIABLE-VALUE-CELL DWIMWAIT . 114)
+(VARIABLE-VALUE-CELL MSTEMPLATES . 133)
+((DECL WHOSE) . 0)
+QUOTE
+MOVD?
+((CHKVAL DECLPROGN) . 0)
+PROGN
+((CHANGERECORD CLISPTRAN SETQ SET SETQQ) . 0)
+REAL
+PACK*
+SETQ
+BYTEMACRO
+GETPROP
+REALSETQ
+PUTPROP
+REMPROP
+SET
+MACRO
+REALSET
+DECLTYPESARRAY
+NOBIND
+STKSCAN
+RELSTK
+N
+"Reinitialize DECLTYPE lattice?  "
+ASKUSER
+INITDECLTYPES
+(((COVERS CALL (IF (EQ (CAR EXPR) (QUOTE QUOTE)) (NIL (@ (TYPEMSANAL COVERS) (QUOTE ((.. TYPE))))) 
+EVAL) (IF (EQ (CAR EXPR) (QUOTE QUOTE)) (NIL (@ (TYPEMSANAL COVERS) (QUOTE ((.. TYPE))))) EVAL) . PPE)
+ (SELCOVERSQ . MACRO) (SELTYPEQ . MACRO) (*DECL NIL (IF NULL NIL (IF (LISTP (CAAR EXPR)) ((.. (@ (
+TYPEMSANAL *DECL) (QUOTE ((.. TYPE) TEST))))) (.. (@ (TYPEMSANAL *DECL) (QUOTE ((.. TYPE) TEST)))))) 
+.. EFFECT RETURN) (CHKINIT NIL) (CHKVAL NIL EVAL) (THE @ (TYPEMSANAL the) (QUOTE (CLISP (.. TYPE) 
+RETURN))) (TYPE? @ (TYPEMSANAL type?) (QUOTE (CLISP (.. TYPE) RETURN))) (the @ (TYPEMSANAL the) (QUOTE
+ (CLISP (.. TYPE) RETURN))) (type? @ (TYPEMSANAL type?) (QUOTE (CLISP (.. TYPE) RETURN))) (VALUEERROR 
+NIL)) . 0)
+PUTHASH
+DODECLS
+(KT KNOB CONS FMEMB KNIL BHC SKNLST ENTER0)p7196@*0xhD/x `p	xp0
+DODECLS BINARY
+_V\-.VZ`2B+7ZXB,<W,<XZ`3B+.Zp2B+.,<p,<w,<Zw-,+ZpZ2B+ "+[QD "+-Zw,<Zp,<ZwBX,<[w[,<,<,<,<Zw~-,+Zw+(,<Zp,<Zw|,<ZwDY,/XBp-,+&Zw3B+"ZpQD+#ZpXBw  [2D+$XBw[w~[XBw~+/,,/Zp,XBp[wXBw+
+/DYZ`3B+1Zw+1Zp,<Zp-,+4+QZp,<[pZ,<Zp3B+?Zw,<Z`3B+>Zw2B+>,<ZZw~DZBX+?ZwD[/[p[,<Zp-,+C+O,<[pZ,<Zp3B+JZw~,<Zw,<,<w&[+LZw~,<ZwD\//[p[XBp+A/[pXBp+2/Z`2B+U,<p,<$Y/Z`,~"D@B$ &t D$(FLG . 1)
+(VARIABLE-VALUE-CELL COMPILEIGNOREDECL . 8)
+(((CHANGERECORD T) (CLISPTRAN T) (SET T) (SETQ T BYTEMACRO NIL MACRO (ARGS (SETQMAC ARGS))) (SETQQ T) 
+(TYPE? NIL CLISPWORD (DTYPE?TRAN . type?)) (type? NIL CLISPWORD (DTYPE?TRAN . type?))) . 0)
+((NIL) . 0)
+GETD
+GETPROP
+RPLACA
+DECL
+PACK*
+PUTD
+PUTPROP
+REMPROP
+(COLLCT CONSS1 SKLST BHC ALIST2 SKNLST KT KNIL ENTER1)@(*
+V
+(P	`M.0)h`03<@
+PSp:0`!xhP
+H
+(PRETTYCOMPRINT DECLCOMS)
+(RPAQQ DECLCOMS ((* DECLTYPE machinery, declaration translator, and declaration enforcer) (LOCALVARS .
+ T) (GLOBALVARS FILEPKGFLG CLISPCHANGE CLISPARRAY DWIMESSGAG NOSPELLFLG MSDATABASELST DECLTYPESARRAY 
+COMMENTFLG CLISPCHARS DECLATOMS LCASEFLG DECLMESSAGES CLISPRETRANFLG) (E (RESETSAVE CLISPIFYPRETTYFLG 
+NIL) (RESETSAVE PRETTYPRINTMACROS (APPEND (QUOTE ((DECL . QUOTE) (DPROGN . QUOTE) (DLAMBDA . QUOTE) (
+DPROG . QUOTE))) PRETTYPRINTMACROS))) (COMS (* Interface to file package) (FNS DECLTYPE DECLTYPES 
+DUMPDECLTYPES GETDECLDEF) (FILEPKGCOMS DECLTYPES IGNOREDECL) (PROP ARGNAMES DECLTYPE)) (* User 
+functions) (FNS COVERS GETDECLTYPEPROP SETDECLTYPEPROP SUBTYPES SUPERTYPES) (MACROS SELCOVERSQ 
+SELTYPEQ) (ALISTS (PRETTYEQUIVLST SELCOVERSQ SELTYPEQ) (DWIMEQUIVLST SELCOVERSQ SELTYPEQ)) (P (
+SETSYNONYM (QUOTE (THE TYPE)) (QUOTE (AS A TYPE)))) (* Internal machinery) (DECLARE: DONTCOPY (RECORDS
+ TYPEBLOCK TYPEDEF) (ALISTS (PRETTYPRINTYPEMACROS TYPEBLOCK))) (INITRECORDS TYPEBLOCK) (P (DEFPRINT (
+QUOTE TYPEBLOCK) (QUOTE TBDEFPRINT))) (FNS CHECKTYPEXP COLLECTTYPES COVERSCTYPE COVERSTB COVERSTE 
+CREATEFNPROP CREATEFNVAL DECLERROR DELETETB FINDDECLTYPE FINDPROP FINDTYPEXP GETCTYPE GETDECLTYPE 
+GETDECLTYPE.NOERROR GETTBPROP INHERITPROP INITDECLTYPES LCCTYPE LCC2 MAKECTYPE MAKEDECLTYPE MAKEBINDFN
+ MAKESETFN MAPTYPEUSERS NOTICETB PPDTYPE RECDTYPE DECLCHANGERECORD RECDEFTYPE REPROPTB SETTBPROP 
+TBDEFPRINT TETYPE TYPEMSANAL TYPEMSANAL1 UNCOMPLETE UNSAVETYPE USERDECLTYPE USESTYPE) (BLOCKS (LCCTYPE
+ LCCTYPE LCC2) (TYPEMSANAL TYPEMSANAL TYPEMSANAL1)) (* Test fn creation block) (FNS MAKETESTFN 
+MAKETESTFNBLOCK COMBINE.TESTS FUNIFY MKNTHCAR MKNTHCDR OF.TESTFN TUPLE.TESTFN WHOSE.TESTFN) (BLOCKS (
+MAKETESTFNBLOCK MAKETESTFNBLOCK COMBINE.TESTS FUNIFY MKNTHCAR MKNTHCDR OF.TESTFN TUPLE.TESTFN 
+WHOSE.TESTFN)) (* Machinery to compile recursive testfns) (FILES (SYSLOAD FROM VALUEOF 
+LISPUSERSDIRECTORIES) LABEL) (* Idioms. Expressed as macros for now) (DECLARE: DONTCOPY EVAL@COMPILE (
+VARS DefaultBindFn DefaultSetFn) (ADDVARS (NLAMA MAKEDECLTYPEQ)) (MACROS ANYC DECLVARERROR DTYPENAME 
+foreachTB GETCGETD KWOTEBOX LAMBIND LAMVAL MAKEDECLTYPEQ NONEC TESTFORM) (FNS TESTFORM) (ADDVARS (
+DONTCOMPILEFNS TESTFORM)) (TEMPLATES foreachTB MAKEDECLTYPEQ)) (* Runtime utility functions) (FNS 
+EVERYCHAR LARGEP DECLRECURSING SMASHCAR) (DECLARE: EVAL@COMPILE (MACROS LARGEP)) (DECLARE: DONTCOPY 
+EVAL@COMPILE (MACROS SMASHCAR)) (* translator of dprogs and dlambdas) (FNS ASSERT ASSERTFAULT 
+ASSERTMAC *DECL *DECLMAC CHKINIT CHKINITMAC DECLCONSTANTP DD DECLCLISPTRAN DECLMSG DECLDWIMERROR 
+DECLDWIMTESTFN DECLSET DECLSETQ DECLSETQQ DECLTRAN DECLVAR DLAMARGLIST DTYPE?TRAN EDITNEWSATLIST 
+FORMUSESTB IGNOREDECL MAKETESTFORM PPDECL PPVARLIST SETQMAC THETRAN VALUEERROR VARASRT VARASRT1 
+VARSETFN) (BLOCKS (DECLTRAN DECLTRAN DECLVAR) (PPDECL PPDECL PPVARLIST) (VARASRT VARASRT VARASRT1)) (*
+ Declaration database fns) (FNS DECLOF DECLOF1 TBOF TYPEBLOCKOF VARDECL) (BLOCKS (DECLOFBLK DECLOF 
+DECLOF1 TBOF TYPEBLOCKOF VARDECL (ENTRIES DECLOF TYPEBLOCKOF))) (* Enabling and disabling fns) (
+DECLARE: EVAL@COMPILE DONTCOPY (RECORDS FNEQUIVS) (MACROS MOVEPROP PUTIFPROP)) (FNS STARTDECLS DODECLS
+) (FILES (SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES) LAMBDATRAN) (DECLARE: EVAL@COMPILE (FILES (
+SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES) SIMPLIFY)) (DECLARE: EVAL@COMPILE DONTCOPY (FILES (SYSLOAD 
+FROM VALUEOF LISPUSERSDIRECTORIES) NOBOX) (* Definition of WITH. From <SHEIL>WITH.) (MACROS WITH) (
+TEMPLATES WITH) (P (REMPROP (QUOTE WITH) (QUOTE CLISPWORD)) (ADDTOVAR DWIMEQUIVLST (WITH . PROG)) (
+ADDTOVAR PRETTYEQUIVLST (WITH . PROG)))) (P (OR (GETPROP (QUOTE LOADTIMECONSTANT) (QUOTE FILEDATES)) (
+PROG ((X (FINDFILE (QUOTE LOADTIMECONSTANT.COM) T LISPUSERSDIRECTORIES))) (COND (X (LOAD X (QUOTE 
+SYSLOAD))) ((NOT (GETPROP (QUOTE LOADTIMECONSTANT) (QUOTE MACRO))) (PUTPROP (QUOTE LOADTIMECONSTANT) (
+QUOTE MACRO) (QUOTE ((FORM) (CONSTANT FORM))))))))) (ADDVARS (OPENFNS DECLPROGN CHKVAL CHKINIT ASSERT 
+*DECL VARASRT)) (PROP CLISPWORD DPROG DPROGN THE the) (PROP INFO DLAMBDA DPROG DPROGN) (VARS (
+SATISFIESLIST) (CSATISFIESLIST) (NEWSATLIST T)) (ADDVARS (DECLATOMS DLAMBDA DPROG DPROGN) (LAMBDASPLST
+ DLAMBDA) (DECLMESSAGES) (COMPILEIGNOREDECL) (SYSLOCALVARS VALUE) (DESCRIBELST ("types:    " (
+GETRELATION FN (QUOTE (USE TYPE))))) (BAKTRACELST (DECLPROGN (DPROGN APPLY *PROG*LAM *DECL *ENV*) (NIL
+ APPLY *PROG*LAM *DECL)) (PROG (DPROG DECLPROGN APPLY *PROG*LAM *DECL)))) (DECLARE: EVAL@COMPILE 
+DONTCOPY (RECORDS SLISTENTRY VARDECL)) (ALISTS (LAMBDATRANFNS DLAMBDA)) (DECLARE: DONTEVAL@LOAD (E (* 
+Declare is so PRETTYPRINTMACROS don't get set up during LOADFROM, when PPDECL is not being defined. 
+Don't use ALIST for print macros cause entries are removed while DECL is being dumped)) (ADDVARS (
+PRETTYPRINTMACROS (DPROGN . PPDECL) (DECL . PPDECL) (DLAMBDA . PPDECL) (DPROG . PPDECL)))) (PROP INFO 
+ASSERT) (MACROS ASSERT .CBIND. CHKINIT CHKVAL *DECL DECL DECLMSGMAC REALSETQ) (MACROS REALSET) (P (AND
+ (GETD (QUOTE STARTDECLS)) (STARTDECLS)) (PROG ((COM (CDR (ASSOC (QUOTE DW) EDITMACROS)))) (AND COM (
+RPLACD COM (CONS (APPEND (QUOTE (RESETVAR NEWSATLIST (EDITNEWSATLIST))) (CDR COM))))))) (* Builtin 
+DECLOF properties) (PROP DECLOF APPEND CONS EQ LIST LISTP NCONC) (DECLARE: EVAL@COMPILE DONTCOPY (P (
+RESETSAVE DWIMIFYCOMPFLG NIL) (AND (GETD (QUOTE DODECLS)) (RESETSAVE (DODECLS) (QUOTE (DODECLS T))))))
+ (DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS (ADDVARS (NLAMA DECLSETQ DECLMSG DD 
+CHKINIT *DECL ASSERT DECLTYPES DECLTYPE) (NLAML DECLSETQQ TYPEMSANAL) (LAMA DECLDWIMERROR)))))
+(PUTDEF (QUOTE DECLTYPES) (QUOTE FILEPKGCOMS) (QUOTE ((COM MACRO (X (E (DUMPDECLTYPES (QUOTE X))))) (
+TYPE DESCRIPTION "type declarations" GETDEF GETDECLDEF DELDEF (LAMBDA (NAME) (DELETETB (OR (
+FINDDECLTYPE NAME) (DECLERROR "Can't delete non-existent type:" NAME))))))))
+(PUTDEF (QUOTE IGNOREDECL) (QUOTE FILEPKGCOMS) (QUOTE ((COM MACRO (X (DECLARE: DOEVAL@COMPILE 
+DONTEVAL@LOAD DONTCOPY (P (RESETSAVE COMPILEIGNOREDECL (QUOTE X)))))))))
+(PUTPROPS DECLTYPE ARGNAMES (NIL (NAME TYPE PROP1 VAL1 ...) . X))
+(PUTPROPS SELCOVERSQ MACRO (F (LIST (LIST (QUOTE LAMBDA) (QUOTE ($$TMP)) (CONS (QUOTE COND) (MAPLIST (
+CDR F) (FUNCTION (LAMBDA (I) (COND ((CDR I) (CONS (LIST (QUOTE COVERS) (KWOTE (CAAR I)) (QUOTE $$TMP))
+ (CDAR I))) (T (LIST T (CAR I))))))))) (LIST (QUOTE DECLOF) (CAR F)))))
+(PUTPROPS SELTYPEQ MACRO (F (APPLYFORM (LIST (QUOTE LAMBDA) (QUOTE ($$TMP)) (CONS (QUOTE COND) (
+MAPLIST (CDR F) (FUNCTION (LAMBDA (I) (COND ((CDR I) (CONS (LIST (QUOTE TYPE?) (CAAR I) (QUOTE $$TMP))
+ (CDAR I))) (T (LIST T (CAR I))))))))) (CAR F))))
+(ADDTOVAR PRETTYEQUIVLST (SELCOVERSQ . SELECTQ) (SELTYPEQ . SELECTQ))
+(ADDTOVAR DWIMEQUIVLST (SELCOVERSQ . SELECTQ) (SELTYPEQ . SELECTQ))
+(SETSYNONYM (QUOTE (THE TYPE)) (QUOTE (AS A TYPE)))
+(/DECLAREDATATYPE (QUOTE TYPEBLOCK) (QUOTE (POINTER POINTER POINTER POINTER POINTER POINTER)))
+(DEFPRINT (QUOTE TYPEBLOCK) (QUOTE TBDEFPRINT))
+(FILESLOAD (SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES) LABEL)
+(DECLARE: EVAL@COMPILE (PUTPROPS LARGEP 10MACRO ((X) (EQ (NTYP X) 18))))
+(FILESLOAD (SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES) LAMBDATRAN)
+(FILESLOAD (SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES) SIMPLIFY)
+(OR (GETPROP (QUOTE LOADTIMECONSTANT) (QUOTE FILEDATES)) (PROG ((X (FINDFILE (QUOTE 
+LOADTIMECONSTANT.COM) T LISPUSERSDIRECTORIES))) (COND (X (LOAD X (QUOTE SYSLOAD))) ((NOT (GETPROP (
+QUOTE LOADTIMECONSTANT) (QUOTE MACRO))) (PUTPROP (QUOTE LOADTIMECONSTANT) (QUOTE MACRO) (QUOTE ((FORM)
+ (CONSTANT FORM))))))))
+(ADDTOVAR OPENFNS DECLPROGN CHKVAL CHKINIT ASSERT *DECL VARASRT)
+(PUTPROPS DPROG CLISPWORD (DECLTRAN . DPROG))
+(PUTPROPS DPROGN CLISPWORD (DECLTRAN . DPROGN))
+(PUTPROPS THE CLISPWORD (THETRAN . the))
+(PUTPROPS the CLISPWORD (THETRAN . the))
+(PUTPROPS DLAMBDA INFO BINDS)
+(PUTPROPS DPROG INFO (BINDS LABELS))
+(PUTPROPS DPROGN INFO EVAL)
+(RPAQQ SATISFIESLIST NIL)
+(RPAQQ CSATISFIESLIST NIL)
+(RPAQQ NEWSATLIST T)
+(ADDTOVAR DECLATOMS DLAMBDA DPROG DPROGN)
+(ADDTOVAR LAMBDASPLST DLAMBDA)
+(ADDTOVAR DECLMESSAGES)
+(ADDTOVAR COMPILEIGNOREDECL)
+(ADDTOVAR SYSLOCALVARS VALUE)
+(ADDTOVAR DESCRIBELST ("types:    " (GETRELATION FN (QUOTE (USE TYPE)))))
+(ADDTOVAR BAKTRACELST (DECLPROGN (DPROGN APPLY *PROG*LAM *DECL *ENV*) (NIL APPLY *PROG*LAM *DECL)) (
+PROG (DPROG DECLPROGN APPLY *PROG*LAM *DECL)))
+(ADDTOVAR LAMBDATRANFNS (DLAMBDA DECLTRAN EXPR DLAMARGLIST))
+(ADDTOVAR PRETTYPRINTMACROS (DPROGN . PPDECL) (DECL . PPDECL) (DLAMBDA . PPDECL) (DPROG . PPDECL))
+(PUTPROPS ASSERT INFO EVAL)
+(PUTPROPS ASSERT MACRO (ARGS (ASSERTMAC ARGS)))
+(PUTPROPS .CBIND. BYTEMACRO (APPLY (LAMBDA (PV BODY) (APPLY* (QUOTE PROG) PV (QUOTE (RETURN (CEXP1 
+BODY)))))))
+(PUTPROPS .CBIND. 10MACRO (X (APPLY* (QUOTE PROG) (CAR X) (QUOTE (COMP (CADR X) VCF PCF PIF NCF))) (
+SETQ PCF (SETQ NCF)) (QUOTE INSTRUCTIONS)))
+(PUTPROPS .CBIND. MACRO (X (HELP "Compiler dependent macro must be supplied for .CBIND.")))
+(PUTPROPS CHKINIT MACRO (ARGS (CHKINITMAC ARGS)))
+(PUTPROPS CHKVAL MACRO (ARGS (COND ((IGNOREDECL) (COND ((EQ (CAAR ARGS) (QUOTE COND)) (CADADR (CAR 
+ARGS))) (T (CADAR ARGS)))) (T (CAR ARGS)))))
+(PUTPROPS *DECL MACRO (ARGS (*DECLMAC ARGS)))
+(PUTPROPS DECL MACRO (X (COMPEM "DECL in illegal location" (CONS (QUOTE DECL) X))))
+(PUTPROPS DECLMSGMAC DMACRO ((X . Y) (CONSTANT (DECLMSG X . Y))))
+(PUTPROPS DECLMSGMAC MACRO ((X . Y) (LOADTIMECONSTANT (DECLMSG X . Y))))
+(PUTPROPS REALSETQ MACRO (X (CEXP (CADR X)) (VARCOMP (CAR X)) (STORIN (LIST (QUOTE STV) (CAR X) SP)) (
+QUOTE INSTRUCTIONS)))
+(PUTPROPS REALSET DMACRO T)
+(AND (GETD (QUOTE STARTDECLS)) (STARTDECLS))
+(PROG ((COM (CDR (ASSOC (QUOTE DW) EDITMACROS)))) (AND COM (RPLACD COM (CONS (APPEND (QUOTE (RESETVAR 
+NEWSATLIST (EDITNEWSATLIST))) (CDR COM))))))
+(PUTPROPS APPEND DECLOF LST)
+(PUTPROPS CONS DECLOF LISTP)
+(PUTPROPS EQ DECLOF (MEMQ T NIL))
+(PUTPROPS LIST DECLOF (FUNCTION (LAMBDA (FORM) (AND (CDR FORM) (QUOTE LISTP)))))
+(PUTPROPS LISTP DECLOF LST)
+(PUTPROPS NCONC DECLOF LST)
+NIL

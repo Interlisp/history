@@ -1,0 +1,3174 @@
+(FILECREATED " 5-JUL-80 00:02:10" <NEWLISP>ASSIST.;1 114766 
+
+     changes to:  GETCOMMENT
+
+     previous date: " 1-OCT-79 11:01:51" <LISP>ASSIST.;68)
+
+
+(PRETTYCOMPRINT ASSISTCOMS)
+
+(RPAQQ ASSISTCOMS [(FILEPKGCOMS CONSTANTS)
+	(COMS (* Read macros for ' * and ^W)
+	      (FNS CONTROLW READLINEP READ' READ* PRINT* READCOMMENT 
+		   GETCOMMENT PRINTCOMMENT)
+	      [VARS (NORMALCOMMENTSFLG (COND
+					 ((NOT (BOUNDP (QUOTE 
+						  NORMALCOMMENTSFLG)))
+					  T)
+					 (T NORMALCOMMENTSFLG]
+	      (DECLARE: FIRST (ADDVARS (NOSWAPFNS CONTROLW)))
+	      [P (SETSYNTAX (QUOTE ')
+			    (QUOTE (MACRO FIRST NOESC READ'))
+			    EDITRDTBL)
+		 (SETSYNTAX (QUOTE ')
+			    EDITRDTBL T)
+		 (SETSYNTAX (QUOTE %)
+			    (QUOTE (INFIX IMMEDIATE CONTROLW))
+			    T)
+		 (SETSYNTAX (QUOTE %)
+			    T EDITRDTBL)
+		 (ECHOCONTROL (QUOTE %)
+			      (QUOTE IGNORE))
+		 (SETSYNTAX (QUOTE *)
+			    (QUOTE (INFIX ALONE NOESC READCOMMENT))
+			    FILERDTBL)
+		 (MAPC (QUOTE (1 2 3 4 5 6))
+		       (FUNCTION (LAMBDA (X)
+					 (ECHOCONTROL X (QUOTE IGNORE]
+	      (ADDVARS (PRETTYPRINTMACROS (* . PRINTCOMMENT)))
+	      (USERMACROS GET*)
+	      (DECLARE: DOEVAL@COMPILE DONTCOPY (RECORDS COMMENTBOX)))
+	[COMS (FNS PRINTPROPS PRINTBINDINGS)
+	      (LISPXMACROS PL PB ;)
+	      (BLOCKS (PRINTPROPS PRINTPROPS (NOLINKFNS . T)
+				  (GLOBALVARS SPELLINGS1 SPELLINGS2 
+					      USERWORDS RESETVARSLST))
+		      (PRINTBINDINGS PRINTBINDINGS (NOLINKFNS . T)
+				     (GLOBALVARS RESETVARSLST]
+	[COMS (FNS SHOWPRINT SHOWPRIN2)
+	      (VARS (SYSPRETTYFLG))
+	      (BLOCKS (NIL SHOWPRINT SHOWPRIN2 (GLOBALVARS RESETVARSLST 
+						       SYSPRETTYFLG]
+	(COMS (* The ? feature)
+	      (FNS DO? DO?= ERRORCONTEXT WHY WHY0 WHYSETUP WHYSPACE 
+		   WHYVARS GETARG# EXPLAIN1 EXPLAINARG EXPLAINARG1 
+		   EXPLAINARG2 EXPLAINARG3 EXPLAIN2 EXPLAIN2A)
+	      (VARS ORDINALS (LAST?))
+	      (P (SETSYNTAX (QUOTE ?)
+			    (QUOTE (INFIX FIRST NOESC DO?))
+			    T)
+		 (SETSYNTAX (QUOTE ?)
+			    T EDITRDTBL))
+	      (ADDVARS (LISPXHISTORYMACROS (? (WHY LISPXLINE)))
+		       (LISPXCOMS ?))
+	      (DECLARE: DOEVAL@COMPILE DONTCOPY
+			(RECORDS CONTEXT BADLSTREC INFOFNREC 
+				 INFOFORMREC))
+	      (IFPROP (INFO ARGNAMES)
+		      ELT SETA RPLACA RPLACD ADD1 SUB1 IGREATERP ILESSP 
+		      MINUSP DEFINEQ)
+	      (USERMACROS ?=))
+	(COMS * TRYHARDERCOMS)
+	(COMS * ASKUSERCOMS)
+	(COMS (* Coroutine package.)
+	      (FNS * COFNS)
+	      (FNS * GENERFNS)
+	      (ADDVARS (SYSSPECVARS COMVAR## POSSLIST##))
+	      (P (MOVD? (QUOTE OLDRESUME)
+			(QUOTE RESUME)))
+	      (PROP (MACRO INFO)
+		    * COMACROS)
+	      (I.S.OPRS OUTOF)
+	      (PROP BYTEMACRO GENERATOR POSSIBILITIES))
+	(COMS (* gainspace package)
+	      (FNS * GAINSPACEFNS)
+	      (VARS SMASHPROPSMENU (SMASHPROPSLST))
+	      [ADDVARS
+		(GAINSPACEFORMS
+		  ((CAR LISPXHISTORY)
+		   "purge history lists"
+		   (PURGEHISTORY RESPONSE)
+		   ((Y "es")
+		    (N "o")
+		    (E . "verything")))
+		  [T "discard definitions on property lists"
+		     (SETQ SMASHPROPSLST1
+			   (CONS (QUOTE EXPR)
+				 (CONS (QUOTE CODE)
+				       (CONS (QUOTE SUBR)
+					     SMASHPROPSLST1]
+		  (T "discard old values of variables"
+		     (SETQ SMASHPROPSLST1 (CONS (QUOTE VALUE)
+						SMASHPROPSLST1)))
+		  (T "erase properties" (ERASEPROPS RESPONSE)
+		     ((Y "es" EXPLAINSTRING 
+	"Yes - you will be asked which properties are to be erased")
+		      (N "o")
+		      (A "ll" CONFIRMFLG T EXPLAINSTRING 
+	      "All - all properties on mentioned on SMASHPROPSMENU")
+		      (E "dit
+" EXPLAINSTRING 
+"Edit - you will be allowed to edit a list of property names")))
+		  (CLISPARRAY "erase CLISP translations" (CLRHASH
+				CLISPARRAY))
+		  (CHANGESARRAY "erase changes array" (CLRHASH 
+						       CHANGESARRAY))
+		  (SYSHASHARRAY "erase system hash array" (CLRHASH))
+		  ((GETPROP (QUOTE EDIT)
+			    (QUOTE LASTVALUE))
+		   "discard context of last edit"
+		   (REMPROP (QUOTE EDIT)
+			    (QUOTE LASTVALUE)))
+		  (GREETHIST 
+	      "discard information saved for undoing your greeting"
+			     (SETQ GREETHIST]
+	      (BLOCKS * GAINSPACEBLOCKS)
+	      (DECLARE: DOEVAL@COMPILE DONTCOPY (RECORDS GAINSPACE)))
+	(BLOCKS * ASSISTBLOCKS)
+	(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS
+		  (ADDVARS (NLAMA)
+			   (NLAML TRYNEXT POSSIBILITIES GENERATOR 
+				  COROUTINE ASKUSERLOOKUP)
+			   (LAMA AU-REVOIR ADIEU])
+[FILEPKGCOM (QUOTE CONSTANTS)
+	    (QUOTE MACRO)
+	    (QUOTE (X (DECLARE: EVAL@COMPILE (VARS . X)
+				DONTEVAL@LOAD DONTCOPY
+				(P (AND (GETD (QUOTE CONSTANTS))
+					BYTECOMPFLG
+					(CONSTANTS . X]
+[DECLARE: DONTEVAL@LOAD DONTCOPY
+(* Read macros for ' * and ^W)  ]
+
+(DEFINEQ
+
+(CONTROLW
+  [LAMBDA (X Y Z)                                           (* wt: 17-APR-76 19 54)
+    (PROG (TEM)
+          [RETURN (COND
+		    ((NEQ X T)
+		      (TCONC Z (QUOTE %)))
+		    [(NULL Z)                               (* Control-w not inside of a list)
+		      (COND
+			((NULL (READLINEP))                 (* and not inside of a readline.
+							    read it.)
+			  (PRIN1 (QUOTE "^W")
+				 T)
+			  (TCONC Z (QUOTE %)))
+			((NULL LINE)                        (* trying to delete in empty line.)
+			  (PRIN1 (QUOTE %)
+				 T)
+			  NIL)
+			((NULL (CDR LINE))
+			  (SETQ TEM (CAR LINE))
+			  (SETQ LINE NIL)
+			  (GO ECHO))
+			((NULL (CDDR LINE))
+
+          (* reason we erase the last two things from LINE and return the first back is so thatif user then types a c.r.
+	  the readline will terminate. remember the control-w was typed while in a call to read. Note that if there was just 
+	  one thing on the line and the user typed a control-w, a c.r. will not suffice to terminate.)
+
+
+			  (SETQ TEM (CADR LINE))
+			  (SETQ Z (TCONC NIL (CAR LINE)))
+			  (SETQ LINE NIL)
+			  (GO ECHO))
+			(T (SETQ TEM (NLEFT LINE 3))
+			   (SETQ TEM (PROG1 (CADDR TEM)
+					    (SETQ Z (TCONC NIL (CADR TEM)))
+					    (RPLACD TEM)))
+			   (GO ECHO]
+		    ((NULL (CAR Z))
+		      (PRIN1 (QUOTE %)
+			     T)
+		      Z)
+		    (T (SETQ TEM (CADR Z))
+		       [COND
+			 ((NULL (CDAR Z))
+			   (RPLACD Z NIL)
+			   (RPLACA Z NIL))
+			 ((RPLACD Z (NLEFT (CAR Z)
+					   2))
+			   (RPLACD (CDR Z]
+		       (GO ECHO]
+      ECHO(PRIN1 (QUOTE \\)
+		 T)
+          (PRIN2 [COND
+		   ([OR (NLISTP TEM)
+			(NULL (CDR TEM))
+			(AND (NULL (CDDR TEM))
+			     (ATOM (CADR TEM]
+		     TEM)
+		   (T (CONS (CAR TEM)
+			    (QUOTE (--]
+		 T)
+          (SPACES 1 T)
+          (RETURN Z])
+
+(READLINEP
+  [LAMBDA (POS)                                             (* wt: "13-JUN-79 15:08")
+                                                            (* returns T if under a readline)
+    (PROG (SCRATCHPOS)|
+          (RETURN (AND (SETQ SCRATCHPOS (STKPOS LISPXREADFN -1 POS))|
+		       (PROG1 (EQ (STKNAME (REALSTKNTH -1 SCRATCHPOS NIL SCRATCHPOS))|
+				  (QUOTE READLINE))|
+			      (RELSTK SCRATCHPOS])
+
+(READ'
+  [LAMBDA (FILE RDTBL)                                      (* wt: "30-MAY-79 18:09")
+    (PROG [(CH (CHCON1 (PEEKC FILE]
+          (RETURN (COND
+		    ((OR (SYNTAXP CH (QUOTE SEPR)
+				  RDTBL)
+			 (SYNTAXP CH (QUOTE RIGHTPAREN)
+				  RDTBL)
+			 (SYNTAXP CH (QUOTE RIGHTBRACKET)
+				  RDTBL))
+		      (QUOTE '))
+		    (T 
+
+          (* MREAD is the function used on the Dorado for reading under a read macro. Calling READ is the same as performing |
+	  (PROGN (SETREADMACROFLG) (READ)). MREAD permits right square brackets to trickle back.)
+
+
+		       (KWOTE (READ FILE RDTBL])
+
+(READ*
+  [LAMBDA NIL                                               (* wt: 9-AUG-76 19 2)
+    (PRIN1 "READ* IS NOW READCOMMENT
+" T)
+    (HELP])
+
+(PRINT*
+  [LAMBDA NIL                                               (* wt: 9-AUG-76 19 2)
+    (PRIN1 "PRINT* IS NOW PRINTCOMMENT
+" T)
+    (HELP])
+
+(READCOMMENT
+  [LAMBDA (FL RDTBL LST)                                    (* wt: "18-JUL-79 10:46")
+    (PROG (X START END NCHARS POS TEM FLG FL1 N)
+          [COND
+	    ((OR (NULL LST)
+		 (CAR LST)
+		 (EQ FL T)
+		 (EQ NORMALCOMMENTSFLG T)
+		 (NOT (RANDACCESSP FL)))
+	                                                    (* the * appears interior to a lit.)
+	      (RETURN (TCONC LST COMMENTFLG]
+          (SETQ FLG (ILESSP (SETQ N (POSITION FL))
+			    26))
+
+          (* comment starts at left margin. use 26 to take into account font info. (there can be up to three ^F sequences, 												     |
+	  which accounts for an extra 12 throwing position off by 12.0 position should be 10 + 1 for left paren + 1 for * + 1 												     |
+	  for space.))
+
+
+          (SETQ POS (GETFILEPTR FL))
+          (COND
+	    ([SELECTQ (SETQ TEM (RATOM FL RDTBL))
+		      ((%( %) %[ %] %" ' %. DECLARATIONS: E)
+			T)
+		      (COND
+			((NUMBERP TEM)
+			  T)
+			((EQ TEM COMMENTFLG)
+			  NIL)
+			((AND CLISPFLG CLISPCHARRAY (STRPOSL CLISPCHARRAY TEM))
+			  T)
+			(T (SELECTQ (PEEKC FL)
+				    ((%) %] _)
+				      T)
+				    NIL]
+	      
+
+          (* an attempt to distinguish comments from non comments. if * is followed by list, or only one thing, then assume 												     |
+	  not a comment. The numberp check is in case user has done a makefile fast and actually written out a comment in 												     |
+	  abbreviated form.)
+
+
+	      (GO NO)))
+          (SETFILEPTR FL (SETQ START (IPLUS POS -2)))
+          [COND
+	    ((EQ N 2)
+	      
+
+          (* problem is that a terpri preceded the *. this can happen for comments that werent prettyprinted, e.g. were part 												     |
+	  of data structures. in this case, to get back to the %(, must back up another two characters, 												     |
+	  (one for the *, two for c.r./l.f., and one for paren))
+
+
+	      (SETFILEPTR FL (SETQ START (IPLUS START -2]   (* BACKUP TWO , SKIPPING OVER THE * AND THE "(")
+          [COND
+	    ((EQ (SKREAD FL)
+		 (QUOTE %]))
+	      
+
+          (* comment ends in %] means that it is not in a function, and better not use abbreviated form because when recopied 												     |
+	  the %] would be recopied, but prettyprint wouldnt know about it and print anther.)
+
+
+	      (SETFILEPTR FL POS)
+	      (RETURN (TCONC LST COMMENTFLG]
+          (SETQ NCHARS (IDIFFERENCE (SETQ END (GETFILEPTR FL))
+				    START))
+          (SETFILEPTR FL (SUB1 END))
+
+          (* READ had previously seen a left-paren before the * read macro was invoked. This backs up over the closing RIGHT 												     |
+	  paren so that the read will terminate this list.)
+
+
+          (COND
+	    ([AND NORMALCOMMENTSFLG (OR (AND (BOUNDP NORMALCOMMENTSFLG)
+					     (OPENP (SETQ FL1 (EVALV NORMALCOMMENTSFLG))
+						    (QUOTE OUTPUT)))
+					(OPENP (SETQ FL1 NORMALCOMMENTSFLG)
+					       (QUOTE OUTPUT]
+	      
+
+          (* if the value of the value of NORMALCOMMENTSFLG, or the value of NORMALCOMMENTSFLG is the name of an open file, 												     |
+	  the comment is coied to the file. this provides a mechanism for storing all comments in one file to be associated 												     |
+	  with the sysout or makesys. this feature is useful when one is using commentboxes to store text for messages, where 												     |
+	  one does not want to have the material in core, and does not want it scattered over many files.												     |
+	  the extra levelof indirection is so that the source file can be renamed to a different directory and the variable 												     |
+	  simply reset)
+
+
+	      (SETQ TEM (GETFILEPTR FL1))
+	      (COPYBYTES FL FL1 START END)
+	                                                    (* the copybyes changes the file pointer)
+	      (SETFILEPTR FL (SUB1 END))
+	      (SETQ START TEM)
+	      (SETQ FL NORMALCOMMENTSFLG)))
+          [RETURN (LCONC LST (create COMMENTBOX
+				     START _(CONS (IQUOTIENT START 1000)
+						  (IREMAINDER START 1000))
+				     NCHARS _ NCHARS
+				     FLG _ FLG
+				     FILE _(OR FL (INPUT]|
+      NO  (SETFILEPTR FL POS)
+          (RETURN (TCONC LST COMMENTFLG])
+
+(GETCOMMENT
+  [LAMBDA (X DESTFL DEF)                        (* DECLARATIONS: UNDOABLE)
+                                                (* wt: " 4-JUL-80 23:57")
+    (PROG (ST NC FL FLG STR TEM)
+          (RETURN
+	    (COND
+	      ((AND [OR (NUMBERP (SETQ ST (fetch (COMMENTBOX START)
+					     of X)))
+			(AND (LISTP ST)
+			     (NUMBERP (CAR ST))
+			     (NUMBERP (CDR ST))
+			     (SETQ ST (IPLUS (ITIMES (CAR ST)
+						     1000)
+					     (CDR ST]
+		    (NUMBERP (SETQ NC (fetch (COMMENTBOX NCHARS)
+					 of X)))
+		    (SETQ FL (fetch (COMMENTBOX FILE) of X))
+		    (OR (NULL (SETQ FLG (fetch (COMMENTBOX FLG)
+					   of X)))
+			(EQ FLG T))
+		    (NULL (fetch (COMMENTBOX REST) of X))
+		    (NEQ FL DESTFL)
+		    (NOT (ILESSP ST 0)))
+
+          (* The NEQ is because if the exact same comment is printed twice, e.g. once in COMS once when printed, then it would												     |
+	  already have been updated in this case, we will have to print the actual comment with numbers in it, but when the 												     |
+	  file is loaded, the effect will be the same as though we had printed the comment, except that there will be two 												     |
+	  comments pointing to the same locations. which is perfectly ok.)
+
+
+		[COND
+		  ((BOUNDP FL)                  (* see comment in readcomment)
+		    (SETQ FL (EVALV FL]
+		[COND
+		  ((NOT (OPENP FL (QUOTE INPUT)))
+		    (COND
+		      ([NULL (NLSETQ (SETQ FL (OPENFILE FL|
+							(QUOTE INPUT]|
+			(COND
+			  ([NOT (MEMB (SETQQ TEM "can't find file ")
+				      (LISTGET1 LISPXHIST (QUOTE 
+						       *LISPXPRINT*]
+			    (LISPXPRIN1 TEM T)
+			    (LISPXPRIN2 (fetch (COMMENTBOX FILE)|
+					   of X)|
+					T)
+			    (LISPXPRIN1 " - comments lost
+" T)))
+			(RETURN X)))
+		    (RESETSAVE NIL (LIST (QUOTE CLOSEF?)
+					 FL]
+		(SETFILEPTR FL ST)
+		(COND
+		  [(NULL DESTFL)                (* means read it in. called from GET* edit macro)
+		    (RESETVARS ((NORMALCOMMENTSFLG T))
+			       (RETURN (/RPLNODE2 X (READ FL FILERDTBL]
+		  (T [COND
+		       (DEF (SETQ STR
+			      (AND [COND
+				     ((NEQ DESTFL TTY)
+                                                (* usually T, but can be rebound for printing to display												     |
+							    terminal.)
+				       FONTCHANGEFLG)
+				     (T (EQ FONTCHANGEFLG (QUOTE ALL]
+				   (CHANGEFONT DEFAULTFONT)))
+                                                (* Want to be in defaultfont before we space over.)
+			    [COND
+			      (FLG (ENDLINE1)
+				   (ENDLINE1 10 NIL T))
+			      ((IGREATERP (IPLUS (SETQ TEM (POSITION))
+						 3)
+					  FIRSTCOL)
+                                                (* This is essentially a TAB, except will cause 												     |
+							    changechar to get printed.)
+				(ENDLINE1 FIRSTCOL NIL T))
+			      (T (SPACES (IDIFFERENCE FIRSTCOL TEM]
+			    (COND
+			      ((AND STR COMMENTFONT)
+
+          (* commentflg check because printcomment may be called in the case that the coment was read in by the * macro but is												     |
+	  not being prettyprinted as a comment, e.g. for the * prettydefmacro)
+
+
+				(CHANGEFONT COMMENTFONT]
+		     (COND
+		       ((AND (NEQ NORMALCOMMENTSFLG (QUOTE DONTUPDATE))
+			     (NEQ DESTFL TTY))
+
+          (* i have several times gotten scrwed by being in a sysout in whcih i had dumped multiple versions of a file and 												     |
+	  accidentally deleted the original parent so that the comments were lost and had to be recovered.												     |
+	  this updates the comments to point to the newest file. note you can still lose out if you do not edit a particular 												     |
+	  function (so that it is simply copied in toto) until after you delete the original parent. of course, you can 												     |
+	  recover by doing a loadfns and reediting.)
+
+
+
+          (* the NORMALCOMMENTSFLG check is so that prettyprint can disable this when necessary, e.g. when printing COMS.												     |
+	  otherwise when it goes to print a coment in a coms, it has already been updated and all that gets put out is the 												     |
+	  comment box.)
+
+
+			 (replace (COMMENTBOX START) of X
+			    with (CONS (IQUOTIENT (GETFILEPTR DESTFL)
+						  1000)
+				       (IREMAINDER (GETFILEPTR DESTFL)
+						   1000)))
+			 (replace (COMMENTBOX FILE) of X with DESTFL)))
+		     (COPYBYTES FL DESTFL ST (IPLUS ST NC))
+                                                (* notice we cant do anything bout the presence or 												     |
+							    absence of changechar in the magin during the text of 												     |
+							    the comment.)
+		     (COND
+		       (STR (CHANGEFONT STR)))
+		     (COND
+		       ((AND DEF FLG)
+			 (ENDLINE1)
+			 (ENDLINE1)))
+		     NIL)))
+	      (T X])
+
+(PRINTCOMMENT
+  [LAMBDA (X)                                   (* wt: " 5-DEC-78 16:21")
+    (PROG (FL)
+          (RETURN (COND
+		    ((OR (NULL DEF)
+			 (NULL FORMFLG))        (* this is not eally a comment and so shouldnt be 												     |
+							    prttyprinted as such)
+		      (GETCOMMENT X))
+		    ((AND (EQ (SETQ FL (OUTPUT))
+			      TTY)
+			  **COMMENT**FLG)
+		      (PRIN1 **COMMENT**FLG TTY)
+		      NIL)
+		    ((OR CHANGEFLG0 (EQ FL TTY))
+                                                (* want the comment to actually be prettyprinted in the 
+							    case that changeflg0 is on)
+		      (GETCOMMENT X))
+		    (T                          (* DEF is bound in prettyprint block)
+		       (GETCOMMENT X FL DEF])
+)
+
+(RPAQ NORMALCOMMENTSFLG (COND ((NOT (BOUNDP (QUOTE NORMALCOMMENTSFLG)))
+			       T)
+			      (T NORMALCOMMENTSFLG)))
+(DECLARE: FIRST 
+
+(ADDTOVAR NOSWAPFNS CONTROLW)
+)
+(SETSYNTAX (QUOTE ')
+	   (QUOTE (MACRO FIRST NOESC READ'))
+	   EDITRDTBL)
+(SETSYNTAX (QUOTE ')
+	   EDITRDTBL T)
+(SETSYNTAX (QUOTE %)
+	   (QUOTE (INFIX IMMEDIATE CONTROLW))
+	   T)
+(SETSYNTAX (QUOTE %)
+	   T EDITRDTBL)
+(ECHOCONTROL (QUOTE %)
+	     (QUOTE IGNORE))
+(SETSYNTAX (QUOTE *)
+	   (QUOTE (INFIX ALONE NOESC READCOMMENT))
+	   FILERDTBL)
+[MAPC (QUOTE (1 2 3 4 5 6))
+      (FUNCTION (LAMBDA (X)
+			(ECHOCONTROL X (QUOTE IGNORE]
+
+(ADDTOVAR PRETTYPRINTMACROS (* . PRINTCOMMENT))
+
+(ADDTOVAR EDITMACROS (GET* NIL (BIND (IF (NEQ (SETQ #1 (GETCOMMENT
+						      (##)))
+					      (##))
+					 ((I : #1)
+					  1)
+					 NIL))))
+
+(ADDTOVAR EDITCOMSA GET*)
+(DECLARE: DOEVAL@COMPILE DONTCOPY 
+[DECLARE: EVAL@COMPILE 
+
+(RECORD COMMENTBOX (HEAD START NCHARS FILE FLG . REST)
+		   HEAD _ COMMENTFLG)
+]
+)
+(DEFINEQ
+
+(PRINTPROPS
+  [LAMBDA (AT)                                  (* wt: "23-JUL-78 21:46")
+    (RESETFORM (PRINTLEVEL (QUOTE (2 . 3)))
+	       (MAP (OR (LISTP (GETPROPLIST AT))
+			[LISTP (GETPROPLIST (OR (FIXSPELL AT NIL 								       |
+							  USERWORDS T)								       |
+						(FIXSPELL AT NIL 								       |
+							 SPELLINGS2 T)								       |
+						(FIXSPELL AT NIL 								       |
+							 SPELLINGS1 T]								       |
+			(PROGN (PRINT AT T)								       |
+			       NIL))								       |
+		    (FUNCTION [LAMBDA (TL)
+			(PRIN2 (CAR TL)
+			       T T)
+			(PRIN1 " : " T)
+			(SHOWPRINT (CADR TL)								       |
+				   T T])								       |
+		    (FUNCTION CDDR])
+
+(PRINTBINDINGS
+  [LAMBDA (AT POS FL)                                       (* wt: "24-JAN-79 11:07")                                                                                                     |
+                                                            (* Print out the bindings of an atom)
+    (RESETFORM (PRINTLEVEL 2 3)
+	       (PROG (NAME VAL EPOS)
+		     (OR FL (SETQ FL T))												     |
+		     [SETQ POS (STKNTH 0 (OR POS (QUOTE PRINTBINDINGS]
+		 LP  (OR (SETQ POS (STKSCAN AT POS POS))
+			 (GO OUT))
+		     (SETQ VAL (STKARG AT POS))
+		     (PRIN1 (QUOTE "@ ")												     |
+			    FL)												     |
+		     (PRIN2 (STKNAME POS)												     |
+			    FL T)												     |
+		     [COND
+		       ((NOT (REALFRAMEP POS))
+			 (PRIN1 "/" FL)												     |
+			 (PROG NIL
+			       (SETQ EPOS (STKNTH 1 POS EPOS))
+			   LP  (COND
+				 ((REALFRAMEP EPOS)
+				   (PRIN2 (STKNAME EPOS)												     |
+					  FL T))												     |
+				 ((SETQ EPOS (STKNTH 1 EPOS EPOS))
+				   (GO LP))
+				 (T (PRIN1 "? " FL]												     |
+		     (PRIN1 (QUOTE " : ")												     |
+			    FL)												     |
+		     (SHOWPRINT VAL FL T)												     |
+		     (AND (SETQ POS (STKNTH 1 POS POS))
+			  (GO LP))
+		 OUT (RELSTK EPOS)
+		     (PRIN1 "@ " FL)												     |
+		 LAST(PRIN1 (QUOTE "TOP : ")												     |
+			    FL)												     |
+		     (SHOWPRINT (GETTOPVAL AT)												     |
+				FL T)												     |
+		     (RETURN])
+)
+
+(ADDTOVAR LISPXHISTORYMACROS [PL (COND (LISPXLINE (PRINTPROPS
+						    (CAR LISPXLINE)))
+				       (T (QUOTE (E PL]
+	  [PB (MAPC LISPXLINE (FUNCTION
+		      (LAMBDA (X)
+			      (PRINTBINDINGS
+				X
+				(AND (EQ LISPXID (QUOTE :))
+				     LASTPOS]
+	  (; NIL NIL))
+
+(ADDTOVAR HISTORYCOMS ;)
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: PRINTPROPS PRINTPROPS (NOLINKFNS . T)
+	(GLOBALVARS SPELLINGS1 SPELLINGS2 USERWORDS RESETVARSLST))
+(BLOCK: PRINTBINDINGS PRINTBINDINGS (NOLINKFNS . T)
+	(GLOBALVARS RESETVARSLST))
+]
+(DEFINEQ
+
+(SHOWPRINT
+  [LAMBDA (X FILE RDTBL)                                    (* wt: " 1-JAN-79 23:23")
+    (COND
+      [SYSPRETTYFLG (RESETFORM (OUTPUT FILE)												     |
+			       (PROGN (PRINTDEF X T)												     |
+				      (TERPRI FILE]												     |
+      (T (PRINT X FILE RDTBL)))
+    X])
+
+(SHOWPRIN2
+  [LAMBDA (X FILE RDTBL)                                    (* wt: " 1-JAN-79 23:23")
+    (COND
+      (SYSPRETTYFLG (RESETFORM (OUTPUT FILE)												     |
+			       (PRINTDEF X T)))												     |
+      (T (PRIN2 X FILE RDTBL)))
+    X])
+)
+
+(RPAQ SYSPRETTYFLG NIL)
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: NIL SHOWPRINT SHOWPRIN2 (GLOBALVARS RESETVARSLST SYSPRETTYFLG))
+]
+[DECLARE: DONTEVAL@LOAD DONTCOPY
+(* The ? feature)  ]
+
+(DEFINEQ
+
+(DO?
+  [LAMBDA (FILE RDTBL LST)                                  (* wt: "30-MAY-79 18:09")
+    (PROG (C TAIL FORM FN TEM)
+          (SETQ C (PEEKC FILE))
+          [COND
+	    [[NULL (AND (EQ FILE T)
+			(OR (EQ C (QUOTE %
+))
+			    (EQ C (QUOTE =)))
+			(SETQ TAIL (COND
+			    ([AND (READLINEP)
+				  LINE LISPXFLG (OR (EQ (INREADMACROP)
+							1)
+						    (NOT (CAR LST]
+			      
+
+          (* Says you are arguments to a functio in apply format, and either at top level (the inreadmacrop) or one level down												     |
+	  but havent typed a functionname, e.g. typing FOO (A B (? -												     |
+	  would tell you about FOO)))
+
+
+			      (SETQ FORM (CONS (SETQ FN (CAR LINE))
+					       (CAR LST)))
+			                                    (* For ?= purposes.)
+			      LINE)
+			    (T (SETQ FORM (CAR LST]
+	                                                    (* False alarm.)
+	      (RETURN (TCONC LST (COND
+			       ((OR (SYNTAXP (SETQ C (CHCON1 C))
+					     (QUOTE SEPR)
+					     RDTBL)
+				    (SYNTAXP C (QUOTE BREAK)
+					     RDTBL))
+				                            (* would have been separated anyway.)
+				 (QUOTE ?))
+			       (T (PACK* (QUOTE ?)
+					 (READ FILE RDTBL]|
+	    ((EQ C (QUOTE %
+))
+	      (AND (XNLSETQ [SETQ TEM (COND
+				((AND (NEQ LAST? (SETQ LAST? (CAR TAIL)))
+				      LST
+				      (CDR FORM)
+				      (FNCHECK (CAR FORM)
+					       T NIL T TAIL))
+				                            (* User typed ? after supplying some arguments, so only 
+							    give him info about that argument.)
+				  (HELPSYS (LENGTH FORM)
+					   (QUOTE ARGS)
+					   (CAR FORM)
+					   (QUOTE FD)))
+				(T (HELPSYS (CAR TAIL)
+					    (AND (FNTYP (CAR TAIL))
+						 (QUOTE FD]
+			    NOBREAK)
+		   (NULL TEM)
+		   (PRIN1 (QUOTE "unavailable subject.
+")
+			  T)))
+	    [(AND (EQ (SETQ TEM (READ FILE RDTBL))|
+		      (QUOTE =))
+		  (EQ (PEEKC FILE)
+		      (QUOTE %
+)))
+	      (ERSETQ (PROGN (DO?= TAIL FORM)
+			     (TERPRI FILE]
+	    (T (RETURN (TCONC LST (PACK (LIST (QUOTE ?)
+					      TEM]
+          (AND (CDDR LST)
+	       (FRPLACD LST (FLAST LST)))                   (* remove the ?)
+          (TERPRI T)
+          (AND FN (PRIN2 FN T T))
+          [MAPRINT (COND
+		     (LST (CAR LST))
+		     (T (CDR LINE)))
+		   T
+		   (COND
+		     (LST "(")
+		     (T " "))
+		   " " NIL (FUNCTION (LAMBDA (X)
+		       (PRIN2 X T T]                        (* tell the user where he is)
+          (RETURN LST])
+
+(DO?=
+  [LAMBDA (TAIL FORM FILE LEFT)                             (* wt: "16-SEP-79 19:42")
+    (PROG (ARGNAMES TEM)|
+          (OR FILE (SETQ FILE T))|
+          (OR LEFT (SETQ LEFT 0))|
+          (COND|
+	    ((NULL FORM)|
+	                                                    (* from editor)|
+	      (SETQQ COM ?=)|
+	      (OR (LISTP TAIL)|
+		  (ERROR!))|
+	      (SETQ FORM TAIL)))|
+          (SETQ ARGNAMES (SMARTARGLIST (CAR TAIL)|
+				       T TAIL))|
+          [COND|
+	    ((AND (LISTP ARGNAMES)|
+		  (NULL (CDR ARGNAMES))|
+		  (OR (EQ (SETQ TEM (ARGTYPE (CAR TAIL)))|
+			  2)|
+		      (EQ TEM 3)))|
+	      (SETQ ARGNAMES (CAR ARGNAMES]                 (* tail provided for spelling correction purposes.)
+|
+          (RESETFORM (PRINTLEVEL 3)|
+		     (COND|
+		       [(OR (NULL ARGNAMES)|
+			    (LISTP ARGNAMES))|
+			 (COND|
+			   ((NULL (CDR FORM))|
+			     (PRIN2 (CAR FORM)|
+				    FILE T)|
+			     (MAPRINT ARGNAMES FILE (QUOTE %[)|
+				      (QUOTE %])|
+				      (QUOTE ,)))|
+			   (T [eachtime (SETQ FORM (CDR FORM)) while (AND FORM ARGNAMES)|
+				 do (AND (NEQ LEFT 0)|
+					 (SPACES LEFT FILE))|
+				    (COND|
+				      ((NEQ (CAR ARGNAMES)|
+					    (QUOTE ...))|
+					(PRIN2 (CAR ARGNAMES)|
+					       FILE T)|
+					(SETQ ARGNAMES (CDR ARGNAMES)))|
+				      (T (SPACES 2 FILE)))|
+				    (PRIN1 " = " FILE)|
+				    (PRIN2 (COND|
+					     ((NEQ FILE T)|
+					       (RETDWIM3 (CAR FORM)|
+							 NIL 10 3))|
+					     (T (CAR FORM)))|
+					   FILE T)|
+				    (COND|
+				      ((OR (CDR FORM)|
+					   ARGNAMES)|
+					                    (* i have an application where i do not want that last |
+							    terpri printed, which is why i go to this trouble.)
+|
+					(TERPRI FILE]|
+			      (COND|
+				((AND (EQ FILE T)|
+				      (EQ (CAR ARGNAMES)|
+					  (QUOTE ...)))|
+				  (PRIN1 (QUOTE ".
+.
+")|
+					 FILE)|
+				  (PRIN2 (CADR ARGNAMES)|
+					 FILE T)|
+				  (PRIN1 " = " FILE))|
+				[FORM (MAPRINT FORM FILE "plus  ... " (QUOTE %))|
+					       NIL|
+					       (COND|
+						 [(NEQ FILE T)|
+						   (FUNCTION (LAMBDA (X)|
+						       (PRIN2 (RETDWIM3 X NIL 10 3)|
+							      FILE T]|
+						 (T (QUOTE PRIN2]|
+				(ARGNAMES (MAPRINT ARGNAMES FILE NIL " = " (QUOTE ,]|
+		       (T (PRIN1 ARGNAMES FILE)|
+			  (MAPRINT (CDR FORM)|
+				   FILE " = ... " (QUOTE %))|
+				   NIL|
+				   (COND|
+				     [(NEQ FILE T)|
+				       (FUNCTION (LAMBDA (X)|
+					   (PRIN2 (RETDWIM3 X NIL 10 3)|
+						  FILE T]|
+				     (T (QUOTE PRIN2])
+
+(ERRORCONTEXT
+  [LAMBDA (POS ERRORTYPE BADGUY)
+    (PROG [FORM FN EXPR TYPE-IN? PARENT BREAKFLG VAL FILE TEM (CLK (AND HELPCLOCK (CLOCK 2]
+          [AND (NULL POS)
+	       (COND
+		 ((SETQ POS (STKPOS (QUOTE ERRORX)))
+		   (SETQ POS (STKNTH -1 POS POS)))
+		 (T                                         (* On calls to ERROR for which nobreak argument is T, 
+							    doesnt go through errorx.)
+		    (SETQ POS (OR (STKPOS (QUOTE ERROR))
+				  (STKPOS (QUOTE ERRORMESS1]
+      LP  [SETQ FORM (BLIPVAL (QUOTE *FORM*)
+			      (SETQ POS (STKNTH -1 POS POS]
+          (COND
+	    ((AND FORM (NULL (CDR FORM))
+		  (GENSYM? (CAR FORM))
+		  (SETQ TEM (STKPOS (CAR FORM)
+				    -1 POS)))               (* this "form" comes from a compiled errorset)
+	      (RELSTK POS)
+	      (SETQ POS (STKNTH -1 TEM TEM))
+	      (GO LP))
+	    ((EQ (CAR FORM)
+		 (QUOTE BREAK1))                            (* user typed in an apply expression to a break.)
+	      (SETQ FORM NIL)))
+          (SETQ FN (FINDFN (STKNTH 0 POS)
+			   T))                              (* FINDFN does a RELSTK.)
+          (SETQ VAL
+	    (CREATE CONTEXT ERRORTYPE _ ERRORTYPE TYPEIN _ TYPE-IN? USERFN _ FN FORM _ FORM ARGVALS _[
+		      COND
+		      (FORM                                 (* FORM=NIL for apply format.)
+			    (CAR (XNLSETQ (STKARGS (CAR FORM))
+					  NOBREAK]
+		    FREEVARLST _[MAPCAR (FREEVARS (OR FORM (CONS FN EXPR)))
+					(FUNCTION (LAMBDA (X)
+                                                            (* FORM is NIL for typein in apply mode.)
+					    (CONS X (EVALV X POS]
+		    EXPR _ EXPR))
+          (RELSTK POS)
+      OUT [AND HELPCLOCK (SETQ HELPCLOCK (IPLUS HELPCLOCK (IDIFFERENCE (CLOCK 2)
+								       CLK]
+          (RETURN VAL])
+
+(WHY
+  [LAMBDA (LINE)                                            (* called via ? lispxmacro)
+    (PROG (CONTEXT BADGUY ARGINFO FORM FN ARGVALS ARGNAMES TEM ARGNAME ARG# ALST BADLST BADARG#S FLG)
+          (COND
+	    ([NULL (SETQ CONTEXT (LISTGET1 (SETQ TEM (LISPXFIND LISPXHISTORY LINE (QUOTE ENTRY)
+								T))
+					   (QUOTE *CONTEXT*]
+                                                            (* e.g. u.b.a error)
+	      (GO OUT1)))
+      TOP (SETQ BADGUY (LISTGET1 TEM (QUOTE *ERROR*)))
+          (WHYSETUP CONTEXT)
+          (COND
+	    ((SETQ BADLST (WHY0 FN ARGVALS))
+	      (EXPLAIN1 FN BADLST (QUOTE "because")
+			(QUOTE "requires that")
+			(QUOTE ("be" . "not be")))
+	      (EXPLAIN2 FORM (fetch (CONTEXT USERFN) of CONTEXT)
+			(COND
+			  (FORM (CDR FORM))
+			  (T ARGVALS))
+			BADARG#S)
+	      (RETURN NIL)))
+      OUT1(COND
+	    ([AND (NULL FLG)
+		  (SETQ TEM (SEARCHPDL [FUNCTION (LAMBDA (NAME POS)
+					   (SETQ BADLST (WHY0 NAME (STKARGS POS]
+				       (AND (RELSTK (STKPOS (QUOTE BREAK1)))
+					    LASTPOS]
+	      [WHYSETUP (SETQ CONTEXT (ERRORCONTEXT (CDR TEM]
+	      (EXPLAIN1 (CAR TEM)
+			BADLST
+			(QUOTE "it could be because")
+			(QUOTE "expects that")
+			(QUOTE ("will be" . "will not be")))
+                                                            (* CHECK THIS)
+	      (EXPLAIN2 FORM (fetch (CONTEXT USERFN) of CONTEXT)
+			(COND
+			  (FORM (CDR FORM))
+			  (T ARGVALS))
+			BADARG#S)
+	      (RETURN NIL))
+	    ((AND CONTEXT [SETQ TEM (COND
+		      ((NUMBERP (SETQ TEM (fetch ERRORTYPE of CONTEXT)))
+			(ERRORSTRING TEM))
+		      ((STRINGP TEM)
+			TEM)
+		      (T (HELP]
+		  (CAR (XNLSETQ [OR (AND FN (HELPSYS TEM (QUOTE EM)
+						     FN
+						     (QUOTE FD)))
+				    (HELPSYS TEM (QUOTE EM))
+				    (AND FN (HELPSYS FN (QUOTE FD]
+				NOBREAK)))                  (* WHY1 computes error message as a string.
+							    right now is just a table lookup)
+	      (RETURN))
+	    ([AND (NULL LINE)
+		  (NULL CONTEXT)
+		  (SOME (CAR LISPXHISTORY)
+			(FUNCTION (LAMBDA (EVENT)
+			    (COND
+			      ((SETQ CONTEXT (LISTGET1 EVENT (QUOTE *CONTEXT*)))
+				(SETQ TEM EVENT]
+	      (SETQ FLG T)
+
+          (* SO WONT TRY TO DO THE SEARCHPDL AGAIN. THIS WHOLE FUNCTION SHOULD BE REWRITTEN. PROBABLY WHAT SHOULD HAPPEN IS 
+	  THAT THE LAST FRAME FOR ERROR SHOULD BE SAVED, OR SOMETHING SIMILAR.)
+
+
+	      (GO TOP)))
+      OUT (PRIN1 (QUOTE "beats me.
+")
+		 T)
+          (RETURN NIL])
+
+(WHY0
+  [LAMBDA (FN ARGVALS)                                      (* Determines if there is anything 'wwrong' with FN 
+							    value is NIL or a list of the offending argument/values)
+    (PROG (TEM BADLST ARGINFO ALST)
+      TOP (COND
+	    ((SETQ ARGINFO (GETPROP FN (QUOTE INFO)))
+	      (COND
+		((EQ ARGINFO (QUOTE EVAL))                  (* This property is used by printstructure, dwimify, 
+							    etc. to indicate when an nlambda actually evaluates its 
+							    arguments.)
+		  (RETURN NIL))
+		((NLISTP ARGINFO)
+		  (HELP)))
+
+          (* ARGINFO is now a list of forms to be evaluated after spreading the argument values. forms are more general and 
+	  more conveinet than functions since they permit expressions involving more than one variable.
+	  however, in order to facilitate specifying information for each argument of a nospread function, an element of the 
+	  form (& fn) means fn is to be applied to each argument. The englsh string can be stored in the ARGINFO directly by 
+	  the appparance of an expresson of the form (form string) or (& fn string), e.g. DEFINEQ has an arginfo property of 
+	  (& LISTP "of the form (fn def)"))
+
+
+	      )
+	    [[OR (EQ (GETPROP FN (QUOTE CTYPE))
+		     (QUOTE INF))
+		 (AND (SETQ TEM (GETPROP FN (QUOTE CLISPCLASS)))
+		      (EQ (CAR (GETPROP TEM (QUOTE CLISPCLASSDEF)))
+			  (QUOTE ARITH]
+	      (SETQQ ARGINFO ((& NUMBERP]
+	    ([SOME LISPXFNS (FUNCTION (LAMBDA (X)
+		       (AND (EQ (CDR X)
+				FN)
+			    (SETQ FN (CAR X]
+	      (GO TOP))
+	    (T (RETURN NIL)))
+          (SETQ ARGNAMES (SMARTARGLIST FN))
+          [SETQ ALST (COND
+	      ((LISTP ARGNAMES)
+		[for X in ARGNAMES bind TEM_ARGVALS do (COND
+							 (TEM (SETQ TEM (CDR TEM)))
+							 (T (SETQ ARGVALS (NCONC1 ARGVALS NIL]
+                                                            (* adds the extra NIL's to ARGVALS.)
+		(MAP2CAR ARGNAMES ARGVALS (FUNCTION CONS)))
+	      (T (LIST (CONS ARGNAMES ARGVALS]              (* ALST is for use by EVALA)
+          (SETQ BADLST (CONS NIL NIL))
+          [MAPC ARGINFO (FUNCTION (LAMBDA (INFO)
+		    (COND
+		      ((NLISTP INFO))
+		      [(EQ (CAR INFO)
+			   (QUOTE &))
+			(for ARGVAL FLG in ARGVALS as I from 1
+			   do (COND
+				((NULL (APPLY* (SETQ TEM (fetch (INFOFNREC FN) of INFO))
+					       ARGVAL))     (* Bad expression found)
+				  (AND (NOT (MEMB I BADARG#S))
+				       (SETQ BADARG#S (CONS I BADARG#S)))
+				  (AND (NULL FLG)
+				       (TCONC BADLST (create BADLSTREC HEADER _(QUOTE &)
+							     FORM _(LIST TEM (QUOTE &))
+							     VARS _(CONS I (AND (LISTP TEM)
+										(WHYVARS TEM)))
+							     ENGLSH _(fetch (INFOFNREC ENGLSH)
+									of INFO)
+							     FN _ TEM))
+				       (SETQ FLG T]
+		      ((NULL (EVALA (SETQ TEM (COND
+					((NULL (fetch (INFOFORMREC HEADER) of INFO))
+
+          (* In most cases, the info propety is just a form. However, to allow for including other info, e.g. englsh strings, 
+	  If car is NIL, means the info property is an instance of the record INFOFORMREC.)
+
+
+					  (fetch (INFOFORMREC FORM) of INFO))
+					(T INFO)))
+				    ALST))
+			(TCONC BADLST (CREATE BADLSTREC FORM _ TEM ENGLSH _(AND
+						(NULL (fetch (INFOFORMREC HEADER) of INFO))
+						(fetch (INFOFORMREC ENGLSH) of INFO))
+					      VARS _(WHYVARS (COND
+							       ((ATOM TEM)
+								 (LIST TEM))
+							       (T (FREEVARS TEM]
+                                                            (* BADLST is now a list of those things that do not 
+							    agree with arginfo.)
+          (RETURN (CAR BADLST])
+
+(WHYSETUP
+  [LAMBDA (CONTEXT)
+    (PROG (TEM)                                             (* Sets up variables for context.)
+          (SETQ FORM (fetch (CONTEXT FORM) of CONTEXT))
+          (SETQ ARGVALS (fetch (CONTEXT ARGVALS) of CONTEXT))
+          [COND
+	    ((NULL FORM)                                    (* APPLY format)
+	      (SETQ ARGVALS (fetch EXPR of CONTEXT))
+	      (SETQ FN (fetch (CONTEXT USERFN) of CONTEXT)))
+	    (T (SETQ FN (CAR FORM]
+          (AND (fetch TYPEIN of CONTEXT)
+	       [SOME LISPXFNS (FUNCTION (LAMBDA (X)
+			 (EQ FN (CDR (SETQ TEM X]
+	       (SETQ FN (CAR TEM])
+
+(WHYSPACE
+  [LAMBDA (N)
+    (COND
+      ((IGREATERP (POSITION T)
+		  N)
+	(TERPRI T))
+      (T (SPACES 1 T])
+
+(WHYVARS
+  [LAMBDA (X)
+    (PROG (TEM)
+          (RETURN (MAPCAR X (FUNCTION (LAMBDA (VAR)
+
+          (* Value of mapcar is list of freevariables of the form, where variables corresponding to aguments of function are 
+	  replaced by numbers. In addition, all arguments of the function mentiond in any of these forms areadded to BADARGS.)
+
+
+			      (COND
+				((NOT (MEMB VAR ARGNAMES))
+				  VAR)
+				(T (AND (NOT (MEMB (SETQ TEM (GETARG# VAR ARGNAMES))
+						   BADARG#S))
+					(SETQ BADARG#S (CONS TEM BADARG#S)))
+				   TEM])
+
+(GETARG#
+  [LAMBDA (X ARGNAMES)                                      (* Value is the argument NUMBER, e.g. if argnames is 
+							    (A b c) and x is b, value is 2)
+    (AND (MEMB X ARGNAMES)
+	 (for Y in ARGNAMES as I from 1 until (EQ Y X) finally (RETURN I])
+
+(EXPLAIN1
+  [LAMBDA (FN BADLST STR1 STR2 STR3)
+
+          (* explains which convention (s) of FN was violated, e.g. because ITIMES requires that all its arguments be numbers,
+	  because RPLACA requires that its first argument not be NIL, etc.)
+
+
+    (PROG (TEM)
+          (PRIN1 STR1 T)
+          (SPACES 1 T)
+          (PRIN1 (OR (AND CLISPIFYPRETTYFLG (GETPROP FN (QUOTE CLISPINFIX)))
+		     FN)
+		 T)
+          (SPACES 1 T)
+          (PRIN1 STR2 T)
+          (SPACES 1 T)
+          (SETQ TEM (MAPCAR BADLST (FUNCTION EXPLAINARG)))
+          [MAPRINT TEM T NIL NIL (QUOTE ",
+and ")
+		   (FUNCTION (LAMBDA (X)
+		       (MAPRINT X T]
+          (COND
+	    ((IGREATERP (POSITION T)
+			40)
+	      (TERPRI T))
+	    (T (SPACES 1 T)))
+          (RETURN])
+
+(EXPLAINARG
+  [LAMBDA (REC)                                             (* wt: "23-SEP-77 01:10")
+                                                            (* takes a single entry on badlst and explains it, e.g. 
+							    "A, its first argument, be a number")
+    (PROG (TEM LST (FLG T)
+	       SEENLST EXP)
+          [RETURN (EXPLAINARG1 (COND												     |
+				 ((SETQ TEM (fetch (BADLSTREC ENGLSH) of REC))												     |
+				   (LIST (CADR (fetch (BADLSTREC FORM) of REC))												     |
+					 TEM))												     |
+				 (T (RESETVARS ((CLISPIFYENGLSHFLG T)												     |
+						CL:FLG)												     |
+					       (RETURN (SETQ EXP (CLISPIFY (fetch (BADLSTREC FORM)												     |
+									      of REC]												     |
+
+          (* Value of explainarg1 is a list of words to be printed. Note that the result of clispifying can be atomic, e.g. if
+	  predicate is just X.)
+
+
+      ])
+
+(EXPLAINARG1
+  [LAMBDA (FORM NEGFLG ENG)                                 (* wt: " 5-MAY-79 19:04")
+    (PROG (TEM)
+          [COND
+	    ((ATOM FORM)
+	      (RETURN (NCONC (EXPLAINARG2 FORM NEGFLG)
+			     (LIST (COND
+				     (NEGFLG (CAR STR3))
+				     (T (CDR STR3)))
+				   NIL]
+          (RETURN (SELECTQ (CAR FORM)
+			   ((AND OR)
+			     (NOTIMP))												     |
+			   (EVERY)												     |
+			   (NOT (EXPLAINARG1 (CADR FORM)
+					     (NULL NEGFLG)))
+			   (COND
+			     [(AND (NULL (CDDR FORM))
+				   (ATOM (CADR FORM)))
+			       (CONS (CAR FORM)
+				     (CONS (QUOTE "of")
+					   (EXPLAINARG2 (CADR FORM)
+							NEGFLG]
+			     ([AND (FNTYP (CAR FORM))
+				   (OR (MEMB (CADR FORM)
+					     ARGNAMES)
+				       (NOT (GETPROP (CADR FORM)
+						     (QUOTE CLISPTYPE]
+			                                    (* Looks like this form wasnt clispified.)
+			       (LIST (QUOTE "the value of")
+				     FORM
+				     (COND
+				       (NEGFLG (CAR STR3))
+				       (T (CDR STR3)))
+				     NIL))
+			     (T (MAPCONC FORM (FUNCTION EXPLAINARG2])
+
+(EXPLAINARG2
+  [LAMBDA (X NEGFLG)
+    (SELECTQ X
+	     (& (LIST (QUOTE "each of its arguments")))
+	     ((IS ARE is are)
+	       (LIST (CAR STR3)))
+	     (COND
+	       [(LISTP X)
+		 (COND
+		   [(AND (NULL (CDDR X))
+			 (ATOM (CADR X)))
+		     (CONS (CAR X)
+			   (CONS (QUOTE "of")
+				 (EXPLAINARG3 (CADR X]
+		   (T (LIST X]
+	       (T (EXPLAINARG3 X])
+
+(EXPLAINARG3
+  [LAMBDA (X)
+    (PROG (TEM)
+          (RETURN (COND
+		    ((FMEMB X SEENLST)
+		      (LIST X))
+		    ((SETQ TEM (GETARG# X ARGNAMES))
+		      (SETQ SEENLST (CONS X SEENLST))
+		      (LIST X (QUOTE "(its")
+			    (COND
+			      ((CDR (ASSOC TEM ORDINALS)))
+			      (T [NCONC1 ORDINALS (SETQ TEM (CONS TEM (PACK TEM (QUOTE th]
+				 TEM))
+			    (QUOTE "argument)")))
+		    (T (LIST X])
+
+(EXPLAIN2
+  [LAMBDA (FORM USERFN EXPLST BADARG#S)                     (* wt: " 5-MAY-79 19:14")
+    (PROG (TEM FREEVARLST FLG)
+          (PRIN1 (QUOTE "but in")
+		 T)
+          (WHYSPACE 40)
+          [COND
+	    (FORM (RESETFORM (PRINTLEVEL 3)
+			     (PRIN2 (EXPLAIN2A (COND												     |
+						 ([SETQ TEM (SOME LISPXFNS (FUNCTION (LAMBDA (X)												     |
+								      (EQ (CAR FORM)												     |
+									  (CDR X]												     |
+						   (CONS (CAAR TEM)												     |
+							 (CDR FORM)))												     |
+						 (T FORM)))												     |
+				    T)))
+	    (T                                              (* apply format.)
+	       (PRIN2 (OR [CAAR (SOME LISPXFNS (FUNCTION (LAMBDA (X)												     |
+					  (EQ USERFN (CDR X]												     |
+			  USERFN)												     |
+		      T)
+	       (COND
+		 (EXPLST (PRIN2 EXPLST T))
+		 (T (PRIN1 "()" T]
+          (COND
+	    ((AND FORM USERFN (NEQ USERFN (QUOTE TYPE-IN)))
+	      (WHYSPACE 50)
+	      (PRIN1 (QUOTE "{in ")
+		     T)
+	      (PRIN2 USERFN T)
+	      (PRIN1 (QUOTE "}")
+		     T)))
+          (PRIN1 (QUOTE ,)
+		 T)
+          (WHYSPACE 40)
+          [COND
+	    (FORM (for LST on (SORT BADARG#S)
+		     do (COND
+			  ((OR [NUMBERP (SETQ TEM (CAR (NTH EXPLST (CAR LST]
+			       (NULL TEM)
+			       (EQ TEM T)
+			       (EQ (CAR TEM)
+				   (QUOTE QUOTE)))
+			                                    (* dont print superfluous information, e.g. vllue of 3 
+							    is 3.0))
+			  (T (COND
+			       (FLG (PRIN1 (QUOTE ", and ")
+					   T)))
+			     (SETQ FLG T)
+			     (PRIN1 (QUOTE "the value of")
+				    T)
+			     (WHYSPACE 40)
+			     (PRIN2 (EXPLAIN2A TEM)
+				    T)
+			     (PRIN1 (QUOTE " is")
+				    T)
+			     (WHYSPACE 40)
+			     (PRIN2 (CAR (NTH ARGVALS (CAR LST)))
+				    T)
+			     (COND
+			       ((AND (LISTP TEM)
+				     (SETQ TEM (FREEVARS TEM)))
+				 
+
+          (* This is a different freevars then in WHY. There we computed the freevars in the ARGINFO expressions, here we are 
+	  compuing the freevars in the actual argument expressions. e.g. in the FACT example, the arginfo is 
+	  (NUMBERP N), and that N is NIL, but the argument is (FACT (SUB1 N)) and that N is 1.0)
+
+
+				 (SETQ FREEVARLST (fetch FREEVARLST of CONTEXT))
+				 (MAPRINT TEM T (QUOTE " when ")
+					  NIL " and " (FUNCTION (LAMBDA (X)
+					      (PRIN2 X T)
+					      (PRIN1 (QUOTE =)
+						     T)
+					      (PRIN2 (CDR (ASSOC X FREEVARLST))
+						     T]
+          (COND
+	    ((NULL FLG)
+	                                                    (* user has seen the value of the arguments abvoe)
+	      (PRIN1 (QUOTE "this is not the case.")
+		     T)))
+          (TERPRI T)
+          (RETURN])
+
+(EXPLAIN2A
+  [LAMBDA (EXP)
+    (COND
+      (CLISPIFYPRETTYFLG (CLISPIFY EXP))
+      (T EXP])
+)
+
+(RPAQQ ORDINALS ((1 . "first")
+		 (2 . "second")
+		 (3 . "third")))
+
+(RPAQ LAST? NIL)
+(SETSYNTAX (QUOTE ?)
+	   (QUOTE (INFIX FIRST NOESC DO?))
+	   T)
+(SETSYNTAX (QUOTE ?)
+	   T EDITRDTBL)
+
+(ADDTOVAR LISPXHISTORYMACROS (? (WHY LISPXLINE)))
+
+(ADDTOVAR LISPXCOMS ?)
+(DECLARE: DOEVAL@COMPILE DONTCOPY 
+[DECLARE: EVAL@COMPILE 
+
+(RECORD CONTEXT (ERRORTYPE TYPEIN USERFN FORMINFO EXPR)
+		(RECORD FORMINFO (FORM ARGVALS FREEVARLST)))
+
+(RECORD BADLSTREC (HEADER FORM FN VARS ENGLSH))
+
+(RECORD INFOFNREC (HEADER FN ENGLSH)
+		  HEADER _(QUOTE &))
+
+(RECORD INFOFORMREC (HEADER FORM ENGLSH))
+]
+)
+
+(PUTPROPS ELT INFO (EVAL (ARRAYP A)
+			 (NUMBERP N)))
+
+(PUTPROPS SETA INFO ((ARRAYP A)
+		     (NUMBERP N)))
+
+(PUTPROPS RPLACA INFO ((LISTP LST)))
+
+(PUTPROPS RPLACD INFO ((LISTP LST)))
+
+(PUTPROPS ADD1 INFO ((NUMBERP X)))
+
+(PUTPROPS SUB1 INFO ((NUMBERP X)))
+
+(PUTPROPS IGREATERP INFO ((& NUMBERP)))
+
+(PUTPROPS ILESSP INFO ((& NUMBERP)))
+
+(PUTPROPS MINUSP INFO ((NUMBERP X)))
+
+(PUTPROPS DEFINEQ INFO ((& LISTP "be of the form (FN DEF)")))
+
+(PUTPROPS ELT ARGNAMES (A N))
+
+(PUTPROPS RPLACA ARGNAMES (LST Y))
+
+(PUTPROPS RPLACD ARGNAMES (LST Y))
+
+(PUTPROPS IGREATERP ARGNAMES (X Y))
+
+(PUTPROPS MINUSP ARGNAMES (X))
+
+(PUTPROPS DEFINEQ ARGNAMES (NIL (X1 XI ... XN) . X))
+
+(ADDTOVAR EDITMACROS (?= NIL (E (PROGN (DO?= (##))
+				       (TERPRI T))
+				T)))
+
+(ADDTOVAR EDITCOMSA ?=)
+
+(RPAQQ TRYHARDERCOMS [(FNS LISPXRETRY LISPXRETRYFN LISPXRETRYFN1 
+			   LISPXRETRYFN2 LISPXRETRYTAIL PROPNAMES)
+	(PROP ARGNAMES SETQ EDITF)
+	(PROP TRYHARDER * TRYHARDERLST)
+	(BLOCKS (LISPXRETRYBLOCK LISPXRETRY LISPXRETRYFN LISPXRETRYFN1 
+				 LISPXRETRYFN2 LISPXRETRYTAIL
+				 (ENTRIES LISPXRETRY LISPXRETRYFN1)
+				 (SPECVARS EVENT ALST TAILST ARGNAMES)
+				 (GLOBALVARS SPELLINGS1 SPELLINGS2 
+					     USERWORDS SPELLINGS3 
+					     RESETVARSLST #UNDOSAVES])
+(DEFINEQ
+
+(LISPXRETRY
+  [LAMBDA (EVENT)                                           (* wt: "31-JUL-78 22:52")
+    (SETQ EVENT (CONS (COPY (CAR EVENT))
+		      (CDR EVENT)))
+    (COND
+      [(NULL (CDAR EVENT))                                  (* form)
+	(OR (LISPXRETRYFN (CAAAR EVENT)
+			  (CDAAR EVENT))
+	    (LISPXRETRYTAIL (CDAAR EVENT)
+			    (CAAAR EVENT]
+      (T (OR (LISPXRETRYFN (CAAR EVENT)
+			   (CADAR EVENT)
+			   T)
+	     (LISPXRETRYTAIL (CADAR EVENT)												     |
+			     (CAAR EVENT)												     |
+			     T])
+
+(LISPXRETRYFN
+  [LAMBDA (FN ARGVALS TOPFLG)                               (* wt: "23-AUG-78 02:52")
+    (PROG (INFOLST ALST TAILST VAL TEM ARGNAMES)
+          (COND
+	    ([NULL (SETQ INFOLST (GETP FN (QUOTE TRYHARDER]
+	      (RETURN)))
+          (for ARGNAME in (SETQ ARGNAMES (SMARTARGLIST FN T)) as TAIL on ARGVALS bind ARGVAL
+	     when (COND
+		    ((EQ [CAR (LISTP (SETQ ARGVAL (CAR TAIL]
+			 (QUOTE QUOTE))
+		      (SETQ TEM (CDR ARGVAL))
+		      (SETQ ARGVAL (CAR TEM))
+		      T)
+		    ((OR TOPFLG (EQ FN (QUOTE SETQ))
+			 (EQ FN (QUOTE SETQQ)))
+		      (SETQ TEM TAIL)
+		      T))
+	     do (SETQ ALST (CONS (CONS ARGNAME ARGVAL)
+				 ALST))
+		(SETQ TAILST (CONS (CONS ARGNAME TEM)
+				   TAILST)))
+          (COND
+	    ((NULL ALST)
+	      (RETURN)))
+          [NLSETQ (UNDONLSETQ
+		    (PROG (ARG TAIL)
+		          (UNDOLISPX2 EVENT)
+		          [for INFO in INFOLST
+			     when [OR (LISPXRETRYFN2 INFO)												     |
+				      (AND (EQ (CAR INFO)												     |
+					       (QUOTE OR))												     |
+					   (SETQ INFO (for INFO in (CDR INFO) collect INFO												     |
+							 when (LISPXRETRYFN2 INFO)												     |
+							 finally												     |
+							  (AND $$VAL (RETURN (COND												     |
+									       ((CDR $$VAL)												     |
+										 (CONS (QUOTE												     |
+											   OR)												     |
+										       $$VAL))												     |
+									       (T (CAR $$VAL]												     |
+			     do (COND
+				  ((LISPXRETRYFN1 INFO)
+				    (SETQ VAL T]
+		          (OR VAL (ERROR!]
+          (RETURN (AND VAL (CAR EVENT])
+
+(LISPXRETRYFN1
+  [LAMBDA (INFO)                                            (* wt: "22-AUG-78 00:37")
+    (PROG (ARG TAIL TEM)
+          (RETURN (COND
+		    ((SETQ TEM (SELECTQ (CAR INFO)
+					(GETD (SETQ ARG (EVALA (CADR INFO)
+							       ALST))
+					      (SETQ TAIL (CDR (ASSOC (CADR INFO)
+								     TAILST)))
+					      (OR (FIXSPELL ARG NIL USERWORDS NIL TAIL
+							    (FUNCTION GETD))
+						  (FIXSPELL ARG NIL SPELLINGS2 NIL TAIL)
+						  (FIXSPELL ARG NIL SPELLINGS1 NIL TAIL)))
+					[GETPROPLIST (SETQ ARG (EVALA (CADR INFO)
+								      ALST))
+						     (SETQ TAIL (CDR (ASSOC (CADR INFO)
+									    TAILST)))
+						     (OR (FIXSPELL ARG NIL USERWORDS NIL TAIL
+								   (FUNCTION GETPROPLIST))
+							 (FIXSPELL ARG NIL SPELLINGS2 NIL TAIL
+								   (FUNCTION GETPROPLIST))
+							 (FIXSPELL ARG NIL SPELLINGS1 NIL TAIL
+								   (FUNCTION GETPROPLIST]
+					(BOUNDP (SETQ ARG (EVALA (CADR INFO)
+								 ALST))
+						(SETQ TAIL (CDR (ASSOC (CADR INFO)
+								       TAILST)))
+						(OR (FIXSPELL ARG NIL USERWORDS NIL TAIL
+							      (FUNCTION BOUNDP))
+						    (FIXSPELL ARG NIL SPELLINGS3 NIL TAIL)))
+					(MEMB (SETQ ARG (EVALA (CADR INFO)
+							       ALST))
+					      (SETQ TAIL (CDR (ASSOC (CADR INFO)
+								     TAILST)))
+					      (FIXSPELL ARG NIL (EVALA (CADDR INFO)
+								       ALST)
+							NIL TAIL))
+					[SOME (SETQ TEM (CADR (CADDR INFO)))
+					      (SOME (EVALA (CADR INFO)
+							   ALST)
+						    (FUNCTION (LAMBDA (X)
+							(EVALA (LIST (QUOTE LISPXRETRYFN1)
+								     (KWOTE (CADDR TEM)))
+							       (LIST (CONS (CAADR TEM)
+									   X]
+					(OR (SOME (CDR INFO)
+						  (FUNCTION LISPXRETRYFN1)))
+					(PROGN (LISPXPRIN2 (CAR INFO)
+							   T)
+					       (LISPXPRIN1 "not a recognized INFO type" T)
+					       NIL)))
+		      (DSUBST TEM ARG ALST)
+		      (DSUBST TEM ARG TAILST)
+		      TEM])
+
+(LISPXRETRYFN2
+  [LAMBDA (INFO)                                            (* wt: "23-AUG-78 02:46")
+    (AND [EVERY (FREEVARS INFO)
+		(FUNCTION (LAMBDA (VAR)
+		    (OR (NOT (MEMB VAR ARGNAMES))
+			(ASSOC VAR ALST]
+	 (NULL (EVALA INFO ALST])
+
+(LISPXRETRYTAIL
+  [LAMBDA (TAIL FN TOPFLG)                                  (* wt: "22-AUG-78 00:18")
+    (PROG (EVALFLG)
+          [COND
+	    ([AND FN (SETQ EVALFLG (OR (EQ (SETQ EVALFLG (ARGTYPE FN))
+					   3)
+				       (EQ EVALFLG 1]
+	      (SELECTQ FN
+		       (QUOTE (RETURN))
+		       [FUNCTION (RETURN (AND (LISTP (SETQ TAIL (CAR TAIL)))
+					      (LISPXRETRYTAIL (CDDR TAIL]
+		       (COND
+			 ([NULL (EQMEMB (QUOTE EVAL)
+					(GETP FN (QUOTE INFO]
+			   (RETURN]
+      LP  (RETURN (COND
+		    ((NLISTP TAIL)
+		      NIL)
+		    [(AND (LISTP (CAR TAIL))
+			  (OR (AND (OR (NULL TOPFLG)
+				       EVALFLG)
+				   (LISPXRETRYFN (CAAR TAIL)
+						 (CDAR TAIL)))
+			      (LISPXRETRYTAIL (CDAR TAIL)
+					      (CAAR TAIL]
+		    ((SETQ TAIL (CDR TAIL))
+		      (GO LP])
+
+(PROPNAMES
+  [LAMBDA (ATM)                                 (* wt: " 3-AUG-78 01:23")
+    (MAPLIST (GETPROPLIST ATM)
+	     (FUNCTION CAR)
+	     (FUNCTION CDDR])
+)
+
+(PUTPROPS SETQ ARGNAMES (XSET YSET))
+
+(PUTPROPS EDITF ARGNAMES (NIL (FN COM1 ... COMN) . EDITFX))
+
+(RPAQQ TRYHARDERLST (MOVD GETD FNTYP GETP GETPROP GETPROPLIST SET SETQ 
+			  SETQQ PUT PUTPROP LOADFNS EDITF REMPROP))
+
+(PUTPROPS MOVD TRYHARDER ((GETD FROM)))
+
+(PUTPROPS GETD TRYHARDER ((GETD X)))
+
+(PUTPROPS FNTYP TRYHARDER ((GETD FN)))
+
+(PUTPROPS GETP TRYHARDER ((GETPROPLIST ATM)
+			  (OR (MEMB PROP (PROPNAMES ATM))
+			      (MEMB PROP SYSPROPS))))
+
+(PUTPROPS GETPROP TRYHARDER ((GETPROPLIST ATM)
+			     (OR (MEMB PROP (PROPNAMES ATM))
+				 (MEMB PROP SYSPROPS))))
+
+(PUTPROPS GETPROPLIST TRYHARDER ((GETPROPLIST ATM)))
+
+(PUTPROPS SET TRYHARDER ((BOUNDP X)))
+
+(PUTPROPS SETQ TRYHARDER ((BOUNDP XSET)))
+
+(PUTPROPS SETQQ TRYHARDER ((BOUNDP XSET)))
+
+(PUTPROPS PUT TRYHARDER ((GETPROPLIST ATM)
+			 (OR (MEMB PROP (PROPNAMES ATM))
+			     (MEMB PROP SYSPROPS))))
+
+(PUTPROPS PUTPROP TRYHARDER ((GETPROPLIST ATM)
+			     (OR (MEMB PROP (PROPNAMES ATM))
+				 (MEMB PROP SYSPROPS))))
+
+(PUTPROPS LOADFNS TRYHARDER [(SOME FILELST (FUNCTION
+				     (LAMBDA (FL)
+					     (MEMB FNS (FILEFNSLST
+						     FL])
+
+(PUTPROPS EDITF TRYHARDER [(SOME FILELST (FUNCTION
+				   (LAMBDA (FL)
+					   (MEMB FN (FILEFNSLST FL])
+
+(PUTPROPS REMPROP TRYHARDER ((GETPROPLIST ATM)
+			     (OR (MEMB PROP (PROPNAMES ATM))
+				 (MEMB PROP SYSPROPS))))
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: LISPXRETRYBLOCK LISPXRETRY LISPXRETRYFN LISPXRETRYFN1 
+	LISPXRETRYFN2 LISPXRETRYTAIL (ENTRIES LISPXRETRY LISPXRETRYFN1)
+	(SPECVARS EVENT ALST TAILST ARGNAMES)
+	(GLOBALVARS SPELLINGS1 SPELLINGS2 USERWORDS SPELLINGS3 
+		    RESETVARSLST #UNDOSAVES))
+]
+
+(RPAQQ ASKUSERCOMS ((* Askuser package.)
+	(FNS * ASKUSERFNS)
+	(VARS [DEFAULTKEYLST (QUOTE ((Y "es
+")
+				     (N "o
+")
+				     (U "se " EXPLAINSTRING 
+		"Use - allows user to type in an alternative value"
+					RETURN
+					(LIST (READ T T]
+	      (ASKUSERTTBL (COPYTERMTABLE)))
+	(P (CONTROL T ASKUSERTTBL)
+	   (ECHOMODE NIL ASKUSERTTBL))
+	(BLOCKS * ASKUSERBLOCKS)
+	(DECLARE: DOEVAL@COMPILE DONTCOPY (PROP BLKLIBRARYDEF LISTGET 
+						GET)
+		  (RECORDS ASKUSER OPTIONS))))
+[DECLARE: DONTEVAL@LOAD DONTCOPY
+(* Askuser package.)  ]
+
+
+(RPAQQ ASKUSERFNS (ASKUSER ASKUSERLOOKUP ASKUSERCHAR ASKUSER$ ASKUSER1 
+			   ASKUSERSETUP ASKUSEREXPLAIN ASKUSERPRIN1 
+			   MAKEKEYLST))
+(DEFINEQ
+
+(ASKUSER
+  [LAMBDA (WAIT DEFAULT MESS KEYLST TYPEAHEAD LISPXPRNTFLG OPTIONSLST FILE)
+                                                            (* wt: " 1-OCT-79 11:01")
+                                                            (* reads characters one at a time echoing and/or 
+							    prompting as indicated by KEYLST)
+    (RESETLST (COND
+		((NULL KEYLST)
+		                                            (* Yes, no recognized without conforimation)
+		  (SETQ KEYLST DEFAULTKEYLST)))
+	      (PROG (OLDTTBL CHAR TEM KEYLST1 ANSWER BUFS (ORIGKEYLST KEYLST)
+			     (ORIGMESS MESS)
+			     (ORIGDEFAULT DEFAULT)
+			     (NC 1)
+			     KEY PROMPTSTRING OPTIONS NOECHOFLG CONFIRMFLG NOCASEFLG PRINTLST 
+			     ECHOEDFLG)
+		    (COND
+		      ((NULL FILE)
+			(SETQ FILE T))
+		      ((NEQ FILE T)
+			(GO MESS)))
+		    (SETQ OLDTTBL (GETTERMTABLE))
+		    (RESETSAVE (SETTERMTABLE ASKUSERTTBL))
+
+          (* ASKUSERTTBL has (CONTROL T) and (RAISE T) performed. The latter means that if the user types lower case 												     |
+	  characters, they are converted to uppercase. Note however that this will recognize lower case y and n.												     |
+	  This is so the caller can provide y or n as a default, and distinguish the default cse from the case where the user 												     |
+	  types lowercase y or n (which will be converted to uppercase automatically by the terminal table) ASKUSERTTBL also 												     |
+	  has (ECHOMODE NIL) performed so can handle mistypings and confirations properly.)
+
+                                                            (* File can be a file name or a string)
+		    (COND
+		      (TYPEAHEAD                            (* TYPEAHEAD permitted)
+				 (SETQ TYPEAHEAD (READP T))
+				                            (* used in case there is a mistake.												     |
+							    in this case all typeahead is restored.)
+				 (GO MESS)))
+		    (LINBUF)
+		    (SYSBUF)
+		    (SETQ BUFS (CLBUFS NIL T READBUF))
+
+          (* Clear and save typeahead. This call to CLBUFS will ring the bells if there is any typeahead to warn the user to 												     |
+	  stop typing.)
+
+
+		    (COND
+		      [(LISTP MESS)
+			(ASKUSERPRIN1 (CAR MESS))
+			(COND
+			  ((SETQ MESS (CDR MESS))
+			    (ASKUSERPRIN1 " "))
+			  (T (ASKUSERPRIN1 " ? "]
+		      (MESS (ASKUSERPRIN1 MESS)
+			    (SETQ MESS NIL)))
+
+          (* The problem with user interactions such as this where typeahead is not allowed is that we have no way of knowing 												     |
+	  WHEN the user types something, i.e. if he typed it after seeing part of the message or no, without doing a DOBE 												     |
+	  before doing any printing, and this is not desirable as it produces a noticeable snag in teletype output.												     |
+	  -												     |
+	  Therefore what we do is the following: all typeahead before the call to ASKUSER is cleared and saved for later 												     |
+	  restoration, and n the event ther is any typeahead, bells are rung to warn the user to stop typing.												     |
+	  (this is done by the call to CLBUFS above.) -												     |
+	  After that we print something, either the first part of the message or the message itself, to give the user time to 												     |
+	  respond to the warning to stop typing. IN this interval, anything that is typed is thrown away.												     |
+	  After printing the message, we do a DOBE, and then check to see if user has typed anything. If he has, this material												     |
+	  is discarded, and bells printed again to warn him.)
+
+
+		    (DOBE)
+		    (COND
+		      ((READP T)
+			(PRINTBELLS)
+			(DOBE)
+			(CLEARBUF T)))
+		MESS                                        (* MESS is either an atom or string or a list, in which 												     |
+							    case it is MAPRINTed)
+		    (COND
+		      ((NULL MESS)
+			                                    (* Either user didnt supply a message or else was 												     |
+							    printed above.))
+		      ((NLISTP MESS)
+			(ASKUSERPRIN1 MESS))
+		      (T (MAPRINT MESS T NIL " ? " NIL NIL LISPXPRNTFLG)))
+		    (COND
+		      ((OR (NOT (NUMBERP WAIT))
+			   (NULL DEFAULT))
+			                                    (* is : either a number, meaning wait that many seconds 												     |
+							    or NIL, meaning wait forever)
+			(GO READLP)))
+		    (SETQ WAIT (ITIMES 4 WAIT))             (* WAIT is in seconds. but we are going to dismiss for 												     |
+							    quarter second intervals.)
+		    [COND
+		      ((AND DEFAULT (NLISTP DEFAULT))
+			(SETQ DEFAULT (LIST DEFAULT]
+		WAITLP
+		    (COND
+		      ((READP T))
+		      ([NOT (MINUSP (SETQ WAIT (SUB1 WAIT]
+			(DISMISS 250)
+			(GO WAITLP))
+		      (T                                    (* Assume DEFAULT if nothing typed in WAIT/4 seconds.)
+			 (PRIN1 "..." T)
+			 (SETQ CHAR (CAR DEFAULT))
+			 (GO INTERP)))
+		READLP
+		    [COND
+		      ((AND (STRINGP FILE)
+			    (NOT (READP FILE T)))
+			(SETQ FILE T)
+			(SETQ OLDTTBL (GETTERMTABLE))
+			(RESETSAVE (SETTERMTABLE ASKUSERTTBL]
+                                                            (* the string ran out)
+		    (SETQ CHAR (PEEKC FILE))                (* PEEKC used so that in case of $ as a key, askuser can												     |
+							    do a READ.)
+		    (SETQ ECHOEDFLG NIL)                    (* this character has not yet been echoed.												     |
+							    or read)
+		    (SETQ DEFAULT NIL)
+		INTERP
+
+          (* KEYLST is a list of elements of the form (KEY PROMPTSTRING . OPTIONS), where KEY is an atom or string 												     |
+	  (including the empty string) that characters are to be matched against, PROMPTSTRING a string or atom 												     |
+	  (NIL is equivalent to ""), and OPTIONS a list in property list format which can contain the properties 												     |
+	  (KEYLST CONFIRMFLG RETURN EXPLAINSTRING NOECHOFLG KEYSTRING PROMPTON COMPLETEON AUTOCOMPLETEFLG) Default options for												     |
+	  the entire keylst can be supplied as an argument to ASKUSER -												     |
+	  -												     |
+	  A key is considered to be complete when (1) all of its characters have been matched and it is the only key left, 												     |
+	  i.e. there are no other keys for which this key is a substring, (2) all of its characters have been matched, and 												     |
+	  CONFIRMFLG is NIL, and the next character matches one of the keys on its KEYLST, (3) all of its characters have been												     |
+	  matched, and a confirming character is typed, i.e. a c.r., space, or member of CONFIRMFLG (This option is used for 												     |
+	  implementing TENEX protocosl, where CONFIRMFLG is ($)) or (4) there is only one key left and a confirming character 												     |
+	  is typed. -												     |
+	  -												     |
+	  When a key is complete, PROMPTSTRING is printed. Then if CONFIRMFLG is non-NIL and the key was not completed via a 												     |
+	  confirming character (case 3 and 4 above) askuser waits for a confirming character. -												     |
+	  -												     |
+	  After confirmation, if KEYLST is non NIL, askuser descends into KEYLST. Otherwise askuser returns a value which is 												     |
+	  the value of (eval of) the RETURN field, if non-NIL, otherwise the result of packing all the keys or keystrings, if 												     |
+	  present -												     |
+	  see below on the path. -												     |
+	  At any point, the user can type an alt-mode which is equivalent to typing the next n shared characters.												     |
+	  (if there are none, a bell is rung.) Typing a confirming character has the same effect as typing an alt-mode, i.e. 												     |
+	  the next n shared characters will be supplied. If the key is the only key left, confirmation is not required.												     |
+	  (this is case 4 above). If the key is not the only key left, a bell is rung. -												     |
+	  -												     |
+	  special options: -												     |
+	  EXPLAINSTRING if non-nil, used in place of key/keystring + promptstring when user types a ? -												     |
+	  NOECHOFLG if non-nil, characters that are matched are not echoed -												     |
+	  KEYSTRING if non-nil, characters that are matched are echoed from keystring. The main reason for this feature 												     |
+	  echoing, since ASKUSER converts everything to a canonical upper case form, keys will always be represented in 												     |
+	  uppercase. KEYSTRING can be used to provide for lower case echoing, and for returning a lower case value.												     |
+	  i.e. if the RETURN option is not specified, and KEYSTRING is specified, then KEYSTRING will be used in constructing 												     |
+	  the value to be returned, rather than KEY. -												     |
+	  PROMPTON if non-NIL, PROMPTSTRING is printed only when the key is confirmed with a member of PROMPTON.												     |
+	  This feature is used for implementing TENEX protocols, in which case PROMPTON would be ($) Note that this doesnt 												     |
+	  make much sense unless CONFIRMFLG is also non-NIL and includes the elements on PROMPTON -												     |
+	  -												     |
+	  COMPLETEON when a confirming character is typed, the n characters that are supplied are not echoed unless the 												     |
+	  confirming charactter is a member of COMPLETEON. This is used for implementing tenex protocols in which case 												     |
+	  COMPLETEON is ($), i.e. user could complete a command with space or c.r. but completion and prompting would take 												     |
+	  place only for $ -												     |
+	  -												     |
+	  AUTOCOMPLETEFLG if T, says supply characters as soon as they are unambiguous, i.e. act as though alt-mode were typed												     |
+	  after each character (but dont ring a bell) -												     |
+	  MACROCHARS, a list of characters and forms. if one of the characters is typed, and doesnt match as a key, then the 												     |
+	  form is evaluated for effect and everything else stays the same, e.g. ? could have been implemented this way.												     |
+	  this feature is probably most useful when MACROCHARS is supplied on OPTIONSLST since one probably wants a global set												     |
+	  of MACROCHARS for a call single call to askuser. -												     |
+	  -												     |
+	  & as a key matches any character. -												     |
+	  -												     |
+	  "" can be used as a key It starts out with all of its characters matched, so that it is complete if it is the only 												     |
+	  key left, (1) above, or the next character mtches one of the keys on its KEYLST, etc. -												     |
+	  -												     |
+	  $ can be used as a key to match the result of doing a READ. For example, the filepkg has as one of its entries on 												     |
+	  its keylst ("" "file/list: " KEYLST ($)) which means that if a character is typpd that does not match any of the 												     |
+	  other charactters on its keylst, the prompt message file/list: is printed, and a read is then performed and eturned 												     |
+	  as the value of the call to askuser. -												     |
+	  -												     |
+	  -												     |
+	  For the more common useage, KEY is the same as (KEY NIL CONFIRMFLG T), and (KEY . PROMPT) the same as 												     |
+	  (KEY PROMPT))
+
+
+		    [SETQ KEYLST1 (for ENTRY in KEYLST eachtime (ASKUSERSETUP ENTRY) collect ENTRY
+				     when (COND
+					    ((ASKUSERCHAR CHAR (SETQ TEM (NTHCHAR KEY NC)))
+					                    (* char matches the corresponding character in key.)
+					      T)
+					    ((OR TEM $$VAL (EQ CHAR (QUOTE ?)))
+					      
+
+          (* There was another character in the key, and char didnt match it. The $$VAL check is to insure that once there has												     |
+	  been a match with a character in a key atthis level, we do not treat space or c.r. as terminators, so that space and												     |
+	  c.r. can be used as keys themselves, nor do we descend into subkeylists, and so thatthe user can specify a default 												     |
+	  match via "" as a place marker, and have it operate ONLY when other elements are not matched by placing it last on 												     |
+	  the keylst. e.g. if keylst is of the form ((c.r. --) -- ("" -- subkeylst)) and a c.r. is typed, matching wont go 												     |
+	  into subkeylst ADDTOFILES uses this feature)
+
+
+					      NIL)
+					    ((AND (NULL (ASKUSERLOOKUP CONFIRMFLG))
+						  (ASKUSERLOOKUP KEYLST)
+						  (ASKUSER1 ENTRY CHAR))
+					      
+
+          (* We have already matched all the characters in key, and entry contains a lower keylst. and char matches one of its												     |
+	  elements, therefore do any prompting necessary for this key, and descend)
+
+
+					      (SETQ ANSWER (NCONC1 ANSWER (OR (ASKUSERLOOKUP 
+											KEYSTRING)
+									      KEY)))
+					      [AND (NULL NOECHOFLG)
+						   (SETQ PRINTLST (NCONC1 PRINTLST
+									  (OR (ASKUSERLOOKUP 
+											KEYSTRING)
+									      KEY]
+					      [AND PROMPTSTRING (SETQ PRINTLST
+						     (NCONC1 PRINTLST (PRIN1 PROMPTSTRING T]
+					                    (* PRINTLST is maintained to implement the ? feature and
+							    to be able to replay the output to put on the history.)
+					      (SETQ KEYLST (ASKUSERLOOKUP KEYLST))
+					      (SETQ NC 1)
+					                    (* CHAR will then be matched aainst the lower keylst.)
+					      (GO INTERP))
+					    ([COND
+						((LISTP CONFIRMFLG)
+						  (MEMB CHAR CONFIRMFLG))
+						(T (OR (EQ CHAR (QUOTE %
+))
+						       (EQ CHAR (QUOTE % ]
+					      
+
+          (* all of its characters were matched, and this character was a c.r. or space. e.g. CHARLST= 												     |
+	  (CLISP CLISPFLG CLISPTRANFLG) and CLISP c.r. has been typed The check is made after the other checks so that space 												     |
+	  and carriage return themselves can be used in keys. Note that it doesnt matter whether confirmflg is T or not, the 												     |
+	  user can still use c.r. or space to terminate a key.)
+
+
+					      (AND (NULL NOECHOFLG)
+						   (SETQ PRINTLST (NCONC1 PRINTLST CHAR)))
+					      T]
+		    [COND
+		      (KEYLST1 (SETQ KEYLST KEYLST1)
+			       (GO RIGHT))
+		      ([AND (NULL ANSWER)
+			    (EQ NC 1)
+			    (NULL DEFAULT)
+			    (OR (EQ CHAR (QUOTE % ))
+				(EQ CHAR (QUOTE %
+]
+			                                    (* user typed c.r. or space simply to keep dwim from 												     |
+							    defaulting on him.)
+			(AND (NULL NOECHOFLG)
+			     (PRIN1 CHAR T))
+			(AND (READC FILE))
+			(GO READLP))
+		      ([OR (EQ CHAR (QUOTE ))
+			   (COND
+			     ((LISTP CONFIRMFLG)
+			       (MEMB CHAR CONFIRMFLG))
+			     (T (OR (EQ CHAR (QUOTE %
+))
+				    (EQ CHAR (QUOTE % ]
+			
+
+          (* altmode c.r. or space says supply characters from atoms in this level of keylst until there are two or more atms 
+	  with different characters at thatposition. C.R. and space is same as alt mode except if there is only one atom, then
+	  return without confirmation after supplying the characters. If thee are not atms with common characters beyond this 
+	  point, then ring a bell and take no action.)
+
+
+			[COND
+			  ((NULL (SETQ TEM (ASKUSER$ KEYLST CHAR NC)))
+			    (GO WRONG))
+			  (T (SETQ NC (ADD1 TEM]
+			(AND (NULL DEFAULT)
+			     (READC FILE))
+			(COND
+			  ((NULL (CDR KEYLST))
+			                                    (* only one. Therefore this character completes the 												     |
+							    key,)
+			    (GO COMPLETED))
+			  ((OR (EQ CHAR (QUOTE %
+))
+			       (EQ CHAR (QUOTE % )))
+			    (PRIN1 (QUOTE %)
+				   T)
+			                                    (* print a bell.)))
+			(GO NEXT))
+		      ((OR (SYNTAXP (SETQ TEM (CHCON1 CHAR))
+				    (QUOTE CHARDELETE))
+			   (SYNTAXP TEM (QUOTE LINEDELETE)))
+			                                    (* control-a, q,)
+			(GO RETRY))
+		      ([AND (NULL DEFAULT)
+			    (EQ FILE T)
+			    (SETQ TEM (FASSOC CHAR (ASKUSERLOOKUP MACROCHARS]
+			(READC T)
+			(SETTERMTABLE OLDTTBL)
+			(EVAL (CDR TEM))
+			(SETTERMTABLE ASKUSERTTBL)
+			(GO READLP))
+		      ((AND (NULL DEFAULT)
+			    (EQ CHAR (QUOTE ?))
+			    (EQ FILE T))
+			(TERPRI T)
+			(READC T)
+			[NLSETQ (PROGN (PRIN1 (OR (fetch (OPTIONS EXPLAINSTRING) of OPTIONSLST)
+						  (QUOTE "one of:
+"))
+					      T)
+				       (ASKUSEREXPLAIN KEYLST PRINTLST OPTIONSLST
+						       (OR (ASKUSERLOOKUP EXPLAINDELIMITER)
+							   "
+"]
+			(TERPRI T)
+			[AND ORIGMESS (COND
+			       ((NLISTP ORIGMESS)
+				 (ASKUSERPRIN1 ORIGMESS))
+			       (T (MAPRINT ORIGMESS T NIL " ? " NIL NIL LISPXPRNTFLG]
+			[MAPC PRINTLST (FUNCTION (LAMBDA (X)
+				  (PRIN1 X T]
+			(AND (NEQ NC 1)
+			     (PRIN1 (SUBSTRING [COND
+						 ((NLISTP (CAR KEYLST))
+						   (CAR KEYLST))
+						 (T (OR (fetch (ASKUSER KEYSTRING)
+							   of (CAR KEYLST))
+							(fetch (ASKUSER KEY) of (CAR KEYLST]
+					       1
+					       (SUB1 NC))
+				    T))
+			                                    (* These are the characters that have been matched on 
+							    this level key, bt not yet added to answer or printlst.)
+			(GO READLP))
+		      ([SETQ KEYLST1
+			  (find X in KEYLST
+			     suchthat
+			      (SELECTQ X
+				       ((&  )
+					 (SETQ KEY X)
+					 T)
+				       (AND (LISTP X)
+					    (SELECTQ (CAR X)
+						     (& (COND
+							  ((OR [NULL (SETQ TEM (LISTGET1
+									 X
+									 (QUOTE CLASS]
+							       (APPLY* TEM CHAR))
+							    (SETQ KEY (CAR X))
+							    T)))
+						     (( )
+						       (SETQ KEY (CAR X))
+						       T)
+						     (AND (LISTP (CAR X))
+							  (SETQ KEY (CAR X]
+			(COND
+			  ((EQ KEY (QUOTE &))
+			    [SETQ KEYLST (LIST (CONS CHAR (AND (LISTP KEYLST1)
+							       (CDR KEYLST1]
+			    (GO RIGHT))
+			  (T                                (* altmode. or double-altmode)
+			     (AND (EQ FILE T)|
+				  (PRIN1 CHAR T))|
+			     |
+|
+          (* The character would not have been echoed since the PEEKC was done with echomode off. Since it has already been |
+	  seen by LISP, it wold not be echoed by the READ below, even though ECHOMODE would then be turned on.|
+	  Therefore must print it.)|
+|
+|
+			     (SETTERMTABLE OLDTTBL)
+			     (OR (PROG1 [NLSETQ (COND
+						  ((EQ KEY (QUOTE ))
+						    (SETQ TEM (READ FILE T)))
+						  [(EQ KEY (QUOTE ))
+						    (RESETVARS (READBUF)
+
+          (* since READ is used, rather than lispxread for $ key, we should not have readline be affected by readbuf, e.g. if 												     |
+	  user is redoing an event contaig an askuser, he wants to type in tuff again.)
+
+
+							       (SETQ TEM (READLINE T]
+						  (T (SETQ TEM (EVAL KEY]
+					(SETTERMTABLE ASKUSERTTBL))
+				 (GO RETRY))
+			     (SETQ KEYLST (LIST (create ASKUSER using KEYLST1 KEY _ TEM)))
+			     (SETQ NC (ADD1 (NCHARS TEM)))
+			     (SETQ ECHOEDFLG T)
+			                                    (* so that the character terminatng the read wont be 												     |
+							    echoed twice)
+			     [COND
+			       [(SYNTAXP [SETQ TEM (CHCON1 (SETQ CHAR (LASTC FILE]
+					 (QUOTE SEPR)
+					 T)
+				                            (* character was included as part of the read)
+				 (replace OPTIONS of (CAR KEYLST)
+				    with (CONS (QUOTE CONFIRMFLG)
+					       (CONS (LIST CHAR)
+						     (fetch OPTIONS of (CAR KEYLST]
+			       ((SYNTAXP TEM (QUOTE BREAK)
+					 T)
+				                            (* e.g. read of a lit)
+				 (GO READLP))
+			       (T (SETQ CHAR (READC FILE]
+			     
+
+          (* (COND ((EQ KEY (QUOTE )) (* (61 . 965) 130 <NEWLISP>ASSIST.;8 NIL) (SETQ CHAR (READC FILE))) 
+	  ((EQ KEY (QUOTE )) (SETQ CHAR (LASTC FILE)) (replace OPTIONS of (CAR KEYLST) with (CONS 
+	  (QUOTE CONFIRMFLG) (CONS (QUOTE (%] %
+)) (fetch (ASKUSER OPTIONS) of (CAR KEYLST)))))) ((LISTP KEY) (* (73 . 955) 107 <NEWLISP>ASSIST.;30 NIL)) 
+	  (T (SHOULDNT))))
+
+
+			     (SETQ DEFAULT (QUOTE (T)))
+			     
+
+          (* so wont attempt to read the character again. reason we have to read it here, in the case of read, is that it has 												     |
+	  already been echoed, and in the case of a lower keylst, there would be no way to psass on the information about it 												     |
+	  having been echoed without setting echoedflg to T. thus we cant go back to READLP, sice that wold set echoflg to 												     |
+	  NIL.)
+
+
+			     (GO INTERP]
+		WRONG                                       (* user typed invalid answer)
+		    (AND (NEQ FILE T)
+			 (ERROR!))
+		    (AND (NULL DEFAULT)
+			 (READC FILE))
+		    (COND
+		      (TYPEAHEAD (GO RETRY1)))
+		    (PRINTBELLS)
+		    (DOBE)
+		    (CLEARBUF T)
+		    (GO READLP)
+		RIGHT                                       (* character matched.)
+		    (AND (NULL DEFAULT)
+			 (READC FILE))
+		RIGHT1
+		    (ASKUSERSETUP (CAR KEYLST))
+		    (COND
+		      ((OR (CDR KEYLST)
+			   (ILESSP NC (NCHARS KEY)))
+			                                    (* More than one candidate. or this candidate not 												     |
+							    finished yet.)
+			(AND (NULL NOECHOFLG)
+			     (EQ FILE T)
+			     (SETQ TEM (COND
+				 ((SETQ TEM (ASKUSERLOOKUP KEYSTRING))
+				                            (* primarily to allow specifying of echoing in lower 												     |
+							    case, even though askuser always converts to uppercase 												     |
+							    when it reads.)
+				   (NTHCHAR TEM NC))
+				 (T CHAR)))
+			     (PRIN1 TEM T))
+			(SETQ NC (ADD1 NC))
+			[COND
+			  ((AND (ASKUSERLOOKUP AUTOCOMPLETEFLG)
+				(SETQ TEM (ASKUSER$ KEYLST CHAR NC)))
+			    (COND
+			      ((AND (NULL (CDR KEYLST))
+				    (EQ (SETQ NC TEM)
+					(NCHARS KEY)))
+				(GO COMPLETED))
+			      (T (SETQ NC (ADD1 TEM]
+			(GO NEXT)))                         (* There is only one entry left, and all of its 												     |
+							    characters are matched.)
+		    (AND (NULL NOECHOFLG)
+			 (EQ FILE T)
+			 (EQ NC (NCHARS KEY))
+			 (SETQ TEM (COND
+			     ((SETQ TEM (ASKUSERLOOKUP KEYSTRING))
+			       (NTHCHAR TEM NC))
+			     (T CHAR)))
+			 (PRIN1 TEM T))                     (* the character is the last one in the key.												     |
+							    the case where a c.r. was typed to terminate a key is 												     |
+							    handled below.)
+		COMPLETED
+		    (SETQ ANSWER (NCONC1 ANSWER (OR (ASKUSERLOOKUP KEYSTRING)
+						    KEY)))
+		    [AND (NULL NOECHOFLG)
+			 (SETQ PRINTLST (NCONC1 PRINTLST (OR (ASKUSERLOOKUP KEYSTRING)
+							     KEY]
+		    [AND PROMPTSTRING (OR (NULL (SETQ TEM (ASKUSERLOOKUP PROMPTON)))
+					  (MEMB CHAR TEM))
+			 (SETQ PRINTLST (NCONC1 PRINTLST (PRIN1 PROMPTSTRING T]
+
+          (* If PROMPTON is present, must wait till after confirmation to see if confirming charactter is PROMPTON 												     |
+	  (usually $). this enables tenex like protocols.)
+
+
+		    (AND (NULL NOECHOFLG)
+			 (EQ FILE T)
+			 (IGREATERP NC (NCHARS KEY))
+			 (PRIN1 (COND
+				  ((AND (EQ CHAR (QUOTE %
+))
+					(NULL (ASKUSERLOOKUP KEYLST)))
+				                            (* space is echoed for all confirming characters except 												     |
+							    on a terminal leaf,in which char isused itself.)
+				    CHAR)
+				  (T (QUOTE % )))
+				T))
+		    (COND
+		      ([OR (NULL CONFIRMFLG)
+			   (COND
+			     ((LISTP CONFIRMFLG)
+			       (MEMB CHAR CONFIRMFLG))
+			     (T (OR (EQ CHAR (QUOTE %
+))
+				    (EQ CHAR (QUOTE % ]
+			                                    (* CONFIRMFLG can be a list of characters that are 												     |
+							    acceptable for confirming. e.g. 												     |
+							    ($) can be used to implemente tenex like protocols.)
+			(GO CONFIRMED))
+		      (T (GO CONFIRM)))
+		NEXT(SETQ DEFAULT (CDR DEFAULT))            (* DEFAULT stays one behind the current character so 												     |
+							    that we can tell if the character came from a default 												     |
+							    list.)
+		    (COND
+		      ((NULL DEFAULT)
+			(GO READLP))
+		      (T (SETQ CHAR (CAR DEFAULT))
+			 (GO INTERP)))
+		    (GO INTERP)
+		CONFIRM
+		    (COND
+		      ((ASKUSERLOOKUP PROMPTCONFIRMFLG)
+			(PRIN1 " [confirm] " T)))
+		    [COND
+		      ((AND (STRINGP FILE)
+			    (NOT (READP FILE T)))
+			(SETQ FILE T)
+			(SETQ OLDTTBL (GETTERMTABLE))
+			(RESETSAVE (SETTERMTABLE ASKUSERTTBL]
+		    [SETQ CHAR (COND
+			((SETQ DEFAULT (CDR DEFAULT))
+			  (CAR DEFAULT))
+			(T (READC FILE]
+		    (COND
+		      ((OR (SYNTAXP (SETQ TEM (CHCON1 CHAR))
+				    (QUOTE CHARDELETE))
+			   (SYNTAXP TEM (QUOTE LINEDELETE)))
+			                                    (* control-a or q)
+			(GO RETRY))
+		      [(LISTP CONFIRMFLG)
+			(COND
+			  ((MEMB CHAR CONFIRMFLG)
+			                                    (* used for TENEX mode.)
+			    [AND PROMPTSTRING (SETQ TEM (ASKUSERLOOKUP PROMPTON))
+				 (MEMB CHAR TEM)
+				 (SETQ PRINTLST (NCONC1 PRINTLST (PRIN1 PROMPTSTRING T]
+			    (AND (NULL NOECHOFLG)
+				 (PRIN1 (QUOTE % )
+					T))
+			    (GO CONFIRMED]
+		      ((OR (EQ CHAR (QUOTE % ))
+			   (EQ CHAR (QUOTE %
+)))
+			                                    (* C.R. or space)
+			[COND
+			  ((NULL NOECHOFLG)
+			    (SETQ PRINTLST (NCONC1 PRINTLST (PRIN1 (COND
+								     ((NULL (ASKUSERLOOKUP KEYLST))
+								       CHAR)
+								     (T (QUOTE % )))
+								   T]
+			(GO CONFIRMED))
+		      ((SETQ TEM (FASSOC CHAR (ASKUSERLOOKUP MACROCHARS)))
+			(SETTERMTABLE OLDTTBL)
+			(EVAL (CDR TEM))
+			(SETTERMTABLE ASKUSERTTBL)
+			(GO CONFIRM)))
+		    (COND
+		      ((NEQ CHAR (QUOTE ?))
+			(PRIN1 (QUOTE "?")
+			       T)
+			(DOBE)
+			(CLEARBUF T)))
+		    (PRIN1 " [confirm] " T)
+		    (GO CONFIRM)
+		CONFIRMED
+		    (COND
+		      ((SETQ TEM (ASKUSERLOOKUP KEYLST))
+			(SETQ KEYLST TEM)
+			(SETQ NC 1)
+			(GO NEXT)))
+		    (COND
+		      (LISPXPRNTFLG [MAPC PRINTLST (FUNCTION (LAMBDA (X)
+					      (ASKUSERPRIN1 X T]
+				                            (* fakes the printing for the history list.)))
+		    (COND
+		      (BUFS (BKBUFS BUFS)))
+		    (RETURN (COND
+			      [(SETQ TEM (OR (FMEMB (QUOTE RETURN)
+						    OPTIONS)
+					     (FMEMB (QUOTE RETURN)
+						    OPTIONSLST)))
+				(SETTERMTABLE OLDTTBL)
+				(COND
+				  ([SETQ TEM (NLSETQ (EVAL (CADR TEM]
+				                            (* ASKUSERLOOKUP not used since then couldnt distinguish												     |
+							    case where RETURN NIL was specified from case where 												     |
+							    RETURN was not specified at all.)
+				    
+
+          (* This permits user to return ANSWER as a list itself, or to take some other action, and then restart by simply 												     |
+	  generateing an error.)
+
+
+				    (CAR TEM))
+				  (T (SETTERMTABLE ASKUSERTTBL)
+				     (GO RETRY]
+			      (ANSWER (PACK ANSWER))
+			      (T (NOTCHECKED)
+				 KEY)))
+		RETRY
+		    (COND
+		      (TYPEAHEAD (GO RETRY1)))
+		    (PRIN1 "___
+" T)
+		    (DOBE)
+		    (CLEARBUF T)
+		    (SETQ KEYLST ORIGKEYLST)
+		    (SETQ PRINTLST NIL)
+		    (SETQ NC 1)
+		    (SETQ ANSWER NIL)
+		    (GO READLP)
+		RETRY1
+
+          (* User has typed ahead before the call to askuser1 and his resonse is invalid. therefore assume he didnt know that 												     |
+	  askuser would be called and his typeahead was intended for what follows. clear and ave the typeahead and continue 												     |
+	  with interaction.)
+
+
+		    (LINBUF)
+		    (SYSBUF)
+		    (SETQ BUFS (CLBUFS NIL T READBUF))
+		    [SETQ TEM (APPLY (QUOTE CONCAT)
+				     (NCONC ANSWER [AND (NEQ NC 1)
+							(LIST (SUBSTRING (COND
+									   ((LISTP (CAR KEYLST))
+									     (CAAR KEYLST))
+									   (T (CAR KEYLST)))
+									 1
+									 (SUB1 NC]
+					    (LIST CHAR]
+		    [COND
+		      ((NULL BUFS)
+			(SETQ BUFS (CONS NIL TEM)))
+		      (T (RPLACD BUFS (COND
+				   ((CDR BUFS)
+				     (CONCAT TEM (CDR BUFS)))
+				   (T TEM]
+		    (SETQ TYPEAHEAD NIL)                    (* so this is only done once)
+		    (SETQ ANSWER NIL)
+		    (SETQ KEYLST ORIGKEYLST)
+		    (SETQ MESS ORIGMESS)
+		    (SETQ DEFAULT ORIGDEFAULT)
+		    (SETQ PRINTLST NIL)
+		    (TERPRI T)
+		    (GO MESS])
+
+(ASKUSERLOOKUP
+  [NLAMBDA (FIELD)                                          (* wt: % 4-DEC-75 00:27)
+                                                            (* this wuld be just a fetch, xcept want to lok it up on
+							    optionslst if not found on options.)
+    (PROG (TEM)
+          (RETURN (COND
+		    ((SETQ TEM (FMEMB FIELD OPTIONS))
+		      (CADR TEM))
+		    ((SETQ TEM (FMEMB FIELD OPTIONSLST))
+		      (CADR TEM])
+
+(ASKUSERCHAR
+  [LAMBDA (C1 C2)                                           (* wt: " 4-OCT-78 14:48")
+    (OR (EQ C1 C2)
+	(AND (NULL NOCASEFLG)												     |
+	     C2
+	     (PROGN (SETQ C1 (CHCON1 C1))												     |
+		    (SETQ C2 (CHCON1 C2))												     |
+		    (COND												     |
+		      ((AND (IGREATERP C1 96)												     |
+			    (ILESSP C1 123))												     |
+			(EQ (IDIFFERENCE C1 32)												     |
+			    C2))												     |
+		      ((AND (IGREATERP C2 96)												     |
+			    (ILESSP C2 123))												     |
+			(EQ C1 (IDIFFERENCE C2 32])
+
+(ASKUSER$
+  [LAMBDA (KEYLST CHAR NC)                                  (* wt: " 1-FEB-78 02:50")
+    (for ENTRY bind NC0 KEY0 TEM in KEYLST eachtime [SETQ KEY (COND
+							((NLISTP ENTRY)
+							  ENTRY)
+							(T (fetch (ASKUSER KEY) of ENTRY]
+       when (AND (NEQ KEY (QUOTE ))
+		 (NEQ KEY (QUOTE )))
+       do [COND
+	    ((NULL KEY0)                                    (* first time through)
+	      [SETQ KEY0 (COND
+		  ((NLISTP (CAR KEYLST))
+		    (CAR KEYLST))
+		  (T (fetch (ASKUSER KEY) of (CAR KEYLST]
+	      (SETQ NC0 (NCHARS KEY0)))
+	    (T                                              (* Goes through keylst and looks at each key and 												     |
+							    determines the largest N for which NTHCHAR of 												     |
+							    thatcharacter is equal for every atom.)
+	       (SETQ NC0 (for I from 1 to NC0 while (EQ (NTHCHAR KEY I)
+							(NTHCHAR KEY0 I))
+			    finally (RETURN (SUB1 I]
+       finally (COND
+		 ((OR (NULL NC0)
+		      (ILESSP NC0 NC))                      (* all atoms have different characters at this 												     |
+							    position.)
+		   (RETURN NIL)))
+	       (ASKUSERSETUP (CAR KEYLST))
+	       [SETQ TEM (AND (OR (NULL (SETQ TEM (ASKUSERLOOKUP COMPLETEON)))
+				  (MEMB CHAR TEM))
+			      (SUBSTRING (OR (ASKUSERLOOKUP KEYSTRING)
+					     KEY)
+					 NC
+					 (COND
+					   ((EQ (NCHARS KEY0)
+						NC0)        (* reason for this is in case KEYSTRING is longer, will 												     |
+							    get all of it.)
+					     -1)
+					   (T NC0]          (* if COMPLETEON is $ means only complete on alt-mode.												     |
+							    this is used for tenex type protocol)
+	       (AND (NULL NOECHOFLG)
+		    TEM
+		    (PRIN1 TEM T))
+
+          (* Reason for not just using value of noechoflg is that askusersetup oul have set noechoflg to T when reading from a												     |
+	  string in order to suppress echoing of the character, but this does not mean that we do not echo the characters that												     |
+	  are supplied for copleting.)
+
+
+	       (RETURN NC0])
+
+(ASKUSER1
+  [LAMBDA (ENTRY CHAR)                                      (* wt: " 7-FEB-78 00:13")
+                                                            (* We know that ENTRY contains a subkeylst.
+							    This function sees if char could conceivably match one 
+							    of the entries on keylst.)
+    (thereis ENTRY bind TEM in (fetch (ASKUSER KEYLST) of ENTRY)
+       eachtime [SETQ TEM (COND
+		    ((NLISTP ENTRY)
+		      ENTRY)
+		    (T (fetch (ASKUSER KEY) of ENTRY]
+       suchthat (OR (EQ TEM (QUOTE &))
+		    (EQ TEM (QUOTE ))
+		    (EQ TEM (QUOTE ))
+		    (LISTP TEM)												     |
+		    (EQ (SETQ TEM (NTHCHAR TEM 1))
+			CHAR)
+		    (AND (NULL TEM)
+			 (LISTP ENTRY)
+			 (LISTP (CDR ENTRY))
+			 (ASKUSER1 ENTRY CHAR])
+
+(ASKUSERSETUP
+  [LAMBDA (ENTRY)                                           (* wt: " 4-OCT-78 14:48")
+                                                            (* Sets free variables KEY, CONFIRMFLG, QUIETFLG, and 
+							    PROMPTSTRING)
+    (PROG (TEM)
+          [COND
+	    [(NLISTP ENTRY)												     |
+	      (SETQ KEY ENTRY)												     |
+	      (SETQ PROMPTSTRING NIL)												     |
+	      (SETQ OPTIONS NIL)                            (* The default is for NOECHOFLG to be NIL and CONFIRMFLG												     |
+							    to be T.)												     |
+	      (SETQ CONFIRMFLG (COND												     |
+		  ((SETQ TEM (MEMB (QUOTE CONFIRMFLG)												     |
+				   OPTIONSLST))												     |
+		    (CADR TEM))												     |
+		  (T T]												     |
+	    [(NLISTP (CDR ENTRY))												     |
+	      (SETQ KEY (CAR ENTRY))												     |
+	      (SETQ PROMPTSTRING (CDR ENTRY))												     |
+	      (SETQ OPTIONS NIL)												     |
+	      (SETQ CONFIRMFLG (COND												     |
+		  ((SETQ TEM (MEMB (QUOTE CONFIRMFLG)												     |
+				   OPTIONSLST))												     |
+		    (CADR TEM))												     |
+		  (T T]												     |
+	    (T (SETQ KEY (fetch (ASKUSER KEY) of ENTRY))												     |
+	       (SETQ PROMPTSTRING (fetch (ASKUSER PROMPTSTRING) of ENTRY))												     |
+	       (SETQ OPTIONS (fetch (ASKUSER OPTIONS) of ENTRY))												     |
+	       (SETQ CONFIRMFLG (ASKUSERLOOKUP CONFIRMFLG]												     |
+          (SETQ NOECHOFLG (ASKUSERLOOKUP NOECHOFLG))												     |
+          (SETQ NOCASEFLG (ASKUSERLOOKUP NOCASEFLG))												     |
+          (AND ECHOEDFLG (SETQ NOECHOFLG T))
+          (COND
+	    ((AND (NEQ FILE T)
+		  (STRINGP FILE)
+		  (READP FILE T))
+	      (SETQ NOECHOFLG T)
+	      (SETQ PROMPTSTRING NIL)
+
+          (* askusersetup is called after the character has been read. Thus, this sets noechoflg to T and promptstring to NIL 
+	  only if there are more characters to be read. However, the check on whether or not the character JUST read is to 
+	  bechoed alsoincludes an (EQ FILE T) check)
+
+
+	      ])
+
+(ASKUSEREXPLAIN
+  [LAMBDA (KEYLST PREV OPTIONSLST DELIMITER)                (* wt: " 1-FEB-78 02:50")
+    (MAPC KEYLST (FUNCTION (LAMBDA (ENTRY)
+	      (PROG (KEY CONFIRMFLG NOECHOFLG PROMPTSTRING TEM OPTIONS (FILE T))
+		    (ASKUSERSETUP ENTRY)
+		    (COND
+		      ((SETQ TEM (ASKUSERLOOKUP KEYLST))    (* entry is of the form (key prompt charlst))
+			(ASKUSEREXPLAIN TEM [COND
+					  ((SETQ TEM (fetch (OPTIONS EXPLAINSTRING) of OPTIONS))												     |
+
+          (* reason for not using askuserlookup is that don't want top level explainstring on ptionslst, if any.
+	  doesnt make sense to print it each time. it is printed only once.)
+
+
+					    (APPEND PREV (LIST TEM)))
+					  (T (APPEND PREV (AND (NULL NOECHOFLG)
+							       (LIST (OR (ASKUSERLOOKUP KEYSTRING)
+									 KEY)))
+						     (AND PROMPTSTRING (LIST PROMPTSTRING]
+					OPTIONSLST DELIMITER)
+			(RETURN)))
+		    [MAPC PREV (FUNCTION (LAMBDA (X)
+			      (COND												     |
+				((LISTP X)												     |
+				  (MAPRINT X T))												     |
+				(T (PRIN1 X T]												     |
+		    [COND
+		      [(SETQ TEM (fetch (OPTIONS EXPLAINSTRING) of OPTIONS))												     |
+			(COND												     |
+			  ((LISTP TEM)												     |
+			    (MAPRINT TEM T))												     |
+			  (T (PRIN1 TEM T]												     |
+		      ((SETQ TEM (OR (ASKUSERLOOKUP KEYSTRING)
+				     KEY))
+			(AND (NULL NOECHOFLG)
+			     (NEQ TEM (QUOTE ))
+			     (NEQ TEM (QUOTE &))
+			     (PRIN1 TEM T))                 (* If the user wants to explain the & or $, he can 												     |
+							    include the appropriate text in the prompt field.)
+			(AND PROMPTSTRING (PRIN1 PROMPTSTRING T]
+		    (AND (NEQ (POSITION T)
+			      0)
+			 (PRIN1 DELIMITER T))
+		    (RETURN])
+
+(ASKUSERPRIN1
+  [LAMBDA (X NODOFLG)                                       (* wt: % 4-DEC-75 00:39)
+
+          (* does a lispxprin1 if lispxprntflg is non-NIL. used to be done by having everythin printed with lispxprin1 and 
+	  doing a resetsave on lisxpprintflg, but this costs several conses each call.)
+
+
+    (COND
+      ((NULL LISPXPRNTFLG)
+	(OR NODOFLG (PRIN1 X T)))
+      (T (LISPXPRIN1 X T NIL NODOFLG)))
+    X])
+
+(MAKEKEYLST
+  [LAMBDA (LST DEFAULTKEY LCASFLG AUTOCOMPLETEFLG)          (* wt: "14-NOV-78 02:03")												     |
+    (PROG (TEM)
+          (RETURN (NCONC [SETQ TEM (MAPCAR LST (FUNCTION (LAMBDA (KEY)
+					       (LIST KEY NIL (QUOTE KEYSTRING)
+						     (CONCAT (COND
+							       ((AND LCASFLG (EQUAL KEY (U-CASE												     |
+										      KEY)))                                                                                                     |
+                                                            (* when ucasep gets in system, use it instead)
+								 (L-CASE KEY))
+							       (T KEY))
+							     " ")
+						     (QUOTE CONFIRMFLG)
+						     T
+						     (QUOTE AUTOCOMPLETEFLG)
+						     AUTOCOMPLETEFLG
+						     (QUOTE RETURN)
+						     (KWOTE KEY]
+			 [for X in TEM bind KEYSTRING as I from 1
+			    collect (SETQ KEYSTRING (LISTGET X (QUOTE KEYSTRING)))
+				    (LIST I KEYSTRING (QUOTE NOECHOFLG)
+					  T
+					  (QUOTE EXPLAINSTRING)
+					  (CONCAT I " - " KEYSTRING)
+					  (QUOTE CONFIRMFLG)
+					  T
+					  (QUOTE RETURN)
+					  (LIST (QUOTE PROGN)
+						(QUOTE (TERPRI T))
+						(KWOTE (CAR X]
+			 (COND
+			   [(NULL DEFAULTKEY)
+			     (LIST (QUOTE ("No - none of the above " "" CONFIRMFLG T AUTOCOMPLETEFLG 
+								     T RETURN NIL]
+			   ((LISTP DEFAULTKEY)              (* so user can specify no default key by simply calling 												     |
+							    with defaultkey=T)
+			     (LIST DEFAULTKEY])
+)
+
+(RPAQQ DEFAULTKEYLST [(Y "es
+")
+		      (N "o
+")
+		      (U "se " EXPLAINSTRING 
+		"Use - allows user to type in an alternative value"
+			 RETURN
+			 (LIST (READ T T])
+
+(RPAQ ASKUSERTTBL (COPYTERMTABLE))
+(CONTROL T ASKUSERTTBL)
+(ECHOMODE NIL ASKUSERTTBL)
+
+(RPAQQ ASKUSERBLOCKS ((ASKUSERBLOCK ASKUSER ASKUSERLOOKUP ASKUSERCHAR 
+				    ASKUSER1 ASKUSER$ ASKUSERSETUP 
+				    ASKUSEREXPLAIN ASKUSERPRIN1
+				    (GLOBALVARS DEFAULTKEYLST 
+						ASKUSERTTBL READBUF 
+						RESETVARSLST)
+				    (LOCALFREEVARS KEY CONFIRMFLG 
+						   NOECHOFLG 
+						   PROMPTSTRING OPTIONS 
+						   OPTIONSLST FILE 
+						   NOCASEFLG ECHOEDFLG 
+						   LISPXPRNTFLG)
+				    (SPECVARS PRINTLST KEYLST ORIGMESS)
+				    (SPECVARS ANSWER OLDTTBL)
+				    (BLKLIBRARY GET LISTGET MEMB)
+				    (ENTRIES ASKUSER ASKUSEREXPLAIN)
+				    (NOLINKFNS PRINTBELLS))))
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: ASKUSERBLOCK ASKUSER ASKUSERLOOKUP ASKUSERCHAR ASKUSER1 
+	ASKUSER$ ASKUSERSETUP ASKUSEREXPLAIN ASKUSERPRIN1
+	(GLOBALVARS DEFAULTKEYLST ASKUSERTTBL READBUF RESETVARSLST)
+	(LOCALFREEVARS KEY CONFIRMFLG NOECHOFLG PROMPTSTRING OPTIONS 
+		       OPTIONSLST FILE NOCASEFLG ECHOEDFLG LISPXPRNTFLG)
+	(SPECVARS PRINTLST KEYLST ORIGMESS)
+	(SPECVARS ANSWER OLDTTBL)
+	(BLKLIBRARY GET LISTGET MEMB)
+	(ENTRIES ASKUSER ASKUSEREXPLAIN)
+	(NOLINKFNS PRINTBELLS))
+]
+(DECLARE: DOEVAL@COMPILE DONTCOPY 
+
+(PUTPROPS LISTGET BLKLIBRARYDEF [LAMBDA
+				  (LST PROP)
+				  (PROG NIL LP [COND
+					  ((NLISTP LST)
+					   (RETURN))
+					  ((EQ (CAR LST)
+					       PROP)
+					   (RETURN (CADR LST]
+					[SETQ
+					  LST
+					  (CDR (LISTP (CDR LST]
+					(GO LP])
+
+(PUTPROPS GET BLKLIBRARYDEF [LAMBDA
+			      (LST PROP)
+			      (PROG NIL LP [COND ((NLISTP LST)
+						  (RETURN))
+						 ((EQ (CAR LST)
+						      PROP)
+						  (RETURN (CADR LST]
+				    [SETQ LST
+					  (CDR (LISTP (CDR LST]
+				    (GO LP])
+
+[DECLARE: EVAL@COMPILE 
+
+(RECORD ASKUSER (KEY PROMPTSTRING . OPTIONS))
+
+(PROPRECORD OPTIONS (KEYLST CONFIRMFLG RETURN EXPLAINSTRING NOECHOFLG 
+			    KEYSTRING PROMPTON COMPLETEON 
+			    AUTOCOMPLETEFLG MACROCHARS NOCASEFLG 
+			    PROMPTCONFIRMFLG CLASS))
+]
+)
+[DECLARE: DONTEVAL@LOAD DONTCOPY
+(* Coroutine package.)  ]
+
+
+(RPAQQ COFNS (COROUTINE OLDRESUME GENERATOR GENERATE PRODUCE GENERATEFN)
+)
+(DEFINEQ
+
+(COROUTINE
+  [NLAMBDA (CALLPTR## COROUTPTR## COROUTFORM## ENDFORM##)   (* wt: 17-APR-76 19 48)
+
+          (* CALLPTR## and COROUTPTR## ARE the names of communication variables in the function calling COROUTINE.
+	  They will be set to stkptrs if they ARE not already ones. COROUTFORM## is the form which starts the COROUTINE.
+	  ENDFORM## is evaluated in the context of the caller when COROUTFORM## returns.)
+
+
+    [SETQ CALLPTR## (SET CALLPTR## (OR (STACKP (EVALV CALLPTR##))
+				       (STKNTH 0 T]
+    [SETQ COROUTPTR## (SET COROUTPTR## (OR (STACKP (EVALV COROUTPTR##))
+					   (STKNTH 0 T]
+    (RESUME COROUTPTR## (STKNTH -1 (QUOTE COROUTINE))
+	    COROUTPTR##)
+    (EVAL COROUTFORM##)
+    (RETTO CALLPTR## (ENVEVAL ENDFORM## (STKNTH -1 (QUOTE COROUTINE))
+			      NIL T)
+	   T])
+
+(OLDRESUME
+  [LAMBDA (FROMPTR TOPTR VAL)                               (* wt: 12-JUL-76 11 57)
+
+          (* FROMPTR is A stkptr wich is SMASHED by the STKNTH to contain A pointer to this RESUME frame.
+	  Control is transfered to the RESUME frame specified by TOPTR, releasing the STORAGE held by that stack pointer.
+	  A RETFROM back to this frame returns as the value of this call to RESUME. Thus A call to this RESUME returns VAL as 
+	  the value of the RESUME specified by TOPTR.)
+
+
+
+          (* this function is called oldresume, rather than resume, because in some systems it might be written as a SUBR.
+	  RESUME is defined via a MOVD? so that if it already has a definition, that one will remain in efect.)
+
+
+    (STKNTH -1 (QUOTE RESUME)
+	    FROMPTR)
+    (RETTO TOPTR VAL T])
+
+(GENERATOR
+  [NLAMBDA (FORM## COMVAR##)
+    [COND
+      (COMVAR## (SETQ COMVAR## (EVAL COMVAR##]
+    [COND
+      [(NLISTP COMVAR##)
+	(SETQ COMVAR## (CONS (STKNTH 0 T)
+			     (STKNTH 0 T]
+      (T [COND
+	   ((NOT (STACKP (CAR COMVAR##)))
+	     (FRPLACA COMVAR## (STKNTH 0 T]
+	 (COND
+	   ((NOT (STACKP (CDR COMVAR##)))
+	     (FRPLACD COMVAR## (STKNTH 0 T]
+    (RESUME (CDR COMVAR##)
+	    (STKNTH -1 (QUOTE GENERATOR)
+		    (CAR COMVAR##))
+	    COMVAR##)
+    (EVAL FORM##)
+    (RETTO (CAR COMVAR##)
+	   COMVAR## T])
+
+(GENERATE
+  [LAMBDA (HANDLE VAL)
+    (RESUME (CAR HANDLE)
+	    (CDR HANDLE)
+	    VAL])
+
+(PRODUCE
+  [LAMBDA (VAL)
+    (RESUME (CDR COMVAR##)
+	    (CAR COMVAR##)
+	    VAL])
+
+(GENERATEFN
+  [LAMBDA (FN COMVAR##)
+    (DECLARE (SPECVARS COMVAR##))                           (* lmm: "11-FEB-77 15:51:34")
+    [COND
+      [(NLISTP COMVAR##)
+	(SETQ COMVAR## (CONS (STKNTH 0 T)
+			     (STKNTH 0 T]
+      (T [COND
+	   ((NOT (STACKP (CAR COMVAR##)))
+	     (FRPLACA COMVAR## (STKNTH 0 T]
+	 (COND
+	   ((NOT (STACKP (CDR COMVAR##)))
+	     (FRPLACD COMVAR## (STKNTH 0 T]
+    (RESUME (CDR COMVAR##)
+	    (STKNTH -1 (QUOTE GENERATEFN)
+		    (CAR COMVAR##))
+	    COMVAR##)
+    (APPLY* FN)
+    (RETTO (CAR COMVAR##)
+	   COMVAR## T])
+)
+
+(RPAQQ GENERFNS (ADIEU AU-REVOIR CLEANPOSLST NOTE POSSIBILITIES TRYNEXT 
+		       TRYNEXT1 POSSIBILITYFN))
+(DEFINEQ
+
+(ADIEU
+  [LAMBDA VAL##
+    [COND
+      ((NOT (ZEROP VAL##))
+	(NOTE (ARG VAL## 1]
+    (RETTO (CAR COMVAR##)
+	   (PROG1 POSSLIST## (SETQ POSSLIST## NIL))
+	   T])
+
+(AU-REVOIR
+  [LAMBDA VAL##
+    [COND
+      ((NOT (ZEROP VAL##))
+	(NOTE (ARG VAL## 1]
+    (NOTE COMVAR##)
+    (RESUME (CDR COMVAR##)
+	    (CAR COMVAR##)
+	    (PROG1 POSSLIST## (SETQ POSSLIST## NIL])
+
+(CLEANPOSLST
+  [LAMBDA (PLST)
+    (for X in PLST do (COND
+			((AND (LISTP X)
+			      (STACKP (CAR X)))
+			  (RELSTK (CAR X))
+			  (RELSTK (CDR X])
+
+(NOTE
+  [LAMBDA (VAL LSTFLG)
+    (SETQ POSSLIST## (NCONC POSSLIST## (COND
+			      (LSTFLG VAL)
+			      (T (LIST VAL])
+
+(POSSIBILITIES
+  [NLAMBDA (FORM##)
+    (PROG (COMVAR## POSSLIST##)
+          [PRODUCE (LIST (SETQ COMVAR## (CONS (STKNTH -1 (QUOTE *PROG*LAM))
+					      (STKNTH 0 T]
+          (EVAL FORM##)
+          (ADIEU])
+
+(TRYNEXT
+  [NLAMBDA (PLST## ENDFORM## VAL##)
+    (PROG (PL1##)
+          [SET PLST## (CDR (SETQ PL1## (TRYNEXT1 (EVAL PLST##)
+						 (EVAL VAL##]
+          (COND
+	    ((NULL PL1##)
+	      (RETEVAL (QUOTE TRYNEXT)
+		       ENDFORM##))
+	    (T (RETURN (CAR PL1##])
+
+(TRYNEXT1
+  [LAMBDA (PLST## MSG##)
+    (PROG (PL1##)
+      LP  (COND
+	    ((NULL PLST##)
+	      (RETURN NIL)))
+          (SETQ PL1## (CAR PLST##))
+          (COND
+	    ([OR (NLISTP PL1##)
+		 (NOT (STACKP (CAR PL1##]
+	      (RETURN PLST##)))
+          (SETQ PLST## (NCONC (RESUME (CAR PL1##)
+				      (CDR PL1##)
+				      MSG##)
+			      (CDR PLST##)))
+          (GO LP])
+
+(POSSIBILITYFN
+  [LAMBDA (FN COMVAR## POSSLIST##)
+    (DECLARE (LOCALVARS FN)
+	     (SPECVARS COMVAR## POSSLIST##))                (* lmm: "11-FEB-77 15:58:48")
+    [PRODUCE (LIST (SETQ COMVAR## (CONS (STKNTH -1 (QUOTE POSSIBILITYFN))
+					(STKNTH 0 T]
+    (APPLY* FN)
+    (ADIEU])
+)
+
+(ADDTOVAR SYSSPECVARS COMVAR## POSSLIST##)
+(MOVD? (QUOTE OLDRESUME)
+       (QUOTE RESUME))
+
+(RPAQQ COMACROS (COROUTINE GENERATOR TRYNEXT POSSIBILITIES))
+
+(PUTPROPS COROUTINE MACRO [(P1 P2 F1 F2)
+			   (PROGN (OR (STACKP P1)
+				      (SETQ P1 (STKNTH 0 T)))
+				  (OR (STACKP P2)
+				      (SETQ P2 (STKNTH 0 T)))
+				  ([LAMBDA (..MACROX.)
+				      (COND
+					((EQ ..MACROX. P2)
+					  P2)
+					(T (RESUME P2 ..MACROX. P2)
+					   F1
+					   (RETTO P1 F2 T]
+				    (STKNTH -1])
+
+(PUTPROPS GENERATOR MACRO [X
+	    (PROG [(Y (SUBST (CAR X)
+			     (QUOTE FORM##)
+			     (QUOTE (LAMBDA
+				      (COMVAR## ..MACROX.)
+				      (COND
+					((EQ (SETQ ..MACROX.
+					       (STKNTH -1 (QUOTE 
+							  *PROG*LAM)
+						       (CAR COMVAR##)))
+					     COMVAR##)
+					  COMVAR##)
+					(T (RESUME (CDR COMVAR##)
+						   ..MACROX. COMVAR##)
+					   FORM##
+					   (RETTO (CAR COMVAR##)
+						  COMVAR## T]
+	          (RETURN
+		    (COND
+		      [(CADR X)
+			[FRPLACD
+			  (CDR Y)
+			  (CONS
+			    [QUOTE (OR (STACKP (CAR COMVAR##))
+				       (FRPLACA COMVAR##
+						(STKNTH 0 T]
+			    (CONS [QUOTE (OR (STACKP (CDR COMVAR##))
+					     (FRPLACD COMVAR##
+						      (STKNTH 0 T]
+				  (CDDR Y]
+			(LIST Y (LIST (QUOTE OR)
+				      (LIST (QUOTE LISTP)
+					    (CADR X))
+				      (QUOTE (CONS (STKNTH 0 T)
+						   (STKNTH 0 T]
+		      (T (LIST Y (QUOTE (CONS (STKNTH 0 T)
+					      (STKNTH 0 T])
+
+(PUTPROPS TRYNEXT MACRO ((PLST NOMORE MSG)
+			 (COND
+			   [(SETQ PLST (TRYNEXT1 PLST MSG))
+			     (PROG1 (CAR PLST)
+				    (SETQ PLST (CDR PLST]
+			   (T (SETQ PLST (CDR PLST))
+			      NOMORE))))
+
+(PUTPROPS POSSIBILITIES MACRO ((FORM)
+	   (PROG (COMVAR## POSSLIST##)
+	         [PRODUCE (LIST (SETQ COMVAR##
+				  (CONS (STKNTH -1 (QUOTE *PROG*LAM))
+					(STKNTH 0 T]
+	     FORM(ADIEU))))
+
+(PUTPROPS COROUTINE INFO EVAL)
+
+(PUTPROPS GENERATOR INFO EVAL)
+
+(PUTPROPS TRYNEXT INFO EVAL)
+
+(PUTPROPS POSSIBILITIES INFO EVAL)
+(I.S.OPR (QUOTE OUTOF)
+	 NIL
+	 [QUOTE (SUBST (GENSYM)
+		       (QUOTE GENVAR)
+		       (QUOTE (BIND GENVAR _ (GENERATOR BODY)
+				    EACHTIME
+				    (COND ((EQ (SETQ I.V. (GENERATE
+						       GENVAR))
+					       GENVAR)
+					   (GO $$OUT)))
+				    FINALLY
+				    (RELSTK (CDR GENVAR]
+	 T)
+
+(PUTPROPS GENERATOR BYTEMACRO ((FORM COMVAR)
+			       (GENERATEFN (FUNCTION [LAMBDA NIL FORM])
+					   COMVAR)))
+
+(PUTPROPS POSSIBILITIES BYTEMACRO [(FORM)
+				   (POSSIBILITYFN
+				     (FUNCTION (LAMBDA NIL FORM])
+[DECLARE: DONTEVAL@LOAD DONTCOPY
+(* gainspace package)  ]
+
+
+(RPAQQ GAINSPACEFNS (GAINSPACE ERASEPROPS PURGEHISTORY PURGEHISTORY1 
+			       PURGEHISTORY2))
+(DEFINEQ
+
+(GAINSPACE
+  [LAMBDA NIL                                               (* wt: 30-JUL-77 13 35)
+    (SETQ SMASHPROPSLST1 NIL)
+    [MAPC GAINSPACEFORMS (FUNCTION (LAMBDA (X)
+	      (PROG (RESPONSE)
+		    (AND (NEQ (POSITION T)
+			      0)
+			 (TERPRI T))
+		    (ERSETQ (AND (EVAL (fetch (GAINSPACE PRECHECK) of X))
+				 (NEQ (SETQ RESPONSE (ASKUSER DWIMWAIT (QUOTE N)
+							      (LIST (fetch (GAINSPACE MESSAGE)
+								       of X))
+							      (fetch (GAINSPACE KEYLST) of X)
+							      T))
+				      (QUOTE N))
+				 (EVAL (fetch (GAINSPACE FORM) of X]
+    [COND
+      (SMASHPROPSLST1 (TERPRI T)
+		      (PRIN1 "mapatoms called to erase the indicated properties..." T)
+		      [MAPATOMS (FUNCTION (LAMBDA (ATM)
+				    (REMPROPLIST ATM SMASHPROPSLST1]
+		      (MAPC SMASHPROPSLST1 (FUNCTION (LAMBDA (X)
+				(AND (LISTP X)
+				     (EVAL X]
+    (QUOTE done])
+
+(ERASEPROPS
+  [LAMBDA (RESPONSE)                                        (* wt: 30-JUL-77 12 43)
+    (SETQ SMASHPROPSLST1 (UNION SMASHPROPSLST1 SMASHPROPSLST))
+                                                            (* smashpropslst lets user prespecify properties to 
+							    always be smashed, and not to ask him.)
+    (SELECTQ RESPONSE
+	     [Y (TERPRI T)
+		(PRIN1 "indicate which ones:
+" T)
+		(MAPC SMASHPROPSMENU (FUNCTION (LAMBDA (X)
+			  (AND [SOME (CDR X)
+				     (FUNCTION (LAMBDA (X)
+					 (AND (LITATOM X)
+					      (NOT (MEMB X SMASHPROPSLST1]
+			       (EQ (ASKUSER NIL NIL (LIST (CAR X))
+					    NIL T)
+				   (QUOTE Y))
+			       (SETQ SMASHPROPSLST1 (UNION (CDR X)
+							   SMASHPROPSLST1]
+	     [(A E)
+	       [SETQ SMASHPROPSLST1 (MAPCONC SMASHPROPSMENU (FUNCTION (LAMBDA (X)
+						 (APPEND (CDR X]
+	       (AND (EQ RESPONSE (QUOTE E))
+		    (EDITE (SORT SMASHPROPSLST1]
+	     (HELP])
+
+(PURGEHISTORY
+  [LAMBDA (TYPE)                                            (* wt: "14-NOV-78 02:03")
+    (RESETVARS (ARCHIVEFLG)												     |
+	       (SELECTQ TYPE												     |
+			(E (SETQ ARCHIVEFLG T))												     |
+			[Y (SETQ TYPE (ASKUSER NIL NIL 												     |
+		       "purge everything, or just the properties, e.g. SIDE, LISPXPRINT, etc. ? "												     |
+					       [QUOTE ((Y "es - everything" RETURN T)												     |
+						       (N "o - just the properties" RETURN												     |
+							  (QUOTE NIL))												     |
+						       (E "verything" RETURN T)												     |
+						       (J "ust the properties" RETURN (QUOTE NIL]												     |
+					       T))												     |
+			   (TERPRI T)												     |
+			   (SETQ ARCHIVEFLG (EQ (ASKUSER NIL NIL 												     |
+							 "ARCHIVELST and named commands too ? "												     |
+							 NIL T)												     |
+						(QUOTE Y]												     |
+			(HELP))												     |
+	       (PURGEHISTORY1 LISPXHISTORY TYPE)												     |
+	       (PURGEHISTORY1 EDITHISTORY TYPE)												     |
+	       (PURGEHISTORY1 LASTHISTORY TYPE)												     |
+	       [COND												     |
+		 (ARCHIVEFLG (PURGEHISTORY1 ARCHIVELST TYPE)												     |
+			     (MAPC LISPXCOMS (FUNCTION (LAMBDA (COM)												     |
+				       (AND (LITATOM COM)												     |
+					    (COND												     |
+					      (TYPE (REMPROP COM (QUOTE *HISTORY*)))												     |
+					      (T (PURGEHISTORY2 (CADDR (GETPROP COM (QUOTE *HISTORY*]												     |
+	       (RETURN])
+
+(PURGEHISTORY1
+  [LAMBDA (LST FLG)                                         (* wt: "22-FEB-78 23:39")
+    (COND
+      ((NLISTP LST))												     |
+      (FLG (RPLACA LST NIL))
+      [(EQ LST EDITHISTORY)
+	(MAPC (CAR LST)
+	      (FUNCTION (LAMBDA (ENTRY)
+
+          (* CADDR of the entry is used for saving side information on the edito history list. however, can't just rplacd CDR 
+	  because that node is reused by historysave.)
+
+
+		  (RPLNODE (CDDR ENTRY)
+			   (QUOTE %]
+      (T (MAPC (CAR LST)
+	       (FUNCTION PURGEHISTORY2])
+
+(PURGEHISTORY2
+  [LAMBDA (ENTRY)                                           (* wt: 2-DEC-75 15 46)
+    (PROG (TEM)
+          (COND
+	    ((SETQ TEM (LISTGET1 ENTRY (QUOTE *GROUP*)))
+	      [RPLACD (CDDR ENTRY)
+		      (LIST (QUOTE *GROUP*)
+			    TEM
+			    (QUOTE *HISTORY*)
+			    (LISTGET1 ENTRY (QUOTE *HISTORY*]
+	      (MAPC TEM (FUNCTION PURGEHISTORY2)))
+	    (T (RPLACD (CDDR ENTRY)
+		       NIL])
+)
+
+(RPAQQ SMASHPROPSMENU (("old values of variables" VALUE)
+	("function definitions on property lists" EXPR CODE)
+	("advice information" ADVISED ADVICE READVICE (SETQ ADVISEDFNS 
+							    NIL))
+	("filemaps" FILEMAP)
+	("clisp information (warning: this will disable clisp!)" 
+							   ACCESSFN 
+							 BROADSCOPE 
+							 CLISPCLASS 
+						      CLISPCLASSDEF 
+							  CLISPFORM 
+						     CLISPIFYISPROP 
+							 CLISPINFIX 
+							CLISPISFORM 
+							CLISPISPROP 
+							   CLISPNEG 
+							  CLISPTYPE 
+							  CLISPWORD 
+							     CLMAPS 
+							    I.S.OPR 
+							   I.S.TYPE 
+							     LISPFN 
+							      SETFN 
+							    UNARYOP)
+	("compiler information (warning: this will disable the compiler!)"
+	  AMAC BLKLIBRARYDEF CROPS CTYPE GLOBALVAR MACRO MAKE OPD UBOX)
+	("definitions of named history commands" *HISTORY*)
+	("context of edits exited via save command" EDIT-SAVE)))
+
+(RPAQ SMASHPROPSLST NIL)
+
+(ADDTOVAR GAINSPACEFORMS ((CAR LISPXHISTORY)
+			  "purge history lists"
+			  (PURGEHISTORY RESPONSE)
+			  ((Y "es")
+			   (N "o")
+			   (E . "verything")))
+			 [T "discard definitions on property lists"
+			    (SETQ SMASHPROPSLST1
+				  (CONS (QUOTE EXPR)
+					(CONS (QUOTE CODE)
+					      (CONS (QUOTE SUBR)
+						    SMASHPROPSLST1]
+			 (T "discard old values of variables"
+			    (SETQ SMASHPROPSLST1 (CONS (QUOTE VALUE)
+						       SMASHPROPSLST1)))
+			 (T "erase properties" (ERASEPROPS RESPONSE)
+			    ((Y "es" EXPLAINSTRING 
+	"Yes - you will be asked which properties are to be erased")
+			     (N "o")
+			     (A "ll" CONFIRMFLG T EXPLAINSTRING 
+	      "All - all properties on mentioned on SMASHPROPSMENU")
+			     (E "dit
+" EXPLAINSTRING 
+"Edit - you will be allowed to edit a list of property names")))
+			 (CLISPARRAY "erase CLISP translations"
+				     (CLRHASH CLISPARRAY))
+			 (CHANGESARRAY "erase changes array"
+				       (CLRHASH CHANGESARRAY))
+			 (SYSHASHARRAY "erase system hash array"
+				       (CLRHASH))
+			 ((GETPROP (QUOTE EDIT)
+				   (QUOTE LASTVALUE))
+			  "discard context of last edit"
+			  (REMPROP (QUOTE EDIT)
+				   (QUOTE LASTVALUE)))
+			 (GREETHIST 
+	      "discard information saved for undoing your greeting"
+				    (SETQ GREETHIST)))
+
+(RPAQQ GAINSPACEBLOCKS ((GAINSPACEBLOCK GAINSPACE ERASEPROPS 
+					PURGEHISTORY PURGEHISTORY1 
+					PURGEHISTORY2
+					(ENTRIES GAINSPACE ERASEPROPS 
+						 PURGEHISTORY)
+					(GLOBALVARS GAINSPACEFORMS 
+						    SMASHPROPSMENU 
+						    SMASHPROPSLST 
+						    SMASHPROPSLST1 
+						    DWIMWAIT ARCHIVELST 
+						    LASTHISTORY 
+						    ARCHIVEFLG 
+						    LISPXCOMS 
+						    LISPXHISTORY 
+						    EDITHISTORY)
+					(SPECVARS RESPONSE))))
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: GAINSPACEBLOCK GAINSPACE ERASEPROPS PURGEHISTORY PURGEHISTORY1 
+	PURGEHISTORY2 (ENTRIES GAINSPACE ERASEPROPS PURGEHISTORY)
+	(GLOBALVARS GAINSPACEFORMS SMASHPROPSMENU SMASHPROPSLST 
+		    SMASHPROPSLST1 DWIMWAIT ARCHIVELST LASTHISTORY 
+		    ARCHIVEFLG LISPXCOMS LISPXHISTORY EDITHISTORY)
+	(SPECVARS RESPONSE))
+]
+(DECLARE: DOEVAL@COMPILE DONTCOPY 
+[DECLARE: EVAL@COMPILE 
+
+(RECORD GAINSPACE (PRECHECK MESSAGE FORM KEYLST))
+]
+)
+
+(RPAQQ ASSISTBLOCKS ((NIL CONTROLW READ' (LINKFNS . T))
+	(NIL READLINEP (GLOBALVARS LISPXREADFN))
+	(ERRORCONTEXT ERRORCONTEXT (SPECVARS EXPR TYPE-IN? BREAKFLG))
+	(NIL READCOMMENT PRINTCOMMENT GETCOMMENT
+	     (GLOBALVARS NORMALCOMMENTSFLG DEFAULTFONT CHANGEFLG0 
+			 FONTCHANGEFLG COMMENTFONT TTYFONTCHANGEFLG 
+			 CLISPFLG CLISPCHARRAY COMMENTFLG FIRSTCOL 
+			 FILERDTBL TTY **COMMENT**FLG RESETVARSLST)
+	     (LINKFNS . T))
+	(DO?BLOCK DO? DO?= (ENTRIES DO? DO?=)
+		  (GLOBALVARS LAST? RESETVARSLST)
+		  (NOLINKFNS HELPSYS))
+	(WHYBLOCK WHY WHY0 WHYSETUP WHYSPACE WHYVARS GETARG# EXPLAIN1 
+		  EXPLAINARG EXPLAINARG1 EXPLAINARG2 EXPLAINARG3 
+		  EXPLAIN2 EXPLAIN2A (ENTRIES WHY WHY0)
+		  (SPECVARS BADARG#S FORM ARGVALS FNS CONTEXT 
+			    FREEVARLST BADLST)
+		  (LOCALFREEVARS ARGNAMES BADARGS FORM ARGVALS FN STR3 
+				 LASTSUB SEENLST BADLST CONTEXT 
+				 FREEVARLST)
+		  (GLOBALVARS ORDINALS CLISPIFYENGLSHFLG CL:FLG 
+			      LISPXHISTORY LISPXFNS CLISPIFYPRETTYFLG 
+			      RESETVARSLST))))
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: NIL CONTROLW READ' (LINKFNS . T))
+(BLOCK: NIL READLINEP (GLOBALVARS LISPXREADFN))
+(BLOCK: ERRORCONTEXT ERRORCONTEXT (SPECVARS EXPR TYPE-IN? BREAKFLG))
+(BLOCK: NIL READCOMMENT PRINTCOMMENT GETCOMMENT
+	(GLOBALVARS NORMALCOMMENTSFLG DEFAULTFONT CHANGEFLG0 
+		    FONTCHANGEFLG COMMENTFONT TTYFONTCHANGEFLG CLISPFLG 
+		    CLISPCHARRAY COMMENTFLG FIRSTCOL FILERDTBL TTY 
+		    **COMMENT**FLG RESETVARSLST)
+	(LINKFNS . T))
+(BLOCK: DO?BLOCK DO? DO?= (ENTRIES DO? DO?=)
+	(GLOBALVARS LAST? RESETVARSLST)
+	(NOLINKFNS HELPSYS))
+(BLOCK: WHYBLOCK WHY WHY0 WHYSETUP WHYSPACE WHYVARS GETARG# EXPLAIN1 
+	EXPLAINARG EXPLAINARG1 EXPLAINARG2 EXPLAINARG3 EXPLAIN2 
+	EXPLAIN2A (ENTRIES WHY WHY0)
+	(SPECVARS BADARG#S FORM ARGVALS FNS CONTEXT FREEVARLST BADLST)
+	(LOCALFREEVARS ARGNAMES BADARGS FORM ARGVALS FN STR3 LASTSUB 
+		       SEENLST BADLST CONTEXT FREEVARLST)
+	(GLOBALVARS ORDINALS CLISPIFYENGLSHFLG CL:FLG LISPXHISTORY 
+		    LISPXFNS CLISPIFYPRETTYFLG RESETVARSLST))
+]
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML TRYNEXT POSSIBILITIES GENERATOR COROUTINE ASKUSERLOOKUP)
+
+(ADDTOVAR LAMA AU-REVOIR ADIEU)
+)
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (4742 18123 (CONTROLW 4754 . 6616) (READLINEP 6620 . 7063)
+ (READ' 7067 . 7688) (READ* 7692 . 7846) (PRINT* 7850 . 8007) (
+READCOMMENT 8011 . 12326) (GETCOMMENT 12330 . 17331) (PRINTCOMMENT 17335
+ . 18120)) (19159 21438 (PRINTPROPS 19171 . 19882) (PRINTBINDINGS 19886 
+. 21435)) (21997 22605 (SHOWPRINT 22009 . 22328) (SHOWPRIN2 22332 . 
+22602)) (22826 44714 (DO? 22838 . 25407) (DO?= 25411 . 28232) (
+ERRORCONTEXT 28236 . 30029) (WHY 30033 . 32598) (WHY0 32602 . 36378) (
+WHYSETUP 36382 . 37046) (WHYSPACE 37050 . 37167) (WHYVARS 37171 . 37730)
+ (GETARG# 37734 . 38034) (EXPLAIN1 38038 . 38824) (EXPLAINARG 38828 . 
+39821) (EXPLAINARG1 39825 . 40943) (EXPLAINARG2 40947 . 41339) (
+EXPLAINARG3 41343 . 41764) (EXPLAIN2 41768 . 44607) (EXPLAIN2A 44611 . 
+44711)) (46725 52224 (LISPXRETRY 46737 . 47304) (LISPXRETRYFN 47308 . 
+49032) (LISPXRETRYFN1 49036 . 50961) (LISPXRETRYFN2 50965 . 51220) (
+LISPXRETRYTAIL 51224 . 52046) (PROPNAMES 52050 . 52221)) (54692 94414 (
+ASKUSER 54704 . 84148) (ASKUSERLOOKUP 84152 . 84604) (ASKUSERCHAR 84608 
+. 85226) (ASKUSER$ 85230 . 87464) (ASKUSER1 87468 . 88297) (ASKUSERSETUP
+ 88301 . 90558) (ASKUSEREXPLAIN 90562 . 92422) (ASKUSERPRIN1 92426 . 
+92871) (MAKEKEYLST 92875 . 94411)) (96823 99804 (COROUTINE 96835 . 97654
+) (OLDRESUME 97658 . 98492) (GENERATOR 98496 . 99033) (GENERATE 99037 . 
+99131) (PRODUCE 99135 . 99225) (GENERATEFN 99229 . 99801)) (99921 101856
+ (ADIEU 99933 . 100107) (AU-REVOIR 100111 . 100328) (CLEANPOSLST 100332 
+. 100501) (NOTE 100505 . 100632) (POSSIBILITIES 100636 . 100863) (
+TRYNEXT 100867 . 101146) (TRYNEXT1 101150 . 101541) (POSSIBILITYFN 
+101545 . 101853)) (104616 109213 (GAINSPACE 104628 . 105578) (ERASEPROPS
+ 105582 . 106538) (PURGEHISTORY 106542 . 108211) (PURGEHISTORY1 108215 .
+ 108784) (PURGEHISTORY2 108788 . 109210)))))
+STOP

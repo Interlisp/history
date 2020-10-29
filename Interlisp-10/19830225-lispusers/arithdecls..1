@@ -1,0 +1,74 @@
+(FILECREATED "10-APR-79 16:07:09" <LISPUSERS>ARITHDECLS.;4 2255   
+
+     previous date: "18-MAR-79 23:12:30" <LISPUSERS>ARITHDECLS.;3)
+
+
+(PRETTYCOMPRINT ARITHDECLSCOMS)
+
+(RPAQQ ARITHDECLSCOMS ((PROP DECLOF ADD1 IMAX IMIN SUB1 PLUS DIFFERENCE TIMES QUOTIENT MAX MIN MINUS 
+			     REMAINDER EXPT RAND SQRT LENGTH FLENGTH FMAX FMIN)
+	(FNS ARITHDECL MAXDECL)))
+
+(PUTPROPS ADD1 DECLOF FIXP)
+
+(PUTPROPS IMAX DECLOF FIXP)
+
+(PUTPROPS IMIN DECLOF FIXP)
+
+(PUTPROPS SUB1 DECLOF FIXP)
+
+(PUTPROPS PLUS DECLOF (FUNCTION ARITHDECL))
+
+(PUTPROPS DIFFERENCE DECLOF (FUNCTION ARITHDECL))
+
+(PUTPROPS TIMES DECLOF (FUNCTION ARITHDECL))
+
+(PUTPROPS QUOTIENT DECLOF (FUNCTION ARITHDECL))
+
+(PUTPROPS MAX DECLOF (FUNCTION MAXDECL))
+
+(PUTPROPS MIN DECLOF (FUNCTION MAXDECL))
+
+(PUTPROPS MINUS DECLOF (FUNCTION ARITHDECL))
+
+(PUTPROPS REMAINDER DECLOF (FUNCTION ARITHDECL))
+
+(PUTPROPS EXPT DECLOF (FUNCTION ARITHDECL))
+
+(PUTPROPS RAND DECLOF (FUNCTION ARITHDECL))
+
+(PUTPROPS SQRT DECLOF FLOATP)
+
+(PUTPROPS LENGTH DECLOF FIXP)
+
+(PUTPROPS FLENGTH DECLOF FIXP)
+
+(PUTPROPS FMAX DECLOF FLOATP)
+
+(PUTPROPS FMIN DECLOF FLOATP)
+(DEFINEQ
+
+(ARITHDECL
+  [LAMBDA (FORM)                                       (* rmk: "18-MAR-79 23:10")
+                                                       (* Computes the declarations for the generic arithmetic functions)
+    (for A (TYPE _ 'FIXP) in FORM::1 do (SELCOVERSQ A
+						    (FLOATP (RETURN 'FLOATP))
+						    (FIXP)
+						    TYPE_'NUMBERP)
+       finally (RETURN TYPE])
+
+(MAXDECL
+  [LAMBDA (FORM)                                       (* rmk: "18-MAR-79 23:12")
+                                                       (* Returns the common arithmetic type of all arguments, or NUMBERP if 
+						       they differ. Used for MAX and MIN)
+    (if FORM::1=NIL
+	then 'FIXP
+      else (for A TYPE in FORM::2 first TYPE_(SELCOVERSQ FORM:2
+							 (FIXP 'FIXP)
+							 (FLOATP 'FLOATP)
+							 (RETURN 'NUMBERP))
+	      unless (COVERS TYPE (DECLOF A)) do (RETURN 'NUMBERP) finally (RETURN TYPE])
+)
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (1223 2231 (ARITHDECL 1235 . 1646) (MAXDECL 1650 . 2228)))))
+STOP

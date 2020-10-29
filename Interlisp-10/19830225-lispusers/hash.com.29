@@ -1,0 +1,622 @@
+(FILECREATED "28-FEB-82 23:01:32" ("compiled on " <LISPUSERS>HASH.;26) (2 . 2) brecompiled explicitly:
+ HASHFILESPLST1 in "INTERLISP-MAXC " dated "28-FEB-82 13:51:55")
+(FILECREATED "18-SEP-79 09:21:49" <LISPUSERS>HASH.;26 57643 changes to: COPYHASHFILE previous date: 
+"18-SEP-79 08:26:13" <LISPUSERS>HASH.;25)
+
+HASHFILEBLOCK BINARY
+M]-.M-.xN~pUE+-
+"%Vf$qA	h*,<^Zw[d_,<,<`,<,<,<,<,<^,<Zw}3B+1B+0,5" w0"++0 w1b++0Zw|,>D,> w.Bx,^/XBpZ,XBwZw~3B+$,<Zw~,XBw~,\QB+&Zw,XBw~XBw~ w,>D,>^",>D,>Zp"D ,^/(B,XBw},.Bx,^/,XBw+Zw~/,~Z/" 
+Zw,<Zw, ,\&$."$&Q"A`JZ F=j:+Zw,<Zw, ,\&$."$&Q"A`Z9 Z2/$F=dC+(,F,~-.
+`Z,<@a ,~Z,<,<c,<c,<@d`+)ZZeXB,<,<,<,<Z,<,<,<,<,6XBw~3B+WXBQ+aZV,<,<f,	hXBW3B+`,<fZY[,,<,<,ZJ,XB^+aZ+'Z[,<,XBw,<,`XBw~Zw}Z83B+gZg+hZg,<Zw|Z82B+mZa[,<,<h,<Zj,<,<i,%,<[w},< E,>D,>Zw|,Bx,^/,,<,+XBw~[,Z_,XBxZm[,XBpZw}Z83B+,<,6+ZpXBw~Zw}Z83B+ZpZw~3B+ +Zp0B+Z"XBw~3B+ +0B+Z"XBw~3B+ +0B+ ,<ij3B+ Zybk,< w~ ,\QD,<,<w~,( ,\XDXBZ XD,<wk,< w~ ,\QD,<,<w~,( ,\XDXBwZw XD,<wZ,<,<w~Zw{,<8Zw~0B7Z,<,0Zw[/Zw~XB8Z,~3B++Z+,ZlXB`dlZ`3B+/m,~Z`,~-.
+nZG,<@a ,~Zy,<,<o,<c,<@d`+#ZZeXB,<p,< w1b+@,<pXBp w/",XBw+:Zp/Z [,<Zw~Z8[,<Zw~,<8,<,<,<,<Zw~2B+I+ -,+LXBwZXBw~+NZw~XBw[w~XBw~Z1,<@a + Z4,<,<q,<c,<@d`+ZZeXB,<rZw|,<?,<?}_Zw|XB?br,ZQ,XB[Zw|,<?@s +Z E."XBZ_,<[a ,\."XB`Z`7B+g:@7Z2B+i+,DZw|XB8ZwZ83B+r,<Zw|,<8ZA,<Zw},<8 ",Zw|XB8+Z83B+Zw|Z?}, Zu D,<Zw|,<?},<8vZw|,<?}wZw|,<?},<?},<8ZwzZ?}, Zx DhxZw|,<?}y,\Zw|XB8Zd"F,>D,>^",>D,>Zb$Bx,^/.Bx,^/ &$$&Q$A`."(D
+GZz D,<Zw|,<8Zw~,<8,<{,Z."XBZ`2B+dZ`,~Zw|XB8Z,~3B+Z+ZlXB`dlZ`3B+
+m,~Z`,~+GZw~/Zw~XB8Z,~3B+%Z+&ZlXB`dlZ`3B+)m,~Z`,~ Zw-,+0Zp2B+0[wZXBpZwXBwZN,<@a +,Z\,<,<{,<c,<@d`+%ZZeXB@|+#Zw~Z?~2B+=Z,~,<?,6Zw~XB?,<},<?~,<~,<~bbZw~XB?~,Z3,XBD,<p,<ZQD,<Zw~ ? ,\QDZw~Z?~QD,<Zw~,<?~, ,\XD,<Zw~,<?,( ,\XD,<Zw~Z?0B+W^"+X^" ,\XDXBn,<^ZY[d_XB`Z`,<Zw~ ? ,\dF,<`,<^,<Zw}Z?-,+f ?1b+fZw}Z?+jZw} ?A"1B+jZ"+jZ",<,AXB`,<Zw|Z8-,+v 81b+vZw| 8,>D,> ` ,^/&.",+vZ"XB`,< `.",,<,,\,<,	"ZZ XDZw~Z?0B+Z-,+,<,<,<,<,<Z"XBp p,>D,> w~ ,^/3b+	+ZXBwZw3B+,<Zw,XBw~,\QB+Zw,XBwXBw~ p.",XBp+Zw~/XBZw~ ?A"1B+ZZ7@7Zb2B+,<XBZw~,<?~Z{,<Zf	Zw~,<?~,<
+,<X
+Z,~Zw~XB8Z,~3B+'Z+(ZlXB`dlZ`3B++m,~Z`,~+,.,~-.Z",<,<,<,<,6XB/Z2[,<,<`Z3Z(B	,>D,> `GBx,^/,+<^"+<,  E G+ + + ,,~Z5Z,,>D,> p.",
+GBx,^/  H
+,G"7."7H.$ &&4HJ0&+K,+ I,>D,>ZAZ,+S^"+T, E E+ + + ABx,^/,,<,< w,>D,>ZP[ ,^/3b+nZw,,<Z[Z ,\Q"Z&D79cZ",XBwZw3B+l w,>D,> w.Bx,^/,+mZw,<,+Zw3B+Zw,,<Z`Z ,\Q"D5vZ",7 XBp3B+ p,>D,> w ,^//,>D,> w ,^/2"+Zp,.",<ZqZ ,\Q"`d9Z",XBw+ZZw+,,~-.,<`,<Z,<,<,<,<,6,<,<p,,~,,~-.Z,<,<,<,<,6XB,<`,O,~,,~-.Z,<,<,<,<,6XBZ`"+#Z`"I Z D,<Z
+[d,<,<,<Zw"I ^"2B++Z+Zw"J,XBp, ^"2B+1,<,<`j+*,<pZ$[d_XBw,>D,>Zw"J.Bx,^/XBwZw"F,>D,>^",>D,>Zw$Bx,^/.Bx,^/ &$$&Q$A`."(D
+GZ D+Z2[,1B+H0B+LZDZ,<Z"I ,\ D,~0B+\ZHZ,<ZI"K(B
+,>D,>ZO"K,>D,>^",>D,>Z$Bx,^/.Bx,^/GBx,^/ ,\ D,~0B+lZ,<ZQ"K(B
+,>D,>Z^"K,>D,>^",>D,>ZU$Bx,^/.Bx,^/GBx,^/ ,\ D,<Zd,~0B+uZM[,<Z`"I Z DdvZm[,<Zkd,~0B+ZrZZ,<Zo"I ,\ DZvZ[,<Zx,>D,>[d.Bx,^/  ,\ DZzZ,~,<",~@+Zw~,<8,<,<,<,6XB3B+Z2B+ZXBZ-,+Z
+,<Z[,\2B+ZXBZw~,<8,<Z
+f	ZZXDZ\$XDZ,~+,,~-.Z,<,<,<,<,6[,~,<p,<,<,<,6+,&,~-.Z,<,<,<,<,6XB'Z`2B+.Z*[,~2Bi+=Z,[,0B+2Z,~0B+4Z,~0B+6Z,~0B+8Z,~0B+:Z,~0B+<Z,~,~2B+@Z/[,~2B+EZ>,<,,<,`Z,,,~2B+KZA,<,,<,`[,,,~2B
++SZF,<,,<,`,<[p,,,<Zw,,,+,<
+,<,B ,~,W,~-. ZL,<,<,<,<,6XBXZ-,+_Z\ZQD+a,<p,<^XB]ZaZ[XDZaZ[QDZc,~,<,<Zw[3B+lZwZXBwZwZXBp+Zw,<Zw~[,<, ,\QD 2B+sZ+ZwZQDZw,<Zw~[Z,<Zw~[[d_XBw ,\XDZw,<Zw,<[w~/" ,\." ,\QDZw E."XBpZp7B+:@7Z3B+ZwZpXDZp"F,>D,>^",>D,>Zw$Bx,^/.Bx,^/ &$$&Q$A`."(D
+GZ! D+Zp,<Zw~[,\3B+Zp."XBp+Zw,<Zw~[[ ,\QD 3B+!+uZwZQD+r,%,~-."Zc3B+0Z#,<,<`#3B+6Z&,<,<`, ,\XD ,,~,<[,<`,<`,<,<,<,6,<,<`$[,,~,<%Zw~3B+DZw~(B{ZA"
+."0B+<+G0B+WZw~Z,2B+C,<w~&Z>,2B+C+WXBw~+GZXBw~2B+G+WZw~,<Zw}Z,\2B+WZw3B+Q,<Zw}[,,\3B+QZ'XBp+WZw~3B+VZw~[3B+VZ'XBp+WZw~+Zw3B+[,<p,<w}jXBw~+7Z+,<,O,<,<,<wZ*[d_XBpZp,< w~ ,\QDZp,<^",>D,>^",>D,> w~,>D,>Z^Z$Bx,^/.Bx,^/$Bx,^/ ,\XDZw+ ,r,~-.(,<`,<,<^Zw2B+w+	-,+zXBwZXBw+|ZwXBw[wXBw p,>D,>Zw2B)+^"+2B)+^"+2B*+^"+2B*+^"+^"GBx,^/,XBp+uZp/XB`,<`,<`Zi,< `A"1B+7Z,<,<,<,6,<,<`,,~-.+Z,,<@- P,~ZwZ8(B{ZA"
+."0B+ZwZ8+%0B+#^",>D,>ZwZ8.Bx,^/[+%Zw,<8,<2j,1h?1h+) " XBBZA F++Zw,<8,<3j "."$L=h,# Z3 DXB`Z`,<,<^Z[d_,>D,> `A".Bx,^/Z,XB,<Z2[d_XB~[ ,\ && F ,XB`XB`Z`,<[: ,\ && F ,XB`0B+GZ"XB`ZA,<Z`, ,\."XB| 0B+lZw 8A"1B+kZ`3B+QXBKZG Z4 D,<,< ',>D,> w.Bx,^/." Z4 DXBp,0b	+eZQ,<,<w,2Z\,< w ,\XDZQ,< w ,\dFZ+eZ/2B+g+!,<,!2B+kZa\$ D+!Z,~Zi 2BG+qZ`2B+ZlXB`+Z^,<Zp"F ,\&$."$&Q"A`Z( ZT/$2F+}
+2F+}=dz7 3B+Zw 8A"0B+Z+,DXB`Zw 8A"1B+Zr\$ DZ9[0B+Z"I,,<Z[d $dI+Zw 8A"1B+,<,!2B++!Z`,~ `,>D,> `.Bx,^/,>D,>[q ,^/& ,XB`Z`3B++GZw 8A"0B+!+kZw 8A"1B+%,<5"ZwZ8(B{ZA"
+."0B+*ZwZ8+20B+0^",>D,>ZwZ8.Bx,^/[+2Zw,<8,<2j,1h?1h+7 " XBwZv F+9Zw,<8,<3j "."$L=h9# Z5 D,A",,<,Q+,B,~-.6Z,<,<,<,<,6XBCZ0,<@a ,~ZE,<,<7,<c,<@d`+	ZZeXB,<p,<pZF,<,,<Zw~,<87, ^"2"7Z,<,<,<,<Zw~-,+[+	ZXBwZF,<@a +	ZI,<,<8,<c,<@d`+	ZZeXB,<9Zw|,<?ZP[d_Zw|XB8br,Z^,XBiZw|,<8@9 +	Z E."XB	Zm,<[o ,\."XB`Zn7B+u:@7Z2B+w+		Zw,<8Zr"F,>D,>^",>D,>Zp$Bx,^/.Bx,^/ &$$&Q$A`."(D
+GZ; D,<Zw{Z?~3B+	,D+	Z,< ",Zx."XB		Z`2B+rZ`,~Zw|XB8Z,~3B+	Z+	ZlXB`dlZ`3B+	m,~Z`,~[w~XBw~+YZw/Zw~XB8Z,~3B+	Z+	ZlXB`dlZ`3B+	!m,~Z`,~Zw0B+	%,<<Ze[dj,<<,<w},,<,<w}r,Zj,XB	)Z=,< w~,>D,>,<w,
+^, ,^//,,<Zw},>D,> w},>D,> w~" ,^/(B,>D,> w~ ,^/(B.Bx,^/,<^",>D,> w} ,^/(B/",,<,<,<,<Zw},5"	FZ"XBw}^",>D,> w} ,^/(B,XBwZw},< w} ,\dD w~0"+	P+	f w~,>D,> w ,^//,XBpZw},<,<w{,\, ,\XD,<Zw~Zw2B+	]Zp+	eZw},>D,> w~.Bx,^/,< w| ,\dL w~/",XBw~+	Z/+	NZw/,~@=+
+]Zw~Z?2B+	mZ,~Z83B+	o2B+	~,<?,<,<,<,6XB	$3B+	zZ	r[2B+	vZ	s,~Z	u[b,<,<,	h,~Zw~,<?Zw~XB?ZZw~XB8+
+3Bf+
+2B+
+
+,<?,<,<,<,6XB	v3B+
++	uZw~,<?,<f,<?Zw~XB?ZfZw~XB8+
+,<
+,<,B ,<p,<Zw~Z?QDZw~Z8QD,<Zw~,<?, ,\XDXB
+,<^Z
+[d_XB`Z`"F,XB`1B+
+$1B+
+$1B+
+$1B+
+$1B+
+$0B+
+ +
+$Zw~,<?Zw~,<?,<?jZ
+,< ` ,\QDZ
+$,<,<`,( ,\XDZ
+',<Z`0B+
+.^"+
+.^" ,\XDZ
+*,<Zw~,<?@,&"
+ ,\QDZ
+0 XDZ
+5[2B+
+PZ`0B+
+PZ-,+
+P,<,<,<,<,<Z"XBp p,>D,> w~ ,^/3b+
+D+
+NZXBwZw3B+
+J,<Zw,XBw~,\QB+
+LZw,XBwXBw~ p.",XBp+
+?Zw~/XB
+: `A"1B+
+WZZ7@7Zb2B+
+W,<XBsZw~,<?Z
+6,<ZAf	Zw~,<?,<
+,<X
++	u+,<,<^ w(B,XBw0B+
+b+
+e p.",XBp+
+_Zp+,<,<Z3B+
+s 5,>D,>Z	
+"K ,^/2b+
+sZ
+j,< 
+h ,\dKZ
+m"K ZA D+ 
+n,>D,>Z{.Bx,^/ ZA DXBw,1b	+
+{Z+ZZ
+p,< 
+s ,\dKZ
+|,<Z
+u ZB DXBw, ,\dKZ,< w ,\XDZp+Z
+X[,<^"
+,>D,>Z,< w."@ ,\QD $Bx,^/ ZB Ddv,<Z[dC+,,~-.D,<`,<`Z,<,<,<,<,6,<Z`3B+
+Z"+
+Z",<,Z`,~-.EZ[,0B+)Z
+,<  ,\dIZ,~0B+EZF,<@F +EZ&(B{ZA"
+."0B+1Z,+80B+6^",>D,>Z0.Bx,^/[+8Z3,<,<2j,1h?1h+= " XB
+}Z5 F+?Z6,<,<3j,
+fXB`2B+BZ,~Z,<,<,<Z,~,~0B+e@H+dZ=,<,<Z
+WfI,.",XB;,0b?+OZL0B+R,<JZH,<,<j,
+fXB`2B+UZ,~ZP,<Z
+O,<,<ZIhJ,<ZB,<Z`, ,\&$."$&Q"A` ,\Z/&F[2B+_ &F Z,~,~0B+tZ"[,<,<KvZ%,<Zf[, ,\dIZU,<Zi[,<ZWfLZl-,+s,<{Zm[dMZ,~0B+	Zh,<Zp-,ZZ-,+|,<NZvdj,+|, ,\dIZu,>D,>[Y.Bx,^/,<[z-,+,<NZdj,+, ,\ DZ,~0B+(Z~"I ZO D,<,<Z3B+%Z
+,<Z"+Z"I ZO D,+, ,\dI ,,<Zr[dXBpZp,< 8 ,\dJZp,<Z ,\dJ w1B+&,<wZ[d $dI+&,<Pj/Z,~,<P",~,+,~-.QZ\,<@a ,~Z	*,<,<R,<c,<@d`+JZZeXB,<Z",<,<,<,<,6XBp3B+:XB4+DZ9,<,<,	hXB:3B+C,<fZ<[,,<,<,Z.,XBA+DZ+HZ>,<,,<ZD,<,vZF/Zw~XB8Z,~3B+LZ+MZlXB`dlZ`3B+Pm,~Z`,~,<,<Z,<,`[XBw,3bM+X,<w,A+[ZR,<ZG[d_[,XBw,<^ZY[d_XBp,<,<w~Zw,>D,> w~.Bx,^/"D,,<,<w~,<,	"ZX,<Z\,<,vZg[,<ZfdZhZ(B	,>D,> jGBx,^/,+q^"+r,  E G+ + + Z+-.RZ,,<@a ,~ZB,<,<S,<c,<@d`+YZZeXB,<p,< w1b+,<pXBp w/",XBw+Zp/Zk[0B+Zbk,<^" ,\QDXB	+Z[0B+Zbk,<^" ,\QDXBZ[,<Zw~,<8,<,<,<Zw~2B++V-,+XBwZXBw~+Zw~XBw[w~XBw~Zw,<@a +UZz,<,<T,<c,<@d`+NZZeXB,<TZw|,<?,<?~_Zw|XB8br,Z!,XB+Zw|,<8@U +LZ E."XBZ/,<[1 ,\."XB`Z07B+7:@7Z2B+9+HZ4"F,>D,>^",>D,>Z2$Bx,^/.Bx,^/ &$$&Q$A`."(D
+GZW D,<,D,<Z,<,<W,Z9."XBHZ`2B+4Z`,~Zw|XB8Z,~3B+PZ+QZlXB`dlZ`3B+Tm,~Z`,~+Zw/Zw~XB8Z,~3B+[Z+[ZlXB`dlZ`3B+_m,~Z`,~,<p^" ZX D,<^" ZX D,<ZF[,<Ze[A"1B+j7Z,<,<,<Zw}2B+n+-,+qXBpZXBw}+sZw}XBp[w}XBw},<p,<w~_,<@Y +Z< E."XBIZv,<[x ,\."XB`Zx7B+~:@7Z2B++Zw~Z?},<Zw~ ?}." ,\ DZw~Z?~,<Zw~ ?~,>D,>Zy,<Z|"F ,\&$."$&Q"A`.BxZw~Z?3B+Z	"K+^".Bx,^/ ,\ DZ."XBZ`2B+|Z`,~+lZ[,<Zw},< w|1b+$ w},,>D,> w|, ,^/
+ Z[ D+%Z" ,\XCpQEp,\/,~Zp1B+,1B+,0B+-^"',+1B+/0B+0\+0B+5^"',,<^"',,+Z+Zp2B+8Z"+2B+:Z"+2B+<Z"+2B+>Z"+2B+@Z"+2B+BZ"+,<]dj+$ 3Lf006$ t"?x`<$0(
+Xy!P@$I!U	&`#`F##:@@LT("M*$ $ 0 L@-	&U"|@P$b$)$@a@0\	`L	@S!S`@
+2 PDHI$
+
+ d!
+de$@J	@@@	Ff3F(2CI"@!2 )DD@PQQ@H'! 	4 MnhA@	(bB0@!"BA!0V @*Bc4AjJ"jPH
+d@&iA!H 4
+@((LtLxHU,Pd`@@.y!Q Q
+D#(
+ &N B1H@ &"(PP
+
+HAEqIUJ3)SB&!U"A
+4@S*D@(!Y$0 @-@DPCA
+Hf33(HASHFILEBLOCK#0 . 1)
+(VARIABLE-VALUE-CELL STRINGLENGTH . 2972)
+(VARIABLE-VALUE-CELL INDEXPTR . 2935)
+(VARIABLE-VALUE-CELL LISPXHIST . 3389)
+(VARIABLE-VALUE-CELL RESETVARSLST . 3416)
+(VARIABLE-VALUE-CELL HASHFILECHCONLST . 2988)
+(VARIABLE-VALUE-CELL HASHFILERDTBL . 3038)
+(VARIABLE-VALUE-CELL SYSHASHFILEARRAY . 2739)
+(VARIABLE-VALUE-CELL HASHFILE . 3534)
+(VARIABLE-VALUE-CELL SLOT . 3629)
+(VARIABLE-VALUE-CELL PAGE . 3601)
+(VARIABLE-VALUE-CELL SYSHASHFILE . 1673)
+(VARIABLE-VALUE-CELL HASHFILESPLST . 1481)
+(VARIABLE-VALUE-CELL REPLACE . 2766)
+(VARIABLE-VALUE-CELL VAL . 3107)
+(VARIABLE-VALUE-CELL REALPAGE# . 3291)
+COPYHASHFILE
+CREATEHASHFILE
+DELPAGE
+GETHASHFILE
+GETPAGE
+GETPNAME
+HASHAFTERCLOSE
+HASHFILENAME
+HASHFILEP
+HASHFILEPROP
+HASHFILESPLST
+HASHFILESPLST1
+HASHSTATUS
+LOOKUPHASHFILE
+MAPHASHFILE
+OPENHASHFILE
+PUTHASHFILE
+REHASHFILE
+0
+(NIL)
+(LINKED-FN-CALL . MAPPAGE)
+511
+*COPYHASHFILE*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL HASHFILE . 0)
+(VARIABLE-VALUE-CELL LISPXHIST . 0)
+NIL
+NIL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+INPUT
+CLOSEF?
+((AND RESETSTATE (DELFILE (CLOSEF? OLDVALUE))) . 0)
+((PROGN (CLOSEF? OLDVALUE) (AND RESETSTATE (DELFILE OLDVALUE))) . 0)
+(NIL)
+(LINKED-FN-CALL . NAMEFIELD)
+VALUETYPE
+"A copying function is required for SYMBOLTABLE files"
+(NIL)
+(LINKED-FN-CALL . ERROR)
+(NIL)
+(LINKED-FN-CALL . COPYARRAY)
+ERROR
+(NIL)
+(LINKED-FN-CALL . RESETRESTORE)
+(NIL)
+(LINKED-FN-CALL . ERROR!)
+*COPYHASHPAGES*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL HASHFILE . 0)
+((DUMMY) . 0)
+4
+(NIL)
+(LINKED-FN-CALL . ADDMAPBUFFER)
+((DUMMY) . 0)
+((PROGN (UNLOCKMAP OLDVALUE)) . 0)
+(NIL)
+(LINKED-FN-CALL . LOCKMAP)
+(VARIABLE-VALUE-CELL PAGE . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL SLOT . 0)
+NIL
+1000000
+(NIL)
+(LINKED-FN-CALL . SETFILEPTR)
+(NIL)
+(LINKED-FN-CALL . SKREAD)
+1000000
+(NIL)
+(LINKED-FN-CALL . COPYBYTES)
+(NIL)
+(LINKED-FN-CALL . TERPRI)
+""
+1
+((DUMMY) . 0)
+(NIL VARIABLE-VALUE-CELL HASHFILE . 0)
+NIL
+NIL
+((AND RESETSTATE (PROGN (CLOSEF? OLDVALUE) (DELFILE OLDVALUE))) . 0)
+OUTPUT
+NEW
+(NIL)
+(LINKED-FN-CALL . OPENFILE)
+(NIL)
+(LINKED-FN-CALL . CLOSEF)
+(NIL)
+(LINKED-FN-CALL . IOFILE)
+2
+(NIL)
+(LINKED-FN-CALL . ARRAY)
+BOTH
+(NIL)
+(LINKED-FN-CALL . OPNJFN)
+9
+128
+HASHFILERDTBL
+(NIL)
+(LINKED-FN-CALL . READTABLEP)
+ORIG
+(NIL)
+(LINKED-FN-CALL . COPYREADTABLE)
+(NIL)
+(LINKED-FN-CALL . PUTHASH)
+AFTER
+(NIL)
+(LINKED-FN-CALL . WHENCLOSE)
+*DELPAGE*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL HASHFILE . 0)
+(NIL)
+(LINKED-FN-CALL . CLEARMAP)
+*GETHASHFILE*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL HASHFILE . 0)
+*GETPAGE*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL HASHFILE . 0)
+*GETPNAME*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL HASHFILE . 0)
+5
+1000000
+(NIL)
+(LINKED-FN-CALL . MAPWORD)
+"Invalid name pointer for symbol"
+""
+""
+(NIL)
+(LINKED-FN-CALL . READ)
+1000000
+GETVALUE
+HELP
+(NIL VARIABLE-VALUE-CELL HASHFILE . 0)
+*HASHFILENAME*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL HASHFILE . 0)
+*HASHFILEPROP*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL HASHFILE . 0)
+NAME
+NUMBER
+STRING
+SMALLEXPR
+EXPR
+SYMBOLTABLE
+2NUMBERS
+(NIL)
+(LINKED-FN-CALL . SHOULDNT)
+ACCESS
+#ENTRIES
+ITEMLENGTH
+SPACE
+27
+ERRORX
+*HASHFILESPLST*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL HASHFILE . 0)
+""
+*HASHSTATUS*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL HASHFILE . 0)
+PERMSTATUS
+(NIL)
+(LINKED-FN-CALL . APPLY)
+(NIL)
+(LINKED-FN-CALL . PERMSTATUS)
+"Not a hashfile"
+(NIL)
+(LINKED-FN-CALL . OPENP)
+"Wrong value type"
+"Not open for write"
+*LOOKUPHASHFILE*
+((UNBOXED-NUM . 3) VARIABLE-VALUE-CELL HASHFILE . 0)
+INSERT
+REPLACE
+DELETE
+RETRIEVE
+*LOOKUPHASHFILE1*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL VAL . 0)
+((UNBOXED-NUM . 3) VARIABLE-VALUE-CELL HASHFILE . 0)
+1000000
+(VARIABLE-VALUE-CELL INDEXPTR . 0)
+(NIL VARIABLE-VALUE-CELL STRINGLENGTH . 0)
+(NIL VARIABLE-VALUE-CELL PAGE . 0)
+(NIL VARIABLE-VALUE-CELL REALPAGE# . 0)
+NIL
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL SLOT . 0)
+NIL
+NIL
+NIL
+"not atom or string"
+"too long"
+1000000
+1000000
+1000000
+"Attempt to Rehash during Rehashing!!"
+1000000
+*MAPHASHFILE*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL HASHFILE . 0)
+((DUMMY) . 0)
+(NIL)
+(LINKED-FN-CALL . NARGS)
+((DUMMY) . 0)
+((PROGN (UNLOCKMAP OLDVALUE)) . 0)
+(VARIABLE-VALUE-CELL PAGE . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL SLOT . 0)
+NIL
+""
+"Hashfile full -- can't expand!"
+UNLOCKMAP
+1000000
+(NIL VARIABLE-VALUE-CELL HASHFILE . 0)
+NIL
+NIL
+OLD
+"not a hashfile!"
+(NIL)
+(LINKED-FN-CALL . GETEOFPTR)
+1000000
+1000000
+1000000
+1000000
+(NIL)
+(LINKED-FN-CALL . PRIN1)
+*PUTHASHFILE*
+((UNBOXED-NUM . 3) VARIABLE-VALUE-CELL HASHFILE . 0)
+*PUTVALUE*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL REPLACE . 0)
+1000000
+(VARIABLE-VALUE-CELL INDEXPTR . 0)
+(NIL VARIABLE-VALUE-CELL STRINGLENGTH . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL STRINGLENGTH . 0)
+NIL
+(NIL)
+(LINKED-FN-CALL . NCHARS)
+"{in PUTHASHFILE/LOOKUPHASHFILE} bad value length: "
+(NIL)
+(LINKED-FN-CALL . DCHCON)
+-1
+(NIL)
+(LINKED-FN-CALL . PRIN4)
+(NIL)
+(LINKED-FN-CALL . SPACES)
+"Bad value for 2NUMBERS hashfile"
+"Bad value for 2NUMBERS hashfile"
+1000000
+1000000
+"Nothing to be named"
+PUTVALUE
+*REHASHFILE*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL HASHFILE . 0)
+((DUMMY) . 0)
+*REHASHPAGES*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL HASHFILE . 0)
+((DUMMY) . 0)
+((DUMMY) . 0)
+((PROGN (UNLOCKMAP OLDVALUE)) . 0)
+(VARIABLE-VALUE-CELL PAGE . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL SLOT . 0)
+NIL
+""
+33
+1000000
+1000000
+(VARIABLE-VALUE-CELL PAGE . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL SLOT . 0)
+NIL
+((NIL) . 0)
+0.0
+(NIL)
+(LINKED-FN-CALL . CONCAT)
+"Unrecognized hashfile value type"
+(CONSS1 SKNI UPATM URET5 GETHSH TYPTAB ALIST4 SKAR SMALLT URET3 URET1 FLTFX FXFLT URET4 KNOB SKNM 
+SKLST FGFPTR EVCC SKNLST MKFN FUNBOX KT CONS LIST2 ALIST2 CF BINDB URET2 IUNBOX CONSNL MKN BHC GUNBOX 
+ASZ KNIL BLKENT ENTER1)5?73t`kHWBgx5h's :6]QxB!w,hqbhtHP+A hHCh?gP;g6fX1e`Z@%S8OI!cpE805X*Hn,8?,k
+pv	
+]p>
+;(x0JQY0vVZJ@_pj[NVxI(6E	>Hd<@X: J8P)3@2@
+|x	xu
+xP	xFXer `pu[8*T
+BxB26%$8x=%PUHB(j(X\_A!H	'ZX^+H	)S(H[]&Op38N'VOwE@"3CrPsd`XTxC@A@/G	/@
+t+hEHN(BP@`}?@M98/ 
+3"@	XpUh[eXRXP.:H=)x.
+K)1X%(fH3eXNdK@9H$,H
+a)`
+P	U8	B?HxX?w	ih0Z0EVFEP>hl<hY:(O8;20y.`?80P
+(d(Zx@WpNcI'@ 62
+w-P
+P(0	hh	aH	J	=0	7	x~f{7t(qomXlbPiMfK(YJx?G`8@|=@^;G7(1t$ !Au /@[XJ@ q<>`Bh>gH:g1ex.e@+e %A u<``9xF7826/5 %4
+, 
+?' 
+-$
+
+#`
+#@
+h	#X+(Gxh(s`s0=g@;W89Vx5V81N`mKPMIG0@.pk- VH(	p83Hf``^m]Hl]0^[0ZZ8PYx8W$S@SRpOPvJ0RIxLI8DH=G7Fp5FA`x< U:@B838
+{-
+g,p
+_*`
+F(P
+>'`
+='P
+ 0
+  
+8	r	qP	l(	D@	C	@			hvYX
+pLXE(~`p}Hi}g|`Uzrynhukh]k@Xj(LhhCh8f83f(*dx#d`xs^(i\xg[p[[(*U$T@#T
+S(R`Q`Q 	Q+Dx'C`AxAXx>xp=Z6 *4x&381 000 ='@6%`($X$#`# tHhT@IGpF07h+(%pXjha`Z
+`T
+@S
+ Q
+P	P 8
+
+COPYHASHFILE BINARY
+-.(,<,~(VARIABLE-VALUE-CELL HASHFILE . 0)
+(NEWNAME . 1)
+(FN . 1)
+(VTYPE . 1)
+(LEAVEOPEN . 1)
+COPYHASHFILE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+CREATEHASHFILE BINARY
+-. ,<,~(FILE . 1)
+(VALUETYPE . 1)
+(ITEMLENGTH . 1)
+(#ENTRIES . 1)
+CREATEHASHFILE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTER4)
+
+DELPAGE BINARY
+-.,<,~(PAGE# . 1)
+(VARIABLE-VALUE-CELL HASHFILE . 0)
+DELPAGE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+GETHASHFILE BINARY
+-.,<,~(KEY . 1)
+(VARIABLE-VALUE-CELL HASHFILE . 0)
+GETHASHFILE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+GETPAGE BINARY
+-.,<,~(VARIABLE-VALUE-CELL HASHFILE . 0)
+(N . 1)
+GETPAGE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+GETPNAME BINARY
+-.,<,~(FILEADR . 1)
+(VARIABLE-VALUE-CELL HASHFILE . 0)
+GETPNAME
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+HASHAFTERCLOSE BINARY
+-.,<,~(FILE . 1)
+HASHAFTERCLOSE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTER1)
+
+HASHFILENAME BINARY
+-.,<,~(VARIABLE-VALUE-CELL HASHFILE . 0)
+HASHFILENAME
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+HASHFILEP BINARY
+-.,<,~(X . 1)
+HASHFILEP
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTER1)
+
+HASHFILEPROP BINARY
+-.,<,~(VARIABLE-VALUE-CELL HASHFILE . 0)
+(PROP . 1)
+HASHFILEPROP
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+HASHFILESPLST BINARY
+-.,<,~(VARIABLE-VALUE-CELL HASHFILE . 0)
+HASHFILESPLST
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+HASHFILESPLST1 BINARY
+-.,<,~(ARRAY . 1)
+HASHFILESPLST1
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTER1)
+
+HASHSTATUS BINARY
+-.,<,~(FILE . 1)
+(VARIABLE-VALUE-CELL HASHFILE . 0)
+(PERMARGS . 1)
+HASHSTATUS
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+LOOKUPHASHFILE BINARY
+-. ,<,~(INDEX . 1)
+(VALUE . 1)
+(VARIABLE-VALUE-CELL HASHFILE . 0)
+(CALLTYPE . 1)
+LOOKUPHASHFILE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+MAPHASHFILE BINARY
+-.,<,~(VARIABLE-VALUE-CELL HASHFILE . 0)
+(FN . 1)
+MAPHASHFILE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+OPENHASHFILE BINARY
+-.,<,~(FILE . 1)
+(ACCESS . 1)
+OPENHASHFILE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTER2)
+
+PUTHASHFILE BINARY
+-.,<,~(KEY . 1)
+(VALUE . 1)
+(VARIABLE-VALUE-CELL HASHFILE . 0)
+PUTHASHFILE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+
+REHASHFILE BINARY
+-.,<,~(VARIABLE-VALUE-CELL HASHFILE . 0)
+REHASHFILE
+(NIL)
+(LINKED-FN-CALL . HASHFILEBLOCK)
+(ENTERF)
+CLOSEHASHFILE BINARY
+-.ZBB,~(VARIABLE-VALUE-CELL HASHFILE . 3)
+HASHFILENAME
+CLOSEF
+(ENTERF)
+(PRETTYCOMPRINT HASHCOMS)
+(RPAQQ HASHCOMS ((FNS CLOSEHASHFILE COLLECTPAGES COPYCHARSI COPYCHARSV COPYHASHFILE COPYHASHPAGES 
+CREATEHASHFILE DELPAGE GET#SLOTS GETFILEPAGE GETHASHFILE GETPAGE GETPNAME GETVALUE HASHAFTERCLOSE 
+HASHFILENAME HASHFILEP HASHFILEPROP HASHFILESPLST HASHFILESPLST1 HASHSTATUS HFP INITHASHPAGE 
+LOOKUPHASHFILE LOOKUPHASHFILE1 MAPHASHFILE NEWDIRSLOTS OPENHASHFILE POW2 PREPVALUE PRINTREGION 
+PUTHASHFILE PUTVALUE REHASHFILE REHASHPAGE REHASHPAGES SCANHASHFILE VALUEBOX VALUETYPENUM) (DECLARE: 
+EVAL@COMPILE DONTCOPY (PROP MACRO * HASHMACROS) (TEMPLATES * HASHMACROS) (RECORDS HashFile Slot Page 
+DirSlot DirPage HASHFILESPLST SYMBOL FILEHANDLE) (VARS * VALUETYPES) (VARS * CALLTYPES) (VARS (
+WRITETYPES (LOGOR INSERT REPLACE DELETE)) (WordsPerPage 512) (WordBits 9) (WordMask (WordsPerPage-1)) 
+(BitsPerWord 36) (BitsPerChar 7) (CharMask (2^BitsPerChar-1)) (CharsPerWord BitsPerWord/BitsPerChar) (
+CharsPerPage CharsPerWord*WordsPerPage) (MaxCharLocation CharsPerPage-1) (MaxStringLength 127) (
+#InitialWordsOnPage 1) (DefaultKeySize 5) (DefaultInitial#Pages 2) (PrintMargin 128)) (FILES (SYSLOAD 
+FROM VALUEOF LISPUSERSDIRECTORIES) NOBOX) (P (RESETSAVE DWIMIFYCOMPFLG T) (CLISPDEC (QUOTE FAST)) (
+SETQ FONTFNS HASHMACROS)) (I.S.OPRS inpage) (ALISTS (PRETTYEQUIVLST SELVALTYPEQ) (DWIMEQUIVLST 
+SELVALTYPEQ))) (BLOCKS * HASHBLOCKS) (VARS (SYSHASHFILE) (HASHFILESPLST) (SYSHASHFILEARRAY (CONS (
+HARRAY 10)))) (ADDVARS (HASHFILECHCONLST))))
+(RPAQQ HASHBLOCKS ((HASHFILEBLOCK (ENTRIES COPYHASHFILE CREATEHASHFILE DELPAGE GETHASHFILE GETPAGE 
+GETPNAME HASHAFTERCLOSE HASHFILENAME HASHFILEP HASHFILEPROP HASHFILESPLST HASHFILESPLST1 HASHSTATUS 
+LOOKUPHASHFILE MAPHASHFILE OPENHASHFILE PUTHASHFILE REHASHFILE) (LOCALFREEVARS HASHFILE INDEXPTR PAGE 
+REALPAGE# REPLACE SLOT STRINGLENGTH VAL) (GLOBALVARS HASHFILECHCONLST HASHFILERDTBL HASHFILESPLST 
+SYSHASHFILE SYSHASHFILEARRAY) COLLECTPAGES COPYCHARSI COPYCHARSV COPYHASHFILE COPYHASHPAGES 
+CREATEHASHFILE DELPAGE GET#SLOTS GETFILEPAGE GETHASHFILE GETPAGE GETPNAME GETVALUE HASHAFTERCLOSE 
+HASHFILENAME HASHFILEP HASHFILEPROP HASHFILESPLST HASHFILESPLST1 HASHSTATUS HFP INITHASHPAGE 
+LOOKUPHASHFILE LOOKUPHASHFILE1 MAPHASHFILE NEWDIRSLOTS OPENHASHFILE POW2 PREPVALUE PRINTREGION 
+PUTHASHFILE PUTVALUE REHASHFILE REHASHPAGE REHASHPAGES SCANHASHFILE VALUEBOX VALUETYPENUM)))
+(RPAQ SYSHASHFILE NIL)
+(RPAQ HASHFILESPLST NIL)
+(RPAQ SYSHASHFILEARRAY (CONS (HARRAY 10)))
+(ADDTOVAR HASHFILECHCONLST)
+NIL

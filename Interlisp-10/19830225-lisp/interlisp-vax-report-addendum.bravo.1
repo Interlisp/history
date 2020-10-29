@@ -1,0 +1,30 @@
+(635)
+ Addendum to
+Interlisp-VAX: A Report
+
+Dave Dyer
+January 20, 1982c\b
+
+Since Larry Masinter's "Interlisp-VAX: A Report" is being circulated widely, it is important that it be as accurate as possible.  This note represents the viewpoint of the implementors of Interlisp-VAX, as of January, 1982.j
+
+The review of the project and the discussions with other LISP implementors that provided the basis for the Report took place in June, 1981.j
+
+We believed at the time, and still believe now, that the Masinter Report is largely a fair and accurate presentation of Interlisp-VAX, and of the long-term efforts necessary to support it.  We now have the advantage of an additional 6 month's development effort.  There are some areas where progress and performance have been better than anticipated in the Report, and we would like to report on our current status.j
+
+Availability and Functionality\1b
+
+Interlisp-VAX has been in use for testing purposes both here at ISI and at several sites around the ARPANET, since November, 1981.j\b1B
+
+We are planning the first general release for February, 1982--ahead of  the schedule that was in effect in June, 1981.
+j
+The current implementation includes all of the features of Interlisp-10 with very few exceptions.  There is no noticeable gap in functionality among Interlisp-10, Interlisp-D and Interlisp-VAX, except for features that are inherently peculiar to some implementations (e.g., windows on the Dolphin, JSYS and TENEX on the PDP-10).j
+
+Among the Interlisp systems we are running here are KLONE, AP3, HEARSAY, and AFFIRM.j\54f1 4f0 8f1 6f0 7f1 5f0
+
+Performance\1b
+
+Masinter's analysis of the problems of maximizing performance was  excellent, both for Interlisp generally and for the VAX particularly.  It is now reasonable to quantify the performance based on experience with real systems.  The analysis of the performance of Lisp programs is quite complex, and single numbers are often more misleading than representative.  It is hard to give a complete analysis, so we will only give general performance numbers.
+j\b1B
+CPU speed (on a single-user VAX/780) is, for many of the programs we have measured, currently in the range of 1/4 the speed of Interlisp-10 (on a single-user DEC 2060).  We believe that a factor of two overall performance  improvement is achievable.j
+
+Currently, it seems reasonable to allow 1 MByte real memory per active user.j

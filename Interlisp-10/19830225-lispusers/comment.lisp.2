@@ -1,0 +1,273 @@
+(FILECREATED " 6-May-82 16:10:28" <DONC>COMMENT.LISP.36 7017   
+
+     changes to:  DC
+
+     previous date: " 6-Jan-82 16:31:01" <DONC>COMMENT.LISP.35)
+
+
+(PRETTYCOMPRINT COMMENTCOMS)
+
+(RPAQQ COMMENTCOMS ((P (SETQ COMMENTRDTBL (COPYREADTABLE T))
+		       (SETSEPR NIL NIL COMMENTRDTBL)
+		       (SETBRK (QUOTE (27))
+			       NIL COMMENTRDTBL)
+		       (SETSYNTAX 27 (QUOTE (SPLICE ALONE SKIPCOMMENT))
+				  FILERDTBL))
+		    (FNS * COMMENTFNS)
+		    (FILEPKGCOMS * COMMENTFILEPKGCOMS)
+		    (VARS * COMMENTVARS)
+		    (DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY 
+			      COMPILERVARS (ADDVARS (NLAMA DOC)
+						    (NLAML PP-COMMENTS DC)
+						    (LAMA)))))
+(SETQ COMMENTRDTBL (COPYREADTABLE T))
+(SETSEPR NIL NIL COMMENTRDTBL)
+(SETBRK (QUOTE (27))
+	NIL COMMENTRDTBL)
+(SETSYNTAX 27 (QUOTE (SPLICE ALONE SKIPCOMMENT))
+	   FILERDTBL)
+
+(RPAQQ COMMENTFNS (COMPILE-COMMENT DC DOC DOCFILTER INCOMMENTS PP-COMMENTS 
+				   PRINT-COMMENT SKIPCOMMENT))
+(DEFINEQ
+
+(COMPILE-COMMENT
+  (LAMBDA (WHERE)
+    (PROG ((OUTFILE (OUTPUT LCFIL))
+	   (LASTOTHER (CAR (LAST OTHERS))))
+          (COND
+	    ((EQ (CAR LASTOTHER)
+		 (QUOTE DC))
+	      (PRINT-COMMENT (CADR LASTOTHER)
+			     (APPEND (CDDR LASTOTHER)
+				     WHERE))
+	      (FRPLACA LASTOTHER (QUOTE NILL))
+	      (FRPLACD LASTOTHER NIL))
+	    (T (HELP 
+
+"The file you are compiling has confused the documentation package.
+It expects all (un-character-quoted) occurrences of <ESC> to be in comments.")))
+          (OUTPUT OUTFILE))))
+
+(DC
+  (NLAMBDA (WORD ID DESCR)
+    (PROG ((COMMENTS (GETPROP WORD (QUOTE COMMENT)))
+	   OLDCMT STR STARTBYTE ENDBYTE)
+          (COND
+	    ((SETQ OLDCMT (for C in COMMENTS thereis (EQ ID (CAR C))))
+	      (PRINT (LIST (QUOTE redefining)
+			   (QUOTE comment)
+			   ID
+			   (QUOTE of)
+			   WORD)
+		     T)
+	      (COND
+		((AND (NOT (EQUAL DESCR (CADR OLDCMT)))
+		      (OR (NEQ (INPUT)
+			       T)
+			  (EQ (QUOTE Y)
+			      (ASKUSER 5 (QUOTE N)
+				       (QUOTE "Change the description? ")
+				       (QUOTE ((Y . "es")
+						(N . "o")))))))
+		  (RPLACA (CDR OLDCMT)
+			  DESCR)))))
+          (COND
+	    ((EQ (INPUT)
+		 T)
+	      (printout T "Enter comment ending with <esc><return>" T)))
+          (COND
+	    ((NEQ (INPUT)
+		  T)
+	      (NLSETQ (until (EQ (READC)
+				 (QUOTE %
+))))))
+          (COND
+	    ((AND (NEQ (INPUT)
+		       T)
+		  (NULL DC-DEFINE)
+		  (NLSETQ (PROG NIL
+			        (SETQ STARTBYTE (GETFILEPTR (INPUT)))
+			        (until (EQ (READC)
+					   (QUOTE %)))
+			        (SETQ ENDBYTE (GETFILEPTR)))))
+	      (SETQ STR (LIST (INPUT)
+			      STARTBYTE
+			      (SUB1 ENDBYTE))))
+	    (T (SETQ STR (RSTRING NIL COMMENTRDTBL))
+	       (READC)))
+          (COND
+	    ((NEQ (INPUT)
+		  T)
+	      (NLSETQ (until (EQ (READC)
+				 (QUOTE %
+))))))
+          (COND
+	    (OLDCMT (RPLACD (CDR OLDCMT)
+			    STR))
+	    (T (PUTPROP WORD (QUOTE COMMENT)
+			(NCONC1 (GETPROP WORD (QUOTE COMMENT))
+				(CONS ID (CONS DESCR STR))))))
+          (MARKASCHANGED WORD (QUOTE COMMENTS)
+			 (NULL OLDCMT))
+          (RETURN WORD))))
+
+(DOC
+  (NLAMBDA WORDS
+    (SETQ WORDS (MKLIST WORDS))
+    (for W in WORDS
+       do (for C in (GETPROP W (QUOTE COMMENT))
+	     do (COND
+		  ((DOCFILTER W (CAR C)
+			      (CADR C))
+		    (COND
+		      ((STRINGP (CDDR C))
+			(PRIN1 (CDDR C)))
+		      ((NOT (OR (OPENP (CADDR C)
+				       (QUOTE INPUT))
+				(NLSETQ (OPENFILE (CADDR C)
+						  (QUOTE INPUT)))))
+			(printout T T "Unable to read file " (CADDR C)))
+		      (T (COPYBYTES (CADDR C)
+				    NIL
+				    (CADR (CDDR C))
+				    (CADDR (CDDR C)))))
+		    (TERPRI)))))))
+
+(DOCFILTER
+  (LAMBDA (WORD ID DESCR)
+    (PRINT (LIST WORD ID DESCR))
+    (COND
+      ((NULL ID))
+      (T (EQ (QUOTE Y)
+	     (ASKUSER NIL NIL " Print it? (y/n) " (QUOTE ((Y . "es")
+							   (N . "o")))))))))
+
+(INCOMMENTS
+  (LAMBDA (COM NAME TYPE)
+    (PROG ((CONTENTS (OR (AND (EQ TYPE (QUOTE VARS))
+			      (EQ (CADR COM)
+				  (QUOTE *))
+			      (CDDR COM))
+			 (AND (EQ TYPE (CAR COM))
+			      (COND
+				((EQ (CADR COM)
+				     (QUOTE *))
+				  (GETATOMVAL (CADDR COM)))
+				(T (CDR COM)))))))
+          (RETURN (COND
+		    ((EQ NAME T)
+		      (NOT (NOT CONTENTS)))
+		    ((LISTP NAME)
+		      (INTERSECTION NAME CONTENTS))
+		    ((NULL NAME)
+		      CONTENTS)
+		    ((FMEMB NAME CONTENTS)
+		      T))))))
+
+(PP-COMMENTS
+  (NLAMBDA (L)
+    (for WORD in L do (for C in (GETPROP WORD (QUOTE COMMENT))
+			 do (PRINT-COMMENT WORD C)))
+    NIL))
+
+(PRINT-COMMENT
+  (LAMBDA (WORD COMMENT)
+    (TERPRI)
+    (PRIN2 (LIST (QUOTE DC)
+		 WORD
+		 (CAR COMMENT)
+		 (CADR COMMENT)))
+    (PRIN1 (QUOTE %(%% ))
+    (TERPRI)
+    (PROG (STARTBYTE ENDBYTE)
+          (NLSETQ (SETQ STARTBYTE (GETFILEPTR (OUTPUT))))
+          (COND
+	    ((STRINGP (CDDR COMMENT))
+	      (PRIN1 (CDDR COMMENT)))
+	    ((OR (OPENP (CADDR COMMENT)
+			(QUOTE INPUT))
+		 (NLSETQ (OPENFILE (CADDR COMMENT)
+				   (QUOTE INPUT))))
+	      (COPYBYTES (CADDR COMMENT)
+			 NIL
+			 (CADR (CDDR COMMENT))
+			 (CADDR (CDDR COMMENT)))
+	      (READC (CADDR COMMENT))
+	      (READC (CADDR COMMENT))
+                                   (* GOBBLE THE FINAL <ESC> AND RIGHT PAREN IN 
+				   CASE SOMEONE ELSE WANTS TO READ)
+	      )
+	    (T (printout T T "Unable to read file " (CADDR COMMENT))))
+          (PRIN1 (QUOTE %%)))
+          (NLSETQ (SETQ ENDBYTE (GETFILEPTR (OUTPUT))))
+          (COND
+	    ((AND STARTBYTE ENDBYTE (NOT DC-RETAIN))
+	      (RPLACD (CDR COMMENT)
+		      (LIST (OUTPUT)
+			    STARTBYTE
+			    (SUB1 (SUB1 ENDBYTE)))))))
+    (TERPRI)))
+
+(SKIPCOMMENT
+  (LAMBDA (FILE RDTBL)
+    (COND
+      ((AND (EQ '% 
+		(PEEKC FILE))
+	    (READC FILE)
+	    (EQ '%
+
+		(PEEKC FILE)))
+	(PROG (STARTBYTE)
+	      (READC FILE)
+	      (SETQ STARTBYTE (GETFILEPTR FILE))
+	      (NLSETQ (until (EQ (READC FILE)
+				 '%)))
+	      (RETURN (LIST 'DECLARE:
+			    'EVAL@COMPILE
+			    'DONTCOPY
+			    (LIST 'COMPILE-COMMENT
+				  (LIST 'QUOTE
+					(LIST FILE STARTBYTE
+					      (SUB1 (GETFILEPTR FILE)))))))))
+      (T '%))))
+)
+
+(RPAQQ COMMENTFILEPKGCOMS (COMMENTS))
+(FILEPKGCOM (QUOTE COMMENTS)
+	    (QUOTE MACRO)
+	    (QUOTE (X (E (PP-COMMENTS X))))
+	    (QUOTE CONTENTS)
+	    (QUOTE INCOMMENTS))
+(FILEPKGTYPE (QUOTE COMMENTS)
+	     (QUOTE DESCRIPTION)
+	     (QUOTE "documentation")
+	     (QUOTE GETDEF)
+	     (QUOTE (LAMBDA (NAME TYPE OPTIONS)
+			    (GETPROP NAME (QUOTE COMMENT))))
+	     (QUOTE PUTDEF)
+	     (QUOTE (LAMBDA (NAME TYPE DEFN)
+			    (PUTPROP NAME (QUOTE COMMENT)
+				     DEFN)))
+	     (QUOTE DELDEF)
+	     (QUOTE (LAMBDA (NAME TYPE)
+			    (REMPROP NAME (QUOTE COMMENT)))))
+
+(RPAQQ COMMENTVARS (DC-DEFINE DC-RETAIN))
+
+(RPAQQ DC-DEFINE NIL)
+
+(RPAQQ DC-RETAIN NIL)
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA DOC)
+
+(ADDTOVAR NLAML PP-COMMENTS DC)
+
+(ADDTOVAR LAMA )
+)
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (979 6166 (COMPILE-COMMENT 991 . 1527) (DC 1531 . 3128) (DOC 3132 
+. 3682) (DOCFILTER 3686 . 3903) (INCOMMENTS 3907 . 4431) (PP-COMMENTS 4435 . 
+4571) (PRINT-COMMENT 4575 . 5673) (SKIPCOMMENT 5677 . 6163)))))
+STOP

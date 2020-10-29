@@ -1,0 +1,289 @@
+(FILECREATED " 9-Dec-82 14:32:49" ("compiled on " <DDYER>LED..34) (2 . 2) bcompl'd in WORK dated 
+"22-Sep-82 16:18:05")
+(FILECREATED "17-Sep-82 13:01:49" <DDYER>LED..33 31664 changes to: (FNS DOLEDDISP HLPRINT MAKEDREK 
+PPMLOBJ PRINTCT PRINTDREK PRINTROB REPRINTDREK SUBDIVIDE) previous date: " 6-AUG-82 17:20:44" 
+<DDYER>LED..31)
+
+LED BINARY
+
+	'	z-.	'-.H	'h	4	.[p[[[[,<,<	5Z[,<,<	6Zh	6,<	7ZZd	6,<p,<	8	8,<Z",\2B+,<	9	:,<p	:+[w[[[[b	:,<	;	:[w[ZZ,<,<^",>	%,>,<w	;,.Bx,^/,,<,<Z,<,<[w|[[Z[,<,<	<[w[[[Z[[b	:	=Z+ w}0b+2,<w},<w},<w},<w},<w},<w}Z ,<,L+Zw~3B+`Z2B+`Z2B+`,<w}Zw~,<[w}[[[ZZ,<,3B+`Zw~,<[w~Z,<[w}[ZZ[w}[Z[,,<[w}[[ZZ[w}[[Z[,,<[w|[[[ZZ,<[w|[[[Z[ZZ[w|[[[Z[Z[,[w|[[[Z[[,,[w|[[[[,,,,,+ 0,>	%,> w}$Bx,^/,,<,<,<,<,<,<,<wz,<wz,<wz,<wz,<	>,<wz,<wz,LXBw~^",>	%,>[w~[[[[b	;,.Bx,^/,XB[w~[ZZ,<,<Zs,<,<Z`,<,<,<	<XBp w}$"&",XBw} p,>	%,> wz ,^/2"+g[w~[ZZ,<,<Zv,<,<Zx,<,<,<	<XBw},,>	%,> wz ,^/2"+Zw}XBpZXBw[w~[[Z,< w1"+ w.",+Z"d	?[w~[[Z,<,<w	@Zw~/+Zw-,+ Zw2B7Z+Zw-,+"Z+Zp0B+%Z+Zw,<Zw,< w/",,<,3B+[w,<[wXBw,\XBw+,<	AZ[d	6Zp-,+6,<	A	:,<	B,<	B,<w	CXBp+82B	B+8Z	BXBp,<,<,<Zw-,+<Zw+<XBpb	DZw-,+?[w+@ZXBw-,+C,<	E	:+E3B+E,<	E	:Zw2B+9Zw/Zp-,+J,<	F	:,<	FZ/Zd	6+Zp2B+OZXBp,<,<Zw}3B+Z32B+Z52B+,<w|Zw|,<[w|[[[ZZ,<,3B+,<w|,<w{,	XB3B+ \,>	%,>[w}[[[Z[ZZ, ,^//,XBw,1b+ ^,>	%,>[w}[[[Z[Z[, ,^/2b+Zw},<,<w|[w|[ZZZw~,,<Z"[w{[[Z[,,<[w{[[[ZZ,<[wz[[[Z[ZZ[wz[[[Z[Z[,[wz[[[Z[[,,[w{[[[[,,,,,+,<w|,<w{,	,<,<w{,<w|,<wz	G,<,<,<,<,<,<,<Zwy2B+Z"XBwy,<w|,<,<wy,<,<,<ww	HXBw} w},>	%,> wz ,^/3b+=,<	I,<w{	I3B+=Zw~3B+*,<w|,<w{	J[d	KXBw|ZXBw~,<w|,<,<,<Zw~XBwZw-,+5Zp3B+4,<wz,<wv,<ww,<,<,<wu	HXBw{Zw+=Zw-,ZZ3B	I+9+;ZXBp,<w,<	L	?[wXBw+-/ wy,>	%,>  ,^/2b+Zw{3B+,<,<	> w|,>	%,> wy ,^/3b+^ wz1b+^[w{-,+L+^,<	>,< w1b+T[wz-,ZXBwzXBp w/",XBw+MZp/ZpXBw{,<w{,<ww,<wx,<,<,<wv	HXBw| p.",XBp wz.	%,XBwz+DZw/ w},>	%,> wz ,^/3b+,<,<	MZw}3B+iZXBw},<w{	M+j,<w{	NXBw{ w|,>	%,> wz ,^//,XBw|[w{-,+{ w|1b+{,<w{,<ww,<wx,<,<,<wv	HXBw|,,>	%,> wy ,^/2b+},<w{	NXBw{Zw+[w{XBw{ZpXBw} w|/",XBw| p.",XBp+o/ w},>	%,> wz ,^/3b+ wy/",,<Z3B+Zwx+ZXBwy,\XBwy/+L,<w|,<wx,<wy,<	HXBwZw~3B+5Z3B+5Zwy3B+5Zw-,+5[wZ,<,<,<,<,<
+	HXBw,<[w{Z,<,<wx,<wx,<,<,<ww	HXBw,\3B+5 p,>	%,> w}.Bx,^/,>	%,> w ,^//,>	%,> wz ,^/2b+5[w,<[w{Z,<,<wx,<wx,<	Hd	?,<ww	GXBw}Z,<ZXB6,\2B+A,<,<Z,,<Z,,<,<Z,,^,,,<,<,<,<,<w~,<wt	?[,<,<wu,<w},<ws	?[[Z,<,<w{,<ww	O,<w},<ws	?[[[Z,<,<	M,<	O,<w},<ws	?[[[[,<ZwyZwu3B+X-,+X+XZ"XBw~Zwz-,+_ wy,>	%,> wz ,^//,+`ZwyXBw}Zwz-,+d,<	P,<,<	Q	Q+i3B+fZ	R+iZws-,+iZ	S+iZ	SXBw~Zwy-,+rZwu2B+o,<	T,<,<	T	Q+w,<	U,<,<	U	Q+w3B+tZ	V+wZws-,+vZ	V+wZ	Wd	@Z,<,<wu	?[,<,<w~	@Z,<,<w~,<w}	O,<w},<ws	?[[f	OZw~///,~Z,<@	W +KZ,<,<	Y,<	Y,<@	Z`+DZZ	[XB,<	\,<	\,,Z,XB,<	]	^,<Z	]Z7@7Z,Z	],,<Z	],< /", ,\,,\Z,XB,<	_,<	_ N,>	%,> .Bx,^/,,< w,>	%,> p ,^/3b+'Zp+'Zw/b	`,,Z,XB),<	a	^,<Z	aZ7@7Z,Z	a,,<Z	aZ$,,\Z*,XB3,<	a	^,<Z	aZ7@7Z,Z	a,,<Z	aZ$,,\Z4,XB<,<	b	^,<Z	bZ7@7Z,Z	b,,<Z	b,<Z,<Z	bZ7[ZZ1H+K2D+G[,\3B+M7Z ,\,,\Z=,XBP,<	c	^,<Z	cZ7@7Z,Z	c,,<Z	cZ,,\ZQ,XBYZw,<8	JZ,<Z2B+_Z",<,<	> w,>	%,> p ,^/2"+fZp+fZw/,<Zw~,<8	G,< p,>	%,> w ,^/3"+x w&",XBw w,>	%,> p,>	%,> w ,^/& .Bx,^/,XBwZ	cZF7[ZZ1H+}2D+z[Zw3B+Z	cZw,,XByZw~,<8,<,<w~,K3B+Z	d+ZXB3B+! 
+/",Z7[ZZ1H+2D+[XB3B+ ,>	%,>[[[ZZ,/".Bx,^/,XBZ3B	d+,<	5ZJ[,<,<	6Zh	6,<	7ZZd	6,<	dZ[d	6Z
+,<Zp-,+$+1,<ZpZ-,+/ZpZ,,>	%,>  ,^/3"+/Zp[XB8,<p,<	?/[pXBp+"/,<Z!d	eXB2Z	bZ37[ZZ1H+82D+5XBS3B+<,<ZEd	@+?Z	bZ:,Z4,XB=,<	7Z
+Zd	6Z/ZwXB8Z,~3B+FZ+FZ	fXB`d	fZ`3B+J	g,~Z`,~+Zw,<[w~Zd	h3B+V[wZb	G,,>	%,>Zwb	G, ,^//,+WZ,<,<Zw~2B+Z+IZw-,+b w0b+b,<w~	G,1b+b,<w~	GZ	i,,+c[w~,<,<w}Zw~3B+g w~/",+hZ,<,KZ)Z>7[ZZ1H+n2D+j[,<Zw~-,+qZ+|Zw~,<Zw}d	h3B+uZw~+|Zw~-,+xZ+|Zw}-,+{Zw~Zw},+|Z,<@	j@(+IZwZ?~-,ZZ,<,<	m	nXB3B	o77+Z-,Z Z	o,XB[`[[[ZZXB`ZQ2B+Z`-,+ `1b+Z`+Z"XB`Z3B+Z`-,+ `0"+ `.",+ZXB`ZwZ?~3B++Z?~,<,<`[`[[ZZ0B77+"Z`,<Zw~,<?,<`,<`Z,<,LXB`,<Zi,<Zi,<,JZwXB8+G ],>	%,> ' ,^//,,<Z,< w,>	%,> p ,^/3b+6Zp+7Zw/,<ZwZ?~,<,<[`[[ZZ0B+>Z+?ZZ`,<Zw},<?,<`,<`,+XB`,<Z,,<Z(,<,JZwXB8 C.",XBG,~Zp+-.	o,<,<ZZ`7[ZZ1H+Q2D+NXBw3B+Y[[,<[w[[,\,3B+YZSXB-+[X[[ZZ,<,<,<[Y[Z[XBp[][ZZXBwZL3B+Z`2B+g,<	qZ?Zd	6,<	5Zf[,<,<	6Zbh	6Zw~3B+Zw0B+[w~[[[ZZ1B+},<	qZh[d	63B+w,<	rZr[d	6[`[[[[b	:,<w,<w,
+ZXBw~+[w~,<Zw,<Zj,<,BXBw~+Z~,<,[w~XBX,<w~Zd	@+Z`2B+,<	qZu[d	63B+,<	rZ[d	6ZZ,Z`,XB`XBDZw0B+,<	qZ[d	63B+,<	rZ[d	6[[[[[b	:,<w,<w,
+ZXBw~+Z,<,/Zp+,<Zw3B+% w/",XBw0B+%Z	5+&Z	r,<Zw~-,+)Zw~+),< " $,Zw-,+3[w3B+2[w-,+1,<	s	:+2,<	s	:[wXBw+4ZXBwZw2B+ Zp/,<	qZ[d	62B+<,<	rZ7[d	6[[[[Z[[b	:	=ZXB+-.	t[`[ZZ,<[`[Z[,<[<[ZZ,<[H[Z[,<,<	qZ:[d	6,<,<,<	6,<	u,<,<,<,<,<[J[[[[XBw~b	;XBw}[`[[[[XBw~Zw~,2B+oZw}1B+c,<	5ZM[,<,<	6,<`	63B+cZXBAZw|3B+g,<	rZ^[d	6,<w~	:Zw|2B+l,<w~	;Zw}3B+n,<w{,<w{,
+Z+Zw}XBw}Zw{3B+u w{/",XBw{0B+uZ	5+uZ	rXBwZw{-,+xZw{+xXBwZwz-,+{Zwz+{XBpZwz3B+ wz/",XBwzZpZw,3B+ZwzZw{3B+/Zw{1B+Zwz0B+/Zw}Zw}3B+,<	5Ze[,<,<w|,<`	6ZXBcZw}XBw}Zw|2B+ZwZp,2B+Zw|3B+,<	rZ	[d	6,<w{Zw{3B+ w{.",+Z,<,
++m,<w,<w " $,Zw{-,+'[w{3B+'[w{-,+$,<	u	:+',<	v	: w}.",XBw} w},>	%,>,<w,<,<,<,<
+	H,.Bx,^/,XBw} w},>	%,>,<w,<,<,<,<
+	H,.Bx,^/.",XBw}Zw{-,+A[w{2B+< w}.	&,XBw}+A[w{3B+A[w{-,+A w}.",XBw}Zw{-,+D[w{XBw{+EZXBw{Zwz-,+H[wzXBwz+IZXBwzZw{(B{ZA"
+.",<Zwy(B{ZA"
+.",\2B+WZw{2B+R7Z,<Zwy2B+U7Z,\3B+}Zw}Zw}3B+fZwz2B+] w}/",XBw}Zw{3B+a-,+a w}.	&,XBw},<	5Z[,<,<w|,<`	6ZXBZw|2B+iZwz3B+k,<	rZb[d	6Zwz2B+m,<	v	:Zw{3B+q-,+q,<	w	:Zw{3B+x,<Zw{3B+v w{.",+wZ,<,
++m[S[[[Z[[b	:	=+mZw{2B+oZw|/,~Zw3B+	,<p,<,<	M,<Zw~XBpZp-,+	Zw}Zp2B+		+	Zp2B+	Z+	 w.",XBw[pXBp+	Zw/+Z+Z3B+	$Z	wZ7@7Z3B+	$Z	xZ7@7Z3B	x+	Z3B+	$+		y3B+	$Z3B	I+	!ZXB3B+	$Z,<,Z,~Z,~~`"eC08@@@	  @@@HE@O/)#nCd $@
+%	@R($	H	P8@$i	)  P!	 @@4	HB@!]O	^w
+HMU HhH	P$"DP$P(@F\@
+@ )4`
+R%A	PQRHJ$ B$A( ( LbIK$@RKA  x$$~!H0@E!J) xQ"	AHDb?J$@H$ B$&'."r	  3V(LED#0 . 1)
+(VARIABLE-VALUE-CELL CURRENTSCREEN . 2259)
+(VARIABLE-VALUE-CELL DLINE . 1681)
+(VARIABLE-VALUE-CELL LEDLINELENGTH . 1609)
+(VARIABLE-VALUE-CELL LEDRECALC . 1559)
+(VARIABLE-VALUE-CELL MODIFIED . 1393)
+(VARIABLE-VALUE-CELL RESTSIZE . 266)
+(VARIABLE-VALUE-CELL ATPOS . 465)
+(VARIABLE-VALUE-CELL LEDTLEV . 638)
+(VARIABLE-VALUE-CELL BINDPROP . 1572)
+(VARIABLE-VALUE-CELL REUSEDREK . 1799)
+(VARIABLE-VALUE-CELL LISPXHIST . 1032)
+(VARIABLE-VALUE-CELL RESETVARSLST . 1205)
+(VARIABLE-VALUE-CELL TTYLINELENGTH . 1070)
+(VARIABLE-VALUE-CELL UNDOLST . 1401)
+(VARIABLE-VALUE-CELL DREKDB . 2368)
+(VARIABLE-VALUE-CELL LEDLINES . 1622)
+(VARIABLE-VALUE-CELL SOMEPRINT . 2251)
+(VARIABLE-VALUE-CELL CLINE . 1316)
+(VARIABLE-VALUE-CELL LASTAIL . 1518)
+(VARIABLE-VALUE-CELL LEDPPLINES . 1632)
+(VARIABLE-VALUE-CELL REC . 2289)
+(VARIABLE-VALUE-CELL DISPON . 2340)
+(VARIABLE-VALUE-CELL DISPLAYTERMTYPE . 2357)
+(VARIABLE-VALUE-CELL LISPXID . 2364)
+(VARIABLE-VALUE-CELL L . 2371)
+DOLEDDISP
+PRINTCT
+HLPRINT
+SETCURSOR
+0
+(NIL)
+(LINKED-FN-CALL . SCREENOPCOMPILED)
+CLEARREST
+2
+(NIL)
+(LINKED-FN-CALL . NTHCHARCODE)
+">>"
+(NIL)
+(LINKED-FN-CALL . PRIN3)
+"> "
+(NIL)
+(LINKED-FN-CALL . NCHARS)
+(NIL)
+(LINKED-FN-CALL . PPOBJ)
+(NIL)
+(LINKED-FN-CALL . TERPRI)
+4
+(NIL)
+(LINKED-FN-CALL . RPLACA)
+(NIL)
+(LINKED-FN-CALL . RPLACD)
+SETHIGHLIGHT
+"["
+@
+&
+(NIL)
+(LINKED-FN-CALL . SUBST)
+(NIL)
+(LINKED-FN-CALL . PRIN4)
+" "
+" . "
+"]"
+CLEARHIGHLIGHT
+(NIL)
+(LINKED-FN-CALL . LENGTH)
+(NIL)
+(LINKED-FN-CALL . PNCHARS)
+*
+(NIL)
+(LINKED-FN-CALL . ASSOC)
+(NIL)
+(LINKED-FN-CALL . LAST)
+(NIL)
+(LINKED-FN-CALL . APPEND)
+((*) . 0)
+1
+(NIL)
+(LINKED-FN-CALL . REVERSE)
+(NIL)
+(LINKED-FN-CALL . DREVERSE)
+(NIL)
+(LINKED-FN-CALL . RPLNODE)
+" -"
+"-"
+(NIL)
+(LINKED-FN-CALL . CONCAT)
+".."
+")"
+" "
+"."
+". "
+"-"
+"- "
+".."
+" ("
+"  "
+(VARIABLE-VALUE-CELL LISPXHIST . 0)
+NIL
+NIL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+OUTPUT
+(NIL)
+(LINKED-FN-CALL . OUTPUT)
+LEDLINELENGTH
+(NIL)
+(LINKED-FN-CALL . STKSCAN)
+SETLINELENGTH
+126
+(NIL)
+(LINKED-FN-CALL . SETLINELENGTH)
+CLINE
+DLINE
+MODIFIED
+UndoAt
+SOMEPRINT
+WholeObject
+ALLPRINT
+SETLOCK
+(NIL)
+(LINKED-FN-CALL . DREMOVE)
+ERROR
+(NIL)
+(LINKED-FN-CALL . RESETRESTORE)
+(NIL)
+(LINKED-FN-CALL . ERROR!)
+(NIL)
+(LINKED-FN-CALL . TAILP)
+((more cars above) . 0)
+(0 . 1)
+(0 . 1)
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL BINDPROP . 0)
+NIL
+NIL
+INFO
+(NIL)
+(LINKED-FN-CALL . GETPROP)
+BINDS
+*PRINTDREK*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL REC . 0)
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL LINE . 1817)
+CLEAR
+OVERSTRIKEP
+CLEARLINE
+PRIN4
+" "
+" . "
+*REPRINTDREK*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL REC . 0)
+-1
+" "
+" . "
+" "
+". "
+CURRENTSCREEN
+DISPLAYTERMTYPE
+NOBIND
+(NIL)
+(LINKED-FN-CALL . DISPLAYTERMP)
+(TYPTAB STREQUAL BLKAP* EQUAL BINDB URET5 SKNM FMEMB SKLA SET CONS21 KNOB CF SKI ALIST ALIST2 CONSNL 
+URET1 SKLST URET3 SKNLST CONSS1 CONS URET7 URET2 KNIL MKN BHC IUNBOX KT ASZ BLKENT ENTER1)N	8{@p+WCi8i0bP_8^pKPGH3C(JxDG(1B`	JXBG/B@A8[8&=8b;(WA)Ah@bP *Ap@7`<LPhG080 (wux,u`y>Xh3q*7Ah; 0%0 px?^#)@/VH09F"!p!0`_p[qhbWp>P[J>FH+C@!`
+ hz`^0W	(D2	Bt,	%	 `	p		(	8	pwHrplgh[
+hU
+8R	E`:02 +0*( }~i|Pb{HTz8Sz(Rz:v`4u`!tq(nPllXdk`]kSjMiH>g(!c8b8`h`|^Hq]`h\XY[WYpIX`EX :W2UpQhPXOX_KNI0	>0e:C80B7x?7X<78;7 84("3P3@2h1h.Xu,xf,PY+Q)`D(87&83&-%H,%(&$P#H#"p"X^0T0QP`F@@ 9("xp(zwgpf`=h58+Xv]<p/xxst8If\xVS
+OpD;x08-x^+@Sp)`}8e	`.vx
+g5epUX(2V+RxxNXmLxdE%D@0;h/5@)20Pz-hc,U)A'`"fX0dxH-[pTZ(RXwphH
+	$`V
+03@}hcxoH?dX@NAX43X' P 	`"0	xLp~@^tHn ngX b `G@2;p$p
+
+DOLEDDISP BINARY
+-.,<,~DOLEDDISP
+(NIL)
+(LINKED-FN-CALL . LED)
+(ENTER0)
+
+PRINTCT BINARY
+-.,<,~(LL . 1)
+PRINTCT
+(NIL)
+(LINKED-FN-CALL . LED)
+(ENTER1)
+
+BRACIFY BINARY
+4.3-..-...,<,<,<,<Zw~XBp[w~[2B+
+[w~Z,+[w~,<,XBwZwb.XBw~ZpZw~,XBw3B+Z/XD,<wZ0[w,,\QB+,<w~,<w,XBw~Z0,,<,<w.XBpZwZw~XDZpZw,+,<,<w1XBp,<w1XBw,<Zw2B+',<w2,<,</,<0,<0,d.+ZwZw3B+*Zw~+[wXBw[wXBw+!Zp+"$B(@B:(P . 1)
+(NIL)
+(LINKED-FN-CALL . APPEND)
+{
+}
+...
+(NIL)
+(LINKED-FN-CALL . REVERSE)
+(NIL)
+(LINKED-FN-CALL . DREVERSE)
+(URET4 LIST3 URET5 CONS FMEMB CONSNL KNIL BLKENT ENTER1).0('@x
+# XH
+(PRETTYCOMPRINT LEDCOMS)
+(RPAQQ LEDCOMS ((FILES (SYSLOAD COMPILED FROM VALUEOF (FILENAMEFIELD (INFILE) (QUOTE DIRECTORY))) 
+PRINTOPT SCREENOP) (FNS BRACIFY DOLEDDISP EQUALEV GETAIL HLPRINT MAKEDREK PPMLOBJ PRINTCT PRINTDC 
+PRINTDREK PRINTROB REPRINTDREK SUBDIVIDE TAILPOS) (DECLARE: DONTCOPY (RECORDS DREK)) (EDITHIST * 
+LEDEDITHIST) (USERMACROS BKP CC CLR CT D DOF DON G LINES NXP OK PB PL PO RALL RT TRUNC PPLINES) (
+LISPXMACROS PB PL) (VARS (KILLRING) (LBRACE (QUOTE {)) (RBRACE (QUOTE })) (LEDTLEV 1) (LEDLINES 20) (
+LEDPPLINES 6) (LEDRECALC) (LEDLINELENGTH (IDIFFERENCE TTYLINELENGTH 8))) (IFPROP HELP PB PL RT CT DON 
+DOF CC CLR) (ADDVARS (PROMPTCHARFORMS (DOLEDDISP)) (DISPON) (DREKDB) (REUSEDREK)) (BLOCKS (LED PPMLOBJ
+ SUBDIVIDE EQUALEV HLPRINT MAKEDREK PRINTCT PRINTDC PRINTDREK PRINTROB REPRINTDREK TAILPOS DOLEDDISP (
+ENTRIES DOLEDDISP PRINTCT) (BLKAPPLYFNS HLPRINT)) (BRACIFY BRACIFY GETAIL (ENTRIES BRACIFY))) (
+DECLARE: DONTCOPY EVAL@COMPILE (GLOBALVARS DISPON DREKDB REUSEDREK LEDTLEV LEDRECALC LEDLINES CLINE 
+DLINE MODIFIED LEDPPLINES DISPLAYTERMP CURRENTSCREEN LEDLINELENGTH SOMEPRINT) (CONSTANTS LBRACE RBRACE
+) (P (CHECKIMPORTS (PACKFILENAME (QUOTE NAME) (QUOTE SCREENOP) (QUOTE VERSION) NIL (QUOTE BODY) (INPUT
+)) T)))))
+(FILESLOAD (SYSLOAD COMPILED FROM VALUEOF (FILENAMEFIELD (INFILE) (QUOTE DIRECTORY))) PRINTOPT 
+SCREENOP)
+(RPAQQ LEDEDITHIST (LED.LISP))
+(ADDTOVAR USERMACROS (OK NIL (E (AND DISPON (SCREENOP (QUOTE CLEARLOCK))) T) (ORIGINAL OK)) (TRUNC (N)
+ (E (PROGN (SETQ LEDRECALC T) (SETQ LEDTLEV (OR N 2))))) (CC NIL CLR (IF DISPON NIL CT)) (BKP NIL (IF 
+DISPON BK ((ORIGINAL BK P)))) (NXP NIL (IF DISPON NX ((ORIGINAL NX P)))) (CT NIL (E (PRINTCT L) NIL)) 
+(G (X) F X P) (PL NIL (BIND (E (SETQ #1 L) T) (IF (NULL (CDR L)) NIL (0 PL)) (E (PROGN (SETQ L #1) (
+PRINTOPTIMUM (CAR L)) (TERPRI)) T))) (RALL NIL MARK (BIND (E (SETQ #1 MAXLOOP) T) (E (SETQ MAXLOOP 
+99999) T) (LPQ F & (IF (LISTP (## 1)) NIL RAISE)) (E (SETQ MAXLOOP #1) T)) __) (PB NIL (BIND (E (PROGN
+ (SETQ #1 L) (COND ((NEQ NIL (CDR L)) (SETQ L (BRACIFY L))))) T) PL (E (SETQ L #1) T))) (RT NIL (MBD (
+RETURN *))) (PO NIL (E (PROGN (PRINTOPTIMUM (CAR L)) (TERPRI)) T)) (DON NIL (E (SETQQ DISPON T) T)) (
+DOF NIL (E (PROGN (SETQ DREKDB (SETQ DISPON NIL)) (SCREENOP (QUOTE CLEARLOCK))) T)) (CLR NIL (E (PROGN
+ (SCREENOP (QUOTE CLEAR)) (SETQQ DREKDB)) T)) (LINES (N) (E (PROGN (SETQ LEDRECALC T) (SETQ LEDLINES (
+OR (FIXP N) 20))))) (PPLINES (N) (E (PROGN (SETQ LEDRECALC T) (SETQ LEDPPLINES (OR (FIXP N) 6))))) (D 
+NIL (E (SETQ KILLRING (CONS (##) KILLRING)) T) (:) 1 (IF DISPON NIL P)))
+(ADDTOVAR EDITMACROS (D NIL (:) 1 P) (NXP NIL (ORR (NX) (!NX (E (PRIN1 "> " T) T)) ((E (PROGN (SETQQ 
+COM NX) (ERROR!))))) P) (BKP NIL (ORR (BK) (!0) ((E (PROGN (SETQQ COM BK) (ERROR!))))) P))
+(ADDTOVAR EDITCOMSA CC CLR DOF G PO CT DON CC CC CC LINES D NXP BKP OK)
+(ADDTOVAR EDITCOMSL TRUNC CC)
+(ADDTOVAR COMPACTHISTORYCOMS NXP BKP)
+(ADDTOVAR LISPXHISTORYMACROS (PB (MAPC LISPXLINE (FUNCTION (LAMBDA (X) (PRINTBINDINGS X (AND (EQ 
+LISPXID (QUOTE :)) LASTPOS)))))) (PL (COND (LISPXLINE (PRINTPROPS (CAR LISPXLINE))) (T (QUOTE (E PL)))
+)))
+(RPAQQ KILLRING NIL)
+(RPAQQ LBRACE {)
+(RPAQQ RBRACE })
+(RPAQQ LEDTLEV 1)
+(RPAQQ LEDLINES 20)
+(RPAQQ LEDPPLINES 6)
+(RPAQQ LEDRECALC NIL)
+(RPAQ LEDLINELENGTH (IDIFFERENCE TTYLINELENGTH 8))
+(PUTPROPS PB HELP (prints a representation of the edit chain, with { } in the place of the attention 
+point, which is expanded on the line below))
+(PUTPROPS PL HELP (like PB, but prints everything instead of braces))
+(PUTPROPS RT HELP (is an editmacro that imbeds current form in (RETURN &)))
+(PUTPROPS CT HELP (manually cause display to be updated, showing context. See also DON DOF CC CLR))
+(PUTPROPS DON HELP (enables the automatic display update in the lisp editor. actually, it just does (
+SETQ DISPON T) %. The actual tap that does the displaying is an entry on PROMPTCHARFORMS))
+(PUTPROPS DOF HELP (correlary to DON, turns off the display update))
+(PUTPROPS CC HELP (clears the old display and paints a fresh context display. This differs from CT in 
+that it clears the display first))
+(PUTPROPS CLR HELP (clears the display))
+(ADDTOVAR PROMPTCHARFORMS (DOLEDDISP))
+(ADDTOVAR DISPON)
+(ADDTOVAR DREKDB)
+(ADDTOVAR REUSEDREK)
+NIL

@@ -1,0 +1,371 @@
+(FILECREATED "24-Dec-82 00:08:51" <DONC>TRACEIN..24 9478   
+
+      changes to:  (VARS TRACEINBLOCKS)
+		   (FNS EVL-FIX PRINTUPTO PrintUpTo WATCH)
+
+      previous date: " 7-Dec-82 12:20:21" <DONC>TRACEIN..23)
+
+
+(PRETTYCOMPRINT TRACEINCOMS)
+
+(RPAQQ TRACEINCOMS ((BLOCKS * TRACEINBLOCKS)
+		    (VARS * TRACEINVARS)
+		    (FNS * TRACEINFNS)
+		    (DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY 
+			      COMPILERVARS (ADDVARS (NLAMA TRACEIN)
+						    (NLAML WATCH)
+						    (LAMA)))))
+
+(RPAQQ TRACEINBLOCKS ((TRACEINBLOCK TRACEIN EVL-FIX EVMATCHER EXPAND-EV 
+				    EXPAND-EV1 PRINTUPTO PrintUpTo TRACE-CREATE 
+				    TRACEINX UNWATCH WATCH
+				    (ENTRIES TRACEIN WATCH TRACE-CREATE EVL-FIX 
+					     PRINTUPTO UNWATCH)
+				    (SPECVARS EXP INDENT# NOEMBED Limit 
+					      StepAction IgnoreLst))))
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: TRACEINBLOCK TRACEIN EVL-FIX EVMATCHER EXPAND-EV EXPAND-EV1 PRINTUPTO 
+	PrintUpTo TRACE-CREATE TRACEINX UNWATCH WATCH
+	(ENTRIES TRACEIN WATCH TRACE-CREATE EVL-FIX PRINTUPTO UNWATCH)
+	(SPECVARS EXP INDENT# NOEMBED Limit StepAction IgnoreLst))
+]
+
+(RPAQQ TRACEINVARS (FORMPRINTER INDENT# StepAction VALUEPRINTER))
+
+(RPAQQ FORMPRINTER (LAMBDA (FORM)
+			   (PRINTUPTO FORM (IMAX 20 (IDIFFERENCE
+						   (LINELENGTH)
+						   (IPLUS 20 (POSITION))))
+				      T
+				      (QUOTE (WATCH)))))
+
+(RPAQQ INDENT# 0)
+
+(RPAQQ StepAction NIL)
+
+(RPAQQ VALUEPRINTER (LAMBDA (VAL)
+			    (PRINTUPTO VAL (IMAX 20 (IDIFFERENCE
+						   (LINELENGTH)
+						   (IPLUS 20 (POSITION))))
+				       T)))
+
+(RPAQQ TRACEINFNS (EVL-FIX EVMATCHER EXPAND-EV EXPAND-EV1 PRINTUPTO PrintUpTo 
+			   TRACE-CREATE TRACEIN TRACEINX UNWATCH WATCH))
+(DEFINEQ
+
+(EVL-FIX
+  (LAMBDA (EXP PUT-IN)
+    (PROG (Y NOEMBED)
+          (SETQ EXP (OR (GETHASH EXP CLISPARRAY)
+			EXP))
+          (RETURN
+	    (COND
+	      ((NLISTP EXP)
+		(APPEND PUT-IN (LIST EXP)))
+	      ((NLISTP (CAR EXP))
+		(SETQ Y (GETPROP (CAR EXP)
+				 (QUOTE EVL-FIX)))
+		(COND
+		  (Y (EXPAND-EV EXP Y PUT-IN))
+		  ((EQ (CAR EXP)
+		       (QUOTE WATCH))
+		    EXP)
+		  (T
+		    (EXPAND-EV
+		      EXP
+		      (COND
+			((SELECTQ (CAR EXP)
+				  (GO (QUOTE (LISTP)))
+				  ((SETQ SETN SAVESETQ)
+				    (QUOTE (NIL T)))
+				  (COND (QUOTE (TAIL (TAIL T))))
+				  ((AND
+					OR PROGN PROG1 RPTQ FRPTQ RESETFORM 
+					   ADD1VAR SUB1VAR)
+				    (QUOTE (TAIL T)))
+				  (PROG (CONS (for V in (CADR EXP)
+						 collect (COND
+							   ((LISTP V)
+							     (QUOTE (NIL T)))))
+					      (QUOTE (TAIL LISTP))))
+				  ((FUNCTION *FUNCTION)
+				    (SETQ NOEMBED T)
+				    (QUOTE (LISTP)))
+				  ((NLSETQ ERSETQ)
+				    (QUOTE (T TAIL NIL)))
+				  (SELECTQ (QUOTE (T TAIL (NIL TAIL T)
+						     T)))
+				  ((LAMBDA LABEL NLAMBDA)
+				    (SETQ NOEMBED T)
+				    (QUOTE (NIL TAIL T)))
+				  NIL))
+			(T (SELECTQ (FNTYP (CAR EXP))
+				    ((SUBR EXPR CEXPR SUBR* EXPR* CEXPR*)
+				      (QUOTE (TAIL T)))
+				    ((FEXPR FSUBR CFEXPR FEXPR* FSUBR* CFEXPR*)
+				      (QUOTE (TAIL NIL)))
+				    (QUOTE (TAIL NIL)))))
+		      PUT-IN))))
+	      ((EQ (CAAR EXP)
+		   (QUOTE LAMBDA))
+		(for X in EXP collect (EVL-FIX X PUT-IN)))
+	      ((EQ (CAAR EXP)
+		   (QUOTE NLAMBDA))
+		(CONS (EVL-FIX (CAR EXP)
+			       PUT-IN)
+		      (CDR EXP)))
+	      (T (PRIN1 "Tracein warning: expecting a function but finding..." 
+			T)
+		 (PRINT (CAR EXP)
+			T)
+		 EXP))))))
+
+(EVMATCHER
+  (LAMBDA (EXP PAT)
+    (COND
+      ((ATOM PAT)
+	(COND
+	  ((NULL PAT)
+	    NIL)
+	  ((EQ PAT T)
+	    T)
+	  (T (NOT (NOT (APPLY* PAT EXP))))))
+      ((ATOM (CAR PAT))
+	(SELECTQ (CAR PAT)
+		 (TEST (NOT (NOT (EVAL (CADR PAT)))))
+		 (TAIL (PROG (V)
+			     (PROG NIL
+			       LOOP(COND
+				     ((AND (LISTP EXP)
+					   (IGREATERP (LENGTH EXP)
+						      (LENGTH (CDDR PAT))))
+				       (SETQ V (CONS (EVMATCHER (CAR EXP)
+								(CADR PAT))
+						     V))
+				       (SETQ EXP (CDR EXP))
+				       (GO LOOP))))
+			     (RETURN (NCONC (DREVERSE V)
+					    (EVMATCHER EXP (CDDR PAT))))))
+		 (EVAL (EVAL (CADR PAT)))
+		 (COND
+		   ((LISTP EXP)
+		     (CONS (EVMATCHER (CAR EXP)
+				      (CAR PAT))
+			   (EVMATCHER (CDR EXP)
+				      (CDR PAT))))
+		   (T (PRIN1 "Tracein warning: missing arguments detected")
+		      NIL))))
+      (T (COND
+	   ((LISTP EXP)
+	     (CONS (EVMATCHER (CAR EXP)
+			      (CAR PAT))
+		   (EVMATCHER (CDR EXP)
+			      (CDR PAT))))
+	   (T (ERROR "Tracein error: List argument expected")))))))
+
+(EXPAND-EV
+  (LAMBDA (EXP PAT PUT-IN)
+    (SETQ PAT (EVMATCHER (CDR EXP)
+			 PAT))
+    (SETQ EXP (CONS (CAR EXP)
+		    (EXPAND-EV1 (CDR EXP)
+				PAT PUT-IN)))
+    (COND
+      ((NOT NOEMBED)
+	(SETQ EXP (APPEND PUT-IN (LIST EXP)))))
+    EXP))
+
+(EXPAND-EV1
+  (LAMBDA (EXP PAT PUT-IN)
+    (COND
+      ((LISTP PAT)
+	(COND
+	  ((NEQ (LENGTH PAT)
+		(LENGTH EXP))
+	    (PRIN1 "Tracein warning: extra arguments ignored")))
+	(for PAT in PAT as EXP in EXP collect (EXPAND-EV1 EXP PAT PUT-IN)))
+      (PAT (EVL-FIX EXP PUT-IN))
+      (T EXP))))
+
+(PRINTUPTO
+  (LAMBDA (Object Limit UsePrin2 IgnoreLst)
+    (DECLARE (SPECVARS Limit IgnoreLst))
+    (PrintUpTo Object UsePrin2)))
+
+(PrintUpTo
+  (LAMBDA (Object UsePrin2 Tailp)
+    (COND
+      ((ZEROP Limit))
+      ((NLISTP Object)
+	(COND
+	  (Tailp (SELECTQ Limit
+			  (1 (PRIN1 " ")
+			     (SETQ Limit 0))
+			  (2 (PRIN1 " .")
+			     (SETQ Limit 0))
+			  (PROGN (PRIN1 " . ")
+				 (SETQ Limit (IDIFFERENCE Limit 3))
+				 (PrintUpTo Object UsePrin2))))
+	  (T (PROG ((Size (NCHARS Object UsePrin2)))
+	           (COND
+		     ((ILEQ Size Limit)
+		       (APPLY* (COND
+				 (UsePrin2 (FUNCTION PRIN2))
+				 (T (FUNCTION PRIN1)))
+			       Object)
+		       (SETQ Limit (IDIFFERENCE Limit Size)))
+		     (T (PRIN1 (PACK (for i to Limit as Char
+					in (UNPACK Object UsePrin2)
+					collect Char)))
+			(SETQ Limit 0)))))))
+      ((FMEMB (CAR Object)
+	      IgnoreLst)
+	(PrintUpTo (CADR Object)
+		   UsePrin2 Tailp))
+      (T (COND
+	   (Tailp (PRIN1 " "))
+	   (T (PRIN1 "(")))
+	 (SETQ Limit (SUB1 Limit))
+	 (PrintUpTo (CAR Object)
+		    UsePrin2)
+	 (AND (CDR Object)
+	      (PrintUpTo (CDR Object)
+			 UsePrin2 T))
+	 (OR Tailp (ZEROP Limit)
+	     (AND (PRIN1 ")")
+		  (SETQ Limit (SUB1 Limit))))))))
+
+(TRACE-CREATE
+  (LAMBDA NIL
+    (DWIMIFY BRKEXP T)
+    (CLISPTRAN (OR (GETHASH BRKEXP CLISPARRAY)
+		   BRKEXP)
+	       (EVL-FIX BRKEXP (QUOTE (WATCH))))))
+
+(TRACEIN
+  (NLAMBDA X
+    (SETQ X (MKLIST X))            (* x can be a non list, so watch it!)
+    (PROG ((FN (CAR X))
+	   WHEN Trace)
+          (DECLARE (LOCALVARS . T))
+          (COND
+	    ((LISTP FN)
+	      (SETQ WHEN (CADR FN))
+	      (SETQ FN (CAR FN))))
+          (COND
+	    ((EQ T (CADR X))
+	      (SETQ Trace T)
+	      (SETQ X (CDR X))))
+          (RETURN (COND
+		    ((NULL (CDR X))
+		      (TRACEINX FN (QUOTE TTY:)
+				WHEN Trace))
+		    (T (for LOC in (CDR X) collect (TRACEINX FN LOC WHEN Trace))
+		       ))))))
+
+(TRACEINX
+  (LAMBDA (FN WHERE WHEN Trace)
+    (APPLY* (QUOTE BREAKIN)
+	    FN
+	    (LIST (QUOTE AROUND)
+		  WHERE)
+	    WHEN
+	    (LIST (LIST (QUOTE PROG)
+			(COND
+			  (Trace (QUOTE ((StepAction T))))
+			  (T (QUOTE (StepAction))))
+			(QUOTE (SETQ
+				 BRKVALUE
+				 (CONS (SETQ !VALUE
+					 (EVAL (OR (GETHASH (GETHASH BRKEXP 
+								 CLISPARRAY)
+							    CLISPARRAY)
+						   (GETHASH BRKEXP CLISPARRAY)
+						   (TRACE-CREATE))))))))
+		  (QUOTE OK)))))
+
+(UNWATCH
+  (LAMBDA (XPR)
+    (COND
+      ((LISTP XPR)
+	(COND
+	  ((EQ (CAR XPR)
+	       (QUOTE WATCH))
+	    (UNWATCH (CADR XPR)))
+	  (T (CONS (UNWATCH (CAR XPR))
+		   (UNWATCH (CDR XPR))))))
+      (T XPR))))
+
+(WATCH
+  (NLAMBDA (XPR)
+    (PROG (ANS (INDENT# (IPLUS INDENT# 2)))
+          (DECLARE (LOCALVARS ANS))
+          (COND
+	    ((EQ StepAction (QUOTE EVAL))
+	      (RETURN (EVAL XPR))))
+          (TAB INDENT#)
+          (APPLY* FORMPRINTER XPR)
+          (OR (NLISTP XPR)
+	      (NULL StepAction)
+	      (TERPRI))
+      L1  (COND
+	    ((AND (NULL StepAction)
+		  (LISTP XPR))
+	      (SELECTQ (ASKUSER NIL NIL "->" (QUOTE ((P "rettyPrint form")
+						      (B "reak")
+						      (T "race form")
+						      (E "val form")
+						      (S "tep")))
+				T)
+		       (P (TERPRI)
+			  (PRINTDEF (UNWATCH XPR))
+			  (GO L1))
+		       (B (BREAK1 NIL T)
+			  (GO L1))
+		       (E ((LAMBDA (StepAction)
+			      (SETQ ANS (EVAL XPR)))
+			    (QUOTE EVAL)))
+		       (T ((LAMBDA (StepAction)
+			      (SETQ ANS (EVAL XPR)))
+			    T))
+		       (SETQ ANS (EVAL XPR))))
+	    (T (SETQ ANS (EVAL XPR))))
+          (OR (NLISTP XPR)
+	      (TAB INDENT#))
+          (OR (NLISTP XPR)
+	      (PRIN2 (CAR XPR)))
+          (PRIN1 " = ")
+          (APPLY* VALUEPRINTER ANS)
+      L2  (COND
+	    ((NULL StepAction)
+	      (SELECTQ (ASKUSER NIL NIL "<-" (QUOTE ((P "rettyPrint value")
+						      (B "reak")
+						      (S "tep on")
+						      (F "inish this Break")
+						      (R "etry")))
+				T)
+		       (P (TERPRI)
+			  (PRINTDEF ANS)
+			  (GO L2))
+		       (F (SETQ StepAction (QUOTE EVAL)))
+		       (B (BREAK1 NIL T)
+			  (GO L2))
+		       (R (GO L1))
+		       NIL)))
+          (AND StepAction (TERPRI))
+          (RETURN ANS))))
+)
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA TRACEIN)
+
+(ADDTOVAR NLAML WATCH)
+
+(ADDTOVAR LAMA )
+)
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (1725 9314 (EVL-FIX 1737 . 3450) (EVMATCHER 3454 . 4525) (
+EXPAND-EV 4529 . 4779) (EXPAND-EV1 4783 . 5082) (PRINTUPTO 5086 . 5218) (
+PrintUpTo 5222 . 6325) (TRACE-CREATE 6329 . 6488) (TRACEIN 6492 . 7037) (
+TRACEINX 7041 . 7519) (UNWATCH 7523 . 7739) (WATCH 7743 . 9311)))))
+STOP

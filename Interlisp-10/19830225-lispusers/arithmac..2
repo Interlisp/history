@@ -1,0 +1,307 @@
+(FILECREATED " 1-DEC-81 11:51:59" <LISPUSERS>ARITHMAC.;2 9848   
+
+     previous date: "15-NOV-79 20:58:03" <LISPUSERS>ARITHMAC.;1)
+
+
+(PRETTYCOMPRINT ARITHMACCOMS)
+
+(RPAQQ ARITHMACCOMS [(FNS FBIND FLOATSETQ FLOATSETQMAC LARGESETQ LARGESETQMAC LBIND NUMTOAC)
+		     (FILES (SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES)
+			    NOBOX DECL)
+		     (DECLTYPES (FLOATP BINDFN)
+				(FLOATP SETFN)
+				(LARGEP BINDFN)
+				(LARGEP SETFN))
+		     (MACROS FBIND FBOX FLOATSETQ IBOX LARGESETQ LBIND)
+		     (PROP (MACRO BYTEMACRO)
+			   FIX FLOAT)
+		     (PROP AMAC VAGFIX)
+		     (PROP DECLOF FBOX IBOX FLOATSETQ LARGESETQ)
+		     (IGNOREDECL)
+		     (DECLARE: EVAL@COMPILE DONTCOPY (MACROS LARGEVAL)
+			       COMPILERVARS
+			       (ADDVARS (NLAMA)
+					(NLAML LARGESETQ FLOATSETQ)
+					(LAMA LBIND FBIND])
+(DEFINEQ
+
+(FBIND
+  [LAMBDA NARGS                                        (* bas: "19-OCT-79 18:31" posted: "24-SEP-78 16:09")
+                                                       (* Produces a constant box for binding floating variables)
+    (if NARGS=0
+	then (create FBOX)
+      else (create FBOX
+		   F _(the FLOATP (ARG NARGS 1])
+
+(FLOATSETQ
+  [NLAMBDA (VAR VAL)                                   (* bas: "19-OCT-79 18:29")
+                                                       (* Value is the floating box bound to VAR)
+    (DECLARE (LOCALVARS . T))                          (* B/c of EVALV)
+    (REPLACEFIELDVAL 612401152 (OR (FLOATP (EVALV VAR))
+				   (HELP "FLOATP variable not bound to floating box!" VAR))
+		     (OR (FLOATP (EVAL VAL))
+			 (HELP "Attempt to assign non-floating value to floating variable: "
+			       <VAR (EVAL VAL)
+				 >])
+
+(FLOATSETQMAC
+  [LAMBDA (ARGS)                                       (* rmk: "28-DEC-78 13:45")
+    (if (COVERS 'FLOATP (DECLOF ARGS:2))
+	then [SUBPAIR '(VR VAL)
+		      ARGS '(ASSEMBLE NIL
+				      (CQ (VAG VAL))
+				      (E (NUMTOAC 2 (QUOTE FLOATP)))
+				      (VAR (HRRZ 1 , VR))
+				      (MOVEM 2 , 0 (1]
+      else (printout T T "Floating SETQ of unknown value:  " .P2 ARGS T)
+	   (SUBPAIR '(VR VAL)
+		    ARGS '(ASSEMBLE NIL
+				    (CQ (VAG (the FLOATP VAL)))
+				    (E (NUMTOAC 2 (QUOTE FLOATP)))
+				    (VAR (HRRZ 1 , VR))
+				    (MOVEM 2 , 0 (1])
+
+(LARGESETQ
+  [NLAMBDA (VAR VAL)                                   (* bas: "19-OCT-79 18:30")
+                                                       (* Value is the large box bound to VAR.
+						       RPLFLDVAL gets VAL rather than VAL:I b/c it might be SMALLP)
+    (DECLARE (LOCALVARS . T))                          (* B/c of EVALV)
+    (REPLACEFIELDVAL 608174080 (OR (LARGEVAL (EVALV VAR))
+				   (HELP "LARGEP variable not bound to large box!" VAR))
+		     (OR (FIXP (EVAL VAL))
+			 (HELP "Attempt to assign non-integer value to largep variable: "
+			       <VAR (EVAL VAL)
+				 >])
+
+(LARGESETQMAC
+  [LAMBDA (ARGS)                                       (* rmk: "18-MAR-79 21:55")
+    (SUBPAIR '(VR VAL)
+	     ARGS
+	     (SELCOVERSQ ARGS:2
+			 [LARGEP                       (* FETCH I can be done if the declarations say that VAL is LARGEP)
+				 ('(ASSEMBLE NIL
+					     (CQ (VAG VAL))
+					     (E (NUMTOAC 2 (QUOTE LARGEP)))
+					     (VAR (HRRZ 1 , VR))
+					     (MOVEM 2 , 0 (1]
+			 [SMALLP ' (ASSEMBLE NIL
+					     (CQ (VAG VAL))
+					     (E (NUMTOAC 2 (QUOTE SMALLP)))
+					     (VAR (HRRZ 1 , VR))
+					     (MOVEM 2 , 0 (1]
+			 [FIXP ' (ASSEMBLE NIL
+				           (CQ (VAG VAL))
+				           (E (NUMTOAC 2 (QUOTE FIXP)))
+				           (VAR (HRRZ 1 , VR))
+				           (MOVEM 2 , 0 (1]
+			 (PROGN (printout T T "Large SETQ of unknown value:  " .P2 ARGS T)
+				('(ASSEMBLE NIL
+					    (CQ (VAG (the FIXP VAL)))
+					    (E (NUMTOAC 2 (QUOTE FIXP)))
+					    (VAR (HRRZ 1 , VR))
+					    (MOVEM 2 , 0 (1])
+
+(LBIND
+  [LAMBDA NARGS                                        (* rmk: "29-OCT-78 18:11" posted: "24-SEP-78 16:09")
+                                                       (* Produces a constant box for binding large variables)
+    (if NARGS=0
+	then (create IBOX)
+      else (create IBOX
+		   I _(the FIXP (ARG NARGS 1])
+
+(NUMTOAC
+  [LAMBDA (AC KNOWNTYPE)                               (* bas: " 7-AUG-78 19:03" posted: "29-JUN-78 00:11")
+
+          (* A peep-hold optimizer called just after code to unbox a number of known type KNOWNTYPE into AC1 has been compiled.
+	  Changes the code list so that the bits end up in AC.)
+
+
+    (DECLARE (USEDFREE CODE))
+    (if AC=NIL
+	then AC_1)
+    (PROG (INST)
+          (SELECTQ (CAR (INST_(LISTP CODE:1)))
+		   (FASTCALL (if INST:2='GUNBOX
+				 then (CODE_CODE::1) 
+                                                       (* Remove the unbox instruction)
+				      (SELECTQ KNOWNTYPE
+					       ((FLOATP LARGEP)
+						 (SELECTQ (CAR (INST_(LISTP CODE:1)))
+							  (HRRZ (if INST:4:1='VREF
+								    then 
+                                                       (* Unbox the variable by moving indirect through the value-cell)
+									 (CODE_CODE::1)
+									 (STORIN
+									   <'MOVE AC ', '@
+									     ! INST::3>)
+								  else (STORIN <'MOVE AC ! '(, 0 (1))
+										 >)))
+							  (LDV CODE_CODE::1
+							       (STORIN
+								 <'MOVE AC ', '@ <'VREF ! INST::1>>))
+							  (STORIN <'MOVE AC ! '(, 0 (1))
+								    >)))
+					       (SMALLP (STORIN <'HRREI AC ! '(, -2048 (1))
+								 >))
+					       (FIXP (STORIN '(STE SMALLT))
+						     (STORIN <'SKIPA AC ! '(, 0 (1))
+							       >)
+						     (STORIN <'HRREI AC ! '(, -2048 (1))
+							       >))
+					       (HELP "UNRECOGNIZED KNOWNTYPE - NUMTOAC" KNOWNTYPE))
+				      (RETURN)))
+		   (LPOPN (if AC~=INST:2
+			      then (CODE_CODE::1)
+				   (STORIN <'LPOPN AC>))
+			  (RETURN))
+		   (LDN (if AC~=1
+			    then (CODE_CODE::1)
+				 (STORIN <'LDN2 INST:2 AC>))
+			(RETURN))
+		   (MOVE (if AC~=INST:2
+			     then (CODE_CODE::1)
+				  (STORIN <'MOVE AC ! INST::2>))
+			 (RETURN))
+		   (ASSEM CODE_
+		      <   (PROG ((CODE (REVERSE INST::1)))
+			        (DECLARE (SPECVARS . T))
+			        (NUMTOAC AC KNOWNTYPE)
+			        (RETURN <'ASSEM !(DREVERSE CODE)
+					  >))
+		      !
+		      CODE::1>
+		          (RETURN))
+		   NIL)
+          (if AC~=1
+	      then (STORIN <'MOVE AC ! '(, 1)
+			     >])
+)
+(FILESLOAD (SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES)
+	   NOBOX DECL)
+
+(DECLARE: EVAL@COMPILE
+
+(DECLTYPES (FLOATP FLOATP BINDFN FBIND)
+           (FLOATP FLOATP SETFN FLOATSETQ)
+           (LARGEP LARGEP BINDFN LBIND)
+           (LARGEP LARGEP SETFN LARGESETQ))
+)
+(DECLARE: EVAL@COMPILE 
+
+(PUTPROPS FBIND MACRO [ARGS (COND
+			      [ARGS (LIST (QUOTE FBOX)
+					  (LIST (QUOTE the)
+						(QUOTE FLOATP)
+						(CAR ARGS]
+			      (T (QUOTE (FBOX])
+
+(PUTPROPS FBOX MACRO [ARGS (COND
+			     [(CAR ARGS)
+			       (LIST (QUOTE ASSEMBLE)
+				     NIL
+				     [LIST (QUOTE CQ)
+					   (LIST (QUOTE VAG)
+						 (LIST (QUOTE FLOAT)
+						       (CAR ARGS]
+				     [QUOTE (E (NUMTOAC 2 (QUOTE FLOATP]
+				     (LIST (QUOTE CQ)
+					   (KWOTE (FPLUS 0.0)))
+				     (QUOTE (MOVEM 2 , 0 (1]
+			     (T (KWOTE (FPLUS 0.0])
+
+(PUTPROPS FBOX ALTOMACRO [ARGS (COND [(CAR ARGS)
+				      (SUBST (CAR ARGS)
+					     (QUOTE NUM)
+					     (QUOTE (create FBOX smashing (CONSTANT (create FBOX))
+							    F _ NUM]
+				     (T (create FBOX])
+
+(PUTPROPS FBOX BYTEMACRO PUNT)
+
+(PUTPROPS FLOATSETQ MACRO (ARGS (FLOATSETQMAC ARGS)))
+
+(PUTPROPS IBOX MACRO [ARGS (COND
+			     [(CAR ARGS)
+			       (LIST (QUOTE ASSEMBLE)
+				     NIL
+				     (LIST (QUOTE VAGFIX)
+					   (CAR ARGS)
+					   2)
+				     (LIST (QUOTE CQ)
+					   (KWOTE (IPLUS 100000)))
+				     (QUOTE (MOVEM 2 , 0 (1]
+			     (T (KWOTE (IPLUS 10000000])
+
+(PUTPROPS IBOX ALTOMACRO [ARGS (COND [(CAR ARGS)
+				      (SUBST (CAR ARGS)
+					     (QUOTE NUM)
+					     (QUOTE (create IBOX smashing (CONSTANT (create IBOX))
+							    I _ NUM]
+				     (T (create IBOX])
+
+(PUTPROPS IBOX BYTEMACRO PUNT)
+
+(PUTPROPS LARGESETQ MACRO (ARGS (LARGESETQMAC ARGS)))
+
+(PUTPROPS LBIND MACRO [ARGS (COND
+			      [ARGS (LIST (QUOTE IBOX)
+					  (LIST (QUOTE the)
+						(QUOTE FIXP)
+						(CAR ARGS]
+			      (T (QUOTE (IBOX])
+)
+
+(PUTPROPS FIX MACRO [ARGS (COND
+			    ((COVERS (QUOTE FIXP)
+				     (DECLOF (CAR ARGS)))
+			      (CAR ARGS))
+			    (T (QUOTE IGNOREMACRO])
+
+(PUTPROPS FLOAT MACRO [ARGS (COND
+			      ((COVERS (QUOTE FLOATP)
+				       (DECLOF (CAR ARGS)))
+				(CAR ARGS))
+			      (T (QUOTE IGNOREMACRO])
+
+(PUTPROPS FIX BYTEMACRO [ARGS (COND ((COVERS (QUOTE FIXP)
+					     (DECLOF (CAR ARGS)))
+				     (CAR ARGS))
+				    (T (LIST (QUOTE IPLUS)
+					     (CAR ARGS)
+					     0])
+
+(PUTPROPS VAGFIX AMAC [(EX R)
+		       (* Compiles EX and diddles code to put it right into R)
+		       (CQ (VAG (FIX EX)))
+		       (E (NUMTOAC R (QUOTE FIXP])
+
+(PUTPROPS FBOX DECLOF FLOATP)
+
+(PUTPROPS IBOX DECLOF LARGEP)
+
+(PUTPROPS FLOATSETQ DECLOF FLOATP)
+
+(PUTPROPS LARGESETQ DECLOF LARGEP)
+(DECLARE: DOEVAL@COMPILE DONTEVAL@LOAD DONTCOPY 
+(RESETSAVE COMPILEIGNOREDECL (QUOTE NIL))
+)
+(DECLARE: EVAL@COMPILE DONTCOPY 
+(DECLARE: EVAL@COMPILE 
+
+(PUTPROPS LARGEVAL MACRO [LAMBDA (V)
+			   (AND (EQ (NTYP V)
+				    18)
+				V])
+)
+COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML LARGESETQ FLOATSETQ)
+
+(ADDTOVAR LAMA LBIND FBIND)
+)
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (828 6652 (FBIND 840 . 1205) (FLOATSETQ 1209 . 1758) (FLOATSETQMAC 1762 . 2384) (
+LARGESETQ 2388 . 3007) (LARGESETQMAC 3011 . 4025) (LBIND 4029 . 4389) (NUMTOAC 4393 . 6649)))))
+STOP

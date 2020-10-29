@@ -1,0 +1,108 @@
+(FILECREATED "29-NOV-81 15:05:10" ("compiled on " <LISPUSERS>PRINTL.;21) (2 . 2) brecompiled 
+explicitly: PRINTL in "INTERLISP-MAXC " dated "23-NOV-81 22:44:43")
+(FILECREATED "25-MAY-81 22:51:02" <LISPUSERS>PRINTL.;20 4848 changes to: PRINTL previous date: 
+"30-MAY-79 00:25:56" <LISPUSERS>PRINTL.;19)
+
+PRINTL BINARY
+E<-.(-.P
+-.
+
+Z-,+Zb!XBZ-,+	ZXBZ-,+,<Zd",/",XB	Z2B+Z+b#2B+Z,<,<$,<%%XB .",,<Z,<@&@,~ /",XB(ZpZ8-,+2Z,<Zp3B+"b)XBpZ,<,<*,<+,<, .",,<,<,,<-,<.Zp3B++b)/Zp,<8 .",,<,</Z,</,N,?+=Z/,<Zp3B+6b)XBpZ-,<,<*,<+Zw,<8,<.Zp3B+<b)/Z2b/Z,~Z3B+MZ=,<Zp3B+Db)XBpZ,<,<,<+,<0,<.Z?,<,<.Zp3B+Lb)/ZXBH,~-.1@2,~Z@,<Zp3B+Tb)XBpZ6,<,<*,<+,<3,<.Zp3B+Zb)/Zp,<8,<,<ZwXBpZp-,+_+5 %.",XB_,<pd4Zp-,+ZpZ,XB`3B+j,<5,<,<5,,<,g+Zw~ 8,>,> 	 ,^/3b+q,<6,J+ZpZw~Z83B+,?ZP,<Zp3B+wb)XBpZ",<,<*,<+,<6Za,<,<,,<7,<.Zp3B+b)/ZpZw~Z82B+ z.",XBM+ZXB,/",XBZp,<Ztb!,,>,>  ,^/2"+ T.",+ w.",,<Zw} 8.",,<,NZXB+Zp,<,J[p3B+4[p-,+&Z	,<Zp3B+
+b)XBp,<7,<.[w,<,<.Zp3B+%b)/+4[pZ,XB`3B+4Z,<Zp3B+,b)XBp,<8,<.,<`,<.,<8,<.Zp3B+3b)/+6[pXBp+]Zw/Z)b!,.",>,>  ,^/2"+>,<9Z6d.+I,?Z=,<Zp3B+Bb)XBpZ,<,<*,<+,<9,<.Zp3B+Hb)/Z,~Z?b!,,>,>,<p:,.BxZ3B+Q^"+Q^".Bx,^/,>,> 9 ,^/3"+b,?ZJ,<Zp3B+[b)XBp B.",,<,<*,<+Zp3B+`b)/ZXBNZa3B+e,<;ZWd.,<p.ZXBb+,<p,<,<*Zw-,+k+sZXBw p,>,>,<w:,.Bx,^/,XBp[wXBw+iZp/,<Zdb!,,>,>Zf3B+z p."+z p.Bx,^/,>,> T ,^/2"+Zw3B+,<;Ztd.+,?Z,<Zp3B+b)XBp [.",,<,<*,<+Zp3B+b)/,<wZp-,++,<Zp,<Zd./[pXBp+/ZXBZ+JHN1`i@#C&!	A@biLpaEF@
+ Ij&AS&CLBB
+05b (H@MaA&"(ITEM . 1)
+(VARIABLE-VALUE-CELL LIMIT . 217)
+(VARIABLE-VALUE-CELL LMARG . 290)
+(VARIABLE-VALUE-CELL RMARG . 506)
+(VARIABLE-VALUE-CELL FILE . 547)
+(VARIABLE-VALUE-CELL PRINTLLIMIT . 17)
+(VARIABLE-VALUE-CELL CLOSELEVEL . 268)
+(VARIABLE-VALUE-CELL FILE . 0)
+(VARIABLE-VALUE-CELL RM . 136)
+(VARIABLE-VALUE-CELL N . 272)
+(VARIABLE-VALUE-CELL LIMIT . 0)
+(VARIABLE-VALUE-CELL LMARG . 0)
+(VARIABLE-VALUE-CELL RMARG . 0)
+(VARIABLE-VALUE-CELL SPACE . 555)
+(VARIABLE-VALUE-CELL INDENT . 527)
+*PRINTL*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL LIMIT . 0)
+((UNBOXED-NUM . 3) VARIABLE-VALUE-CELL LMARG . 0)
+((UNBOXED-NUM . 4) VARIABLE-VALUE-CELL RMARG . 0)
+((UNBOXED-NUM . 5) VARIABLE-VALUE-CELL FILE . 0)
+(NIL)
+(LINKED-FN-CALL . POSITION)
+(NIL)
+(LINKED-FN-CALL . LINELENGTH)
+(NIL)
+(LINKED-FN-CALL . OPENP)
+OUTPUT
+NEW
+(NIL)
+(LINKED-FN-CALL . OPENFILE)
+(VARIABLE-VALUE-CELL INDENT . 0)
+(VARIABLE-VALUE-CELL RM . 0)
+(1 VARIABLE-VALUE-CELL CLOSELEVEL . 0)
+(0 VARIABLE-VALUE-CELL N . 0)
+(NIL)
+(LINKED-FN-CALL . CLRHASH)
+(NIL)
+(LINKED-FN-CALL . OUTPUT)
+0
+(NIL)
+(LINKED-FN-CALL . TAB)
+((FIX . 10738204682) . 0)
+(NIL)
+(LINKED-FN-CALL . PRINTNUM)
+":"
+(NIL)
+(LINKED-FN-CALL . PRIN1)
+2
+(NIL)
+(LINKED-FN-CALL . TERPRI)
+":"
+*PRINTL1*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL INDENT . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL CLOSELEVEL . 0)
+(NIL VARIABLE-VALUE-CELL SPACE . 0)
+"("
+(NIL)
+(LINKED-FN-CALL . PUTHASH)
+{
+}
+{--}
+((FIX . 10738204682) . 0)
+":"
+" . "
+" . {"
+"}"
+")"
+")"
+(NIL)
+(LINKED-FN-CALL . NCHARS)
+" "
+" "
+(URET2 URET1 SKA LIST3 GETHSH SKNLST BHC SKLST KT MKN IUNBOX KNIL SKNNM BINDB BLKENT ENTERF)"x@f(_"8
+x|HqV8I@7@&hp[	P=,dh"`gp	]XPap'@hhohLx!H h
+i8b^ P HhE2/`+'H#(`| vpeP\X
+hS	XK	 HhF0@p<(8P+(H!(@0X	p
+GETPLVALUE BINARY
+-.Z,<@ ,~Z`-,++ZXB[[ZXB3B+3B+,<D[`XB`+Z`,~r(VARIABLE-VALUE-CELL LISPXHISTORY . 3)
+(0 . 1)
+NIL
+(NIL VARIABLE-VALUE-CELL X . 17)
+%
+GETPLVALUE
+RETFROM
+(KNIL SKNLST ENTER0) X
+(PRETTYCOMPRINT PRINTLCOMS)
+(RPAQQ PRINTLCOMS ((FNS GETPLVALUE CLOSELINE PRINTL PRINTL1 PRINTLATOM PRINTLATOMLIST) (BLOCKS (PRINTL
+ PRINTL CLOSELINE PRINTL1 PRINTLATOM PRINTLATOMLIST (GLOBALVARS PRINTLLIMIT)) (NIL GETPLVALUE (
+GLOBALVARS LISPXHISTORY))) (VARS PRINTLLIMIT) (LISPXMACROS PRNTL) (DECLARE: DONTCOPY EVAL@COMPILE (P (
+RESETSAVE DWIMIFYCOMPFLG T)))))
+(RPAQQ PRINTLLIMIT 4)
+(ADDTOVAR LISPXMACROS (PRNTL (COND ((LISTP LISPXLINE) (COND ((NUMBERP (CAR LISPXLINE)) (APPLY (
+FUNCTION PRINTL) (CONS (GETPLVALUE) LISPXLINE))) (T (EVAL (CONS (FUNCTION PRINTL) LISPXLINE))))) (T (
+APPLY* (FUNCTION PRINTL) (GETPLVALUE))))))
+NIL

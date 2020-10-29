@@ -1,0 +1,263 @@
+(FILECREATED "24-Dec-82 00:15:26" ("compiled on " <DONC>TRACEIN..24) (2 . 2) 
+tcompl'd in MEVAL dated "18-Oct-82 12:28:53")
+(FILECREATED "24-Dec-82 00:08:51" <DONC>TRACEIN..24 9478 changes to: (VARS 
+TRACEINBLOCKS) (FNS EVL-FIX PRINTUPTO PrintUpTo WATCH) previous date: 
+" 7-Dec-82 12:20:21" <DONC>TRACEIN..23)
+
+EVL-FIX BINARY
+y-.y@{,~ZZ,2B+ZXB-,+
+Z,<,D|,~Z-,+]Z
+,<,<|$}XB3B+Z,<,<ZF},~Z2B~+Z,~Z,<Z2B~+Z+[3B+3B+2B+Z+[2B+Z+[3B+'3B+'3B+'3B+'3B+'3B+'3B+'3B+'2B+(Z+[2B+=[Z,<,<Zw-,+1ZpZ2B+/ "+1[QD "+:Zw,<@ +7Z-,+6Z,~Z,~Zp,XBp[wXBw++/Z	,2B+[+L3B	+?2B
++AZXBZ
++[3B+C2B+DZ+[2B+FZ+[3B+I3B+I2B+KZXB@Z+[ZZ)B3B+S3B+S3B+S3B+S3B+S2B+TZ+[3B+Z3B+Z3B+Z3B+Z3B+Z2B+[Z+[Z,<ZF},~ZLZ2B+oZ],<,<Zw-,+gZpZ2B+e "+g[QD "+Zw,<@ +lZ,<Z\D|,~Zp,XBp[wXBw+aZ_Z2B+uZo,<ZkD|[q,,~,<,<$Zs,<,<$Zv,~D&!0?p") )|s
+r (E(VARIABLE-VALUE-CELL EXP . 241)
+(VARIABLE-VALUE-CELL PUT-IN . 229)
+(VARIABLE-VALUE-CELL CLISPARRAY . 7)
+(NIL VARIABLE-VALUE-CELL Y . 27)
+(NIL VARIABLE-VALUE-CELL NOEMBED . 148)
+APPEND
+EVL-FIX
+GETPROP
+EXPAND-EV
+WATCH
+GO
+((LISTP) . 0)
+SETQ
+SETN
+SAVESETQ
+((NIL T) . 0)
+COND
+((TAIL (TAIL T)) . 0)
+AND
+OR
+PROGN
+PROG1
+RPTQ
+FRPTQ
+RESETFORM
+ADD1VAR
+SUB1VAR
+((TAIL T) . 0)
+PROG
+(VARIABLE-VALUE-CELL V . 104)
+((NIL T) . 0)
+((TAIL LISTP) . 0)
+FUNCTION
+*FUNCTION
+((LISTP) . 0)
+NLSETQ
+ERSETQ
+((T TAIL NIL) . 0)
+SELECTQ
+((T TAIL (NIL TAIL T) T) . 0)
+LAMBDA
+LABEL
+NLAMBDA
+((NIL TAIL T) . 0)
+FNTYP
+SUBR
+EXPR
+CEXPR
+SUBR*
+EXPR*
+CEXPR*
+((TAIL T) . 0)
+FEXPR
+FSUBR
+CFEXPR
+FEXPR*
+FSUBR*
+CFEXPR*
+((TAIL NIL) . 0)
+((TAIL NIL) . 0)
+(VARIABLE-VALUE-CELL X . 212)
+"Tracein warning: expecting a function but finding..."
+PRIN1
+PRINT
+(URET2 KT CONS BHC COLLCT CONSNL SKNLST KNIL GETHSH ENTERF)hxhJP<;n(5HxHdLP6h.8XP
+
+EVMATCHER BINARY
+F=D-.=Z-,+2B+Z,~2B+Z,~,<Z,< ",3B+7Z,~Z-,+4Z2B>+[ZB?3B+7Z,~2B?+(@@+(Z-,+#B@,,>=,>[[B@, ,^/3b+#Z,<[ZDAZ,XB [XB!+Z!BA,<Z",<[[DADB,~,~2B?++[%ZB?,~Z$-,+2Z+,<Z)DA,<[-,<[.DA,,~,<B"CZ,~Z/-,+;Z4,<Z0DA,<[6,<[7DA,,~,<C"D,~De!B0&(VARIABLE-VALUE-CELL EXP . 113)
+(VARIABLE-VALUE-CELL PAT . 115)
+TEST
+EVAL
+TAIL
+(NIL VARIABLE-VALUE-CELL V . 70)
+LENGTH
+EVMATCHER
+DREVERSE
+NCONC
+"Tracein warning: missing arguments detected"
+PRIN1
+"Tracein error: List argument expected"
+ERROR
+(CONSS1 CONS BHC IUNBOX SKLST EVCC KT KNIL SKA ENTERF)82!`-p (p40@
+P0
+
+EXPAND-EV BINARY
+-.[,<ZDXBZ,<[,<Z,<ZF,XBZ2B+Z,<Z,DXBZ,~!(VARIABLE-VALUE-CELL EXP . 27)
+(VARIABLE-VALUE-CELL PAT . 12)
+(VARIABLE-VALUE-CELL PUT-IN . 21)
+(VARIABLE-VALUE-CELL NOEMBED . 18)
+EVMATCHER
+EXPAND-EV1
+APPEND
+(CONSNL KNIL CONSS1 ENTERF)P(
+
+EXPAND-EV1 BINARY
+,#+-.#Z-,+
+B%,<ZB%,\3B+,<%"&Z,<Z,<@&@(+Z`-,++ZXBZ`-,++ZXB,<Z,<ZF*XB`Z`3B+,<Z`,XB`,\QB+Z`,XB`XB`[`XB`[`XB`+Z`,~,~3B+"Z,<ZD*,~Z ,~BL!(VARIABLE-VALUE-CELL EXP . 69)
+(VARIABLE-VALUE-CELL PAT . 35)
+(VARIABLE-VALUE-CELL PUT-IN . 66)
+LENGTH
+"Tracein warning: extra arguments ignored"
+PRIN1
+(0 . 1)
+(0 . 1)
+NIL
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL PAT . 0)
+(NIL VARIABLE-VALUE-CELL EXP . 0)
+EXPAND-EV1
+EVL-FIX
+(CONSNL KNIL SKNLST SKLST ENTERF)( Xx
+
+PRINTUPTO BINARY
+-. Z,<ZD,~(VARIABLE-VALUE-CELL Object . 3)
+(VARIABLE-VALUE-CELL Limit . 0)
+(VARIABLE-VALUE-CELL UsePrin2 . 5)
+(VARIABLE-VALUE-CELL IgnoreLst . 0)
+PrintUpTo
+(ENTERF)
+
+PrintUpTo BINARY
+o_l-._Z1B77+^Z-,+DZ3B+Z0B+,<b"bZ"XB,~0B+,<c"bZ"XB
+,~,<c"b /",XBZXB+Z,<ZDd,<@d +D ,>_,>  ,^/2b+&Z3B+Ze+Zb,<Z,< ", ,>_,>  ,^//,XB!+CZ
+,<ZDe,<Z%,<@f@(+AZ"XBZ`-,+.+@ZXB ,,>_,>  ,^/3b+4+@Z/XB`Z`3B+:,<Z`,XB`,\QB+<Z`,XB`XB` /.",XB<[`XB`+,Z`,~BiBbZ"XB)Z,~,~Z&Z,3B+I[DZXBG+Z3B+L,<j"b+M,<j"b B/",XBMZH,<Z'Dk[O3B+U[Q,<ZP,<,<&kZI2B+^ZN1B77+^,<k"b3B+^ W/",XB[,~Z,~I0"Tx"C  0'p	!P(VARIABLE-VALUE-CELL Object . 165)
+(VARIABLE-VALUE-CELL UsePrin2 . 167)
+(VARIABLE-VALUE-CELL Tailp . 171)
+(VARIABLE-VALUE-CELL Limit . 186)
+(VARIABLE-VALUE-CELL IgnoreLst . 138)
+" "
+PRIN1
+" ."
+" . "
+NCHARS
+(VARIABLE-VALUE-CELL Size . 69)
+PRIN2
+UNPACK
+(0 . 1)
+(VARIABLE-VALUE-CELL $$TEM3 . 98)
+NIL
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL i . 124)
+(NIL VARIABLE-VALUE-CELL Char . 105)
+PACK
+" "
+"("
+PrintUpTo
+")"
+(FMEMB CONSNL EVCC BHC MKN SKNLST KNIL KT ASZ ENTERF)F<8%0XOh&`_8Y
+pR	(G@7PpY
+XX0,`(0
+
+TRACE-CREATE BINARY
+
+-.
+Z,<,<$ZZ,2B+Z,<Z,<,<$D,~(VARIABLE-VALUE-CELL BRKEXP . 14)
+(VARIABLE-VALUE-CELL CLISPARRAY . 8)
+DWIMIFY
+((WATCH) . 0)
+EVL-FIX
+CLISPTRAN
+(KNIL GETHSH KT ENTER0)`X8
+
+TRACEIN BINARY
+&#$-.#Z-,3B7,XBZ,<,<,<Zw-,+
+[wZXBwZwXBw[Z2B+ZXBp[
+XB[2B+,<w,<#,<w~,<w~($+[,<,<Zw-,+ZpZ2B+ "+[QD "+"Zw,<,<w},<w,<w},<w}($/Zp,XBp[wXBw+/+ 
+@E(VARIABLE-VALUE-CELL X . 38)
+TTY:
+TRACEINX
+(COLLCT BHC SKNLST URET3 KT CONSNL KNIL SKLST ENTERF)0
+#8Xxh0
+
+TRACEINX BINARY
+-. ,<Z,<,<Z,<,,<Z,<,<Z3B+	Z+
+Z,<,<,,<,<,,< ",,~H(VARIABLE-VALUE-CELL FN . 4)
+(VARIABLE-VALUE-CELL WHERE . 7)
+(VARIABLE-VALUE-CELL WHEN . 11)
+(VARIABLE-VALUE-CELL Trace . 14)
+BREAKIN
+AROUND
+PROG
+(((StepAction T)) . 0)
+((StepAction) . 0)
+((SETQ BRKVALUE (CONS (SETQ !VALUE (EVAL (OR (GETHASH (GETHASH BRKEXP CLISPARRAY
+) CLISPARRAY) (GETHASH BRKEXP CLISPARRAY) (TRACE-CREATE)))))) . 0)
+OK
+(EVCC LIST3 KNIL LIST2 ENTERF)X
+
+UNWATCH BINARY
+
+-.
+Z-,+
+Z2B+[ZXB+ZB,<[B,,~,~bH(VARIABLE-VALUE-CELL XPR . 16)
+WATCH
+UNWATCH
+(CONSS1 SKLST ENTERF) 0
+
+WATCH BINARY
+UER-. E .",,<@H ,~Z2BI+ZBI,~ZBIZ,<Z,< ",Z
+-,+Z3B+ JZ2B+*Z-,+*,<,<,<J,<K,<*K2BL+ JZBLBM+2BM+,<,<$N+2BN+",<I@F +!ZBIZw~XB8,~++2B+(,<@F +'Z
+BIZw~XB8,~++Z%BIXB`++Z(BIXB`Z*-,+.ZBIZ+-,+0Z.BO,<O"PZ,<,<` ",Z2B+B,<,<,<P,<Q,<*K2BL+; J,<`"M+42BQ+>ZIXB4+B2BM+A,<,<$N+42BR+B+Z=3B+D JZ`,~FH2Mwgu
+(U
+.7_9y@(VARIABLE-VALUE-CELL XPR . 95)
+(VARIABLE-VALUE-CELL INDENT# . 90)
+(VARIABLE-VALUE-CELL StepAction . 133)
+(VARIABLE-VALUE-CELL FORMPRINTER . 18)
+(VARIABLE-VALUE-CELL VALUEPRINTER . 99)
+(VARIABLE-VALUE-CELL INDENT# . 0)
+NIL
+EVAL
+TAB
+TERPRI
+"->"
+(((P "rettyPrint form") (B "reak") (T "race form") (E "val form") (S "tep")) . 0
+)
+ASKUSER
+P
+UNWATCH
+PRINTDEF
+B
+BREAK1
+E
+PRIN2
+" = "
+PRIN1
+"<-"
+(((P "rettyPrint value") (B "reak") (S "tep on") (F "inish this Break") (R "etry"
+)) . 0)
+F
+R
+(KT KNIL SKLST EVCC MKN ENTERF)8@#8D7h508px-(4H8
+(PRETTYCOMPRINT TRACEINCOMS)
+(RPAQQ TRACEINCOMS ((BLOCKS * TRACEINBLOCKS) (VARS * TRACEINVARS) (FNS * 
+TRACEINFNS) (DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS (
+ADDVARS (NLAMA TRACEIN) (NLAML WATCH) (LAMA)))))
+(RPAQQ TRACEINBLOCKS ((TRACEINBLOCK TRACEIN EVL-FIX EVMATCHER EXPAND-EV 
+EXPAND-EV1 PRINTUPTO PrintUpTo TRACE-CREATE TRACEINX UNWATCH WATCH (ENTRIES 
+TRACEIN WATCH TRACE-CREATE EVL-FIX PRINTUPTO UNWATCH) (SPECVARS EXP INDENT# 
+NOEMBED Limit StepAction IgnoreLst))))
+(RPAQQ TRACEINVARS (FORMPRINTER INDENT# StepAction VALUEPRINTER))
+(RPAQQ FORMPRINTER (LAMBDA (FORM) (PRINTUPTO FORM (IMAX 20 (IDIFFERENCE (
+LINELENGTH) (IPLUS 20 (POSITION)))) T (QUOTE (WATCH)))))
+(RPAQQ INDENT# 0)
+(RPAQQ StepAction NIL)
+(RPAQQ VALUEPRINTER (LAMBDA (VAL) (PRINTUPTO VAL (IMAX 20 (IDIFFERENCE (
+LINELENGTH) (IPLUS 20 (POSITION)))) T)))
+(RPAQQ TRACEINFNS (EVL-FIX EVMATCHER EXPAND-EV EXPAND-EV1 PRINTUPTO PrintUpTo 
+TRACE-CREATE TRACEIN TRACEINX UNWATCH WATCH))
+NIL

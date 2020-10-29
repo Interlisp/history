@@ -1,0 +1,813 @@
+(FILECREATED "20-DEC-82 22:27:03" ("compiled on " <LISPUSERS>MSG.;41) (2 . 2) brecompiled exprs: 
+nothing in WORK dated "15-DEC-82 23:53:00")
+(FILECREATED "20-DEC-82 22:26:44" <LISPUSERS>MSG.;41 51352 changes to: (VARS MSGCOMS) (FNS 
+COPYLAURELMSG) previous date: "24-JAN-82 11:19:39" <LISPUSERS>MSG.;39)
+MSGBLOCKA0031 BINARY
+-.Z`3B+Z`B,~Z,~@(X . 1)
+RLJFN
+(KNIL ENTER1)X
+MSGBLOCKA0032 BINARY
+
+	-.,<`,<$3B+,<`,<$	,~Z,~X(MSG . 1)
+" to file: "
+PUTMESSAGE
+2
+MARKMESSAGE
+(KNIL ENTER1)@
+MSGBLOCKA0033 BINARY
+-.,<`,<$,~(X . 1)
+2
+MARKMESSAGE
+(ENTER1)
+MSGBLOCKA0034 BINARY
+-.,<`,<$,~(X . 1)
+2
+UNMARKMESSAGE
+(ENTER1)
+MSGBLOCKA0035 BINARY
+
+	-.Z` ,>,>Z`  ,^/2"7Z,~(X . 1)
+(Y . 1)
+(KT KNIL BHC ENTER2)xh
+MSGBLOCK BINARY
+yI-.-.X('_Z,<@* +KZ,<,<,,<,,<@-`+DZZ.XB,,</ZB/XB,,<,<,Z,XB,</,<"/,,Z,XB,<0ZB0XB,,<,<,Z,XB,<0,<1"0,,Z,XB Z,@1,/",,<@2@P+BZwZ83B+.,<8,<8$9,<9"9,<8":,<:";Zw,<8"; < 1XB,<<"=ZB= = >XBB>XBZwZ?2B+>,<?Z4,<,<?,<@,<@,<A,<A,<B0BZwXB?3B+L+C2B+AZXB?3B+L+C2BC+C+L,<C,<,<@-`+KZZ.XBZw,<?,<,<,!Z,~2B+NZXB?,<D"=+ZZD,<Z,<,,<,<,Z!,XBRZ",XBZ2B+XZTXBVZUB=,<E"=Z3B+]B0ZXBZ E1B+_ =ZL3B+pBF3B+cZ_BFZW2B+jZ3B+jZb,<,<,<,!,<,^,UZ3B+p,<G"=Zf,<,<,<,!,<,^ZXB,<G,<,<@-`+=ZZ.XB,<H,<H,<,<,	eZw}XB82BI+{Z+<2BI+Z(,<,<,T+<2BJ+,<,}3B+
+ZX"0b+,<,^+<Z"/",,<,o,<,_+<Z+<2BJ+,<,}3B+Z",>,> X ,^/3"+,<,^+<Z".",,<,o,<,_+<Z+<2B+Z),<,<,T+<2BK+&ZXBqZ),<,<,TZ
+3B+$BF+<,<K"= L+<2BL+.ZXB!Z),<,<,TZ'3B+,BF+<,<M"= L+<2BM+7ZXB*ZN,<,<,TZ03B+5BF+<,<N"= L+<2BO+:ZO,<,<,T+<2BP+>ZP,<,<,T+<2BQ+D,	?ZwZ83B+B Q+<ZZw}XB8+<2BR+NZm3B+<B=,	?,<,2ZwZ83B+L Q+<ZZw}XB8+<3BR+P2BS+ZZE3B+<B=,	?Zw}Z82BS7Z,<,2ZP,<,<,<,!,<,^+<2BS+k,	?,<T,<,<@-`+eZZ.XBZ,<,<,<,<,<,<,<,
+5XB`+2B+<,<,<,<,<,<,<,<,
+5XBd+<2BT+w,	?,<U,<,<@-`+vZZ.XB,<U,<,<,<,<,<,<,
+5BV++<2BV+~,<W,<,<W,Z,<,<,<,!ZcXB,<,^+<2BX+.,<,<$XB>,<,<YZ7,<,<Y&ZDZZwXB?,<[,<$=Zw,<?,<$=,<[,<$=,<"=Zw,<?,<,<\,!,<,}2B+ \Ze,<,<,<,<Zw~-,+++ZXBw,<Z],<,<&]XBp3B+)ZpB^XBp3B+)Zw,< w ,\ DZ,>,>Zw  ,^/+ Z ,>,> p ,^/ H[w~XBw~+Zw/Z|XB|,<,^+<3B^+02B_+3,<_,<$= `+<2B`+9,<,<,<a&a,<,<,<&=,<"=+<,<,<,<b,<b(cZ,~2B+? L,Z`2B+A+ZZ,~ZwXB8Z,~3B+FZ+FZcXB`DdZ`3B+J `,~Z`,~+,<p"d3B+ E1B+O =Zp",B=,<e"= LZ+-.e@f,~ZV2B+\ZwZ82B+[,<g,<$=Z,~,XXBZXB`[]XB^,<,}Z3B+cZ,+cZ,<Zp-,+f+nZp,<,<`,<w ",3B+lZw~,<8,<w ",/[pXBp+d/+[Zc,<,<,<Zw-,+s+|ZXBpZp",Zw~2B+zZp2B+yZXBw+|[wXBw+qZw+ZV3B+,UZp2B+,<h,<,<@-`+ZZ.XBZ},<,<h$iXBZ,~3B+ZBi,XB%  ,XB+ZXB	Z,<,<j$iBi,XBZ+,<j"=Z+Z2B+Z,~ZZkZ7@7ZBk2B+),<l"lXB,<Dm,<ZDm,<n,<nZ Fo,<o,<nZ"Fo,<p,<nZ$Fo,<p,<nZ&FoZqZ7@7ZBq2B+2,<l"rXB,<r,<Fs,<,<Z.FsZtZ7@7Z-,+K tXBZ"-,<Z" ,<,< w,>,> w ,^/3b+?Zp+KZ6,<,<w w~,>,>^"0,>,>^"  ,^//.Bx,^/,Fu w.",XBw+9/Zc."Z2B+O,<u,<v$vZw."Z2B+S,<w,<v$vZXB,~Zj2B+^ ,>,>ZO,   ,^/2"7ZXBU,~Zp2B+a,<x"=Z,",B=,<x"=ZB=,<y"=+,<w,<w~$]2B+iZy,< /,>,> w~ ,^//,,<,<,<,<,<w|Zw}2B+sZ",<,<,<,	MZw~XBp,<,<w,<B$z3Bz+zZp+},<w,<{,<,<{(|XBw+v/,<p"|,,>,> w~ ,^/2"+,<p"=[w~XBw~3B+	,<w|,<B,<,<,	M+uZ/,~Z"XBw,<},<w w~.",F}XBw3B+ w,>,> w~ ,^/2"+ZwXBw+Zw0B+Zw3B+XBw+,<p"=+	,<p,<B w~/",,<,<~(|B=,<p w~.",,<,<~,<(|XBp =,<w|"+~,< E1B+* =,<w"3B+-Z+-ZB=,<w"3B+1Z+1ZB=,<w"d3B+5Z+5ZB=Zw",B=,<B",<wZ],<,<&]ZXBp3B+@,<,<B,<&|+@ZB=,<B",<wZD]ZZ3,3B+J,<"=,<Z,<,<w~,<,f+M,<Z,<,<w~,<,f,<Z,<,<w~,<,fZ3B+] E,,>,> j/" ,^/3b+Y =,<",<"=Zw[,B=,<	"= =Z+ZpXBa,<p,K3B+cZ+ZZ22B+i,<	"
+,<
+,<,<,ZBB/XBc2B+q E1B+l =,<"
+Zp",B
+,<"
++uZp",,<ZiD
+,<ZsD
+Z,<Zt,<Zw ,>,>Zw".Bx,^/,,<Zw~[,>,>Zw~ .BxZw~".Bx,^/,,<,n,<p,<B$+,<w,K3B+
+Z+ZZv2B+Zp2B+ZB=,<,<W,<W,Z,<,<$XB
+Z,,<Zu,<Z,<Zw~ ,,<Zw}[,>,>Zw} .BxZw}".Bx,^/,,<,n,\,Z+-.,<,<,<,<,<\,<,<,<,<,<,<$0XB],<`",XBp  ,XBwZp,BXB`,<,<$FXBw~3B+5XB`,<,<\$+;,<`,<$iXB`,<,<,,<,<,ZS,XB:,<`"i,XBw+  ,XBw|Z`Z2B+kZb3B+kZw,>,>ZBXBw~  ,^/+ Zw H+  ,>,>Zw~  ,^/2B+kZEXBw|,<Zp-,+S+fZp,<Zp"1B+dZw~,>,>Zp",>,>Zp .Bx,^/ ,^/+ Zp,<Zw~ J+   ,\ D/[pXBp+Q/Zw~",XBw~Z`3B+LZw~XB_+LZw + Z"XBw} w},>,> w| ,^/3"+	Zw  ,XBw},<`"FZ,,<ZX3B+{ZxBZXB]Zw}XBVZ`3B+Zw~XBZw}XBdZ`XB@,<w|"XBoZw|XBPZz,<Zw,,\XB,\,Z`/,~,<,<n$,< w}.",XBw}, ,\d,<Zw H+   ,\ D,< w| ,\ D,<Zw J+   ,\QDXBw~Zw|,XBw|Zw+ Zw ,0B+0Zw~,<Zw+  ,>,> w| ,^// ,\dZw~,<Zw J+   ,\ DZw+30B+2Zw+3 Zw~,<Zw+  ,>,> w| ,^// ,\d w,>,>Zw~  ,^/3b+CZ`3B+LZw~XBj+LZ2B+J,<`,<w~,<w~@`+IZw~,<?~,',~+L2B+L,<"=XBCZw,>,>Zw~[,>,>Zw~ .BxZw~".Bx,^/,XBw}, ,^/+ +n,<,<,<,<,<,<,<,	eXBw2B^+_Z+(2B+cZB",XBwB=Z+(2B+g,<,*XBwZ+(2B+j,<,*XBwZ+(2B_+n,<,*XBwZ+(3BT+p2B+z2BT+rZ+v2B_+tZ+v2B+vZ+v ,<,<,*,XBwZ+(2B
++}ZXB`Z+(2BR+ EXBp,X,< w/",,<,<,<,<,	M,<
+"=,X,XBwZ +(2BJ+ EXBp,X,< w/",,<,<,<,<,	M,< "=,X,XBwZ!+(2BJ+,XXBwZ!+(2BO+Zd+(2BL+Z+(2BV+Z+(3B"+2B"+&,<,<,*XBw~,<,<#$#B^2B+$,<$"=,<w~"= `,XBwZ$+(,<,%XBwZZw,+,<,<Z1DXXBp,<"%,<p"|0B+1,<w"=+*Zp+,<,<\ZXB,<,}Z{3B+8,<%"= &,<? >,<,<?,<&,<@,<W,<',<,<A,<~4B,<,</,<
+&XBZw3B+rZ,<Z'D(ZB,<[p3B+qZp ,>,>[pZ  ,^/2B+pZp[,>,>[pZ[ ,^/2B+pZp",>,>[pZ" ,^/2B+pZp,<ZD],<[wZ,<ZD],\,3B+pZp,<ZD],<[wZ,<ZD],\,3B+pZp,<Z]D],<[wZ,<Z]D],\,3B+pZp[p[QD+E[pXBp+E/ZD,<,<,<,<Zw~-,+wZw+Zw~,<,<p"d3B+{Z+	ZZp,<Z@,,>,>,<w,<,,^/ ,\ DZp,< w}.",XBw}, ,\d ,,/XBp-,+Zw3B+ZpQD+ZpXBw  [2D+XBw[w~XBw~+t/XBrZ|BFZ,,<ZBFZ,<ZD(2B+ XBB)BBi,XB,<w"XB3g[2B9  ,XB,\,Z+Z)Zp,,<Zp3B+/Zp,<,<w,<w$*,<,%,<[w,<,%,+Z*Zw,2B+3Z"Zw,XBp3B+H,<",<wD*,<,I,<[w,<,I,XBw[wZ,,>,>[w[Z, ,^/3b+G[wZB=,<+"=[w[ZB= `+Zw+,<w,I+,<p"+XBp-,+NB=,<,"= `+ p1b+T p,>,> # ,^/3b+Y,<p"=,<,"=ZQB=,<-"= `+Zp+,<,<,<,<w~,<w~Zw|2BW+_Z-+d2B+aZ.+d2B
++cZ.+d ,<,	 2B+f &XBw + 1B+j,	?,<w"XBp,<w"Zp+Zw~0"+uZw~,>,> w ,^/+ Zw~+x,<w~,<w$,<w~,<$i,,<Zw~0"+{Zw~+},<w~,</$i,,<,>,>Zw &&,>,>(DG,>,>\"7	@ w,>,> w~ ,^//,>,>4"	7Bx+	
+3b~+	/~ Bx"~+	"x@@x F}Zw 5F	Zp }0B 1B +	 5F	+	 0 ,8&	+	XBw,</,BDc,,<,</$c/Z+,>,>,>,>,>,>,>,>,>Zp2B+	(^" $+	(,QB|Zw~3BZ &(F{Z1F[ ,	;Zw3B+	3 D~ &(F{Z1F[,	;Zw3B+	8 D &(F{Z1F[,	; "| $7."+	>,B=h	;H,~Z/+,<0"=,<"%3B0+	C2B1+	E,<1"=,~3BJ+	G2B2+	I,<2"= `,~2BI+	KZ,~,<3"= `,~,<,<w"EXBp,,>,>Zw~-,+	S^"+	S,.Bx,^/,>,> w~ ,^/2b+	_ w~,>,> p ,^//,,<,<w~$+	dZw~2B+	a+	d,<w"=,<w~,<w~$Z+,<,<,<Zw}-,+	iB=+	q,<Zp-,+	k+	pZp,<,<p"=,<B"/[pXBp+	i/Zp3B+	xB,<Zp-,+	u+	xZpB=[pXBp+	s/,<"%XBw2BC+
+,<w}Zp-,+	}+
+
+Zp,< E1B+
+ =Z3[p[,[ZXBw~3B+
+B=+
+ZpB=[pZB=/[pXBp+	{/Zw~3B+
+,<4"= E1B+
+2 =+
+22B4+
+Zp2B+
+ &[pXBp+	x2B5+
+Zp2B+
+ &ZXBp+	x2BI+
+Zw~3B+
+Zp3B+
+B+ &Zp2B+
+-ZwZw}7[ZZ1H+
+%2D+
+!XBw3B+
+-[wZB=Z5[w[,[Z2B+Zw+ZwZw~,3B+
+2ZwZp,XBp+	x &Zw~3B+	fXBw}+	f,<,<,<,<,<,<,<,<,<,<,<,<6Zww2B+
+?ZXBwwZ6XBwx+
+;-,+
+a ww1b+
+a ww0"+
+aZwwZ,3B+
+aZwwXBwzB7XBw~3B+
+JZw~0B+
+L,<wz"V,<7,<wz$cZwx3B+
+O2B6+
+Q[w~[Z+
+`2B8+
+S,<wz"8+
+`2B9+
+W,<wz"8,.",+
+`-,+
+^ wx,>,>,<ww"8,.Bx,^/,+
+`,<p,<,B9XBw~+Zww3B+
+c2B:+
+jZ:6@Z;2B;+
+gZ;+
+gZ<,<,<,<,<<(=+,<Z:6@Z;2B;+
+nZ=+
+oZ>,<,<,<>(=2B+Z:6@Z;2B;+
+w,<?,<wv,<?,+
+y,<@,<wv,<@,B+,<,<,<,<A(=2B+,<ww,<AZFBXBw{3B+ZwwZw{3B+Zw{XBww+
+;,<B,<wv$cXBw{ CXBwzZwz,,>,>Zw{,,^/QD@Zwx2B+^"+,,>,>,<wz"8,.Bx,^/,XBw~Zww2B+Zwx3B+BZww2B+ CZ+--,+!,<D"B/XBw|,<wwD=,<w|"FB)BXBw}Bi+-,<,<$F3B+&ZwwXBw}Bi+-,<ww"D3B++,<ww")BZwwXBw}Bi+-,<E,<ww$cXBw|Zwx2B+0 C[+<,<,</$F3B+5ZwxXBw}Bi+<,<wx"E3B+:,<wx"B/ZwxXBw}Bi+<,<F,<ww$cXBw|Zw|,,>,>Zw|,QBxZwz,,^/CZwy3B+P,<Zp-,+F+NZp,< w,<Zw,,\ B w.",XBw/[pXBp+D/ wz 8Zwy3B+a,<Zp-,+T+`Zp,<[pZ(B{Q",>,>Zp,,>,> wyQBx,^/,^/ /[pXBp+R/ # ,XBw{,<F,<,<@-`+xZZ.XBZw~Z?z3B+k,<c"G+lZ $/$ [8`B+p0B0*nmZw~Z?z,,>,>Zw~Z?~, ,^/79Z,~2B+|Zwz,99ZXBwZw{,  " $,,Zw}3B+BFZww-,+,<w}"GZw}3B+BF,< $ A",DEZw3B+ `+,<H,<wz$H/	,~0: , H~ ~ xS*h@?ymhgxh~*OLYTH,a$UI^zUQ7+hZgI?r'~$ggcG:>9_J@@_ 7X9#(VDJ  A~yEN`-kci@bH3DInw0]F! 
+
+;!ji (S@I!`uK//WkR{ccDPc`(<s==  X OvCI2; J
+LH%B@p@I%9 _'k+kdyzstsw]M@JXD~{\&	Hb	C
+A	E\!
+5 qBOE;`k!R
+d*!5L=d@ $?_Yb"BRc#c.i{f9N&H
+& R!$Z8wQR)wqWs7VQ*"5RIWK6M,t5&V:@!!J4P(MSGBLOCK#0 . 1)
+(VARIABLE-VALUE-CELL LISPXHIST . 12)
+(VARIABLE-VALUE-CELL RESETVARSLST . 1398)
+(VARIABLE-VALUE-CELL MSGTTBL . 849)
+(VARIABLE-VALUE-CELL OLDTTBL . 32)
+(VARIABLE-VALUE-CELL MSGINTERRUPTS . 49)
+(VARIABLE-VALUE-CELL OLDINT . 51)
+(VARIABLE-VALUE-CELL MSGDATE . 98)
+(VARIABLE-VALUE-CELL USERNAMESTRING . 1160)
+(VARIABLE-VALUE-CELL USERNAME . 2388)
+(VARIABLE-VALUE-CELL MSGFILE . 2103)
+(VARIABLE-VALUE-CELL REVMSGS . 2111)
+(VARIABLE-VALUE-CELL MSGS . 2088)
+(VARIABLE-VALUE-CELL LASTEXEC . 469)
+(VARIABLE-VALUE-CELL MSGOPEN . 798)
+(VARIABLE-VALUE-CELL MSGJFN . 2108)
+(VARIABLE-VALUE-CELL LASTMSGWRITE . 1529)
+(VARIABLE-VALUE-CELL MSGSETUP . 936)
+(VARIABLE-VALUE-CELL MSGRDTBL . 1878)
+(VARIABLE-VALUE-CELL UPLOW . 894)
+(VARIABLE-VALUE-CELL NEWMAIL . 1898)
+(VARIABLE-VALUE-CELL KEEPJFN . 1544)
+(VARIABLE-VALUE-CELL CURRENTMESSAGE . 1728)
+(VARIABLE-VALUE-CELL #MSGS . 2221)
+(VARIABLE-VALUE-CELL LL . 1192)
+(VARIABLE-VALUE-CELL MSGLENGTHFLG . 1185)
+(VARIABLE-VALUE-CELL LSTFIL . 2096)
+(VARIABLE-VALUE-CELL INTS . 1361)
+(VARIABLE-VALUE-CELL LASTMSGREAD . 1534)
+(VARIABLE-VALUE-CELL INVERTED . 1783)
+(VARIABLE-VALUE-CELL LASTSUBSYS . 2681)
+(VARIABLE-VALUE-CELL USERFORKS . 2695)
+(VARIABLE-VALUE-CELL SUBSYSSPELLINGS . 2812)
+MSG
+PRINTHEADER
+PRINTMESSAGE
+PUTMESSAGE
+MSGSETUP
+(VARIABLE-VALUE-CELL LISPXHIST . 0)
+NIL
+NIL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+SETTERMTABLE
+OUTPUT
+INTCHAR
+RADIX
+10
+LINELENGTH
+(VARIABLE-VALUE-CELL KEEPJFN . 0)
+(VARIABLE-VALUE-CELL LL . 0)
+(NIL VARIABLE-VALUE-CELL #MSGS . 0)
+(NIL VARIABLE-VALUE-CELL CURRENTMESSAGE . 0)
+(NIL VARIABLE-VALUE-CELL LSTFIL . 0)
+(NIL VARIABLE-VALUE-CELL MSGJFN . 0)
+(NIL VARIABLE-VALUE-CELL NEWMAIL . 0)
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL MSGOPEN . 0)
+(((INTCHAR OLDINT) (SETTERMTABLE OLDTTBL)) . 0)
+(NIL VARIABLE-VALUE-CELL INTS . 0)
+10000
+30
+MINFS
+8000
+RECLAIM
+WORLD
+RELINK
+SYSOUT
+SETLINELENGTH
+"
+Lisp MSG -- version of "
+PRIN1
+TERPRI
+USERNAME
+MKATOM
+DIRECTORY
+NAME
+MESSAGE
+EXTENSION
+TXT
+VERSION
+1
+PACKFILENAME
+?
+((DUMMY) . 0)
+"No active message file
+"
+MSGBLOCKA0031
+" messages.
+"
+POSITION
+OPENP
+CLOSEF
+" -- there are new messages 
+"
+((DUMMY) . 0)
+"-> "
+(((H eaders) (T ype) (L ist) (P ut) (M ove) (D elete) (U ndelete) (B "ackup
+") (^ "
+" RETURN B EXPLAINSTRING "^ - same as Backup") (% "
+" RETURN B EXPLAINSTRING "^H - same as Backup") (N "ext
+") (%
+ "" RETURN N EXPLAINSTRING "<lf> -- same as Next") (R "ead file: ") (G "et Laurel File: ") (% Exec 
+RETURN Exec EXPLAINSTRING "^E  - call an Exec as a lower fork") (A "nswer (not implemented)") (F 
+"orward (not implemented)") (S ndmsg) (E "xit & update ") (O "verwrite ") (W "rite sorted ") (Q uit) (
+%
+ "") (% Lisp%
+ EXPLAINSTRING "^L -- enter lisp, for debugging purposes.") (: "" EXPLAINSTRING ": - Date & Time ")) .
+ 0)
+%
+
+H
+B
+N
+L
+"No messages.
+"
+CLEARBUF
+P
+"No messages.
+"
+M
+MSGBLOCKA0032
+"No messages.
+"
+D
+MSGBLOCKA0033
+U
+MSGBLOCKA0034
+Q
+LOGOUT
+E
+O
+W
+Exec
+((DUMMY) . 0)
+S
+((DUMMY) . 0)
+<SUBSYS>SNDMSG.SAV
+KFORK
+R
+OLD
+MESSAGES
+G
+RSTRING
+"<"
+">LAUREL.MAIL;-1;T"
+PACK*
+COPYLAURELMSG
+" {copied to "
+";T}"
+0
+SHOULDNT
+%
+DATE:% 
+GETFIELD
+IDATE
+A
+F
+"
+Sorry, that command not implemented!
+"
+ERROR!
+:
+""
+GDATE
+LISP
+((TRACE) . 0)
+BREAK1
+ERROR
+RESETRESTORE
+DELETED?
+" is a deleted message
+"
+DOMSGS
+NIL
+(NIL VARIABLE-VALUE-CELL ARG . 702)
+(NIL VARIABLE-VALUE-CELL INVERTED . 0)
+"
+No active message file.
+"
+((DUMMY) . 0)
+7516291584
+OPENF
+OPNJFN
+7516258816
+"No message file
+"
+MSGTTBL
+TERMTABLEP
+ORIG
+COPYTERMTABLE
+CONTROL
+RAISE
+5
+IGNORE
+ECHOCONTROL
+8
+12
+27
+MSGRDTBL
+READTABLEP
+COPYREADTABLE
+((31) . 0)
+SETSEPR
+SETBRK
+UPLOW
+CASEARRAY
+SETCASEARRAY
+<LISP>BREAK.COM
+SYSLOAD
+LOAD
+INTERRUPTCHAR
+<LISP>HELPDL.COM
+"Currently at "
+"; "
+" messages
+"
+((--) . 0)
+NTHCHAR
+% 
+2
+"adding to kernel"
+SUBSTRING
+NCHARS
+" "
+MYSTRPOS
+"LCSR Comp Facility): Re: Interlisp-VAX"
+-1
+"report]"
+SPACES
+RECENT?
+"+"
+" "
+EXAMINED?
+" "
+"-"
+"*"
+" "
+6
+---
+%
+FROM:% 
+"To: "
+14
+%
+TO:% 
+36
+%
+SUBJECT:% 
+15
+" ("
+" chars)"
+" on file: "
+PRIN3
+NEW
+OUTFILE
+"msg. "
+" -- "
+" - *******************************************
+"
+MARKMESSAGE
+" on file: "
+OLD/NEW
+APPEND
+OPENFILE
+*READMESSAGES*
+((UNBOXED-NUM . 3) VARIABLE-VALUE-CELL NOPRINTFLG . 1688)
+NOPRINTFLG
+MSGTJFN
+JFNS
+INPUT
+SETFILEPTR
+7516258816
+CLOSEF?
+RLJFN
+REVERSE
+ARRAY
+HELP
+(VARIABLE-VALUE-CELL MSGFILE . 0)
+(VARIABLE-VALUE-CELL LASTMSGREAD . 0)
+(VARIABLE-VALUE-CELL MSGJFN . 0)
+"^O"
+" "
+(((A ll) (I nverse) (F "rom string: ") (T "o string: ") (S "ubject string: ") (K "eywords string: ") (
+C "ontaining string: ") (D eleted) (P rinted EXPLAINSTRING "Printed -- same as MSG's examined") (R 
+ecent) ( "" EXPLAINSTRING "<esc> -- current message") (B oth EXPLAINSTRING 
+"Both <message spec> and <message spec>") (E ither EXPLAINSTRING 
+"Either <message spec> or <message spec>") (N ot EXPLAINSTRING "Not <message spec>") (> " since date: "
+) (< " before date: ")) . 0)
+"
+
+message spec:  "
+((0 1 2 3 4 5 6 7 8 9 - , >) . 0)
+TRUE
+
+TESTMSG#
+C
+MSGSEARCH
+FINDTO
+FINDFROM
+K
+%
+KEYWORDS:% 
+FINDKEY
+I
+"or "
+ORPRED
+"and "
+ANDPRED
+NOTPRED
+>
+<
+" 00:00"
+CONCAT
+"can't parse date: "
+CHECKMSGDATE
+READC
+"
+ new mail recieved -- will not rewrite 
+"
+MSGXXX
+SCRATCH
+TEMPORARY
+MSGBLOCKA0035
+SORT
+RENAMEFILE
+INFILE
+,
+LDIFF
+-
+" greater than "
+PACK
+"? "
+" out of range; "
+" messages
+"
+57344
+24576
+155648
+"IO ERROR IN COPYBYTES"
+"NEG. # BYTES TO COPY??"
+" [confirm] "
+Y
+y
+"es."
+n
+"o"
+" XXX "
+EXPLAINSTRING
+"
+sequence of numbers"
+%
+%
+RETURN
+261632
+CONTINUE
+RFSTS
+"ILLEGAL FORK:"
+START
+GEVEC
+REENTER
+ERRORX
+EXEC
+TENEX
+TOPS20
+<SYSTEM>EXEC.EXE
+<SYSTEM>EXEC.SAV
+32768
+GTJFN
+EXE
+SAV
+32768
+SYS:
+.EXE
+<SUBSYS>
+.SAV
+32768
+60
+FIXSPELL
+"SUBSYS - BAD FILE/FORK"
+CFORK
+GPJFN
+SUBSYS.INCOMFILE;T
+INFILEP
+"SUBSYS - BAD INCOMFILE:"
+OUTFILEP
+"SUBSYS - BAD OUTCOMFILE:"
+((DUMMY) . 0)
+GETINTERRUPT
+DELFILE
+LASTSUBSYS
+/SETATOMVAL
+(SETINT CTCTP LIST3 KL20FLG GETHSH SKI URET7 SKSTP UPATM ATOMT TYPTAB FIXT XXXMHC URET6 FOUT URET5 
+SKNNM ALIST3 FMEMB SKLST FGFPTR URET3 CONSS1 INTERRUPTABLE EQUAL SKNAR KNOB GUNBOX URET4 EVCC BINDB 
+URET1 URET2 SETMOD SKNLST BHC ASZ MKN IUNBOX CONSNL KT CONS LIST2 ALIST2 CF KNIL BLKENT ENTER1)?x=`/
+w
+s-H
+e
+E
+X(%X
+,#h@0@x	2Pp	2H`	#	!		eh L:x%p
+* 04'~&u(tXphy%p_!R@}Pf{pE655@}?(u>(J8@7`
+1	)`yh=U018}m-T(U[ OPpc<p2HT)`	 Hx0v("Q(_)@@?T8`	}P	k~`S.0e"PAhv<_;`]9xM8(18
+]!8
+	
+	qx	]	Ux	  s
+@AH
+r{Ry@WjH?g(ar\pe[h]YxHShOHWBH@0~=`\9@H8`=-xm%H)$Hm) 
+ 	;ux1dnM@)C>897OpAc9H+`
+W`	H#qHl Ud`hv]@Up-SpP@}N0oK@8D0
+Apo<0J9.hQp
+`%Z2 +@
+V@	Px<hVahS@Y@w`#?@x'H	y	A|wP-u8|mKTM(dIXJG8^:H!431z+8T(@='09'7&  XXXM82 0q	0IH?X&*cP;
+@!X@,:WS
+0hg0Hqxup@X?l= e<PR8@760/5$32X0
+}/8
+{. 
+p-
+i,(
+N)
+E'0
+:' 
+9'
+8'
+7&p
+6&`
+4%x
+,$h
+%$
+#8
+"p
+!H
+(	gh	fP	N0	?(	4x	*hfH\85 )X"0{ u~Ht}Xf{xFx 6vP4v0+t qhqXp8olmek(ZkDh~_@z_jX8:V('Tp&T`%TH$T8QXQ 	MgLPcL ^J PH`=F@0E@(CA(	A?@w>Pt>(q>p=`;XV: N7 2605X31x	0(0~/r.j, `+HZ+M)F(PB(>'(5&P.#P"@"0!x!@!
+`|
+8yPt@s0ohj ihghd@c0b ]PYUKG= 4+#
+P@PP~8xsopl ifPb]@W
+(M	@JPAX6"@8(
+MSG BINARY
+-.,<,~(FILE . 1)
+(SUBSYSTEM . 1)
+MSG
+(NIL)
+(LINKED-FN-CALL . MSGBLOCK)
+(ENTER2)
+PRINTHEADER BINARY
+-.,<,~(MSG . 1)
+PRINTHEADER
+(NIL)
+(LINKED-FN-CALL . MSGBLOCK)
+(ENTER1)
+PRINTMESSAGE BINARY
+-.,<,~(MSG . 1)
+PRINTMESSAGE
+(NIL)
+(LINKED-FN-CALL . MSGBLOCK)
+(ENTER1)
+PUTMESSAGE BINARY
+-.,<,~(MSG . 1)
+(STR . 1)
+PUTMESSAGE
+(NIL)
+(LINKED-FN-CALL . MSGBLOCK)
+(ENTER2)
+MSGSETUP BINARY
+-.,<,~MSGSETUP
+(NIL)
+(LINKED-FN-CALL . MSGBLOCK)
+(ENTER0)
+COPYLAURELMSG BINARY
+G2A-.2Z,<@4 ,~Z,<,<6,<6,<@7`++ZZ8XB,<9Zw~,<8"9,Z,XB,<:Zw~,<8":,Z,XB ;B;,@<B;,@<,<,<,<,<,<,<,<,<,<Z"XBw}Zw{1D+:w} ",XBw0B+ Zw|+(0B+KZw{1D+":w} ",,<Z"9,\2B+KZw{1D+(:w} ",,<Z":,\2B+KZw{1D+.:w} ",,<Z"0,\2B+KZw{1D+4:w} ",,<Z"9,\2B+KZw{1D+::w} ",,<Z":,\2B+KZw{1D+@:w} ",,<Z",\2B+KZw{1D+F:w} ",,<Z",\3B+M,<< ;D=Z"XBw|,<Zwz1D+O:w} ",XBw~1B+\1B+\1B+\1B+\1B+\1B+\1B+\1B+\1B+\0B+f w|$",>2,> w~.Bx,^/,>2,>^" ,^//,XBw|+NZp/,<,<Zwz1D+h:w| ",<^",\2B+nZp+n+g/Zwz1D+o:w} ",XBw~,<Z" ,\2B+Zwz1D+v:w} ",XBw~,< p,>2,>^" ,^/3"+ p,>2,>^" ,^/2b+7Z+Z/2B+gZp/,<=">Zw|,,XBw~,<>">Zw|,,XBpZw{,>2,> w ,^/ w|,>2,> w} ,^//4b,>2,>Zw{1D+Zw{0D+ $>`x5/Zw|,,XBw,<w|,<w}$?,<? w,>2,> w ,^//,D@,<w|,<w$?+/Zw~XB8Z,~3B+-Z+-Z=XB`D@Z`3B+1 A,~Z`,~*!ZQ  p*UTA ,  PD@&i@(LAURELFILE . 1)
+(TENXFILE . 1)
+(VARIABLE-VALUE-CELL LISPXHIST . 3)
+(VARIABLE-VALUE-CELL RESETVARSLST . 34)
+(VARIABLE-VALUE-CELL LISPXHIST . 0)
+NIL
+NIL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+((PROGN (CLOSEF (INPUT))) . 0)
+INFILE
+((COND (RESETSTATE (DELFILE (CLOSEF (OUTPUT)))) (T (CLOSEF (OUTPUT)))) . 0)
+OUTFILE
+INPUT
+OPNJFN
+OUTPUT
+"Bad Laurel File Format"
+ERROR
+"01-JAN-01 00:00:01,"
+PRIN3
+"0000000;000000000000
+"
+SETFILEPTR
+((FIX . 15034220554) . 0)
+PRINTNUM
+RESETRESTORE
+ERROR!
+(FGFPTR KT BHC MKN ASZ GUNBOX CONS ALIST2 CF KNIL ENTER2)
+P
++@%```opdh
+X
+sPR	CX7+XtH[(YW
+hU
+HS	`JH>2H&
+(PX	0P,hHhxO pp
+CHECKMSGDATE BINARY
+-.Z2B+	Z` ,>,>[, ,^/3b7Z,~Z` ,>,>[, ,^/2"7Z,~ @(MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 23)
+>
+(KT KNIL BHC IUNBOX ENTER1)	hh
+MSGXXX BINARY
+-.,<" ,~" XXX
+"
+PRIN1
+ERROR!
+(ENTER0)
+MSGTJFN BINARY
+
+
+-.,<`,<,<,<(2B+,<	,<`,B	,~Y(FILE . 1)
+32769
+GTJFN
+23
+ERRORX
+(LIST2 KNIL ENTER1)8
+TESTRANGE BINARY
+! -.Z`-,+Z`Z`2B7Z,~Z`2B+,<`[`ZD
+2B+[`[ZXB`+2B
++[`Z,,>,> ` ,^/2b+ `,>,>[`[Z, ,^/2b+7Z,~Z,~  ,~EA(N . 1)
+(RANGE . 1)
+,
+TESTRANGE
+>
+SHOULDNT
+(BHC IUNBOX KT KNIL SKNLST ENTER2)(0
+X0
+ORPRED BINARY
+-.Z,<[,<@@,~[`XBZ`,<Zw~,<8 ",2B+[`XBZ`,<Zw~,<8 ",,~@(MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 21)
+(0 . 1)
+(0 . 1)
+(NIL VARIABLE-VALUE-CELL ARG . 0)
+(KNIL EVCC ENTER1) h	
+ANDPRED BINARY
+-.Z,<[,<@@,~[`XBZ`,<Zw~,<8 ",3B+[`XBZ`,<Zw~,<8 ",,~Z,~@(MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 21)
+(0 . 1)
+(0 . 1)
+(NIL VARIABLE-VALUE-CELL ARG . 0)
+(KNIL EVCC ENTER1)x
+
+NOTPRED BINARY
+
+-.
+Z,<[,<@@,~,<`Zw~,<8 ",2B+	7Z,~@(MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 5)
+(0 . 1)
+(VARIABLE-VALUE-CELL ARG . 0)
+(KT KNIL EVCC ENTER1) 
+TESTMSG# BINARY
+-.Z2B+,<",~Z`",Z2B+	ZXB,~Z-,+Z,~Z`",,<Z	D,~0HA@(MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 27)
+DOMSGS
+RETFROM
+TESTRANGE
+(KNIL SKNLST MKN KT ENTER1)8(X0
+MSGSEARCH BINARY
+-.Z,<Z,<Z` ,>,>Z`".Bx,^/,,<Z`[,>,>Z` .BxZ`".Bx,^/,,<,<,<ZN,~:(MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 3)
+(VARIABLE-VALUE-CELL MSGFILE . 5)
+(VARIABLE-VALUE-CELL UPLOW . 34)
+FFILEPOS
+(KNIL MKN BHC ENTER1)	
+FINDTO BINARY
+	-.	Z
+,<Z,<,<`&
+2B+Z,<Z,<,<`&
+,~,(MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 13)
+%
+TO:% 
+FINDMSGKEY
+%
+CC:% 
+(KNIL ENTER1)X
+FINDFROM BINARY
+	-.	Z
+,<Z,<,<`&
+2B+Z,<Z,<,<`&
+,~,(MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 13)
+%
+FROM:% 
+FINDMSGKEY
+%
+SENDER:% 
+(KNIL ENTER1)X
+FINDKEY BINARY
+-.Z,<[,<,<`&,~ (MSG . 1)
+(VARIABLE-VALUE-CELL ARG . 5)
+FINDMSGKEY
+(ENTER1)
+FINDMSGKEY BINARY
+-.,<`,<`$,<Zp-,+Z+Zp,<,<w/,<`,<w$/3B+Zp+[pXBp+B(KEYTYPE . 1)
+(KEY . 1)
+(MSG . 1)
+GETFIELD
+MYSTRPOS
+(BHC URET1 KNIL SKNLST ENTER3)
+H`P
+DELETED? BINARY
+-.Z` A"1B+7Z,~@(MSG . 1)
+(KNIL KT ENTER1)
+EXAMINED? BINARY
+-.Z` A"1B+7Z,~@(MSG . 1)
+(KNIL KT ENTER1)
+RECENT? BINARY
+
+	-. ,>,>Z`  ,^/2b+7Z,~(MSG . 1)
+(VARIABLE-VALUE-CELL LASTMSGREAD . 3)
+(KNIL KT BHC ENTER1)x`
+GETFIELD BINARY
+OGM-. G,<`Z`[ ,\7[ZZ1H+2D+2B+EZ`,<,<`Z`Z2B+#Z`,<,<KZ,<Z` ,>F,>Z`"G.Bx,^/,,<Z`[,>F,>Z` .BxZ`"G.Bx,^/,HK2B+!Z` ,>F,>Z`"G.Bx,^/, ,\XD ,<,<,<,<Z,>F,>Z` ,>F,>Z`"G.Bx,^//" ,^/+ ,<`Z,<,<,<w},<,<ZNL2B+4+?Z/,<ZDLXBpZw3B+<,<Zw,XBw,\QB+>Zp,XBwXBwZ`3B+.Zw/,,<Z`[, ,\QD Z[,~:(	A$,D(MSG . 1)
+(ID . 1)
+(FLG . 1)
+(VARIABLE-VALUE-CELL MSGFILE . 105)
+(VARIABLE-VALUE-CELL MSGJFN . 75)
+(VARIABLE-VALUE-CELL UPLOW . 100)
+(VARIABLE-VALUE-CELL MSGRDTBL . 107)
+"
+
+"
+FILEPOS
+FFILEPOS
+RSTRING
+(CONSS1 CONSNL KT MKN BHC KNIL ENTER3)CX:2"8A`,@x8@2&X%H
+MARKMESSAGE BINARY
+($&-.$Z` ,>#,>Z`,<Z` ,>#,> `GBx,^/ ,\ D  ,^/3B77+"Z3B+Z`"#0B+Z,~Z+Z,~Z,>#,>Z` ,>#,>Z`"#.Bx,^/ ,^/+ Z,>#,>Z`  ,^/ $J+ ,~,`	(MSG . 1)
+(MASK . 1)
+(VARIABLE-VALUE-CELL MSGOPEN . 28)
+(VARIABLE-VALUE-CELL MSGJFN . 58)
+(KNIL KT BHC ENTER2)HxX0
+UNMARKMESSAGE BINARY
++')-.'Z` ,>&,>Z`,<Z` ,>&,>^",>&,> `FBx,^/ABx,^/ ,\ D  ,^/3B77+%Z3B+Z`"&0B+Z,~Z+Z,~Z,>&,>Z` ,>&,>Z`"&.Bx,^/ ,^/+ Z,>&,>Z`  ,^/ 'J+ ,~,`@T" @(MSG . 1)
+(MASK . 1)
+(VARIABLE-VALUE-CELL MSGOPEN . 34)
+(VARIABLE-VALUE-CELL MSGJFN . 64)
+(KNIL KT BHC ENTER2)x(H
+`@
+
+TRUE BINARY
+-.Z,~(KT ENTER0)
+MYSTRPOS BINARY
+.+--.+Z`-,+."[XB`+-,+B,XB`Z`-,+-,+."[XB`+B,XB`O,>*,>Z`,,>*,>,>*,>Z`3B7*, Z`,,>*,>,>*,>7`.. 4n(/(?4((/.&..N7`=0@  
+} ~1(0+(<,&0$00d=.$/$0B3B|+
+5N(<h(`+ x/"',+( /,~,~2BEh@(X . 1)
+(Y . 1)
+(START . 1)
+MKSTRING
+(BHC MKN IUNBOX KNIL UPATM SKNSTP SKLA ENTER3))()(P`
+MSGABORT BINARY
+-.  ,<" ,~ @"
+** aborting **
+"
+PRIN1
+ERROR!
+(ENTER0)
+(PRETTYCOMPRINT MSGCOMS)
+(RPAQQ MSGCOMS ((VARS * (LIST (LIST (QUOTE MSGDATE) (L-CASE (SUBSTRING (DATE) 1 9) T)))) (VARS 
+MSGINTERRUPTS (MSGFILE) (MSGS) (REVMSGS) (LASTMSGWRITE 0) (MSGRDTBL) (MSGTTBL) MSGLENGTHFLG (MSGSETUP)
+) (FNS MSG CHECKMSG# CHECKMSGDATE CONFIRM DELCHECK DOMSGS FINDMESSAGE# GETFILENAME MSGOPEN MSGSETUP 
+NEWMAIL PARSEMSGRANGE PRINTCURRENT PRINTFIELD PRINTHEADER PRINTMESSAGE PUTMESSAGE READMESSAGES 
+READMESSAGETEST READSTRING REWRITEMSGS MSGXXX MSGTJFN TESTRANGE) (FNS ORPRED ANDPRED NOTPRED TESTMSG# 
+MSGSEARCH FINDTO FINDFROM FINDKEY FINDMSGKEY DELETED? EXAMINED? RECENT? GETFIELD MARKMESSAGE 
+UNMARKMESSAGE TRUE) (FNS MYSTRPOS MYASKUSER MYTAB MYSUBSYS MYCOPYBYTES MYGTJFN) (FNS MSGABORT) (
+DECLARE: EVAL@COMPILE DONTCOPY (P (CLISPDEC (QUOTE FAST)))) (MACROS FLDID) (BLOCKS (MSGBLOCK MSG 
+DELCHECK DOMSGS FINDMESSAGE# MSGOPEN MSGSETUP NEWMAIL PRINTCURRENT PRINTFIELD PRINTHEADER PRINTMESSAGE
+ PUTMESSAGE READMESSAGES READMESSAGETEST READSTRING REWRITEMSGS (ENTRIES MSG PRINTHEADER PRINTMESSAGE 
+PUTMESSAGE MSGSETUP) (NOLINKFNS . T) (RETFNS DOMSGS) (SPECVARS MSGOPEN MSGJFN KEEPJFN NEWMAIL LSTFIL 
+LL #MSGS CURRENTMESSAGE INTS INVERTED LASTMSGREAD MSGFILE OLDINT) (GLOBALVARS MSGDATE MSGINTERRUPTS 
+OLDTTBL USERNAMESTRING MSGTTBL REVMSGS MSGS UPLOW MSGSETUP MSGRDTBL MSGLENGTHFLG LASTMSGWRITE USERNAME
+ LASTEXEC) PARSEMSGRANGE CHECKMSG# GETFILENAME MYCOPYBYTES MYGTJFN CONFIRM MYTAB MYASKUSER MYSUBSYS)) 
+(COMS * LAURELMSGCOMS) (LOCALVARS . T) (SPECVARS ARG) (GLOBALVARS USERFORKS LASTSUBSYS SUBSYSSPELLINGS
+) (DECLARE: EVAL@COMPILE DONTCOPY (RECORDS MSG) (FILES (SYSLOAD) CJSYS))))
+(RPAQ MSGDATE "20-Dec-82")
+(RPAQQ MSGINTERRUPTS (14 ERROR 15 (MSGABORT) T 28 NIL 8 NIL))
+(RPAQQ MSGFILE NIL)
+(RPAQQ MSGS NIL)
+(RPAQQ REVMSGS NIL)
+(RPAQQ LASTMSGWRITE 0)
+(RPAQQ MSGRDTBL NIL)
+(RPAQQ MSGTTBL NIL)
+(RPAQQ MSGLENGTHFLG T)
+(RPAQQ MSGSETUP NIL)
+(PUTPROPS FLDID MACRO (X (KWOTE (PACK* "
+" (CAR X) ": "))))
+(RPAQQ LAURELMSGCOMS ((FNS COPYLAURELMSG) (DECLARE: DONTCOPY (MACROS MSGBIN)) (BLOCKS (NIL 
+COPYLAURELMSG (LOCALVARS . T)))))
+NIL

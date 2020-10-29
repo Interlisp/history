@@ -1,0 +1,174 @@
+ECKREPLY
+  [LAMBDA (reply goodList possibilities)                     (* mjs: "13-JAN-82 14:10")
+                                                             (* CHECKREPLY is a subroutine of INTTY and INTTY.
+							     It tries to match the reply against the items in 
+							     goodList as described below.)
+    (COND
+      ((NULL goodList)                                       (* If goodList=NIL, no work to do.)
+	reply)
+      ((MEMBER reply goodList)                               (* If spelling is correct, no work to do.)
+	reply)
+      [(SETQ possibilities (for X in goodList when (STRPOS reply X 1 NIL T) collect X))
+                                                             (* Match if an exact leading substring of 1 item in 
+							     goodList.)
+	(COND
+	  ((CDR possibilities)
+	    (WRITE "Ambiguous: " possibilities)
+	    NIL)
+	  (T (CAR possibilities]
+      ((FIXSPELL reply 70 goodList T))
+      [(SETQ possibilities (for X in goodList when (STRPOS X reply 1 NIL T) collect X))
+                                                             (* Match if one goodList item is leading substring of 
+							     reply.)
+	(COND
+	  ((CDR possibilities)
+	    (WRITE "Ambiguous: " possibilities))
+	  (T (CAR possibilities]
+      (T (WRITE "Response not recognized. Type ? for help."])
+)
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML )
+
+(ADDTOVAR LAMA WRITE)
+)
+(PRETTYCOMPRINT TTYCOMS)
+
+(RPAQQ TTYCOMS [(INITVARS (PrintStatusWindow NIL))
+		(* * Simplified TTY handling fns. Written by Mark Stefik.)
+		(FNS * TTYFNS)
+		(* * Internal fns not called directly by User.)
+		(FNS * TTYInternalFNS)
+		(DECLARE: DONTEVAL%@LOAD DOEVAL%@COMPILE DONTCOPY COMPILERVARS
+			  (ADDVARS (NLAMA)
+				   (NLAML)
+				   (LAMA WRITE PrintStatus])
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML )
+
+(ADDTOVAR LAMA WRITE PrintStatus)
+)
+(DECLARE:ECKREPLY
+  [LAMBDA (reply goodList possibilities)                     (* mjs: "13-JAN-82 14:10")
+                                                             (* CHECKREPLY is a subroutine of INTTY and INTTY.
+							     It tries to match the reply against the items in 
+							     goodList as described below.)
+    (COND
+      ((NULL goodList)                                       (* If goodList=NIL, no work to do.)
+	reply)
+      ((MEMBER reply goodList)                               (* If spelling is correct, no work to do.)
+	reply)
+      [(SETQ possibilities (for X in goodList when (STRPOS reply X 1 NIL T) collect X))
+                                                             (* Match if an exact leading substring of 1 item in 
+							     goodList.)
+	(COND
+	  ((CDR possibilities)
+	    (WRITE "Ambiguous: " possibilities)
+	    NIL)
+	  (T (CAR possibilities]
+      ((FIXSPELL reply 70 goodList T))
+      [(SETQ possibilities (for X in goodList when (STRPOS X reply 1 NIL T) collect X))
+                                                             (* Match if one goodList item is leading substring of 
+							     reply.)
+	(COND
+	  ((CDR possibilities)
+	    (WRITE "Ambiguous: " possibilities))
+	  (T (CAR possibilities]
+      (T (WRITE "Response not recognized. Type ? for help."])
+)
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML )
+
+(ADDTOVAR LAMA WRITE)
+)
+(PRETTYCOMPRINT TTYCOMS)
+
+(RPAQQ TTYCOMS [(INITVARS (PrintStatusWindow NIL))
+		(* * Simplified TTY handling fns. Written by Mark Stefik.)
+		(FNS * TTYFNS)
+		(* * Internal fns not called directly by User.)
+		(FNS * TTYInternalFNS)
+		(DECLARE: DONTEVAL%@LOAD DOEVAL%@COMPILE DONTCOPY COMPILERVARS
+			  (ADDVARS (NLAMA)
+				   (NLAML)
+				   (LAMA WRITE PrintStatus])
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML )
+
+(ADDTOVAR LAMA WRITE PrintStatus)
+)
+(DECLARE:ECKREPLY
+  [LAMBDA (reply goodList possibilities)                     (* mjs: "13-JAN-82 14:10")
+                                                             (* CHECKREPLY is a subroutine of INTTY and INTTY.
+							     It tries to match the reply against the items in 
+							     goodList as described below.)
+    (COND
+      ((NULL goodList)                                       (* If goodList=NIL, no work to do.)
+	reply)
+      ((MEMBER reply goodList)                               (* If spelling is correct, no work to do.)
+	reply)
+      [(SETQ possibilities (for X in goodList when (STRPOS reply X 1 NIL T) collect X))
+                                                             (* Match if an exact leading substring of 1 item in 
+							     goodList.)
+	(COND
+	  ((CDR possibilities)
+	    (WRITE "Ambiguous: " possibilities)
+	    NIL)
+	  (T (CAR possibilities]
+      ((FIXSPELL reply 70 goodList T))
+      [(SETQ possibilities (for X in goodList when (STRPOS X reply 1 NIL T) collect X))
+                                                             (* Match if one goodList item is leading substring of 
+							     reply.)
+	(COND
+	  ((CDR possibilities)
+	    (WRITE "Ambiguous: " possibilities))
+	  (T (CAR possibilities]
+      (T (WRITE "Response not recognized. Type ? for help."])
+)
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML )
+
+(ADDTOVAR LAMA WRITE)
+)
+(PRETTYCOMPRINT TTYCOMS)
+
+(RPAQQ TTYCOMS [(INITVARS (PrintStatusWindow NIL))
+		(* * Simplified TTY handling fns. Written by Mark Stefik.)
+		(FNS * TTYFNS)
+		(* * Internal fns not called directly by User.)
+		(FNS * TTYInternalFNS)
+		(DECLARE: DONTEVAL%@LOAD DOEVAL%@COMPILE DONTCOPY COMPILERVARS
+			  (ADDVARS (NLAMA)
+				   (NLAML)
+				   (LAMA WRITE PrintStatus])
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML )
+
+(ADDTOVAR LAMA WRITE PrintStatus)
+)
+(DECLARE:ECKREPLY
+  [LAMBDA (reply goodList possibilities)                     (* mjs: "13-JAN-82 14:10")
+                                                             (* CHECKREPLY is a subroutine of INTTY and INTTY.
+							     It tries to match the reply against the items in 
+							     goodList as described below.)
+    (COND
+      ((NULL goodList)                                       (* If goodList=NIL, no work to do.)
+	reply)
+      ((MEMBER reply goodList)                               

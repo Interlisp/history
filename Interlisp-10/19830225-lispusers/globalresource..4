@@ -1,0 +1,249 @@
+(FILECREATED "21-NOV-82 21:15:01" {PHYLUM}<LISPUSERS>GLOBALRESOURCE.;10 7496   
+
+      changes to:  (MACROS GLOBALRESOURCE RELEASERESOURCE RESOURCECONTEXT)
+		   (FILEPKGCOMS GLOBALRESOURCES)
+		   (VARS GLOBALRESOURCECOMS)
+		   (FNS GETGLOBALRESOURCEDEF PUTGLOBALRESOURCEDEF DELGLOBALRESOURCEDEF 
+			GLOBALRESOURCEppmacro)
+
+      previous date: "13-NOV-82 12:05:37" {PHYLUM}<LISPCORE>SOURCES>GLOBALRESOURCE.;8)
+
+
+(* Copyright (c) 1982 by Xerox Corporation)
+
+(PRETTYCOMPRINT GLOBALRESOURCECOMS)
+
+(RPAQQ GLOBALRESOURCECOMS ((* Global resource mangement; exported so GATHEREXPORTS will grab 
+			      everything.)
+			   (EXPORT (MACROS FREERESOURCE GETRESOURCE GLOBALRESOURCE RELEASERESOURCE 
+					   RESOURCECONTEXT)
+				   (ADDVARS (GLOBAL.RESOURCES))
+				   (GLOBALVARS GLOBAL.RESOURCES)
+				   (FILEPKGCOMS GLOBALRESOURCES)
+				   (FNS GETGLOBALRESOURCEDEF PUTGLOBALRESOURCEDEF 
+					DELGLOBALRESOURCEDEF GLOBALRESOURCEppmacro)
+				   (PROP VARTYPE GLOBAL.RESOURCES)
+				   (ALISTS (PRETTYPRINTMACROS GLOBALRESOURCE RESOURCECONTEXT))
+				   (TEMPLATES GLOBALRESOURCE RELEASERESOURCE RESOURCECONTEXT))))
+
+
+
+(* Global resource mangement; exported so GATHEREXPORTS will grab everything.)
+
+
+(* FOLLOWING DEFINITIONS EXPORTED)
+
+
+(DECLARE: EVAL@COMPILE 
+
+(PUTPROPS FREERESOURCE MACRO (ARGS
+  (HELP "FREERESOURCE not in RESOURCECONTEXT" (CONS (QUOTE FREERESOURCE)
+						    ARGS))))
+
+(PUTPROPS GETRESOURCE MACRO (ARGS
+  (HELP "GETRESOURCE not in RESOURCECONTEXT" (CONS (QUOTE GETRESOURCE)
+						   ARGS))))
+
+(PUTPROPS GLOBALRESOURCE MACRO (X
+  (PROG ((NAMES (MKLIST (CAR X)))
+	 (FORMS (CDR X)))
+        (RETURN (BQUOTE (RESOURCECONTEXT ,
+                            NAMES (PROGN ,@(MAPCAR NAMES (FUNCTION (LAMBDA (N)
+						       (LIST (QUOTE GETRESOURCE)
+							     N)))))
+				  (PROG1 (PROGN ,@ FORMS)
+					 ,@(MAPCAR NAMES (FUNCTION (LAMBDA (N)
+						       (LIST (QUOTE FREERESOURCE)
+							     N)))))))))))
+
+(PUTPROPS RELEASERESOURCE MACRO (ARGS
+  (PROG ((RNAME (CAR ARGS)))
+        (AND (EQ (NTHCHAR RNAME -5)
+		 (QUOTE A))
+	     (FIXP (SUBATOM RNAME -4 -1))
+	     (SETQ RNAME (SUBATOM RNAME 1 -6)))
+        (RETURN (SUBPAIR (QUOTE (ALLOC RNAME RVALVAR . FORMS))
+			 (CONS (OR (GETDEF RNAME (QUOTE GLOBALRESOURCES))
+				   (HELP "undefined resource" RNAME))
+			       (CONS RNAME (CDR ARGS)))
+			 (QUOTE (PROGN (SETQ RNAME RVALVAR)
+				       (PROG1 (PROGN . FORMS)
+					      (SETQ RVALVAR (PROG1 (OR RNAME ALLOC)
+								   (SETQ RNAME NIL)))))))))))
+
+(PUTPROPS RESOURCECONTEXT MACRO (X
+  (PROG (LVS (NAMES (MKLIST (CAR X)))
+	     (FORMS (COPY (CDR X))))
+        (SETQ LVS (MAPCAR NAMES (FUNCTION (LAMBDA (N)
+			      (PACK* N (GENSYM))))))
+        (MAP2C NAMES LVS (FUNCTION (LAMBDA (N L)
+		   (DSUBST L N FORMS)
+		   (DSUBST (LIST (QUOTE SETQ)
+				 N L)
+			   (LIST (QUOTE FREERESOURCE)
+				 L)
+			   FORMS)
+		   (DSUBST (LIST (QUOTE SETQ)
+				 L
+				 (LIST (QUOTE PROG1)
+				       (LIST (QUOTE OR)
+					     N
+					     (OR (GETDEF N (QUOTE GLOBALRESOURCES))
+						 (HELP "undefined resource" N)))
+				       (LIST (QUOTE SETQ)
+					     N)))
+			   (LIST (QUOTE GETRESOURCE)
+				 L)
+			   FORMS))))
+        (RETURN (BQUOTE ((LAMBDA , LVS (DECLARE (LOCALVARS ,@ LVS))
+			    ,@ FORMS)))))))
+)
+
+(ADDTOVAR GLOBAL.RESOURCES )
+(DECLARE: DOEVAL@COMPILE DONTCOPY
+
+(ADDTOVAR GLOBALVARS GLOBAL.RESOURCES)
+)
+(PUTDEF (QUOTE GLOBALRESOURCES) (QUOTE FILEPKGCOMS) (QUOTE
+						      ((COM
+							 MACRO
+							 (X
+							   (VARS
+							     *
+							     (MAPCAR (QUOTE X)
+								     (FUNCTION
+								       (LAMBDA
+									 (Y)
+									 (LIST (CAR (MKLIST Y)))))))
+							   (GLOBALVARS
+							     *
+							     (MAPCAR (QUOTE X)
+								     (FUNCTION (LAMBDA
+										 (Y)
+										 (CAR (MKLIST Y))))))
+							   (DECLARE:
+							     DOEVAL@COMPILE DONTCOPY
+							     (P
+							       *
+							       (MAPCONC
+								 (QUOTE X)
+								 (FUNCTION
+								   (LAMBDA
+								     (Y)
+								     ((LAMBDA
+									(NAME DEF)
+									(AND
+									  (LITATOM NAME)
+									  NAME
+									  (OR DEF
+									      (SETQ
+										DEF
+										(GETDEF Y
+											(QUOTE 
+										  GLOBALRESOURCES))))
+									  (LIST
+									    (LIST
+									      (QUOTE PUTDEF)
+									      (KWOTE NAME)
+									      (QUOTE (QUOTE 
+										  GLOBALRESOURCES))
+									      (KWOTE DEF)))))
+								      (CAR (MKLIST Y))
+								      (CADR (MKLIST Y))))))))))
+						       (TYPE DESCRIPTION "global resources" GETDEF 
+							     GETGLOBALRESOURCEDEF PUTDEF 
+							     PUTGLOBALRESOURCEDEF DELDEF 
+							     DELGLOBALRESOURCEDEF))))
+(DEFINEQ
+
+(GETGLOBALRESOURCEDEF
+  (LAMBDA (NAME TYPE)                                        (* lmm "11-NOV-82 08:04")
+    (CADR (ASSOC NAME GLOBAL.RESOURCES))))
+
+(PUTGLOBALRESOURCEDEF
+  (LAMBDA (NAME TYPE DEF)                                    (* JonL "13-NOV-82 15:00")
+    (if (OR (NULL NAME)
+	    (NOT (LITATOM NAME))
+	    (NEQ TYPE (QUOTE GLOBALRESOURCES)))
+	then (SETERRORN 27 (if (EQ TYPE (QUOTE GLOBALRESOURCES))
+			       then NAME
+			     else TYPE))
+	     (ERRORX))
+    (if (CONSTANTEXPRESSIONP DEF)
+	then (SETERRORN 27 DEF)
+	     (ERRORX))
+    (SET NAME)
+    (PROG NIL
+          (MARKASCHANGED NAME (QUOTE GLOBALRESOURCES)
+			 (if (SETQ TYPE (ASSOC NAME GLOBAL.RESOURCES))
+			     then (AND (EQUAL DEF (CADR TYPE))
+				       (RETURN))
+				  (RPLACA (CDR TYPE)
+					  DEF)
+				  NIL
+			   else (push GLOBAL.RESOURCES (LIST NAME DEF))
+				T))
+          (EVAL (LIST (QUOTE GLOBALVARS)
+		      NAME)))
+    NAME))
+
+(DELGLOBALRESOURCEDEF
+  (LAMBDA (NAME TYPE)                                        (* JonL "13-NOV-82 15:28")
+    (if (OR (NULL NAME)
+	    (NOT (LITATOM NAME))
+	    (NEQ TYPE (QUOTE GLOBALRESOURCES)))
+	then (SETERRORN 27 (if (EQ TYPE (QUOTE GLOBALRESOURCES))
+			       then NAME
+			     else TYPE))
+	     (ERRORX))
+    (SET NAME)
+    ((LAMBDA (DEF)
+	(if DEF
+	    then (MARKASCHANGED NAME (QUOTE GLOBALRESOURCES)
+				(QUOTE DELETED))
+		 (SETQ GLOBAL.RESOURCES (DREMOVE DEF GLOBAL.RESOURCES)) 
+                                                             (* If there were a modular way to remove a GLOBALVARS 
+							     declaration, it should be used here to un-globalvarsify 
+							     NAME)
+		 T))
+      (ASSOC NAME GLOBAL.RESOURCES))))
+
+(GLOBALRESOURCEppmacro
+  (LAMBDA (FORM)                                             (* JonL "13-NOV-82 11:24")
+    (if (AND (MEMB (CAR (LISTP FORM))
+		   (QUOTE (GLOBALRESOURCE RESOURCECONTEXT
+                              )))
+	     (LISTP (CDR FORM)))
+	then (PROG ((POS (IPLUS 4 (POSITION))))
+	           (PRIN1 "(")
+	           (PRIN2 (CAR FORM))
+	           (SPACES 1)
+	           (PRINTDEF (CADR FORM)
+			     (POSITION))
+	           (OR (EQ COMMENTFLG (CAAR (SETQ FORM (CDDR FORM))))
+		       (TAB POS 0))
+	           (PRINTDEF FORM POS T T FNSLST)
+	           (PRIN1 ")"))
+      else FORM)))
+)
+
+(PUTPROPS GLOBAL.RESOURCES VARTYPE 
+  (ALIST GLOBALRESOURCES))
+
+(ADDTOVAR PRETTYPRINTMACROS (GLOBALRESOURCE . GLOBALRESOURCEppmacro)
+			    (RESOURCECONTEXT . GLOBALRESOURCEppmacro))
+(SETTEMPLATE (QUOTE GLOBALRESOURCE)
+	     (QUOTE MACRO))
+(SETTEMPLATE (QUOTE RELEASERESOURCE)
+	     (QUOTE MACRO))
+(SETTEMPLATE (QUOTE RESOURCECONTEXT)
+	     (QUOTE MACRO))
+
+
+(* END EXPORTED DEFINITIONS)
+
+(DECLARE: DONTCOPY (PUTPROPS GLOBALRESOURCE COPYRIGHT ("Xerox Corporation" 1982)))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (4599 6992 (GETGLOBALRESOURCEDEF 4609 . 4768) (PUTGLOBALRESOURCEDEF 4770 . 5581) (
+DELGLOBALRESOURCEDEF 5583 . 6371) (GLOBALRESOURCEppmacro 6373 . 6990)))))
+STOP

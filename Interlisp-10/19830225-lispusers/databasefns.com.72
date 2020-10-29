@@ -1,0 +1,224 @@
+(FILECREATED "23-SEP-81 22:39:47" ("compiled on " 
+<LISPUSERS>DATABASEFNS.;73) (2 . 2) bcompl'd in WORK dated NOBIND)
+(FILECREATED "29-APR-81 20:27:35" <LISPUSERS>DATABASEFNS.;73 11987 
+changes to: DBFILE DBFILE1 LOAD LOADFROM MAKEFILE DUMPDB LOADDB MAKEDB 
+previous date: "12-APR-81 16:02:21" <LISPUSERS>DATABASEFNS.;72)
+(VIRGINFN (QUOTE LOAD) T)
+(MOVD? (QUOTE LOAD) (QUOTE OLDLOAD))
+(VIRGINFN (QUOTE LOADFROM) T)
+(MOVD? (QUOTE LOADFROM) (QUOTE OLDLOADFROM))
+(VIRGINFN (QUOTE MAKEFILE) T)
+(MOVD? (QUOTE MAKEFILE) (QUOTE OLDMAKEFILE))
+
+LOADDB BINARY
+c;\-.;-.H<@Z,<@@ +Z,<,<B,<B,<@C`+~ZZDXBZw,<?"E,<Zw,<?,<8,,<,<,<,<Zw~3B+[w~XBpZw~XBw~+Zw}Z82B+,<E,<$F,<w~,<$F,<"FZ+|Zw}Z83B+8,<w~,<G$G2BH+!+;2BH+"+Z2BH+',<w~,<G,<H&I3B++;2BH++,<w~,<G,<H&I+,<w~[ZDI2B+;Z,<,<J,<J,<w|,FK2BJ+6,<w~,<G,<H&I3B++;,<w~,<G,<H&I+,<w~,<G,<H&I3B+,<w~,<$K,<L,<w~"L,,Z,XB?,<ZDLXBw2BM+[,<ZADLXBw,<ZDDLXBw2BM+[Z3B+T,<,<,<ZFDLXBp2B+OZw+S,<Z,<,<ZLDLFN+K/+Y,<,<ZQDL2B+XZp+Y+U/,<ZUDLXBw-,ZZ3BN+_Zw2BO+uZw3BO+a NZI3B+d,<w~,<w$O,<w~Z+,<,<w&N P,<w~,<P$Q[,<Zp-,+l+tZp,<,<p"Q2B+q,<p,<R$Q3B+r,<p"R/[pXBp+j/+{,<"F,<w~,<$F,<S,<$F,<"FZXBw~Zw~/ZwXB8Z,~3B+Z+ZSXB`DTZ`3B+ T,~Z`,~+Zw2B+	 LXBw+,<,<U$UZ2B+,<U,<,<V,<,<V,<w},WXBw,<w,<V$U2B+,<w"E,<,<W$GZ2B+Zp3B+,<w"X+,<w"XXBw3B+BYZw,,<Zp3B+!,<w,<,"+Z+,<U,<G,<V,<Y,<V,<w},WBZ,<,<,<Zw-,+*+:ZXBp,<Z,<,<L$[XBw,Z@,XB.,<p"[Zw~,<,<wZZDLZ,\,3B+7ZpZw~,+,<p"\[wXBw+(Zw+)U B*};o
+3]=iPdAhV![Ia
+j@LYU52->`e@B$(FILE . 1)
+(ASKFLAG . 1)
+(VARIABLE-VALUE-CELL LISPXHIST . 6)
+(VARIABLE-VALUE-CELL RESETVARSLST . 350)
+(VARIABLE-VALUE-CELL LOADDBFLG . 69)
+(VARIABLE-VALUE-CELL MSFILETABLE . 202)
+(VARIABLE-VALUE-CELL DWIMWAIT . 92)
+(VARIABLE-VALUE-CELL FILERDTBL . 356)
+(VARIABLE-VALUE-CELL MSHASHFILENAME . 195)
+(VARIABLE-VALUE-CELL MSARGTABLE . 160)
+(VARIABLE-VALUE-CELL COMPILE.EXT . 277)
+(VARIABLE-VALUE-CELL LISPXHIST . 0)
+NIL
+NIL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+NAMEFIELD
+"no database file found for "
+PRIN1
+TERPRI
+DATABASE
+GETPROP
+YES
+NO
+/PUT
+TESTTABLE
+Y
+"load database for"
+ASKUSER
+LISPXPRINT
+INPUT
+READ
+FNS
+ARGS
+STORETABLE
+READATABASE
+STOP
+UPDATECONTAINS
+UPDATEFILES
+FILE
+GETP
+EXPRP
+EXPR
+MSMARKCHANGED
+" is not a database file!"
+ERROR
+RESETRESTORE
+ERROR!
+EXTENSION
+FILENAMEFIELD
+VERSION
+BODY
+PACKFILENAME
+FILEDATES
+INFILEP
+FINDFILE
+FILEDATE
+*
+FILDIR
+((PROGN (CLOSEF? OLDVALUE)) . 0)
+OPENFILE
+SKREAD
+CLOSEF
+(URET5 STREQUAL URET3 URET2 SKNLST SKLST BHC CONS CONSNL ALIST2 LIST2 KT
+ CF KNIL BLKENT ENTER2);P0")8HPu8Z
+Hx/`A@.xhzxh=0(X("x(X8x{o0](W
+`U
+ N	HL	8JpE ;X.p@((
+
+LOAD BINARY
+-.,<`,<`,<`&	XB`Z`3B
++,<`,<$
+Z`,~(FILE . 1)
+(LDFLG . 1)
+(PRINTFLG . 1)
+OLDLOAD
+SYSLOAD
+LOADDB
+(KT ENTER3)p
+
+LOADFROM BINARY
+		-.,<`,<`,<`&XB`,<,<$Z`,~(FILE . 1)
+(FNS . 1)
+(LDFLG . 1)
+OLDLOADFROM
+LOADDB
+(KT ENTER3)X
+
+MAKEFILE BINARY
+
+
+-. ,<`,<`,<`,<`(	XB`,<,<$	Z`,~D(FILE . 1)
+(OPTIONS . 1)
+(REPRINTFNS . 1)
+(SOURCEFILE . 1)
+OLDMAKEFILE
+DUMPDB
+(KT ENTER4)`
+
+DUMPDB BINARY
+l-.(lZ`3B+k-,+kBo,<,<`"p,<,<,<Zw2B+,<w~[ZDp3B+ZXB`+Z`3B+,<w~,<q$q+,<"r,<`,<$r,<s,<$r,<"rZ+ZwXBpZ`3B+ ,<w~,<q$s3Bt+ Z3Bt+ ,<w~[	ZDp3B+Z3B+2,<p,<Zw-,+)ZpZ2B+' "+)[QD "+1Zw,<,<p"t,<p"u/3B+0ZwZp,XBp[wXBw+#/XBpZ,<@u +dZ,<,<w,<w,<@x`+]ZZyXB,<z,<z,<q,<{,<,<{Zw|,<8,|,<,<|,<}&}Zw~XB?,Z5,XBB,<|Zw~,<?"|,,ZC,XBG,<~"rZw~,<?~Z,<,<?~,<~$sZBFZ 3B+RZw~,<?~,<?,<&,<,<$rZw~,<?,<$Zw~Z83B+YB+[,<,<$r,<"rZw~XB8Z,~3B+_Z+`ZXB`DZ`3B+c ,~Z`,~Z`3B+h,<w,<$+j,<w~,<q,<t&Zw+Z,~dR.@^bHER
+j^K@H06!QP-8(FILE . 1)
+(PROPFLG . 1)
+(VARIABLE-VALUE-CELL MSFILETABLE . 149)
+(VARIABLE-VALUE-CELL SAVEDBFLG . 56)
+(VARIABLE-VALUE-CELL MSHASHFILENAME . 157)
+(VARIABLE-VALUE-CELL LISPXHIST . 101)
+(VARIABLE-VALUE-CELL RESETVARSLST . 144)
+NAMEFIELD
+FILEFNSLST
+TESTTABLE
+DATABASE
+/REMPROP
+TERPRI
+PRIN1
+" has no functions."
+GETPROP
+YES
+UPDATEFN
+LOCALFNP
+(VARIABLE-VALUE-CELL LISPXHIST . 0)
+NIL
+NIL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+((PROGN (CLOSEF? OLDVALUE) (AND RESETSTATE (DELFILE OLDVALUE))) . 0)
+EXTENSION
+VERSION
+BODY
+PACKFILENAME
+OUTPUT
+NEW
+OPENFILE
+"(PROGN (PRIN1 %"Use LOADDB to load database files!
+%" T) (ERROR!))
+"
+FILEDATES
+PRINT
+STORETABLE
+UPDATECONTAINS
+"FNS "
+DUMPDATABASE
+"STOP"
+ERROR
+RESETRESTORE
+ERROR!
+/PUT
+(CONSNL CONS ALIST2 CF COLLCT BHC SKNLST URET4 KT SKLA KNIL ENTER2)x	DG0 (-$kxx]
+(P @@f(_h[(X
+`T
+=.h&8"pPx
+
+MAKEDB BINARY
+! -.,<`"XB`,<,<BF3B+,<`,<$Z,2B+ZZ,2B+,<`[ZD2B+,<`,<Z,<,<,<&2B+Z+Z
+F
+,~ue)(F . 1)
+(VARIABLE-VALUE-CELL SAVEDBFLG . 19)
+(VARIABLE-VALUE-CELL MSFILETABLE . 25)
+(VARIABLE-VALUE-CELL DWIMWAIT . 32)
+NAMEFIELD
+FNS
+FILECOMS
+INFILECOMS?
+DATABASE
+GETPROP
+((YES NO) . 0)
+((YES NO) . 0)
+TESTTABLE
+N
+"Do you want a Masterscope Database for this file? "
+ASKUSER
+Y
+YES
+NO
+/PUT
+(FMEMB KNIL KT ENTER1)p
+(* copyright (c) 1981 Xerox Corporation)
+(PRETTYCOMPRINT DATABASEFNSCOMS)
+(RPAQQ DATABASEFNSCOMS ((* Does automatic Masterscope database 
+maintenance) (DECLARE: FIRST (P (VIRGINFN (QUOTE LOAD) T) (MOVD? (QUOTE 
+LOAD) (QUOTE OLDLOAD)) (VIRGINFN (QUOTE LOADFROM) T) (MOVD? (QUOTE 
+LOADFROM) (QUOTE OLDLOADFROM)) (VIRGINFN (QUOTE MAKEFILE) T) (MOVD? (
+QUOTE MAKEFILE) (QUOTE OLDMAKEFILE)))) (FNS DBFILE DBFILE1 LOAD LOADFROM
+ MAKEFILE) (ADDVARS (LINKEDFNS OLDLOAD)) (P (RELINK (QUOTE MAKEFILES))) 
+(FNS DUMPDB LOADDB MAKEDB) (PROP PROPTYPE DATABASE) (VARS (LOADDBFLG (
+COND ((EQ (EVALV (QUOTE LOADDBFLG)) (QUOTE NOBIND)) (QUOTE ASK)) (T 
+LOADDBFLG))) (SAVEDBFLG (COND ((EQ (EVALV (QUOTE SAVEDBFLG)) (QUOTE 
+NOBIND)) (QUOTE ASK)) (T SAVEDBFLG)))) (ADDVARS (MAKEFILEFORMS (MAKEDB 
+FILE))) (* To permit MSHASH interface) (ADDVARS (MSHASHFILENAME)) (
+LOCALVARS . T) (BLOCKS (LOADDB LOADDB DBFILE DBFILE1 (NOLINKFNS . T))) (
+DECLARE: EVAL@COMPILE DONTCOPY (P (RESETSAVE DWIMIFYCOMPFLG T)))))
+(ADDTOVAR LINKEDFNS OLDLOAD)
+(RELINK (QUOTE MAKEFILES))
+(PUTPROPS DATABASE PROPTYPE IGNORE)
+(RPAQ LOADDBFLG (COND ((EQ (EVALV (QUOTE LOADDBFLG)) (QUOTE NOBIND)) (
+QUOTE ASK)) (T LOADDBFLG)))
+(RPAQ SAVEDBFLG (COND ((EQ (EVALV (QUOTE SAVEDBFLG)) (QUOTE NOBIND)) (
+QUOTE ASK)) (T SAVEDBFLG)))
+(ADDTOVAR MAKEFILEFORMS (MAKEDB FILE))
+(ADDTOVAR MSHASHFILENAME)
+NIL

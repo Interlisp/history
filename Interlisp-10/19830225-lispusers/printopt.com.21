@@ -1,0 +1,255 @@
+(FILECREATED " 9-Dec-82 16:01:29" ("compiled on " <DDYER>PRINTOPT..21) (2 . 2) bcompl'd in WORK dated 
+" 9-Dec-82 14:57:29")
+(FILECREATED " 9-Dec-82 15:59:55" <DDYER>PRINTOPT..21 13339 changes to: (FNS SHOWPRINT) previous date:
+ " 4-NOV-82 19:52:41" <DDYER>PRINTOPT..17)
+
+PRINTOPTBLOCK BINARY
+?6-.-.P.-J~ ,,~-.
+Z`2B+ XB`,<` `$"&",,<,<`Z,<,.b!,<@" +,,<$Z,<,,Z,XBXB`,<$,<%,<@%`+#ZZ'XBZ3B+
+Zw,<8,<8'+!Zw,<8,<8(Zw~XB8Z,~2B+%Z)XB[`XB,<$Z`Z[d*Z%3B+++,~Z`,~Z,~ ,/,~-., `&",,<,<,<-,<-,<.ZwZp3B+ `,>,> p ,^/3b+? `,>,> p ,^/2"+?+ZpXBw,<w,<w}.,<,<w~,<w}/,$",,<,<,<,<Zw~Zw~3B+l `,>,> w} ,^/3b+S `,>,> w} ,^/2"+S+l w~,>,> w~.Bx,^/&",XBw,<`,<w|,<,<Z,<,<`,-XBp p,>,> w} ,^/3b+j `,>,> p ,^/3b+hZwXBw{ZwXBw~ZpXBw}ZwXBw~+l w.",XBw~+GZw/,<w,<w}.,<,<w~,<w}/,$",,<,<,<,<Zw~Zw~3B+ `,>,> w} ,^/3b+ `,>,> w} ,^/2"++ w~,>,> w~.Bx,^/&",XBw,<`,<,<wz,<ZZ,<,<`,-XBp p,>,> w} ,^/3b+ `,>,> p ,^/3b+ZwXBw|ZwXBw~ZpXBw}ZwXBw~+ w.",XBw~+tZw/+4ZwZw~,+,,~-.0Z`2B+" XB`,<`,<` `$"&",,<,<`Z,<,.XB`Z,<[`,<,<Z&,<,<,-,~0,.,~-.1!,<@ ,~Z"+4Z"tXB2ZwZ82B+8ZZwXB8Z82B+;[6ZwXB8 8,>,>Zw 8 ,^///",XB9ZwZ83B+DZ+DZ,<Zw~,<8,<8,<8,<Z4,< ",,~(,K,~-.
+3,< G1b+}Z`-,+YZ`3B+W^",>,>,<`Z*d4,.Bx,^/,+,<`ZSd4+Z`0B+\Z"+Z`0B+aZ`3B+`Z"+Z"+Z`,< `/",,< @,>,> `.Bx,^/,,<,<ZM,<,J,.",XBp,,>,>[`3B+z[`,<,<` `/",,<,< i,>,> w~ ,^//,,<,J,+z^".Bx,^/,+Z"+ Zw~-,++Zw0B+Z5+Zw0B+Zp3B+Z5,+Z5+Zw~,< w~/",,< d,>,> w~.Bx,^/,,<,<,~,<[w~3B+[w~,<,<w~ w~/",,<,<,~+Z,+}`(Fb8 (P	  B (H
+A! <(@"	A(F(PRINTOPTBLOCK#0 . 1)
+(VARIABLE-VALUE-CELL RESETVARSLST . 76)
+(VARIABLE-VALUE-CELL USEPRIN2 . 432)
+(VARIABLE-VALUE-CELL SUMCAR . 535)
+PRINTOPTIMUM
+GETOPTIMUM
+SELPRINTLEVEL
+PNCHARS
+PNCHARS1
+PNCHARS2
+*PRINTOPTIMUM*
+((UNBOXED-NUM . 4) VARIABLE-VALUE-CELL USEPRIN2 . 0)
+(NIL)
+(LINKED-FN-CALL . LINELENGTH)
+(NIL)
+(LINKED-FN-CALL . PRINTLEVEL)
+(VARIABLE-VALUE-CELL OLDVALUE . 38)
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL RESETSTATE . 82)
+PRINTLEVEL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+(NIL)
+(LINKED-FN-CALL . PRIN2)
+(NIL)
+(LINKED-FN-CALL . PRIN1)
+ERROR
+(NIL)
+(LINKED-FN-CALL . APPLY)
+(NIL)
+(LINKED-FN-CALL . ERROR!)
+*SELPRINTLEVEL*
+((UNBOXED-NUM . 4) VARIABLE-VALUE-CELL USEPRIN2 . 0)
+2
+-1
+0
+(NIL)
+(LINKED-FN-CALL . MIN)
+(NIL)
+(LINKED-FN-CALL . MAX)
+*GETOPTIMUM*
+((UNBOXED-NUM . 3) VARIABLE-VALUE-CELL USEPRIN2 . 0)
+*PNCHARS*
+((UNBOXED-NUM . 5) VARIABLE-VALUE-CELL USEPRIN2 . 0)
+((UNBOXED-NUM . 6) VARIABLE-VALUE-CELL LIMIT . 487)
+*PNCHARS1*
+((UNBOXED-NUM . 5) VARIABLE-VALUE-CELL LIMIT . 0)
+(NIL)
+(LINKED-FN-CALL . NCHARS)
+&
+--
+(CONSS1 URET4 URET1 SKNLST EVCC ASZ SMALLT URET5 IUNBOX BHC KT CF CONS CONSNL LIST2 MKN KNIL BINDB 
+BLKENT ENTER1)! 8~
+Xa\ X  H
+`a]@[H8X
+ m8U E
+HwWx @(nP`
+pR	X> "xt0#h x"
+Px0ldxAXPs@X`2`#"xipQXH09h,Pt@Z	Gp3X*H
+Lx
+
+
+PRINTOPTIMUM BINARY
+-. ,<,~(OBJECT . 1)
+(SPACE . 1)
+(FILE . 1)
+(VARIABLE-VALUE-CELL USEPRIN2 . 0)
+PRINTOPTIMUM
+(NIL)
+(LINKED-FN-CALL . PRINTOPTBLOCK)
+(ENTERF)
+
+GETOPTIMUM BINARY
+-.,<,~(OBJECT . 1)
+(SPACE . 1)
+(VARIABLE-VALUE-CELL USEPRIN2 . 0)
+GETOPTIMUM
+(NIL)
+(LINKED-FN-CALL . PRINTOPTBLOCK)
+(ENTERF)
+
+SELPRINTLEVEL BINARY
+-. ,<,~(OBJECT . 1)
+(MINLEN . 1)
+(MAXLEN . 1)
+(VARIABLE-VALUE-CELL USEPRIN2 . 0)
+SELPRINTLEVEL
+(NIL)
+(LINKED-FN-CALL . PRINTOPTBLOCK)
+(ENTERF)
+
+PNCHARS BINARY
+-.0,<,~(OBJECT . 1)
+(CARN . 1)
+(CDRN . 1)
+(RETOBJECT . 1)
+(VARIABLE-VALUE-CELL USEPRIN2 . 0)
+(VARIABLE-VALUE-CELL LIMIT . 0)
+PNCHARS
+(NIL)
+(LINKED-FN-CALL . PRINTOPTBLOCK)
+(ENTERF)
+
+PNCHARS1 BINARY
+-.(,<,~(OBJECT . 1)
+(CARN . 1)
+(CDRN . 1)
+(TAILP . 1)
+(VARIABLE-VALUE-CELL LIMIT . 0)
+PNCHARS1
+(NIL)
+(LINKED-FN-CALL . PRINTOPTBLOCK)
+(ENTERF)
+
+PNCHARS2 BINARY
+-. ,<,~(OBJECT . 1)
+(CARN . 1)
+(CDRN . 1)
+(TAILP . 1)
+PNCHARS2
+(NIL)
+(LINKED-FN-CALL . PRINTOPTBLOCK)
+(ENTER4)
+
+PPOBJ BINARY
+ZFT-.@FZ2B+Z"XBZ3B+Z2B+ZBJZ2B+ K,/",XBZ,<Z2B+Z,<,<,<K,<L,<,<,<,<,<,<,<Z2B+Z3B+,<L"M w{.",XBw{Zwz-,++$ZwzXBp,<Z,<,<,<,< ,>F,> wx ,^//,LMXBw w{,>F,> w.Bx,^/.",>F,>   ,^/3b+;Zw~-,+:Zw3B+;Zp-,+; w,>F,> w.Bx,^/,>F,> + ,^/2"+;ZXBw}Zw}3B+^Zw2B+BZ3B+@Z+B ?.",XBwZ3B+Y NZ3B+X,<N2B+HZw{+J,<,<w{$O,<,<O&OXBw}BP,,>F,> w ,^/2"+X,<w}"M w,>F,>,<w}"P, ,^//,BJ+Y,<w"JZwXBw{ZXBw} w|.",XBw|+dZw~3B+dZB3B+b,<P"M w{.",XBw{Zw~-,+i3B+hZXBw~+iZpXBw~ZXBw~Zp-,+
+,<Z_,<Zw~2B+p @.",,<,<wyZ7,<,<Z,<ZD2B+w,<wx,<Q$O+z3B+z,<,<wx,<Q&OPRXBw} w}1b+ w|,>F,> w}.Bx,^/,XBw|ZXBw}+! w{,>F,> w}".Bx,^/,XBw{Zr3B+!ZXBw}+!Zl3B+,<p"R w{,>F,> w.Bx,^/,XBw{Zw2B+! w{,>F,> w{.Bx,^/,>F,> q ,^/2"+ w{.",+ ^",>F,> n.Bx,^/,XBw[wzXBwz w|.",XBw|+Zwz2B+'Zw~2B+6Zw~3B+-Z
+3B++,<S"M w{.",XBw{Z)3B+0,<wz"R w{,>F,>,<wz,<$P,.Bx,^/,XBw{Z>2B+<Z-3B+:,<S"M w{.",XBw{Zw|0B+E w{",>F,>Z2B+B^"+B,.Bx,^/,+E/,~	&FN$P@B%MK(
+HI`)SE(I(A
+I"E(VARIABLE-VALUE-CELL OBJ . 205)
+(VARIABLE-VALUE-CELL DOIT . 367)
+(VARIABLE-VALUE-CELL LMARGIN . 316)
+(VARIABLE-VALUE-CELL CPOS . 383)
+(VARIABLE-VALUE-CELL WIDTH . 303)
+(VARIABLE-VALUE-CELL TOPLEV . 364)
+(VARIABLE-VALUE-CELL SQUEEZE . 271)
+(VARIABLE-VALUE-CELL OBJPOS . 231)
+SPACES
+LINELENGTH
+1
+0
+%(
+PRIN3
+PNCHARS
+TERPRI
+"-"
+CONCAT
+"-"
+NCHARS
+" "
+" "
+" "
+PPOBJ
+PRIN4
+" . "
+%)
+(SKLST KT BHC SKNLST MKN IUNBOX ASZ KNIL ENTERF)80
+ u G0`DX  W
+9h- $e(/@P<`-@!HxdXX(%(C@U	X=@9x/()x&0x0nhax[`Dx>H1 xP@0 h	p0
+
+PRINTCAUTIOUSLY BINARY
+-.,<ZDZ,<,<,<&,<,< ,<,<,<Z-,+
+7Z,<,<.,~9(VARIABLE-VALUE-CELL X . 17)
+(VARIABLE-VALUE-CELL LEFT . 4)
+0
+TAB
+500
+1000
+GETOPTIMUM
+POSITION
+PPOBJ
+(SKNLST KNIL KT ENTERF) 8	Hp
+
+SHOWPRIN2 BINARY
+0$/-.$Z3B+ ZB&,<@' +
+,<&Z,<,,Z,XBXB`,<),<),<@*`+ZZ+XBZB,2B+Z,,<Z,<,< ",Zw~XB8Z,~2B+Z-XB[`XB	,<&Z`Z[D-Z3B+ .,~Z`,~+#Z,<Z,<ZF.Z ,~VjK"1(VARIABLE-VALUE-CELL X . 70)
+(VARIABLE-VALUE-CELL FILE . 66)
+(VARIABLE-VALUE-CELL RDTBL . 68)
+(VARIABLE-VALUE-CELL SYSPRETTYFLG . 30)
+(VARIABLE-VALUE-CELL RESETVARSLST . 50)
+OUTPUT
+(VARIABLE-VALUE-CELL OLDVALUE . 13)
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL RESETSTATE . 56)
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+GETD
+PRINTDEF
+ERROR
+APPLY
+ERROR!
+PRIN2
+(EVCC KT CF CONS CONSNL LIST2 KNIL ENTERF)@h X0
+
+SHOWPRINT BINARY
+3&1-.&Z3B+"ZB(,<@) +!,<(Z,<,,Z,XBXB`,<+,<+,<@,`+ZZ-XBZB.3B+Z+Z.,<Z,<,< ",ZB/Zw~XB8Z,~2B+Z/XB[`XB	,<(Z`Z[D0Z3B+  0,~Z`,~+%Z,<Z,<ZF1Z",~VjJ@ b (VARIABLE-VALUE-CELL X . 74)
+(VARIABLE-VALUE-CELL FILE . 70)
+(VARIABLE-VALUE-CELL RDTBL . 72)
+(VARIABLE-VALUE-CELL SYSPRETTYFLG . 34)
+(VARIABLE-VALUE-CELL RESETVARSLST . 54)
+OUTPUT
+(VARIABLE-VALUE-CELL OLDVALUE . 13)
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL RESETSTATE . 60)
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+GETD
+PRINTDEF
+TERPRI
+ERROR
+APPLY
+ERROR!
+PRINT
+(EVCC KT CF CONS CONSNL LIST2 KNIL ENTERF)`
+	
+H
+(PRETTYCOMPRINT PRINTOPTCOMS)
+(RPAQQ PRINTOPTCOMS ((FNS * PRINTOPTFNS) (EDITHIST * PRINTOPTEDITHIST) (BLOCKS * PRINTOPTBLOCKS) (
+IFPROP HELP GETOPTIMUM PRINTOPTIMUM)))
+(RPAQQ PRINTOPTFNS (GETOPTIMUM PNCHARS PNCHARS1 PNCHARS2 PPOBJ PRINTCAUTIOUSLY PRINTOPTIMUM 
+SELPRINTLEVEL SHOWPRIN2 SHOWPRINT))
+(RPAQQ PRINTOPTEDITHIST (PRINTOPT.LISP))
+(RPAQQ PRINTOPTBLOCKS ((PRINTOPTBLOCK PRINTOPTIMUM SELPRINTLEVEL GETOPTIMUM PNCHARS PNCHARS1 PNCHARS2 
+(ENTRIES PRINTOPTIMUM GETOPTIMUM SELPRINTLEVEL PNCHARS PNCHARS1 PNCHARS2) (SPECVARS USEPRIN2 SUMCAR 
+LIMIT))))
+(PUTPROPS GETOPTIMUM HELP (returns a form representing OBJECT that will PRIN1 in SPACE or fewer 
+characters. See also PRINTOPTIMUM))
+(PUTPROPS PRINTOPTIMUM HELP (uses SELPRINTLEVEL to select a printlevel that will print OBJECT in SPACE
+ or fewer characters, and prints it. See also GETOPTIMUM))
+NIL

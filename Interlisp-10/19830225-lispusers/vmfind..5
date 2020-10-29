@@ -1,0 +1,155 @@
+(FILECREATED " 2-FEB-78 14:02:45" <LISPUSERS>VMFIND.;5 3746   
+
+
+     changes to:  VF
+
+     previous date: " 2-JAN-78 02:29:38" <LISPUSERS>VMFIND.;4)
+
+
+(PRETTYCOMPRINT VMFINDCOMS)
+
+(RPAQQ VMFINDCOMS ((* VF - print def from VM)
+		   (FNS VF VMORE VOPEN VMECHO)
+		   (VARS VMFILE (VLAST 0))
+		   (BLOCKS (VFBLOCK VF VMORE VOPEN VMECHO
+				    (ENTRIES VF VMORE)
+				    (GLOBALVARS VLAST VM VMFILE)
+				    (NOLINKFNS . T)))
+		   (DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY 
+			     COMPILERVARS (ADDVARS (NLAMA VF)
+						   (NLAML)))))
+(* VF - print def from VM)
+
+(DEFINEQ
+
+(VF
+  (NLAMBDA X                            (* lmm " 2-FEB-78 13:57")
+    (RESETLST
+      (VOPEN)
+      (for FN inside X
+	 do (COND
+	      ((SETQ VLAST (FFILEPOS (CONCAT "
+|" FN "[")
+				     VM 0))
+		(NLSETQ (PROG ((N 0)
+			       CH HELPFLAG)
+			      (READC)
+			      (READC)
+			      (READC)
+			  LP  (while (NEQ (SETQ CH (READC))
+					  (QUOTE %
+))
+				 do (VMECHO CH))
+                                        (* found a CR)
+			      (SETQ VLAST (GETFILEPTR))
+			  LPX (SELECTQ (SETQ CH (READC))
+				       ((%  %	)
+					 (PROG NIL
+					   LP  (TERPRI)
+					       (COND
+						 ((IGREATERP N 0)
+						   (SETQ N
+						     (SUB1 N))
+						   (GO LP))))
+					 (VMECHO CH)
+					 (GO LP))
+				       (%
+ (ADD1VAR N)
+ (GO LPX))
+				       (RETURN))))
+		(TERPRI)))))))
+
+(VMORE
+  [LAMBDA NIL                           (* lmm: "22-DEC-76 12:46:54")
+    (RESETLST (VOPEN)
+	      (NLSETQ (PROG (HELPFLAG (N 0)
+				      CH)
+			    (SETFILEPTR NIL (OR VLAST 0))
+			    (VMECHO (READC))
+			LP  (while (NEQ (SETQ CH (READC))
+					(QUOTE %
+))
+			       do (VMECHO CH))
+			    [COND
+			      ((EQ (PEEKC)
+				   (QUOTE %.))
+				(until (EQ (READC)
+					   (QUOTE %
+]
+			    (VMECHO CH)
+			    (SETQ VLAST (GETFILEPTR))
+			    (GO LP)))
+	      (TERPRI])
+
+(VOPEN
+  [LAMBDA NIL                           (* lmm: "10-APR-77 23:39")
+    (RESETSAVE NIL (LIST (QUOTE INPUT)
+			 (INFILE VMFILE)))
+    [RESETSAVE NIL (LIST (QUOTE CLOSEF)
+			 (SETQ VM (INPUT]
+    (RESETFORM (OUTPUT T])
+
+(VMECHO
+  [LAMBDA (CH)                          (* lmm: "10-APR-77 23:41")
+    (SELECTQ CH
+	     [%                       (* control-O -
+					tab to column)
+		  (TAB (CAR (READ]
+	     [*                         (* asterisk -- look for 
+					footnote)
+		(COND
+		  ((EQ (SETQ CH (READC))
+		       (QUOTE <))
+		    (PROG [(P (POSITION (OUTPUT]
+		          (PRIN1 "
+----------------------
+")
+		          (until (EQ (SETQ CH (READC))
+				     (QUOTE >))
+			     do (VMECHO CH))
+		          (PRIN1 "
+----------------------
+")
+		          (SPACES P)))
+		  (T (PRIN1 (QUOTE *))
+		     (PRIN1 CH]
+	     ((% % %| %)          (* control S, X, A and vertical 
+					bar -- ignore these characters)
+	       )
+	     (%
+ [COND
+   ((EQ (PEEKC)
+	(QUOTE %.))
+     (until (EQ (READC)
+		(QUOTE %
+]
+ (PRIN1 CH))
+	     [%	                       (* tab)
+		  (SPACES (IDIFFERENCE 8 (IREMAINDER (POSITION
+						       (OUTPUT))
+						     8]
+	     (%                       (* control-Z -- read fontchange 
+					char)
+		  (READC))
+	     (PROGN                     (* print all others)
+		    (PRIN1 CH])
+)
+
+(RPAQQ VMFILE <HELPSYS>VM.PUB)
+
+(RPAQ VLAST 0)
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: VFBLOCK VF VMORE VOPEN VMECHO (ENTRIES VF VMORE)
+	(GLOBALVARS VLAST VM VMFILE)
+	(NOLINKFNS . T))
+]
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA VF)
+
+(ADDTOVAR NLAML )
+)
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (602 3384 (VF 614 . 1442) (VMORE 1446 . 1962) (VOPEN 1966 .
+2202) (VMECHO 2206 . 3381)))))
+STOP

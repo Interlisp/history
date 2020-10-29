@@ -1,0 +1,200 @@
+(FILECREATED "13-MAY-82 22:53:14" <LISPUSERS>NOBOX.;3 5801   
+
+     changes to:  NOBOXCOMS (NOBOX.MAKEFLOAT DMACRO) (NOBOX.MAKELARGE DMACRO) (CBOX DMACRO) CBOX
+
+     previous date: " 6-JAN-82 18:05:15" <LISPUSERS>NOBOX.;2)
+
+
+(PRETTYCOMPRINT NOBOXCOMS)
+
+(RPAQQ NOBOXCOMS [(* use of this package is not recommended for interlisp-d. it is supplied for 
+		     compatibility with old code)
+		  (FNS IBOX FBOX NBOX)
+		  (P (MOVD? (QUOTE LIST)
+			    (QUOTE LBOX))
+		     (MOVD? (QUOTE CONS)
+			    (QUOTE CBOX)))
+		  (DECLARE: EVAL@COMPILE (RECORDS FBOX IBOX)
+			    (MACROS NOBOX.MAKEFLOAT NOBOX.MAKELARGE)
+			    (MACROS IBOX FBOX NBOX)
+			    (MACROS CBOX LBOX)
+			    (I.S.OPRS scratchcollect)
+			    (ADDVARS (SYSLOCALVARS $$SCCONS $$SCPTR)
+				     (INVISIBLEVARS $$SCCONS $$SCPTR])
+
+
+
+(* use of this package is not recommended for interlisp-d. it is supplied for compatibility 
+with old code)
+
+(DEFINEQ
+
+(IBOX
+  [LAMBDA (IVAL)                                       (* rmk: " 4-SEP-80 22:00")
+                                                       (* If needed, give field the initial value defined in the record)
+                                                       (* 100000 should really be (CONSTANT 
+						       (create IBOX)), so that information about size of LARGEP's is stored in
+						       one place.)
+    (create IBOX
+	    I _(OR IVAL 100000])
+
+(FBOX
+  [LAMBDA (FVAL)                                       (* rmk: "23-SEP-77 09:39")
+    (create FBOX
+	    F _(OR FVAL 0.0])
+
+(NBOX
+  [LAMBDA (NVAL)                                       (* rmk: "10-OCT-77 10:17")
+
+          (* A boxing function for numbers of unknown type. Since most functions that produce unknown-typed numbers compile closed and box 
+	  internally, this is really useful only to copy boxes produced by those functions into new boxes at setq's. E.g. 
+	  (SETQ X (NBOX Y)), where previously there was (SETQ Y (DIFFERENCE A B)))
+
+
+    (if (FLOATP NVAL)
+	then (create FBOX
+		     F _ NVAL)
+      else (create IBOX
+		   I _ NVAL])
+)
+(MOVD? (QUOTE LIST)
+       (QUOTE LBOX))
+(MOVD? (QUOTE CONS)
+       (QUOTE CBOX))
+(DECLARE: EVAL@COMPILE 
+[DECLARE: EVAL@COMPILE 
+
+(BLOCKRECORD FBOX ((F FLOATING))
+		  (CREATE (NOBOX.MAKEFLOAT)))
+
+(BLOCKRECORD IBOX ((I INTEGER))
+		  (CREATE (NOBOX.MAKELARGE)))
+]
+
+(DECLARE: EVAL@COMPILE 
+
+(PUTPROPS NOBOX.MAKEFLOAT 10MACRO (NIL (FPLUS 0.0)))
+
+(PUTPROPS NOBOX.MAKEFLOAT DMACRO (NIL (CREATECELL \FLOATP)))
+
+(PUTPROPS NOBOX.MAKELARGE 10MACRO (NIL (IPLUS 1000000)))
+
+(PUTPROPS NOBOX.MAKELARGE DMACRO (NIL (CREATECELL \FIXP)))
+)
+
+(DECLARE: EVAL@COMPILE 
+
+(PUTPROPS IBOX 10MACRO [ARGS (COND [(CAR ARGS)
+				    (LIST (QUOTE ASSEMBLE)
+					  NIL
+					  [LIST (QUOTE CQ)
+						(LIST (QUOTE VAG)
+						      (LIST (QUOTE FIX)
+							    (CAR ARGS]
+					  (QUOTE (MOVE 2 , 1))
+					  (LIST (QUOTE CQ)
+						(create IBOX))
+					  (QUOTE (MOVEM 2 , 0 (1]
+				   (T (create IBOX])
+
+(PUTPROPS IBOX DMACRO [ARGS (COND [(CAR ARGS)
+				   (SUBST (CAR ARGS)
+					  (QUOTE NUM)
+					  (QUOTE (create IBOX smashing (CONSTANT (create IBOX))
+							 I _ NUM]
+				  (T (create IBOX])
+
+(PUTPROPS FBOX 10MACRO [ARGS (COND [(CAR ARGS)
+				    (LIST (QUOTE ASSEMBLE)
+					  NIL
+					  [LIST (QUOTE CQ)
+						(LIST (QUOTE VAG)
+						      (LIST (QUOTE FLOAT)
+							    (CAR ARGS]
+					  (QUOTE (MOVE 2 , 1))
+					  (LIST (QUOTE CQ)
+						(create FBOX))
+					  (QUOTE (MOVEM 2 , 0 (1]
+				   (T (create FBOX])
+
+(PUTPROPS FBOX DMACRO [ARGS (COND [(CAR ARGS)
+				   (SUBST (CAR ARGS)
+					  (QUOTE NUM)
+					  (QUOTE (create FBOX smashing (CONSTANT (create FBOX))
+							 F _ NUM]
+				  (T (create FBOX])
+
+(PUTPROPS NBOX 10MACRO [ARGS (SUBPAIR (QUOTE (NVAL FBOX))
+				      (LIST (CAR ARGS)
+					    (create FBOX))
+				      (QUOTE (ASSEMBLE NIL (CQ NVAL)
+						       (CQ (COND [(FLOATP (AC))
+								  (ASSEMBLE NIL
+									    (MOVE 2 , 0 (1))
+									    (CQ FBOX)
+									    (MOVEM 2 , 0 (1]
+								 (T (IBOX (AC])
+
+(PUTPROPS NBOX DMACRO [OPENLAMBDA (NVAL)
+				  (COND ((FLOATP NVAL)
+					 (FBOX NVAL))
+					(T (IBOX NVAL])
+)
+
+(DECLARE: EVAL@COMPILE 
+
+(PUTPROPS CBOX MACRO ((X Y)
+		      (FRPLNODE (CONSTANT (CONS))
+				X Y)))
+
+(PUTPROPS CBOX DMACRO (= . CONS))
+
+(PUTPROPS LBOX MACRO [ARGLIST (PROG (NILIST (FORM (QUOTE $X$)))
+				    [MAP ARGLIST (FUNCTION (LAMBDA (ARG)
+					     (SETQ NILIST (CONS NIL NILIST))
+					     (SETQ FORM (LIST (QUOTE FRPLACA)
+							      FORM
+							      (CAR ARG)))
+					     (AND (CDR ARG)
+						  (SETQ FORM (LIST (QUOTE CDR)
+								   FORM]
+				    (RETURN (LIST (LIST (QUOTE LAMBDA)
+							(QUOTE ($X$))
+							(QUOTE (DECLARE (LOCALVARS $X$)))
+							FORM
+							(QUOTE $X$))
+						  (KWOTE NILIST])
+
+(PUTPROPS LBOX DMACRO (= . LIST))
+)
+
+(DECLARE: EVAL@COMPILE 
+[I.S.OPR (QUOTE scratchcollect)
+	 (QUOTE (SETQ $$SCPTR (FRPLACA [OR (CDR $$SCPTR)
+					   (CDR (FRPLACD $$SCPTR (CAR (FRPLACA $$SCCONS (CONS]
+				       BODY)))
+	 (QUOTE (BIND $$SCPTR $$SCCONS _ (CONSTANT (CONS))
+		      FIRST
+		      (SETQ $$SCPTR $$SCCONS)
+		      FINALLY
+		      (SETQ $$VAL (AND (NEQ $$SCPTR $$SCCONS)
+				       (PROG1 (CDR $$SCCONS)
+					      (COND ((CDR $$SCPTR)
+						     (FRPLACD $$SCCONS
+							      (PROG1 (CDR $$SCPTR)
+								     (FRPLACD $$SCPTR NIL)
+								     (FRPLACD (PROG1 (CAR $$SCCONS)
+										     (FRPLACA 
+											 $$SCCONS 
+											  $$SCPTR))
+									      (CDR $$SCCONS]
+)
+
+
+(ADDTOVAR SYSLOCALVARS $$SCCONS $$SCPTR)
+
+(ADDTOVAR INVISIBLEVARS $$SCCONS $$SCPTR)
+)
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (937 2157 (IBOX 949 . 1436) (FBOX 1440 . 1580) (NBOX 1584 . 2154)))))
+STOP

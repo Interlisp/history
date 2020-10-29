@@ -1,0 +1,82 @@
+11-Dec-82 20:33:21-PST,701;000000000005
+Mail-from: ARPANET host SU-SCORE rcvd at 11-Dec-82 2033-PST
+Date: 11 Dec 1982 2028-PST
+From: Armin Haken <CSD.HAKEN at SU-SCORE>
+Subject: INFILEP on the dolphin
+To: cschmidt at SUMEX-AIM
+cc: bach at SUMEX-AIM, friedland at SUMEX-AIM, white at SUMEX-AIM
+
+  The function INFILEP works strangely on the dolphin. If I am connected to
+a directory on the IFS, INFILEP returns NIL no matter what I try. The only
+circumstance when INFILEP returns anything other than NIL is if I am connected
+to the disk, and do (INFILEP 'FOO) where FOO is on the disk. However
+(INFILEP '{DSK}FOO) gives NIL if I connect to the IFS.
+The lisp comes from {IFS}<DOLPHIN>LISP>LISP.SYSOUT.
+
+  ???
+ 
+Armin
+-------
+20-Dec-82 14:34:56-PST,541;000000000005
+Date: 20 Dec 1982 1434-PST
+From: Friedland
+Subject: infilep problem
+To:   cschmidt, haken@SUMEX-AIM, bach, white
+
+I found and solved that problem already.  Seems that some of the ifs
+directories have a funny protection which allows files to be read
+i.e. (INFILE 'FOO) works fine, but not to be "seen" (INFILEP 'FOO) returns
+NIL.  However, I just noticed this is similar but not identical
+to Armin's bug of not understanding files on the DSK when connected to
+IFS.  The next test is to try INFILE at both places.
+
+Peter
+-------
+26-Dec-82 11:44:15-PST,585;000000000005
+Date: 26 Dec 1982 1144-PST
+From: BACH at SUMEX-AIM
+Subject: Re: infilep problem
+To: Friedland
+cc: cschmidt, haken at SUMEX-AIM, white
+In-Reply-To: Your message of 20-Dec-82 1434-PST
+
+How come old fixes are not generalized or made real fixes. For example,
+in this case, made sure that all the IFS directories where of the right 
+protection. And have Mark Roberts change the protection of all the HPP
+directories so that they get compatible with the LISP or have XEROX change
+the LISP so that it would work independantly of the type of directory protection.
+
+Rene
+-------
+26-Dec-82 16:33:42-PST,208;000000000005
+Date: 26 Dec 1982 1633-PST
+From: Friedland
+Subject: infielp problem
+To:   bach
+cc:   cschmidt, haken, white
+
+Thought I did do that for the directories, Rene'.  How was your vacation?
+
+Peter
+-------
+26-Dec-82 20:59:49-PST,796;000000000005
+Date: 26 Dec 1982 2059-PST
+From: BACH at SUMEX-AIM
+Subject: Re: infielp problem
+To: Friedland
+cc: cschmidt, haken at SUMEX-AIM, white
+In-Reply-To: Your message of 26-Dec-82 1633-PST
+
+My vacations went very well, thank you. We stayed a few days in Mexico City,
+then moved to Oaxaca (where we visited two archeological sites : Mitla and Monte Alban and the museum. Ate out all the time. The we went to Villa Hermosa (which it is not, Hermosa I mean) which we used as a start point to visit Palenque,
+a mgnificent Maya site. Next we move to Merida, which allowed us to visit
+Uxmal and Chichen Itza. Both very interesting MAya ruins.
+
+As you can imagine, a very busy and tiring trip, but worthwhile, a thousand times.
+
+Will you be in tomorrow, Peter ?
+
+See you soon
+
+Rene
+-------

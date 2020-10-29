@@ -1,0 +1,574 @@
+(FILECREATED "24-SEP-81 21:25:32" ("compiled on " <LISPUSERS>MULTIFILEINDEX.;28
+) (2 . 3) bcompl'd in WORK dated NOBIND)
+(FILECREATED " 4-Jun-81 12:29:40" <VITTAL>MULTIFILEINDEX..28 37447 changes to: 
+CreateHeading CheckMapCols FindFunction FixMapCols GetFileIndices GetFnList 
+GetIndirectValue GetPrimaryComsValue GetPrimaryFileName GetSourceFiles 
+MULTIFILEINDEX MapCLOSEF MapFNTYP MapGetArgsForDLAMBDA MapGetDefinition 
+PrintFiles PrintMap PrintMapHeader PrintOneFile PrintVars SayFilesListed 
+SortSourceFiles TranslateFileCommands XRefFn XRefFnPrintPara XRefVar previous 
+date: "27-May-81 17:18:42" <VITTAL>MULTIFILEINDEX..27)
+
+MULTIFILEINDEXBLOCKA0011 BINARY
+-.Z`,<Z`D,~(X . 1)
+(Y . 1)
+CIALPHORDER
+(ENTER2)
+
+MULTIFILEINDEXBLOCKA0012 BINARY
+-.,<`,<`$,~(X . 1)
+(Y . 1)
+CIALPHORDER
+(ENTER2)
+
+MULTIFILEINDEXBLOCK BINARY
+'Y-.'-. (`:%#
+!Z3B+,<<Zd<3B+
+Z+
+Zb=,<w,<w>Zb=+,<p?,<,,<,<@,<,<Z"XBp,<w},<w}A p,>&,> w ,^/3b++!ZB,<,<w}>,<w~,<w}>,<w},<w}> p.",XBp+Zw/+,<w},<w~B,<,<,<,<w|,<CDXBwZw|2B+)E,<,<FDXBw w},>&,> w} ,^//,XBpZp,,>&,>Zw,,>&,>Zw,,>&,> x 1D+>0D+BZw~3B+>,<,< $,+BZw~3B+B,<,< $, ~/" B~5B6//Z+Z,<,<FG2B+KZF,<,<HHZ-,+N,<I,<JHZ-,+Q,<J,<KHZ-,+T,<K,<LH K,>&,> N ,^/2"+^ U,>&,> Q ,^/2"+^Z,~Z,<LH,~,<,<,<w~,<,<,<,<,<MZw}-,+f+{ZXBwbM,,>&,> p.Bx,^/.",XBp,,>&,> /" ,^/3"+r+{ZwXBwZw~3B+x,<Zw~,XBw~,\QB+zZw,XBw~XBw~[w}XBw}+dZw~/XBwZwg[2B9~ 1b+ZN+ZO,<,<w~,XBp,<wZp-,++,<ZpZw,XBw[p3B+ZOZw,XBw/[pXBp+/ZwZw~,2B+ZPZp,XBp,<P,<wQdRXB+,<pZS,<,<,<S,<,<S w,>&,> w} ,^/3b+
++, w."w}/w}."ZXBw,<w~,<wfT p,>&,>,<wM,.Bx,^/,XBp w.",XBw+,<w~,<S w/",fU/Zp/$/,~Z,<,<,<Zw-,+5+AZXBpZw~,<[wZ,\2B+@Zw~,<[w[ZZ,\3B+?+@Zp+[wXBw+3Zw+ZIZV,3B+K,<M,<M,<MZ,<,<,<,<Zw~-,+K+TZXBwbMXBp,,>&,> w} ,^/2b+R+SZpXBw}[w~XBw~+IZw/ZbMXBw,<w~,<,<,<Zw~-,+[+gZXBwZw-,+_ZwbM+_Z"	XBp,,>&,> w~ ,^/2b+e+fZpXBw~[w~XBw~+YZw/ T,>&,> p.Bx w.Bx w.Bx,^/.",>&,> &,>&,>Zn,Bx,^/', ,^/2b+ ZB2BV+~ h,>&,> p.Bx w.Bx,^/.",+ x,>&,> p.Bx w.Bx,^/.",,<ZX,< w,>&,> p ,^/2"+Zp+Zw/XBZw2BV+ ,>&,> w.Bx,^/.",+
+ ,>&,> w.Bx,^/.",,<ZZ,< w,>&,> p ,^/2"+Zp+
+Zw/XB+IZ2BV+' &,>&,>Zq,Bx,^/,,+4 &,>&,>Z#,Bx,^/,,,<Z
+,< w,>&,> p ,^/2"+3Zp+4Zw/XB-Z 2BV+< 4,>&,> w ,^///",+I 6,>&,> w ,^///",,<Z,< w,>&,> p ,^/2"+HZp+HZw/XBAZ/+Z+,<p,<,<,<,<,<Zw}-,+Q+ZXBw~,<w~,<,rXBw~Z,<@W +oZ,<,<X,<Y,<@Y`+hZZ[XB,<[Zw,<?~,<C,<\\ZwXB?,,<,<,ZV,XBbZw,<?]ZwXB?ZwXB8Z,~3B+jZ+jZ^XB`d_Z`3B+n`,~Z`,~[w,<,<,<,<Zw~-,+tZw+Zw~,<[p[,<,<Zw-,+}ZpZ2B+{ "+}[QD "+Zw,<,<,<wz,<w,/Zp,XBp[wXBw+w/XBp-,+Zw3B+	ZpQD+
+ZpXBw  [2D+
+XBw[w~XBw~+q/daXBw~[w}XBw}+OZw~+,<p,<,<,<Zw~-,+Zw+.Zw~,<Z3B+@b+,<bZw,<8,<c,~,<p,r,<,<w,\,<,<w,
+,<,<wd,\/XBp-,+-Zw3B+)ZpQD+*ZpXBw  [2D+*XBw[w~XBw~+/,<,<w,,\+,<,<Zw~3Be+63Be+62Bf+8[w~[[Z+:[w~[ZXBwZw-,+KZw2Bf+C[wZ-,+C[w[2B+C[wZXBw+:,<g,<A,<w,<A,<g,<A,<w,<A,<hZ+Z3B+T,<i,<A,<w,<A,<i,<A,<w,<A,<j,<A,<w,<b,<w~,<jkXBpZK3B+[,<l,<A,<hZp+,<,<,<,<w~,rXBw,<,<lmXBpZW3B+j,<n,<A,<p,<A,<n,<A,<w~,<A,<o,<A,<p,<b,<w},<jkXBwZa3B+q,<o,<A,<hZw+,<p,<pp2B+,<p,<pZwZ,XBv,<w,<qrfs+,<p,<Zw-,+ZpZ2B+ "+[QD "+Zw,<,<t,<wtbu2B+,<t,<w,r,<,<vwZ[dtbu2B+,<x,<wH/Zp,XBp[wXBw+{,<x,<w,<yy+Zp0B+Zz+ p0b2+Z{,<,<S,<wU+Z{,< w/"2,,<,dy+,<,w,~,<,,~,<,w,~,&,~-.{Z`2B+*Z+-3B+--,+-,+-XB`Z2B+0ZXB-Z`3B+Z~,<ZI,<Z<,<@}`X,~Z2B+9Z3B+9,F,<,<,<@Y`+	ZZ[XBZw,<8,z,<,	mZwXB8,<,<Zw-,+IZpZ2B+G "+I[QD "+NZw,<,rZp,XBp[wXBw+C/XBFZw,<8,LXB1Zw,<8,,<ZdZw~XB8Z/3B+W2B+XZ+Z,<,<F,<\XBU,<,<,<@Y`+ZZ[XBZT,<@W +Zc,<,<,<Y,<@Y`+ZZ[XB,<	,<	
+,,Zb,XBj,<ZZb,,Zk,XBn,<Z)b,,Zo,XBrZ"A"?Z."ZbAZw,<8,Zw~,<8ZN,<,,Zw,<8,Zy,<,	AZ|,<,	dZw{XB8Z,~3B+Z+Z^XB`d_Z`3B+`,~Z`,~+Z,~Zl3B+bdZw,<,<,<Zw-,++ZXBp,<,<p[wXBw+ZXBZw/Z,~,~,<pZp-,+Z+Zp,<,<p,<C3B+,<p/[pXBp+,<,<,<Zw~3B+%,<w~,<,c+),<,<w}$,<w~,<,<XBp3B+=Zp2B+-,<p,?+.[pZXBwZp2B+5Zw3B+3-,+4Z+;Z+;2B+:Zw3B+8-,+9Z+;Z+;ZpXBwZw,+,<,<w}HZ+[pZ,<,<,<,<Zw~-,+EZw+Zw~,<Zp-,+H,+Y-,+JZ+YZp2B+MZ+YZ[pZ-,+RZp,<,<,,+Y[p[3B+XZp,<[wZ,,+YZp,/XBp-,+bZw3B+^ZpQD+_ZpXBw  [2D+_XBw[w~XBw~+B,<,<w,r,<,<w~,1[[Z[ZXBp,<w,<C2B+n,<wbXBw,<,<w,<w,<,<,<,<wZd,<wZrd,<,<wZsd,+ ,>&,>  ,^/3"+},<,+ w.",XB}Zp3B+Z+Zh+,<,<,<,<,<,<,<,<,<,<Z"XBZw{2B+Zb>ZBb>,<,<M? .",XB,<dyXBw{Z0B+&,<w{Z3B+# p&",>&,>,<w{M,,>&,>ZbM,&".Bx,^/ ,^//,,<,,<Zdy+#Z,<,<@,XBw}+,<,XBw|bMXBw~ZbM,.",XBw~Z!bMXBw,<w{MXBw} w,>&,> w}.Bx w~.Bx w~.Bx,^/,XBp,,>&,>  ,^/2"+W,<S 6,>&,> w ,^//&",,< w,>&,> p ,^/2"+EZp+EZw/XBw,<,XBw|,<w{ :,>&,> w ,^//,,<,3B+PZ
++PZ
+,<,<w{Z+,<,<wzZ(,<,< ,<wx,< ,XBw}+ w,>&,> w}.Bx w~.Bx,^/,XBp,,>&,> H ,^/2"+},<S ^,>&,> w ,^//&",,< w,>&,> p ,^/2"+lZp+mZw/XBw,<,XBw|,<w{ a,>&,> w ,^//,,<,3B+wZ!+xZ!,<,<w{ZQ,<,<wz,<wy,<",XBw}+ w,>&,> w}.Bx,^/,XBp,,>&,> p ,^/2"+ ,>&,> p ,^//,XBw,<,XBw|,<w{,<Zy,<,<",XBw}+Zw{XBw},<,<,,<,w,<,wZ/,~ p&" 0B7Z+Z3B+Z"XB,<pZp-,+
+Z++Zp,<,<q,<w,<qr,<,<#,<w~,<#rhtXBZ#XBS,<,,<p,^/[pXBp+/+Z3B+Zb,<@$ +,<Z,<,,Zs,XB3XB`,<&,<Y,<@Y`+ZZ[XBZw~,<?,<,<,<,<,<Zw{,<?,BZw{,<8,<&,`ZUbMXBp 2/",>&,> p ,^//,XBwZw}-,+I+ZXBw~Zw~bM,,>&,> w/" ,^/3b+S,<@,
+2B+S,<, 11b+VZSb'Zw~-,+XZw~+YZ(bA?XBw,,>&,>[w~[ZbM,.Bx,^/,>&,> B ,^/3"+f,<,wZaXBw e,>&,>[w~[ZbM, ,^///",b'[w~[ZbA,<S([w~ZbA[w~[[Z2B+v,<,w+?,,>&,> 3 ,^/3"+|,<,wZxb'[w~[[Z-,+[w~[[ZbA,<,w+[w~[[ZZbA,<)A[w~[[Z[Z`?d*,<,w[w}XBw}+GZw~/Zw~XB8Z,~2B+Z^XB[`XB4,<Z`Z[dRZ3B+`,~Z`,~+,<MZ},<,<+,`,<",< w1b+$,<,wXBp w/",XBw+
+Zp/,<+A,<wZp-,+)+5Zp,<,<pM,<,<w~ w,>&,> p ,^/2"+1Zp+2Zw/XBw/[pXBp+'/,<w w.",,<,<,< w,>&,> - ,^/3b+? :/"	,+A w/"	,XBwZw~-,+C+TZXBpbA?,,>&,> w/" ,^/3b+K,<,w,<w,<,<',<p,<,Z,f-,<,<A,<,w,<.'[w~XBw~+AZw/,<,w,<.,<A,</,</0,<,<A,<,w,<,wZ+Z_,<@W +	AZ,<,<1,<Y,<@Y`+	:ZZ[XB,<[Zw~,<8bZw~XB8,,<,<,Z`,XBk,<MZw~,<8,<MBZw~,<8][,<Zp-,+t+	1Zp,<[p[,<,<,<,<,<Zw~-,+z+	"ZXBwZwz,<8Z	,<,<w{[w}ZXBw{,<,<;,<;," .",XB	ZwXB&Z2B+	Z63B+	Z"+		Z",<,
+2B+	,<,Z	,<,XBp =,>&,>,<pM, ,^//,b(,<p,<,,<,wZ	3B+	Zw,<,<,,<,w,<,wZw,<,W,<,w,<,wZwXBw[w~XBw~+xZwz,<8Z|,<,<w{[w~[2B+	'[w|ZXBw{,<,<;,<;,"Z	3B+	.,<,,<,w,<,wZw~/[pXBp+r/Zw~,<8Z	#,<,<w,<81,<,<;,<;,"Z/Zw~XB8Z,~3B+	<Z+	<Z^XB`d_Z`3B+	@`,~Z`,~+Z73B+,<Z"XB	ZXB	,<w,<2,`,<,,<33,<,<43d5XBp,<d6,<Z7dXBp,<,w,<,w,<7,<,,<,w,<,w,<pZp-,+	V+	bZp,<,<8,
+2B+	[,<,+	],<,w,<,w,<p,<,,<,w,<p,R/[pXBp+	T/Z/+,<pZp-,+	gZ+Zp,<,<8,<wZd9d:/[pXBp+	e,<p,<,<,<,<Zw~-,+	q+	}ZXBp,<,rZp,XBwZw3B+	z,<Zw,XBw~,\QB+	|Zw,XBwXBw~[w~XBw~+	o,<w~,<,<,<,<,<,<Zw~-,+
++
+ZXBp[pXBwZw3B+
+
+,<Zw,XBw~,\QB+
+Zw,XBwXBw~[w~XBw~+
+Zw~/,~ 	,>&,> p.Bx,^/,>&,> y ,^/2b+
+7Z+,<w,<,<,<Zw~-,+
++VZXBw,<wZwZ2B+
+!Z+
+0Zw3Be+
+$3Be+
+$2Bf+
+&[w[Z+
+'[wZ2B;+
+*,<w,<w},1+
+0Zw3Be+
+.3Be+
+.2Bf+
+/[w[+
+0[wXBwZw2Bl+
+4,<w|,<w,<w|,
++T2B;+
+J,<w,<,<,<Zw~XBwZw-,+
+:+
+HZw,<,<<G3B+
+?[wXBw+
+GZw-,+
+G,<wzZw,,<,<wz,
+XBp2B+
+E+
+G,<wdaXBw[wXBw+
+8Zw/+T2B<+
+e,<w,<Zw-,+
+RZpZ2B+
+P "+
+R[QD "+
+dZw,<,<p,<wz @.",XB
+T,<,<,<,<,<,XBw,<w},<wy, XBp,<wZwd=[w,<[wd=Zw/,/Zp,XBp[wXBw+
+L/+T3B>+
+g2B>+,<w,<,<,<Zw~-,+
+lZw+
+Zw~,<ZpZ?,2B+
+tZp,<,<wyZ
+V,<Zw{,,+
+tZ/XBp-,+
+}Zw3B+
+yZpQD+
+zZpXBw  [2D+
+{XBw[w~XBw~+
+i/+T2B?+,<w,<,<,<Zw~-,+Zw+Zw~,<Zp3B+Zp,<,<wyZ
+q,<Zw{,,+Z/XBp-,+Zw3B+ZpQD+ZpXBw  [2D+XBw[w~XBw~+/+T2B@+/,<w,<Zw-,+!ZpZ2B+
+ "+ [QD "+.Zw,<Zp-,+',<,<wzZ	,<,<@,+*Zp,<,<wzZ$,<,<@,/Zp,XBp[wXBw+/+T2Bb+E,<w,<Zw-,+7ZpZ2B+5 "+7[QD "+DZw,<Zp-,+=,<,<wzZ(,<,<A,+AZp,<,<wzZ;,<,<A,/Zp,XBp[wXBw+1/+T2BB+r,<w,<,<,<Zw~-,+KZw+qZw~,<Zp-,+`Zp2BB+`[pZ,<,<Zw-,+WZpZ2B+U "+W[QD "+_Zw,<,<p,<wxZ?,<,<B,/Zp,XBp[wXBw+Q/+g,<p,<wyZY,<Zw~-,+dZw{+f,<CZw~dm,,/XBp-,+pZw3B+lZpQD+mZpXBw  [2D+mXBw[w~XBw~+H/+T3Be+t2Be+[wZ-,+x[wZ,+y[wZ,<,<,<,<Zw~-,+}+ZXBw,<wZw}3B+Zw|2Be+ZC+2Be+ZD+D,<,<w~mXBw,<w},<Zw-,+ZpZ2B+ "+[QD "+Zw,<,<p,<wxZa,<,<w|,/Zp,XBp[wXBw+/daXBw[w~XBw~+{Zw/+T2BE+4Zw2BE+3,<w,<Zw-,+%ZpZ2B+# "+$[QD "+2Zw,<Zp-,++,<,<wzZ,<,<E,+.[p,<,<wzZ(,<Zw~,/Zp,XBp[wXBw+/+TZ+TZw-,+9,<,<w|Z,,<,<A,,+TZw,<,<F[p2B+A,<pZ
+ZF, ,\XDZQDZp/dG3B+DZ+T,<w,<Zw-,+LZpZ2B+J "+K[QD "+SZw,<,<p,<wzZ6,<Zw|,/Zp,XBp[wXBw+E/daXBw[w~XBw~+
+Zw+,<,<,<",<G,<w~,<G[p2B+`,<p,<HH ,\XDZQDZp/,<,<IXBw3B+j,<w,<M,<',<J,<A,<w,<w,<w},",<w~,<K[p2B+p,<p,<KH ,\XDZQDZp/dIXBw3B+y,<w,<M,<',<L,<A,<w,<w,<w},",<w~,<L[p2B+,<p,<MH ,\XDZQDZp/dIXBw3B+,<w,<M,<',<M,<A,<w,<w,<w},",<w~ZNdIXBw3B+,<w,<M,<',<N,<A,<w,<w,<w},",<w~ZOdIXBw3B+,<w,<M,<',<O,<A,<w,<w,<w},",<w~ZPdIXBw3B+!,<w,<M,<',<P,<A,<w,<w,<w},"Z+,<w,<,<,<,<?XBp,,>&,> w} ,^/2"+-,<w},<M'Zw}XBpZw~-,+/+OZXBw p,>&,>,<wMXBw,.Bx,^/,XBp,,>&,> w} ,^/3b+A,<,w,<w},<M' w,>&,> w}.Bx,^/,XBp,<wA p.",XBp,,>&,> w} ,^/3b+M,<,w,<w},<M'Zw}XBp+N,<S([w~XBw~+-Zw~/,<,wZw+,<,<,<",<Q,<w~,<Q[p2B+[,<p,<RH ,\XDZQDZp/,<,<IXBw3B+e,<w,<M,<',<R,<A,<w,<w,<w},",<w~,<S[p2B+k,<p,<SH ,\XDZQDZp/,<,<IXBw3B+u,<w,<M,<',<T,<A,<w,<w,<w},",<w~,<T[p2B+{,<p,<UH ,\XDZQDZp/,<,<IXBw3B+,<w,<M,<',<U,<A,<w,<w,<w},",<w~,<V[p2B+,<p,<VH ,\XDZQDZp/,<,<IXBw3B+,<w,<M,<',<W,<A,<w,<w,<w},",<w~,<W[p2B+,<p,<XH ,\XDZQDZp/,<,<IXBw3B+%,<w,<M,<',<X,<A,<w,<w,<w},"Z+
+|f3 s*J*dH $R!&<yt2@`,% 0
+ D0B@2 0DP! ^p Ph@@M*8 -PQ EC1$H$@DA|4PiSV@L4S+#8 -VmXc*"%*!y( "DAX:tT)*p(H$HLF "t%0e~/A@+!$  I hD ( 
+0bR	m)H ("<j4 ("<P
+ h*Zt"X*&D1@:J/ H *,$'
+F  @f@Q99r!&U2pRR$	$**U`Ln,ZQMj*& A A
+|&7rp4HDpE@p(H	"p$@Ea
+!8E! @\@E
+h$@ExDd"";Q
+H$IT"DM%hR`Z)0	-+"e4,-@Xb 
+h
+g&KZ)0+"%4)`VEJh@(MULTIFILEINDEXBLOCK#0 . 1)
+(VARIABLE-VALUE-CELL FONTCHANGEFLG . 10)
+(VARIABLE-VALUE-CELL FONTPROFILE . 14)
+(VARIABLE-VALUE-CELL BOLDFONT . 18)
+(VARIABLE-VALUE-CELL PRETTYCOMFONT . 20)
+(VARIABLE-VALUE-CELL DEFAULTFONT . 25)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXCOLS . 618)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXNAMECOL . 1962)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXFILECOL . 1996)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXTYPECOL . 2041)
+(VARIABLE-VALUE-CELL FILELINELENGTH . 2332)
+(VARIABLE-VALUE-CELL INDEXFILE . 1867)
+(VARIABLE-VALUE-CELL fileIndices . 1185)
+(VARIABLE-VALUE-CELL primaryFiles . 2104)
+(VARIABLE-VALUE-CELL CURRENTINDEX . 3228)
+(VARIABLE-VALUE-CELL LISPXHIST . 2236)
+(VARIABLE-VALUE-CELL RESETVARSLST . 2265)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXLOADVARSFLG . 816)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXGETDEFFLG . 987)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXPRIMARYNAMES . 1320)
+(VARIABLE-VALUE-CELL FILELST . 1106)
+(VARIABLE-VALUE-CELL PRINTER . 1118)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXFNSMSFLG . 2349)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXVARSMSFLG . 2435)
+(VARIABLE-VALUE-CELL FCHARAR . 1257)
+(VARIABLE-VALUE-CELL FILERDTBL . 1515)
+(VARIABLE-VALUE-CELL LINENUMBER . 2591)
+(VARIABLE-VALUE-CELL LINESPERPAGE . 2600)
+(VARIABLE-VALUE-CELL PAGENUMBER . 1568)
+(VARIABLE-VALUE-CELL INDEXNUMBER . 2440)
+(VARIABLE-VALUE-CELL CURRENTFNNAME . 2442)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXFILESFLG . 1844)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXMAPFLG . 1880)
+(VARIABLE-VALUE-CELL DESTINATIONFILE . 2405)
+(VARIABLE-VALUE-CELL NEWPAGEFLG . 2388)
+(VARIABLE-VALUE-CELL NOTLISTEDFILES . 2515)
+(VARIABLE-VALUE-CELL COMMENTFLG . 3194)
+MULTIFILEINDEX
+MAPENDLINEUSERFN
+MAP.LF.FN
+MAP.^L.FN
+BOLDFONT
+(NIL)
+(LINKED-FN-CALL . ASSOC)
+(NIL)
+(LINKED-FN-CALL . CHANGEFONT)
+(NIL)
+(LINKED-FN-CALL . PRIN3)
+(NIL)
+(LINKED-FN-CALL . POSITION)
+2
+(NIL)
+(LINKED-FN-CALL . PRIN1)
+%
+(NIL)
+(LINKED-FN-CALL . SETFILEPTR)
+INPUT
+(NIL)
+(LINKED-FN-CALL . OPNJFN)
+(NIL)
+(LINKED-FN-CALL . OUTPUT)
+OUTPUT
+((T NIL FLOATCOLS FIXCOLS FIXFLOATCOLS) . 0)
+(NIL)
+(LINKED-FN-CALL . MEMB)
+"not a valid MULTIFILEINDEX specifier"
+(NIL)
+(LINKED-FN-CALL . ERROR)
+MULTIFILEINDEXNAMECOL
+"Not an integer"
+MULTIFILEINDEXFILECOL
+"Not an integer"
+MULTIFILEINDEXTYPECOL
+"Not an integer"
+"The order for the columns MUST be NAME, FILE and COLUMN"
+0
+(NIL)
+(LINKED-FN-CALL . NCHARS)
+" for files: "
+" for file: "
+", "
+" ..."
+CONCAT
+(NIL)
+(LINKED-FN-CALL . DREVERSE)
+(NIL)
+(LINKED-FN-CALL . APPLY)
+"<LISPUSERS>BCOMPL.SCRATCH;100024XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXY"
+1
+(NIL)
+(LINKED-FN-CALL . RPLSTRING)
+(NIL)
+(LINKED-FN-CALL . SUBSTRING)
+((NIL FLOATCOLS FIXFLOATCOLS) . 0)
+FLOATCOLS
+(VARIABLE-VALUE-CELL LISPXHIST . 0)
+NIL
+NIL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+CLOSEF
+OLD
+(NIL)
+(LINKED-FN-CALL . OPENFILE)
+(NIL)
+(LINKED-FN-CALL . GETFILEMAP)
+ERROR
+(NIL)
+(LINKED-FN-CALL . RESETRESTORE)
+(NIL)
+(LINKED-FN-CALL . ERROR!)
+(NIL)
+(LINKED-FN-CALL . NCONC)
+(NIL VARIABLE-VALUE-CELL PRETTYHEADER . 0)
+VARS
+(NIL)
+(LINKED-FN-CALL . LOADVARS)
+(NIL)
+(LINKED-FN-CALL . CLOSEF?)
+PROP
+IFPROP
+FILES
+PROGN
+"Can't tell if "
+" should be evaluated -- in file "
+(NIL)
+(LINKED-FN-CALL . TERPRI)
+"Doing a GETDEF of "
+" from "
+" ... "
+NOERROR
+(NIL)
+(LINKED-FN-CALL . GETDEF)
+"done."
+COMS
+(NIL)
+(LINKED-FN-CALL . PACK*)
+"Doing a GETDEF of "
+" from "
+" ... "
+"done."
+PrimaryName
+(NIL)
+(LINKED-FN-CALL . GETPROP)
+NAME
+(NIL)
+(LINKED-FN-CALL . FILENAMEFIELD)
+(NIL)
+(LINKED-FN-CALL . PUTPROP)
+BODY
+(NIL)
+(LINKED-FN-CALL . PACKFILENAME)
+(NIL)
+(LINKED-FN-CALL . FINDFILE)
+FILEDATES
+(NIL)
+(LINKED-FN-CALL . GETP)
+"Can't find file "
+"["
+"]"
+(NIL)
+(LINKED-FN-CALL . CONCAT)
+""
+"                                                                                                    "
+*MULTIFILEINDEX*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL DESTINATIONFILE . 0)
+((UNBOXED-NUM . 3) VARIABLE-VALUE-CELL NEWPAGEFLG . 0)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXNAMECOL . 0)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXFILECOL . 0)
+(VARIABLE-VALUE-CELL MULTIFILEINDEXTYPECOL . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL primaryFiles . 0)
+(NIL VARIABLE-VALUE-CELL fileIndices . 0)
+(MAPENDLINEUSERFN VARIABLE-VALUE-CELL ENDLINEUSERFN . 0)
+("" VARIABLE-VALUE-CELL INDEXFILE . 0)
+(0 VARIABLE-VALUE-CELL CURRENTINDEX . 0)
+(0 VARIABLE-VALUE-CELL INDEXNUMBER . 0)
+(NIL VARIABLE-VALUE-CELL CURRENTFNNAME . 0)
+(0 VARIABLE-VALUE-CELL LINENUMBER . 0)
+(1 VARIABLE-VALUE-CELL PAGENUMBER . 0)
+(NIL VARIABLE-VALUE-CELL MULTIFILEINDEXPRIMARYNAMES . 0)
+(NIL)
+(LINKED-FN-CALL . UPDATECHANGED)
+((DUMMY) . 0)
+MULTIFILEINDEXBLOCKA0011
+(NIL)
+(LINKED-FN-CALL . SORT)
+TTY:
+NEW
+((DUMMY) . 0)
+((DUMMY) . 0)
+RADIX
+10
+(NIL)
+(LINKED-FN-CALL . RADIX)
+OUTFILE
+(NIL)
+(LINKED-FN-CALL . OUTFILE)
+LINELENGTH
+(NIL)
+(LINKED-FN-CALL . LINELENGTH)
+(NIL)
+(LINKED-FN-CALL . REMPROP)
+(NIL)
+(LINKED-FN-CALL . OPENP)
+(NIL)
+(LINKED-FN-CALL . CLOSEF)
+"Can't find the definition for "
+HELP
+(NIL)
+(LINKED-FN-CALL . MSGETDEF)
+DLAMBDA
+LAMBDA
+expr
+expr*
+NLAMBDA
+fexpr
+fexpr*
+"Can't find the type or args for "
+RETURNS
+&
+(NIL)
+(LINKED-FN-CALL . INFILE)
+(NIL)
+(LINKED-FN-CALL . INPUT)
+"
+"
+(NIL)
+(LINKED-FN-CALL . FILEPOS)
+(NIL)
+(LINKED-FN-CALL . RATOM)
+(NIL)
+(LINKED-FN-CALL . READ)
+%
+"Page "
+""
+" "
+""
+" "
+8
+" "
+""
+6
+3
+EXTENSION
+""
+(VARIABLE-VALUE-CELL OLDVALUE . 1890)
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL RESETSTATE . 2095)
+((DUMMY) . 0)
+"Map"
+(NIL)
+(LINKED-FN-CALL . TAB)
+"** s-expression **"
+(NIL)
+(LINKED-FN-CALL . SPACES)
+": "
+(NIL)
+(LINKED-FN-CALL . PRINTDEF)
+"Map"
+"Summary for files: "
+WRITEDATE
+""
+(NIL)
+(LINKED-FN-CALL . GETFILEINFO)
+19
+"Index made on "
+-1
+29276241920
+(NIL)
+(LINKED-FN-CALL . GDATE)
+((DUMMY) . 0)
+(NIL)
+(LINKED-FN-CALL . GETEOFPTR)
+"VARS"
+((WHO IS USED BY ANY) . 0)
+(NIL)
+(LINKED-FN-CALL . MASTERSCOPE)
+((WHO IS SET BY ANY) . 0)
+(NIL)
+(LINKED-FN-CALL . UNION)
+(NIL)
+(LINKED-FN-CALL . INTERSECTION)
+MULTIFILEINDEXBLOCKA0012
+"Variable Listing"
+5
+NOTLISTEDFILES
+(NIL)
+(LINKED-FN-CALL . DREMOVE)
+(NIL)
+(LINKED-FN-CALL . /SET)
+*
+DECLARE:
+((EVAL@LOADWHEN EVAL@COMPILEWHEN COPYWHEN) . 0)
+FNS
+(NIL)
+(LINKED-FN-CALL . RPLACA)
+ALISTS
+ADDVARS
+((NLAMA NLAML LAMA LAML) . 0)
+BLOCKS
+CONSTANTS
+Constant
+Saved% Variable
+Set% Variable
+RECORDS
+ATOMRECORD
+Unnamed-
+prop:% 
+ifprop:% 
+(NIL)
+(LINKED-FN-CALL . SHOULDNT)
+MACROS
+((NIL) . 0)
+((E P) . 0)
+20
+((NIL) . 0)
+((CALL) . 0)
+(NIL)
+(LINKED-FN-CALL . PARSERELATION)
+(NIL)
+(LINKED-FN-CALL . GETRELATION)
+"called by"
+((NIL) . 0)
+((CALL) . 0)
+"calls"
+((NIL) . 0)
+((REFERENCE FREELY) . 0)
+"freely uses"
+((TABLES NIL) . 0)
+"locally uses"
+((TABLES NIL) . 0)
+"freely sets"
+((TABLES NIL) . 0)
+"locally sets"
+23
+((NIL) . 0)
+((BIND) . 0)
+"bound in"
+((NIL) . 0)
+((USE FREELY) . 0)
+"used freely in"
+((NIL) . 0)
+((USE LOCALLY) . 0)
+"used locally in"
+((NIL) . 0)
+((SMASH FREELY) . 0)
+"smashed freely in"
+((NIL) . 0)
+((SMASH LOCALLY) . 0)
+"smashed locally in"
+(LIST4 ALIST4 BINDB URET3 SKLA SKNLA URET7 SKLST COLLCT LIST3 ALIST2 CF URET1 
+FLTFX FUNBOX FMEMB URET5 URET4 EQUAL CONS LIST2 CONSNL IUNBOX SKNLST SKNI URET6
+ KT BLKAPP GUNBOX MKN BHC ASZ URET2 KNIL BLKENT ENTER1)G+B8\8=50'PEpg1@
+s,DxZ0x@(FX'>hG7x7@Ki9X.h
+@[0OW34`RF;XC5H
+cIH0(0(wZxrM`j,X9Lp_G`[
+P	C ,s@`@_`
+C0B@{>X2)HK,$pu*$Pr
+oHdh#XX@WXC>0]9@?PmvH=N8oM8x,8P	
+Z@3Z bHGx<x.@
+B!@
+	
+8	xv8Y[RY	N(nM(-vEVp4Tp	hx}(_{8Lp(]f`*c@NxmUhGD
+?Pc:(J7 2480H
+k)X
+:#@
+	f`z8CzxIshIX@QpDE@}2`x.0PXZ(5heR	xLFc8a8~_8n]8^[8NcLA#	 s ^NUQKHXJh;E$D( 3XhpFBh`4 XHAV`
+V@	?$}XGq0nPgkHMgx5e8 bCXA'@-$x"0
+h/8)H0cP_Pm[PQYAW 5U N bJHQH(3ExBx>(h<\8XB5p+30
+u,X
+b,
+J"h
+!x	lH	c	8 	00V	 =`400`0l|8`zFu@*rh
+pXn@nm0el\iHFh8>g4cx_8ZSxIp5x%1x0K)F(:&P2%@&$"p!H	 8}hthi@V1)h`}kHXXEx"H		b8	NH1 	hhu`0&d0!cxb0ax`0_xw^0q]xg\0a[xWZHQY ;TX%TH$T(
+S`RpR8QPP`P({NpuN8lMfLH\KIIFHHCGH4D !CpA8	@|?8{=xj:HT:I9H6H463X2X1X080(
+}/
+u-x
+j-
+i+
+Y+
+X)x
+O)H
+E'X
+8&x
+7$
+#(
+#
+  
+ 
+h	px	oh	g@	_h	]@	Z	T0	R	O	E@	Cp	<0	8h	-H	+h	
+h	0		X	0	`yxxk8^P\0X
+hR
+M	PK9
+XHv~Pez8RwX=wH<w87uX(sxsrPr0vipa`aa`p```P` _Pq^l\Ha[HTYPJX0BX ?Vx2U((T8"T !SXRhQ`P`P eKPFH`CG@9Fx1Ep+A@?p~?@u>p=pj=g<`d<0^;`];8Z;T:0Q:N9PK9(I9F8PA6025H'32H1H/xz/ w. q.m- i, Y)xO)hN)XL)(YXIE@3( xt@c0ba`I@X<&X%(
+
+MULTIFILEINDEX BINARY
+-.,<,~(SOURCEFILES . 1)
+(VARIABLE-VALUE-CELL DESTINATIONFILE . 0)
+(VARIABLE-VALUE-CELL NEWPAGEFLG . 0)
+MULTIFILEINDEX
+(NIL)
+(LINKED-FN-CALL . MULTIFILEINDEXBLOCK)
+(ENTERF)
+
+MAPENDLINEUSERFN BINARY
+-.,<,~MAPENDLINEUSERFN
+(NIL)
+(LINKED-FN-CALL . MULTIFILEINDEXBLOCK)
+(ENTER0)
+(PRETTYCOMPRINT MULTIFILEINDEXCOMS)
+(RPAQQ MULTIFILEINDEXCOMS ((* To get function maps of file lists.) (FNS * 
+MULTIFILEINDEXFNS) (VARS (MULTIFILEINDEXMAPFLG T) (MULTIFILEINDEXFILESFLG T) (
+MULTIFILEINDEXFNSMSFLG) (MULTIFILEINDEXVARSMSFLG) (MULTIFILEINDEXCOLS (QUOTE 
+FLOATCOLS)) (MULTIFILEINDEXNAMECOL 0) (MULTIFILEINDEXFILECOL 26) (
+MULTIFILEINDEXTYPECOL 41) (MULTIFILEINDEXGETDEFFLG)) (P (OR (BOUNDP (QUOTE 
+LINESPERPAGE)) (RPAQQ LINESPERPAGE 58)) (OR (BOUNDP (QUOTE PRINTER)) (RPAQQ 
+PRINTER LPT:)) (OR (BOUNDP (QUOTE MULTIFILEINDEXLOADVARSFLG)) (RPAQ 
+MULTIFILEINDEXLOADVARSFLG (STREQUAL (SUBSTRING HOSTNAME 1 4) "PARC")))) (
+DECLARE: DONTCOPY EVAL@COMPILE (RECORDS FunctionIndexElement FileMap 
+FunctionPointer FunctionBlock FileComElement FunctionData)) (BLOCKS (
+MULTIFILEINDEXBLOCK BOLDPRIN1 BYTECOPY CheckMapCols CreateHeading FCONCAT 
+FindFunction FixMapCols GetFileIndices GetFnList GetIndirectValue 
+GetPrimaryComsValue GetPrimaryFileName GetSourceFiles MAKEINDEXNUMBER 
+MAKESPACES MAP.LF.FN MAP.^L.FN MAPENDLINEUSERFN MULTIFILEINDEX MapCLOSEF 
+MapFNTYP MapGetArgsForDLAMBDA MapGetDefinition NEWLINE NEWPAGE ODDP PrintFiles 
+PrintMap PrintMapHeader PrintOneFile PrintVars SayFilesListed SortSourceFiles 
+TESTPAGE TranslateFileCommands XRefFn XRefFnPrintPara XRefVar (ENTRIES 
+MULTIFILEINDEX MAPENDLINEUSERFN) (LOCALFREEVARS CURRENTFNNAME CURRENTINDEX 
+DESTINATIONFILE fileIndices INDEXFILE INDEXNUMBER LINENUMBER NEWPAGEFLG 
+PAGENUMBER primaryFiles MULTIFILEINDEXPRIMARYNAMES) (SPECVARS COMMENTFLG 
+ENDLINEUSERFN FILELINELENGTH FILERDTBL LINESPERPAGE MULTIFILEINDEXGETDEFFLG 
+MULTIFILEINDEXMAPFLG MULTIFILEINDEXFILESFLG MULTIFILEINDEXFNSMSFLG 
+MULTIFILEINDEXLOADVARSFLG MULTIFILEINDEXVARSMSFLG MULTIFILEINDEXCOLS 
+MULTIFILEINDEXFILECOL MULTIFILEINDEXNAMECOL MULTIFILEINDEXTYPECOL PRINTER) (
+GLOBALVARS FILELST MACSCRATCHSTRING NOTLISTEDFILES) (BLKAPPLYFNS MAP.LF.FN 
+MAP.^L.FN))) (DECLARE: EVAL@COMPILE DONTCOPY (P (RESETSAVE DWIMIFYCOMPFLG T))) 
+(DECLARE: EVAL@COMPILE DONTCOPY (FILES (SYSLOAD SOURCE FROM VALUEOF (SELECTQ (
+SYSTEMTYPE) (JERICHO (QUOTE >LISPUSERS)) (QUOTE LISPUSERS))) COMMONFILEINDEX)) 
+(FILES (SYSLOAD FROM VALUEOF (SELECTQ (SYSTEMTYPE) (JERICHO (QUOTE >LISPUSERS))
+ (QUOTE LISPUSERS))) CIALPHORDER)))
+(RPAQQ MULTIFILEINDEXFNS (CreateHeading CheckMapCols FindFunction FixMapCols 
+GetFileIndices GetFnList GetIndirectValue GetPrimaryComsValue 
+GetPrimaryFileName GetSourceFiles MULTIFILEINDEX MAP.LF.FN MAP.^L.FN MapCLOSEF 
+MAPENDLINEUSERFN MapFNTYP MapGetArgsForDLAMBDA MapGetDefinition PrintFiles 
+PrintMap PrintMapHeader PrintOneFile PrintVars SayFilesListed SortSourceFiles 
+TranslateFileCommands XRefFn XRefFnPrintPara XRefVar))
+(RPAQ MULTIFILEINDEXMAPFLG T)
+(RPAQ MULTIFILEINDEXFILESFLG T)
+(RPAQ MULTIFILEINDEXFNSMSFLG NIL)
+(RPAQ MULTIFILEINDEXVARSMSFLG NIL)
+(RPAQQ MULTIFILEINDEXCOLS FLOATCOLS)
+(RPAQ MULTIFILEINDEXNAMECOL 0)
+(RPAQ MULTIFILEINDEXFILECOL 26)
+(RPAQ MULTIFILEINDEXTYPECOL 41)
+(RPAQ MULTIFILEINDEXGETDEFFLG NIL)
+(OR (BOUNDP (QUOTE LINESPERPAGE)) (RPAQQ LINESPERPAGE 58))
+(OR (BOUNDP (QUOTE PRINTER)) (RPAQQ PRINTER LPT:))
+(OR (BOUNDP (QUOTE MULTIFILEINDEXLOADVARSFLG)) (RPAQ MULTIFILEINDEXLOADVARSFLG 
+(STREQUAL (SUBSTRING HOSTNAME 1 4) "PARC")))
+(FILESLOAD (SYSLOAD FROM VALUEOF (SELECTQ (SYSTEMTYPE) (JERICHO (QUOTE 
+>LISPUSERS)) (QUOTE LISPUSERS))) CIALPHORDER)
+NIL

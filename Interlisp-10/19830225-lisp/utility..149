@@ -1,0 +1,844 @@
+(FILECREATED "18-APR-82 13:25:04" <NEWLISP>UTILITY.;1 24239  
+
+     changes to:  UTILITYCOMS
+
+     previous date: "22-APR-81 23:29:48" <LISP>UTILITY.;41)
+
+
+(PRETTYCOMPRINT UTILITYCOMS)
+
+(RPAQQ UTILITYCOMS [(COMS (* DIRECTORY)
+			  (COMS * DIRCOMS))
+		    (COMS (* useful under DIRECTORY)
+			  (FNS SYSOUTP READASCIZ))
+		    (COMS (* ASSEMBLETRAN)
+			  (FNS ASSEMBLETRAN)
+			  (PROP CLISPWORD ASSEMBLE))
+		    (FNS HELPBINSEARCH)
+		    (DECLARE: DOEVAL@COMPILE DONTCOPY (PROP MACRO MPWRD))
+		    (BLOCKS (NIL HELPBINSEARCH SYSOUTP READASCIZ (LOCALVARS . T)
+				 (GLOBALVARS MACSCRATCHSTRING])
+
+
+
+(* DIRECTORY)
+
+
+(RPAQQ DIRCOMS ((DECLARE: FIRST (ADDVARS (NOSWAPFNS UNDELFILE)))
+	(FNS DODIR DIRECTORY DODIRECTORY DOCOMMANDS CHECKPATTERN FILENAME DIR2 DIR4 DREAD DPRIN1 DTAB 
+	     NEXTFILE DIRPATTERN DIRPRINTNAME DMATCH DPAT)
+	(FNS /UNDELFILE /DELFILE UNDELFILE)
+	(P (NEW/FN (QUOTE DELFILE))
+	   (NEW/FN (QUOTE UNDELFILE)))
+	(VARS DIRCOMMANDS FILEINFOTYPES)
+	(LISPXMACROS DIR)
+	(DECLARE: EVAL@COMPILE DONTCOPY (RECORDS FILEGROUP)
+		  (FILES (SYSLOAD FROM LISPUSERS)
+			 CJSYS)
+		  (MACROS STRPOSL))
+	(ALISTS (JSYSES GNJFN))
+	(BLOCKS (NIL DIRECTORY DODIR /UNDELFILE /DELFILE UNDELFILE (LOCALVARS . T))
+		(DODIRECTORY DODIRECTORY CHECKPATTERN DOCOMMANDS DIR2 DIR4 DREAD DPRIN1 DTAB NEXTFILE 
+			     DIRPATTERN DIRPRINTNAME DMATCH DPAT
+			     (LOCALFREEVARS COLUMNS VALUE I JFN FILEGROUP NAMEPRINTED SCRATCHSTR 
+					    GTJFNFLAGS J NAMEFLG FILENAME FILE)
+			     (SPECVARS DEFAULTVERS DEFAULTEXT)
+			     (GLOBALVARS DIRCOMMANDS ASKUSERTTBL CHCONLST2 FILEINFOTYPES RESETVARSLST)
+			     FILENAME))))
+(DECLARE: FIRST 
+
+(ADDTOVAR NOSWAPFNS UNDELFILE)
+)
+(DEFINEQ
+
+(DODIR
+  [LAMBDA (LISPXLINE EXTRACOMS DEFAULTEXT DEFAULTVERS NOP)
+                                   (* lmm "22-APR-81 23:28")
+    (PROG ((FILE (CAR LISPXLINE))
+	   (TAIL (CDR LISPXLINE)))
+      LP  (COND
+	    ((FMEMB (CAR TAIL)
+		    (QUOTE (OR + * AND - ANDNOT)))
+	      (SETQ FILE (LIST FILE (CAR TAIL)
+			       (CADR TAIL)))
+	      (SETQ TAIL (CDDR TAIL))
+	      (GO LP)))
+          (AND EXTRACOMS (SETQ TAIL (APPEND TAIL EXTRACOMS)))
+          (OR NOP (FMEMB (QUOTE P)
+			 TAIL)
+	      (FMEMB (QUOTE PP)
+		     TAIL)
+	      (SETQ TAIL (CONS (QUOTE P)
+			       TAIL)))
+          (RETURN (DIRECTORY FILE TAIL DEFAULTEXT DEFAULTVERS])
+
+(DIRECTORY
+  [LAMBDA (FILES COMMANDS DEFAULTEXT DEFAULTVERS)
+    (DECLARE (SPECVARS FILES COMMANDS DEFAULTEXT DEFAULTVERS))
+                                   (* lmm "22-APR-81 23:29")
+    (DODIRECTORY])
+
+(DODIRECTORY
+  [LAMBDA NIL                      (* lmm "22-APR-81 23:29")
+    (RESETLST (PROG (VALUE COLUMNS NAMEFLG DELETEDONLY FILEGROUP (SCRATCHSTR (CONSTANT (CONCAT)))
+			   PRINTFLG OUTFILE PROMPTFLG FILE)
+		    (PROG [(X (SETQ COMMANDS (COND
+				  ((LISTP COMMANDS)
+				    (APPEND COMMANDS))
+				  (T (SETQ COMMANDS (LIST (OR COMMANDS (QUOTE COLLECT]
+		      COMLP
+		          [SELECTQ (CAR X)
+				   ((PAUSE P PP AUTHOR)
+				     (SETQ PRINTFLG T))
+				   (OLDVERSIONS [OR (FIXP (CADR X))
+						    (RPLACD X (CONS 1 (CDR X]
+						(pop X))
+				   (TRIMTO (SETQ PRINTFLG T)
+					   [OR (FIXP (CADR X))
+					       (RPLACD X (CONS 1 (CDR X]
+					   (pop X))
+				   ((DELETE COLLECT))
+				   (COLUMNS [SETQ COLUMNS (CAR (SETQ X (CDR X]
+					    (SETQ PRINTFLG T))
+				   (COUNTSIZE (SETQ VALUE 0))
+				   (PROMPT (SETQ X (CDR X))
+					   (SETQ PROMPTFLG T))
+				   (PRINT (pop X)
+					  (SETQ PRINTFLG T))
+				   (@ (SETQ X (CDR X))
+				      [COND
+					((FNTYP (CAR X))
+					  (RPLACA X (CONS (CAR X)
+							  (SELECTQ (NARGS (CAR X))
+								   (1 (QUOTE (JFN)))
+								   (QUOTE (JFN FILENAME]
+				      (AND (FMEMB (QUOTE FILENAME)
+						  (FREEVARS (CAR X)))
+					   (SETQ NAMEFLG T)))
+				   [OUT (SETQ OUTFILE (CAR (SETQ X (CDR X]
+				   ((DELETED UNDELETE)
+				     (SETQ DELETEDONLY T))
+				   [OLDERTHAN (RPLACA (SETQ X (CDR X))
+						      (IDIFFERENCE (IDATE)
+								   (ITIMES
+								     (CAR X)
+								     (CONSTANT (IDIFFERENCE
+										 (IDATE 
+										 "2-JAN-77 00:00")
+										 (IDATE 
+										 "1-JAN-77 00:00"]
+				   [BY (RPLACA (SETQ X (CDR X))
+					       (USERNUMBER (CAR X]
+				   (COND
+				     ((STRINGP (CAR X))
+				       (SETQ PRINTFLG T))
+				     ((FASSOC (CAR X)
+					      FILEINFOTYPES)
+				       (SETQ PRINTFLG T))
+				     ((LISTP (CAR X))
+				       (FRPLNODE2 X (APPEND (CAR X)
+							    (CDR X)))
+				       (GO COMLP))
+				     ((FIXSPELL (CAR X)
+						NIL
+						(NCONC (MAPCAR FILEINFOTYPES (FUNCTION CAR))
+						       DIRCOMMANDS)
+						NIL X NIL NIL T)
+				       (GO COMLP))
+				     (T (ERROR "invalid DIR command" (CAR X]
+		          (AND (SETQ X (CDR X))
+			       (GO COMLP)))
+		    (OR (SETQ FILEGROUP (DIRPATTERN FILES DEFAULTEXT (OR (FIXP DEFAULTVERS)
+									 (SELECTQ DEFAULTVERS
+										  ((NIL *)
+										    -3)
+										  0))
+						    DELETEDONLY))
+			(PROGN (COND
+				 (PRINTFLG (printout T "no such files" T)))
+			       (RETURN VALUE)))
+		    (COND
+		      ((OR PRINTFLG OUTFILE PROMPTFLG)
+			[COND
+			  (PROMPTFLG (RESETSAVE (SETTERMTABLE ASKUSERTTBL]
+			(RESETSAVE (OUTPUT T))
+			[COND
+			  (OUTFILE (COND
+				     ((OPENP OUTFILE)
+				       (OUTPUT OUTFILE))
+				     (T (OUTFILE OUTFILE)
+					(RESETSAVE NIL (LIST (QUOTE CLOSEF)
+							     (OUTPUT]
+			(SETQ PRINTFLG T)
+			(TAB 0 0)))
+		FILELP
+		    (DOCOMMANDS COMMANDS)
+		    (COND
+		      ((SETQ FILEGROUP (NEXTFILE FILEGROUP))
+			(GO FILELP)))
+		    (COND
+		      (PRINTFLG (TAB 0 0)))
+		    (RETURN VALUE])
+
+(DOCOMMANDS
+  (LAMBDA (COMMANDS)                                        (* lmm "15-DEC-78 09:34")
+    (PROG ((JFN (fetch JFN of FILEGROUP))
+	   (Y COMMANDS)
+	   (I 0)
+	   FILENAME NAMEPRINTED TEM TEM2)
+          (AND COLUMNS (COND
+		 ((NOT (ILESSP (SETQ I (ITIMES (IQUOTIENT (IPLUS (POSITION)
+								 COLUMNS -1)
+							  COLUMNS)
+					       COLUMNS))
+			       (IDIFFERENCE (LINELENGTH)
+					    30)))
+		   (SETQ I 0))))
+      DOCOM
+          (COND
+	    (Y (SELECTQ (CAR Y)
+			(P (DIRPRINTNAME))
+			(PP (DIRPRINTNAME T))
+			(COUNTSIZE (SETQ VALUE (IPLUS (JS SIZEF JFN NIL 0 3)
+						      VALUE)))
+			(PAUSE (READC T)
+			       (SETQ I (IPLUS I 2)))
+			(@                                  (* Arbitrary predicate -- next thing is form)
+			   (AND NAMEFLG (FILENAME))
+			   (COND
+			     ((NOT (EVAL (CAR (SETQ Y (CDR Y)))))
+			       (RETURN))))
+			(OLDVERSIONS (OR (IGEQ (fetch OLDVER of FILEGROUP)
+					       (CAR (SETQ Y (CDR Y))))
+					 (RETURN)))
+			(OLDERTHAN (COND
+				     ((OR (IGEQ (GETFILEINFO JFN (QUOTE IREADDATE))
+						(CAR (SETQ Y (CDR Y))))
+					  (IGEQ (GETFILEINFO JFN (QUOTE IWRITEDATE))
+						(CAR Y)))
+				       (RETURN))))
+			(BY (OR (EQUAL (GETFILEINFO JFN (QUOTE IAUTHOR))
+				       (CAR (SETQ Y (CDR Y))))
+				(RETURN)))
+			(DELETE (DTAB 12)
+				(PRIN1 (COND
+					 ((/DELFILE (FILENAME))
+					   "deleted")
+					 (T "can't delete"))))
+			(PROMPT (OR (DREAD (CAR (SETQ Y (CDR Y))))
+				    (RETURN)))
+			(PRINT (DPRIN1 (CAR Y)))
+			(COLLECT (SETQ VALUE (CONS (FILENAME)
+						   VALUE)))
+			((OUT COLUMNS)
+			  (pop Y))
+			(DELETED)
+			(UNDELETE (DTAB 14)
+				  (PRIN1 (COND
+					   ((/UNDELFILE (FILENAME))
+					     "undeleted")
+					   (T "can't undelete"))))
+			(TRIMTO (SETQ TEM (JS DELNF JFN (CAR (SETQ Y (CDR Y)))
+					      NIL 2))
+				(COND
+				  ((EQ (SYSTEMTYPE)
+				       (QUOTE TOPS20))
+				    (SETQ TEM (IMINUS TEM))))
+				(COND
+				  ((MINUSP TEM)
+				    (DIRPRINTNAME T)
+				    (DTAB 4)
+				    (PRINTNUM (QUOTE (FIX 4))
+					      (IMINUS TEM))
+				    (PRIN1 (COND
+					     ((EQ TEM -1)
+					       " version  deleted")
+					     (T " versions deleted")))
+				    (add I 20))))
+			(COND
+			  ((STRINGP (CAR Y))
+			    (PRIN1 (CAR Y))
+			    (add I (NCHARS (CAR Y))))
+			  ((SETQ TEM (FASSOC (CAR Y)
+					     FILEINFOTYPES))
+			    (DTAB (CADR TEM))
+			    (COND
+			      ((SETQ TEM2 (GETFILEINFO JFN (CAR Y)
+						       (CONSTANT (CONCAT))))
+				(COND
+				  ((FIXP TEM2)
+				    (PRINTNUM (OR (CDDR TEM)
+						  (LIST (QUOTE FIX)
+							(CADR TEM)))
+					      TEM2))
+				  (T (PRIN1 TEM2))))))
+			  (T (SHOULDNT))))
+	       (pop Y)
+	       (GO DOCOM))))))
+
+(CHECKPATTERN
+  (LAMBDA (FG)                                              (* lmm "20-OCT-78 02:36")
+    (AND (OR (NOT (fetch (FILEGROUP DELETED) of FG))
+	     (NEQ (LOGAND (JS GTFDB (fetch JFN of FG)
+			      1000001Q 4 4)
+			  4294967296)
+		  0))
+	 (OR (EQ (fetch PATTERN of FG)
+		 T)
+	     (DMATCH (fetch PATTERN of FG)
+		     (DUNPACK (JFNS (fetch JFN of FG)
+				    150994945
+				    (CONSTANT (CONCAT)))
+			      CHCONLST2)
+		     FG)))))
+
+(FILENAME
+  (LAMBDA NIL                                               (* lmm "17-OCT-78 00:41")
+    (OR FILENAME (SETQ FILENAME (SETQ FILE (JFNS JFN))))))
+
+(DIR2
+  (LAMBDA (NAME FIRSTFLG)                                   (* lmm "17-JAN-79 10:19")
+
+          (* NAME is a file name specification, with *'s and escapes; FIRSTFLG is 0 if this is the first of an OR, and T if 
+	  this is the first of an AND or a DIF or the only specification -
+	  FIRSTFLG=T means J should be set)
+
+
+    (PROG (D (N (QUOTE *))
+	     (E (OR DEFAULTEXT (QUOTE *)))
+	     (V (OR DEFAULTVERS (QUOTE *)))
+	     NP EP UP OTHERFIELD)
+          (COND
+	    ((AND (EQ FIRSTFLG T)
+		  (SETQ J (GTJFN NAME (OR DEFAULTEXT (AND (NEQ NAME (QUOTE *))
+							  (QUOTE *)))
+				 DEFAULTVERS GTJFNFLAGS)))
+	      (RESETSAVE NIL (LIST (QUOTE RLJFN)
+				   J))
+	      (RETURN T)))                                  (* simple GTJFN fails; need to try harder)
+          (SETQ UP (UNPACKFILENAME NAME))
+          (MAP UP (FUNCTION (LAMBDA (TAIL)
+		   (SELECTQ (CAR TAIL)
+			    (HOST (ENVAPPLY (QUOTE ERRORX)
+					    (LIST (LIST 52Q NAME))
+					    (QUOTE DIRECTORY)
+					    (QUOTE DIRECTORY)))
+			    (DIRECTORY (SETQ D (CADR TAIL))
+				       (OR FIRSTFLG (EQ D (MKATOM (JFNS J 10000000000Q SCRATCHSTR)))
+					   (ERROR NAME "directory allowed only in first filename")))
+			    (NAME (SETQ N (CADR TAIL)))
+			    (EXTENSION (SETQ E (CADR TAIL)))
+			    (VERSION (SETQ V (CADR TAIL))
+				     (OR FIRSTFLG (ERROR NAME 
+							 "version allowed only in first filename")))
+			    (SETQ OTHERFIELD T))))
+	       (FUNCTION CDDR))
+          (OR (SETQ NP N)
+	      (SETQ NP (SETQ N (QUOTE *))))
+          (OR (SETQ EP E)
+	      (SETQ EP (SETQ E "")))
+          (AND (EQ V (QUOTE *))
+	       (SETQ V -3))
+          (COND
+	    (FIRSTFLG (COND
+			((EQ FIRSTFLG T)
+			  (COND
+			    ((AND (NEQ N (QUOTE *))
+				  (STRPOSL (QUOTE (? %%  *))
+					   N))
+			      (SETQQ N *)))
+			  (COND
+			    ((AND (NEQ E (QUOTE *))
+				  (STRPOSL (QUOTE (? %%  *))
+					   E))
+			      (SETQQ E *))))
+			(T (SETQQ E *)
+			   (SETQQ N *)))
+		      (OR (SETQ J (COND
+			      (OTHERFIELD (GTJFN (PACKFILENAME (NCONC (LIST (QUOTE DIRECTORY)
+									    D
+									    (QUOTE NAME)
+									    N
+									    (QUOTE EXTENSION)
+									    E
+									    (QUOTE VERSION)
+									    V)
+								      UP))
+						 NIL NIL GTJFNFLAGS))
+			      (T (LGTJFN D N E V GTJFNFLAGS))))
+			  (RETURN))
+		      (RESETSAVE NIL (LIST (QUOTE RLJFN)
+					   J)))
+	    (OTHERFIELD (ERROR NAME "unusual file specification")))
+          (COND
+	    ((AND (EQ NP (QUOTE *))
+		  (EQ EP (QUOTE *)))
+	      (RETURN T)))
+          (RETURN (NCONC (UNPACK NP)
+			 (CONS (QUOTE %.)
+			       (UNPACK EP)))))))
+
+(DIR4
+  (LAMBDA (FG FIRSTFLG)                                     (* lmm "24-FEB-79 16:55")
+    (COND
+      ((NLISTP FG)
+	(DIR2 (SELECTQ FG
+		       ((NIL -)
+			 (QUOTE *.*))
+		       FG)
+	      FIRSTFLG))
+      (T (DPAT (CADR FG)
+	       (DIR4 (CAR FG)
+		     (AND FIRSTFLG (SELECTQ (CADR FG)
+					    ((+ OR)
+					      0)
+					    T)))
+	       (DIR4 (CADDR FG)))))))
+
+(DREAD
+  (LAMBDA (PROMPT)                                          (* lmm "21-OCT-78 01:28")
+    (PROG1 (PROG NIL
+	     LP  (PROGN (TAB I 0)
+			(PRIN1 PROMPT))
+	         (SELECTQ (READC T)
+			  ((Y y)
+			    (PRIN1 (QUOTE "Yes")
+				   T)
+			    (RETURN T))
+			  ((N n)
+			    (PRIN1 (QUOTE "No")
+				   T)
+			    (RETURN))
+			  (? (PRIN1 (QUOTE "Y or N: ")
+				    T)
+			     (GO LP))
+			  (PROGN (PRIN1 "" T)
+				 (GO LP))))
+	   (add I (NCHARS PROMPT)
+		5))))
+
+(DPRIN1
+  (LAMBDA (STR)                                             (* lmm "20-OCT-78 02:53")
+    (DTAB (NCHARS STR))
+    (PRIN1 STR)))
+
+(DTAB
+  (LAMBDA (N)                                               (* lmm "20-OCT-78 04:31")
+    (TAB I 0)
+    (add I N 1)))
+
+(NEXTFILE
+  (LAMBDA (FG FLG)                                          (* lmm "21-OCT-78 01:37")
+    (PROG (TEM)
+          (COND
+	    (FLG (GO TEST)))
+      LP  (COND
+	    ((SETQ TEM (ASSEMBLE NIL
+			         (CV (fetch J of FG))
+			         (JS GNJFN)
+			         (JRST NILRET)
+			         (LSH 1 , -23Q)
+			         (ADDI 1 , ASZ)
+			         (SKIPA)
+			     NILRET
+			         (MOVE 1 , KNIL)))
+	      (COND
+		((ZEROP TEM)
+		  (add (fetch OLDVER of FG)
+		       1))
+		(T (replace OLDVER of FG with 0)
+		   (COND
+		     ((NOT (ZEROP (LOGAND 4 TEM)))
+		       (replace NEWDIR of FG with T))))))
+	    (T (RETURN)))
+      TEST(COND
+	    ((CHECKPATTERN FG)
+	      (RETURN FG))
+	    (T (GO LP))))))
+
+(DIRPATTERN
+  (LAMBDA (FG DEFAULTEXT DEFAULTVERS DELETEDFLG)            (* lmm "17-OCT-78 02:18")
+    (PROG (J (GTJFNFLAGS (COND
+			   (DELETEDFLG 33345)
+			   (T 32833))))
+          (OR DEFAULTEXT (SETQQ DEFAULTEXT *))
+          (OR DEFAULTVERS (SETQ DEFAULTVERS -3))
+          (RETURN (NEXTFILE (create FILEGROUP
+				    PATTERN _(OR (DIR4 FG T)
+						 (RETURN))
+				    DELETED _ DELETEDFLG
+				    J _ J)
+			    T)))))
+
+(DIRPRINTNAME
+  (LAMBDA (FLG)                                             (* lmm "20-OCT-78 04:31")
+    (COND
+      ((NOT NAMEPRINTED)
+	(COND
+	  ((fetch NEWDIR of FILEGROUP)
+	    (TAB 0 T)
+	    (TERPRI)
+	    (SPACES 3)
+	    (PRIN1 (JFNS JFN 1073741825 SCRATCHSTR))
+	    (replace NEWDIR of FILEGROUP with NIL)))
+	(DTAB 20)
+	(PRIN1 (JFNS JFN (COND
+		       (FLG 167772161)
+		       (T 169885697))
+		     SCRATCHSTR))
+	(SPACES 1)
+	(SETQ NAMEPRINTED T)))))
+
+(DMATCH
+  (LAMBDA (PAT LST FG)                                      (* lmm "13-DEC-78 10:54")
+    (COND
+      ((EQ PAT T)
+	T)
+      ((NULL PAT)
+	(NULL LST))
+      (T (SELECTQ (CAR PAT)
+		  (OR (OR (DMATCH (CADR PAT)
+				  LST)
+			  (DMATCH (CDDR PAT)
+				  LST)))
+		  (AND (AND (DMATCH (CADR PAT)
+				    LST FG)
+			    (DMATCH (CDDR PAT)
+				    LST FG)))
+		  (ANDNOT (AND (NOT (DMATCH (CDDR PAT)
+					    LST))
+			       (DMATCH (CADR PAT)
+				       LST FG)))
+		  ((%% ?)
+		    (AND LST (DMATCH (CDR PAT)
+				     (CDR LST))))
+		  (( *)
+		    (OR (DMATCH (CDR PAT)
+				LST)
+			(AND LST (DMATCH PAT (CDR LST)))))
+		  (COND
+		    ((NULL LST)
+		      NIL)
+		    ((NEQ (CAR PAT)
+			  (CAR LST))
+		      (COND
+			((AND FG (IGREATERP (CHCON1 (CAR LST))
+					    (CHCON1 (CAR PAT))))
+			                                    (* gone too far)
+			  (RLJFN (fetch JFN of FG))
+			  NIL))
+		      NIL)
+		    (T (DMATCH (CDR PAT)
+			       (CDR LST)
+			       FG))))))))
+
+(DPAT
+  (LAMBDA (CONJ X Y TOP)                                    (* lmm "24-FEB-79 16:55")
+    (COND
+      ((AND (LISTP X)
+	    (LISTP Y)
+	    (EQ (CAR X)
+		(CAR Y)))
+	(CONS (CAR X)
+	      (DPAT CONJ (CDR X)
+		    (CDR Y))))
+      (T (AND (OR (NOT TOP)
+		  (AND X Y))
+	      (CONS (SELECTQ CONJ
+			     ((OR +)
+			       (QUOTE OR))
+			     ((AND *)
+			       (QUOTE AND))
+			     ((- ANDNOT)
+			       (QUOTE ANDNOT))
+			     (ERROR CONJ))
+		    (CONS X Y)))))))
+)
+(DEFINEQ
+
+(/UNDELFILE
+  (LAMBDA (FILE)                                            (* lmm "27-SEP-78 04:53")
+    (PROG NIL
+          (UNDOSAVE (LIST (QUOTE /DELFILE)
+			  (OR (SETQ FILE (UNDELFILE FILE))
+			      (RETURN))))
+          (RETURN FILE))))
+
+(/DELFILE
+  (LAMBDA (FILE)                                            (* lmm "27-SEP-78 04:53")
+    (PROG NIL
+          (UNDOSAVE (LIST (QUOTE /UNDELFILE)
+			  (OR (SETQ FILE (DELFILE (COND
+						    ((SMALLP FILE)
+						      (JFNS FILE))
+						    (T FILE))))
+			      (RETURN))))
+          (RETURN FILE))))
+
+(UNDELFILE
+  (LAMBDA (FILE)                                            (* lmm "20-OCT-78 02:42")
+    (PROG (JFN)
+          (COND
+	    ((SETQ JFN (GTJFN FILE NIL 0 33345))
+	      (RETURN (PROG1 (AND (ASSEMBLE NIL
+					    (CQ (VAG JFN))
+					    (HRLI 1 , 1)
+					    (HRLZI 2 , 40000Q)
+					    (MOVEI 3 , 0)
+					    (JSYS 64Q)      (* CHFDB)
+					    (JUMP 16Q , RNIL)
+                                                            (* return nil if fail)
+					    (SKIPA 1 , KT)
+					RNIL(HRRZ 1 , KNIL))
+				  (JFNS JFN))
+			     (RLJFN JFN))))))))
+)
+(NEW/FN (QUOTE DELFILE))
+(NEW/FN (QUOTE UNDELFILE))
+
+(RPAQQ DIRCOMMANDS ((- . PAUSE)
+		    (AU . AUTHOR)
+		    BY COLLECT (COLLECT? PROMPT " ? " COLLECT)
+		    COUNTSIZE
+		    (DA . WRITEDATE)
+		    (DEL . DELETE)
+		    (DEL? . DELETE?)
+		    DELETE
+		    (DELETE? PROMPT " delete? " DELETE)
+		    DELETED
+		    (LE LENGTH "(" BYTESIZE ")")
+		    (OBS . OLDVERSIONS)
+		    OLDVERSIONS
+		    (OLD OLDERTHAN 90)
+		    OLDERTHAN
+		    (OU . OUT)
+		    OUT P PAUSE (PR . PROTECTION)
+		    PROMPT
+		    (SI . SIZE)
+		    (TI . WRITEDATE)
+		    UNDELETE
+		    (VERBOSE AUTHOR CREATIONDATE SIZE READDATE WRITEDATE)))
+
+(RPAQQ FILEINFOTYPES ((WRITEDATE 18)
+		      (READDATE 18)
+		      (CREATIONDATE 18)
+		      (LENGTH 9)
+		      (BYTESIZE 2)
+		      (PROTECTION 6 FIX 6 8)
+		      (SIZE 5)
+		      (AUTHOR 11)
+		      (LENGTH 7)
+		      (BYTESIZE 2)))
+
+(ADDTOVAR LISPXMACROS (DIR (DODIR LISPXLINE)))
+
+(ADDTOVAR LISPXCOMS DIR)
+(DECLARE: EVAL@COMPILE DONTCOPY 
+[DECLARE: EVAL@COMPILE 
+
+(RECORD FILEGROUP (J PATTERN DELETED OLDVER NEWDIR)
+		  (ACCESSFNS J (JFN (LOGAND DATUM 262143)))
+		  OLDVER _ 0 NEWDIR _ T)
+]
+
+(FILESLOAD (SYSLOAD FROM LISPUSERS)
+	   CJSYS)
+
+(DECLARE: EVAL@COMPILE 
+
+(PUTPROPS STRPOSL MACRO [X (COND
+			     [(AND (EQ (CAR (LISTP (CAR X)))
+				       (QUOTE QUOTE))
+				   (LISTP (CADAR X)))
+			       (LIST (QUOTE STRPOSL)
+				     (LIST (QUOTE CONSTANT)
+					   (LIST (QUOTE MAKEBITTABLE)
+						 (CAR X)
+						 (EQ (CADDDR X)
+						     T)))
+				     (CADR X)
+				     (CADDR X)
+				     (AND (NEQ (CADDDR X)
+					       T)
+					  (CADDDR X]
+			     (T (QUOTE IGNOREMACRO])
+)
+)
+
+(ADDTOVAR JSYSES (GNJFN 15 1))
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: NIL DIRECTORY DODIR /UNDELFILE /DELFILE UNDELFILE (LOCALVARS . T))
+(BLOCK: DODIRECTORY DODIRECTORY CHECKPATTERN DOCOMMANDS DIR2 DIR4 DREAD DPRIN1 DTAB NEXTFILE 
+	DIRPATTERN DIRPRINTNAME DMATCH DPAT
+	(LOCALFREEVARS COLUMNS VALUE I JFN FILEGROUP NAMEPRINTED SCRATCHSTR GTJFNFLAGS J NAMEFLG 
+		       FILENAME FILE)
+	(SPECVARS DEFAULTVERS DEFAULTEXT)
+	(GLOBALVARS DIRCOMMANDS ASKUSERTTBL CHCONLST2 FILEINFOTYPES RESETVARSLST)
+	FILENAME)
+]
+
+
+
+(* useful under DIRECTORY)
+
+(DEFINEQ
+
+(SYSOUTP
+  (LAMBDA (FILE)                                            (* lmm "29-SEP-78 00:58")
+    (PROG ((JFN (OR (SMALLP FILE)
+		    (GTJFN FILE (QUOTE SAV)
+			   0 32769))))
+          (COND
+	    ((IGREATERP (GETFILEINFO JFN (QUOTE SIZE))
+			75)
+	      (OR (JS OPENF JFN (XWD 440000Q 202400Q)
+		      NIL T)
+		  (ERRORX (LIST 9 FILE)))                   (* open file)
+	      (RETURN (PROG1 (COND
+			       ((IEQP (JS RIN JFN NIL 3 2)
+				      (CONSTANT (SIXBIT (QUOTE SYSOUT))))
+				 ((LAMBDA (N F)
+				     (LIST F N))
+				   (JS BIN JFN NIL NIL 2)
+				   (READASCIZ JFN)))
+			       ((IEQP (JS RIN JFN NIL 3 2)
+				      (CONSTANT (SIXBIT (QUOTE MAKSYS))))
+				 (LIST NIL (JS BIN JFN NIL NIL 2))))
+			     (JS CLOSF (XWD (COND ((EQ JFN FILE)
+						   400000Q)
+						  (T 0))
+					    JFN)))))))))
+
+(READASCIZ
+  (LAMBDA (JFN)                                             (* lmm "20-OCT-78 03:07")
+                                                            (* used by SYSOUTP to read in file name of parent)
+    (ASSEMBLE NIL
+	      (CQ MACSCRATCHSTRING)
+	      (FASTCALL UPATM)
+	      (CQ JFN)
+	      (SUBI 1 , ASZ)
+	      (MOVEI 2 , 7)
+	      (JS SFBSZ)
+	      (MOVE 2 , 3)
+	      (MOVEI 3 , -2 (4))
+	      (MOVEI 4 , 0)
+	      (JS SIN)
+	      (IDPB 2 , 4)
+	      (CQ (MKATOM (STRCONC1 (CONSTANT (CONCAT))))))))
+)
+
+
+
+(* ASSEMBLETRAN)
+
+(DEFINEQ
+
+(ASSEMBLETRAN
+  [LAMBDA (FAULTX)                 (* wt: "24-JUL-78 22:08")
+                                   (* Compiles the form FAULTX and gives the compiled code as its "translation")
+    (COND
+      ((AND (NOT DWIMIFYFLG)
+	    (GETD (QUOTE COMPILE2)))
+	(PROG (LCFIL LAPFLG (STRF T)
+		     SVFLG TEM LISPXHIST)
+	      (DECLARE (SPECVARS LCFIL LAPFLG STRF SVFLG))
+	      (COMPILE2 [SETQ TEM (PACK (LIST [COND
+						((LITATOM FAULTFN)
+						  FAULTFN)
+						(T (SETQ FAULTFN (QUOTE LAMBDA-EXPR]
+					      (GENSYM (QUOTE C]
+			(COMPILE1A FAULTFN
+				   (CONS (QUOTE LAMBDA)
+					 (CONS NIL (NCONC1 (PROG (($$LST1 (CDDR EXPR))
+								  $$VAL Y $$TEM1 $$TEM2)
+							     $$LP[SETQ Y (CAR (OR (LISTP $$LST1)
+										  (GO $$OUT]
+							         (COND
+								   ([NOT (FMEMB (CAR Y)
+										(QUOTE (* CLISP: 
+											  DECLARE]
+								     (GO $$OUT)))
+							         (SETQ $$TEM1 Y)
+							         [COND
+								   [$$TEM2 (FRPLACD $$TEM2
+										    (SETQ $$TEM2
+										      (LIST $$TEM1]
+								   (T (SETQ $$VAL (SETQ $$TEM2
+									  (LIST $$TEM1]
+							     $$ITERATE
+							         (SETQ $$LST1 (CDR $$LST1))
+							         (GO $$LP)
+							     $$OUT
+							         (RETURN $$VAL))
+							   FAULTX)))
+				   T))
+	      (CLISPTRAN FAULTX (LIST TEM))
+	      (RETURN FAULTX)))
+      (T (ERROR!])
+)
+
+(PUTPROPS ASSEMBLE CLISPWORD (ASSEMBLETRAN))
+(DEFINEQ
+
+(HELPBINSEARCH
+  (LAMBDA (WORD FILE)                                       (* lmm "20-OCT-78 03:07")
+                                                            (* used by HELPSYS)
+    (PROG ((MIN (IDIFFERENCE (CHCON1 WORD)
+			     64))
+	   MID MAX A)
+          (SETQ FILE (INPUT (INPUT FILE)))
+          (SETQ MAX (COND
+	      ((ILESSP MIN 1)
+		0)
+	      ((IGREATERP MIN 26)
+		(COND
+		  ((AND (IGREATERP MIN 32)
+			(ILESSP MIN 59))
+		    (IPLUS MIN -32))
+		  (T 27)))
+	      (T MIN)))
+          (SETQ MIN (MPWRD MAX FILE))
+          (SETQ MAX (MPWRD (ADD1 MAX)
+			   FILE))
+      LP  (SETFILEPTR FILE (MPWRD (SETQ MID (IQUOTIENT (IPLUS MIN MAX)
+						       2))
+				  FILE))
+          (COND
+	    ((EQUAL (SETQ A (READ FILE))
+		    WORD)
+	      (RETURN (READ FILE T)))
+	    ((ALPHORDER WORD A)
+	      (COND
+		((IEQP MID MAX)
+		  (RETURN))
+		(T (SETQ MAX MID))))
+	    (T (COND
+		 ((IEQP MIN MID)
+		   (RETURN))
+		 (T (SETQ MIN MID)))))
+          (GO LP))))
+)
+(DECLARE: DOEVAL@COMPILE DONTCOPY 
+
+(PUTPROPS MPWRD MACRO [LAMBDA (N FILE)
+			(PROG ((W (MAPWORD (LRSH N 1)
+					   FILE)))
+			      (RETURN (LOC (COND
+					     ((BIT 35 N)
+					       (CAR W))
+					     (T (CDR W])
+)
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: NIL HELPBINSEARCH SYSOUTP READASCIZ (LOCALVARS . T)
+	(GLOBALVARS MACSCRATCHSTRING))
+]
+(DECLARE: DONTCOPY (PUTPROPS UTILITY COPYRIGHT (NONE)))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (1721 16409 (DODIR 1733 . 2406) (DIRECTORY 2410 . 2633) (DODIRECTORY 2637 . 5730) (
+DOCOMMANDS 5734 . 8543) (CHECKPATTERN 8547 . 9048) (FILENAME 9052 . 9216) (DIR2 9220 . 11888) (DIR4 
+11892 . 12300) (DREAD 12304 . 12798) (DPRIN1 12802 . 12952) (DTAB 12956 . 13094) (NEXTFILE 13098 . 
+13879) (DIRPATTERN 13883 . 14337) (DIRPRINTNAME 14341 . 14842) (DMATCH 14846 . 15906) (DPAT 15910 . 
+16406)) (16411 17602 (/UNDELFILE 16423 . 16681) (/DELFILE 16685 . 17011) (UNDELFILE 17015 . 17599)) (
+19871 21279 (SYSOUTP 19883 . 20728) (READASCIZ 20732 . 21276)) (21311 22707 (ASSEMBLETRAN 21323 . 
+22704)) (22761 23779 (HELPBINSEARCH 22773 . 23776)))))
+STOP

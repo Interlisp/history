@@ -1,0 +1,49 @@
+windows, a single window, T or NIL.
+MULTIWFREE frees the links from @i{SuperWindow} to the windows in
+@i(SubWindowLst) as well as the pointers back.  If @i(SubWindowLst) is T,
+then @i(SuperWindow) is freed of all its subwindows (and they of it).
+
+@b<MULTIWADVICE ()> @>[@i(function)]
+
+MULTIWADVICE advises functions based on the @i(scripts) in 
+\MULTIWADVISEDFNS. The function returns a list of the advised functions
+which should be saved if one wishes to UNADVISE the functions (which is
+recommended before another call to (MULTIWADVICE)).
+
+@b<MULTIWGRAPH (@i{SuperWindow DisplayWindow})> @>[@i(function)]
+
+MULTIWGRAPH graphs a window relation structure in @i(DisplayWindow)
+(which can be 
+NIL).  Useful in debugging relationships between windows.  The 
+GRAPHER package must be loaded to use this function.
+
+@b<\MULTIWGRAPH (@i{NodeWindow})> @>[@i(function)]
+
+Function MULTIWGRAPH uses to recursively follow down the window links.
+
+@subheading(MultiWindow Window Functions)
+
+Most are functionally identical to the normal window functions except they
+perform the proper task on all of the subwindows and reset the window
+structure.
+
+@b<\MULTIWMOVEFN (@i{Window NewPosition})> @>[@i(function)]
+
+@b<\MULTIWCLOSEFN (@i{Window})> @>[@i(function)]
+
+@b<\MULTIWSHRINKFN (@i{Window})> @>[@i(function)]
+
+@b<\MULTIWEXPANDFN (@i{Window})> @>[@i(function)]
+
+@b<\MULTIWTOTOPFN (@i{Window})> @>[@i(function)]
+
+@b<\MULTIWBURYFN (@i{Window})> @>[@i(function)]
+
+@b<\MULTIWPROMPT (@i{PromptString})> @>[@i(function)]
+
+Prints @i(PromptString) in PROMPTWINDOW and returns a 
+(WHICHW (GETPOSITION))
+
+@b(@u{NOTE:}) A demonstration of multiwindows can be found in
+@b(MULTIW.DEMO).  The GRAPHER package should be loaded, as well
+as @b(MUL

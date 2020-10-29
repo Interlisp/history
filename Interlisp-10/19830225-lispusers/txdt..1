@@ -1,0 +1,3459 @@
+(FILECREATED "20-NOV-81 08:33:28" {PHYLUM}<LISPUSERS>TXDT.;4 143654 
+
+     changes to:  TXDTINIT
+
+     previous date: " 8-AUG-81 12:03:43" {PHYLUM}<LISPUSERS>TXDT.;3)
+
+
+(PRETTYCOMPRINT TXDTCOMS)
+
+(RPAQQ TXDTCOMS [(FNS * TXDTFNS)
+	(VARS EOLCODE LFCODE (TXDTESCAPECHAR (QUOTE %))
+	      TXDTINSERTFILEKEY
+	      (STRINGPOINTERTEMP (MKSTRING))
+	      (EDITSEARCHPATTERNSIZE 0)
+	      (EDITREADFILELST NIL)
+	      (TXDTPTRCHAR (QUOTE ^))
+	      (TXDTRECORDCNT 0)
+	      (TXDTBUFFERCNT 0)
+	      (TXDTADDRCNT 0)
+	      (TXDTGRABBEDOBJCNT 0)
+	      (TXDTEXTENSION NIL)
+	      (TXDTPOETFLG NIL)
+	      (TXDTRESETFORMBREAKLOCKSFLG NIL)
+	      (TXDTCURBUFLST NIL)
+	      (TXDTCHARACTER0 (CHARACTER 0))
+	      (TXDTSCRATCHFILE T)
+	      (TXDTPRINTUSERFNBOX NIL)
+	      HIDDENFNS
+	      (TXDTPAGESIZE 512)
+	      (TXDTSCRATCHSTRINGPTR ""))
+	(DECLARE: DOEVAL@COMPILE DOCOPY (RECORDS TXDTRECORD TXDTADDR TXDTGRABBEDOBJ TXDTBUFFER 
+						 TXDTSOURCE)
+		  (PROP MACRO TXDTSETQQ))
+	[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+		  (BLOCKS (TXDT EDITCHAR EDITCLOSEALL EDITCLOSEF EDITCLOSEST EDITCONTIGP 
+				EDITCOPYGRABBED EDITCOUNTLC EDITDELETE EDITFINDSPLITREC EDITGOTO 
+				EDITGRAB EDITGREATERP EDITINSERT EDITINSERTESCAPE EDITMAPCHARS 
+				EDITMKSTRING EDITMOVE EDITMOVEC EDITMOVEL EDITPRINT EDITPUTMSG 
+				EDITRESETSAVEFN EDITSEARCH EDITSUBST EDITWRITE GETTOPREC PRINTSEG 
+				TXDTADDRP TXDTANCHOREDFIND TXDTBOX TXDTBOXRECPOS TXDTCHAR 
+				TXDTCLOSEALL TXDTCLOSEF TXDTCLOSEST TXDTCONTIGIFY TXDTCONTIGP 
+				TXDTCOPY TXDTCOUNTLC TXDTCOUNTPIECES TXDTCURBUF TXDTDELETE TXDTEMPTYP 
+				TXDTEOLP TXDTEQUAL TXDTFILEPOSITION TXDTFIND TXDTFREESPACE TXDTGETMSG 
+				TXDTGETMSGLST TXDTGOTO TXDTGRAB TXDTGRABBEDP TXDTGREATERP TXDTINIT 
+				TXDTINSERT TXDTKILLBUF TXDTMAPCHARS TXDTMAPMSG TXDTMKSTRING TXDTMOVE 
+				TXDTNEXTPIECE TXDTPIECE TXDTPREVPIECE TXDTPRINT TXDTPUTMSG TXDTREAD 
+				TXDTREADC TXDTRESETFORMFN TXDTSUBST TXDTSUBSTJFNS TXDTUNBOX 
+				TXDTUNBOXRECPOS TXDTVALIDP TXDTVERIFYADDR TXDTWHEREIS TXDTWRITE 
+				UNMARK
+				(ENTRIES EDITRESETSAVEFN TXDTADDRP TXDTANCHOREDFIND TXDTBOX 
+					 TXDTBOXRECPOS TXDTCHAR TXDTCLOSEALL TXDTCLOSEF TXDTCLOSEST 
+					 TXDTCONTIGIFY TXDTCONTIGP TXDTCOPY TXDTCOUNTLC 
+					 TXDTCOUNTPIECES TXDTCURBUF TXDTDELETE TXDTEMPTYP TXDTEOLP 
+					 TXDTEQUAL TXDTFILEPOSITION TXDTFILEPOSITION TXDTFIND 
+					 TXDTFREESPACE TXDTGETMSG TXDTGETMSGLST TXDTGOTO TXDTGRAB 
+					 TXDTGRABBEDP TXDTGREATERP TXDTINIT TXDTINSERT TXDTKILLBUF 
+					 TXDTMAPCHARS TXDTMAPCHARS TXDTMAPMSG TXDTMKSTRING TXDTMOVE 
+					 TXDTNEXTPIECE TXDTPIECE TXDTPREVPIECE TXDTPRINT TXDTPUTMSG 
+					 TXDTREAD TXDTREADC TXDTRESETFORMFN TXDTSUBST TXDTSUBSTJFNS 
+					 TXDTSUBSTJFNS TXDTUNBOX TXDTUNBOXRECPOS TXDTVALIDP 
+					 TXDTVERIFYADDR TXDTWHEREIS TXDTWHEREIS TXDTWRITE)
+				(NOLINKFNS TXDTPRINTUSERFN)
+				(BLKLIBRARY ASSOC EQUAL MEMB)
+				(LOCALVARS CHAIN EDITCHARCODE EDITCHARPOS EDITCHARREC EDITCLOSESTREC 
+					   EDITCOUNTC EDITCOUNTL EDITCOUNTSTOPPOS EDITCOUNTSTOPREC 
+					   EDITDELETEPOS EDITDELETEREC EDITGOTOPOS EDITGOTOREC 
+					   EDITINSERTPOS1 EDITINSERTPOS2 EDITINSERTREC1 
+					   EDITINSERTREC2 EDITMOVECPOS EDITMOVECREC EDITMOVELPOS 
+					   EDITMOVELREC EDITSEARCHPOS1 EDITSEARCHPOS2 EDITSEARCHREC1 
+					   EDITSEARCHREC2)
+				(GLOBALVARS BTMREC BUFFEREDLINEFEED CRCHARACTER EDITCLOSESTLST 
+					    EDITREADFILELST EDITSEARCHNEXTARRAY 
+					    EDITSEARCHPATTERNARRAY EDITSEARCHPATTERNSIZE EOLCHARACTER 
+					    EOLCODE LFCHARACTER LFCODE STRINGPOINTERTEMP TOPREC TXDT$ 
+					    TXDTADDRCNT TXDTBUFFERCNT TXDTCHARACTER0 
+					    TXDTCLOSESTFORWFLG TXDTCURBUF TXDTCURBUFLST 
+					    TXDTCURRENTPAGE TXDTCURRENTPAGEFILE TXDTCURRENTPAGENO 
+					    TXDTDELTA TXDTESCAPECHAR TXDTEXTENSION TXDTFINDCNT 
+					    TXDTGRABADDR TXDTGRABBEDOBJCNT TXDTINSERTFILEKEY 
+					    TXDTINSERTFILEPOS1BOX TXDTINSERTFILEPOS2BOX 
+					    TXDTINSERTPOS1BOX TXDTINSERTPOS2BOX TXDTPAGESIZE 
+					    TXDTPOETDOT TXDTPOETDOTADDR TXDTPRINTUSERFNBOX 
+					    TXDTPTRCHAR TXDTRECORDCNT TXDTRESETFORMBREAKLOCKSFLG 
+					    TXDTSCRATCHFILE TXDTSCRATCHSTRING TXDTSUBSTCNT 
+					    TXDTUNBOXPOS TXDTVERIFYPOS)
+				(SPECVARS LISPXHISTORY TXDTPOETFLG]
+	(MACROS * TXDTMACROS)
+	(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS (ADDVARS (NLAMA)
+									      (NLAML)
+									      (LAMA)))
+	(P (COND ((NULL (GETD (QUOTE TXDTPRINTUSERFN)))
+		  (PUTD (QUOTE TXDTPRINTUSERFN)
+			(QUOTE (LAMBDA (JFN FILE)
+				       NIL])
+
+(RPAQQ TXDTFNS (EDITCHAR EDITCLOSEALL EDITCLOSEF EDITCLOSEST EDITCONTIGP EDITCOPYGRABBED EDITCOUNTLC 
+			 EDITDELETE EDITFINDSPLITREC EDITGOTO EDITGRAB EDITGREATERP EDITINSERT 
+			 EDITINSERTESCAPE EDITMAPCHARS EDITMKSTRING EDITMOVE EDITMOVEC EDITMOVEL 
+			 EDITPRINT EDITPUTMSG EDITRESETSAVEFN EDITSEARCH EDITSUBST EDITWRITE 
+			 GETBTMREC GETTOPREC MARKEDP PRINTSEG RTXDT TXDTADDRP TXDTANCHOREDFIND 
+			 TXDTBOX TXDTBOXRECPOS TXDTCHAR TXDTCLOSEALL TXDTCLOSEF TXDTCLOSEST 
+			 TXDTCONTIGIFY TXDTCONTIGP TXDTCOPY TXDTCOUNTLC TXDTCOUNTPIECES TXDTCURBUF 
+			 TXDTDELETE TXDTEMPTYP TXDTEOLP TXDTEQUAL TXDTFILEPOSITION TXDTFIND 
+			 TXDTFREESPACE TXDTGETMSG TXDTGETMSGLST TXDTGOTO TXDTGRAB TXDTGRABBEDP 
+			 TXDTGREATERP TXDTINIT TXDTINSERT TXDTKILLBUF TXDTMAPCHARS TXDTMAPMSG 
+			 TXDTMKSTRING TXDTMOVE TXDTNEXTPIECE TXDTPIECE TXDTPREVPIECE TXDTPRINT 
+			 TXDTPUTMSG TXDTREAD TXDTREADC TXDTRESETFORMFN TXDTSUBST TXDTSUBSTJFNS 
+			 TXDTUNBOX TXDTUNBOXRECPOS TXDTVALIDP TXDTVERIFYADDR TXDTWHEREIS TXDTWRITE 
+			 UNMARK))
+(DEFINEQ
+
+(EDITCHAR
+  [LAMBDA (REC POS BACKWARDS)                                (* WTL: "12-NOV-79 09:38")
+
+          (* returns the ASCII code of char at REC,POS and sets EDITCHARREC,EDITCHARPOS to location of next/prev char, 
+	  depending on BACKWARDS. CR/LF is treated as one char and returned as EOL. Uses three aux funcstion, EDITCHAR1-3.)
+
+
+
+          (* A sketch of whats to come: EDITCHARREC,EDITCHARPOS will always be where the action is. BASEADDR and OFFSET1 
+	  will always remain set to the character currently under CONSIDERATION.)
+
+
+    (SETQ EDITCHARREC REC)
+    (SETQ EDITCHARPOS POS)
+    [COND
+      ((BTMRECP REC)
+	(SETQ EDITCHARCODE NIL))
+      (T (LOADREC EDITCHARREC)
+	 (SETQ EDITCHARCODE (GETBASEBYTE TXDTCURRENTPAGE EDITCHARPOS]
+    [COND
+      [BACKWARDS (COND
+		   ((ILESSP (SETQ EDITCHARPOS (SUB1 EDITCHARPOS))
+			    (fetch TXDTOFFSET1 of EDITCHARREC))
+                                                             (* if no room on this rec step to prev)
+		     (COND
+		       ((TOPRECP (SETQ EDITCHARREC (fetch TXDTPREV of EDITCHARREC)))
+                                                             (* if prev is top, return NIL)
+			 (SETQ EDITCHARPOS 0)
+			 NIL)
+		       (T                                    (* otherwise, set pos and load if nec)
+			  (SETQ EDITCHARPOS (SUB1 (fetch TXDTOFFSET2 of EDITCHARREC)))
+			  T]
+      (T (COND
+	   ((ILESSP (SETQ EDITCHARPOS (ADD1 EDITCHARPOS))
+		    (fetch TXDTOFFSET2 of EDITCHARREC))
+	     T)
+	   ((BTMRECP (SETQ EDITCHARREC (fetch TXDTNEXT of EDITCHARREC)))
+                                                             (* if we step forward and hit btm, return NIL)
+	     (SETQ EDITCHARPOS 0)
+	     NIL)
+	   (T                                                (* otherwise, set pos and load rec if needed)
+	      (SETQ EDITCHARPOS (fetch TXDTOFFSET1 of EDITCHARREC))
+	      T]
+    EDITCHARCODE])
+
+(EDITCLOSEALL
+  [LAMBDA NIL                                                (* edited: "19-OCT-78 15:41")
+    (PROG1 EDITREADFILELST [MAPC EDITREADFILELST (FUNCTION (LAMBDA (FILE)
+				     (COND
+				       ((OPENP FILE)
+					 (CLOSEF FILE]
+	   (SETQ EDITREADFILELST NIL])
+
+(EDITCLOSEF
+  [LAMBDA (FILENAME)                                         (* edited: "19-OCT-78 15:42")
+                                                             (* close FILENAME. Un-PMAPs any pages associated with 
+							     that file first.)
+    (PROG NIL
+          [COND
+	    ((NUMBERP FILENAME)
+	      (SETQ FILENAME (JFNS FILENAME]
+          (SETQ FILENAME (CLOSEF FILENAME))
+          (SETQ EDITREADFILELST (REMOVE FILENAME EDITREADFILELST))
+          (RETURN FILENAME])
+
+(EDITCLOSEST
+  [LAMBDA (REC POS RPALST)
+
+          (* RPALST is a list of the form (rec pos . address) and this fn finds the rec,pos on that list which is closest to
+	  REC,POS and returns the corresponding address. This function may also return TOP or BTM if that is closer than 
+	  anything on the list. Thus, if the list is initially empty, the fn will always return either TOP or BTM.
+	  The method used is to search up and down from REC,POS simultaneously until finding one of the distinguished 
+	  addresses, and then searching only in the other direction until the either a closer address is found or the 
+	  distance is exceeded.)
+
+
+    (PROG (BREC FREC BPOS FPOS FOUNDBFLG FOUNDFFLG BDELTA FDELTA BADDR FADDR)
+          (SETQ BREC (SETQ FREC REC))
+          (SETQ BDELTA (IDIFFERENCE POS (fetch TXDTOFFSET1 of BREC)))
+          (SETQ FDELTA (IDIFFERENCE (fetch TXDTOFFSET2 of FREC)
+				    POS))
+      LP  [OR FOUNDBFLG (COND
+		([for RPA in RPALST thereis (AND (EQ BREC (CAR RPA))
+						 (OR (NEQ BREC REC)
+						     (NOT (IGREATERP (CADR RPA)
+								     POS]
+		  (SETQ BPOS -10000)
+		  [for RPA in RPALST do (COND
+					  ((AND (EQ BREC (CAR RPA))
+						(OR (NEQ BREC REC)
+						    (NOT (IGREATERP (CADR RPA)
+								    POS)))
+						(IGREATERP (CADR RPA)
+							   BPOS))
+					    (SETQ BPOS (CADR RPA))
+					    (SETQ BADDR (CDDR RPA]
+		  [SETQ BDELTA (COND
+		      ((EQ BREC REC)
+			(IDIFFERENCE POS BPOS))
+		      (T (IPLUS BDELTA (fetch TXDTOFFSET2 of BREC)
+				(IMINUS BPOS]
+		  (SETQ FOUNDBFLG T))
+		((TOPRECP BREC)
+		  (SETQ BADDR (QUOTE TOP))
+		  (SETQ FOUNDBFLG T))
+		((NEQ BREC REC)
+		  (SETQ BDELTA (IPLUS BDELTA (fetch TXDTOFFSET2 of BREC)
+				      (IMINUS (fetch TXDTOFFSET1 of BREC]
+          [OR FOUNDFFLG (COND
+		([for RPA in RPALST thereis (AND (EQ FREC (CAR RPA))
+						 (OR (NEQ FREC REC)
+						     (IGREATERP (CADR RPA)
+								POS]
+		  (SETQ FPOS 10000)
+		  [for RPA in RPALST do (COND
+					  ((AND (EQ FREC (CAR RPA))
+						(OR (NEQ FREC REC)
+						    (IGREATERP (CADR RPA)
+							       POS))
+						(ILESSP (CADR RPA)
+							FPOS))
+					    (SETQ FPOS (CADR RPA))
+					    (SETQ FADDR (CDDR RPA]
+		  [SETQ FDELTA (COND
+		      ((EQ FREC REC)
+			(IDIFFERENCE FPOS POS))
+		      (T (IPLUS FDELTA FPOS (IMINUS (fetch TXDTOFFSET1 of FREC]
+		  (SETQ FOUNDFFLG T))
+		((BTMRECP FREC)
+		  (SETQ FPOS 0)
+		  (SETQ FADDR (QUOTE BTM))
+		  (SETQ FOUNDFFLG T))
+		((NEQ FREC REC)
+		  (SETQ FDELTA (IPLUS FDELTA (fetch TXDTOFFSET2 of FREC)
+				      (IMINUS (fetch TXDTOFFSET1 of FREC]
+          [COND
+	    [FOUNDBFLG (COND
+			 [FOUNDFFLG (COND
+				      ((ILESSP BDELTA FDELTA)
+					(SETQ TXDTCLOSESTFORWFLG NIL)
+					(SETQ EDITCLOSESTREC BREC)
+					(RETURN BADDR))
+				      (T (SETQ TXDTCLOSESTFORWFLG T)
+					 (SETQ EDITCLOSESTREC FREC)
+					 (RETURN FADDR]
+			 ((IGREATERP FDELTA BDELTA)
+			   (SETQ TXDTCLOSESTFORWFLG NIL)
+			   (SETQ EDITCLOSESTREC BREC)
+			   (RETURN BADDR]
+	    (FOUNDFFLG (COND
+			 ((IGREATERP BDELTA FDELTA)
+			   (SETQ TXDTCLOSESTFORWFLG T)
+			   (SETQ EDITCLOSESTREC FREC)
+			   (RETURN FADDR]
+          (OR FOUNDBFLG (SETQ BREC (fetch TXDTPREV of BREC)))
+          (OR FOUNDFFLG (SETQ FREC (fetch TXDTNEXT of FREC)))
+          (GO LP])
+
+(EDITCONTIGP
+  [LAMBDA (REC1 POS1 REC2 POS2)                              (* WTL: "12-NOV-79 17:22")
+                                                             (* Returns T iff the text between the two addresses is 
+							     contiguously on a file -- not necessarily same rec 
+							     though!)
+    (PROG (NEXTREC NEXTSOURCE TEMPSOURCE NEXTFILENAME TEMPFILENAME NEXTPAGE TEMPPAGE)
+          [COND
+	    ((BTMRECP REC1)                                  (* If we are starting at BTM, then return NIL unless 
+							     window emtpy)
+	      (RETURN (EQ REC1 REC2]
+          (EDITMOVEC 1 REC2 POS2 T)                          (* Back up to last char.)
+      LOOP[COND
+	    ((EQ REC1 EDITMOVECREC)                          (* If we have finally pushed REC1 to the rec at the end 
+							     of the window, just check offsets to be sure)
+	      (RETURN (NOT (ILESSP EDITMOVECPOS POS1]
+          (SETQ NEXTREC (fetch TXDTNEXT of REC1))            (* Get the next rec to see if the step from REC1 to next
+							     is contig)
+          (COND
+	    ((BTMRECP NEXTREC)                               (* If we have hit btm we have failed, since REC2 
+							     couldn't possibly be btm, since we backed it up by one)
+	      (RETURN NIL)))
+          (COND
+	    ((OR (AND [IEQP [SETQ TEMPPAGE (fetch (TXDTSOURCE PAGENO) of (SETQ TEMPSOURCE
+									   (fetch TXDTSOURCE
+									      of REC1]
+			    (SETQ NEXTPAGE (fetch (TXDTSOURCE PAGENO) of (SETQ NEXTSOURCE
+									   (fetch TXDTSOURCE
+									      of NEXTREC]
+		      (EQ (SETQ TEMPFILENAME (fetch (TXDTSOURCE FILENAME) of TEMPSOURCE))
+			  (SETQ NEXTFILENAME (fetch (TXDTSOURCE FILENAME) of NEXTSOURCE)))
+		      (IEQP (fetch TXDTOFFSET2 of REC1)
+			    (fetch TXDTOFFSET1 of NEXTREC)))
+		 (AND (IEQP (fetch TXDTOFFSET2 of REC1)
+			    TXDTPAGESIZE)
+		      (IEQP (fetch TXDTOFFSET1 of NEXTREC)
+			    0)
+		      (EQ TEMPFILENAME NEXTFILENAME)
+		      (IEQP (ADD1 TEMPPAGE)
+			    NEXTPAGE)))
+
+          (* It is ok to continue, that is, the step from REC1 to NEXTREC is contiguous iff both recs address the same 
+	  filepage and have adjacent boundaries, or they address successive file pages and to end of first and start on 
+	  beginning of next page.)
+
+
+	      (SETQ REC1 NEXTREC)
+	      (SETQ POS1 (fetch TXDTOFFSET1 of REC1))
+	      (GO LOOP))
+	    (T (RETURN NIL])
+
+(EDITCOPYGRABBED
+  [LAMBDA (REC)                                              (* WTL: " 8-NOV-79 20:20")
+
+          (* It is assumed that REC is a grabbed object not inserted. Thus its final NEXT is NIL and its first PREV is NIL, 
+	  so we can look it in the face and copy it. Be careful to make copies of all of the TEXTs, so as not to confuse 
+	  addressing.)
+
+
+    (PROG (TEMP)
+          (COND
+	    ((NLISTP REC)                                    (* if we have hit the bottom, return NIL or "", 
+							     whichever it is...)
+	      (RETURN REC)))
+          (SETQ TEMP (fetch TXDTSOURCE of REC))
+          (SETQ TXDTRECORDCNT (ADD1 TXDTRECORDCNT))
+          (SETQ REC (create TXDTRECORD
+			    TXDTSOURCE _ TEMP
+			    TXDTOFFSET1 _(fetch TXDTOFFSET1 of REC)
+			    TXDTOFFSET2 _(fetch TXDTOFFSET2 of REC)
+			    TXDTPREV _ NIL
+			    TXDTNEXT _(SETQ TEMP (EDITCOPYGRABBED (fetch TXDTNEXT of REC)))
+			    TXDTSPLITRECS _ NIL
+			    TXDTMSG _(fetch TXDTMSG of REC)))
+
+          (* copy REC, carefully copying the TEXT. Note that NEXT is copied and pointed to, but we don't know who PREV 
+	  should be, so we leave it NIL. On the top this is desirable. However, we know PREV for the rec now in NEXT, so set
+	  it.)
+
+
+          (COND
+	    (TEMP                                            (* if NEXT of the copy is not NIL, set its PREV to this 
+							     one)
+		  (replace TXDTPREV of TEMP with REC)))
+          (RETURN REC])
+
+(EDITCOUNTLC
+  [LAMBDA (REC1 POS1 REC2 POS2 JUSTCHARS STOPCHAR)           (* WTL: "12-DEC-79 15:43")
+
+          (* counts the lines and chars between REC1,POS1 and REC2,POS2 or first occurrence of STOPCHAR when not counting 
+	  JUSTCHARS. If JUSTCHARS is T it just counts the number of chars, counting EOL as two. Otherwise, it counts the 
+	  number of lines between the two points, and the number of chars from the beginning of the last line to the second 
+	  point. The answer, in both cases, is returned in the globals EDITCOUNTL and EDITCOUNTC.)
+
+
+    (PROG (MYSTOPREC MYSTOPPOS MYCOUNTL MYCOUNTC)
+          (COND
+	    ((TOPRECP REC1)
+	      (SETQ MYSTOPREC (fetch (TXDTRECORD TXDTNEXT) of REC1)))
+	    (T (SETQ MYSTOPREC NIL)))
+          [COND
+	    ((BTMRECP REC1)                                  (* if there is nothing to do, don't try to do anything!)
+	      (SETQ MYCOUNTL 0)
+	      (SETQ MYCOUNTC 0))
+	    ((AND JUSTCHARS (NOT STOPCHAR))                  (* if just counting chars, we can do it at the record 
+							     level provided we are not looking for a stop char too.)
+	      (PROG NIL
+		    (SETQ MYCOUNTL 0)
+		    (COND
+		      ((AND (EQ REC1 REC2)
+			    (NOT (IGREATERP POS1 POS2)))
+			(SETQ MYCOUNTC (IDIFFERENCE POS2 POS1))
+			(RETURN)))
+		    (SETQ MYCOUNTC (IDIFFERENCE (fetch TXDTOFFSET2 of REC1)
+						POS1))
+		LOOP(SETQ REC1 (fetch TXDTNEXT of REC1))
+		    (COND
+		      ((EQ REC1 REC2)
+			[SETQ MYCOUNTC (IPLUS MYCOUNTC (IDIFFERENCE POS2 (fetch TXDTOFFSET1
+									    of REC2]
+			(RETURN))
+		      ((BTMRECP REC1)
+			(RETURN)))
+		    [SETQ MYCOUNTC (IPLUS MYCOUNTC (IDIFFERENCE (fetch TXDTOFFSET2 of REC1)
+								(fetch TXDTOFFSET1 of REC1]
+		    (GO LOOP)))
+	    (T (PROG (CURCHARCODE (STOPCHARCODE (COND
+						  (STOPCHAR (CHCON1 STOPCHAR))
+						  (T -1)))
+				  MYOFFSET1 MYOFFSET2)
+		     (SETQ MYSTOPREC REC1)
+		     (SETQ MYCOUNTL 0)
+		     (SETQ MYCOUNTC 0)
+		 RECLOOP
+		     (COND
+		       ((BTMRECP MYSTOPREC)
+			 (SETQ MYSTOPPOS NIL)
+			 (SETQ MYSTOPREC NIL)
+			 (RETURN)))
+		     (LOADREC MYSTOPREC)
+		     [COND
+		       ((EQ MYSTOPREC REC1)
+			 (SETQ MYOFFSET1 POS1))
+		       (T (SETQ MYOFFSET1 (fetch (TXDTRECORD TXDTOFFSET1) of MYSTOPREC]
+		     [COND
+		       ((EQ MYSTOPREC REC2)
+			 (SETQ MYOFFSET2 POS2))
+		       (T (SETQ MYOFFSET2 (fetch (TXDTRECORD TXDTOFFSET2) of MYSTOPREC]
+		     (SETQ MYSTOPPOS MYOFFSET1)
+		 POSLOOP
+		     [COND
+		       ((NOT (ILESSP MYSTOPPOS MYOFFSET2))
+			 (COND
+			   ((NEQ MYSTOPREC REC2)
+			     (SETQ MYSTOPREC (fetch (TXDTRECORD TXDTNEXT) of MYSTOPREC))
+			     (GO RECLOOP))
+			   (T (SETQ MYSTOPREC NIL)
+			      (SETQ MYSTOPPOS NIL)
+			      (RETURN]
+		     (SETQ CURCHARCODE (GETBASEBYTE TXDTCURRENTPAGE MYSTOPPOS))
+		     [COND
+		       ((EQ CURCHARCODE STOPCHARCODE)
+			 (RETURN))
+		       ((AND (EQ CURCHARCODE EOLCODE)
+			     (NOT JUSTCHARS))
+			 (SETQ MYCOUNTC 0)
+			 (SETQ MYCOUNTL (ADD1 MYCOUNTL)))
+		       (T (SETQ MYCOUNTC (ADD1 MYCOUNTC]
+		     (SETQ MYSTOPPOS (ADD1 MYSTOPPOS))
+		     (GO POSLOOP]
+          (SETQ EDITCOUNTSTOPREC MYSTOPREC)
+          (SETQ EDITCOUNTSTOPPOS MYSTOPPOS)
+          (SETQ EDITCOUNTL MYCOUNTL)
+          (SETQ EDITCOUNTC MYCOUNTC])
+
+(EDITDELETE
+  [LAMBDA (REC1 POS1 REC2 POS2 COUNTLCFLG)                   (* WTL: "10-NOV-79 15:42")
+
+          (* Deletes the text from REC1,POS1 to but not thru REC2,POS2. Sets EDITDELETEREC,EDITDELETEPOS to location 
+	  immediately following deleted text. Markes any record entirely removed from the buffer by settings its TXDTOFFSET2
+	  to TXDTOFFSET2-513. The logic behind this is as follows: By substracting 513 we insure that the offset is less 
+	  than 0 and thus distinguished as illegal. UNMARK unmarks deleted records.)
+
+
+    (PROG (TEMPREC OLDINTERRUPTABLEVAL)
+          [COND
+	    (COUNTLCFLG                                      (* if to count window, do it now)
+			(EDITCOUNTLC REC1 POS1 REC2 POS2 (EQ COUNTLCFLG (QUOTE CHARS)))
+			(SETQ TXDTDELTA (COND
+			    ((EQ COUNTLCFLG (QUOTE CHARS))
+			      (IMINUS EDITCOUNTC))
+			    ((EQ COUNTLCFLG (QUOTE LINES))
+			      (IMINUS EDITCOUNTL))
+			    (T (CONS (IMINUS EDITCOUNTL)
+				     (QUOTE UNABLE-TO-GIVE-MEANINGFUL-CHAR-COUNT]
+                                                             (* Now we must make sure that the window is 
+							     well-defined)
+          (SETQ TEMPREC REC1)
+      CHKLOOP
+          [COND
+	    ((NEQ TEMPREC REC2)
+	      (COND
+		((BTMRECP TEMPREC)                           (* Hit BTM without finding REC2!)
+		  (ERROR!))
+		(T (SETQ TEMPREC (fetch TXDTNEXT of TEMPREC))
+		   (GO CHKLOOP]                              (* So we know we can go from REC1 to REC2 without error.
+							     Now see if POS's ok.)
+          (OR [AND (type? TXDTRECORD REC1)
+		   (type? TXDTRECORD REC2)
+		   (NOT (ILESSP POS1 0))
+		   (NOT (ILESSP POS2 0))
+		   (OR (NEQ REC1 REC2)
+		       (NOT (IGREATERP POS1 POS2]
+	      (ERROR!))                                      (* NOW ENTER UNINTERRUPTABLE SECTION.)
+          (SETQ OLDINTERRUPTABLEVAL (INTERRUPTABLE NIL))
+          (COND
+	    [(EQ REC1 REC2)                                  (* if same rec)
+	      (COND
+		((IEQP POS1 (fetch TXDTOFFSET1 of REC1))     (* and if init seg to be deleted)
+		  (COND
+		    ((IEQP POS2 (fetch TXDTOFFSET2 of REC1))
+                                                             (* then if entire rec to be deleted, just link it out)
+		      (/replace TXDTPREV of (fetch TXDTNEXT of REC1) with (fetch TXDTPREV
+									     of REC1))
+		      (/replace TXDTNEXT of (fetch TXDTPREV of REC1) with (fetch TXDTNEXT
+									     of REC1))
+		      (/replace TXDTOFFSET2 of REC1 with (IDIFFERENCE (fetch TXDTOFFSET2
+									 of REC1)
+								      513))
+                                                             (* and mark REC1 as deleted)
+		      (SETQ EDITDELETEREC (fetch TXDTNEXT of REC1))
+		      (SETQ EDITDELETEPOS (fetch TXDTOFFSET1 of EDITDELETEREC)))
+		    (T                                       (* then simply chop it off and get out)
+		       (/replace TXDTOFFSET1 of REC1 with POS2)
+		       (SETQ EDITDELETEREC REC1)
+		       (SETQ EDITDELETEPOS POS2)))
+		  (INTERRUPTABLE OLDINTERRUPTABLEVAL)
+		  (RETURN))
+		(T                                           (* if init seg not to be deleted, save it in new rec)
+		   (SETQ TXDTRECORDCNT (ADD1 TXDTRECORDCNT))
+		   (SETQ REC1 (create TXDTRECORD
+				      TXDTSOURCE _(fetch TXDTSOURCE of REC2)
+				      TXDTOFFSET1 _(fetch TXDTOFFSET1 of REC2)
+				      TXDTOFFSET2 _ POS1
+				      TXDTPREV _(fetch TXDTPREV of REC2)
+				      TXDTNEXT _ REC2
+				      TXDTSPLITRECS _ NIL
+				      TXDTMSG _(fetch TXDTMSG of REC2)))
+		   (/replace TXDTSPLITRECS of REC2 with (NCONC1 (fetch TXDTSPLITRECS of REC2)
+								REC1))
+		   (/replace TXDTNEXT of (fetch TXDTPREV of REC1) with REC1)
+                                                             (* and link new rec from above)
+		   ]
+	    ((IEQP POS1 (fetch TXDTOFFSET1 of REC1))         (* if not same, and all of REC1 to be deleted, step 
+							     back. Loop below will see that REC1 gets marked as 
+							     deleted.)
+	      (SETQ REC1 (fetch TXDTPREV of REC1)))
+	    (T                                               (* if some of REC1 to be kept, thenchop off unwanted 
+							     part)
+	       (/replace TXDTOFFSET2 of REC1 with POS1)))    (* now handle REC2 which is easier.
+							     First of all, we must scan down from REC1 to REC2 
+							     marking all recs to be deleted.)
+          (SETQ TEMPREC REC1)
+      LOOP(SETQ TEMPREC (fetch TXDTNEXT of TEMPREC))
+          (COND
+	    ((NEQ TEMPREC REC2)                              (* as long as we don't have REC2, mark it as deleted.)
+	      (/replace TXDTOFFSET2 of TEMPREC with (IDIFFERENCE (fetch TXDTOFFSET2 of TEMPREC)
+								 513))
+	      (GO LOOP)))                                    (* ok, we have reached REC2 and marked the intervening 
+							     records as deleted)
+          (COND
+	    ((IEQP POS2 (fetch TXDTOFFSET2 of REC2))         (* if all of REC2 to be deleted, just step over it after
+							     marking it too)
+	      (/replace TXDTOFFSET2 of REC2 with (IDIFFERENCE (fetch TXDTOFFSET2 of REC2)
+							      513))
+	      (SETQ REC2 (fetch TXDTNEXT of REC2))
+	      (SETQ POS2 (fetch TXDTOFFSET1 of REC2)))
+	    (T                                               (* otherwise, only some to be deleted.)
+	       (/replace TXDTOFFSET1 of REC2 with POS2)      (* chop off unwanted part and reset line cnt)
+	       ))
+          (/replace TXDTNEXT of REC1 with REC2)              (* link REC1 and REC2)
+          (/replace TXDTPREV of REC2 with REC1)              (* CRITICAL SECTION OVER.)
+          (INTERRUPTABLE OLDINTERRUPTABLEVAL)
+          (SETQ EDITDELETEREC REC2)
+          (SETQ EDITDELETEPOS POS2)
+          (RETURN])
+
+(EDITFINDSPLITREC
+  [LAMBDA (OLDREC POS)                                       (* Finds the new rec which is a descendant of OLDREC and
+							     which still contains POS. Ths fn is recursive!)
+    (PROG (ANS LST)
+          (COND
+	    ((AND (NOT (ILESSP POS (fetch TXDTOFFSET1 of OLDREC)))
+		  (ILESSP POS (fetch TXDTOFFSET2 of OLDREC)))
+	      (RETURN OLDREC)))
+          (SETQ LST (fetch TXDTSPLITRECS of OLDREC))
+      LOOP(COND
+	    ((NULL LST)
+	      (RETURN NIL))
+	    ((SETQ ANS (EDITFINDSPLITREC (CAR LST)
+					 POS))
+	      (RETURN ANS)))
+          (SETQ LST (CDR LST))
+          (GO LOOP])
+
+(EDITGOTO
+  [LAMBDA (LINENO CHARNO FLG)                                (* WTL: "31-JUL-78 10:10")
+                                                             (* WARNING! THIS FUNCTION ONLY MAKES SENSE ON THE 
+							     CURRENT BUFFER!)
+
+          (* sets EDITGOTOREC,EDITGOTOPOS to the location of the CHARNOth char following the LINENOth line.
+	  If LINENO is NIL, only char move is made. Negative or zero LINENO is cosidered beyond TOP.
+	  Negative CHARNO is ok, unless beyond TOP. If FLG is T and buffer bounds exceeded, sets EDITGOTOREC to NIL.)
+
+
+    (COND
+      [(AND LINENO (ILESSP LINENO 1))
+	(COND
+	  ((EQ FLG (QUOTE BOUNDARYERR))
+	    (ERROR!))
+	  (FLG (SETQ EDITGOTOREC NIL))
+	  (T (SETQ EDITGOTOREC (fetch TXDTNEXT of TOPREC))
+	     (SETQ EDITGOTOPOS (fetch TXDTOFFSET1 of EDITGOTOREC]
+      (T (EDITMOVE (COND
+		     ((NULL LINENO)
+		       NIL)
+		     ((EQP LINENO 1)
+		       NIL)
+		     (T (SUB1 LINENO)))
+		   (AND (FIXP CHARNO)
+			(SUB1 CHARNO))
+		   (fetch TXDTNEXT of TOPREC)
+		   (fetch TXDTOFFSET1 of (fetch TXDTNEXT of TOPREC))
+		   FLG)
+	 (SETQ EDITGOTOREC EDITMOVECREC)
+	 (SETQ EDITGOTOPOS EDITMOVECPOS])
+
+(EDITGRAB
+  [LAMBDA (REC1 POS1 REC2 POS2 COUNTLCFLG)
+
+          (* grabs and returns the indicated text. Its affect on the buffer is just like EDITDELETEs, but it returns a chain
+	  of recs representing the deleted text. The PREV of the first rec and NEXT of the last in this chain are NIL;
+	  therefore, the chain is suitable for insertion via EDITINSERT. All of the OFFSET2s of the chain have been marked 
+	  by the process described in EDITDELTE. This marking is undone by EDITINSERT. Until unmarked however, the object 
+	  returned by EDITGRAB is not only deleted from the buffer but marked so that any pointers to it will be classified 
+	  as invalid.)
+
+
+    (COND
+      ((AND (EQ REC1 REC2)
+	    (IEQP POS1 POS2))                                (* if nothing to grab, return empty string as the 
+							     object.)
+	[COND
+	  (COUNTLCFLG (SETQ TXDTDELTA (COND
+			  ((EQ COUNTLCFLG (QUOTE BOTH))
+			    (CONS 0 0))
+			  (T 0]
+	"")
+      (T                                                     (* otherwise, try to grab it and if it hollers let it 
+							     go.)
+	 (RESETLST (RESETSAVE (RESETUNDO)
+			      (QUOTE (EDITRESETSAVEFN)))
+		   (PROG (LASTREC)
+		         [COND
+			   ((EQ REC1 REC2)
+			     (COND
+			       ((NOT (ILESSP POS1 POS2))     (* If REC1 and REC2 are same, and POS1 does not precede 
+							     POS2, return NIL and do nothing to the buffer.)
+				 (RETURN NIL]
+		         (EDITINSERT NIL REC1 POS1 T)
+
+          (* break REC1 at POS1. Now REC1 is the rec immed following the break. On first inspection this appears to be the 
+	  rec which starts the chain we want to return. However, the next insert, which will define the end of the chain, 
+	  may have to cons up a new rec and its possible THAT rec is the first one. In any case, the rec following the one 
+	  before us right now, will be the first rec of the chain when we're done. So move REC1 back and remember that its 
+	  NEXT is the first rec in our answer chain.)
+
+
+		         (SETQ REC1 (fetch TXDTPREV of REC1))
+		         (EDITINSERT NIL REC2 POS2 T)        (* break REC2 at POS2.)
+		         (SETQ LASTREC (fetch TXDTPREV of REC2))
+                                                             (* we need to save the PREV rec from REC2, because it 
+							     will be the last rec in the chain we will return.)
+		         (SETQ REC1 (fetch TXDTNEXT of REC1))
+                                                             (* Now reset REC1 so that it is first rec in the chain 
+							     to be grabbed)
+		         (EDITDELETE REC1 POS1 REC2 POS2 COUNTLCFLG)
+                                                             (* now delete the window. But, REC1 still points to the 
+							     first deleted rec!)
+		         (/replace TXDTPREV of REC1 with NIL)
+                                                             (* set PREV of first rec to NIL)
+		         (/replace TXDTNEXT of LASTREC with NIL)
+                                                             (* and set NEXT of last rec to NIL)
+		         (RETURN REC1])
+
+(EDITGREATERP
+  [LAMBDA (REC1 POS1 REC2 POS2)                              (* goes from REC1,POS1 to REC2,POS2 and if it finds it 
+							     returns NIL. If it hits btm first returns T.)
+    (PROG NIL
+          [COND
+	    ((EQ REC1 REC2)                                  (* if they are the same initially, just check the POSs)
+	      (RETURN (IGREATERP POS1 POS2]                  (* we will loop down thru the NEXT chain of REC1 looking
+							     for REC2 and return T if we don't find it)
+      LOOP(SETQ REC1 (fetch TXDTNEXT of REC1))
+          (COND
+	    ((EQ REC1 REC2)                                  (* found it, so return NIL)
+	      (RETURN NIL))
+	    ((BTMRECP REC1)                                  (* if we have pushed REC1 to the btm, and haven't hit 
+							     REC2, then return T)
+	      (RETURN T)))
+          (GO LOOP])
+
+(EDITINSERT
+  [LAMBDA (OBJ REC POS COUNTLCFLG)                           (* rrb " 8-AUG-81 11:55")
+
+          (* This is the general insert fn. REC,POS is the location at which OBJ is to be inserted. If OBJ is a grabbed obj 
+	  it is unmarked and inserted. If OBJ is NIL, REC is broken at POS but nothing is inserted. Anything else denotes a 
+	  file window -- somehow. If OBJ is a list begining with the value of TXDTINSERTFILEKEY it is taken to be of the 
+	  form (TXDTINSERTFILEKEY filename pos1 pos2), where the pos'i default to current file ptr and eof respectively.
+	  If any other list, the elements are prin3d to the scratchfile and that window inserted. If a non-list, it is 
+	  prin3d and inserted. If window is empty or negative, the fn acts as though an empty insertion were made, but 
+	  actually does nothing. If COUNTLCFLG is non-NIL the number of lines/chars in the insertion is counted and stored 
+	  in TXDTDELTA. This fn sets the location of the beginning and end of the insertion in EDITINSERTREC1,EDITINSERTPOS1
+	  and EDITINSERTREC2,EDITINSRTPOS2.)
+
+                                                             (* This function does all the computing it must do to 
+							     cause errors, and then enters uninterrupable mode to 
+							     actually modify the structures involved.)
+    (PROG (CHAIN X GRABBEDOBJFLG OLDINTERRUPTABLEVAL)        (* make sure type of args is ok.)
+          (OR (AND (type? TXDTRECORD REC)
+		   (NOT (ILESSP POS 0))
+		   (NOT (IGREATERP POS 512)))
+	      (ERROR "Attempt to use object of wrong type" (LIST REC POS)))
+
+          (* Now we must be sure OBJ is capable of being inserted and cause errors if its not. If we get out of this COND we
+	  will have set CHAIN to the chian of recs to be inserted.)
+
+
+          [COND
+	    [(type? TXDTGRABBEDOBJ OBJ)                      (* OBJ is a grabbed object. Make sure its ok.)
+	      (COND
+		[(AND (OR (type? TXDTRECORD (SETQ CHAIN (fetch TXDTCHAIN of OBJ)))
+			  (STREQUAL CHAIN ""))
+		      (EQ (fetch TXDTGRABFLG of OBJ)
+			  (QUOTE GRABBED))
+		      (MARKEDP CHAIN))
+
+          (* The object is a valid grabbed object. Set the flag that says we must unmark it and sets its TXDTGRABFLG to 
+	  (QUOTE GRABBED&INSERTED))
+
+
+		  (SETQ GRABBEDOBJFLG T)
+		  (COND
+		    ((NOT (type? TXDTRECORD CHAIN))
+
+          (* In this case, the CHAIN is jst the empty string. When asked to insert the null string -- as opposed to the 
+	  specially recognized chain NIL -- do nothing. return current location.)
+
+
+		      (/replace TXDTGRABFLG of OBJ with (QUOTE GRABBED&INSERTED))
+                                                             (* tag the object as now being inserted in case someone 
+							     tries to insert it again)
+		      (SETQ EDITINSERTREC2 (SETQ EDITINSERTREC1 REC))
+		      (SETQ EDITINSERTPOS2 (SETQ EDITINSERTPOS1 POS))
+		      [COND
+			(COUNTLCFLG (SETQ TXDTDELTA (COND
+					((EQ COUNTLCFLG (QUOTE BOTH))
+					  (CONS 0 0))
+					(T 0]
+		      (RETURN]
+		(T                                           (* otherwise, its an object that failed to meet the 
+							     standards)
+		   (ERROR (COND
+			    ((EQ (fetch TXDTGRABFLG of OBJ)
+				 (QUOTE GRABBED&INSERTED))
+			      "ATTEMPT TO REINSERT INSERTED GRABBED OBJECT")
+			    ((EQ (fetch TXDTGRABFLG of OBJ)
+				 (QUOTE GRABBED&UNDONE))
+			      "ATTEMPT TO INSERT THE RESULT OF AN UNDONE GRAB")
+			    (T "ATTEMPT TO INSERT MYSTERIOUSLY MUNGED GRABBED OBJECT"))
+			  OBJ]
+	    ((NULL OBJ)                                      (* just break the record but insert nothing.
+							     Let CHAIN be NIL)
+	      (SETQ CHAIN NIL))
+	    (T 
+
+          (* The object implicitly represents a file window. If it is of the form (TXDTINSERTFILEKEY --) we assume it is 
+	  (TXDTINNERTFILEKEY filename pos1 pos2) and insert that windown. Otherwise we prin3 it to a scratch file and use 
+	  that window.)
+
+
+	       (PROG (FILE PAGE1 PAGE2 TEMPCHAIN DEFAULTMSG ACTIVEPAGE X)
+		     [COND
+		       [(AND (LISTP OBJ)
+			     (EQ (CAR OBJ)
+				 TXDTINSERTFILEKEY))         (* inserted code to open file if its not open and save 
+							     full file name. rrb.)
+			 [SETQ FILE (COND
+			     ((OPENP (CADR OBJ)
+				     (QUOTE INPUT)))
+			     ((OPENFILE (CADR OBJ)
+					(QUOTE INPUT)))
+			     (T (ERROR "FILE NOT OPEN" (CADR OBJ]
+			 (OR (AND (CADDR OBJ)
+				  (SETQ TXDTINSERTFILEPOS1BOX (CADDR OBJ)))
+			     (SETQ TXDTINSERTFILEPOS1BOX (GETFILEPTR FILE)))
+			 (OR (AND (CADDDR OBJ)
+				  (SETQ TXDTINSERTFILEPOS2BOX (CADDDR OBJ)))
+			     (SETQ TXDTINSERTFILEPOS2BOX (GETEOFPTR FILE]
+		       (T 
+
+          (* If OBJ is anything else, PRIN3 it to the scratchfile. Lists are printed element wise -- i.e., without the 
+	  initial and final parens and spaces.)
+
+
+			  (SETQ FILE TXDTSCRATCHFILE)
+			  (SETFILEPTR FILE -1)
+			  (SETQ TXDTINSERTFILEPOS1BOX (GETFILEPTR FILE))
+			  (COND
+			    ((LISTP OBJ)
+			      (for X in OBJ do (PRIN3 X TXDTSCRATCHFILE)))
+			    (T (PRIN3 OBJ TXDTSCRATCHFILE)))
+			  (SETQ TXDTINSERTFILEPOS2BOX (GETFILEPTR FILE]
+		     (COND
+		       ((EQ FILE T)
+			 (ERROR "ATTEMPT TO INSERT A SEGMENT OF FILE T" OBJ)))
+		     (OR (EQ FILE TXDTSCRATCHFILE)
+			 (FMEMB FILE EDITREADFILELST)
+			 (SETQ EDITREADFILELST (CONS FILE EDITREADFILELST)))
+		     (COND
+		       ((NOT (IGREATERP TXDTINSERTFILEPOS2BOX TXDTINSERTFILEPOS1BOX))
+                                                             (* if asked to insert the null string -- as opposed to 
+							     the specially recognized chain NIL -- do nothing.
+							     return current location.)
+			 (SETQ EDITINSERTREC2 (SETQ EDITINSERTREC1 REC))
+			 (SETQ EDITINSERTPOS2 (SETQ EDITINSERTPOS1 POS))
+			 [COND
+			   (COUNTLCFLG (SETQ TXDTDELTA (COND
+					   ((EQ COUNTLCFLG (QUOTE BOTH))
+					     (CONS 0 0))
+					   (T 0]
+			 (RETURN)))                          (* At this point, FILE, FILEPOS1, and 
+							     TXDTINSERTFILEPOS2BOX are all correctly set.
+							     Now make a chain of recs that represents that window of 
+							     file.)
+		     (SETQ PAGE1 (IQUOTIENT TXDTINSERTFILEPOS1BOX TXDTPAGESIZE))
+		     (SETQ TXDTINSERTPOS1BOX (IREMAINDER TXDTINSERTFILEPOS1BOX TXDTPAGESIZE))
+                                                             (* Get page and first character position of first char)
+		     (SETQ PAGE2 (IQUOTIENT TXDTINSERTFILEPOS2BOX TXDTPAGESIZE))
+		     (SETQ TXDTINSERTPOS2BOX (IREMAINDER TXDTINSERTFILEPOS2BOX TXDTPAGESIZE))
+		     (COND
+		       ((ZEROP TXDTINSERTPOS2BOX)
+			 (SETQ PAGE2 (SUB1 PAGE2))
+			 (SETQ TXDTINSERTPOS2BOX TXDTPAGESIZE)
+                                                             (* We know we can step back from PAGE2 since if it were 
+							     0, the two FILEPOSs would both be 0)
+			 ))                                  (* Get page and last char position of last char)
+		     [SETQ DEFAULTMSG (COND
+			 ((IEQP POS (fetch TXDTOFFSET1 of REC))
+			   (fetch TXDTMSG of (fetch TXDTPREV of REC)))
+			 (T (fetch TXDTMSG of REC]
+		     (COND
+		       ((IEQP PAGE1 PAGE2)                   (* if only one page, make one rec chain)
+			 (SETQ TXDTRECORDCNT (ADD1 TXDTRECORDCNT))
+			 (SETQ CHAIN (create TXDTRECORD
+					     TXDTSOURCE _(create TXDTSOURCE
+								 FILENAME _ FILE
+								 PAGENO _ PAGE1)
+					     TXDTOFFSET1 _ TXDTINSERTPOS1BOX
+					     TXDTOFFSET2 _ TXDTINSERTPOS2BOX
+					     TXDTPREV _ NIL
+					     TXDTNEXT _ NIL
+					     TXDTMSG _ DEFAULTMSG))
+			 (RETURN)))
+		     (SETQ TXDTRECORDCNT (ADD1 TXDTRECORDCNT))
+		     (SETQ CHAIN (create TXDTRECORD
+					 TXDTSOURCE _(create TXDTSOURCE
+							     FILENAME _ FILE
+							     PAGENO _ PAGE2)
+					 TXDTOFFSET1 _ 0
+					 TXDTOFFSET2 _ TXDTINSERTPOS2BOX
+					 TXDTPREV _ NIL
+					 TXDTNEXT _ NIL
+					 TXDTMSG _ DEFAULTMSG))
+		 LOOP(SETQ PAGE2 (SUB1 PAGE2))
+		     (SETQ TXDTRECORDCNT (ADD1 TXDTRECORDCNT))
+		     (SETQ TEMPCHAIN (create TXDTRECORD
+					     TXDTSOURCE _(create TXDTSOURCE
+								 FILENAME _ FILE
+								 PAGENO _ PAGE2)
+					     TXDTOFFSET1 _(OR (AND (IEQP PAGE1 PAGE2)
+								   TXDTINSERTPOS1BOX)
+							      0)
+					     TXDTOFFSET2 _ TXDTPAGESIZE
+					     TXDTPREV _ NIL
+					     TXDTNEXT _ CHAIN
+					     TXDTMSG _ DEFAULTMSG))
+		     (replace TXDTPREV of CHAIN with TEMPCHAIN)
+		     (SETQ CHAIN TEMPCHAIN)
+
+          (* This dance with CHAIN and TEMPCHAIN is here to avoid a bug in the record package that prevents a 
+	  (replace x of y with (SETQ y --)) in compiled code.)
+
+
+		     (COND
+		       ((IEQP PAGE2 PAGE1)                   (* if PAGE1 finally done, quit)
+			 (RETURN)))
+		     (GO LOOP]
+
+          (* At this point, the flag GRABBEDOBJFLG is set to T iff OBJ is a grabbed object which we should unmark as part of
+	  our inserting. In any case, CHAIN is either the litatom NIL -- meaning just split REC,POS -- or it is a chain to 
+	  be inserted at REC,POS.)
+
+
+          (SETQ EDITINSERTREC1 CHAIN)
+          (SETQ EDITINSERTPOS1 (AND CHAIN (fetch TXDTOFFSET1 of CHAIN)))
+                                                             (* save loc of beginning of insertion.
+							     We will override this if CHAIN is NIL once we know the 
+							     loc of the end.)
+                                                             (* WE ARE ABOUT TO ENTER THE CRITICAL SECTION OF CODE 
+							     DURING WHICH WE ACTUALLY MAKE THE INSERTION.
+							     FIRST ENTER NO-INTERRUPT MODE.)
+          (SETQ OLDINTERRUPTABLEVAL (INTERRUPTABLE NIL))     (* Now unmark the grabbed object and change its TXDTMSG 
+							     field if a msg field was specified in OBJ.)
+          [COND
+	    (GRABBEDOBJFLG (UNMARK CHAIN)
+			   (/replace TXDTGRABFLG of OBJ with (QUOTE GRABBED&INSERTED]
+          (COND
+	    [(IEQP POS (fetch TXDTOFFSET1 of REC))           (* if POS is the beginning of REC, just link, don't 
+							     split first)
+	      (COND
+		(CHAIN                                       (* if CHAIN is non-NIL, do it)
+		       (/replace TXDTNEXT of (fetch TXDTPREV of REC) with CHAIN)
+		       (replace TXDTPREV of CHAIN with (fetch TXDTPREV of REC]
+	    (T                                               (* split REC and then add CHAIN)
+	       (SETQ TXDTRECORDCNT (ADD1 TXDTRECORDCNT))
+	       (SETQ X (create TXDTRECORD
+			       TXDTSOURCE _(fetch TXDTSOURCE of REC)
+			       TXDTOFFSET1 _(fetch TXDTOFFSET1 of REC)
+			       TXDTOFFSET2 _ POS
+			       TXDTPREV _(fetch TXDTPREV of REC)
+			       TXDTNEXT _(OR CHAIN REC)
+			       TXDTSPLITRECS _ NIL
+			       TXDTMSG _(fetch TXDTMSG of REC)))
+	       (/replace TXDTSPLITRECS of REC with (NCONC1 (fetch TXDTSPLITRECS of REC)
+							   X))
+	       (/replace TXDTNEXT of (fetch TXDTPREV of REC) with X)
+	       (COND
+		 (CHAIN (replace TXDTPREV of CHAIN with X))
+		 (T (/replace TXDTPREV of REC with X)))
+	       (/replace TXDTOFFSET1 of REC with POS)))
+          (COND
+	    (CHAIN                                           (* now link last rec in chain to REC)
+		   (until (NULL (SETQ X (fetch TXDTNEXT of CHAIN))) do (SETQ CHAIN X))
+		   (/replace TXDTNEXT of CHAIN with REC)
+		   (/replace TXDTPREV of REC with CHAIN)))   (* THIS IS THE END OF THE CRITICAL SECTION.
+							     TURN INTERRUPTS BACK ON.)
+          (INTERRUPTABLE OLDINTERRUPTABLEVAL)
+          (SETQ EDITINSERTREC2 REC)
+          (SETQ EDITINSERTPOS2 (fetch TXDTOFFSET1 of REC))   (* set up loc of end of insertion)
+          (COND
+	    ((NULL CHAIN)                                    (* if chain was empty, reset loc of beginning to end 
+							     loc)
+	      (SETQ EDITINSERTREC1 EDITINSERTREC2)
+	      (SETQ EDITINSERTPOS1 EDITINSERTPOS2)))
+          [COND
+	    ((AND TXDTESCAPECHAR (NOT GRABBEDOBJFLG))
+
+          (* If TXDTESCAPECHAR is non-NIL, scan inserted text for TXDTESCAPECHAR and set the msg field of the succeeding 
+	  chars to the next char. Also, compute new value of TXDTDELTA.)
+
+
+	      (EDITINSERTESCAPE EDITINSERTREC1 EDITINSERTPOS1 EDITINSERTREC2 EDITINSERTPOS2 
+				COUNTLCFLG))
+	    (COUNTLCFLG                                      (* if we are to count the text inserted, do it -
+							     UNLESS EDITINSERTESCAPE was called, which did it for 
+							     us!)
+			(EDITCOUNTLC EDITINSERTREC1 EDITINSERTPOS1 EDITINSERTREC2 EDITINSERTPOS2
+				     (EQ COUNTLCFLG (QUOTE CHARS)))
+			(SETQ TXDTDELTA (COND
+			    ((EQ COUNTLCFLG (QUOTE CHARS))
+			      EDITCOUNTC)
+			    ((EQ COUNTLCFLG (QUOTE LINES))
+			      EDITCOUNTL)
+			    (T (CONS EDITCOUNTL EDITCOUNTC]
+          (RETURN])
+
+(EDITINSERTESCAPE
+  [LAMBDA (REC1 POS1 REC2 POS2 COUNTLCFLG)                   (* wt: "20-AUG-80 12:04")
+    (PROG (JUSTCHARS LASTMSG MSG OLDREC1 OLDPOS1 (FIRSTTIMEFLG T)
+		     SRC OLDFILEPTR (TEMPL 0)
+		     (TEMPC 0)
+		     MYREC MYPOS)
+          (SETQ JUSTCHARS (EQ COUNTLCFLG (QUOTE CHARS)))
+          (SETQ LASTMSG (fetch TXDTMSG of (fetch TXDTPREV of REC1)))
+      SAVEOLDLOC
+          (SETQ OLDREC1 REC1)
+          (SETQ OLDPOS1 POS1)
+      FINDNEXTESC
+          (EDITCOUNTLC REC1 POS1 REC2 POS2 JUSTCHARS TXDTESCAPECHAR)
+                                                             (* Before we bother to check that we actually found an 
+							     escape char, we must incrmment our line/char counts)
+          [COND
+	    (EDITCOUNTSTOPREC 
+
+          (* if we found an escape char, decrement the char count by 1 because it includes the escape char itself, which 
+	  will PROBABLY be deleted. If not to be deleted, well fix it later.)
+
+
+			      (SETQ EDITCOUNTC (SUB1 EDITCOUNTC]
+          [COND
+	    ((EQ COUNTLCFLG (QUOTE CHARS))
+	      (SETQ TEMPC (IPLUS TEMPC EDITCOUNTC)))
+	    ((EQ COUNTLCFLG (QUOTE LINES))
+	      (SETQ TEMPL (IPLUS TEMPL EDITCOUNTL)))
+	    (T                                               (* We must count both)
+	       (SETQ TEMPL (IPLUS TEMPL EDITCOUNTL))
+	       (SETQ TEMPC (COND
+		   ((ZEROP EDITCOUNTL)
+		     (IPLUS TEMPC EDITCOUNTC))
+		   (T EDITCOUNTC]
+          (COND
+	    ((NULL EDITCOUNTSTOPREC)
+
+          (* If no escape char was seen we are done. Set up as though we had previously gone as far as REC2 and then put 
+	  down the last msg.)
+
+
+	      (SETQ EDITDELETEREC REC2)
+	      (GO PUTLASTMSG)))
+          (EDITMOVEC 1 EDITCOUNTSTOPREC EDITCOUNTSTOPPOS)
+          (SETQ MYREC EDITMOVECREC)
+          (SETQ MYPOS EDITMOVECPOS)
+          [PROGN                                             (* WE SAW A MESSAGE SO WE COULDNT HAVE RUN OFF THE END 
+							     OF THE WINDOW SO WE DONT NEED TO CHECK THE BTM.)
+		 (LOADREC MYREC)
+		 (SETQ MSG (GETBASEBYTE TXDTCURRENTPAGE MYPOS))
+		 (SETQ MYPOS (ADD1 MYPOS))
+		 (COND
+		   ((NOT (ILESSP MYPOS (fetch (TXDTRECORD TXDTOFFSET2) of MYREC)))
+		     (SETQ MYREC (fetch (TXDTRECORD TXDTNEXT) of MYREC))
+		     (SETQ MYPOS (FETCH (TXDTRECORD TXDTOFFSET1) OF MYREC))
+		     (LOADREC MYREC]
+          (COND
+	    ((EQ MSG 127)                                    (* If MSG is 127 then we just delete the 127 and leave 
+							     the esc char.)
+	      (EDITDELETE EDITMOVECREC EDITMOVECPOS MYREC MYPOS)
+                                                             (* since the escape char isn't being killed, add it into
+							     TEMPC.)
+	      (SETQ TEMPC (ADD1 TEMPC)))
+	    ((EQ MSG 0)
+	      [SETQ MSG (for I from 1 to [PROG1 (GETBASEBYTE TXDTCURRENTPAGE MYPOS)
+						(SETQ MYPOS (ADD1 MYPOS))
+						(COND
+						  ((NOT (ILESSP MYPOS (fetch (TXDTRECORD TXDTOFFSET2)
+									 of MYREC)))
+						    (SETQ MYREC (fetch (TXDTRECORD TXDTNEXT)
+								   of MYREC))
+						    (SETQ MYPOS (fetch (TXDTRECORD TXDTOFFSET1)
+								   of MYREC]
+			   collect (FCHARACTER (PROG1 (GETBASEBYTE TXDTCURRENTPAGE MYPOS)
+						      (SETQ MYPOS (ADD1 MYPOS))
+						      (COND
+							((NOT (ILESSP MYPOS (fetch (TXDTRECORD 
+										      TXDTOFFSET2)
+									       of MYREC)))
+							  (SETQ MYREC (fetch (TXDTRECORD TXDTNEXT)
+									 of MYREC))
+							  (SETQ MYPOS (fetch (TXDTRECORD TXDTOFFSET1)
+									 of MYREC]
+	      (EDITDELETE EDITCOUNTSTOPREC EDITCOUNTSTOPPOS MYREC MYPOS))
+	    (T (SETQ MSG (CHARACTER MSG))
+	       (EDITDELETE EDITCOUNTSTOPREC EDITCOUNTSTOPPOS MYREC MYPOS)))
+          (COND
+	    ((AND (EQ EDITCOUNTSTOPREC OLDREC1)
+		  (IEQP EDITCOUNTSTOPPOS OLDPOS1))
+
+          (* If the delete just performed removed the first chars of the OLDREC,POS we are saving, realign it.
+	  Note: we can't even be sure that its the same record now, since the esc char might have been the only char on that
+	  record!)
+
+
+	      (SETQ OLDREC1 EDITDELETEREC)
+	      (SETQ OLDPOS1 EDITDELETEPOS))
+	    ((EQ OLDREC1 EDITCOUNTSTOPREC)
+
+          (* If not first char, but some char of OLDREC1 was deleted, then the rec was split and we should back up from the 
+	  current rec. The pos must be ok, since it must have been the first on the rec and is thus still valid on the prev 
+	  rec.)
+
+
+	      (SETQ OLDREC1 (fetch TXDTPREV of EDITDELETEREC)))
+	    (T                                               (* If the esc seq wasn't found on this record, we 
+							     needn't worry about our old rec being changed.)
+	       ))
+          (COND
+	    (FIRSTTIMEFLG                                    (* If this is the first time we have ever done this, 
+							     then reset EDITINSERTREC1 , EDITINSERTPOS1 to account 
+							     for the realignment.)
+			  (SETQ FIRSTTIMEFLG NIL)
+			  (SETQ EDITINSERTREC1 OLDREC1)
+			  (SETQ EDITINSERTPOS1 OLDPOS1)))
+          (COND
+	    ((EQ MSG 127)
+
+          (* Now, having accounted for any possible disturbance by deleting those chars, we now check to see if we are to 
+	  change to a new msg or not. If the msg we jsst saw was 127 we should just loop again.)
+
+
+	      (SETQ REC1 EDITDELETEREC)
+	      (SETQ POS1 EDITDELETEPOS)
+	      (GO FINDNEXTESC)))
+      PUTLASTMSG                                             (* Otherwise, drive OLDREC1 forward until we hit the 
+							     current position, settinn the msg field to LASTMSG.)
+          (COND
+	    ((NEQ OLDREC1 EDITDELETEREC)
+	      (replace TXDTMSG of OLDREC1 with LASTMSG)
+	      (SETQ OLDREC1 (fetch TXDTNEXT of OLDREC1))
+	      (GO PUTLASTMSG))
+	    ((NULL EDITCOUNTSTOPREC)
+	      [SETQ TXDTDELTA (COND
+		  ((EQ COUNTLCFLG (QUOTE CHARS))
+		    TEMPC)
+		  ((EQ COUNTLCFLG (QUOTE LINES))
+		    TEMPL)
+		  (T (CONS TEMPL TEMPC]
+	      (RETURN)))
+          (SETQ LASTMSG MSG)
+          (SETQ REC1 EDITDELETEREC)
+          (SETQ POS1 EDITDELETEPOS)
+          (GO SAVEOLDLOC])
+
+(EDITMAPCHARS
+  [LAMBDA (REC1 POS1 REC2 POS2 ASCIIFLG BACKWARDS UNTILFN)   (* WTL: "14-NOV-79 14:08")
+    (PROG (CC UNTILFLG MYREC MYPOS RELEVENTOFFSET ENDREC ENDPOS)
+          (SETQ OLDFLG TXDTRESETFORMBREAKLOCKSFLG)
+          (COND
+	    (BACKWARDS (SETQ MYREC REC2)
+		       (SETQ MYPOS POS2)
+		       [COND
+			 ((BTMRECP MYREC)
+			   (SETQ MYREC (fetch (TXDTRECORD TXDTPREV) of MYREC))
+			   (SETQ MYPOS (SUB1 (fetch (TXDTRECORD TXDTOFFSET2) of MYREC]
+		       (COND
+			 ((TOPRECP MYREC)
+			   (RETURN NIL)))
+		       (SETQ RELEVENTOFFSET (FETCH (TXDTRECORD TXDTOFFSET1) OF MYREC))
+		       (SETQ ENDREC REC1)
+		       (SETQ ENDPOS POS1))
+	    (T (SETQ MYREC REC1)
+	       (SETQ MYPOS POS1)
+	       [COND
+		 ((TOPRECP MYRECP)
+		   (SETQ MYREC (FETCH (TXDTRECORD TXDTNEXT) OF MYREC))
+		   (SETQ MYPOS (FETCH (TXDTRECORD TXDTOFFSET1) OF MYREC]
+	       (COND
+		 ((BTMRECP MYREC)
+		   (RETURN NIL)))
+	       (SETQ RELEVENTOFFSET (FETCH (TXDTRECORD TXDTOFFSET2) OF MYREC))
+	       (SETQ ENDREC REC2)
+	       (SETQ ENDPOS POS2)))
+          (LOADREC MYREC)
+      LP  (GETBASEBYTE TXDTCURRENTPAGE MYPOS)
+          [COND
+	    (ASCIIFLG (SETQ CC (FCHARACTER CC]
+          (SETQ UNTILFLG (APPLY* UNTILFN CC))
+          (COND
+	    ((AND (NOT UNTILFLG)
+		  (OR (NEQ MYREC ENDREC)
+		      (NEQ MYPOS ENDPOS)))
+	      [COND
+		[BACKWARDS (SETQ MYPOS (SUB1 MYPOS))
+			   (COND
+			     ((ILESSP MYPOS RELEVENTOFFSET)
+			       (SETQ MYREC (fetch (TXDTRECORD TXDTPREV) of MYREC))
+			       (COND
+				 ((TOPRECP MYREC)
+				   (GO DONE)))
+			       (SETQ MYPOS (SUB1 (fetch (TXDTRECORD TXDTOFFSET2) of MYREC)))
+			       (SETQ RELEVENTOFFSET (fetch (TXDTRECORD TXDTOFFSET1) of MYREC]
+		(T (SETQ MYPOS (ADD1 MYPOS))
+		   (COND
+		     ((NOT (ILESSP MYPOS RELEVENTOFFSET))
+		       (SETQ MYREC (fetch (TXDTRECORD TXDTNEXT) of MYREC))
+		       (COND
+			 ((BTMRECP MYREC)
+			   (GO DONE)))
+		       (SETQ MYPOS (fetch (TXDTRECORD TXDTOFFSET1) of MYREC))
+		       (SETQ RELEVENTOFFSET (fetch (TXDTRECORD TXDTOFFSET2) of MYREC]
+	      (GO LP)))
+      DONE(SETQ TXDTRESETFORMBREAKLOCKSFLG OLDFLG)
+          (RETURN UNTILFLG])
+
+(EDITMKSTRING
+  [LAMBDA (REC1 POS1 REC2 POS2 DONTCOPY TEMPSTR1 STRPTR BITMASK WITHOUTMSG)
+                                                             (* WTL: "13-NOV-79 09:21")
+
+          (* makes a string out of the given window, translating CR/LF into EOL. If DONTCOPY is on the string returned will 
+	  be a substring of the buffer (TEMPSTR1) used to assemble all of the chars in the window. In any case, STRPTR, if 
+	  it is a string pointer, will be smashed to represent the new string. Skips any char with its bit on in BITMASK.)
+
+
+    (PROG (FULLBUFLST MSG LASTMSG NCHARSTEMPSTR1 (CHARCOUNTER 0)
+		      CHAR CHARCODE MYREC MYPOS MYOFFSET1 MYOFFSET2)
+          (COND
+	    ((BTMRECP REC1)                                  (* if we are already at the btm, quit with empty string)
+	      (RETURN "")))
+          (SETQ NCHARSTEMPSTR1 (NCHARS TEMPSTR1))
+          (OR BITMASK (SETQ BITMASK 0))                      (* THE LAST CLAUSE IN THE FOLLOWING TEST IS NEEDED IN 
+							     CASE POS2 IS THE OFFSET2 OF REC2)
+          (SETQ MYREC REC1)
+      RECLOOP
+          (COND
+	    ((BTMRECP MYREC)
+	      (GO DONE)))
+          [SETQ MYOFFSET1 (COND
+	      ((EQ MYREC REC1)
+		POS1)
+	      (T (fetch (TXDTRECORD TXDTOFFSET1) of MYREC]
+          [SETQ MYOFFSET2 (COND
+	      ((EQ MYREC REC2)
+		POS2)
+	      (T (fetch (TXDTRECORD TXDTOFFSET2) of MYREC]
+          (SETQ MYPOS MYOFFSET1)
+          [COND
+	    ((AND (NOT WITHOUTMSG)
+		  TXDTESCAPECHAR
+		  (NEQ (SETQ MSG (fetch (TXDTRECORD TXDTMSG) of MYREC))
+		       LASTMSG))                             (* PRINT THE MSG)
+	      (SETQ LASTMSG MSG)
+	      (EDITMKSTRINGADDCHAR 6 (QUOTE %))
+	      (EDITMKSTRINGADDCHAR 0 TXDTCHARACTER0)
+	      (COND
+		[(LISTP MSG)
+		  (PROG ((LENGTHOFMSG (LENGTH MSG)))
+		        (EDITMKSTRINGADDCHAR LENGTHOFMSG (FCHARACTER LENGTHOFMSG))
+		        (for CHAR in MSG do (EDITMKSTRINGADDCHAR (CHCON1 CHAR)
+								 CHAR]
+		(T (EDITMKSTRINGADDCHAR (CHCON1 MSG)
+					MSG]
+          (LOADREC MYREC)
+      POSLOOP
+          [COND
+	    ((NOT (ILESSP MYPOS MYOFFSET2))
+	      (COND
+		((EQ MYREC REC2)
+		  (GO DONE))
+		(T (SETQ MYREC (fetch (TXDTRECORD TXDTNEXT) of MYREC))
+		   (GO RECLOOP]
+          (SETQ CHARCODE (GETBASEBYTE TXDTCURRENTPAGE MYPOS))
+          (EDITMKSTRINGADDCHAR CHARCODE (FCHARACTER CHARCODE))
+          (SETQ MYPOS (ADD1 MYPOS))
+          (GO POSLOOP)
+
+          (* we get here when we have copied the whole thing into as many bufferfuls as it takes. The first N-1 buffers are 
+	  on the list FULLBUFLST, and the real buffer TEMPSTR1 has the remaining chars in it, with the last CHARCOUNTER of 
+	  them junk.)
+
+                                                             (* calc the number of chars written into the buff in the
+							     last copy)
+      DONE(RETURN (COND
+		    [FULLBUFLST 
+
+          (* if more than one buffers worth was written, concat them all, including the initial part of the current one.
+	  Note that we cannot avoid copying here so DONTCOPY isn't even inspected)
+
+
+				(APPLY (FUNCTION CONCAT)
+				       (COND
+					 ((ZEROP CHARCOUNTER)
+                                                             (* if no chars were written into final buffer, ignore 
+							     it)
+					   FULLBUFLST)
+					 (T (NCONC1 FULLBUFLST (SUBSTRING TEMPSTR1 1 CHARCOUNTER 
+									  STRPTR]
+		    ((ZEROP CHARCOUNTER)                     (* if no chars copied, return null string)
+		      "")
+		    (DONTCOPY                                (* if only one buffers worth was copied and we needn't 
+							     copy it, just return the substring from the buffer)
+			      (SUBSTRING TEMPSTR1 1 CHARCOUNTER STRPTR))
+		    (T                                       (* if we are to copy, then do it)
+		       (CONCAT (SUBSTRING TEMPSTR1 1 CHARCOUNTER STRPTR])
+
+(EDITMOVE
+  [LAMBDA (LINEDIST CHARDIST REC POS FLG)
+
+          (* moves LINEDIST lines and then CHARDIST chars from REC,POS and returns resulting address.
+	  If LINEDIST is 0 it means move to beginning of current line. If LINEDIST is NIL it means make no line move and 
+	  proceed with character move. If CHARDIST is NIL it is assumed to be 0.0 If move exceeds buffer bounds, return NIL 
+	  when FLG is set. Answer returned in EDITMOVECREC,EDITMOVECPOS. NOTE: EDITMOVEC<---!)
+
+
+    (PROG (BACKWARDS)
+          (COND
+	    ((NULL LINEDIST)                                 (* if no line move to be made, proceed with char move by
+							     setting globals as if line move had been done)
+	      [SETQ EDITMOVELREC (COND
+		  (REC (SETQ EDITMOVELPOS POS)
+		       REC)
+		  (T (ERROR "INTERNAL TXDT ERROR - SOMEBODY CALLED EDITMOVE WITH NULL REC"]
+	      (GO CHARMOVE))
+	    ((ILESSP LINEDIST 1)
+
+          (* if LINEDIST is negative or zero, set it to the number of crs to be moved past backwards before moving forward 
+	  over the last one.)
+
+
+	      (SETQ LINEDIST (ADD1 (IMINUS LINEDIST)))
+	      (SETQ BACKWARDS T)))
+          (COND
+	    ((NULL REC)
+	      (ERROR "INTERNAL TXDT ERROR - SOMEBODY CALLED EDITMOVE WITH NULL REC")))
+          (EDITMOVEL LINEDIST REC POS BACKWARDS FLG)         (* move over the required no of crs in the approp 
+							     direction and set EDITMOVELREC,EDITMOVELPOS to the 
+							     location immed behind the last one.)
+      CHARMOVE                                               (* now make the character move)
+          (COND
+	    ((OR (ZEROP CHARDIST)
+		 (NULL CHARDIST)
+		 (NULL EDITMOVELREC))                        (* if no char move necessary, or if line move 
+							     unsuccessful, skip it)
+	      (SETQ EDITMOVECREC EDITMOVELREC)
+	      (SETQ EDITMOVECPOS EDITMOVELPOS))
+	    (T (EDITMOVEC (ABS CHARDIST)
+			  EDITMOVELREC EDITMOVELPOS (MINUSP CHARDIST)
+			  FLG)))
+          (RETURN])
+
+(EDITMOVEC
+  [LAMBDA (CHARCNT REC POS BACKWARDS FLG)                    (* WTL: "16-NOV-79 12:42")
+
+          (* moves CHARCNT chars in the obvious direction from REC,POS. CR-LF is counted as two chars, and so is EOL! When 
+	  moving over file recs we assume no EOLs occur and just arithmetic. When moving over string recs we actually go 
+	  thru them char by char and look for the EOLs. Resulting location is found in EDITMOVECREC,EDITMOVECPOS.
+	  If buffer bounds exceeded and FLG is T, EDITMOVECREC is set to NIL.)
+
+
+    (PROG (FINDNCHARSNLEFT)
+          (SETQ FINDNCHARSNLEFT CHARCNT)
+
+          (* FINDNCHARSNLEFT is the global used by the routine which plods thru text sequences counting the chars off -- 
+	  EOLs two at a time. This global is set to be the number of chars left to find after any given sequence has been 
+	  scanned. Inialize it to the total number of chars to find.)
+
+
+          (COND
+	    (BACKWARDS (GO BACKWARDS)))
+      FORWARDS
+          (COND
+	    ((BTMRECP REC)
+	      (COND
+		((EQ FLG (QUOTE BOUNDARYERR))
+		  (ERROR!)))
+	      (SETQ EDITMOVECREC (COND
+		  (FLG NIL)
+		  (T (SETQ EDITMOVECPOS 0)
+		     REC)))
+	      (RETURN)))
+          [COND
+	    ((ILESSP (IPLUS POS FINDNCHARSNLEFT)
+		     (fetch TXDTOFFSET2 of REC))             (* if we can move forward the right no of cars without 
+							     running off end, do it)
+	      (SETQ EDITMOVECPOS (IPLUS FINDNCHARSNLEFT POS))
+	      (GO CHECKBOUNDS))
+	    (T                                               (* otherwise it isnt long enough, so decrement 
+							     FINDNCHARSNLEFT)
+	       (SETQ FINDNCHARSNLEFT (IPLUS FINDNCHARSNLEFT POS (IMINUS (fetch TXDTOFFSET2
+									   of REC]
+          (SETQ REC (fetch TXDTNEXT of REC))                 (* and step to next rec and loop)
+          (SETQ POS (fetch TXDTOFFSET1 of REC))
+          (GO FORWARDS)
+      BACKWARDS                                              (* this is the backwards version of the loop above)
+          (COND
+	    ((TOPRECP REC)
+	      [COND
+		(FLG (COND
+		       ((EQ FLG (QUOTE BOUNDARYERR))
+			 (ERROR!)))
+		     (SETQ EDITMOVECREC NIL)
+		     (SETQ EDITMOVECPOS 0))
+		(T (SETQ EDITMOVECREC (fetch TXDTNEXT of REC))
+		   (SETQ EDITMOVECPOS (fetch TXDTOFFSET1 of EDITMOVECREC]
+	      (RETURN)))
+          [COND
+	    ((NOT (ILESSP (IDIFFERENCE POS FINDNCHARSNLEFT)
+			  (fetch TXDTOFFSET1 of REC)))       (* if we can back up the required distance, do it)
+	      (SETQ EDITMOVECPOS (IDIFFERENCE POS FINDNCHARSNLEFT))
+	      (GO CHECKBOUNDS))
+	    (T                                               (* otherwise not long enough, so decrement 
+							     FINDNCHARSNLEFT)
+	       (SETQ FINDNCHARSNLEFT (IPLUS FINDNCHARSNLEFT (fetch TXDTOFFSET1 of REC)
+					    (IMINUS POS]
+          (SETQ REC (fetch TXDTPREV of REC))
+          (SETQ POS (fetch TXDTOFFSET2 of REC))
+          (GO BACKWARDS)
+      CHECKBOUNDS
+
+          (* it is possible in the above that we have moved to the very end of REC1, that is, at -- hopefully not beyond! --
+	  OFFSET2. Check for this and move to NEXT rec if needed.)
+
+
+          [COND
+	    ((NOT (ILESSP EDITMOVECPOS (fetch TXDTOFFSET2 of REC)))
+	      (SETQ REC (fetch TXDTNEXT of REC))
+	      (SETQ EDITMOVECPOS (fetch TXDTOFFSET1 of REC]
+                                                             (* We must now be sure we havent split a CR/LF)
+          (SETQ EDITMOVECREC REC)                            (* Finally, we must be sure we haven't exceeded buffer 
+							     bounds if that is required.)
+          [COND
+	    (FLG (COND
+		   [(BTMRECP EDITMOVECREC)
+		     (COND
+		       ((EQ FLG (QUOTE BOUNDARYERR))
+			 (ERROR!))
+		       (T (SETQ EDITMOVECREC NIL]
+		   ((TOPRECP EDITMOVECREC)
+		     (COND
+		       ((EQ FLG (QUOTE BOUNDARYERR))
+			 (ERROR!))
+		       (T (SETQ EDITMOVECREC (fetch TXDTNEXT of EDITMOVECREC))
+			  (SETQ EDITMOVECPOS (fetch TXDTOFFSET1 of EDITMOVECREC]
+          (RETURN])
+
+(EDITMOVEL
+  [LAMBDA (LINECNT REC POS BACKWARDS FLG)                    (* WTL: "21-DEC-79 12:30")
+
+          (* moves LINECNT lines from REC,POS, backwards if BACKWARDS is T. Sets up behind the final lf.
+	  Always assumes LINENO is greater than 0; If FLG is T and it exceeds buffer bounds, returns NIL in EDITMOVELREC)
+
+
+
+          (* THIS WILL BE DONE A FAIR AMOUNT AND SO WE HAVE TO MAKE IT AS FAST AS POSSIBLE. THEREFORE WE LOOK AT THE 
+	  BACKWARDS SWITCH AND HANDLE EACH CASE SEPERATELY.)
+
+
+    (COND
+      (BACKWARDS (PROG ((MYCOUNT 0)
+			OFFSET1)
+		       (SETQ EDITMOVELREC REC)
+		       (SETQ EDITMOVELPOS (SUB1 POS))
+		       [COND
+			 ((OR (BTMRECP EDITMOVELREC)
+			      (ILESSP EDITMOVELPOS (fetch (TXDTRECORD TXDTOFFSET1) of EDITMOVELREC)))
+			   (SETQ EDITMOVELREC (fetch (TXDTRECORD TXDTPREV) of EDITMOVELREC))
+			   (SETQ EDITMOVELPOS (SUB1 (fetch (TXDTRECORD TXDTOFFSET2) of EDITMOVELREC]
+		   RECLP
+		       (SETQ OFFSET1 (fetch (TXDTRECORD TXDTOFFSET1) of EDITMOVELREC))
+		       [COND
+			 ((TOPRECP EDITMOVELREC)
+			   (COND
+			     ((EQ FLG (QUOTE BOUNDARYERR))
+			       (ERROR!))
+			     (T (SETQ EDITMOVELREC (fetch (TXDTRECORD TXDTNEXT) of EDITMOVELREC))
+				(SETQ EDITMOVELPOS (fetch (TXDTRECORD TXDTOFFSET1) of EDITMOVELREC))
+				(RETURN]
+		       (LOADREC EDITMOVELREC)
+		   POSLP
+		       [COND
+			 ((EQ EOLCODE (GETBASEBYTE TXDTCURRENTPAGE EDITMOVELPOS))
+			   (SETQ MYCOUNT (ADD1 MYCOUNT))
+			   (COND
+			     ((EQ MYCOUNT LINECNT)           (* WE MOVE ONE CHARACTER TO FAR.)
+			       (SETQ EDITMOVELPOS (ADD1 EDITMOVELPOS))
+			       [COND
+				 ((NOT (ILESSP EDITMOVELPOS (fetch (TXDTRECORD TXDTOFFSET2)
+							       of EDITMOVELREC)))
+				   (SETQ EDITMOVELREC (fetch (TXDTRECORD TXDTNEXT) of EDITMOVELREC))
+				   (SETQ EDITMOVELPOS (fetch (TXDTRECORD TXDTOFFSET1) of EDITMOVELREC]
+			       (RETURN]
+		       (SETQ EDITMOVELPOS (SUB1 EDITMOVELPOS))
+		       (COND
+			 ((ILESSP EDITMOVELPOS OFFSET1)
+			   (SETQ EDITMOVELREC (fetch (TXDTRECORD TXDTPREV) of EDITMOVELREC))
+			   (SETQ EDITMOVELPOS (SUB1 (fetch (TXDTRECORD TXDTOFFSET2) of EDITMOVELREC)))
+			   (GO RECLP)))
+		       (GO POSLP)))
+      (T (PROG ((MYCOUNT 0)
+		OFFSET2 CHARCODE)
+	       (SETQ EDITMOVELREC REC)
+	       (SETQ EDITMOVELPOS POS)
+	       [COND
+		 ([OR (TOPRECP EDITMOVELREC)
+		      (NOT (ILESSP EDITMOVELPOS (fetch (TXDTRECORD TXDTOFFSET2) of EDITMOVELREC]
+		   (SETQ EDITMOVELREC (fetch (TXDTRECORD TXDTNEXT) of EDITMOVELREC))
+		   (SETQ EDITMOVELPOS (fetch (TXDTRECORD TXDTOFFSET1) of EDITMOVELREC]
+	   RECLP
+	       (SETQ OFFSET2 (fetch (TXDTRECORD TXDTOFFSET2) of EDITMOVELREC))
+	       [COND
+		 ((BTMRECP EDITMOVELREC)
+		   (COND
+		     ((EQ FLG (QUOTE BOUNDARYERR))
+		       (ERROR!))
+		     (T (RETURN]
+	       (LOADREC EDITMOVELREC)
+	   POSLP
+	       (SETQ CHARCODE (GETBASEBYTE TXDTCURRENTPAGE EDITMOVELPOS))
+	       [COND
+		 ((EQ CHARCODE EOLCODE)
+		   (SETQ MYCOUNT (ADD1 MYCOUNT))
+		   (COND
+		     ((EQ MYCOUNT LINECNT)                   (* WE STILL HAVE TO ADVANCE PAST THIS CHAR)
+		       (SETQ EDITMOVELPOS (ADD1 EDITMOVELPOS))
+		       [COND
+			 ((NOT (ILESSP EDITMOVELPOS OFFSET2))
+			   (SETQ EDITMOVELREC (fetch (TXDTRECORD TXDTNEXT) of EDITMOVELREC))
+			   (SETQ EDITMOVELPOS (fetch (TXDTRECORD TXDTOFFSET1) of EDITMOVELREC]
+		       (RETURN]
+	       (SETQ EDITMOVELPOS (ADD1 EDITMOVELPOS))
+	       (COND
+		 ((NOT (ILESSP EDITMOVELPOS OFFSET2))
+		   (SETQ EDITMOVELREC (fetch (TXDTRECORD TXDTNEXT) of EDITMOVELREC))
+		   (SETQ EDITMOVELPOS (fetch (TXDTRECORD TXDTOFFSET1) of EDITMOVELREC))
+		   (GO RECLP)))
+	       (GO POSLP])
+
+(EDITPRINT
+  [LAMBDA (REC1 POS1 REC2 POS2 PTRRECPOSLST PTRCHARS FILE BITMASK)
+                                                             (* WTL: " 8-NOV-79 14:49")
+
+          (* prints the chars in the window REC1,POS1 to REC2,POS2 to DESTJFN. PTRRECPOSLST is a list of rec,pos pairs in 
+	  ascending order. When one of them is encountered along the way and TXDTPTRCHAR is non-NIL, print the pointer char 
+	  at that position. Aside from the pointer, the difference between EDITPRINT and EDITWRITE is that this fn uses 
+	  BOUTs while the other PMAPs. CR/LF is written as EOL. Also, call TXDTPRINTUSERFN on the contents of the TXDTMSG 
+	  field of every rec encountered -- unless the contents of that field is eq to the last such field seen this time.
+	  Will not print any char, c, if cth bit in bitmask is 1, counting from left at 0 -- normal dec convention.)
+
+
+    (PROG (POS12 (LASTCHARCODE 0)
+		 MSG LASTMSG)
+
+          (* We will loop thru the recs, using PRINTSEG to print each segment. We will handle the printing of the ptr char 
+	  here with a PRIN1 to the appropriate file.)
+
+
+          (OR BITMASK (SETQ BITMASK 0))
+      TOP (SETQ MSG (fetch TXDTMSG of REC1))
+          (COND
+	    ((BTMRECP REC1)
+	      (RETURN LASTCHARCODE)))
+          [SETQ POS12 (COND
+	      ((EQ REC1 REC2)
+		POS2)
+	      (T (fetch TXDTOFFSET2 of REC1]
+      PTRLOOP
+          [COND
+	    ((AND PTRRECPOSLST (EQ REC1 (CAAR PTRRECPOSLST))
+		  (NOT (IGREATERP POS1 (CDAR PTRRECPOSLST)))
+		  (ILESSP (CDAR PTRRECPOSLST)
+			  POS12))                            (* if a PTRREC,PTRPOS is in this segment, and we are 
+							     supposed to take special action for the pointer, print 
+							     the pointer)
+	      [COND
+		((ILESSP POS1 (CDAR PTRRECPOSLST))           (* If this is so, then we will actually print a 
+							     character. So eval MSG if necessary, before doig it.)
+		  (COND
+		    ((AND TXDTESCAPECHAR MSG (NEQ MSG LASTMSG))
+		      (SETQ LASTMSG MSG)
+		      [COND
+			(TXDTPRINTUSERFNBOX (SETQ TXDTPRINTUSERFNBOX (TXDTBOXRECPOS REC1 POS1 
+									       TXDTPRINTUSERFNBOX]
+		      (SETQ MSG (TXDTPRINTUSERFN MSG FILE))
+
+          (* If TXDTPRINTUSERFN returned anything other than NIL and it is different from what was there, smash the msg 
+	  field of the current rec with the new msg.)
+
+
+		      (COND
+			((AND MSG (NEQ MSG LASTMSG))
+			  (/replace TXDTMSG of REC1 with MSG)
+			  (SETQ LASTMSG MSG)))
+		      (SETQ MSG NIL)))
+		  (SETQ LASTCHARCODE (PRINTSEG REC1 POS1 (CDAR PTRRECPOSLST)
+					       FILE BITMASK]
+	      (PRIN1 (OR (AND (LISTP PTRCHARS)
+			      (OR (PROG1 (CAR PTRCHARS)
+					 (SETQ PTRCHARS (CDR PTRCHARS)))
+				  TXDTPTRCHAR ""))
+			 PTRCHARS TXDTPTRCHAR "")
+		     FILE)                                   (* use PRIN1 to print ptr to appropriate file name)
+	      (SETQ POS1 (CDAR PTRRECPOSLST))
+	      (SETQ PTRRECPOSLST (CDR PTRRECPOSLST))
+	      (GO PTRLOOP))
+	    ((ILESSP POS1 POS12)                             (* We will actually print a char, so eval MSG if 
+							     necessary.)
+	      (COND
+		((AND TXDTESCAPECHAR MSG (NEQ MSG LASTMSG))
+		  (SETQ LASTMSG MSG)
+		  [COND
+		    (TXDTPRINTUSERFNBOX (SETQ TXDTPRINTUSERFNBOX (TXDTBOXRECPOS REC1 POS1 
+									       TXDTPRINTUSERFNBOX]
+		  (SETQ MSG (TXDTPRINTUSERFN MSG FILE))
+		  (COND
+		    ((AND MSG (NEQ MSG LASTMSG))
+		      (/replace TXDTMSG of REC1 with MSG)
+		      (SETQ LASTMSG MSG)))
+		  (SETQ MSG NIL)))
+	      (SETQ LASTCHARCODE (PRINTSEG REC1 POS1 POS12 FILE BITMASK]
+                                                             (* print relevant window)
+          (COND
+	    ((EQ REC1 REC2)
+	      (RETURN LASTCHARCODE)))
+          (SETQ REC1 (fetch TXDTNEXT of REC1))
+          (SETQ POS1 (fetch TXDTOFFSET1 of REC1))
+          (GO TOP])
+
+(EDITPUTMSG
+  [LAMBDA (REC POS MSG)
+    (PROG (OLDMSG)
+          (COND
+	    ([OR (EQ MSG 0)
+		 (COND
+		   ((LISTP MSG)
+		     (OR [for TAIL on MSG thereis (OR (NEQ 1 (NCHARS (CAR TAIL)))
+						      (AND (NLISTP (CDR TAIL))
+							   (CDR TAIL]
+			 (IGREATERP (LENGTH MSG)
+				    127)))
+		   ((NULL MSG)
+		     NIL)
+		   (T (NEQ 1 (NCHARS MSG]
+	      (ERROR "ATTEMPT TO INSERT ILLEGAL MESSAGE!" MSG)))
+          (COND
+	    ((NOT (IEQP POS (fetch TXDTOFFSET1 of REC)))
+	      (EDITINSERT NIL REC POS)
+	      (SETQ REC EDITINSERTREC2)))
+          (SETQ OLDMSG (fetch TXDTMSG of REC))
+          (/replace TXDTMSG of REC with MSG)
+          (RETURN OLDMSG])
+
+(EDITRESETSAVEFN
+  [LAMBDA NIL
+    (AND RESETSTATE (RESETUNDO OLDVALUE])
+
+(EDITSEARCH
+  [LAMBDA (STR REC1 POS1 REC2 POS2 BACK COUNT)               (* WTL: "15-NOV-79 12:29")
+                                                             (* THIS IMPLEMENTS THE KNUTH, MORRIS, PRATT STRING 
+							     SEARCHING ALGORITHM IN A PRETTY STRAIGHT FORWARD WAY.)
+    (CAR (NLSETQ (PROG (STRINGFOUND? FINDFIRSTMODE EDITCHARREC EDITCHARPOS ENDCHARREC ENDCHARPOS 
+				     PATTERNSIZE TEMPSTR J CURRENTPOINTER TEMP)
+		       (SETQ TXDTRESETFORMBREAKLOCKSFLG CURRENTPOINTER)
+		       (OR COUNT (SETQ COUNT 1))
+		       (if BACK
+			   then (SETQ EDITSEARCHREC1 (SETQ EDITSEARCHREC2 REC2))
+				(SETQ EDITSEARCHPOS1 (SETQ EDITSEARCHPOS2 POS2))
+				(SETQ ENDCHARREC REC1)
+				(SETQ ENDCHARPOS POS1)
+			 else (SETQ EDITSEARCHREC1 (SETQ EDITSEARCHREC2 REC1))
+			      (SETQ EDITSEARCHPOS1 (SETQ EDITSEARCHPOS2 POS1))
+			      (SETQ ENDCHARREC REC2)
+			      (SETQ ENDCHARPOS POS2))
+		       (COND
+			 ((OR (ZEROP (NCHARS STR))
+			      (ILESSP COUNT 1))
+			   (SETQ TXDTFINDCNT COUNT)
+			   (RETURN CURRENTPOINTER))
+			 ((AND (NOT BACK)
+			       (BTMRECP EDITSEARCHREC2))
+			   (SETQ TXDTFINDCNT 0)
+			   (RETURN NIL)))
+		       (SETQ TXDTFINDCNT 0)                  (* MAKE SURE WE HAVE ENOUGH OF EVERYTHING LYING AROUND)
+		       (SETQ PATTERNSIZE (NCHARS STR))
+		       (if (ILESSP EDITSEARCHPATTERNSIZE PATTERNSIZE)
+			   then (SETQ EDITSEARCHPATTERNSIZE PATTERNSIZE)
+				(SETQ EDITSEARCHPATTERNARRAY (ARRAY PATTERNSIZE))
+				(SETQ EDITSEARCHNEXTARRAY (ARRAY PATTERNSIZE)))
+                                                             (* SET UP THE PATTERN ARRAY AND THE NEXT ARRAY)
+		       (SETQ TEMPSTR (SUBSTRING STR 1))
+		       [for I from 1 to PATTERNSIZE do (PROG [(CHAR (if BACK
+									then (GLC TEMPSTR)
+								      else (GNC TEMPSTR]
+							     (SETA EDITSEARCHPATTERNARRAY I
+								   (if (EQ (CHCON1 CHAR)
+									   LFCODE)
+								       then 
+                                                             (* THIS IS A SPECIAL HACKTO CHANGE THE LINEFEEDS INTO 
+							     EOLS)
+									    (FCHARACTER EOLCODE)
+								     else CHAR]
+		       (SETQ J 1)
+		       (SETQ CURRENTPOINTER 0)
+		       (SETA EDITSEARCHNEXTARRAY 1 0)
+		       [while (IGREATERP PATTERNSIZE J)
+			  do                                 (* CURRENTPOINTER = (F J))
+			     (while (AND (IGREATERP CURRENTPOINTER 0)
+					 (NEQ (ELT EDITSEARCHPATTERNARRAY J)
+					      (ELT EDITSEARCHPATTERNARRAY CURRENTPOINTER)))
+				do (SETQ CURRENTPOINTER (ELT EDITSEARCHNEXTARRAY CURRENTPOINTER)))
+			     (SETQ CURRENTPOINTER (ADD1 CURRENTPOINTER))
+			     (SETQ J (ADD1 J))
+			     (SETA EDITSEARCHNEXTARRAY J (PROGN (if (EQ (ELT EDITSEARCHPATTERNARRAY J)
+									(ELT EDITSEARCHPATTERNARRAY 
+									     CURRENTPOINTER))
+								    then (ELT EDITSEARCHNEXTARRAY 
+									      CURRENTPOINTER)
+								  else CURRENTPOINTER]
+                                                             (* NOW FOR THE ACTUAL SEARCH)
+		       (SETQ STRINGFOUND? (PROG (CHAR (J 1)
+						      RELEVENTOFFSET)
+					        [COND
+						  ((AND (TOPRECP EDITSEARCHREC2)
+							(NOT BACK))
+						    (SETQ EDITSEARCHREC2 (fetch (TXDTRECORD TXDTNEXT)
+									    of EDITSEARCHREC2))
+						    (SETQ EDITSEARCHPOS2 (fetch (TXDTRECORD 
+										      TXDTOFFSET1)
+									    of EDITSEARCHREC2]
+                                                             (* WE CAN'T BLITHELY MOVE EDITSEARCHPOS2 BACK ONE IF AT 
+							     BTM AND SEARCHING BACKWARDS BECAUSE THE ALGORITHM 
+							     DECREMENTS AND THEN GET THE CHAR.)
+					        (OR (TOPRECP EDITSEARCHREC2)
+						    (BTMRECP EDITSEARCHREC2)
+						    (LOADREC EDITSEARCHREC2))
+					        [COND
+						  (BACK (SETQ RELEVENTOFFSET (fetch (TXDTRECORD
+										      TXDTOFFSET1)
+										of EDITSEARCHREC2)))
+						  (T (SETQ RELEVENTOFFSET (fetch (TXDTRECORD 
+										      TXDTOFFSET2)
+									     of EDITSEARCHREC2]
+					    MAJORLP
+					        (COND
+						  ((OR (AND (NOT BACK)
+							    (BTMRECP EDITSEARCHREC2))
+						       (AND (EQ EDITSEARCHREC2 ENDCHARREC)
+							    (EQ EDITSEARCHPOS2 ENDCHARPOS)))
+						    (RETURN NIL)))
+                                                             (* HITTING THE TOP WHEN SEARCHING BACKWARDS IS CHECKED 
+							     WHEN WE GET THE CHAR)
+					        (COND
+						  ((EQ J 1)
+						    (SETQ EDITSEARCHREC1 EDITSEARCHREC2)
+						    (SETQ EDITSEARCHPOS1 EDITSEARCHPOS2)))
+					        [COND
+						  [BACK (SETQ EDITSEARCHPOS2 (SUB1 EDITSEARCHPOS2))
+							(COND
+							  ((ILESSP EDITSEARCHPOS2 RELEVENTOFFSET)
+							    (SETQ EDITSEARCHREC2 (fetch (TXDTRECORD
+											  TXDTPREV)
+										    of EDITSEARCHREC2)
+							      )
+							    (SETQ EDITSEARCHPOS2
+							      (SUB1 (fetch (TXDTRECORD TXDTOFFSET2)
+								       of EDITSEARCHREC2)))
+							    (SETQ RELEVENTOFFSET (fetch (TXDTRECORD
+											  TXDTOFFSET1)
+										    of EDITSEARCHREC2)
+							      )
+							    (COND
+							      ((TOPRECP EDITSEARCHREC2)
+								(RETURN NIL)))
+							    (LOADREC EDITSEARCHREC2)))
+							(SETQ CHAR (FCHARACTER (GETBASEBYTE 
+										  TXDTCURRENTPAGE 
+										   EDITSEARCHPOS2]
+						  (T (SETQ CHAR (FCHARACTER (GETBASEBYTE 
+										  TXDTCURRENTPAGE 
+										   EDITSEARCHPOS2)))
+						     (SETQ EDITSEARCHPOS2 (ADD1 EDITSEARCHPOS2))
+						     (COND
+						       ((NOT (ILESSP EDITSEARCHPOS2 RELEVENTOFFSET))
+							 (SETQ EDITSEARCHREC2 (fetch (TXDTRECORD
+										       TXDTNEXT)
+										 of EDITSEARCHREC2))
+							 (SETQ EDITSEARCHPOS2 (fetch (TXDTRECORD
+										       TXDTOFFSET1)
+										 of EDITSEARCHREC2))
+							 (COND
+							   ((NOT (BTMRECP EDITSEARCHREC2))
+                                                             (* WE STILL HAVENT LOOKED AT THIS CHAR SO WE CAN'T JUST 
+							     RETURN IF WE'VE REACHED THE BOTTOM)
+							     (SETQ RELEVENTOFFSET
+							       (fetch (TXDTRECORD TXDTOFFSET2)
+								  of EDITSEARCHREC2))
+							     (LOADREC EDITSEARCHREC2]
+					    INNERLP
+					        (COND
+						  ((AND (IGREATERP J 0)
+							(NEQ CHAR (ELT EDITSEARCHPATTERNARRAY J)))
+						    (SETQ J (ELT EDITSEARCHNEXTARRAY J))
+						    (GO INNERLP)))
+					        (SETQ J (ADD1 J))
+					        (COND
+						  ((IGREATERP J PATTERNSIZE)
+						    (SETQ TXDTFINDCNT (ADD1 TXDTFINDCNT))
+						    (COND
+						      ((EQ TXDTFINDCNT COUNT)
+							(RETURN T)))
+						    (SETQ J 1)))
+					        (GO MAJORLP)))
+                                                             (* NOW WE HAVE TO SET UP EDITSEARCHREC2,EDITSEARCHPOS2 
+							     AND DO SOME FIDDLING IF THE SEARCH WAS BACKWARDS)
+		       (if (NULL STRINGFOUND?)
+			   then [SETQ EDITSEARCHREC1 (SETQ EDITSEARCHREC2 (if BACK
+									      then
+									       (fetch (TXDTBUFFER
+											TXDTTOP)
+										  of TXDTCURBUF)
+									    else (fetch (TXDTBUFFER
+											  TXDTBTM)
+										    of TXDTCURBUF]
+				(SETQ EDITSEARCHPOS1 (SETQ EDITSEARCHPOS2 0))
+			 elseif BACK
+			   then 
+
+          (* NOW WE HAVE TO REVERSE THE SENSE OF THE POINTERS SO THAT REC2 AND POS2 POINT AT THE END OF THE FOUND STRING 
+	  INSTEAD OF THE BEGINNING)
+
+
+				(SETQ TEMP EDITSEARCHREC1)
+				(SETQ EDITSEARCHREC1 EDITSEARCHREC2)
+				(SETQ EDITSEARCHREC2 TEMP)
+				(SETQ TEMP EDITSEARCHPOS1)
+				(SETQ EDITSEARCHPOS1 EDITSEARCHPOS2)
+				(SETQ EDITSEARCHPOS2 TEMP))
+		       (SETQ TXDTRESETFORMBREAKLOCKSFLG NIL)
+		       (RETURN STRINGFOUND?])
+
+(EDITSUBST
+  [LAMBDA (NEWSTR OLDSTR REC1 POS1 REC2 POS2 BACKWARDS MAXSUBSTS COUNTLCFLG)
+
+          (* substitutes NEWSTR for OLDSTR in the given window. Goes backwards if BACKWARDS is set. If MAXSUBSTS is NIL it 
+	  makes as many substituttions as possible. If MAXSUBSTS is non-NIL it is assumed to be the maximum number of 
+	  substitutions to be made. When done, EDITINSERTREC2,EDITINSERTPOS2 or EDITINSERTREC1,EDITINSERTPOS1 is the 
+	  location of the last substitution is the loc of the end or the beginning of the final insertion of NEWSTR, 
+	  depending on BACKWARDS The function returns the total number of substitutions actually performed.
+	  If COUNTLCFLG is CHARS, TXDTDELTA is set to the total change in the number of characters. If it is LINES, its set 
+	  to the total change in the number of lines. If BOTH, it sets it to the dotted pair with the line difference in the
+	  CAR and an unspecified obj in the CDR.)
+
+
+    (PROG (TEMP SAVEDTXDTDELTA (INITCOUNT MAXSUBSTS))
+          (SETQ TEMP (COND
+	      ((EQ COUNTLCFLG (QUOTE BOTH))
+		(QUOTE LINES))
+	      (T COUNTLCFLG)))
+          (COND
+	    ((NOT MAXSUBSTS)
+	      (SETQ MAXSUBSTS -1)))
+          (COND
+	    (BACKWARDS                                       (* if we are to do it backwards, use the backwards 
+							     loop.)
+		       (GO BACKWARDS)))
+          (SETQ EDITINSERTREC2 REC1)
+          (SETQ EDITINSERTPOS2 POS1)
+
+          (* we will loop looking for OLDSTR and when found, delete it and insert NEWSTR. We then want to resume looking for
+	  OLDSTR immed following the insertion. Therefore, use the globals maintained by EDITINSERT to hold the current 
+	  starting place.)
+
+
+          (COND
+	    ((ZEROP (NCHARS OLDSTR))                         (* if OLDSTR is empty, quit now)
+	      (AND COUNTLCFLG (SETQ TXDTDELTA (OR (AND (EQ COUNTLCFLG (QUOTE BOTH))
+						       (CONS 0 0))
+						  0)))
+	      (RETURN 0)))
+      FORWLOOP
+          (COND
+	    ((AND (NEQ MAXSUBSTS 0)
+		  (EDITSEARCH OLDSTR EDITINSERTREC2 EDITINSERTPOS2 REC2 POS2))
+                                                             (* find next occurrence of OLDSTR)
+	      (EDITDELETE EDITSEARCHREC1 EDITSEARCHPOS1 EDITSEARCHREC2 EDITSEARCHPOS2 TEMP)
+	      (AND TEMP (SETQ SAVEDTXDTDELTA TXDTDELTA))
+	      (EDITINSERT NEWSTR EDITDELETEREC EDITDELETEPOS TEMP)
+	      (AND TEMP (SETQ TEMP NIL))                     (* insert the new string in its place)
+	      (SETQ MAXSUBSTS (SUB1 MAXSUBSTS))              (* decrmt subst counter)
+	      (GO FORWLOOP)                                  (* and keep looping)
+	      ))
+          (GO EXIT)
+      BACKWARDS
+
+          (* This is very much like the forward loop except that it is REC2,POS2 we must push toward REC1,POS1 rather than 
+	  vice versa. One additional note: we must resume searching for the next occurrence in front of rather than behind 
+	  the current insertion, to prevent possible subst into NEWSTR itself.)
+
+
+          (SETQ EDITINSERTREC1 REC2)
+          (SETQ EDITINSERTPOS1 POS2)
+          (COND
+	    ((ZEROP (NCHARS OLDSTR))
+	      (AND COUNTLCFLG (SETQ TXDTDELTA (OR (AND (EQ COUNTLCFLG (QUOTE BOTH))
+						       (CONS 0 0))
+						  0)))
+	      (RETURN 0)))
+      BACKLOOP
+          (COND
+	    ((AND (NEQ MAXSUBSTS 0)
+		  (EDITSEARCH OLDSTR REC1 POS1 EDITINSERTREC1 EDITINSERTPOS1 T))
+	      (EDITDELETE EDITSEARCHREC1 EDITSEARCHPOS1 EDITSEARCHREC2 EDITSEARCHPOS2 TEMP)
+	      (AND TEMP (SETQ SAVEDTXDTDELTA TXDTDELTA))
+	      (EDITINSERT NEWSTR EDITDELETEREC EDITDELETEPOS TEMP)
+	      (AND TEMP (SETQ TEMP NIL))
+	      (SETQ MAXSUBSTS (SUB1 MAXSUBSTS))
+	      (GO BACKLOOP)))
+      EXIT                                                   (* first compute how many substs we made, and then 
+							     compute the total change in the lines/chars if needed.)
+          [SETQ TEMP (COND
+	      ((ILESSP MAXSUBSTS 0)                          (* if count is neg, it was NIL to begin with and we made
+							     -COUNT+1 substitutions)
+		(IMINUS (ADD1 MAXSUBSTS)))
+	      (T                                             (* otherwise, we made:)
+		 (IDIFFERENCE INITCOUNT MAXSUBSTS]
+          [COND
+	    (COUNTLCFLG (SETQ TXDTDELTA (ITIMES TEMP (IPLUS TXDTDELTA SAVEDTXDTDELTA)))
+			(COND
+			  ((EQ COUNTLCFLG (QUOTE BOTH))
+			    (SETQ TXDTDELTA (CONS TXDTDELTA (QUOTE 
+							     UNABLE-TO-GIVE-MEANINGFUL-CHAR-COUNT]
+          (RETURN TEMP])
+
+(EDITWRITE
+  [LAMBDA (FILENAME REC1 POS1 REC2 POS2)                     (* edited: "19-OCT-78 15:51")
+                                                             (* Writes the chars in the given window to FILE and 
+							     closes it)
+    (SETQ TXDTRESETFORMBREAKLOCKSFLG T)
+    [SETQ FILENAME (COND
+	((XNLSETQ (PROG (STOPFLG EDITWRITEREC NEXTREC)
+		        (OUTFILE (SETQ FILENAME (PACKFILENAME (QUOTE BODY)
+							      FILENAME
+							      (QUOTE EXTENSION)
+							      TXDTEXTENSION)))
+                                                             (* Open file, with ext defaulting to TXDTEXTENSION.
+							     Flags specify Read and Write.)
+		        (SETQ EDITREADFILELST (CONS FILENAME EDITREADFILELST))
+                                                             (* add it to list of files possibly PMAPed in)
+		        (SETQ EDITWRITEREC REC1)
+		        (until STOPFLG do 
+
+          (* FOR RIGHT NOW, I'M PRINTING ONE RECORD AT A TIME. THIS IS GOING TO BE SLOW, BUT IT WILL GET THE JOB DONE UNTIL 
+	  I REWORD IT FOR THE I/O FOR THE NEW MACHINES.)
+
+
+					  (SETQ NEXTREC (fetch (TXDTRECORD TXDTNEXT) of EDITWRITEREC))
+					  (PRIN3 (EDITMKSTRING EDITWRITEREC
+							       (if (EQ EDITWRITEREC REC1)
+								   then POS1
+								 else (fetch (TXDTRECORD TXDTOFFSET1)
+									 of EDITWRITEREC))
+							       (if (EQ EDITWRITEREC REC2)
+								   then EDITWRITEREC
+								 else NEXTREC)
+							       (if (EQ EDITWRITEREC REC2)
+								   then POS2
+								 else (fetch (TXDTRECORD TXDTOFFSET1)
+									 of NEXTREC))
+							       T TXDTSCRATCHSTRING STRINGPOINTERTEMP)
+						 FILENAME)
+					  (SETQ STOPFLG (OR (EQ EDITWRITEREC REC2)
+							    (BTMRECP EDITWRITEREC)))
+					  (SETQ EDITWRITEREC NEXTREC))
+		        (CLOSEF FILENAME)
+		        (RETURN))
+		  NOBREAK)
+
+          (* if no errors occured, then close the file and return the full filename. Since EDITCLOSEF must do a SWAPOUT of 
+	  any pages currently mapped in, this will unlock any locked pages associated with the output file.)
+
+
+	  (EDITCLOSEF FILENAME))
+	((OPENP FILENAME)                                    (* if an error occured and the output file is open, we 
+							     want to close it and unlock any locked pages)
+	  (EDITCLOSEF FILENAME)
+	  (DELFILE FILENAME)
+	  (ERROR "TXDTWRITE INTERRUPTED - FILE CLOSED AND DELETED" FILENAME))
+	(T                                                   (* error occured, but file not open.
+							     Just break any locks)
+	   (ERROR!]
+    (SETQ TXDTRESETFORMBREAKLOCKSFLG NIL)
+    FILENAME])
+
+(GETBTMREC
+  [LAMBDA (REC)                                             (* decends to btm of chain from rec)
+    (PROG (NEXT)
+      LOOP(SETQ NEXT (FETCH TXDTNEXT OF REC))
+          (COND
+	    ((EQ NEXT REC)
+	      (RETURN REC)))
+          (SETQ REC NEXT)
+          (GO LOOP])
+
+(GETTOPREC
+  [LAMBDA (REC)                                              (* climbs to the top of the chain from REC)
+    (PROG (PREV)
+      LOOP(SETQ PREV (FETCH TXDTPREV OF REC))
+          (COND
+	    ((EQ PREV REC)
+	      (RETURN REC)))
+          (SETQ REC PREV)
+          (GO LOOP])
+
+(MARKEDP
+  [LAMBDA (CHAIN)                                           (* Returns T iff all recs in chain are marked by having 
+							    TXDTOFFSET2 less than -1500)
+    (PROG (X)
+      LOOP(COND
+	    ((NOT (type? TXDTRECORD CHAIN))
+	      (RETURN T)))
+          (SETQ X (fetch TXDTOFFSET2 of CHAIN))
+          (COND
+	    ((NOT (ILESSP X -1500))
+	      (RETURN NIL)))
+          (SETQ CHAIN (fetch TXDTNEXT of CHAIN))
+          (GO LOOP])
+
+(PRINTSEG
+  [LAMBDA (REC POS1 POS2 FILE BITMASK)                       (* WTL: "30-NOV-79 16:42")
+                                                             (* prints text in window to destjfn, convertiong EOL to 
+							     CR/LF.)
+    (COND
+      ((ILESSP POS1 POS2)
+	(COND
+	  ((GETD (QUOTE TXDTPRINTFN))
+	    (PROG ((CHARCODE 0)
+		   (I POS1))
+	          (LOADREC REC)
+	      LP  (SETQ CHARCODE (GETBASEBYTE TXDTCURRENTPAGE I))
+	          (COND
+		    ((EDITTESTCHAR CHARCODE BITMASK)
+		      (TXDTPRINTFN CHARCODE FILE)))
+	          (SETQ I (ADD1 I))
+	          (COND
+		    ((IGREATERP POS2 I)
+		      (GO LP)))
+	          (RETURN CHARCODE)))
+	  (T (CHCON1 (GLC (PRIN3 (EDITMKSTRING REC POS1 REC POS2 T TXDTSCRATCHSTRING 
+					       TXDTSCRATCHSTRINGPTR BITMASK T)
+				 FILE])
+
+(RTXDT
+  [LAMBDA NIL
+    (PROG NIL
+          [SETQ RTXDTFNS (for FN in TXDTFNS collect FN unless (AND (MEMB FN HIDDENFNS)
+								   (NEQ FN (QUOTE TXDTPRINTUSERFN]
+          (SETQ RTXDTCOMS
+	    (for COM in TXDTCOMS
+	       collect
+		(SELECTQ (CAR COM)
+			 (FNS (QUOTE (FNS * RTXDTFNS)))
+			 (VARS (REMOVE (QUOTE HIDDENFNS)
+				       COM))
+			 [BLOCKS
+			   (LIST (QUOTE BLOCKS)
+				 (CONS (QUOTE TXDT)
+				       (APPEND RTXDTFNS
+					       (for X in (CADR (ASSOC (QUOTE BLOCKS)
+								      TXDTCOMS))
+						  when (LISTP X)
+						  collect (SELECTQ (CAR X)
+								   [ENTRIES
+								     (CONS (QUOTE ENTRIES)
+									   (for FN
+									      in (CDR X)
+									      collect FN
+									      unless (MEMB FN 
+											HIDDENFNS]
+								   [NOLINKFNS
+								     (CONS (QUOTE NOLINKFNS)
+									   (for FN
+									      in (CDR X)
+									      collect FN
+									      unless (MEMB FN 
+											HIDDENFNS]
+								   X]
+			 COM)))
+          (RETURN NIL])
+
+(TXDTADDRP
+  [LAMBDA (X)
+    (AND (type? TXDTADDR X)
+	 X])
+
+(TXDTANCHOREDFIND
+  [LAMBDA (STR ADDR1 ADDR2 BACKWARDS BEHIND OLDBOX)
+
+          (* Like TXDTFIND except that it does not allow the search to move from the beginning or end address -- depending 
+	  on the direction of search. That is, for a forward search, it must find STR starting at ADDR1 and contained in the
+	  window closed by ADDR2. Analogously for backward searches.)
+
+
+    (PROG (TEMPADDR)
+          (OR (STRINGP STR)
+	      (SETQ STR (MKSTRING STR)))
+          (OR (TXDTADDRP ADDR1)
+	      (SETQ ADDR1 (TXDTCOPY ADDR1)))
+          (OR (TXDTADDRP ADDR2)
+	      (SETQ ADDR2 (TXDTCOPY ADDR2)))
+          (RETURN (COND
+		    (BACKWARDS (TXDTCHAR (SETQ TEMPADDR (TXDTBOX ADDR2 OLDBOX))
+					 T -1)
+			       (COND
+				 ((for I from (NCHARS STR) to 1 by -1
+				     always (COND
+					      [(TXDTEQUAL ADDR1 TEMPADDR)
+						(AND (EQ I 1)
+						     (EQ (NTHCHAR STR 1)
+							 (TXDTCHAR TEMPADDR NIL NIL]
+					      ([EQ (NTHCHAR STR I)
+						   (TXDTCHAR TEMPADDR NIL (COND
+							       ((EQ I 1)
+								 NIL)
+							       (T -1]
+						T)
+					      (T NIL)))
+				   (COND
+				     ((EQ BEHIND (QUOTE BOTH))
+				       (CONS TEMPADDR ADDR2))
+				     (BEHIND ADDR2)
+				     (T TEMPADDR)))
+				 (T NIL)))
+		    (T (SETQ TEMPADDR (TXDTBOX ADDR1 OLDBOX))
+		       (COND
+			 ((for I from 1 to (NCHARS STR) by 1 always (COND
+								      ((TXDTEQUAL TEMPADDR ADDR2)
+									NIL)
+								      ((EQ (NTHCHAR STR I)
+									   (TXDTCHAR TEMPADDR NIL 1))
+									T)
+								      (T NIL)))
+			   (COND
+			     ((EQ BEHIND (QUOTE BOTH))
+			       (CONS ADDR1 TEMPADDR))
+			     (BEHIND TEMPADDR)
+			     (T ADDR1)))
+			 (T NIL])
+
+(TXDTBOX
+  [LAMBDA (ADDR BOUNDARYERRFLG OLDBOX SPECIALBTMFLG)
+    (PROG (REC POS)
+          (TXDTSETQQ REC POS ADDR (AND BOUNDARYERRFLG (QUOTE BOUNDARYERR)))
+          (COND
+	    ((AND SPECIALBTMFLG (BTMRECP REC))
+
+          (* If this flg is on and the decoded address is the btm, then move up one char and box the resulting address with 
+	  the special mark (SPECIAL-BTM-MARK rec . pos))
+
+
+	      (EDITMOVEC 1 REC POS T)
+	      (SETQ REC (CONS (QUOTE SPECIAL-BTM-MARK)
+			      (CONS EDITMOVECREC EDITMOVECPOS)))
+	      (SETQ POS 0)))
+          (RETURN (TXDTBOXRECPOS REC POS OLDBOX])
+
+(TXDTBOXRECPOS
+  [LAMBDA (REC POS OLDBOX)                                   (* WTL: " 8-NOV-79 20:22")
+
+          (* if OLDBOX is NIL it constructs a new box and puts REC,POS in it. If OLDBOX is non-NIL it is assumed to be a 
+	  TXDTADDRP and is munged. Resulting box is returned.)
+
+
+    [COND
+      ((TYPE? TXDTADDR OLDBOX)
+	(replace TXDTREC of OLDBOX with REC)
+	(replace TXDTPOS of OLDBOX with POS))
+      (T (SETQ TXDTADDRCNT (ADD1 TXDTADDRCNT))
+	 (SETQ OLDBOX (create TXDTADDR
+			      TXDTREC _ REC
+			      TXDTPOS _ POS]
+    OLDBOX])
+
+(TXDTCHAR
+  [LAMBDA (ADDR CHARCODEFLG MOVEFLG)
+
+          (* returns the character at ADDR and destructively advances ADDR to the next or prev char depending on BACKWARDS.
+	  If CHARCODEFLG is set the numeric code for the char is retured, otherwise the atom consisting of the single char 
+	  is returned. CR/LF is returned as EOL and the ADDR is advanced two steps.)
+
+
+
+          (* An ADDR equivalent to TOP for its buffer is treated specially when we are supposed to move backwards.
+	  After the char is fetched, the ADDR is smashed so that its TXDTREC is the toprec of the buffer and its TXDTPOS is 
+	  -1; On entry to this function such addresses are caught and the value NIL is returned. In addition, if moving 
+	  forward the ADDR is again modified, to be equivalent to TOP again.)
+
+
+    (PROG NIL
+          (COND
+	    ((AND (type? TXDTADDR ADDR)
+		  (TOPRECP (fetch TXDTREC of ADDR)))
+
+          (* Ok, this is a specially marked address representing a move off the top of the buffer. We will return NIL as the
+	  char at this position, and if we are to move forward, we will smash the address to be at the top of the buffer 
+	  again, using the knowledge that its TXDTREC is the toprec of this buffer.)
+
+
+	      [COND
+		((AND MOVEFLG (NEQ MOVEFLG -1))
+		  (replace TXDTREC of ADDR with (fetch TXDTNEXT of (fetch TXDTREC of ADDR)))
+		  (replace TXDTPOS of ADDR with (fetch TXDTOFFSET1 of (fetch TXDTREC of ADDR]
+	      (RETURN NIL)))
+          (TXDTSETQQ EDITCHARREC EDITCHARPOS ADDR)           (* unbox the address into the globals EDITCHAR will hit)
+          (COND
+	    ((BTMRECP EDITCHARREC)
+	      (COND
+		((AND (EQ MOVEFLG -1)
+		      (TXDTADDRP ADDR))
+		  (EDITCHAR EDITCHARREC 0 T)
+		  (TXDTBOXRECPOS EDITCHARREC EDITCHARPOS ADDR)))
+	      (RETURN NIL)))
+          (EDITCHAR EDITCHARREC EDITCHARPOS (EQ MOVEFLG -1))
+          [COND
+	    ((AND MOVEFLG (TXDTADDRP ADDR))
+
+          (* if we are to move the address, and if ADDR is a boxed REC,POS then destructively alter it to the next/prev char
+	  defind by EDITCHAR)
+
+
+	      (COND
+		([AND (EQ MOVEFLG -1)
+		      (TOPRECP (fetch TXDTPREV of (fetch TXDTREC of ADDR)))
+		      (IEQP (fetch TXDTPOS of ADDR)
+			    (fetch TXDTOFFSET1 of (fetch TXDTREC of ADDR]
+
+          (* If we are moving backwards and ADDR is currently at the TOP of its buffer -- i.e., its TXDTREC is the one 
+	  following a toprec and its TXDTPOS is the offset1 of that TXDTREC -- then we want to smash ADDR so that it looks 
+	  like we have moved off of top.)
+
+
+		  (replace TXDTREC of ADDR with (fetch TXDTPREV of (fetch TXDTREC of ADDR)))
+		  (replace TXDTPOS of ADDR with -1))
+		(T (TXDTBOXRECPOS EDITCHARREC EDITCHARPOS ADDR]
+          (RETURN (COND
+		    ((NULL EDITCHARCODE)
+
+          (* If for any reason -- i.e., EDITCHAR was called on the btm rec -- the char code is NIL, return NIL This isn't 
+	  supposed to happen. That is, while EDITCHAR might be called on btm by this fn, we process that call specially.
+	  However, EDITCHAR does return NIL on top and btm and I thought it would be a good idea to catch it just in case.)
+
+
+		      NIL)
+		    (CHARCODEFLG EDITCHARCODE)
+		    (T (CHARACTER EDITCHARCODE])
+
+(TXDTCLOSEALL
+  [LAMBDA NIL                                                (* closes all files on EDITREADFILELST)
+    (EDITCLOSEALL])
+
+(TXDTCLOSEF
+  [LAMBDA (FILENAME)                                         (* un-PMAPs and closes FILENAME.
+							     If its a number, its treated as a JFN.)
+    (EDITCLOSEF FILENAME])
+
+(TXDTCLOSEST
+  [LAMBDA (ADDR ADDRLST)                                     (* Returns the address on ADDRLST which is closest to 
+							     ADDR)
+    (PROG (REC POS)
+          (TXDTSETQQ REC POS ADDR)
+          (RETURN (EDITCLOSEST REC POS (for ADDR in ADDRLST collect (TXDTSETQQ REC POS ADDR)
+								    (CONS REC (CONS POS ADDR])
+
+(TXDTCONTIGIFY
+  [LAMBDA (ADDR1 ADDR2 FILE BEHIND OLDBOX)                   (* WTL: "11-AUG-78 15:26")
+
+          (* writes from ADDR1 to ADDR2 to FILE, the deletes it and inserts the file segment. Returns the same addr as 
+	  TXDTINSERT would given BEHIND.)
+
+
+    (PROG (REC1 REC2 POS1 POS2 STARTPOS)
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (COND
+	    ((EDITCONTIGP REC1 POS1 REC2 POS2)
+	      (SETQ EDITINSERTREC1 REC1)
+	      (SETQ EDITINSERTPOS1 POS1)
+	      (SETQ EDITINSERTREC2 REC2)
+	      (SETQ EDITINSERTPOS2 POS2)
+	      (GO EXIT)))
+          (SETQ FILE (COND
+	      (FILE (OR (OPENP FILE (QUOTE BOTH))
+			(IOFILE FILE)))
+	      (T TXDTSCRATCHFILE)))
+          (SETQ STARTPOS (GETFILEPTR FILE))
+          (EDITPRINT REC1 POS1 REC2 POS2 NIL NIL FILE)
+          (EDITDELETE REC1 POS1 REC2 POS2)
+          (EDITINSERT (CONS FILE (CONS STARTPOS (GETFILEPTR FILE)))
+		      EDITDELETEREC EDITDELETEPOS)
+      EXIT(RETURN (COND
+		    ((EQ BEHIND (QUOTE BOTH))
+		      (CONS (TXDTBOXRECPOS EDITINSERTREC1 EDITINSERTPOS1 OLDBOX)
+			    (TXDTBOXRECPOS EDITINSERTREC2 EDITINSERTPOS2)))
+		    (BEHIND (TXDTBOXRECPOS EDITINSERTREC2 EDITINSERTPOS2 OLDBOX))
+		    (T (TXDTBOXRECPOS EDITINSERTREC1 EDITINSERTPOS1 OLDBOX])
+
+(TXDTCONTIGP
+  [LAMBDA (ADDR1 ADDR2 OLDCONS)                              (* WTL: "11-NOV-79 20:05")
+
+          (* If the text between the two addresses is represented contiguously on a file record, return the pair 
+	  (FILE . POS) indicating where it starts. Else, return NIL.)
+
+
+    (PROG (REC1 POS1 REC2 POS2 NBOX)
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (COND
+	    ((EDITCONTIGP REC1 POS1 REC2 POS2)
+	      (OR (LISTP OLDCONS)
+		  (SETQ OLDCONS (CONS NIL NIL)))
+	      (SETQ NBOX (CDR OLDCONS))
+	      (RPLACA OLDCONS (fetch (TXDTSOURCE FILENAME) of (fetch TXDTSOURCE of REC1)))
+	      (SETQ NBOX (IPLUS (ITIMES TXDTPAGESIZE (fetch (TXDTSOURCE PAGENO)
+							of (fetch TXDTSOURCE of REC1)))
+				POS1))
+	      (RPLACD OLDCONS NBOX)
+	      (RETURN OLDCONS))
+	    (T (RETURN NIL])
+
+(TXDTCOPY
+  [LAMBDA (X)                                                (* WTL: " 8-NOV-79 20:23")
+                                                             (* copies an addr or grabbed object)
+    (PROG (REC POS)
+          (COND
+	    ((SETQ REC (TXDTGRABBEDP X))                     (* if its a grabbed object)
+	      (COND
+		((EQ REC (QUOTE GRABBED&INSERTED))           (* and if its been inserted, error)
+		  (ERROR "CANNOT COPY INSERTED GRABBED OBJECT" X)
+		  (ERROR!))
+		((EQ REC (QUOTE GRABBED&UNDONE))             (* X is the result of an undone grab, which means the 
+							     chain in it is inserted.)
+		  (ERROR "CANNOT COPY RESULT OF AN UNDONE GRAB" X)
+		  (ERROR!)))
+	      (SETQ TXDTGRABBEDOBJCNT (ADD1 TXDTGRABBEDOBJCNT))
+	      (SETQ X (create TXDTGRABBEDOBJ
+			      TXDTCHAIN _(EDITCOPYGRABBED (fetch TXDTCHAIN of X))
+			      TXDTGRABFLG _(QUOTE GRABBED)))
+	      (RETURN X))
+	    (T                                               (* if its not a grabbed object, treat it as an address)
+	       (COND
+		 ((NOT (XNLSETQ (TXDTSETQQ REC POS X)
+				NOBREAK))
+		   (ERROR "CANNOT COPY INVALID ADDRESS" X)
+		   (ERROR!)))
+	       (RETURN (TXDTBOXRECPOS REC POS])
+
+(TXDTCOUNTLC
+  [LAMBDA (ADDR1 ADDR2 COUNTLCFLG)
+
+          (* Counts the number of lines and/or chars between ADDR1 and ADDR2. If COUNTLCFLG is NIL, this fn is a non-op! If 
+	  the flag is CHARS it counts the characters. If the flag is LINES it counts the lines. If the flag is BOTH it 
+	  counts the no of lines and the no of chars from the beginning of the last line to ADDR2 and returns a dotted pair 
+	  of form (lines . chars))
+
+
+    (PROG (REC1 POS1 REC2 POS2)
+          (COND
+	    ((NULL COUNTLCFLG)
+	      (RETURN NIL)))
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (EDITCOUNTLC REC1 POS1 REC2 POS2 (EQ COUNTLCFLG (QUOTE CHARS)))
+          (RETURN (COND
+		    ((EQ COUNTLCFLG (QUOTE CHARS))
+		      EDITCOUNTC)
+		    ((EQ COUNTLCFLG (QUOTE LINES))
+		      EDITCOUNTL)
+		    (T (CONS EDITCOUNTL EDITCOUNTC])
+
+(TXDTCOUNTPIECES
+  [LAMBDA (ADDR1 ADDR2)                                      (* counts number of records from ADDR1 to 
+							     (and including) ADDR2.)
+    (PROG (REC1 POS1 REC2 POS2 ANS)
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (SETQ ANS 1)
+      LOOP(COND
+	    ((OR (EQ REC1 REC2)
+		 (BTMRECP REC1))
+	      (RETURN ANS)))
+          (SETQ ANS (ADD1 ANS))
+          (SETQ REC1 (fetch TXDTNEXT of REC1))
+          (GO LOOP])
+
+(TXDTCURBUF
+  [LAMBDA (BUF UNDOABLY DEFAULTFLG TOPMSG)                   (* WTL: "16-NOV-79 17:16")
+    (PROG (TXDTPOETFLG TEMPTOP TEMPBTM TEMPPOETDOT TEMPPOETDOTADDR TEMP$)
+          (SETQ TXDTEOLPNOTINTERRUPTED NIL)
+          [COND
+	    [BUF                                             (* Then assume buf is a valid buf record and set the 
+							     vars accordingly.)
+		 (SETQ TEMPTOP (fetch TXDTTOP of BUF))
+		 (COND
+		   ((EQ TEMPTOP (QUOTE KILLED))
+		     (ERROR "CAN'T REINSTATE A KILLED BUFFER" BUF)))
+		 (SETQ TEMPBTM (fetch TXDTBTM of BUF))
+		 (SETQ TEMPPOETDOT (AND (NOT DEFAULTFLG)
+					(fetch (TXDTBUFFER TXDTPOETDOT) of BUF)))
+		 (SETQ TEMPPOETDOTADDR (AND (NOT DEFAULTFLG)
+					    (fetch TXDTPOETDOTADDR of BUF)))
+		 (SETQ TEMP$ (AND (NOT DEFAULTFLG)
+				  (fetch TXDT$ of BUF]
+	    (T (SETQ TXDTRECORDCNT (IPLUS TXDTRECORDCNT 2))
+	       (SETQ TEMPTOP
+		 (create TXDTRECORD
+			 TXDTSOURCE _ NIL
+			 TXDTOFFSET1 _ 0
+			 TXDTOFFSET2 _ 35
+			 TXDTPREV _ NIL
+			 TXDTNEXT _ NIL
+			 TXDTMSG _ TOPMSG))
+	       (SETQ TEMPBTM
+		 (create TXDTRECORD
+			 TXDTSOURCE _ NIL
+			 TXDTOFFSET1 _ 0
+			 TXDTOFFSET2 _ 35
+			 TXDTPREV _ TEMPTOP
+			 TXDTNEXT _ NIL))
+	       (replace TXDTPREV of TEMPTOP with TEMPTOP)
+	       (replace TXDTNEXT of TEMPTOP with TEMPBTM)
+	       (replace TXDTNEXT of TEMPBTM with TEMPBTM)
+	       (SETQ TXDTBUFFERCNT (ADD1 TXDTBUFFERCNT))
+	       (SETQ BUF
+		 (create TXDTBUFFER
+			 TXDTTOP _ TEMPTOP
+			 TXDTBTM _ TEMPBTM
+			 TXDTPOETDOT _ NIL
+			 TXDTPOETDOTADDR _ NIL
+			 TXDT$ _ NIL]
+          (COND
+	    (UNDOABLY (/SET (QUOTE TOPREC)
+			    TEMPTOP)
+		      (/SET (QUOTE BTMREC)
+			    TEMPBTM))
+	    (T (SETQ TOPREC TEMPTOP)
+	       (SETQ BTMREC TEMPBTM)))
+          (COND
+	    ((NULL TEMP$)
+	      (EDITCOUNTLC (fetch TXDTNEXT of TEMPTOP)
+			   (fetch TXDTOFFSET1 of (fetch TXDTNEXT of TEMPTOP))
+			   TEMPBTM 0 NIL)
+	      (SETQ TEMP$ EDITCOUNTL)
+	      (replace TXDT$ of BUF with TEMP$)))
+          (COND
+	    ((NULL TEMPPOETDOT)
+	      [SETQ TEMPPOETDOT (COND
+		  ((ZEROP TEMP$)
+		    (CONS 1 1))
+		  (T (CONS TEMP$ 1]
+	      (replace (TXDTBUFFER TXDTPOETDOT) of BUF with TEMPPOETDOT)
+	      (SETQ TEMPPOETDOTADDR NIL)))
+          (COND
+	    ((NULL TEMPPOETDOTADDR)
+	      (SETQ TEMPPOETDOTADDR (TXDTBOX TEMPPOETDOT))
+	      (replace TXDTPOETDOTADDR of BUF with TEMPPOETDOTADDR)))
+          (COND
+	    (UNDOABLY (/SET (QUOTE TXDTPOETDOT)
+			    TEMPPOETDOT)
+		      (/SET (QUOTE TXDTPOETDOTADDR)
+			    TEMPPOETDOTADDR)
+		      (/SET (QUOTE TXDT$)
+			    TEMP$))
+	    (T (SETQ TXDTPOETDOT TEMPPOETDOT)
+	       (SETQ TXDTPOETDOTADDR TEMPPOETDOTADDR)
+	       (SETQ TXDT$ TEMP$)))
+          (OR (MEMB BUF TXDTCURBUFLST)
+	      (SETQ TXDTCURBUFLST (CONS BUF TXDTCURBUFLST)))
+          (RETURN (SETQ TXDTCURBUF BUF])
+
+(TXDTDELETE
+  [LAMBDA (ADDR1 ADDR2 COUNTLCFLG OLDBOX)
+
+          (* deletes the text from ADDR1 to -- not thru -- ADDR2 and counts lines or chars deleted if COUNTLCFLG is set.
+	  Sets TXDTDELTA to negative of value of TXDTCOUNTLC with same flag, unless COUNTLCFLG is NIL in which case 
+	  TXDTDELTA is not changed. If flag is BOTH, both CAR and CDR is negative.)
+
+
+    (PROG (REC1 POS1 REC2 POS2)
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (COND
+	    ((NULL (XNLSETQ (EDITDELETE REC1 POS1 REC2 POS2 COUNTLCFLG)
+			    NOBREAK))
+	      (ERROR "ILL-DEFINED WINDOW" (LIST ADDR1 ADDR2))
+	      (ERROR!)))
+          (RETURN (TXDTBOXRECPOS EDITDELETEREC EDITDELETEPOS OLDBOX])
+
+(TXDTEMPTYP
+  [LAMBDA (BUF)
+    (COND
+      [BUF (OR (EQ (fetch TXDTTOP of BUF)
+		   (QUOTE KILLED))
+	       (EQ (fetch TXDTNEXT of (fetch TXDTTOP of BUF))
+		   (fetch TXDTBTM of BUF]
+      (T (EQ (fetch TXDTNEXT of TOPREC)
+	     BTMREC])
+
+(TXDTEOLP
+  [LAMBDA NIL                                                (* WTL: "15-NOV-79 14:06")
+    (PROG ((PREVBTMREC (fetch (TXDTRECORD TXDTPREV) of BTMREC)))
+          (COND
+	    ((TOPRECP PREVBTMREC)
+	      (RETURN NIL)))
+          (LOADREC PREVBTMREC)
+          (RETURN (EQ EOLCODE (GETBASEBYTE TXDTCURRENTPAGE (SUB1 (fetch (TXDTRECORD TXDTOFFSET2)
+								    of PREVBTMREC])
+
+(TXDTEQUAL
+  [LAMBDA (ADDR1 ADDR2)                                      (* equality test for TXDT addrs)
+    (PROG (REC1 POS1 REC2 POS2)
+          (TXDTSETQQ REC1 POS1 ADDR1)
+          (TXDTSETQQ REC2 POS2 ADDR2)
+          (RETURN (AND (EQ REC1 REC2)
+		       (IEQP POS1 POS2])
+
+(TXDTFILEPOSITION
+  [LAMBDA (ADDR OLDCONS)                                     (* WTL: "13-JUL-80 19:56")
+    (PROG (REC POS SOURCE)
+          (COND
+	    ((NOT (XNLSETQ (TXDTSETQQ REC POS ADDR (QUOTE BOUNDARYERR))
+			   NOBREAK))
+	      (RETURN NIL)))
+          (SETQ SOURCE (fetch TXDTSOURCE of REC))
+          (OR (LISTP OLDCONS)
+	      (SETQ OLDCONS (CONS NIL NIL)))
+          (RPLACA OLDCONS (CAR SOURCE))
+          (RPLACD OLDCONS (IPLUS (ITIMES TXDTPAGESIZE (fetch (TXDTSOURCE PAGENO) of SOURCE))
+				 POS))
+          (RETURN OLDCONS])
+
+(TXDTFIND
+  [LAMBDA (STR ADDR1 ADDR2 BACKWARDS BEHIND COUNT ANCHOR OLDBOX)
+
+          (* returns addr of COUNTth occurrence of STR in window, searching BACKWARDS if desired. Address returned is of 
+	  beginning or end depending on BEHIND. If BEHIND is BOTH, the two addrs are consed together and returned.)
+
+
+    (PROG (REC1 POS1 REC2 POS2)
+          [COND
+	    (ANCHOR (RETURN (TXDTANCHOREDFIND STR ADDR1 ADDR2 BACKWARDS BEHIND OLDBOX]
+          (OR (STRINGP STR)
+	      (SETQ STR (MKSTRING STR)))
+          [COND
+	    ((NULL COUNT)
+	      (SETQ COUNT 1))
+	    ((MINUSP COUNT)
+	      (SETQ COUNT (ABS COUNT))
+	      (SETQ BACKWARDS (NOT BACKWARDS]
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (RETURN (COND
+		    [(EDITSEARCH STR REC1 POS1 REC2 POS2 BACKWARDS COUNT)
+		      (COND
+			((EQ BEHIND (QUOTE BOTH))
+			  (OR (LISTP OLDBOX)
+			      (SETQ OLDBOX (CONS NIL NIL)))
+			  (RPLACA OLDBOX (TXDTBOXRECPOS EDITSEARCHREC1 EDITSEARCHPOS1 OLDBOX))
+			  (RPLACD OLDBOX (TXDTBOXRECPOS EDITSEARCHREC2 EDITSEARCHPOS2))
+			  OLDBOX)
+			(BEHIND (TXDTBOXRECPOS EDITSEARCHREC2 EDITSEARCHPOS2 OLDBOX))
+			(T (TXDTBOXRECPOS EDITSEARCHREC1 EDITSEARCHPOS1 OLDBOX]
+		    (T NIL])
+
+(TXDTFREESPACE
+  [LAMBDA (UNDOABLY)
+    (MAPC (QUOTE (EDITCHARREC EDITDELETEREC EDITGOTOREC EDITINSERTREC1 EDITINSERTREC2 EDITMOVECREC 
+			      EDITMOVELREC EDITSEARCHREC1 EDITSEARCHREC2 EDITCLOSESTLST))
+	  (FUNCTION (LAMBDA (VAR)
+	      (COND
+		(UNDOABLY (/SET VAR (QUOTE NOBIND)))
+		(T (SET VAR (QUOTE NOBIND])
+
+(TXDTGETMSG
+  [LAMBDA (ADDR)
+    (PROG (REC POS)
+          [COND
+	    ((type? TXDTBUFFER ADDR)
+	      (SETQ REC (fetch TXDTTOP of ADDR)))
+	    (T (TXDTSETQQ REC POS ADDR)
+	       (COND
+		 ((BTMRECP REC)
+		   (SETQ REC (fetch TXDTPREV of REC]
+          (RETURN (fetch TXDTMSG of REC])
+
+(TXDTGETMSGLST
+  [LAMBDA (ADDR1 ADDR2)
+    (PROG (REC1 POS1 REC2 POS2 ANS MSG CHARCNT)
+          (OR ADDR1 (SETQ ADDR1 (QUOTE TOP)))
+          (OR ADDR2 (SETQ ADDR2 (QUOTE BTM)))
+          (TXDTSETQQ REC1 POS1 ADDR1)
+          (TXDTSETQQ REC2 POS2 ADDR2)
+          (SETQ ANS (fetch TXDTNEXT of (GETTOPREC REC1)))
+          (EDITCOUNTLC ANS (fetch TXDTOFFSET1 of ANS)
+		       REC1 POS1 T)
+          (SETQ CHARCNT (ADD1 EDITCOUNTC))
+          (SETQ ANS NIL)
+      LOOP(COND
+	    ((BTMRECP REC1)
+	      (RETURN ANS)))
+          (SETQ MSG (fetch TXDTMSG of REC1))
+          [COND
+	    ([AND MSG (OR (NEQ REC1 REC2)
+			  (NOT (IEQP POS2 (fetch TXDTOFFSET1 of REC2]
+	      (SETQ ANS (NCONC1 ANS (CONS (CONS NIL CHARCNT)
+					  MSG]
+          (COND
+	    ((EQ REC1 REC2)
+	      (RETURN ANS)))
+          (SETQ CHARCNT (IPLUS CHARCNT (IDIFFERENCE (fetch TXDTOFFSET2 of REC1)
+						    POS1)))
+          (SETQ REC1 (fetch TXDTNEXT of REC1))
+          (SETQ POS1 (fetch TXDTOFFSET1 of REC1))
+          (GO LOOP])
+
+(TXDTGOTO
+  [LAMBDA (LINENO CHARNO FLG OLDBOX)                         (* Returns addr of LINENOth line and CHARNOth char.)
+    (EDITGOTO LINENO CHARNO FLG)
+    (COND
+      (EDITGOTOREC                                           (* if ans ok, box it)
+		   (TXDTBOXRECPOS EDITGOTOREC EDITGOTOPOS OLDBOX))
+      (T NIL])
+
+(TXDTGRAB
+  [LAMBDA (ADDR1 ADDR2 COUNTLCFLG OLDBOX)                    (* WTL: " 8-NOV-79 20:24")
+
+          (* grabs the text between the two addresses exactly like delete. Returns the grabbed text and sets TXDTGRABADDR to
+	  the boxed address of the end of the deleted window. Counts text grabbed if COUNTLCFLG, just as delete does.)
+
+
+    (PROG (REC1 POS1 REC2 POS2 ANS)
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (COND
+	    ((NULL (XNLSETQ (SETQ ANS (EDITGRAB REC1 POS1 REC2 POS2 COUNTLCFLG))
+			    NOBREAK))
+	      (ERROR "ILL-DEFINED WINDOW" (LIST ADDR1 ADDR2))
+	      (ERROR!)))
+          (SETQ TXDTGRABADDR (TXDTBOXRECPOS EDITDELETEREC EDITDELETEPOS OLDBOX))
+          (SETQ TXDTGRABBEDOBJCNT (ADD1 TXDTGRABBEDOBJCNT))
+          (SETQ ANS (create TXDTGRABBEDOBJ
+			    TXDTCHAIN _ ANS
+			    TXDTGRABFLG _(QUOTE GRABBED&UNDONE)))
+          (/replace TXDTGRABFLG of ANS with (QUOTE GRABBED))
+                                                             (* This is done so that if the grab is undone, the 
+							     object the user is holding is no longer marked as 
+							     GRABBED.)
+          (RETURN ANS])
+
+(TXDTGRABBEDP
+  [LAMBDA (X)                                                (* rrb "14-MAY-81 11:20")
+    (AND (type? TXDTGRABBEDOBJ X)
+	 (fetch TXDTGRABFLG of X])
+
+(TXDTGREATERP
+  [LAMBDA (ADDR1 ADDR2)                                      (* returns T iff ADDR1 occurs downstream of ADDR2)
+    (PROG (REC1 POS1 REC2 POS2)
+          (TXDTSETQQ REC1 POS1 ADDR1)
+          (TXDTSETQQ REC2 POS2 ADDR2)
+          (RETURN (EDITGREATERP REC1 POS1 REC2 POS2])
+
+(TXDTINIT
+  [LAMBDA NIL                                                (* rrb "20-NOV-81 08:32")
+    (PROG NIL
+          [COND
+	    ((NULL (GETFIELDSPECS (QUOTE TXDTRECORD)))
+	      (DATATYPE TXDTRECORD (TXDTSOURCE TXDTOFFSET1 TXDTOFFSET2 TXDTNEXT TXDTPREV 
+					       TXDTSPLITRECS TXDTMSG))
+	      (DATATYPE TXDTADDR (TXDTREC TXDTPOS))
+	      (DATATYPE TXDTGRABBEDOBJ (TXDTCHAIN TXDTGRABFLG))
+	      (DATATYPE TXDTBUFFER (TXDTTOP TXDTBTM TXDTPOETDOT TXDTPOETDOTADDR TXDT$]
+          (SETQ TXDTEOLPNOTINTERRUPTED NIL)
+          [AND TXDTSCRATCHFILE (NOT (OPENP TXDTSCRATCHFILE (QUOTE BOTH)))
+	       (SETQ TXDTSCRATCHFILE (IOFILE (CLOSEF (OUTPUT (OUTFILE (QUOTE TXDTSCRATCHFILE.TXT]
+                                                             (* allocate a scratch string and make a string pointer 
+							     to it.)
+          [SETQ TXDTSCRATCHSTRINGPTR (CONCAT (SETQ TXDTSCRATCHSTRING (ALLOCSTRING 256]
+          (SETQ TXDTPAGESIZE 512)
+          (SETQ EOLCODE 13)
+          (TXDTFREESPACE)
+          (TXDTKILLBUF (QUOTE ALL))
+          (EDITCLOSEALL)
+          (TXDTCURBUF NIL)
+          (SETQ TXDTCURRENTPAGENO NIL)
+          (SETQ TXDTCURRENTPAGEFILE NIL])
+
+(TXDTINSERT
+  [LAMBDA (OBJ ADDR BEHIND COUNTLCFLG OLDBOX)
+
+          (* Inserts OBJ immediately after ADDR and returns the address of the beginning or end of the insertion, depending 
+	  on BEHIND. If OBJ is a string, the obvious chars are inserted. If OBJ is a grabbed object properly marked it is 
+	  unmarked and inserted. If OBJ is a list it is assumed to denote a file window. If OBJ is a litatom, it is assumed 
+	  to denote a file. If anything else, it is converted to a string. If a grabbed object or a list or litatom doesn't 
+	  meet the requirements imposed, an error is caused and all modifications are undone. If COUNTLCFLG is non-NIL, the 
+	  number of lines/chars, as determined by TXDTCOUNTLC, is computed and stored in TXDTDELTA.)
+
+
+    (PROG (REC POS)
+          (TXDTSETQQ REC POS (OR ADDR (QUOTE TOP)))          (* unbox the address, defaulting to the top, and put it 
+							     in REC,POS)
+          (EDITINSERT OBJ REC POS COUNTLCFLG)                (* insert OBJ)
+          (RETURN (COND
+		    ((EQ BEHIND (QUOTE BOTH))
+		      (CONS (TXDTBOXRECPOS EDITINSERTREC1 EDITINSERTPOS1 OLDBOX)
+			    (TXDTBOXRECPOS EDITINSERTREC2 EDITINSERTPOS2)))
+		    (BEHIND (TXDTBOXRECPOS EDITINSERTREC2 EDITINSERTPOS2 OLDBOX))
+		    (T (TXDTBOXRECPOS EDITINSERTREC1 EDITINSERTPOS1 OLDBOX])
+
+(TXDTKILLBUF
+  [LAMBDA (BUF UNDOABLY EVEN-IF-CURRENT-FLG)                 (* WTL: " 1-APR-79 14:35")
+
+          (* Kills BUF. That is, it deletes the text between its top and btm, resets the current buf globals if buf is 
+	  current, removes buf from the buf list, and smashes buf's components with the work KILLED.)
+
+
+    (COND
+      ((EQ BUF (QUOTE ALL))
+	(SETQ BUF (APPEND TXDTCURBUFLST))
+	(SETQ EVEN-IF-CURRENT-FLG T)))
+    (COND
+      ((OR (LISTP BUF)
+	   (NULL BUF))
+	(for X in BUF do (TXDTKILLBUF X UNDOABLY EVEN-IF-CURRENT-FLG))
+	(QUOTE KILLED))
+      (T (PROG ((LISPXHISTORY LISPXHISTORY))
+	       (OR UNDOABLY (SETQ LISPXHISTORY NIL))
+	       [COND
+		 ((EQ BUF TXDTCURBUF)
+		   (COND
+		     ((NOT EVEN-IF-CURRENT-FLG)
+		       (ERROR "CAN'T KILL CURRENT BUFFER WITHOUT EXPRESS PERMISSION" BUF)))
+		   (/SET (QUOTE TXDTCURBUF)
+			 (QUOTE KILLED))
+		   (/SET (QUOTE TOPREC)
+			 (QUOTE KILLED))
+		   (/SET (QUOTE BTMREC)
+			 (QUOTE KILLED))
+		   (/SET (QUOTE TXDTPOETDOT)
+			 (QUOTE KILLED))
+		   (/SET (QUOTE TXDTPOEDDOTADDR)
+			 (QUOTE KILLED))
+		   (/SET (QUOTE TXDT$)
+			 (QUOTE KILLED]
+	       (OR (EQ (fetch TXDTTOP of BUF)
+		       (QUOTE KILLED))
+		   (EDITDELETE (fetch TXDTNEXT of (fetch TXDTTOP of BUF))
+			       (fetch TXDTOFFSET1 of (fetch TXDTTOP of BUF))
+			       (fetch TXDTBTM of BUF)
+			       0))
+	       [/SET (QUOTE TXDTCURBUFLST)
+		     (COND
+		       (UNDOABLY (REMOVE BUF TXDTCURBUFLST))
+		       (T (DREMOVE BUF TXDTCURBUFLST]
+	       (/replace TXDTTOP of BUF with (QUOTE KILLED))
+	       (/replace TXDTBTM of BUF with (QUOTE KILLED))
+	       (/replace (TXDTBUFFER TXDTPOETDOT) of BUF with (QUOTE KILLED))
+	       (/replace TXDTPOETDOTADDR of BUF with (QUOTE KILLED))
+	       (/replace TXDT$ of BUF with (QUOTE KILLED))   (* This second smash is so that the recs can be gc'd if 
+							     no one else points to them.)
+	       (RETURN (QUOTE KILLED])
+
+(TXDTMAPCHARS
+  [LAMBDA (ADDR1 ADDR2 ASCIIFLG MOVEFLG UNTILFN)
+    (PROG (REC1 POS1 REC2 POS2)
+          [COND
+	    [(AND (type? TXDTADDR ADDR1)
+		  (TOPRECP (fetch TXDTREC of ADDR1)))
+	      (SETQ REC1 (fetch TXDTNEXT of (fetch TXDTREC of ADDR1)))
+	      (SETQ POS1 (fetch TXDTOFFSET1 of REC1))
+	      (COND
+		((APPLY* UNTILFN NIL)
+		  (RETURN (TXDTBOXRECPOS REC1 POS1 ADDR1]
+	    (T (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP]
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (COND
+	    ((EDITMAPCHARS REC1 POS1 REC2 POS2 ASCIIFLG (EQ MOVEFLG -1)
+			   UNTILFN)
+	      (COND
+		((AND (EQ MOVEFLG -1)
+		      (TOPRECP (fetch TXDTPREV of EDITCHARREC)))
+		  (SETQ EDITCHARREC (fetch TXDTPREV of EDITCHARREC))
+		  (SETQ EDITCHARPOS -1)))
+	      (RETURN (TXDTBOXRECPOS EDITCHARREC EDITCHARPOS ADDR1)))
+	    (T (TXDTBOXRECPOS EDITCHARREC EDITCHARPOS ADDR1)
+	       (RETURN NIL])
+
+(TXDTMAPMSG
+  [LAMBDA (ADDR1 ADDR2 FN ARG2)
+    (PROG (REC1 POS1 REC2 POS2 MSG)
+          [COND
+	    ((NULL FN)
+	      (RETURN (TXDTGETMSGLST ADDR1 ADDR2]
+          (OR ADDR1 (SETQ ADDR1 (QUOTE TOP)))
+          (OR ADDR2 (SETQ ADDR2 (QUOTE BTM)))
+          (TXDTSETQQ REC1 POS1 ADDR1)
+          (COND
+	    ((NOT (IEQP POS1 (fetch TXDTOFFSET1 of REC1)))
+	      (EDITINSERT NIL REC1 POS1)
+	      (SETQ REC1 EDITINSERTREC2)
+	      (SETQ POS1 EDITINSERTPOS2)))
+          (TXDTSETQQ REC2 POS2 ADDR2)
+          [COND
+	    ((NOT (IEQP POS2 (fetch TXDTOFFSET1 of REC2)))
+	      (SETQ REC1 (fetch TXDTPREV of REC1))
+	      (EDITINSERT NIL REC2 POS2)
+	      (SETQ REC2 EDITINSERTREC2)
+	      (SETQ POS2 EDITINSERTPOS2)
+	      (SETQ REC1 (fetch TXDTNEXT of REC1]
+      LOOP(COND
+	    ((OR (EQ REC1 REC2)
+		 (BTMRECP REC1))
+	      (RETURN NIL)))
+          (SETQ MSG (APPLY* FN (fetch TXDTMSG of REC1)
+			    ARG2))
+          (COND
+	    ([OR (EQ MSG 0)
+		 (COND
+		   ((LISTP MSG)
+		     (OR [for TAIL on MSG thereis (OR (NEQ 1 (NCHARS (CAR TAIL)))
+						      (AND (NLISTP (CDR TAIL))
+							   (CDR TAIL]
+			 (IGREATERP (LENGTH MSG)
+				    127)))
+		   ((NULL MSG)
+		     NIL)
+		   (T (NEQ 1 (NCHARS MSG]
+	      (ERROR "ATTEMPT TO INSERT ILLEGAL MESSAGE!" MSG)))
+          (/replace TXDTMSG of REC1 with MSG)
+          (SETQ REC1 (fetch TXDTNEXT of REC1))
+          (GO LOOP])
+
+(TXDTMKSTRING
+  [LAMBDA (ADDR1 ADDR2 RPLSTRING STRPTR BITMASK)
+
+          (* makes a string containing the text in the window ADDR1 -
+	  ADDR2. If RPLSTRING is a string, chars are written into it. If RPLSTRING is NIL TXDTSCRATCHSTRING is used and 
+	  copied when finished. If RPLSTRING is T, TXDTSCRATCHSTRING is used and not recopied. If STRPTR is a string pointer
+	  it is smashed to substring the buffer holding the chars. If STRPTR is NIL a new one is created.
+	  Skips any char c such that cth bit in BITMASK is on.)
+
+
+    (PROG (REC1 POS1 REC2 POS2)
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (RETURN (EDITMKSTRING REC1 POS1 REC2 POS2 RPLSTRING (COND
+				  ((STRINGP RPLSTRING)
+				    RPLSTRING)
+				  (T TXDTSCRATCHSTRING))
+				STRPTR BITMASK])
+
+(TXDTMOVE
+  [LAMBDA (LINEDIST CHARDIST ADDR FLG OLDBOX)                (* moves LINEDIST lines and then CHARDIST chars with 
+							     defaults as spec by EDITMOVE.)
+    (PROG (REC POS)
+          [TXDTSETQQ REC POS (OR ADDR (COND
+				   [LINEDIST (COND
+					       ((ILESSP LINEDIST 0)
+						 (QUOTE BTM))
+					       (T (QUOTE TOP]
+				   [CHARDIST (COND
+					       ((ILESSP CHARDIST 0)
+						 (QUOTE BTM))
+					       (T (QUOTE TOP]
+				   (T (QUOTE TOP]
+          (EDITMOVE LINEDIST CHARDIST REC POS FLG)
+          (RETURN (COND
+		    (EDITMOVECREC (TXDTBOXRECPOS EDITMOVECREC EDITMOVECPOS OLDBOX))
+		    (T NIL])
+
+(TXDTNEXTPIECE
+  [LAMBDA (ADDR OLDBOX)
+    (PROG (REC POS)
+          (TXDTSETQQ REC POS ADDR)
+          (RETURN (TXDTBOXRECPOS (fetch TXDTNEXT of REC)
+				 (fetch TXDTOFFSET1 of (fetch TXDTNEXT of REC))
+				 OLDBOX])
+
+(TXDTPIECE
+  [LAMBDA (ADDR OLDBOX)
+    (PROG (REC POS)
+          (TXDTSETQQ REC POS ADDR)
+          (RETURN (TXDTBOXRECPOS REC (fetch TXDTOFFSET1 of REC)
+				 OLDBOX])
+
+(TXDTPREVPIECE
+  [LAMBDA (ADDR OLDBOX)
+    (PROG (REC POS)
+          (TXDTSETQQ REC POS ADDR)
+          (SETQ REC (fetch TXDTPREV of REC))
+          (RETURN (COND
+		    ((TOPRECP REC)
+		      (TXDTBOXRECPOS (fetch TXDTNEXT of REC)
+				     (fetch TXDTOFFSET1 of (fetch TXDTNEXT of REC))
+				     OLDBOX))
+		    (T (TXDTBOXRECPOS REC (fetch TXDTOFFSET1 of REC)
+				      OLDBOX])
+
+(TXDTPRINT
+  [LAMBDA (ADDR1 ADDR2 PTRADDR PTRCHAR DESTJFNORFILE BITMASK)
+                                                             (* WTL: "11-AUG-78 15:25")
+
+          (* Prints the chars between first two ADDRs to DESTJFN or tty. If PTRADDR is an address, PTRCHAR or TXDTPTRCHAR is
+	  printed immediately before the denoted by the address. If PTRADDR is a list of addresses, the corresponding 
+	  members of PTRCHAR -- or TXDTPTRCHAR if PTRCHAR is NIL -- are printed at each address. Will not print any char c 
+	  such that cth bit of BITMASK is on.)
+
+
+    (PROG (REC1 POS1 REC2 POS2 PTRREC PTRPOS (FILE (if (NUMBERP DESTJFNORFILE)
+						       then (JFNS DESTJFNORFILE)
+						     else DESTJFNORFILE)))
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          [COND
+	    (PTRADDR                                         (* if PTRADDR is non-NIL unbox it.
+							     Otherwise just leave PTRREC NIL and things will take 
+							     care of themselves)
+		     [SETQ PTRADDR (COND
+			 ([AND (LISTP PTRADDR)
+			       (OR (LISTP (CDR PTRADDR))
+				   (EQ NIL (CDR PTRADDR]
+			   (for PTRADDR in PTRADDR collect (TXDTSETQQ PTRREC PTRPOS PTRADDR)
+							   (CONS PTRREC PTRPOS)))
+			 (T (TXDTSETQQ PTRREC PTRPOS PTRADDR)
+			    (LIST (CONS PTRREC PTRPOS]
+		     (SETQ PTRCHAR (OR PTRCHAR TXDTPTRCHAR]
+          (RETURN (CHARACTER (EDITPRINT REC1 POS1 REC2 POS2 PTRADDR PTRCHAR FILE BITMASK])
+
+(TXDTPUTMSG
+  [LAMBDA (ADDR MSG)
+    (PROG (REC POS)
+          (COND
+	    ((type? TXDTBUFFER ADDR)
+	      [SETQ POS (fetch TXDTMSG of (SETQ REC (fetch TXDTTOP of ADDR]
+	      (/replace TXDTMSG of REC with MSG)
+	      (RETURN POS)))
+          (TXDTSETQQ REC POS ADDR)
+          (RETURN (EDITPUTMSG REC POS MSG])
+
+(TXDTREAD
+  [LAMBDA (FILE ADDR BEHIND COUNTLCFLG)
+
+          (* inserts the file FILE immediately following ADDR and returns the addr of the begining or end of the insertion 
+	  depending on BEHIND. Counts the lines/chars if COUNTLCFLG is on, just as TXDTINSERT does)
+
+
+    (TXDTINSERT (LIST TXDTINSERTFILEKEY FILE)
+		ADDR BEHIND COUNTLCFLG])
+
+(TXDTREADC
+  [LAMBDA (FILE)                                             (* WTL: " 4-AUG-78 14:39")
+    (PROG (CHAR)
+          (RETURN (if BUFFEREDLINEFEED
+		      then (SETQ BUFFEREDLINEFEED NIL)
+			   LFCHARACTER
+		    elseif (EQ EOLCHARACTER (SETQ CHAR (READC FILE)))
+		      then (SETQ BUFFEREDLINEFEED T)
+			   CRCHARACTER
+		    else CHAR])
+
+(TXDTRESETFORMFN
+  [LAMBDA NIL                                                (* edited: "19-OCT-78 15:51")
+    (COND
+      (TXDTRESETFORMBREAKLOCKSFLG (SETQ TXDTRESETFORMBREAKLOCKSFLG NIL])
+
+(TXDTSUBST
+  [LAMBDA (NEWSTR OLDSTR ADDR1 ADDR2 BACKWARDS MAXSUBSTS COUNTLCFLG OLDBOX)
+
+          (* replaces OLDSTR by NEWSTR MAXSUBSTS times in the given window. ADDR1 defaults to top. ADDR2 defaults to btm.
+	  MAXSUBSTS defaults to infinity. Returns the address following the last subst. Note that if none were made, this 
+	  will be ADDR1. Sets the global TXDTSUBSTCNT to the number of subst actually made.)
+
+
+    (PROG (REC1 POS1 REC2 POS2)
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (COND
+	    ((AND ADDR1 ADDR2 (NEQ ADDR1 0)
+		  (NEQ ADDR1 1)
+		  (NEQ ADDR1 (QUOTE TOP))
+		  (NEQ ADDR2 (QUOTE BTM))
+		  (EDITGREATERP REC1 POS1 REC2 POS2))
+
+          (* if user specified both addrs, check that they define a window. We don't check it if either defaulted, since the
+	  defaults insure that the EDITLESSEQP would succeed. It could be that he gave us one address which was actually 
+	  bad, but theoretically that will be caught by the unbox above.)
+
+
+	      (ERROR "ILL-DEFINED WINDOW" (LIST ADDR1 ADDR2))
+	      (ERROR!)))
+          (OR (STRINGP OLDSTR)
+	      (SETQ OLDSTR (MKSTRING OLDSTR)))
+          (SETQ TXDTSUBSTCNT (EDITSUBST NEWSTR OLDSTR REC1 POS1 REC2 POS2 BACKWARDS (COND
+					  ((FIXP MAXSUBSTS)
+					    MAXSUBSTS)
+					  (T -1))
+					COUNTLCFLG))
+          (RETURN (COND
+		    (BACKWARDS (TXDTBOXRECPOS EDITINSERTREC1 EDITINSERTPOS1 OLDBOX))
+		    (T (TXDTBOXRECPOS EDITINSERTREC2 EDITINSERTPOS2 OLDBOX])
+
+(TXDTSUBSTJFNS
+  [LAMBDA (ALIST BUFLST)                                     (* WTL: "13-JUL-80 19:09")
+                                                             (* NOOP, BUT LEAVE DEFINED IN CASE SOMEONE CALLS)
+    NIL])
+
+(TXDTUNBOX
+  [LAMBDA (ADDR CHARFLG BOUNDARYERRFLG OLDPAIR)              (* WTL: "18-DEC-79 14:47")
+    (PROG (REC POS DOTREC DOTPOS CLOSEADDR FIRSTREC SCRATCHNO)
+          (OR (LISTP OLDPAIR)
+	      (SETQ OLDPAIR (CONS NIL NIL)))
+          [COND
+	    ((NUMBERP (CAR OLDPAIR))
+	      (SETQ SCRATCHNO (CAR OLDPAIR]
+          (TXDTSETQQ REC POS ADDR (AND BOUNDARYERRFLG (QUOTE BOUNDARYERR)))
+          (COND
+	    [(OR (NULL TXDTPOETFLG)
+		 CHARFLG)
+	      (SETQ FIRSTREC (fetch TXDTNEXT of (GETTOPREC REC)))
+	      (EDITCOUNTLC FIRSTREC (fetch TXDTOFFSET1 of FIRSTREC)
+			   REC POS (EQ CHARFLG (QUOTE CHARS)))
+	      (RETURN (COND
+			(CHARFLG (RPLNODE OLDPAIR NIL (ADD1 EDITCOUNTC)))
+			(T (RPLNODE OLDPAIR (ADD1 EDITCOUNTL)
+				    (ADD1 EDITCOUNTC]
+	    (T (TXDTSETQQ DOTREC DOTPOS TXDTPOETDOTADDR)
+	       (COND
+		 [(NLISTP (GETATOMVAL (QUOTE EDITCLOSESTLST)))
+		   (SETQ EDITCLOSESTLST (LIST (CONS DOTREC (CONS DOTPOS TXDTPOETDOT]
+		 (T (FRPLACA (CAR EDITCLOSESTLST)
+			     DOTREC)
+		    (FRPLACA (CDAR EDITCLOSESTLST)
+			     DOTPOS)
+		    (FRPLACD (CDAR EDITCLOSESTLST)
+			     TXDTPOETDOT)))
+	       (SETQ CLOSEADDR (EDITCLOSEST REC POS EDITCLOSESTLST))
+                                                             (* Now CLOSEADDR is either TOP or BTM or TXDTPOETDOT, 
+							     whichever is closest to ADDR.
+							     Next we do the appropriate countlc.)
+	       (RETURN (COND
+			 ((EQ CLOSEADDR (QUOTE TOP))
+			   (COND
+			     ((NEQ EDITCLOSESTREC TOPREC)
+			       (ERROR "TXDT ADDRESS NOT IN CURRENT BUFFER" ADDR)))
+			   (EDITCOUNTLC (fetch TXDTNEXT of TOPREC)
+					(fetch TXDTOFFSET1 of (fetch TXDTNEXT of TOPREC))
+					REC POS NIL)
+			   (RPLNODE OLDPAIR (ADD1 EDITCOUNTL)
+				    (ADD1 EDITCOUNTC)))
+			 ((EQ CLOSEADDR (QUOTE BTM))
+			   (COND
+			     ((NEQ EDITCLOSESTREC BTMREC)
+			       (ERROR "TXDT ADDRESS NOT IN CURRENT BUFFER" ADDR)))
+			   (EDITCOUNTLC REC POS BTMREC 0 NIL)
+			   (SETQ SCRATCHNO (IPLUS 1 TXDT$ (IMINUS EDITCOUNTL)))
+			   (EDITMOVE 0 NIL REC POS)
+			   (EDITCOUNTLC EDITMOVECREC EDITMOVECPOS REC POS T)
+			   (RPLNODE OLDPAIR SCRATCHNO (ADD1 EDITCOUNTC)))
+			 [TXDTCLOSESTFORWFLG (EDITCOUNTLC REC POS DOTREC DOTPOS NIL)
+					     (COND
+					       ((IEQP EDITCOUNTL 0)
+						 (RPLNODE OLDPAIR (CAR TXDTPOETDOT)
+							  (IDIFFERENCE (OR (CDR TXDTPOETDOT)
+									   1)
+								       EDITCOUNTC)))
+					       (T (SETQ SCRATCHNO (IDIFFERENCE (CAR TXDTPOETDOT)
+									       EDITCOUNTL))
+						  (EDITMOVE 0 NIL REC POS)
+						  (EDITCOUNTLC EDITMOVECREC EDITMOVECPOS REC POS T)
+						  (RPLNODE OLDPAIR SCRATCHNO (ADD1 EDITCOUNTC]
+			 (T (EDITCOUNTLC DOTREC DOTPOS REC POS NIL)
+			    (COND
+			      ((IEQP EDITCOUNTL 0)
+				(RPLNODE OLDPAIR (IPLUS (CAR TXDTPOETDOT)
+							EDITCOUNTL)
+					 (IPLUS (OR (CDR TXDTPOETDOT)
+						    1)
+						EDITCOUNTC)))
+			      (T (RPLNODE OLDPAIR (IPLUS (CAR TXDTPOETDOT)
+							 EDITCOUNTL)
+					  (ADD1 EDITCOUNTC])
+
+(TXDTUNBOXRECPOS
+  [LAMBDA (ADDR BOUNDARYERRFLG)
+
+          (* This function unboxes ADDR and returns the rec component, after setting the global TXDTUNBOXPOS to the pos 
+	  component. If ADDR is a number it is taken to mean the record and position of that line in the current buffer -- 
+	  counted from top or btm depending on sign. If it is a pair of numbers it is taken to be a line and character 
+	  position. If it is the atom TOP or BTM the obvious is used. If it is an array of length 2 it is assumed to be a 
+	  record and position and it is just unpacked. However, it is possible that the pos component is no longer 
+	  consistent with the rec component. This can happen if the record has been split since the two were boxed up and 
+	  given to the outside world. The action in this case is to scan the whole buffer from top to btm looking for a 
+	  record with TEXT EQ to the current rec, and offsets which include the current pos. If not found, an error is 
+	  caused.)
+
+
+    (PROG (REC POS DOTLINE DOTCHAR)
+          [SETQ TXDTUNBOXPOS (COND
+	      ((TXDTADDRP ADDR)                              (* its a rec,pos pair)
+		(SETQ REC (TXDTVERIFYADDR ADDR))
+		(COND
+		  ((AND BOUNDARYERRFLG (BTMRECP REC))
+		    (ERROR!)))
+		TXDTVERIFYPOS)
+	      ([OR (AND (FIXP ADDR)
+			(SETQ POS 1))
+		   (AND (LISTP ADDR)
+			(FIXP (SETQ POS (OR (CDR ADDR)
+					    1)))
+			(OR (FIXP (CAR ADDR))
+			    (NULL (CAR ADDR)))
+			(PROG1 T (SETQ ADDR (CAR ADDR]
+
+          (* it is either a number, or a dotted pair with a number in the CDR and either a number or NIL in the CAR.
+	  If so, then because of the SETQs in the test, ADDR is now the line number we are to move to, and POS is the char 
+	  no.)
+
+
+		(COND
+		  (TXDTPOETFLG 
+
+          (* If this flg is set the we assume TXDTPOETDOT is a pair of form (lineno . charno), that TXDTPOETDOTADDR is a 
+	  valid TXDT boxed address of that same location, and that TXDT$ is the number of lines in the buffer.
+	  We will move to the line no ADDR char no POS in the shortest possible move.)
+
+
+			       (SETQ DOTLINE (CAR TXDTPOETDOT))
+			       (SETQ DOTCHAR (OR (CDR TXDTPOETDOT)
+						 1))
+			       (COND
+				 ((AND (EQ ADDR DOTLINE)
+				       (EQ POS DOTCHAR))
+
+          (* Convention is that TXDTPOETDOT is always a dotted pair address, and TXDTPOETDOTADDR is always conistent with 
+	  it, i.e. the txdt bbxed address for TXDTPOETDOT)
+
+
+				   (SETQ REC (TXDTVERIFYADDR TXDTPOETDOTADDR))
+				   (COND
+				     ((AND BOUNDARYERRFLG (EQ REC BTMREC))
+				       (ERROR!)))
+				   TXDTVERIFYPOS)
+				 ((IGREATERP ADDR (ADD1 TXDT$))
+
+          (* just in case we are given a funny addr. Note that a line no might be TXDT$+1, if the last line doesn't have a 
+	  cr on it.)
+
+
+				   (COND
+				     (BOUNDARYERRFLG (ERROR!)))
+				   (SETQ REC BTMREC)
+				   0)
+				 ((ILESSP ADDR DOTLINE)      (* if ADDR is between TOP and TXDTPOETDOTADDR decide 
+							     which of the two is closest)
+				   (COND
+				     ((ILESSP ADDR (IDIFFERENCE DOTLINE ADDR))
+                                                             (* if closest to TOP, just goto)
+				       (EDITGOTO ADDR POS BOUNDARYERRFLG)
+				       (SETQ REC EDITGOTOREC)
+				       EDITGOTOPOS)
+				     (T                      (* otherwise, closest to TXDTPOETDOTADDR, so move from 
+							     there backwards)
+					(EDITMOVE (IDIFFERENCE ADDR DOTLINE)
+						  (SUB1 POS)
+						  (TXDTVERIFYADDR TXDTPOETDOTADDR)
+						  TXDTVERIFYPOS BOUNDARYERRFLG)
+					(SETQ REC EDITMOVECREC)
+					EDITMOVECPOS)))
+				 ((ILESSP (IDIFFERENCE ADDR DOTLINE)
+					  (IDIFFERENCE TXDT$ ADDR))
+                                                             (* if address is between TXDTPOETDOTADDR and TXDT$, see 
+							     if its closest to TXDTPOETDOTADDR)
+				   (EDITMOVE (IDIFFERENCE ADDR DOTLINE)
+					     (SUB1 POS)
+					     (TXDTVERIFYADDR TXDTPOETDOTADDR)
+					     TXDTVERIFYPOS BOUNDARYERRFLG)
+				   (SETQ REC EDITMOVECREC)
+				   EDITMOVECPOS)
+				 ((IGREATERP ADDR TXDT$)     (* If this is so, ADDR must be TXDT$+1.)
+				   (EDITMOVE 0 (SUB1 POS)
+					     BTMREC 0 BOUNDARYERRFLG)
+				   (SETQ REC EDITMOVECREC)
+				   EDITMOVECPOS)
+				 (T                          (* otherwise, its closest to BTM)
+				    (EDITMOVE (IPLUS ADDR (IMINUS TXDT$)
+						     -1)
+					      (SUB1 POS)
+					      BTMREC 0 BOUNDARYERRFLG)
+				    (SETQ REC EDITMOVECREC)
+				    EDITMOVECPOS)))
+		  (T (EDITGOTO ADDR POS BOUNDARYERRFLG)      (* use EDITGOTO to move to the right line and char 
+							     position and then set our locals to the result)
+		     (SETQ REC EDITGOTOREC)
+		     EDITGOTOPOS)))
+	      ((EQ ADDR (QUOTE TOP))
+		(SETQ REC (fetch TXDTNEXT of TOPREC))
+		(fetch TXDTOFFSET1 of REC))
+	      ((EQ ADDR (QUOTE BTM))
+		(COND
+		  (BOUNDARYERRFLG (ERROR!)))
+		(SETQ REC BTMREC)
+		0)
+	      (T                                             (* address not recognized)
+		 (ERROR "TXDT ADDRESS NOT RECOGNIZED" ADDR)
+		 (ERROR!]
+          (RETURN REC])
+
+(TXDTVALIDP
+  [LAMBDA (X BOUNDARYERRFLG)
+
+          (* returns T if X is a valid address -- that is, one that does not cause an error when used -- and NIL otherwise.)
+
+
+    (AND (XNLSETQ (TXDTUNBOXRECPOS X (AND BOUNDARYERRFLG (QUOTE BOUNDARYERR)))
+		  NOBREAK)
+	 T])
+
+(TXDTVERIFYADDR
+  [LAMBDA (ADDR)                                             (* WTL: "14-NOV-79 10:08")
+
+          (* Assuming ADDR is a boxed addr, be sure the components are still valid. If not, cause an error.
+	  If so, set TXDTVERIFYPOS to the pos and return the rec. NOTE: the rec,pos returned may not be same as those in the
+	  box, since the boxed ones might be out of date. In this case, this fn searches the TXDTSPLITREC list in the REC in
+	  the ADDR, attempting to find one which still connains the text indicated.)
+
+
+    (PROG (REC SPECIALBTMFLG)
+          (SETQ REC (fetch TXDTREC of ADDR))
+          [COND
+	    ((AND (LISTP REC)
+		  (EQ (CAR REC)
+		      (QUOTE SPECIAL-BTM-MARK)))
+
+          (* If the rec is actually a list, it is of the form (SPECIAL-BTM-MARK rec . pos), where rec,pos addresses the char
+	  immediately before the one we really want to be addressing.)
+
+
+	      (SETQ TXDTVERIFYPOS (CDDR REC))
+	      (SETQ REC (CADR REC))
+	      (SETQ SPECIALBTMFLG T))
+	    (T (SETQ TXDTVERIFYPOS (fetch TXDTPOS of ADDR]
+      CHK (COND
+	    ((BTMRECP REC)                                   (* if we are at btm, make sure TXDTVERIFYPOS is 0)
+	      (SETQ TXDTVERIFYPOS 0)
+	      (RETURN REC))
+	    [(ILESSP (fetch TXDTOFFSET2 of REC)
+		     0)
+
+          (* if the rec has been deleted, see if the char at pos was included at the time of deletion.
+	  If so, cause an error, otherwise search for a rec containg this text and pos.)
+
+
+	      (COND
+		([AND (NOT (IGREATERP (fetch TXDTOFFSET1 of REC)
+				      TXDTVERIFYPOS))
+		      (ILESSP TXDTVERIFYPOS (IPLUS 2561 (fetch TXDTOFFSET2 of REC]
+		  (ERROR "TXDT ADDRESS NOT IN CURRENT BUFFER" ADDR)
+		  (ERROR!))
+		(T (GO FINDSPLITREC]
+	    ((OR (ILESSP TXDTVERIFYPOS (fetch TXDTOFFSET1 of REC))
+		 (NOT (IGREATERP (fetch TXDTOFFSET2 of REC)
+				 TXDTVERIFYPOS)))            (* if TXDTVERIFYPOS falls outside the range of the rec, 
+							     initiate search)
+	      (GO FINDSPLITREC))
+	    (SPECIALBTMFLG                                   (* If address is valid, then we must simply move it 
+							     forward by 1)
+			   (EDITMOVEC 1 REC TXDTVERIFYPOS)
+			   (SETQ TXDTVERIFYPOS EDITMOVECPOS)
+			   (COND
+			     ((NOT (BTMRECP EDITMOVECREC))   (* if the actual addr indicated is not the btm, then get
+							     rid of the special mark.)
+			       (/replace TXDTPOS of ADDR with TXDTVERIFYPOS)
+			       (/replace TXDTREC of ADDR with EDITMOVECREC)))
+			   (RETURN EDITMOVECREC))
+	    (T (RETURN REC)))
+      FINDSPLITREC
+          (SETQ REC (EDITFINDSPLITREC REC TXDTVERIFYPOS))
+          (COND
+	    (REC                                             (* We know that EDITFINDSPLITREC will return a legal 
+							     addr, but we will go back and check just so we hit the 
+							     SPECIALBTMFLG case.)
+		 (GO CHK))
+	    (T (ERROR "TXDT ADDRESS INTO DELETED AREA" ADDR])
+
+(TXDTWHEREIS
+  [LAMBDA (ADDR)
+    (PROG (REC POS)
+          (TXDTSETQQ REC POS ADDR)
+      LOOP(COND
+	    [(TOPRECP REC)
+	      (RETURN (for BUF in TXDTCURBUFLST thereis (EQ REC (fetch TXDTTOP of BUF]
+	    (T (SETQ REC (fetch TXDTPREV of REC))
+	       (GO LOOP])
+
+(TXDTWRITE
+  [LAMBDA (FILE ADDR1 ADDR2)                                 (* writes the window to the file.
+							     Default addresses are top to btm.
+							     Returns full file name.)
+    (PROG (REC1 POS1 REC2 POS2)
+          (TXDTSETQQ REC1 POS1 (OR ADDR1 (QUOTE TOP)))
+          (TXDTSETQQ REC2 POS2 (OR ADDR2 (QUOTE BTM)))
+          (RETURN (EDITWRITE FILE REC1 POS1 REC2 POS2])
+
+(UNMARK
+  [LAMBDA (CHAIN)                                            (* Assuming CHAIN is MARKEDP unmarks every rec in it by 
+							     setting its TXDTOFFSET2 to TXDTOFFSET2+2561.)
+    (PROG NIL
+      LOOP(COND
+	    ((NOT (type? TXDTRECORD CHAIN))
+	      (RETURN T)))
+          (/replace TXDTOFFSET2 of CHAIN with (IPLUS 2561 (fetch TXDTOFFSET2 of CHAIN)))
+          (SETQ CHAIN (fetch TXDTNEXT of CHAIN))
+          (GO LOOP])
+)
+
+(RPAQQ EOLCODE 13)
+
+(RPAQQ LFCODE 10)
+
+(RPAQQ TXDTESCAPECHAR %)
+
+(RPAQQ TXDTINSERTFILEKEY "TXDTINSERTFILEKEY")
+
+(RPAQ STRINGPOINTERTEMP (MKSTRING))
+
+(RPAQ EDITSEARCHPATTERNSIZE 0)
+
+(RPAQ EDITREADFILELST NIL)
+
+(RPAQQ TXDTPTRCHAR ^)
+
+(RPAQ TXDTRECORDCNT 0)
+
+(RPAQ TXDTBUFFERCNT 0)
+
+(RPAQ TXDTADDRCNT 0)
+
+(RPAQ TXDTGRABBEDOBJCNT 0)
+
+(RPAQ TXDTEXTENSION NIL)
+
+(RPAQ TXDTPOETFLG NIL)
+
+(RPAQ TXDTRESETFORMBREAKLOCKSFLG NIL)
+
+(RPAQ TXDTCURBUFLST NIL)
+
+(RPAQ TXDTCHARACTER0 (CHARACTER 0))
+
+(RPAQ TXDTSCRATCHFILE T)
+
+(RPAQ TXDTPRINTUSERFNBOX NIL)
+
+(RPAQQ HIDDENFNS (TXDTGETMSG TXDTGETMSGLST TXDTMAPMSG TXDTPUTMSG TXDTPRINTUSERFN RTXDT))
+
+(RPAQ TXDTPAGESIZE 512)
+
+(RPAQ TXDTSCRATCHSTRINGPTR "")
+(DECLARE: DOEVAL@COMPILE DOCOPY 
+[DECLARE: EVAL@COMPILE 
+
+(DATATYPE TXDTRECORD (TXDTSOURCE TXDTOFFSET1 TXDTOFFSET2 TXDTNEXT TXDTPREV TXDTSPLITRECS TXDTMSG))
+
+(DATATYPE TXDTADDR (TXDTREC TXDTPOS))
+
+(DATATYPE TXDTGRABBEDOBJ (TXDTCHAIN TXDTGRABFLG))
+
+(DATATYPE TXDTBUFFER (TXDTTOP TXDTBTM TXDTPOETDOT TXDTPOETDOTADDR TXDT$))
+
+(RECORD TXDTSOURCE (FILENAME PAGENO))
+]
+(/DECLAREDATATYPE (QUOTE TXDTRECORD)
+		  (QUOTE (POINTER POINTER POINTER POINTER POINTER POINTER POINTER)))
+(/DECLAREDATATYPE (QUOTE TXDTADDR)
+		  (QUOTE (POINTER POINTER)))
+(/DECLAREDATATYPE (QUOTE TXDTGRABBEDOBJ)
+		  (QUOTE (POINTER POINTER)))
+(/DECLAREDATATYPE (QUOTE TXDTBUFFER)
+		  (QUOTE (POINTER POINTER POINTER POINTER POINTER)))
+
+
+(PUTPROPS TXDTSETQQ MACRO [X (LIST (QUOTE PROGN)
+				   (LIST (QUOTE SETQ)
+					 (CAR X)
+					 (CONS (QUOTE TXDTUNBOXRECPOS)
+					       (CDDR X)))
+				   (LIST (QUOTE SETQ)
+					 (CADR X)
+					 (QUOTE TXDTUNBOXPOS])
+)
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY 
+[DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY
+(BLOCK: TXDT EDITCHAR EDITCLOSEALL EDITCLOSEF EDITCLOSEST EDITCONTIGP EDITCOPYGRABBED EDITCOUNTLC 
+	EDITDELETE EDITFINDSPLITREC EDITGOTO EDITGRAB EDITGREATERP EDITINSERT EDITINSERTESCAPE 
+	EDITMAPCHARS EDITMKSTRING EDITMOVE EDITMOVEC EDITMOVEL EDITPRINT EDITPUTMSG EDITRESETSAVEFN 
+	EDITSEARCH EDITSUBST EDITWRITE GETTOPREC PRINTSEG TXDTADDRP TXDTANCHOREDFIND TXDTBOX 
+	TXDTBOXRECPOS TXDTCHAR TXDTCLOSEALL TXDTCLOSEF TXDTCLOSEST TXDTCONTIGIFY TXDTCONTIGP TXDTCOPY 
+	TXDTCOUNTLC TXDTCOUNTPIECES TXDTCURBUF TXDTDELETE TXDTEMPTYP TXDTEOLP TXDTEQUAL 
+	TXDTFILEPOSITION TXDTFIND TXDTFREESPACE TXDTGETMSG TXDTGETMSGLST TXDTGOTO TXDTGRAB 
+	TXDTGRABBEDP TXDTGREATERP TXDTINIT TXDTINSERT TXDTKILLBUF TXDTMAPCHARS TXDTMAPMSG 
+	TXDTMKSTRING TXDTMOVE TXDTNEXTPIECE TXDTPIECE TXDTPREVPIECE TXDTPRINT TXDTPUTMSG TXDTREAD 
+	TXDTREADC TXDTRESETFORMFN TXDTSUBST TXDTSUBSTJFNS TXDTUNBOX TXDTUNBOXRECPOS TXDTVALIDP 
+	TXDTVERIFYADDR TXDTWHEREIS TXDTWRITE UNMARK
+	(ENTRIES EDITRESETSAVEFN TXDTADDRP TXDTANCHOREDFIND TXDTBOX TXDTBOXRECPOS TXDTCHAR 
+		 TXDTCLOSEALL TXDTCLOSEF TXDTCLOSEST TXDTCONTIGIFY TXDTCONTIGP TXDTCOPY TXDTCOUNTLC 
+		 TXDTCOUNTPIECES TXDTCURBUF TXDTDELETE TXDTEMPTYP TXDTEOLP TXDTEQUAL TXDTFILEPOSITION 
+		 TXDTFILEPOSITION TXDTFIND TXDTFREESPACE TXDTGETMSG TXDTGETMSGLST TXDTGOTO TXDTGRAB 
+		 TXDTGRABBEDP TXDTGREATERP TXDTINIT TXDTINSERT TXDTKILLBUF TXDTMAPCHARS TXDTMAPCHARS 
+		 TXDTMAPMSG TXDTMKSTRING TXDTMOVE TXDTNEXTPIECE TXDTPIECE TXDTPREVPIECE TXDTPRINT 
+		 TXDTPUTMSG TXDTREAD TXDTREADC TXDTRESETFORMFN TXDTSUBST TXDTSUBSTJFNS TXDTSUBSTJFNS 
+		 TXDTUNBOX TXDTUNBOXRECPOS TXDTVALIDP TXDTVERIFYADDR TXDTWHEREIS TXDTWHEREIS 
+		 TXDTWRITE)
+	(NOLINKFNS TXDTPRINTUSERFN)
+	(BLKLIBRARY ASSOC EQUAL MEMB)
+	(LOCALVARS CHAIN EDITCHARCODE EDITCHARPOS EDITCHARREC EDITCLOSESTREC EDITCOUNTC EDITCOUNTL 
+		   EDITCOUNTSTOPPOS EDITCOUNTSTOPREC EDITDELETEPOS EDITDELETEREC EDITGOTOPOS 
+		   EDITGOTOREC EDITINSERTPOS1 EDITINSERTPOS2 EDITINSERTREC1 EDITINSERTREC2 
+		   EDITMOVECPOS EDITMOVECREC EDITMOVELPOS EDITMOVELREC EDITSEARCHPOS1 EDITSEARCHPOS2 
+		   EDITSEARCHREC1 EDITSEARCHREC2)
+	(GLOBALVARS BTMREC BUFFEREDLINEFEED CRCHARACTER EDITCLOSESTLST EDITREADFILELST 
+		    EDITSEARCHNEXTARRAY EDITSEARCHPATTERNARRAY EDITSEARCHPATTERNSIZE EOLCHARACTER 
+		    EOLCODE LFCHARACTER LFCODE STRINGPOINTERTEMP TOPREC TXDT$ TXDTADDRCNT 
+		    TXDTBUFFERCNT TXDTCHARACTER0 TXDTCLOSESTFORWFLG TXDTCURBUF TXDTCURBUFLST 
+		    TXDTCURRENTPAGE TXDTCURRENTPAGEFILE TXDTCURRENTPAGENO TXDTDELTA TXDTESCAPECHAR 
+		    TXDTEXTENSION TXDTFINDCNT TXDTGRABADDR TXDTGRABBEDOBJCNT TXDTINSERTFILEKEY 
+		    TXDTINSERTFILEPOS1BOX TXDTINSERTFILEPOS2BOX TXDTINSERTPOS1BOX TXDTINSERTPOS2BOX 
+		    TXDTPAGESIZE TXDTPOETDOT TXDTPOETDOTADDR TXDTPRINTUSERFNBOX TXDTPTRCHAR 
+		    TXDTRECORDCNT TXDTRESETFORMBREAKLOCKSFLG TXDTSCRATCHFILE TXDTSCRATCHSTRING 
+		    TXDTSUBSTCNT TXDTUNBOXPOS TXDTVERIFYPOS)
+	(SPECVARS LISPXHISTORY TXDTPOETFLG))
+]
+)
+
+(RPAQQ TXDTMACROS (BTMRECP EDITTESTCHAR LOADREC EDITMKSTRINGADDCHAR TOPRECP))
+(DECLARE: EVAL@COMPILE 
+
+(PUTPROPS BTMRECP MACRO [LAMBDA (REC)
+			  (EQ REC (fetch TXDTNEXT of REC])
+
+(PUTPROPS EDITTESTCHAR MACRO [(CHARCODE BITMASK)
+			      (OR (IGREATERP CHARCODE 32)
+				  (ZEROP (LOGAND 131072 (LSH BITMASK CHARCODE])
+
+(PUTPROPS LOADREC MACRO [(REC)
+			 (PROG (SOURCE FILENAME PAGENO)
+			       (SETQ SOURCE (fetch (TXDTRECORD TXDTSOURCE) of REC))
+			       (SETQ FILENAME (fetch (TXDTSOURCE FILENAME) of SOURCE))
+			       (SETQ PAGENO (fetch (TXDTSOURCE PAGENO) of SOURCE))
+			       (COND
+				 ((OR (NEQ FILENAME TXDTCURRENTPAGEFILE)
+				      (NEQ PAGENO TXDTCURRENTPAGENO))
+				   (SETQ TXDTCURRENTPAGE (MAPPAGE PAGENO FILENAME T))
+				   (SETQ TXDTCURRENTPAGEFILE FILENAME)
+				   (SETQ TXDTCURRENTPAGENO PAGENO])
+
+(PUTPROPS EDITMKSTRINGADDCHAR MACRO [(CHARCODE CHAR)
+				     (COND
+				       ((EDITTESTCHAR CHARCODE BITMASK)
+					 (COND
+					   ((EQ CHARCOUNTER NCHARSTEMPSTR1)
+					     (SETQ FULLBUFLST (NCONC1 FULLBUFLST (CONCAT TEMPSTR1)))
+					     (SETQ CHARCOUNTER 0)))
+					 (SETQ CHARCOUNTER (ADD1 CHARCOUNTER))
+					 (RPLSTRING TEMPSTR1 CHARCOUNTER CHAR])
+
+(PUTPROPS TOPRECP MACRO [LAMBDA (REC)
+			  (EQ REC (fetch TXDTPREV of REC])
+)
+(DECLARE: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA )
+
+(ADDTOVAR NLAML )
+
+(ADDTOVAR LAMA )
+)
+[COND ((NULL (GETD (QUOTE TXDTPRINTUSERFN)))
+       (PUTD (QUOTE TXDTPRINTUSERFN)
+	     (QUOTE (LAMBDA (JFN FILE)
+			    NIL]
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (5450 137330 (EDITCHAR 5460 . 7412) (EDITCLOSEALL 7414 . 7692) (EDITCLOSEF 7694 . 8191) 
+(EDITCLOSEST 8193 . 11540) (EDITCONTIGP 11542 . 14040) (EDITCOPYGRABBED 14042 . 15581) (EDITCOUNTLC 
+15583 . 18857) (EDITDELETE 18859 . 24937) (EDITFINDSPLITREC 24939 . 25580) (EDITGOTO 25582 . 26786) (
+EDITGRAB 26788 . 29975) (EDITGREATERP 29977 . 30864) (EDITINSERT 30866 . 43885) (EDITINSERTESCAPE 
+43887 . 50016) (EDITMAPCHARS 50018 . 52221) (EDITMKSTRING 52223 . 56113) (EDITMOVE 56115 . 58117) (
+EDITMOVEC 58119 . 62227) (EDITMOVEL 62229 . 65977) (EDITPRINT 65979 . 69876) (EDITPUTMSG 69878 . 70580
+) (EDITRESETSAVEFN 70582 . 70658) (EDITSEARCH 70660 . 78291) (EDITSUBST 78293 . 82783) (EDITWRITE 
+82785 . 85447) (GETBTMREC 85449 . 85738) (GETTOPREC 85740 . 86039) (MARKEDP 86041 . 86508) (PRINTSEG 
+86510 . 87313) (RTXDT 87315 . 88371) (TXDTADDRP 88373 . 88439) (TXDTANCHOREDFIND 88441 . 90177) (
+TXDTBOX 90179 . 90785) (TXDTBOXRECPOS 90787 . 91375) (TXDTCHAR 91377 . 94785) (TXDTCLOSEALL 94787 . 
+94933) (TXDTCLOSEF 94935 . 95135) (TXDTCLOSEST 95137 . 95498) (TXDTCONTIGIFY 95500 . 96844) (
+TXDTCONTIGP 96846 . 97759) (TXDTCOPY 97761 . 98995) (TXDTCOUNTLC 98997 . 99910) (TXDTCOUNTPIECES 99912
+ . 100439) (TXDTCURBUF 100441 . 103365) (TXDTDELETE 103367 . 104138) (TXDTEMPTYP 104140 . 104422) (
+TXDTEOLP 104424 . 104831) (TXDTEQUAL 104833 . 105118) (TXDTFILEPOSITION 105120 . 105685) (TXDTFIND 
+105687 . 106964) (TXDTFREESPACE 106966 . 107283) (TXDTGETMSG 107285 . 107600) (TXDTGETMSGLST 107602 . 
+108671) (TXDTGOTO 108673 . 109010) (TXDTGRAB 109012 . 110262) (TXDTGRABBEDP 110264 . 110446) (
+TXDTGREATERP 110448 . 110747) (TXDTINIT 110749 . 111946) (TXDTINSERT 111948 . 113304) (TXDTKILLBUF 
+113306 . 115343) (TXDTMAPCHARS 115345 . 116305) (TXDTMAPMSG 116307 . 117759) (TXDTMKSTRING 117761 . 
+118618) (TXDTMOVE 118620 . 119259) (TXDTNEXTPIECE 119261 . 119509) (TXDTPIECE 119511 . 119694) (
+TXDTPREVPIECE 119696 . 120126) (TXDTPRINT 120128 . 121648) (TXDTPUTMSG 121650 . 122000) (TXDTREAD 
+122002 . 122360) (TXDTREADC 122362 . 122734) (TXDTRESETFORMFN 122736 . 122934) (TXDTSUBST 122936 . 
+124482) (TXDTSUBSTJFNS 124484 . 124719) (TXDTUNBOX 124721 . 127728) (TXDTUNBOXRECPOS 127730 . 132856) 
+(TXDTVALIDP 132858 . 133136) (TXDTVERIFYADDR 133138 . 136149) (TXDTWHEREIS 136151 . 136445) (TXDTWRITE
+ 136447 . 136853) (UNMARK 136855 . 137328)))))
+(PUTPROPS TXDT COPYRIGHTOWNER NONE)
+STOP

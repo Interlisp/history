@@ -1,0 +1,225 @@
+(FILECREATED "21-NOV-82 00:04:23" ("compiled on " <LISPUSERS>SINGLEFILEINDEX.;6) (2 . 2) bcompl'd in 
+WORK dated "25-SEP-82 15:31:38")
+(FILECREATED " 5-NOV-82 16:14:06" {IVY}<BOBROW>LISP>SINGLEFILEINDEX.;6 16455 changes to: (VARS 
+SINGLEFILEINDEXCOMS) previous date: " 3-NOV-82 00:30:42" {IVY}<BOBROW>LISP>SINGLEFILEINDEX.;5)
+
+SINGLEFILEINDEXBLOCK BINARY
+'r-.'-.p(p/>Z,<@0 +=Z,<,<1,<2,<@2`+6ZZ4XBZ,<Zw,<?4b5,<@6@ +4,<9Z,<,,<,<,Z,XBZ,<Zw,<?:2B+"Z,<Zd;2B<+!Z,<Zd;2B<+!Zb=+"Z[XB`2B+),<>,<>Z ,<,<>,<?Z,~ZwZ?2B+,Zb@,<9A,,<,<,Z,XB/ZB6@ZC2BB+G,<CDdE3B+GAbF,,<Z%,<,<GGdH,,>',>ZI, ,^/Zp+ ^"?,>',>Zp# (BsABx,^//",XB/,<J,<JK,,Z0,XBI,<L,<LM,,ZJ,XBMZ8,<,<N,<,<NOfH,<,<,r,<PP,<,<QH,<,<,r,<,?@R+3Zw},<8,<,<,<Zw~-,+_Zw+Zw~,<[p[,<,<Zw-,+iZpZ2B+g "+h[QD "+zZw,<,<`ZwbS,< w,>',> p ,^/2"+qZp+rZw/XB`Zp,< .",XBt,/Zp,XBp[wXBw+b/XBp-,+Zw3B+ZpQD+ZpXBw  [2D+XBw[w~XBw~+]/XB`,<ZTdUZ`2B+,<,?ZbV,<W,<>ZbV,<,J+t `,>',>ZubS,.Bx,^/.",,<,<,<,<,<,< ,>',> w}." ,^/&,XBw~ ,>',> w}.",>',> w~$Bx,^/ ,^//,XBw w},>',> w&",>',> w~ ,^/&.Bx,^/,XBw} w&",>',> w~/" ,^/&.",XBw,<Z`2B+7Zp+s F,>',>  ,^//,XBw~,<,<,<W p,>',> w ,^/3b+CZw+p,<w|,<,<W p,>',> w ,^/3b+JZw+l,<` w~,>',> wz,>',> w/"$Bx,^/.Bx,^/ ,\5dU Z,+V[2B=dUXBw|3B+jZw|Zb> wz,>',>Zw|ZbS, ,^//,>',>Zw|[bS, ,^//,,<,TZw|[b>ZpZwz3B+j,<w|X p.",XBp+D/,<,? p.",XBp+=/,<,J[wXB`+4/@Y,~Zw},<8Zp-,+x+.Zp,<[p[,<Zp-,+}+,Zp,<ZO`A,<,<`[w~ZXB`,<,Zw}Z83B+,<,J+,<,? .",XB 8.",>',> 7 ,^/3b+,<,J ,>',>^",>',>ZbS,.Bx,^/ ,^//,,<,<XZ	bV,<Z,<>Z,<,<>,<Z,<>ZbV,<[,<>Zp,<@. +*Z~`A,<Zwz,<8Zwy[8[ZwyXB8,<,,~/[pXBp+{/[pXBp+v/Z$`A,<,<`Z/b[,<,,~Z1,~ZwXB8Z,~3B+8Z+9Z\XB`d]Z`3B+<^,~Z`,~+Z,<@0 +>ZN,<,<_,<2,<@2`+7ZZ4XBZ,<@_ H+5Zw,<8,<,<Zw-,+M+ZXBpb4b5XB3,<9,<,,<,<,ZA,XBRZO,<,<w:2B+_ZT,<Zd;2B<+^ZW,<ZXd;2B<+^ZZb=+_Z[XB`2B+f,<d,<>Z],<,<>,<?+,<`Zb,deXB`Z"XB,<`,<,<,<Zw~-,+nZw+Zw~,<[p[,<,<,<,<Zw~-,+t+
+ZXBwZwXBp,<,<w{ i.",XBw,Z`,XB`,<`,<w{S,,>',>,<wS,.Bx,^/,,< w,>',> p ,^/2"+Zp+Zw/XB`[w~XBw~+rZw/XBp-,+Zw3B+ZpQD+ZpXBw  [2D+XBw[w~XBw~+k/[wXBw+KZw/,<`ZTdU,<9A,,<,<,ZS,XBZ+b@,<J,<JK,,Z,XB",<L,<LM,,Z#,XB&,<fZw,<8HXBf,<,<,r,<fP,<,<gH,<,<,r,<,?Z`2B+8,<,?ZbV,<g,<>Z
+bV,<,J+% `.",,<,<,<,<,<,<,<,<,< ,>',> w|." ,^/&,XBw~ >,>',> w|.",>',> w~$Bx,^/ ,^//,XBw w|,>',> w&",>',> w~ ,^/&.Bx,^/,XBw| w&",>',> w~/" ,^/&.",XBw,<Z`2B+^Zp+$ F,>',> 	 ,^//,XBw~,<,<,<W p,>',> w ,^/3b+jZw+!,<w|,<,<W p,>',> w ,^/3b+qZw+,<` w~,>',> wz,>',> w/"$Bx,^/.Bx,^/ ,\5d| Z,+}[2B=d|XBw|3B+Zw|ZXBwyZw|[ZXBwyZw|[[ZXBwz,<wy> wx,>',>^",>',>,<wyS,.Bx,<wyS,.Bx,^/ ,^//,,<,T,<wy>,<wzS, ^"/,,<,T,<wz>ZpZwz3B+,<w|X p.",XBp+k/,<,? p.",XBp+d/,<,J[wXB`+[/,<h,<,r,<`Zp-,+)+2Zp,<,<,?,<p,<h,<w,<NOfH,<,<,r,<pi/[pXBp+'/ZbiZwZ8,~ZwXB8Z,~3B+9Z+:Z\XB`d]Z`3B+=^,~Z`,~+Zp2B+A? _.",XBA,,>',> ^ ,^/3b77+,<,J+Zp2B+NZ"A"?Z."Zb>,<,<GjZ"XBB .",XBQ,_+ p&"4bY,>',>,<k>>`x5V/ p&" 4b^,>',>,<k>>`x5\/+Z)b>Z3B+j,<l,<>Z`,<,<l,<m,<>Zx,<,<>,<n,<> C/",,<,<n,<o>,<pZRdp,<,?,<,?,~ j,>',>,<wS, ,^//&",bnZp3B+~Z3bV,<w,<>Z5bV+,<w>,<,?+,<w~,<wq,<w~F,,<,<w~F,,<,< w~,>',> w~ ,^//4b%,>',>Zw,>',>Zw  ,^/ ,0B+Z+$0B+
+Zp3B+ P,>',> D/" ,^/3b+,<,J+$,<,?ZXBp+$0B+#,<,JZXBp+$ZXBp>`x5//Z+EP5#G0Q \~aj@A`K@(! (	 "--  D
+@%I$ D"B%@b@@)ZRPH &&(PP#G0hX0
+$@D#`#YJj`  D
+@JII$T
+	+$4``@ XZQ44*$Rj!TPJH@(SINGLEFILEINDEXBLOCK#0 . 1)
+(VARIABLE-VALUE-CELL LISPXHIST . 637)
+(VARIABLE-VALUE-CELL RESETVARSLST . 846)
+(VARIABLE-VALUE-CELL LINESPERPAGE . 1328)
+(VARIABLE-VALUE-CELL FILERDTBL . 694)
+(VARIABLE-VALUE-CELL PRINTER . 1126)
+(VARIABLE-VALUE-CELL BOLDFONT . 1268)
+(VARIABLE-VALUE-CELL DEFAULTFONT . 1273)
+(VARIABLE-VALUE-CELL FILELINELENGTH . 1252)
+(VARIABLE-VALUE-CELL LINECOUNT . 1325)
+(VARIABLE-VALUE-CELL FCHARAR . 1177)
+(VARIABLE-VALUE-CELL PAGECOUNT . 1245)
+(VARIABLE-VALUE-CELL FULL . 1214)
+(VARIABLE-VALUE-CELL CURFN . 1222)
+(VARIABLE-VALUE-CELL INUM . 1229)
+SINGLEFILEINDEX
+MERGEDFILEINDEX
+(VARIABLE-VALUE-CELL LISPXHIST . 0)
+NIL
+NIL
+((DUMMY) . 0)
+INTERNAL
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+(NIL)
+(LINKED-FN-CALL . INFILE)
+(NIL)
+(LINKED-FN-CALL . INPUT)
+(VARIABLE-VALUE-CELL LINESPERPAGE . 0)
+(VARIABLE-VALUE-CELL FULL . 0)
+NIL
+(0 VARIABLE-VALUE-CELL LINECOUNT . 0)
+(0 VARIABLE-VALUE-CELL PAGECOUNT . 0)
+(NIL VARIABLE-VALUE-CELL CURFN . 0)
+CLOSEF?
+(NIL)
+(LINKED-FN-CALL . GETFILEMAP)
+(NIL)
+(LINKED-FN-CALL . RATOM)
+%(
+FILECREATED
+(NIL)
+(LINKED-FN-CALL . LOADFILEMAP)
+"Could not get file map for "
+(NIL)
+(LINKED-FN-CALL . PRIN1)
+(NIL)
+(LINKED-FN-CALL . TERPRI)
+(NIL)
+(LINKED-FN-CALL . OUTFILE)
+(NIL)
+(LINKED-FN-CALL . OUTPUT)
+TENEX
+TOPS20
+"PARC-MAXC"
+(NIL)
+(LINKED-FN-CALL . HOSTNAME)
+(NIL)
+(LINKED-FN-CALL . STRPOS)
+(NIL)
+(LINKED-FN-CALL . OPNJFN)
+0
+(NIL)
+(LINKED-FN-CALL . CHARACTER)
+(NIL)
+(LINKED-FN-CALL . CONCAT)
+"NAME"
+LINELENGTH
+1000
+(NIL)
+(LINKED-FN-CALL . LINELENGTH)
+RADIX
+10
+(NIL)
+(LINKED-FN-CALL . RADIX)
+"     "
+WRITEDATE
+(NIL)
+(LINKED-FN-CALL . GETFILEINFO)
+"-- Listed on "
+(NIL)
+(LINKED-FN-CALL . DATE)
+" --"
+NIL
+(0 VARIABLE-VALUE-CELL INUM . 0)
+0
+(NIL)
+(LINKED-FN-CALL . NCHARS)
+FILEINDEXALPHORDER
+(NIL)
+(LINKED-FN-CALL . SORT)
+(NIL)
+(LINKED-FN-CALL . CHANGEFONT)
+"No Functions."
+1
+(NIL)
+(LINKED-FN-CALL . SPACES)
+0
+(0 VARIABLE-VALUE-CELL INUM . 0)
+"["
+"]"
+%
+(NIL)
+(LINKED-FN-CALL . GETEOFPTR)
+ERROR
+(NIL)
+(LINKED-FN-CALL . RESETRESTORE)
+(NIL)
+(LINKED-FN-CALL . ERROR!)
+((DUMMY) . 0)
+(VARIABLE-VALUE-CELL LINESPERPAGE . 0)
+NIL
+NIL
+(NIL VARIABLE-VALUE-CELL FULL . 0)
+(NIL VARIABLE-VALUE-CELL CURFN . 0)
+NIL
+(0 VARIABLE-VALUE-CELL LINECOUNT . 0)
+(0 VARIABLE-VALUE-CELL PAGECOUNT . 0)
+(0 VARIABLE-VALUE-CELL INUM . 0)
+0
+"Could not get file map for "
+(NIL)
+(LINKED-FN-CALL . NCONC)
+"Merged Index of Files:  "
+"-- Listed on "
+" --"
+"No Functions."
+"Files Indexed"
+"             "
+(NIL)
+(LINKED-FN-CALL . CLOSEF)
+(NIL)
+(LINKED-FN-CALL . POSITION)
+"........"
+"."
+"  ("
+(NIL)
+(LINKED-FN-CALL . PRIN2)
+" ["
+"] cont.)"
+(NIL)
+(LINKED-FN-CALL . TAB)
+"Page "
+((FIX . 10738466826) . 0)
+(NIL)
+(LINKED-FN-CALL . PRINTNUM)
+(NIL)
+(LINKED-FN-CALL . SETFILEPTR)
+(URET4 URET2 URET1 ALIST3 ASZ URET3 IUNBOX SKLST COLLCT CONSS1 SKNLST CONSNL MKN BHC UPATM GUNBOX 
+KL20FLG ALIST2 KT CONS LIST2 CF KNIL BLKENT ENTER1)'_JHJI?z RPJL-'hNXDBHA0/X(] 1P|xw(.8m)H|
+dh4h"-N	 R(xM@SH0!CPBc;0T9@C7 /!p@e@4X%H`F&T`R
+Np_KGF81DX"ChAhy>xo=b;T: K9B31@	0`%x-%8"XHqXdpRH;(-0$(80w0pxEpX;P@82&4 	XIhTp!SpMPHFx/Dh+,Xd,(6
+@(x%|4x#3h{*@U	pK*0Q@(`$T(RhPpOHzNpM hLheL0aIxKIHH<G8E0#Cp?X{=8d;P\7h>7X=7H<78;6x56026/3P1hr. q-@k-0a+xW*(K)0D'88&x!#p#8!p X nVHDX6Pp``(}`e0]P\X`/8)@"  (
+
+SINGLEFILEINDEX BINARY
+-.,<,~(INF . 1)
+(OUTF . 1)
+(NEWPAGEFLG . 1)
+SINGLEFILEINDEX
+(NIL)
+(LINKED-FN-CALL . SINGLEFILEINDEXBLOCK)
+(ENTER3)
+
+MERGEDFILEINDEX BINARY
+-.,<,~(FILES . 1)
+MERGEDFILEINDEX
+(NIL)
+(LINKED-FN-CALL . SINGLEFILEINDEXBLOCK)
+(ENTER1)
+
+FILEINDEXALPHORDER BINARY
+-.Z[,,>,>,>Z[, 
+ x/<,<(0"00b=7/"0$00d=7/$3B+2"7Z,~0@(VARIABLE-VALUE-CELL A . 3)
+(VARIABLE-VALUE-CELL B . 9)
+(KT KNIL BHC UPATM ENTERF)h
+
+SFILISTFILES1 BINARY
+-.ZB,<@ ,~ZB3B+,<,<$Z,<,<$,<,<$Z,<,<$,<"Z,<,<$,<ZDXBZ,~ZB,~#"D$(VARIABLE-VALUE-CELL FILE . 39)
+(VARIABLE-VALUE-CELL PRINTER . 23)
+(VARIABLE-VALUE-CELL NOTLISTEDFILES . 36)
+INFILEP
+(VARIABLE-VALUE-CELL INF . 29)
+SINGLEFILEINDEX
+"indexed version of "
+PRIN1
+" => "
+TERPRI
+NAMEFIELD
+REMOVE
+""
+OLDLISTFILES1
+(KT KNIL ENTERF)X 
+(PRETTYCOMPRINT SINGLEFILEINDEXCOMS)
+(RPAQQ SINGLEFILEINDEXCOMS ((FNS SINGLEFILEINDEX MERGEDFILEINDEX INDEXNEWLINE INDEXNEWPAGE PRINTDOTS 
+LISTINGHEADER CENTERPRINT FILEINDEXALPHORDER) (FNS INDEXCOPYBYTES) (FNS SFILISTFILES1) (VARS (PRINTER 
+(SELECTQ (SYSTEMTYPE) (D (QUOTE {LPT})) (QUOTE LPT:)))) (DECLARE: DOCOPY DONTEVAL@LOAD (P (MOVD? (
+QUOTE LISTFILES1) (QUOTE OLDLISTFILES1)) (MOVD (QUOTE SFILISTFILES1) (QUOTE LISTFILES1)) (COND ((NOT (
+FIXP (GETTOPVAL (QUOTE LINESPERPAGE)))) (SETQ LINESPERPAGE (SELECTQ (SYSTEMTYPE) (D 65) 58)))))) (
+DECLARE: EVAL@COMPILE DONTCOPY (RECORDS DefineqList FileMap FnPointer) (P (SELECTQ (COMPILEMODE) (
+PDP-10 (FILESLOAD (SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES) CJSYS)) NIL))) (BLOCKS (
+SINGLEFILEINDEXBLOCK SINGLEFILEINDEX MERGEDFILEINDEX INDEXNEWLINE INDEXNEWPAGE PRINTDOTS LISTINGHEADER
+ CENTERPRINT INDEXCOPYBYTES (ENTRIES SINGLEFILEINDEX MERGEDFILEINDEX) (LOCALFREEVARS LINECOUNT 
+PAGECOUNT CURFN INUM FULL) (GLOBALVARS FILELINELENGTH PRINTER FONTCHANGEFLG DEFAULTFONT PRETTYCOMFONT)
+))))
+(RPAQ PRINTER (SELECTQ (SYSTEMTYPE) (D (QUOTE {LPT})) (QUOTE LPT:)))
+(MOVD? (QUOTE LISTFILES1) (QUOTE OLDLISTFILES1))
+(MOVD (QUOTE SFILISTFILES1) (QUOTE LISTFILES1))
+(COND ((NOT (FIXP (GETTOPVAL (QUOTE LINESPERPAGE)))) (SETQ LINESPERPAGE (SELECTQ (SYSTEMTYPE) (D 65) 
+58))))
+NIL

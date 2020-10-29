@@ -1,0 +1,122 @@
+Tracein is a facility for very low level tracing/stepping, i.e. to show you
+everything that takes place within a particular piece of code.
+
+(TRACEIN fn {T} loc1 loc2 ...)   [NLAMBDA NOSPREAD]
+Tracein steps or traces everything that happens in a piece of code.  The
+first argument is the name of the function in which that code is to be found.
+It can also be a list of the form (fn test) where test will be evaluated to
+decide whether to actually trace.  The default condition is T.  (Note: the
+condition NIL is also treated as T - if you want never to break try (NOT T).
+This is a feature inherited from BREAKIN.)  If fn is followed by T, the code
+will always be traced (as if you always typed T to the first prompt described
+below).
+
+The other arguments are editor location specifications.  (TRACEIN FN) is
+like (BREAKIN FN) - it allows you to find the desired location in the editor.
+When you type OK the current expression is the answer.  (TRACEIN fn loc1)
+does a (BREAKIN fn (AROUND loc1) <some trickery>).  Since TRACEIN works by
+calling BREAKIN, it can be undone by calling UNBREAK.
+
+When the stepper enters an expression it prints the expression(*) and prompts
+with the string "->".  The acceptable responses are P (rettyprint the form you
+are about to eval), B (reak), S (step), E (val the form with no more questions
+or tracing) and T (race everything in the form without asking).  After the
+expression has been evaluated, it prints(*) the value and prompts with the
+string "<-".  The acceptable responses are P (rettyprint the value), B (reak),
+F (inish evaluating without printing or asking), S (tep on to the next
+form) and R(etry).  F only finishes the current call to BREAK1, and E does
+break at embedded or recursive calls on code that is Traced in.  R returns
+to the -> prompt and of course does not undo side effects of the evaluation.
+Break is just supposed to give you control temporarily.  Do a RETURN to get
+back to the same prompt.
+
+Note that it only makes sense to tracein expressions that will be evaluated.
+You will get into trouble if you attempt to trace a clause of a COND, e.g.
+((ATOM X) NIL), because it will be interpreted as call to the function (ATOM
+X).  Also, it is the DWIMIFY'd version of your code that will be traced.  Thus
+you may see PROG executing where you typed FOR.  Note that a break condition
+of (NOT T) is useful for avoiding sections of code.  E.g. if the code is (F (G
+(H))), you can see F and H but not G by doing (TRACEIN <fn> F H) and (TRACEIN
+(<fn> (NOT T)) G).
+
+(WATCH form)    [NLAMBDA SPREAD]
+
+Watch is the stepper/tracer used by TRACEIN.  It is controlled by a free
+variable StepAction (initially NIL meaning step).  Other possible values are T
+(meaning trace) and EVAL meaning no more printing or questions.  Watch is a
+handy function to insert by hand in strategic places in your code.  However,
+unlike TRACEIN, this method of tracing will not be undone by UNBREAK.  Watch
+rebinds the free variable INDENT# to determine how far to indent the output.
+
+Notice that TRACEIN traces every subexpression that it EXPECTS to eventually
+be evaluated.  It doesn't expect the arguments of NLAMBDAs to be evaluated,
+but sometimes they are.  Users can tell TRACEIN what will be evaluated by
+adding an EVL-FIX property to functions that TRACEIN does not understand.
+(Maybe some masterscope expert can figure out how to use the masterscope
+templates to get most of the effect of EVL-FIX properties described below.)
+The system functions are supposed to be already understood, but if that
+understanding is wrong (or the user wants to change it for any other reason)
+the same tactic will work.  The EVL-FIX property is a pattern to be applied to
+the tail of a function call.  A pattern element of T means that the
+corresponding argument will be evaluated (and thus ought to be traced).  NIL
+means that it will not.  Thus the pattern for SETQ is (NIL T).  If a pattern
+element is itself a list, then that argument is not to be traced, but it is
+expected to be a list which will in turn be matched with the pattern element
+to determine whether its elements will be traced.  In addition, the special
+pattern element TAIL allows the pattern element after it to be applied to as
+many arguments as necessary to exhaust the list.  For example, the pattern for
+COND is (TAIL (TAIL T)).  The pattern for SELECTQ is (T TAIL (NIL TAIL T) T).
+
+If the CAR of a pattern is TEST, the next element is an expression which is
+evaluated.  If the result is not NIL it will be traced.  Also, as a special
+case, if a pattern element is an atom other than T or NIL, it is expected to
+be a function which will be applied to the corresponding argument, and if the
+result is not NIL then the argument will be traced.  If the CAR of a pattern
+is EVAL, the next element is evaluated, and what it returns is used as the
+pattern.  In such code, the free variable EXP is the function call that the
+resulting pattern is supposed to describe.  In addition, the variable NOEMBED
+may be set to T to indicate that the function call itself is not to be traced.
+This feature is not normally needed, but LAMBDA is an example where it is.
+
+Implementation
+
+TRACEIN itself simply calls BREAKIN.  If a break occurs (as determined by the
+break condition), the code that is evaluated (instead of BRKEXP) is a new
+version of BRKEXP in which the forms to be evaluated are embedded in calls to
+WATCH (the stepper/tracer).  This form is computed the first time it is
+needed, and is stored in CLISPARRAY.  Thus the WATCHified version will
+automatically go away (and have to be recomputed) if you ever change the
+expression.  (Detail: before WATCHification, the expression is DWIMified.
+WATCHification of an expression which already has a CLISP translation stores
+the WATCHified version of the CLISP translation as the CLISP translation of
+the CLISP translation of the original form.  Thus, when the break condition is
+false, the original CLISP translation is used.  When the expression is
+changed, the CLISP translation goes away, and so the WATCHification (as well
+as the DWIMification) is redone.)
+
+Although this all works on the VAX, there is another version of TRACEIN that
+takes advantage of the EVALHOOK which is available there.  The main difference
+is that this version does not stop stepping after it leaves the function you
+gave to TRACEIN.  It will let you continue to step through lower functions.
+This means that the Trace option is even less likely to be what you really
+want, since it may show you arbitrary stuff that the system is evaluating
+behind your back (e.g. dwimification).  On the other hand, this does let you
+see your CLISP before you see the dwimified form, and of course it is possible
+that you will be interested in some of the other stuff it dredges up.  This
+version is used if EVALHOOK is SUBRP and WATCH-EVALHOOK is CCODEP, so by
+changing these you can get the old behavior.  In this version, the function
+WATCH described above is named WATCH-EVAL.
+
+(*) The printing is done by (APPLY* FORMPRINTER <form>) and (APPLY*
+VALUEPRINTER <value>) so you can control the printing.  The initial values of
+these call PRINTUPTO to print as much as will fit on the line after the
+indentation, leaving space for the response to ASKUSER (but never cutting off
+the printing in less than 20 characters).  If anyone can use such a function,
+it is (PRINTUPTO x limit UsePrin2 Ignore), which prints up to limit characters
+of x.  If UsePrin2 is not NIL then it prints with PRIN2 (otherwise PRIN1).
+Ignore is used to skip calls to WATCH. (The WATCHified form is passed to the
+formprinter.)  When the CAR of a list is in Ignore, only the CADR is printed.
+If you want to replace FORMPRINTER, the function UNWATCH will remove the
+WATCHes from the form.
+
+DonC (Don Cohen) @ ISIF

@@ -1,0 +1,58 @@
+(FILECREATED " 9-Nov-82 14:51:21" <CSCHMIDT>SYSALL.LSP.9 1564   
+
+      previous date: " 9-Nov-82 14:31:37" <CSCHMIDT>SYSALL.LSP.8)
+
+
+(PRETTYCOMPRINT SYSALLCOMS)
+
+(RPAQQ SYSALLCOMS ((VARS (HELPFLAG NIL))
+		   (FNS CHECKSYSOUT PRINTSYSOUT SYSALL)))
+
+(RPAQQ HELPFLAG NIL)
+(DEFINEQ
+
+(CHECKSYSOUT
+  [LAMBDA (JFN)                                 (* cvs " 8-Nov-82 18:45"
+)
+    (PROG (PARENT FULLNAME)
+          (SETQ FULLNAME (JFNS JFN))
+          [SETQ PARENT (ERRORSET (QUOTE (SYSOUTP JFN]
+          (COND
+	    ((NULL PARENT)                      (* error)
+	      (push SYSOUTS (LIST 25769803776 "couldn't open" FULLNAME))
+	      )
+	    [(CAAR PARENT)                      (* sysout)
+	      (push SYSOUTS (LIST (CADAR PARENT)
+				  FULLNAME " parent ="
+				  (GDATE (CADAR PARENT]
+	    [(CAR PARENT)                       (* makesys)
+	      (PUSH SYSOUTS (LIST (CADAR PARENT)
+				  FULLNAME " (makesys)"
+				  (GDATE (CADAR PARENT]
+	    (T NIL])
+
+(PRINTSYSOUT
+  [LAMBDA (SYSOUTS)                             (* cvs " 9-NOV-82 09:12"
+)
+    (SETQ LOGFILE (OPENFILE (QUOTE SYSOUT.OWNERS)
+			    (QUOTE OUTPUT)))
+    [MAPCAR [SORT SYSOUTS (QUOTE (LAMBDA (A B)
+					 (ILESSP (CAR A)
+						 (CAR B]
+	    (QUOTE (LAMBDA (L)
+			   (PRIN1 (CDR L)
+				  LOGFILE)
+			   (TERPRI LOGFILE]
+    (CLOSEF LOGFILE])
+
+(SYSALL
+  [LAMBDA (SUBTREE)                             (* cvs " 9-Nov-82 14:30"
+)
+    (PROG (SYSOUTS)
+          (DIRECTORY SUBTREE (QUOTE (@ CHECKSYSOUT)))
+          (PRINTSYSOUT SYSOUTS])
+)
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (281 1540 (CHECKSYSOUT 293 . 973) (PRINTSYSOUT 977 . 1339)
+ (SYSALL 1343 . 1537)))))
+STOP

@@ -1,0 +1,238 @@
+
+Note: some of the changes described below are not brand new but
+have been in the system for several months without official
+documentation. 
+
+
+Type Names
+
+By and large, Interlisp has now been converted to use type NAMES
+(as returned by TYPENAME), in addition to, or in some cases instead
+of, type numbers (as returned by NTYP). Functions such as RECLAIM,
+MINFS, DEFEVAL, etc. now accept type names as well as type number,
+e.g. you can say MINFS(5000 STRINGP). Prettyprintype macros operate
+off of type names. The garbage collector and STORAGE print out
+descriptive information, using type names, rather than type
+numbers.
+
+
+
+New Greeting Conventions
+
+Due to problems of incompatibilities with TOPS-20 oerating system,
+we have changed the Interlisp greeting convention. Each site should
+now have on its <LISP> directory an INIT.LISP file which contains
+the system-wide initialization. The INIT.LISP file can be a file
+written with MAKEFILE, or WRITEFILE. If a user wants to be greeted
+by firstname, he must set the variable FIRSTNAME in his own
+INIT.LISP file. (If he also for his birthday to be duly noted, he
+must add the expression (date . "Happy Birthday") to GREETLST,
+where date is a string, e.g. "20-OCT" or " 5-MAY" (note leading
+space in latter date)).
+
+  
+I/O related changes
+
+End of file - the default to close a file when an eof is
+encountered by an input operation is still in effect. However, this
+operation is now performed in ERRORX, rather than in the guts of
+lisp, so that the user can override this by handling the eof error
+himself via an entry on ERRORTYPELST that does a RETFROM.
+
+Null character - i.e. character(0), now can be read (it previously
+was filtered out at a low level). It is initially a separator
+character.
+
+FILE NOT FOUND, FILE WON'T OPEN - these errors used to cover a
+variety of sins, and have been cleaned up considerably. They now
+correspond to the following four errors:
+
+FILE SYSTEM RESOURCES EXCEEDED (error 22) - whole disk full, disk
+quota exceeded, directory full, too many jfn's, jsb full.
+
+FILE NOT FOUND (error 23) - the file is really not there, i.e. no
+such directory, no such name, no such extensions etc.
+
+PROTECTION VIOLATION (error 41) - attempt to open a file that you
+have no access too. Includes reference to unassigned device.
+
+BAD FILE NAME (error 42) - includes true garbage such as illegal
+character in file specification, two ;'s in a row, etc. 
+
+FFILEPOS - now takes an additional(( optional)) argument,
+CASEARRAY, which should be an (ARRAY 128 128). EAch character in
+the file and in the pattern is mapped "thru" CASEARRAY in the sense
+that character N is turned into character (ELT CASEARRAY N+1)
+before matching. Thus to do upper and lower case equivalence, one
+can give FFILEPOS an array where N -> N except that lower case
+characters map to upper case characters. Similarly, to search for
+an atom in a file when you don't know whether it is delimited by
+space, carriage return, or parens, search for " atom " and use a
+CASEARRAY in which all separators and break characters map to the
+same character.
+
+There are still some known bugs with respect to carriage returns
+not being inserted by print at the right place. These will
+hopefully be
+fixed in later releases.
+
+
+
+DWIM related changes
+
+FIXSPELLDEFAULT - specifies the default for spelling corrections.
+Initially Y. FIXSPELLDEFAULT is rebound to N when under an explicit
+call to DWIMIFY or when compiling, so that the default on spelling
+corrections in this case will be No, i.e. you can walk away from
+your terminal and dwim won't take any liberties with your program.
+
+
+FIXSPELLREL - determines the default for closeness measure for
+spelling correction, e.g. setting FIXSPELLREL to 100 has the effect
+of only considering spelling corrections with zero mistakes.
+FIXSPELLREL is initially 70.
+
+NOSPELLFLG - if non-NIL, and also not T, means to suppress spelling
+correction in programs, but enable it on type-in.
+
+
+FIXSPELL - TIEFLG can now be one of NIL, PICKONE, LIST, or
+EVERYTHING. If a tie occurs, and TIEFLG=NIL, FIXSPELL returns NIL.
+If TIEFLG=PICKONE, FIXSPELL picks the first one. If TIEFLG=LIST,
+returns list of candidates. If TIEFLG=EVERYTHING (new feature), all
+candidates above REL are returned, regardless of whether some are
+better than others.
+
+DWIMIFY - now takes a third argument, QUIETFLG, which can be used
+to suppress printout so that DWIMIFY can be called from a program.
+
+DWIMIFY - can be told about constructs which bind variables, e.g.
+LAMBDA, PROG, RESETVARS, etc. by including the atom BINDS on the
+INFO property for car of the form. DWIMIFY will then assume that
+CADR of the form is a binding list, which can be either NIL, an
+atom, a list of atoms, or a list of atoms and lists (like prog
+bindings). DWIMIFY will process the binding list in the obvious way
+and then dwimify CDDR of the expression. 
+
+I.S.OPR - can now be used to redefine built in iterative oeprators,
+and still refer to the original definition via the flag ORIGINAL,
+e.g. i.sopr(WHILE NIL (WHEN FOO ORIGINAL WHILE BODY)) could be used
+to extend the definition of WHILE to include a FOO CHECK. 
+
+I.S.OPR - Whenever an i.s.opr has been redefined, all expressions
+using that i.s.opr that have been translated will have their
+translations cleared automatically, and hence be retranslated.
+
+I.S.OPR - i.s.opr's can now be defined which contain a mixture of
+upper and lower case letters, e.g. I.S.OPR(OutOf --). DWIM will
+recognize both the upper case version, and the mixed upper/lower
+case version as it appears in the call to I.S.OPR, and CLISPIFY
+will convert back to the mixed version when LCASEFLG is T..
+
+MACROCHARS - new option in ASKUSER, similar to PROMPTON,
+COMPLETEON, etc. MACROCHARS takes a list of dotted pairs of
+character and form. When the corresponding character is typed, and
+it does not match any of the current keys, and is on MACROCHARS,
+form is evaluated and nothing else happens. For example, ? could
+have been implemented that way.
+
+In addition, a number of bugs have been fixed in CLISPIFY, DWIMIFY,
+RECORD, and MATCH 
+
+
+Miscellaneous
+
+control-T - now prints out information about what functions the
+program is in at the time control-T is typed, in the form RUNNING
+(or IOWAIT) IN fn1 IN fn2 IN fn3, LOAD nnn.nn, or, in the case of a
+garbage collection, COLLECTING, LOAD nnn.nn. Don't be alarmed if
+occasionally fn1 is not the name of a function, e.g. RUNNING IN _
+IN EVALQT...
+
+Break within a break - if a break occurs on a user function within
+in a break in a situation where a loop would occur, e.g. by
+breaking on a function called via BREAKRESETFORMS, the break
+messages is printed, and the body of the function evaluated (rather
+than going into the break and looping), and the computation
+proceeds. On other types of breaks, e.g. an undefined function on
+BREAKRESETFORMS, BREAKRESETFORMS is rebound to NIL and HELP called.
+
+U-CASE, L-CASE - now can be given a list as an argument, and return
+a list consisting of the result of upper/lower casing each element
+of the list.
+
+PACK* - lambda nospread for doing pack, i.e. (PACK* x1 x2 ... xn)
+equivalent to (PACK (LIST x1 x2 ... xn)).
+
+SYSOUTFILE - is the name of the last sysout. SYSOUT[] will perform
+a sysout onto a (new version of) the value of SYSOUTFILE.
+SYSOUTFILE is initially WORK.SAV
+
+SYSOUT.EXT - specifies the default extension for sysouts when none
+is supplied. SYSOUT.EXT is initially SAV. (TOPS-20 sites should set
+SYSOUT.EXT to EXE in their LISP.INIT file).
+
+RECOMPILEDEFAULT - specifies default for recompiling when FNS=NIL
+and CFILE=NIL. RECOMPILEDEFAULT is initially EXPRS for backwards
+compatibility, but for some applications, the user might find
+setting it to CHANGES more desirable, to specify recompiling
+everything that had changed.
+
+New DECLARE: tags - EVAL@LOADWHEN, EVAL@COMPILEWHEN, COPYWHEN
+permit compile/run time determination of what to do with the
+expressions in a DECLARE:. The expression following the tag in
+question is evaluated, and its value determines the sign of the
+tag. e.g. (DECLARE: EVAL@LOADWHEN FOO (P (PRINT "HI" T))  ) will
+print HI if the value of FOO at load time is non-nil.
+
+BEFORESYSOUTFORMS - a list of expressions to be evaluated before a
+sysout a la AFTERSYSOUTFORMS.
+
+MAKEFILEFORMS - a list of expressions to be evaluated before
+calling PRETTYDEF. MAKEFILE now rebinds PRETTYTRANFLG, PRETTYFLG,
+and CLISPIFYPRETTYFLG, and under a RESETLST evaluates each
+expression on MAKEFILEFORMS and then calls PRETTYDEF. This gives
+the user a place to add things to be done before each file is
+dumped, and by doing them with a RESETSAVE, have the effects
+restored when the MAKEFILE is finished, or aborted. For example,
+MAKEFILEFORMS is initialized to contain the expression (AND (NEQ
+(LINELENGTH) FILELINELENGTH) (RESETSAVE (LINELENGTH
+FILELINELENGTH))).
+ 
+PROMPTCHARFORMS - a list of expressions to be evaluated each time
+that PROMPTCHAR is called and is about to (but before it does)
+print the promptcharacter. The variables HISTORY, and ID are bound
+to the history and id respectively, so that you can put expressions
+on PROMPTCHARFORMS which get executed only at the top level or only
+in the editor, etc. by testing ID. The variable PROMPTSTR is what
+will be printed before the promptcharacter. If after evaluating
+each form on PROMPTCHARFORMS, either ID or PROMPTSTR have been set
+to NIL, they are not printed.
+
+HISTORYSAVEFORMS - a list of expressions to be evaluated each time
+HISTORYSAVE is called. The variables HISTORY and ID are bound to
+the history and ID, and the variable EVENT is the current, i.e.
+about to be executed, event. 
+
+Note that PROMPTHCHARFORMS and HISTORYSAVEFORMS let you effectively
+bracket each interaction with the user.
+
+#UNDOSAVES - if negative, means continue saving until |#UNDOSAVES|
+have been recorded, and then simply stop saving and discard the
+information without interacting with the user, i.e. same as if the
+user were asked to continue saving and said No.
+
+CPLISTS - now has an extra argument, IGNORECOMMENTSFLG, which if T
+means comments will be ignored for the purposes of comparison, i.e.
+if one function has a comment where the other doesn't, it won't
+throw the entire match off. 
+
+BREAKDOWN - BRKDWNTYPE can now be a list of things to be measured.
+Also, if BRKDWNCOMPFLG is non-NIL, the calls to BRKDWN2 are
+expanded in-line leading to more precise measurements, but at
+substantial cost in code space.
+
+In addition, a number of bugs have been fixed in the compiler and
+MASTERSCOPE.
+
+

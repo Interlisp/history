@@ -1,0 +1,44 @@
+
+	This file will be continuously updated so that it will
+always contain current information about versions of LISP currently
+available on SUMEX.  
+
+<LISP>LISP.SAV;70702   02 Jul 1977   pdp-10/Tops20	 NLISP
+				       compatible
+<LISP>LISP>SAV;70505   05 May 1977       "         
+<LISP>LISP.SAV;70110   10 Jan 1977   Shallow binding     LISP
+	       50104   04 Jan 1975   use at own risk
+
+	Version 70505 of Lisp represents the first version designed
+to be runable on either a DEC-10/Tenex or DEC-10/Tops20 system.  Tops20
+is a DEC designed and supported operating system, similar to, and based
+upon, Tenex.  The parent Lisp, obtained from Xerox-PARC, can be 
+moved directly to either system, and if named according to local
+conventions, can be expected to support programs written on either
+system in the same Lisp.  This is a way of saying that an increase in
+transportability of programs can be expected with this and subsequent
+versions of Lisp.
+
+	The 70110 version of Lisp corrects a bug which manifested   
+itself as a totally unresponsive state, from which cntrl-C was the 
+only possible exit.  This situation was known to occur when generating
+new atoms, usually via GENSYM.  See Sumex.bbd under topic
+languages.lisp for example.
+ 
+	If you are currently using 50104 for any programs, you should
+be in the process of translating your code to a newer version of
+Lisp.  Bill White has a function which may be helpful, and which is
+designed to help translate from 50104 to 61027.  Contact <WHITE> for
+further details.
+
+	<DENDRAL>CARHART.SAV;9 is a version of Small Lisp (see
+<DOC>LISP-SMALL-SLISP.INFO for details) which corresponds to the
+shallow binding Lisps.  This version of Small Lisp is currently
+pointed to by <SUBSYS>SLISP.  A new version of Small Lisp, generated
+from the July 2, 1977 version of Interlisp is available as
+<LISP>CARHART.SAV;70702. On the first of August, <SUBSYS>SLISP wil be
+made to point to this newer version of Small Lisp.
+
+Suzanne Johnson
+July 25, 1977
+

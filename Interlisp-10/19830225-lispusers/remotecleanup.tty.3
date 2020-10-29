@@ -1,0 +1,52 @@
+Since many of the LISP systems currently being worked on are pressing
+against the upper limit of the LISP address space, many of the systems
+are running with less than the normal LISP environment.  DLISP runs 
+without having the compiler present and the small KRL sys runs with
+neither the compiler or masterscope.  This requres the user of those
+systems to manual start and load a seperate job to compile files and
+to keep masterscope databases updated.  The remotecleanup package
+automates this process for the user.
+
+With this package loaded, whenever the user does a cleanup, the files
+will be dumped, and then a lower fork will be initiated with a 
+compilation/masterscope environment present.  The lower fork will
+compile any modified files and update the appropriate data bases if
+necessary.  Finally, the lower fork will terminate and return to the
+mother system.
+
+The default system to be run in the lower fork for compilation is
+<KRL1>KRL for small KRl sys and LISP for any other systems.  This default
+may be changed by reseting the value of CLEANUPSYSTEM before the first 
+cleanup is done.  Note that CLEANUPSYSTEM must have enough info in it to
+get the lower fork into read/eval if starting from the exec.  For example,
+if you want to do the compilation in <KBA>REASONERENV, then CLEANUPSYSTEM
+would be set to 
+"<KBA>REASONERENV
+C"
+instead of just
+"<KBA>REASONERENV"
+
+The remote cleanup package is driven by options on CLEANUPOPTIONS.  The
+relevant possibilities are
+	REMCOM  --  compile in the remote job
+	REMMAST  --  update the masterscope databases in the remote job
+	RELOAD  --  after returning from the remote job, load the compiled
+		files back into the mother system.
+
+Note that this process may break in the lower fork for any of a number of
+standard reasons.  A few examples are 1) an error in the compiler, 2) an
+error in the masterscope analysis, 3) not being able to find the files
+to be compiled and/or analyzed, 4) not being able to open the files for
+the resulting databases and compiled functions, etc.  If such a break
+occurs, the user should type control-D (to get LISP back to the top level),
+control-C (to get back to the exec in the lower fork), and then QUIT
+(to get out of the lower fork).  If control is returned to the mother job
+in this manner, then it assumes that none of the files were compiled and
+that none of the databases were updated.  Thus if the offending
+condition is corrected, the next cleanup will once again try to compile
+those files and update the corresponding databases.  Finally, this
+package is built by by advising the function cleanup.  As a result, any
+spelling correction or interaction with the user below the call to cleanup
+is unavailable to the package.
+
+Comments and suggestions to Bill Laaser.

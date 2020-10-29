@@ -1,0 +1,967 @@
+(FILECREATED "16-MAR-82 00:00:56" ("compiled on " <LISPUSERS>DATETIME.;1) (2 . 2) bcompl'd in WORK 
+dated "10-MAR-82 01:09:35")
+(FILECREATED "30-AUG-81 23:02:17" <LISPUSERS>DATETIME.;9 82800 changes to: ADDMULTIWORDTOKEN 
+ADVANCEDATE ADVANCEDATEUNTIL CHECKTODAY COMBINEDATETIMES CREATEHOURDT CREATEOCCURENCEPRED 
+DATETIMEERROR DATETIMETOSTRING DEQUALP DLESSP EVALMDTFN EXPANDINPUT FINISHDATETIME GETDATETIME 
+GETDAYOFWEEK GETMONTHNUM GETNUMOFDAYSINMONTH ISFIRSTOFMONTH ISJANUARY ISSATURDAY ISSUNDAY 
+ISXEROXHOLIDAY LISTDATES MULTIWORDTOKEN ONLYTIMESPECIFIED PARSEDATETIME PARSEDATETIME1 PARSEDATETIME2 
+PARSEOFFSETDATETIME PARSEQUALIFIEDDATETIME PARSESIMPLEDATE PARSESIMPLETIME REPEATADVANCE 
+RESETDATETIMES RESTRICTMULTIPLEDATETIME SETNOWDATETIME SETUPDAY SPELLPROPERLY TRANSLATETIMEZONE 
+UNITNEXTFROMDATEFN UNITOCCURENCEPRED previous date: " 8-Jan-80 10:26:42" <LISPUSERS>DATETIME.;8)
+
+DATETIME BINARY
+ew-.w-.w}h6(Ur 	H
+}&>L[kt|4:[ei7@LE,,~-.,<ZXBp,<Z`2B+Zp+0Z`,<ZD2B+ Z`Z,XB
+Z`Zw7[ZZ1H+%2D+"2B+),<wZ`,,DXBwZ`Zw7[ZZ1H+.2D++XBw[`XB`+/,<pZZ,,DXBpZ+,<w,&XBw-,ZZ3B+EZw-,ZZ3B+EZw-,ZZ3B+EZw-,ZZ3B+E,<,&BXBwZw2B+GZ"XBwZw-,ZZ2B+kZw-,+1,<,<,<,<,<[w|Z2B+S,<,<$[ZXBw~[w|[Z2B+VZ"XBw~[w|[[Z2B+ZZ"XBw[w|[[[ZXBw3B+h w,>v,> w}.Bx,^/&" ,XBw w0"+h w.",XBw w,>v,> w}.Bx,^/,XBw,<,<w~,<w},[XBw,<,<w~$2B+rZp+ w~,>v,> w ,^//,XBw~ w~.",XBw~ w~ ^"2"+ w~/",XBw~ w}.",XBw}+m/,< w~1"+Zp+ w~0B+	Z"XBw~ w}/",XBw}+ w~/",XBw~ w~,>v,>,<w~,<w},[,.Bx,^/,XBw~+/,<w~,<w~,<w~,<w~[wz[[[[Z,<[wz[[[[[Z,<[wy[[[[[[Z,<[wy[[[[[[[[Z[wy[[[[[[[[[,Z,,,,,,,,Z,/+-,+J3B+42B+:Zp3B+6Z"+7Z",<ZXBw,\XBw+63B+<2B+BZp3B+>Z"|+?Z",<ZXBw,\XBw+63B+D2B+[Zp3B+T,<,<[w~[Z,/",XBw[w~ZXBpZw0B+PZ"XBw p/",XBp,<w,<w,[,",/+X[w[Z,<[w~Z,<,[,<ZXBw,\XBw+63B+]2B+lZp3B+d[wZ,/"&" 0B+cZ"~I+iZ"~I+i[wZ,&" 0B+iZ"7+iZ"6,<ZXBw,\XBw+63B+o3B+o2B+5,<,<,<,<w},<,
+}XBw[w[[[[[[ZXBpZw~3B+~[w[[[[Z,/",+[w[[[[Z,.",XBw,5"[w[[[[,<,<$Zp2B+[w[[[[[[,<,<$+3[w[[[[[[,<,<$,<w,<,<,6XBw+3 w0"+[w[[[[,<,<w$+3Zp2B+([w[[[[,<,<
+$[w[[[[[[,<,<$+3[w[[[[,<,<
+$[w[[[[[[,<,<$,<w,<
+,<,6XBwZw/+3B
++72B +H,<Zw3B+@[w~[[[[[Z2B+>^"+?,/",+G[w~[[[[[Z2B+F^"+F,.",XBp p1"+t[w~Z,<[w~[Z,<[w}[[Z,<[w}[[[Z,<[w|[[[[Z,<[w|[[[[[[Z,<[w{[[[[[[[Z,<[w{[[[[[[[[Z[w{[[[[[[[[[,,,Z$,,,,,,Z,,<,<ZXBw~,\XBw~,\XBw~/+6Zp,5"![w~Z,<[w~[Z,<[w}[[Z,<[w}[[[Z,<[w|[[[[Z,<[w|[[[[[[Z,<[w{[[[[[[[Z,<[w{[[[[[[[[Z[w{[[[[[[[[[,,,Z$,,,,,,Z,,<,<ZXBw~,\XBw~,\XBw~/+6[w~Z,<[w~[Z,<[w}[[Z,<[w}[[[Z,<[w|[[[[Z,<,<w}[w{[[[[[[Z,<[w{[[[[[[[Z,<[wz[[[[[[[[Z[wz[[[[[[[[[,,,,,,,,,Z,/+,<
+,< ,+Zw-,+aZwB!,<,<,<
+ p,>v,> w ,^/3b+SZw+`,<w}[w}Z,<Zw}, ^"2"+YZw}+\Zw}2B+[7Z,<,6XBw} p.",XBp+N/Zw+,<wZp-,+d+iZp,<,<w~,<w,<w~,6XBw~/[pXBp+b/Zw+Zw-,ZZ2B+o,8+Zw-,ZZ2B+|[wZ,<,<w,<w,6,<[w~[Z,<,<w~,<w~,6,<,<,Z,+Zw-,ZZ2B+[wZ,<[w~[Z,<,<w~,<w~,6,<[w~[[Z[w~[[[,,,Z,+,<!,<",+,<w@" +'Z,<,&XB-,ZZ2B+&[[[[Z2B+Z,<,<,
+}XB,<Zw~,<8"#3B+Zp+&ZXB`Z,<Zw},<?,<,6XB
+Z`2B+%,<$"$+/Z",~+@%(
+,~ ',<,<
+,<(&(XB`ZZ`,3B+0Z,~,<,&XB`,<`,<
+,<
+&(Z),3B+9,<`,<!,<!&(B)+;,<`,<
+,<!&(B)XB,<`,<*,<*&(B),<,LXB,<`,<+,<(&(B)XB,<`,<,<+,XB`,<,<,<,,XB`,<,<,<,,XB`,<,<F-,<-,<,<`,<
+,<,6F-,<.,<,<`,<,<,6F-Z`XB-+/,<,<Zw2B+XZw~+Zw~-,ZZ2B+Zw-,ZZ2B+,<[w~Z2B+b[w~Z,<[w}[Z2B+f[w~[Z,<[w}[[Z2B+l[w}[[Z,<[w|[[[Z2B+r[w}[[[Z,<[w|[[[[Z2B+z[w|[[[[Z,<[w{[[[[[[Z2B+[w|[[[[[[ZXBw}[w{[[[[[Z2B+[w|[[[[[Z,<,<w},<,<^",Z,/+Zw-,ZZ2B+Zw~XBpZwXBw~ZpXBwZw~-,ZZ2B+,Zw-,ZZ2B+&,<w~[w~Z,<,U,<,<w~[w~[Z,<,U,<,<,Z,+Zw-,ZZ2B++,<w,<.,<w},	H+,8Zw-,ZZ2B+2ZwXBpZw~XBwZpXBw~Zw~-,ZZ2B+IZw-,ZZ2B+H,<w,<.[w}[Z,<,	HXBw,<w~,:3B+C[w~Z,<,<w,<,Z,XBw+G[w~Z2B/+G,<w,</,<w~,	HXBwZw+,8Zw-,ZZ2B+OZwXBpZw~XBwZpXBw~Zw~-,ZZ2B+aZw-,ZZ2B+a,<w~,:3B+a,<w,<.[w}Z,<,	H,<,<w~,<.[w}[Z,<,	H,<,<,Z,+Zw~-,ZZ2B+pZw-,ZZ2B+p,<w,<0[w}Z,<,	H3B+l[w~Z+,<w,<.[w}Z,<,	H+,8Z+ p0"+z,<,<,<,<,<w~,<,<,<,<^",Z,+Zp0B+,<,<,<,<,<0,<,<,<,<^",Z,+,<,<,<,< w~&" ,,<,<,<,<,<^",Z,+Z1+[,<,<w$[[,<,<w$Z3B+ $+ 1+,<p,&XBp,<,<Zw2B+Z2+-,ZZ2B2+Z3+Zw-,ZZ2B+(,<3[w~Z,<,,<,<4[w}[Z,<,H4+Zw-,ZZ2B+/[w[[[[Z+Zw-,ZZ2B+>[wZ2B5+5Z5+92B/+7Z6+92B6+9Z7+9 7,<,<8[w~[Z,<,F4+[w[Z3B+SZ,<[w~[ZD8,<,<$9XBw[w[[Z3B+L,<w,<9[w~[[ZF4XBw[wZ3B+S,<w,<:[w~Z,."6,F4XBw[w[[[[Z3B+~[w[[[[[Z3B+~[w[[[[Z0B+`Z"+c[w[[[[Z,<,<:[w~[[[[[Z,0"+n,<;[w}[[[[[ZD4+r[w~[[[[[Z,<[w}[[[[[[Z3B+|[w}[[[[[[ZB9+}Z;H4XBp+[w[[[[Z3B+[w[[[[Z0B+Z"+
+[w[[[[Z,<,<<[w~[[[[[[Z3B+[w~[[[[[[ZB9+Z<F4XBpZw3B+Zp3B+,<w,<=F4+Zw3B+Zw+Zp+ ,<w~,&XBw~,<w,&XBwZw~-,ZZ2B+Zw-,ZZ2B+Zp3B+++XZw~Zw,3B+.Z+[w~Z3B+2[wZ2B+3Z=+[w~Z,<[w~Z,\,2B+9Z+Zw2B+;+-[w~[Z3B+@[w[Z2B+AZ=+[w~[Z,<[w~[Z,\3B+F+8Zw2B+H+-[w~[[Z3B+N[w[[Z2B+OZ=+[w~[[Z,<[w~[[Z,\3B+V+8Zw2B+X+-[w~[[[[[[Z3B+b[w[[[[[[Z2B+cZ=+[w~[[[[[[Z,<[w~[[[[[[Z,\3B+m+8Zw2B>+o+-[w~[[[[Z3B+w[w[[[[Z2B+xZ=+[w~[[[[Z,<[w~[[[[Z,\3B++8Zw2B++-[w~[[[[[Z3B+[w[[[[[Z2B+Z=+[w~[[[[[Z,<[w~[[[[[Z,\3B+-+8+Z+ ,<w~,&XBw~,<w,&XBwZw~-,ZZ2B+	FZw-,ZZ2B+	FZp3B+#+mZw~Zw,3B+'Z+	F[w~Z3B++[wZ2B+,Z=+	F[w~Z,,>v,>[wZ, ,^/2"+3Z+	F[wZ,,>v,>[w~Z, ,^/2"+:+&Zw2B+<+&[w~[Z3B+A[w[Z2B+BZ=+	F[w~[Z,<[w~[ZD3B+H+2[w[Z,,>v,>[w~[Z, ,^/2"+P+&Zw2B+R+&[w~[[Z3B+X[w[[Z2B+YZ=+	F[w~[[Z,,>v,>[w[[Z, ,^/2"+b+2[w[[Z,,>v,>[w~[[Z, ,^/2"+k+&Zw2B+m+&[w~[[[[[[Z3B+w[w[[[[[[Z2B+xZ=+	F[w~[[[[[[Z2B+	[w[[[[[[Z2B+	+2[w~[[[[[[Z2B+	[w[[[[[[Z2B+	+&Zw2B>+	+&[w~[[[[Z3B+	[w[[[[Z2B+	Z=+	F[w~[[[[Z,,>v,>[w[[[[Z, ,^/2"+	#+2[w[[[[Z,,>v,>[w~[[[[Z, ,^/2"+	.+&Zw2B+	0+&[w~[[[[[Z3B+	9[w[[[[[Z2B+	:Z=+	F[w~[[[[[Z,,>v,>[w[[[[[Z, ,^/2"+&+2+Z+,	I,~-.>,<`,&XB`-,ZZ3B+	O,<?"$Z&,<,&,<,<,
+}XB	O2B+	TZ`XB	RZ`3B0+	Y3B@+	Y3B@+	Y2BA+	[[`ZB#,~3BA+	a3BB+	a3BB+	a3BC+	a3BC+	a2BD+	c[`[ZB#,~3B/+	h3BD+	h3BE+	h3BE+	h2BF+	k[`[[ZB#,~3B.+	o3BF+	o3BG+	o2BG+	s[`[[[ZB#,~,<H,<H,,~@I0+
+|ZXBZw~Z8-,+
+$,<,<L$4,<,<,<,<,<,<Zw~2B+
+Zw~2BL+
++
+#Zw~3B+
+,<ZXBw~,\+
+,<w}ZDMXBw~,<Zw}3BM+
+
+Zp+
+,<w}Z
+DMXBw}+
+/Zw~-,+
+,<,<w}"N1B+
+,<w}Z
+DMXBw~-,+
+Zp+
+,<w}DNXBw}ZXBw~+
+/Zw~2BL+
++
+"XBpZw3B+
+ ,<Zw,XBw,\QB+
+"Zp,XBwXBw+	~Zw/+
+&-,+
+&,+
+&,<,<,<,<Zw~-,+
++Zw+
+BZw~,<@} +
+8Z2-,+
+1,ZO,,+
+3BO,<,@XB3B+
+7-,+
+6,,~B,~Z,~XBp-,+
+AZw3B+
+=ZpQD+
+>ZpXBw  [2D+
+>XBw[w~XBw~+
+(/XB,<Z
+C2B+
+FZp+
+yZ,<,XB
+-2B+
+KZ
+DXB
+H[
+IXB
+JZ
+J-,+
+r,<Z
+K-,+
+QZ
+M3BP+
+QZp+
+qZ
+O2BP+
+X[
+QXB
+SZ
+S-,+
+XZ
+KXB`Z
+TXB
+U[
+VXB
+WZ
+W,<,<,<,<Z
+X-,+
+]+
+gZ
+[,<[
+]XB
+^,\XBpZw3B+
+e,<Zw,XBw,\QB+
+gZp,XBwXBw+
+[Zw/,BPXB
+XZ`3B+
+q `,>v,> 
+i.Bx,^/,XB
+mZXB`+
+M/+
+v-,ZZ2BO+
+v[
+oZXB
+uZ	w,<Z
+vDQXB
+v+
+D/Z
+xXB
+zZ
+z,~+,(,<w,&XBw-,ZZ2B+
+@Q +	Zw~[?Z,<Zw~[?[Z,<Zw}[?[[Z,<Zw}[?[[[Z,<Zw|[?[[[[Z,<Zw|[?[[[[[Z,<Zw{[?[[[[[[Z,<Zw{[?[[[[[[[Z,<Zwz[?[[[[[[[[ZZwz[?[[[[[[[[[,,,,,,,,,Z,XB	T,<,&BXB[1Z3B+;[4[Z2B+;[6[,<,<
+$[8[Z3B+C[;[[Z2B+C[=[[,<,<
+$[@[[Z2B+t[C[[[Z2B+t[3Z,<[J[Z,<[K[[Z,<[M[[[Z,<[F[[[[Z,<[S[[[[[Z,<[P[[[[[[Z,<[Z[[[[[[[Z,<[_[[[[[[[[Z[d[[[[[[[[[,,,,,,,,,Z,XBV+][s[[Z2B+([t[[[ZXB`Zi,<,<
+,<S,,<[pZ,<[w[Z,<[w[[Z,<[w~[[[Z,<[w[[[[Z,<[[[[[[Z,<[
+[[[[[[Z,<[w|[[[[[[[Z,<[w|[[[[[[[[Z[w|[[[[[[[[[,,,,,,,,,Z,/XB+]['[Z2B+.[([,<[z[ZD[+Z2B+3[.,<[,ZDZw~[?Z2B+8Z0,<,<,<T,XB5Z8XBZ1,<,<
+,<T,XB8,<,<,<U,XB<,<,<Z9,<,<,<,3B+DZ+EZU,<,<V,XB>[F[[[[,<[@[[[[ZD[G[[[[[,<[J[[[[[ZD[M[[[[[[,<[Q[[[[[[ZDZw~Z82B+[U[[[[Z2B+l[_[[[[,<,<0$[c[[[[[,<,<
+$[g[[[[[[Z2B+[l[[[[Z3B+[q[[[[[[,<[u[[[[Z,0"+~Z+ZD[y[[[[[Z2B+[[[[[[,<,<0$Z,~+Zw-,ZZ2B+[wZ,<,<w,
+},<[w[Z,<,<w,
+},<,<,Z,+Zw-,ZZ2B+%[wZ,<[w[Z,<,<w,
+},<[w~[[Z[w~[[[,,,Z,+Zw+Zp-,ZZ3B+2Zp-,ZZ3B+2Zp-,ZZ3B+2Zp-,ZZ2B+3Zp+Zp2B+6Z+-,+<,<,<Z FV2B+:Zp,<,<$+Z+Zp-,+D p ^"2"+D p0"+DZp+Zp-,+K-,+K,<,<Z8FV,<,<W$+Z+Zp-,+S p ^"2"+S p0"+SZp+Zp-,+Z-,+ZBO,<,<ZHFV,<,<W$+Z+,<w,LXBwZp-,+a,<,&[ZXBpZw2B+cZ+ w0B+h p&" 0B+hZ"+Z,<,<w$8+Zp-,ZZ2B+r[p[[Z0B7Z+Z+Zp-,ZZ2B+z[p[Z0B7Z+Z+Zp-,ZZ2B+[p[[[Z0B7Z+Z+Zp-,ZZ2B+[p[[[Z0B7Z+Z+,,~-.X,<,<,<Z,<,<,
+}XBwZXBw,<Zw3B+Zw,<,<w~,<,<,2B+Zp+ZwXBw[wXBw+/Z`3B+!2BY+%Zw,<,<w~,<,<, +2B/+'Zp+2BA+)[wZ+2BG+2Zw3B+1,<wZw,<,<,<, 3B+1[wZ+Zw+ 7+,(@Y+Zw~,<?,&Zw~XB?,<8,&Zw~XB8Z"XB`Zw~Z?-,ZZ2B+DZw~[?[ZZw~XB8[8ZZw~XB?Zw~Z?-,ZZ2B+bZw~,<?,<GZ83B+K+L,<,&,<,	HXB,<,<,<ZM3B+a `1"+R+aZO,< `.",XB`Zw|,<?,<BZR,<,	HXBW,\XBpZw3B+_,<Zw,XBw,\QB+aZp,XBwXBw+OZw+Zw~Z?-,ZZ3B+gZ,~Zw~Z82B+Z?XBX,<Z,<,<,<,<
+ p,>v,> w~ ,^/3b+q+Zi,<,<,<,<,6XBq,\XBwZw3B+{,<Zw,XBw~,\QB+}Zw,XBwXBw~ p.",XBp+lZw~+Z?XBt,<,<,< `0"+Zw},<8Z,<,<,<,3B+	+Z,< `.",XB`Z	,<,<,<,6XB,\XBpZw3B+,<Zw,XBw,\QB+Zp,XBwXBw+Zw++,<,<Z
+^XBwZw2B+Z+Z2B+&ZZw7[ZZ1H+%2D+![+ZXBp[&XB'ZpZw7[ZZ1H+-2D+)[,<,XB
+w3B+1Z.+ZwXB'ZZw7[ZZ1H+72D+3[+,<["[ \,~Zp-,ZZ2B+K[pZ2B+J[p[Z2B+J[p[[Z2B+J[p[[[Z2B+I7Z+Z+Zp-,ZZ2B+T[pZ,<,:3B+S[p[ZXBp+:Z+Zp-,ZZ2B77+[p[ZXBp+:,\,~-.\@^,~,(,Z
+{,<,	uXB`,<,<,<,<,Z2,XBZ3B+h,(+n,<_,<,<@_`+nZZaXB,(+ZXB`3B+qZ`,~[e[[[,<ZaDZq,~Zs3B+',<,<ZuZa,3B+{,_+ZxZb,3B+,+Z{-,+Z,<,L3B+,c+Z2Bb+,c+Z2Bc+	,4+Z,<,&XBw3B+[	XBZw+Z-,+,<(,<c,+[ZZd,3B+,4+[ZZd,3B+,"+[2B+,4+,cXBp,<Z3B+!ZZe,3B+"Zp+%,(,<,<w,UXBw+/Zp+Z,~,<,<,<,<,<,<Z
+2B+-Z+Z+2Be+0[-XB/Z/2Bb+2[0XB1Z22Bf+5[2XB4Z42Bf+x[5XB6Z7,<,&2B+<Z7,<,<g$XBw}3B+E[:XB=,<Z>2B+AZp+D,<w},(,<,iXBw}+?/+wZ?-,+qZEXBw[GXBHZH2Bg+K[IXBJZK,<,&2B+PZK,<,<g$XBp-,ZZ3B+T,<h,<h,[NXBT,<i,<,<w~[w~[Z3B+]3B+]-,+],<i,<,,,<,<,<w~[w~[[Z3B+e3B+e-,+e,<i,<,,,<,<j,<^",Z,XBw},<ZU2B+mZp+p,<w},(,<,iXBw}+j/+wZXBw,uXBw}-,ZZ3B+w,<,<j,Zw}+3Bk+{3BG+{2Bk+ZjXBw~[{XB|ZXB,uXBw}-,ZZ2B+,<w},<.,<,<$B,<,	HXBw~+,<H,<l,Zw~2BG+,<w},<C,<w},	H+2Bk+,<w},<E,<w},	H+2Bk+Zw~+ 7+,uXBw}-,ZZ2B+w,<w},<.Z2B+Z+!2Bl+[[Z+!2B+
+[Z+!,<,<$B,<,	H+,<,<,<,<,<,<,<Z|-,+-Z&XBw}['XB(Z)2Bg+-ZXBw~[)XB,Z,Zm,3B+2Z-XBw}[/XB0+8Z1,<,<$-,ZZ2B+8Z2XBw}[6XB7,(XBw~3B+JZw~2B+<+L2B+C[w~Z2B/7ZXBw[w~[ZXBw~+L2B+H[w~[ZXBp[w~ZXBw~+L,<m,<n,+L,<w},<g$+,<w},<W$3B+^,<w},<$,<,<.,<w},<,
+}B,<,	HXBwZw}3B+,<wZw3B+YZw}+Z w}/",,<,<,,<,<w~,6XBw+,<w},<$-,ZZ2B+z,<w},<$,<,<.,<w},<,
+}B,<,	HXBwZw}3B+ w}/",,<,<,<
+ p,>v,> w ,^/3b+rZw+y,<w{,<$,<,<A,<w|,	HXBw} p.",XBp+m/+Zw~3B+,<w},<g$,<,<.,<w},	H+Zw~XBwZw}3B+,<wZw~3B+Zw3B+Zw}+ w}/",,<,<w|,,<,<w~,6XBwZp3B+,<,<w~,<,<,3B+,<n,<o,Zw+Z8,<@o ,~[XBZ02B6+3,(XB`Z2Bp+"[Z2B/+"[[XB,<`,(,<,<,Z,,~Z2Bq+(["XB#,<`,(,<,<,Z,,~Z`-,ZZ2B+/[`Z3B5+/,<q,<r,+b,<6,<`,<,Z,,~2B/+H,(XB`Z$2Bp+>[5Z2B/+>[6[XB8,(,<,<`,<,Z,,~Z`-,ZZ2B+E[`Z3B5+E,<q,<r,+b,</,<`,<,Z,,~2B5+X,(XB`-,ZZ2B+P[`Z2B5+PZ`,~Z`-,ZZ2B+T,<q,<s,,<5,<`,<,Z,,~2Bs+b,(XB`Z93Bp+],<+,<t,[ZXB],<`,(,<,<,Z,,~ 7Z,~,<,<,<,<Z]2Bb+h[eXBgZg-,+lZhXBw[iXBj+rZk,<,LXBp3B+p[lXBo+r,<t,<u,ZoZu,3B+u[rXBtZu-,+}ZuXBw[wXBxZp3B+Zx2Bg+[zXB|+Zp3B+,<,<,<,<,<,<,<,<,<^",Z,+Z|,<,LXBp3B+
+[XB	+,<t,<v,,<,<Zw2B+Zw~XBpZw3B+Zw~2B+Zw~3B+ w~0"+Zw~+Z+Zw~XBwZw3B+Zw~3B+ w~1b77+!+
+Z+! w~&"2 ,,<,<w,<w~,<,<,<,<,<,<^",Z,/XBw~Z	3Bv+,Z)2Be+-[*XB,Z,-,+3[w~,<Z-,&"2 ,D[/XB2Zw~+,<Z32Bc+7[5XB6Z7-,+;,<,<w,+>Z7,<,rXBp[;XB=Z=2Bw+I[>XB?Z@-,+D,<*,<x,+I[p[[[[[,<Z@D[GXBHZI2Bx+L[IXBKZK3B+OZL2B+U[p[[[[[[,<ZMD[SXBTZTZy,3B+^[p[[[[[[[[,<ZUD[\XB]Zp+,<,<,<Z^XBw[aXBbZb3Bb+f,<w,<g$+,uXBwZw2B+j,8+2B
++l,8+2B+n,8+2B+y,<w,<y,<z,XBp,<,<,<,<,6,<,<,<,6,<,<,Z,+2B+,<w,<z,<{,,<,<w,<,<{,,<,<,Z,+2B+,<w,<|,<|,,<,<},<},XBp,<,<,<,<,6,<,<,<,6,<,<,Z,+ 7+,<w,<~$~+Z,<Zp-,+Z+Zp,<,<p,<,<w,<$-,ZZ2B+H,<w,<$,<[pZ,<[w[Z,<[w[[Z,<[w~[[[Z,<[w~[[[[Z,<[w}[[[[[Z,<[w}[[[[[[Z,<[w|[[[[[[[Z,<[w|[[[[[[[[Z[w|[[[[[[[[[,,,,,,,,,Z,/+b,<w,<$-,ZZ2B+b,<w,<$,<[pZ,<[w[Z,<[w[[Z,<[w~[[[Z,<[w~[[[[Z[w~[[[[[,,,,,Z,/+b 7F-/[pXBp+,<p,<,[,<,+,<p[wZ,<,<w,,,<[w[Z,<[w~[[Z,<,<[w}[[[Z,<Zw}3B+z3B+z-,+z,<i,<,,,<Z[w}[[[[[,,,,,Z,+,<,<,< 'XBw,<,<,<m&(B)XBw w0"+Z+ w0"+Z+ZXBp w&" ,XBw,<,<,<,&,<[pZ,<[w[Z,<[w[[Z,<[w~[[[Z,<,<w|,<w{,<,<h&(B),<,<w{[w|[[[[[[[Z,<[w|[[[[[[[[Z[w|[[[[[[[[[,,,,,,,,,Z,/F-Z+,<,<,<,<,<,<,<,<$4^,,Z,BF-,~,<,<w,<ZW,<,<(XBp3B+FZw2B+GZw+,<"3B+K,<w,<w$Zp+,M,~-.[[[[[[[[[Z,<,<,<Zw2B+W^"+b2B+Y^"+b2B+[^"+b2B+]^"+b2B+_^"+b2B+a^"+b 7,,>v,>Z`2B+f^"+q2B+h^"+q2B+j^"+q2B+l^"+q2B+n^"+q2B+p^"+q 7, ,^//,XBwZN,<,<,<,,<,<,6XBp[p[[[[[[[[,<,<`$Zp+,,~-.ZtB,<,<,
+},<,<Z`2B
++,<w,<w",<,<,Z,+[w[[[[[,<,<
+$Z`2B+,<w,<w,<	,<,6,<,<,Z,+[w[[[[[,<,<$[w[[[[,<,<$[w[[[[[[,<,<$Z`2B+'Zw+2B+0,<w,<,<
+,XBp,<,<
+,<,6,<,<w,<,Z,+[w[[,<,<
+$Z`2B+:,<w,<w,<,<,6,<,<,Z,+[w[,<,<
+$Z`2B+C,<w,<w,<,<,6,<,<,Z,+ 7Z+,F,~-.Z-,ZZ2B+u,<,<[GZB,<,<,
+}XBw[K[ZB,<,<,
+}XBp,<w,<
+,<`,,<,<Z`2B+XZ+c2B+ZZ+c2B+\Z+c2B+^Z+c2B+`Z
++c2B
++bZ
++c 7,,,<,<,6,<,<wZ`2B+iZ+s2B+kZ+s2B+mZ+s2B+oZ+s2B+qZ
++s2B
++sZ
++s 7,<,<, +Z,~}(T!CD@ *@@Aey!r(
+x  6`)l`0!q(@(	#E)!p0 "NCT\/^=<sN}=d   @@0@j4(C5"!4("A!!"0gt0 H
+P @ @h@DX@Hf
+`
+aApp7p`@	0" 
+aX@`A`n@`@` p@J#~_Bu`Hi"R*D% )%RHAI,0Q@PpB CHB	`s@^`   0@ @@` 0aS	EA!`  "(#E3
+A"`O L !A 0A + 
+$p1
+y*K=r">''
+,P#1BU$)CsX@VA*$
+
+@C}=UUJn} 0$%yp3-!FiQ- RkJD3#OqL!Oq83|'>=@Y O$JB!P6
+ax1X	'w7
+Q&w
+Q#c0,6"@V@Oxp$?r`2&HHnu;&nu;Hd@J7 6(AYDDCBH_~r(DATETIME#0 . 1)
+(VARIABLE-VALUE-CELL MULTIPLEWORDTOKENS . 2701)
+(VARIABLE-VALUE-CELL DATETIMESPLST . 5507)
+(VARIABLE-VALUE-CELL TODAYSTRING . 1191)
+(VARIABLE-VALUE-CELL DATETIMEERROR . 4073)
+(VARIABLE-VALUE-CELL DATETIMEERRORFLG . 4044)
+(VARIABLE-VALUE-CELL MONTHNAME . 1665)
+(VARIABLE-VALUE-CELL DTRDTBL . 2596)
+(VARIABLE-VALUE-CELL TEMPTOKEN . 2662)
+(VARIABLE-VALUE-CELL NUMOFDAYSINMONTH . 3537)
+(VARIABLE-VALUE-CELL XEROXHOLIDAYS . 3624)
+(VARIABLE-VALUE-CELL TEMPLST . 3939)
+(VARIABLE-VALUE-CELL TOKEN . 4653)
+(VARIABLE-VALUE-CELL TOKENLST . 5062)
+(VARIABLE-VALUE-CELL MULITPLEDATETIME . 4347)
+(VARIABLE-VALUE-CELL CONTEXT . 4411)
+(VARIABLE-VALUE-CELL DATETIMEPROPS . 5157)
+ADDMULTIWORDTOKEN
+ADVANCEDATE
+ADVANCEDATEUNTIL
+CHECKTODAY
+COMBINEDATETIMES
+CREATEHOURDT
+CREATEOCCURENCEPRED
+DATETIMETOSTRING
+DEQUALP
+DLESSP
+EVALMDTFN
+FINISHDATETIME
+GETDATETIME
+GETDAYOFWEEK
+GETMONTHNUM
+GETNUMOFDAYSINMONTH
+ISFIRSTOFMONTH
+ISJANUARY
+ISSATURDAY
+ISSUNDAY
+ISXEROXHOLIDAY
+LISTDATES
+MULTIWORDTOKEN
+ONLYTIMESPECIFIED
+PARSEDATETIME
+REPEATADVANCE
+RESETDATETIMES
+RESTATE
+RESTRICTMULTIPLEDATETIME
+SETNOWDATETIME
+SETUPDAY
+SPELLPROPERLY
+TRANSLATETIMEZONE
+UNITNEXTFROMDATEFN
+UNITOCCURENCEPRED
+*ADDMULTIWORDTOKEN*
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL TOKEN . 0)
+MEMBER
+NCONC
+DATETIME
+MULTIPLEDATETIMES
+DURATION
+QUALIFIEDDATETIME
+TODAY
+COPY
+GETPROP
+LESSP
+DAY
+DAYS
+WEEK
+WEEKS
+MONTH
+MONTHS
+YEAR
+YEARS
+HOUR
+HOURS
+HR
+11
+RPLACA
+PM
+AM
+-1
+1
+MINUTE
+MINUTES
+((* ILLEGAL ADVANCE UNIT IN ADVANCEDATE.) . 0)
+ABS
+2
+((* ILLEGAL DATETIME TYPE IN ADVANCEDATE.) . 0)
+(VARIABLE-VALUE-CELL DATUM . 5790)
+NIL
+EVAL
+"WARNING, DATUM NOT CHANGED IN ADVANCEDATEUNTIL"
+ERROR
+(NIL VARIABLE-VALUE-CELL TODAYMONTH . 1151)
+NIL
+(NIL VARIABLE-VALUE-CELL TODAYDAYOFMONTH . 1143)
+(NIL VARIABLE-VALUE-CELL TODAYYEAR . 1157)
+NIL
+DATE
+9
+SUBSTRING
+" "
+MKATOM
+4
+6
+8
+((EQ TODAYDAYOFMONTH (fetch (DATETIME DAYOFMONTH) of DATUM)) . 0)
+((EQ TODAYMONTH (fetch (DATETIME MONTH) of DATUM)) . 0)
+((EQ TODAYYEAR (fetch (DATETIME YEAR) of DATUM)) . 0)
+PUTPROP
+TOMORROW
+YESTERDAY
+NEXTFROMDATEFN
+BEFORE
+DECREMENTFN
+OCCURENCEPRED
+0
+((NOTIMP) . 0)
+ERROR!
+""
+DATETIMEERROR
+""
+"between "
+" and "
+CONCAT
+ABOUT
+"~"
+"<"
+AFTER
+">"
+SHOULDNT
+" "
+ELT
+L-CASE
+" "
+", "
+":"
+"0"
+""
+":00"
+""
+" AT "
+INCOMPARABLE
+AMORPM
+*EVALMDTFN*
+((UNBOXED-NUM . 3) VARIABLE-VALUE-CELL DATUM . 0)
+"NOT A MULTIPLEDATETIME"
+OCCPRED
+PRED
+OP
+ADVANCEFN
+INCREMENTFN
+ADVANCE
+INCREMENT
+ADV
+INC
+BACKUPFN
+DECREMENT
+BACKUP
+DEC
+NEXTDATE
+NEXTFN
+NEXT
+3
+((* ILLEGAL EVAL TYPE IN EVALMDTFN.) . 0)
+(NIL VARIABLE-VALUE-CELL TOKENLST . 0)
+(NIL VARIABLE-VALUE-CELL TEMPLST . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL TOKEN . 0)
+NIL
+NIL
+"||"
+%|
+READ
+% 
+NCHARS
+PACK*
+NUMERAL
+U-CASE
++
+PACK
+TCONC
+(NIL VARIABLE-VALUE-CELL DATUM . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL TODAY . 3187)
+(NIL VARIABLE-VALUE-CELL TEMP . 3250)
+((EQ NUM (fetch (DATETIME DAYOFWEEK) of DATUM)) . 0)
+((DLESSP TODAY DATUM (QUOTE DAY)) . 0)
+((EQ (fetch (DATETIME DAYOFMONTH) of TEMP) (fetch (DATETIME DAYOFMONTH) of DATUM)) . 0)
+((EQ (fetch (DATETIME MONTH) of TEMP) (fetch (DATETIME MONTH) of DATUM)) . 0)
+((-1 YEAR) . 0)
+((EQ (fetch (DATETIME YEAR) of TEMP) (fetch (DATETIME YEAR) of DATUM)) . 0)
+MISSPELLED?
+WEEKDAYNUM
+MONTHNUM
+*ISXEROXHOLIDAY*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL DATUM . 0)
+?
+(NIL VARIABLE-VALUE-CELL DATUM . 0)
+NIL
+10
+((* NOT IMPLEMENTED) . 0)
+PRINT
+HELP
+*PARSEDATETIME*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL TOKENLST . 0)
+((UNBOXED-NUM . 2) VARIABLE-VALUE-CELL CONTEXT . 0)
+NIL
+(NIL VARIABLE-VALUE-CELL DATETIMEERROR . 0)
+((DUMMY) . 0)
+(0 . 1)
+(0 . 1)
+(0 . 1)
+ERRORSET
+((HOUR MINUTE DAY MONTH WEEK YEAR) . 0)
+((AFTER BEFORE ABOUT BETWEEN) . 0)
+IN
+AT
+((* DONT KNOW WHAT TO DO WITH CURRENT TOKEN.) . 0)
+((: OCLOCK AM PM) . 0)
+((TH HOUR MINUTE DAY MONTH WEEK YEAR SUNDAY MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY) . 0)
+((TO AND) . 0)
+,
+THE
+EVERY
+UNITMULTIPLEDATETIME
+TH
+15
+((* MULTIPLE DATETIME TOKEN EXPECTED HERE) . 0)
+((NOTIMP) . 0)
+QUOTE
+((NOTIMP) . 0)
+((* UNKNOWN CYCLIC DATETIME.) . 0)
+THIS
+LAST
+((* REQUEST TO FIND THIS, NEXT, OR LAST DATE OF A NONCYCLIC DATETIME.) . 0)
+QULIFIEDDATETIME
+((MINUTE HOUR DAY MONTH YEAR WEEK) . 0)
+12
+"CANT HANDLE OFFSET DATETIMES WITH MULTIPLEDATETIME
+AS DEFAULT"
+13
+"OFFSET DATETIME PARSED WITH RESULT OUTSIDE OF DURATION RANGE."
+(VARIABLE-VALUE-CELL TOKEN . 0)
+NIL
+AND
+TO
+7
+((* ILLEGAL COMBINATION OF QUALIFIERS TO DATE.) . 0)
+((* ILLEGAL COMBINATION OF QUALIFIERS TO DATE.) . 0)
+((* ILLEGAL COMBINATION OF QUALIFIERS TO DATE.) . 0)
+BETWEEN
+((* "AND" EXPECTED HERE FOR DURATION.) . 0)
+5
+((* MONTH OR DAY OF MONTH EXPECTED, BUT TOKEN CANNOT BE COERCED TO EITHER ONE.) . 0)
+((- ,) . 0)
+((* MONTH OR DAY OF MONTH EXPECTED, BUT TOKEN CANNOT BE COERCED TO EITHER ONE.) . 0)
+-
+((* NUMBER EXPECTED IN PARSING SIMPLETIME) . 0)
+:
+((* NUMBER EXPECTED AFTER COLON.) . 0)
+OCLOCK
+((EST PST MT CST HT) . 0)
+((-1 DAY) . 0)
+((ISFIRSTOFMONTH DATUM) . 0)
+((-1 DAY) . 0)
+((ISSUNDAY DATUM) . 0)
+((ISSATURDAY DATUM) . 0)
+((-1 MONTH) . 0)
+((ISJANUARY DATUM) . 0)
+((-1 DAY) . 0)
+((ISFIRSTOFMONTH DATUM) . 0)
+((SETQ DATUM (EVAL EXPR)) . 0)
+RPT
+NOW
+14
+CHRISTMAS
+((AND (EQ 12 (FETCH (DATETIME MONTH) OF DATUM)) (EQ 25 (fetch (DATETIME DAYOFMONTH) of DATUM))) . 0)
+((ADVANCEDATE DATUM YEAR) . 0)
+((ADVANCEDATE DATUM (-1 YEAR)) . 0)
+((ADVANCEDATEUNTIL (ADVANCEDATEUNTIL DATUM (QUOTE (EQ 25 DATUM:DATETIME.DAYOFMONTH))) (QUOTE (EQ 12 
+DATUM:DATETIME.MONTH))) . 0)
+"EVERY "
+NO-MESSAGE
+FIXSPELL
+MISSPELLEDFN
+GETD
+*TRANSLATETIMEZONE*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL DATUM . 0)
+EST
+CST
+MT
+PST
+HT
+*UNITNEXTFROMDATEFN*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL DATUM . 0)
+((59 MINUTE) . 0)
+((EQ (fetch (DATETIME DAYOFWEEK) of DATUM) 7) . 0)
+((-6 DAY) . 0)
+(((1 MONTH) (-1 DAY)) . 0)
+(((1 YEAR) (-1 DAY)) . 0)
+*UNITOCCURENCEPRED*
+((UNBOXED-NUM . 1) VARIABLE-VALUE-CELL DATUM . 0)
+MONT
+DAYOFMONTH
+HOUT
+DAYOFWEEK
+(ALIST2 ALIST URET7 ALIST3 LIST2 URET6 FMEMB CF LIST4 URET5 SKNNM SKSTP EQUAL URET2 LIST URET4 
+STREQUAL LIST3 SKNLST KT GUNBOX SKA URET3 CONSS1 CONS21 IUNBOX MKN SKNM ASZ SKLST URET1 BHC CONSNL 
+CONS KNIL BINDB BLKENT ENTER1)dl@WX"8L{MPf`jXwO(
+HfX0 Hx`:ptp!Xzlex8 9@[x[hUXp
+\)p
+	y%vx-vhXDg(0dxa@LYB('s k]dTh%Rh
+b`'0Pia0_50h	Hpxr^m\IU@&RY5Eph(9epa(@x,W(x=& '$\ATP{% cw3`f(@@~ c(XyaH_(r 3uhEC \3`.`TX`7&X
+% `7B@ y=hl=(gw1th
+scf@3f *dx%t
+sH>ex)cpEA@|=xk< J95VH4V83V(2V1PPL`Kx_HpFH`EHPDH@CT@#Dh&DX%DH$D8#>0r> q>p>o606/5p.5`--
+A F8`E8PD8@C80303 3-pn-`m-Pk-0/p.`-P,Cg 0bpWh5P(aI@y5, X)>&0($ j|`%R`'>@2&`0z\BT`A8|8x3p-H0@^c6}8	>8	'	ex\	XJ5.mQ:pG'x
+PfRtR24 
+l0opU.R`x_)@ 0~8P 0~wHhH5hw-'pNWx
+U)P
+/!pK	@g8`(y^h"ph`kx|3l iHc`Mx>x6h[
+pGII0*K'x*5H@Qz`Lw@dh`=`h}^XmV.U0(Rx0
+s' 	Ltx$f*d\XbZ8PY(6V8-TxSKPZB0}>l	Ah;M<YzPKy(aP`@|_0t^0[[(SYHKXP>WP6V@
+}a``8{`^06L@bI)
+ qEhpcx(/(
+r-x
+i(8
+$#
+P	- jO2R'=(h<R9!.H5@1(v@c}hr@|o`kX
+f,8
+6&
+0$h
+"#p4(0Ox^H0#D(o5P	8(-(+8 vnPej(Ni@KiEh @g7eh,dH
+c8b@
+``_m[hUZPIXPBX7PPP@|NhgI8B`A8	@w>`t<a<W6X&4`%4P$4@
+3X3 2@21X1080(00/(t-pf,Xe,Hc,V* L(p@'H1%('$!x!P @
+8m aVh@(5x&`%P$@t@kbR	`@x= -H+0* )(
+`@`zx~pp}(j|xc|0XzhTzMy0JyEx ?wH7v00uP%t shs8r qh	qp0nxtn@lm@kmglP[jOipNi(Fg`0ep,dH c0bpb ba@`H_`{_ v^8r]Xc\([ZxLY=W 8V`5V.U8(SQ@NPqL8_H8BH 5F+>xJ8h@7X86`.@
+q-8
+a+8
+[+(
+N)
+E(H
+@'8
+8&H
+)%
+(#P
+"
+ H
+
+x	~
+`	}
+P	|x	SP	G	4p	Hw X
+PG?0)p&0 X@~xs| ]yhKx=w8v(0uX*u%sXsp(wk8WihHh1e( cHcb8
+a`X`H`_x~_`}_Px_w^pv^Xu^Hq]0f\0_ZpTZKX>Vp4U`(THSQhQNppM eL_KXZJxVJ`RIp6F/D(C8B8~?(q=P\;0N.E'X9'3"`y(qp0^GhE=58mpZ
+`P	pN	`M	PIhBp<5(.h%hG` N{X 
+
+ADDMULTIWORDTOKEN BINARY
+-.,<,~(WORDLST . 1)
+(VARIABLE-VALUE-CELL TOKEN . 0)
+ADDMULTIWORDTOKEN
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTERF)
+
+ADVANCEDATE BINARY
+-.,<,~(DATETIME . 1)
+(DAYS . 1)
+(INPAST . 1)
+ADVANCEDATE
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER3)
+
+ADVANCEDATEUNTIL BINARY
+-.,<,~(DATETIME . 1)
+(ADVANCEUNITS . 1)
+(STOPPRED . 1)
+ADVANCEDATEUNTIL
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER3)
+
+CHECKTODAY BINARY
+-.,<,~CHECKTODAY
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER0)
+
+COMBINEDATETIMES BINARY
+-.,<,~(DATETIME1 . 1)
+(DATETIME2 . 1)
+COMBINEDATETIMES
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER2)
+
+CREATEHOURDT BINARY
+-.,<,~(NUM . 1)
+CREATEHOURDT
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+CREATEOCCURENCEPRED BINARY
+-.,<,~(DT . 1)
+CREATEOCCURENCEPRED
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+DATETIMETOSTRING BINARY
+-.,<,~(DATETIME . 1)
+DATETIMETOSTRING
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+DEQUALP BINARY
+-. ,<,~(DATETIME1 . 1)
+(DATETIME2 . 1)
+(RESOLUTION . 1)
+(TIMEONLY . 1)
+DEQUALP
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER4)
+
+DLESSP BINARY
+-. ,<,~(DATETIME1 . 1)
+(DATETIME2 . 1)
+(RESOLUTION . 1)
+(TIMEONLY . 1)
+DLESSP
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER4)
+
+EVALMDTFN BINARY
+-.,<,~(MDT . 1)
+(FN . 1)
+(VARIABLE-VALUE-CELL DATUM . 0)
+EVALMDTFN
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTERF)
+
+FINISHDATETIME BINARY
+-.,<,~(DATETIME . 1)
+(FILLDATEONLY . 1)
+FINISHDATETIME
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER2)
+
+GETDATETIME BINARY
+-.,<,~(DATETIME . 1)
+GETDATETIME
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+GETDAYOFWEEK BINARY
+-.,<,~(DAYOFWEEK . 1)
+GETDAYOFWEEK
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+GETMONTHNUM BINARY
+-.,<,~(MONTH . 1)
+GETMONTHNUM
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+GETNUMOFDAYSINMONTH BINARY
+-.,<,~(MONTH . 1)
+(YEAR . 1)
+GETNUMOFDAYSINMONTH
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER2)
+
+ISFIRSTOFMONTH BINARY
+-.,<,~(DATETIME . 1)
+ISFIRSTOFMONTH
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+ISJANUARY BINARY
+-.,<,~(DATETIME . 1)
+ISJANUARY
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+ISSATURDAY BINARY
+-.,<,~(DATETIME . 1)
+ISSATURDAY
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+ISSUNDAY BINARY
+-.,<,~(DATETIME . 1)
+ISSUNDAY
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+ISXEROXHOLIDAY BINARY
+-.,<,~(VARIABLE-VALUE-CELL DATUM . 0)
+(ACTIONKEY . 1)
+ISXEROXHOLIDAY
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTERF)
+
+LISTDATES BINARY
+-.,<,~(DATETIME1 . 1)
+(DATETIME2 . 1)
+LISTDATES
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER2)
+
+MULTIWORDTOKEN BINARY
+-.,<,~(CANDIDATEWORDTREE . 1)
+MULTIWORDTOKEN
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+ONLYTIMESPECIFIED BINARY
+-.,<,~(DT . 1)
+ONLYTIMESPECIFIED
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+PARSEDATETIME BINARY
+-.,<,~(VARIABLE-VALUE-CELL TOKENLST . 0)
+(CONTEXT . 1)
+PARSEDATETIME
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTERF)
+
+REPEATADVANCE BINARY
+-.,<,~(NUM . 1)
+(EXPR . 1)
+REPEATADVANCE
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER2)
+
+RESETDATETIMES BINARY
+-.,<,~RESETDATETIMES
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER0)
+
+RESTATE BINARY
+-.,<,~(INPUT . 1)
+RESTATE
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+RESTRICTMULTIPLEDATETIME BINARY
+-.,<,~(MDT . 1)
+(DT . 1)
+RESTRICTMULTIPLEDATETIME
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER2)
+
+SETNOWDATETIME BINARY
+-.,<,~SETNOWDATETIME
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER0)
+
+SETUPDAY BINARY
+-.,<,~SETUPDAY
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER0)
+
+SPELLPROPERLY BINARY
+-.,<,~(XWORD . 1)
+SPELLPROPERLY
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTER1)
+
+TRANSLATETIMEZONE BINARY
+-.,<,~(VARIABLE-VALUE-CELL DATUM . 0)
+(NEWTIMEZONE . 1)
+TRANSLATETIMEZONE
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTERF)
+
+UNITNEXTFROMDATEFN BINARY
+-.,<,~(VARIABLE-VALUE-CELL DATUM . 0)
+(UNIT . 1)
+UNITNEXTFROMDATEFN
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTERF)
+
+UNITOCCURENCEPRED BINARY
+-.,<,~(VARIABLE-VALUE-CELL DATUM . 0)
+(UNIT . 1)
+UNITOCCURENCEPRED
+(NIL)
+(LINKED-FN-CALL . DATETIME)
+(ENTERF)
+(PRETTYCOMPRINT DATETIMECOMS)
+(RPAQQ DATETIMECOMS ((FNS * DATETIMEFNS) (VARS * DATETIMEVARS) (P (SETQ DTRDTBL (COPYREADTABLE T)) (
+SETBRK (QUOTE (%| %  @ ~ - ; : / %. , > < 48 49 50 51 52 53 54 55 56 57)) 1 DTRDTBL) (SETQ 
+DATETIMEDEBUGFLG NIL) (LOAD? (QUOTE <LISPUSERS>DATETIMERECORDS) LDFLG)) (PROP DATETIME * DATETIMEPROPS
+) (PROP UNITMULTIPLEDATETIME YEAR MONTH WEEK DAY HOUR MINUTE) (PROP MONTHNUM JANUARY FEBRUARY MARCH 
+APRIL MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER) (PROP WEEKDAYNUM SUNDAY MONDAY TUESDAY
+ WEDNESDAY THURSDAY FRIDAY SATURDAY) (ARRAY * DATETIMEARRAY) (RECORDS * DATETIMERECORDS) (BLOCKS * 
+DATETIMEBLOCKS)))
+(RPAQQ DATETIMEFNS (ADDMULTIWORDTOKEN ADVANCEDATE ADVANCEDATEUNTIL CHECKTODAY COMBINEDATETIMES 
+CREATEHOURDT CREATEOCCURENCEPRED DATETIMEERROR DATETIMETOSTRING DEQUALP DLESSP EVALMDTFN EXPANDINPUT 
+FINISHDATETIME GETDATETIME GETDAYOFWEEK GETMONTHNUM GETNUMOFDAYSINMONTH ISFIRSTOFMONTH ISJANUARY 
+ISSATURDAY ISSUNDAY ISXEROXHOLIDAY LISTDATES MULTIWORDTOKEN NOTIMP ONLYTIMESPECIFIED PARSEDATETIME 
+PARSEDATETIME1 PARSEDATETIME2 PARSEOFFSETDATETIME PARSEQUALIFIEDDATETIME PARSESIMPLEDATE 
+PARSESIMPLETIME PARSESPECIALDURATION REPEATADVANCE RESETDATETIMES RESTATE RESTRICTMULTIPLEDATETIME 
+SETNOWDATETIME SETUPDAY SPELLPROPERLY TRANSLATETIMEZONE UNITNEXTFROMDATEFN UNITOCCURENCEPRED))
+(RPAQQ DATETIMEVARS (CURRENTERRORNUMBER DATETIMESPLST MULTIPLEWORDTOKENS TESTLST TODAYSTRING 
+XEROXHOLIDAYS (DATETIMEERRORFLG NIL)))
+(RPAQQ CURRENTERRORNUMBER 16)
+(RPAQQ DATETIMESPLST (TH TIME STANDARD EASTERN PACIFIC MOUNTAIN CENTRAL HAWAIIAN EST PST MT CST HT 
+HOLIDAYS XEROX EVERY JANUARY LAST TOMORROW NOON MIDNIGHT THURSDAY NIGHT MORNING EVENING AFTERNOON 
+CHRISTMAS OCLOCK AM PM ABOUT BEFORE AFTER AT NEXT THIS BETWEEN AND IN NOW DAY PAYDAY , - : ; EVE WEEK 
+MONTH YEAR HOUR MINUTE NEW YEAR YEAR'S TUESDAY SUNDAY TODAY YESTERDAY SATURDAY FEBRUARY MARCH APRIL 
+MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER MONDAY WEDNESDAY FRIDAY (JAN . JANUARY) (FEB 
+. FEBRUARY) (MAR . MARCH) (APR . APRIL) (JUN . JUNE) (JUL . JULY) (AUG . AUGUST) (SEPT . SEPTEMBER) (
+SEP . SEPTEMBER) (OCT . OCTOBER) (NOV . NOVEMBER) (DEC . DECEMBER) (SUN . SUNDAY) (MON . MONDAY) (TUES
+ . TUESDAY) (WED . WEDNESDAY) (THURS . THURSDAY) (FRI . FRIDAY) (SAT . SATURDAY) (ZERO . 0) (O . 0) (
+ONE . 1) (TWO . 2) (THREE . 3) (FOUR . 4) (FIVE . 5) (SIX . 6) (SEVEN . 7) (EIGHT . 8) (NINE . 9) (TEN
+ . 10) (ELEVEN . 11) (TWELVE . 12) (THIRTEEN . 13) (FOURTEEN . 14) (FIFTEEN . 15) (SIXTEEN . 16) (
+SEVENTEEN . 17) (EIGHTEEN . 18) (NINETEEN . 19) (TWENTY 20 +) (THIRTY 30 +) (FORTY 40 +) (FIFTY 50 +) 
+(SIXTY 60 +) (SEVENTY 70 +) (EIGHTY 80 +) (NINETY 90 +) (FIRST 1 TH) (SECOND 2 TH) (THIRD 3 TH) (
+FOURTH 4 TH) (FIFTH 5 TH) (SIXTH 6 TH) (SEVENTH 7 TH) (EIHTH 8 TH) (NINTH 9 TH) (TENTH 10 TH) (
+ELEVENTH 11 TH) (TWELFTH 12 TH) (THIRTEENTH 13 TH) (FOURTEENTH 14 TH) (FIFTEENTH 15 TH) (SIXTEENTH 16 
+TH) (SEVENTEENTH 17 TH) (EIGHTEENTH 18 TH) (NINETEENTH 19 TH) (TWENTIETH 20 TH) (THIRTIETH 30 TH) (
+FORTIETH 40 TH) (FIFTIETH 50 TH) (SIXTIETH 60 TH) (SEVENTIETH 70 TH) (EIGHTIETH 80 TH) (NINETIETH 90 
+TH) (ST . TH) (ND . TH) (RD . TH) (A . 1) (AN . 1) (@ . AT) (~ . ABOUT) (< . BEFORE) (> . AFTER) (
+HOURS . HOUR) (HR . HOUR) (HRS . HOUR) (MINUTES . MINUTE) (MIN . MINUTE) (DAYS . DAY) (MONTHS . MONTH)
+ (WEEKS . WEEK) (WKS . WEEK) (YEARS . YEAR) (YRS . YEAR) (YR . YEAR) (AROUND . ABOUT) (FROM . AFTER) (
+O'CLOCK . OCLOCK) (OF . IN) (ON . IN) (/ . -) (%. . :) (BUT . AND) (EACH . EVERY) (HOLIDAY . HOLIDAYS)
+))
+(RPAQQ MULTIPLEWORDTOKENS ((CHRISTMAS (NIL . CHRISTMAS) (DAY (NIL . CHRISTMAS)) (EVE (NIL . 
+CHRISTMASEVE))) (NEW (YEARS (NIL . NEWYEARS) (DAY (NIL . NEWYEARS))) (YEAR'S (NIL . NEWYEARS) (DAY (
+NIL . NEWYEARS)))) (XEROX (HOLIDAYS (NIL . XEROXHOLIDAYS)) (HOLIDAY'S (NIL . XEROXHOLIDAYS))) (EASTERN
+ (STANDARD (TIME (NIL . EST)))) (PACIFIC (STANDARD (TIME (NIL . PST)))) (MOUNTAIN (TIME (NIL . MT))) (
+CENTRAL (STANDARD (TIME (NIL . CST)))) (HAWAIIAN (TIME (NIL . HT)))))
+(RPAQQ TESTLST ("TODAY" "TOMORROW" "YESTERDAY" "NOW" "CHRISTMAS" "FRIDAY" "LAST FRIDAY" "NEXT FRIDAY" 
+"AROUND 9:00PM" "BEFORE 1" "JUNE 23" "WEDNESDAY, WEEK OF AUGUST 5" "SUNDAY, WEEK OF AUGUST 5" 
+"THE FIRST WEDNESDAY OF NEXT MONTH" "THE THIRD TUESDAY AFTER THE FIRST MONDAY IN NOVEMBER" 
+"THE FOURTH OF JULY, NEXT YEAR" "WEDNESDAY, FROM 2:30 TO 3:30" "EVERY WEDNESDAY, FROM 2:30 TO 3:30" 
+"EVERY WEDNESDAY, BEFORE 2:00" "EVERY THREE MINUTES" "DEC 3 78" "DEC 3, 78" "3 DEC 78" "3 DEC, 78" 
+"DEC 3, 78 14:28" "3 DEC 78, 14:28" "3 DEC 78 14:28" "DEC 3 78 14:28" "DEC 3, 1978 AT 14:28" 
+"THE FIRST XEROX HOLIDAY IN NOVEMBER" "THE THIRD XEROX HOLIDAY AFTER JULY 1" 
+"10:00 EASTERN STANDARD TIME"))
+(RPAQQ TODAYSTRING " 8-Jan-80")
+(RPAQQ XEROXHOLIDAYS ((DATETIME 78 12 25 NIL NIL NIL NIL NIL) (DATETIME 78 12 26 NIL NIL NIL NIL NIL) 
+(DATETIME 79 1 1 NIL NIL NIL NIL NIL) (DATETIME 79 4 13 NIL NIL NIL NIL NIL) (DATETIME 79 5 28 NIL NIL
+ NIL NIL NIL) (DATETIME 79 7 4 NIL NIL NIL NIL NIL) (DATETIME 79 8 31 NIL NIL NIL NIL NIL) (DATETIME 
+79 9 3 NIL NIL NIL NIL NIL) (DATETIME 79 11 22 NIL NIL NIL NIL NIL) (DATETIME 79 11 23 NIL NIL NIL NIL
+ NIL) (DATETIME 79 12 24 NIL NIL NIL NIL NIL) (DATETIME 79 12 25 NIL NIL NIL NIL NIL) (DATETIME 79 12 
+31 NIL NIL NIL NIL NIL)))
+(RPAQ DATETIMEERRORFLG NIL)
+(SETQ DTRDTBL (COPYREADTABLE T))
+(SETBRK (QUOTE (%| %  @ ~ - ; : / %. , > < 48 49 50 51 52 53 54 55 56 57)) 1 DTRDTBL)
+(SETQ DATETIMEDEBUGFLG NIL)
+(LOAD? (QUOTE <LISPUSERS>DATETIMERECORDS) LDFLG)
+(RPAQQ DATETIMEPROPS (TODAY TOMORROW YESTERDAY SUNDAY MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY 
+SATURDAY NEWYEARS CHRISTMAS PAYDAY NOON MIDNIGHT XEROXHOLIDAYS))
+(PUTPROPS TODAY DATETIME (DATETIME 80 1 8 3 NIL NIL NIL NIL NIL))
+(PUTPROPS TOMORROW DATETIME (DATETIME 80 1 9 4 NIL NIL NIL NIL NIL))
+(PUTPROPS YESTERDAY DATETIME (DATETIME 80 1 7 2 NIL NIL NIL NIL NIL))
+(PUTPROPS SUNDAY DATETIME (MULTIPLEDATETIMES (EQ 1 (fetch (DATETIME DAYOFWEEK) of DATUM)) (ADVANCEDATE
+ DATUM 7) (ADVANCEDATE DATUM -7) (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) 1 (QUOTE (EQ 1 (fetch (DATETIME
+ DAYOFWEEK) of DATUM)))) "every Sunday"))
+(PUTPROPS MONDAY DATETIME (MULTIPLEDATETIMES (EQ 2 (fetch (DATETIME DAYOFWEEK) of DATUM)) (ADVANCEDATE
+ DATUM 7) (ADVANCEDATE DATUM -7) (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) 1 (QUOTE (EQ 2 (fetch (DATETIME
+ DAYOFWEEK) of DATUM)))) "every Monday"))
+(PUTPROPS TUESDAY DATETIME (MULTIPLEDATETIMES (EQ 3 (fetch (DATETIME DAYOFWEEK) of DATUM)) (
+ADVANCEDATE DATUM 7) (ADVANCEDATE DATUM -7) (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) 1 (QUOTE (EQ 3 (
+fetch (DATETIME DAYOFWEEK) of DATUM)))) "every Tuesday"))
+(PUTPROPS WEDNESDAY DATETIME (MULTIPLEDATETIMES (EQ 4 (fetch (DATETIME DAYOFWEEK) of DATUM)) (
+ADVANCEDATE DATUM 7) (ADVANCEDATE DATUM -7) (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) 1 (QUOTE (EQ 4 (
+fetch (DATETIME DAYOFWEEK) of DATUM)))) "every Wednesday"))
+(PUTPROPS THURSDAY DATETIME (MULTIPLEDATETIMES (EQ 5 (fetch (DATETIME DAYOFWEEK) of DATUM)) (
+ADVANCEDATE DATUM 7) (ADVANCEDATE DATUM -7) (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) 1 (QUOTE (EQ 5 (
+fetch (DATETIME DAYOFWEEK) of DATUM)))) "every Thursday"))
+(PUTPROPS FRIDAY DATETIME (MULTIPLEDATETIMES (EQ 6 (fetch (DATETIME DAYOFWEEK) of DATUM)) (ADVANCEDATE
+ DATUM 7) (ADVANCEDATE DATUM -7) (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) 1 (QUOTE (EQ 6 (fetch (DATETIME
+ DAYOFWEEK) of DATUM)))) "every Friday"))
+(PUTPROPS SATURDAY DATETIME (MULTIPLEDATETIMES (EQ 7 (fetch (DATETIME DAYOFWEEK) of DATUM)) (
+ADVANCEDATE DATUM 7) (ADVANCEDATE DATUM -7) (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) 1 (QUOTE (EQ 7 
+DATUM:DATETIME.DAYOFWEEK))) "every Saturday"))
+(PUTPROPS NEWYEARS DATETIME (MULTIPLEDATETIMES (AND (EQ 1 (FETCH (DATETIME MONTH) OF DATUM)) (EQ 1 (
+fetch (DATETIME DAYOFMONTH) of DATUM))) (ADVANCEDATE DATUM YEAR) (ADVANCEDATE DATUM (-1 YEAR)) (
+ADVANCEDATEUNTIL (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) (QUOTE DAY) (QUOTE (EQ 1 
+DATUM:DATETIME.DAYOFMONTH))) (QUOTE MONTH) (QUOTE (EQ 1 DATUM:DATETIME.MONTH))) "every Newyears"))
+(PUTPROPS CHRISTMAS DATETIME (MULTIPLEDATETIMES (AND (EQ 12 (FETCH (DATETIME MONTH) OF DATUM)) (EQ 25 
+(fetch (DATETIME DAYOFMONTH) of DATUM))) (ADVANCEDATE DATUM YEAR) (ADVANCEDATE DATUM (-1 YEAR)) (
+ADVANCEDATEUNTIL (ADVANCEDATEUNTIL (ADVANCEDATE DATUM) (QUOTE DAY) (QUOTE (EQ 25 (fetch (DATETIME 
+DAYOFMONTH) of DATUM)))) (QUOTE MONTH) (QUOTE (EQ 12 (fetch (DATETIME MONTH) of DATUM)))) 
+"every Christmas"))
+(PUTPROPS PAYDAY DATETIME (MULTIPLEDATETIMES NIL NIL NIL NIL "every payday"))
+(PUTPROPS NOON DATETIME (DATETIME NIL NIL NIL NIL 0 NIL PM))
+(PUTPROPS MIDNIGHT DATETIME (DATETIME NIL NIL NIL NIL 0 NIL AM))
+(PUTPROPS XEROXHOLIDAYS DATETIME (MULTIPLEDATETIMES (ISXEROXHOLIDAY DATUM (QUOTE ?)) (ISXEROXHOLIDAY 
+DATUM (QUOTE ADVANCEFN)) (ISXEROXHOLIDAY DATUM (QUOTE DECREMENTFN)) (ISXEROXHOLIDAY DATUM (QUOTE 
+NEXTFN)) "EVERY XEROX HOLIDAY"))
+(PUTPROPS YEAR UNITMULTIPLEDATETIME (MULTIPLEDATETIMES (UNITOCCURENCEPRED DATUM (QUOTE YEAR)) (
+ADVANCEDATE DATUM (QUOTE YEAR)) (ADVANCE DATUM (QUOTE (-1 YEAR))) (UNITNEXTFROMDATEFN DATUM (QUOTE 
+YEAR)) "EVERY YEAR"))
+(PUTPROPS MONTH UNITMULTIPLEDATETIME (MULTIPLEDATETIMES (UNITOCCURENCEPRED DATUM (QUOTE MONTH)) (
+ADVANCEDATE DATUM (QUOTE MONTH)) (ADVANCE DATUM (QUOTE (-1 MONTH))) (UNITNEXTFROMDATEFN DATUM (QUOTE 
+MONTH)) "EVERY MONTH"))
+(PUTPROPS WEEK UNITMULTIPLEDATETIME (MULTIPLEDATETIMES (UNITOCCURENCEPRED DATUM (QUOTE WEEK)) (
+ADVANCEDATE DATUM (QUOTE WEEK)) (ADVANCE DATUM (QUOTE (-1 WEEK))) (UNITNEXTFROMDATEFN DATUM (QUOTE 
+WEEK)) "EVERY WEEK"))
+(PUTPROPS DAY UNITMULTIPLEDATETIME (MULTIPLEDATETIMES (UNITOCCURENCEPRED DATUM (QUOTE DAY)) (
+ADVANCEDATE DATUM (QUOTE DAY)) (ADVANCE DATUM (QUOTE (-1 DAY))) (UNITNEXTFROMDATEFN DATUM (QUOTE DAY))
+ "EVERY DAY"))
+(PUTPROPS HOUR UNITMULTIPLEDATETIME (MULTIPLEDATETIMES (UNITOCCURENCEPRED DATUM (QUOTE HOUR)) (
+ADVANCEDATE DATUM (QUOTE HOUR)) (ADVANCE DATUM (QUOTE (-1 HOUR))) (UNITNEXTFROMDATEFN DATUM (QUOTE 
+HOUR)) "EVERY HOUR"))
+(PUTPROPS MINUTE UNITMULTIPLEDATETIME (MULTIPLEDATETIMES (UNITOCCURENCEPRED DATUM (QUOTE MINUTE)) (
+ADVANCEDATE DATUM (QUOTE MINUTE)) (ADVANCE DATUM (QUOTE (-1 MINUTE))) (UNITNEXTFROMDATEFN DATUM (QUOTE
+ MINUTE)) "EVERY MINUTE"))
+(PUTPROPS JANUARY MONTHNUM 1)
+(PUTPROPS FEBRUARY MONTHNUM 2)
+(PUTPROPS MARCH MONTHNUM 3)
+(PUTPROPS APRIL MONTHNUM 4)
+(PUTPROPS MAY MONTHNUM 5)
+(PUTPROPS JUNE MONTHNUM 6)
+(PUTPROPS JULY MONTHNUM 7)
+(PUTPROPS AUGUST MONTHNUM 8)
+(PUTPROPS SEPTEMBER MONTHNUM 9)
+(PUTPROPS OCTOBER MONTHNUM 10)
+(PUTPROPS NOVEMBER MONTHNUM 11)
+(PUTPROPS DECEMBER MONTHNUM 12)
+(PUTPROPS SUNDAY WEEKDAYNUM 1)
+(PUTPROPS MONDAY WEEKDAYNUM 2)
+(PUTPROPS TUESDAY WEEKDAYNUM 3)
+(PUTPROPS WEDNESDAY WEEKDAYNUM 4)
+(PUTPROPS THURSDAY WEEKDAYNUM 5)
+(PUTPROPS FRIDAY WEEKDAYNUM 6)
+(PUTPROPS SATURDAY WEEKDAYNUM 7)
+(RPAQQ DATETIMEARRAY (MONTHNAME NUMOFDAYSINMONTH WEEKDAYNAME))
+(SETQ MONTHNAME (READARRAY 12 0))
+(JANUARY FEBRUARY MARCH APRIL MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER NIL)
+(SETQ NUMOFDAYSINMONTH (READARRAY 12 0))
+(31 28 31 30 31 30 31 31 30 31 30 31 T 31 31 31 31 31 31 31 31 31 31 31 31)
+(SETQ WEEKDAYNAME (READARRAY 7 0))
+(SUNDAY MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY NIL)
+(RPAQQ DATETIMERECORDS (DATETIME DATETIMEERROR DURATION MULTIPLEDATETIMES NUMERAL QUALIFIEDDATETIME))
+(TYPERECORD DATETIME (YEAR MONTH DAYOFMONTH DAYOFWEEK HOUR MINUTE AMORPM PRINTSTRING TIMEZONE))
+(TYPERECORD DATETIMEERROR (ERRORNUMBER MESSAGE ORIGINALTOKENLST CURRENTTOKENLST) CURRENTTOKENLST _ 
+TOKENLST)
+(TYPERECORD DURATION (STARTDATETIME ENDDATETIME PRINTSTRING))
+(TYPERECORD MULTIPLEDATETIMES (OCCURENCEPRED ADVANCEFN DECREMENTFN NEXTFROMDATEFN PRINTSTRING))
+(TYPERECORD NUMERAL (VALUE))
+(TYPERECORD QUALIFIEDDATETIME (QUALIFIER DATETIME PRINTSTRING))
+(RPAQQ DATETIMEBLOCKS ((DATETIME ADDMULTIWORDTOKEN ADVANCEDATE ADVANCEDATEUNTIL CHECKTODAY 
+COMBINEDATETIMES CREATEHOURDT CREATEOCCURENCEPRED DATETIMEERROR DATETIMETOSTRING DEQUALP DLESSP 
+EVALMDTFN EXPANDINPUT FINISHDATETIME GETDATETIME GETDAYOFWEEK GETMONTHNUM GETNUMOFDAYSINMONTH 
+ISFIRSTOFMONTH ISJANUARY ISSATURDAY ISSUNDAY ISXEROXHOLIDAY LISTDATES MULTIWORDTOKEN NOTIMP 
+ONLYTIMESPECIFIED PARSEDATETIME PARSEDATETIME1 PARSEDATETIME2 PARSEOFFSETDATETIME 
+PARSEQUALIFIEDDATETIME PARSESIMPLEDATE PARSESIMPLETIME PARSESPECIALDURATION REPEATADVANCE 
+RESETDATETIMES RESTATE RESTRICTMULTIPLEDATETIME SETNOWDATETIME SETUPDAY SPELLPROPERLY 
+TRANSLATETIMEZONE UNITNEXTFROMDATEFN UNITOCCURENCEPRED (ENTRIES ADDMULTIWORDTOKEN ADVANCEDATE 
+ADVANCEDATEUNTIL CHECKTODAY COMBINEDATETIMES CREATEHOURDT CREATEOCCURENCEPRED DATETIMETOSTRING DEQUALP
+ DLESSP EVALMDTFN FINISHDATETIME GETDATETIME GETDAYOFWEEK GETMONTHNUM GETNUMOFDAYSINMONTH 
+ISFIRSTOFMONTH ISJANUARY ISSATURDAY ISSUNDAY ISXEROXHOLIDAY LISTDATES MULTIWORDTOKEN ONLYTIMESPECIFIED
+ PARSEDATETIME REPEATADVANCE RESETDATETIMES RESTATE RESTRICTMULTIPLEDATETIME SETNOWDATETIME SETUPDAY 
+SPELLPROPERLY TRANSLATETIMEZONE UNITNEXTFROMDATEFN UNITOCCURENCEPRED) (SPECVARS DATUM) (GLOBALVARS 
+CURRENTERRORNUMBER DATETIMESPLST MULTIPLEWORDTOKENS TODAYSTRING DATETIMEERRORFLG XEROXHOLIDAYS) (
+LOCALFREEVARS TOKENLST DATETIMEERROR TOKEN) (NOLINKFNS . T))))
+NIL

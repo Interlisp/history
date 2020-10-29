@@ -1,0 +1,143 @@
+(FILECREATED " 5-DEC-82 22:31:05" <LISPUSERS>CSET.;3 4297   
+
+      changes to:  (FNS CHECKSET)
+
+      previous date: "30-DEC-81 13:30:06" <LISPUSERS>CSET.;2)
+
+
+(* Copyright (c) 1981, 1982 by Xerox Corporation)
+
+(PRETTYCOMPRINT CSETCOMS)
+
+(RPAQQ CSETCOMS ((* making sure files are up to date)
+		 (FNS CHECKSET CHECKSET1 ASK COMPFILES)
+		 (LOCALVARS . T)
+		 (GLOBALVARS COMPILE.EXT FILERDTBL DWIMWAIT)))
+
+
+
+(* making sure files are up to date)
+
+(DEFINEQ
+
+(CHECKSET
+  [LAMBDA (SET COMPFLG)            (* lmm " 5-DEC-82 22:30")
+    (OR COMPFLG (SETQQ COMPFLG Y))
+    (COND
+      [SET (SETQ SET (CHECKSET1 (OR (LISTP SET)
+				    [LISTP (GETATOMVAL (PACK* SET (QUOTE LISPSET]
+				    (LIST SET))
+				COMPFLG))
+	   (COND
+	     ((EQ COMPFLG (QUOTE N))
+	       SET)
+	     (T (COMPFILES SET]
+      (T (for X in FILESETS join (CHECKSET (EVAL X)
+					   COMPFLG])
+
+(CHECKSET1
+  [LAMBDA (FILES COMPFLG)                                    (* bvm: "30-DEC-81 13:20")
+    (PROG (@COM.SOURCES .COM @LISP LISP @PREV @SOURCE NEEDCOMPILE TEM TODO SFD)
+          (for GROUP in FILES do (SETQ NEEDCOMPILE)
+				 (SETQ @COM.SOURCES (COND
+				     [(SETQ .COM (FINDFILE (PACK* [CAR (OR (LISTP GROUP)
+									   (SETQ GROUP (LIST GROUP]
+								  (QUOTE %.)
+								  COMPILE.EXT)
+							   T))
+				       (INPUT (INFILE .COM))
+				       (SKREAD .COM)
+				       (for SOURCE in GROUP collect (IDATE (CADR (READ .COM]
+				     (T (SETQQ NEEDCOMPILE COMPILE)
+					NIL)))
+				 [for SOURCE in GROUP as @COM.SOURCE in (OR @COM.SOURCES GROUP)
+				    do (COND
+					 ((NOT (SETQ TEM (FINDFILE SOURCE T)))
+					   (PRINT (LIST SOURCE (QUOTE (not found)))
+						  T T)
+					   (SETQ NEEDCOMPILE)
+					   (RETURN)))
+				       (SETQ TEM (INPUT (INFILE TEM)))
+				       (SETFILEPTR TEM 0)
+				       (SETQ SFD (READ TEM FILERDTBL))
+				       (CLOSEF TEM)
+				       (SETQ @PREV (AND [STRINGP (SETQ @PREV (CAR (NLEFT SFD 2]
+							(IDATE @PREV)))
+				       (SETQ @SOURCE (IDATE (CADR SFD)))
+				       (SETQ SFD (CONS (CADR SFD)
+						       TEM))
+				       (COND
+					 ((NEQ NEEDCOMPILE (QUOTE COMPILE))
+					   (COND
+					     (@COM.SOURCE (COND
+							    ((NOT (IEQP @COM.SOURCE @SOURCE))
+							      (SETQ NEEDCOMPILE
+								(COND
+								  ((AND @PREV (IEQP @PREV @COM.SOURCE)
+									)
+								    (QUOTE RECOMPILE))
+								  (T (QUOTE COMPILE]
+				 [COND
+				   ((AND NEEDCOMPILE (PROGN (SETQ NEEDCOMPILE (CONS NEEDCOMPILE GROUP)
+							      )
+							    (ASK NEEDCOMPILE COMPFLG)))
+				     (SETQ TODO (NCONC1 TODO NEEDCOMPILE]
+				 (AND .COM (CLOSEF .COM)))
+          (RETURN TODO])
+
+(ASK
+  [LAMBDA (Q DEFAULT)                                        (* bvm: "30-DEC-81 12:58")
+    (SELECTQ DEFAULT
+	     ((Y N)
+	       (MAPRINT Q T NIL "
+")
+	       T)
+	     (EQ (QUOTE Y)
+		 (ASKUSER DWIMWAIT DEFAULT Q NIL T])
+
+(COMPFILES
+  [LAMBDA (FILES FLG)                                        (* bvm: "30-DEC-81 13:28")
+    (PROG [LISPXHIST (LISTING (OR (SELECTQ (COND
+					     ((LISTP FLG)
+					       (OR (CADR FLG)
+						   (CAR FLG)))
+					     (T FLG))
+					   (F (QUOTE F))
+					   (ST (QUOTE ST))
+					   NIL)
+				  (QUOTE F]
+          (DECLARE (SPECVARS LISPXHIST))
+          (SELECTQ (OR (CAR (LISTP FLG))
+		       FLG)
+		   (C (SETQQ FLG COMPILE))
+		   (RC (SETQQ FLG RECOMPILE))
+		   NIL)
+          (RETURN (for FL in FILES collect (SELECTQ [CAR (OR (LISTP FL)
+							     (SETQ FL (LIST FLG FL]
+						    (RECOMPILE (PRINT (CONS (QUOTE recompiling)
+									    (CDR FL))
+								      T)
+							       (LISPXUNREAD (LIST LISTING))
+							       (BRECOMPILE (CDR FL)
+									   NIL
+									   (QUOTE CHANGES)))
+						    (COMPILE (PRINT (CONS (QUOTE compiling)
+									  (CDR FL))
+								    T)
+							     (LISPXUNREAD (LIST LISTING))
+							     (BCOMPL (CDR FL)))
+						    (HELP FL])
+)
+(DECLARE: DOEVAL@COMPILE DONTCOPY
+
+(LOCALVARS . T)
+)
+(DECLARE: DOEVAL@COMPILE DONTCOPY
+
+(ADDTOVAR GLOBALVARS COMPILE.EXT FILERDTBL DWIMWAIT)
+)
+(DECLARE: DONTCOPY (PUTPROPS CSET COPYRIGHT ("Xerox Corporation" 1981 1982)))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (476 4043 (CHECKSET 488 . 932) (CHECKSET1 936 . 2752) (ASK 2756 . 2998) (COMPFILES 3002 
+. 4040)))))
+STOP

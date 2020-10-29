@@ -1,0 +1,638 @@
+17-Jul-79 22:08:41-PDT,286;000000000001
+Date: 17 JUL 1979 2208-PDT
+From: TEITELMAN
+Subject: greeting is now under a resetsave
+To:   LISP, YONKE at BBND
+
+permits user to change global settings just
+for the duration of the greeting. separate resetlst for
+system initialization and user initializaion.
+
+warren
+-------
+21-Jul-79 15:33:44-PDT,608;000000000001
+Date: 21 JUL 1979 1533-PDT
+From: TEITELMAN
+Subject: recordaccess
+To:   lisp
+
+Mail-from: Arpanet host BBN-TENEXD rcvd at 21-JUL-79 1500-PDT
+Date: 21 Jul 1979 1753-EDT
+Sender: YONKE at BBN-TENEXD
+Subject: documentation for RECORDACCESS
+From: YONKE at BBN-TENEXD
+To: Teitelman at PARC-MAXC2
+Message-ID: <[BBN-TENEXD]21-Jul-79 17:53:54.YONKE>
+
+The parameter list for RECORDACCESS (p. 23.36) in the manual
+is not in the same order as the real function.  It should read:
+
+	recordaccess[field;value;dec;type;newvalue]
+
+Should be changed whenever a new manual gets generated.
+
+Martin
+
+-------
+23-Jul-79 00:05:00-PDT,120;000000000001
+Date: 23 JUL 1979 0004-PDT
+From: TEITELMAN
+Subject: setinitials is not indexed in section 9
+To:   LISP
+
+
+-------
+24-Jul-79 12:49:18-PDT,399;000000000001
+Date: 24 JUL 1979 1249-PDT
+From: KAPLAN
+Subject: FILES command
+To:   TEITELMAN, MASINTER, LISP
+
+A new version of FILEPKG on <NEWLISP>, with the glitch concerning the
+FILES command fixed up.  It now puts out the FINDFILE in an OR, so that
+LOAD gets the users original specification if the FINDFILE fails, and thus
+that file name is printed out in the file not found error.
+
+--Ron
+-------
+24-Jul-79 12:56:27-PDT,2221;000000000000
+Date: 24 JUL 1979 1256-PDT
+From: TEITELMAN
+Subject: filepkg changes
+To:   lisp
+
+Date: 23 JUL 1979 2327-PDT
+From: KAPLAN
+Subject: New FILEPKG on <NEWLISP>
+To:   TEITELMAN
+cc:   MASINTER
+
+I think I fixed the rename of fields bug, but its a little tricky and
+we'll just have to see what happens.
+
+I also made a few other small changes:
+
+1.  I added a feature to the FILES command originally requested by
+Yonke so that he could more easily specify where lispusers files were to
+come from.  THe keyword FROM can be followed by the keyword VALUEOF,
+in which case a FINDFILE exprssion gets put out instead of a simple
+quote.  E.g.
+  (FILES (SYSLOAD FROM VALUEOF LISPUSERSDIRECTORIES) HASH) yields the
+expression
+  (LOAD? (FINDFILE (QUOTE HASH.COM) T LISPUSERSDIRECTORIES) (QUOTE SYSLOAD))
+I think this does what Yoke wanted.  The only glitch is in the case the
+file isn't found anywhere, the error message gives NIL not fond
+instead of HASH.COM not found (cause the FINDFILE returns NIL).
+I guess I could put out a more coplicted prog and test the value, but
+this will do for now.
+
+2.  In CHANGECALLERS, i changed the interpretation of DEFAULTRENAMEMETHOD
+slightly.  If it is MASTERSCOPE and there is no masterscope data base, then
+it is assumed to be EDITCALLERS.  (If the use actually secifies masterscope
+(i.e. not by default) then that assumption isn't made).
+Also, I made it cause an ERROR (instead of HELP) if the user specifies
+an unrecognized method.
+
+3.  I changed EDITDEF so that it does not print a warning that
+the definition won't be unsaved if the definition is in fact EQUAL to
+the current definition.  That warning is spurious and confusing--it has
+been buggin me and Henry in ABC, where DFNFLG is PROP.
+
+4.  I changed CHANGECALLERS in another way:  If the name to be changed
+is defined as more than one type (e.g. a FNS and a VARS), then the editor
+is called not with an EXAM command to let the user decide
+what to do, but with a much more complicated command that interrogtes
+the user as to what he wants done.  The responses to the askuser are
+Yes, do the replacement, No skip to the next occurrence, and anything else, do
+a TTY:.
+
+--Ron
+-------
+
+-------
+24-Jul-79 13:21:40-PDT,190;000000000001
+Date: 24 JUL 1979 1321-PDT
+From: KAPLAN
+Subject: Manual description of EDITE talks about NEWFILE?, not MARKASCHANGED
+To:   TEITELMAN, LISP
+
+SHould be changed in next edition.
+-------
+ 1-Aug-79 09:58:04-PDT,140;000000000001
+Date:  1 AUG 1979 0958-PDT
+From: KAPLAN
+Subject: CALLS(subr) now returns NIL.
+To:   TEITELMAN, LISP
+cc:   MASINTER, SHEIL
+
+
+-------
+ 6-Aug-79 14:19:56-PDT,143;000000000001
+Date:  6 AUG 1979 1419-PDT
+From: KAPLAN
+Subject: ADDBUFFER is really called ADDMAPBUFFER; manual should be changed
+To:   LISP
+
+
+-------
+16-Sep-79 19:45:07-PDT,427;000000000001
+Date: 16 SEP 1979 1945-PDT
+From: TEITELMAN
+Subject: new feature in smartarglist
+To:   PARC Lisp Users:
+cc:   lisp
+
+
+before bailing out, will consult (extended) file package
+and obtain argument names from there. thus if you have a system
+consisting of several files, and are editing one, and are at a
+place of a call to a function defined in another file, but not
+defined in core, ?= will work correctly.
+
+-------
+20-Sep-79 13:51:50-PDT,176;000000000001
+Date: 20 SEP 1979 1351-PDT
+From: TEITELMAN
+Subject: SETINITIALS
+To:   KAPLAN
+cc:   LISP
+
+
+was not setting initials or firstname undoably. now fixed.
+
+warren
+-------
+20-Sep-79 13:55:25-PDT,190;000000000001
+Date: 20 SEP 1979 1355-PDT
+From: TEITELMAN
+Subject: control, echomode
+To:   kaplan
+cc:   lisp
+
+
+ok, you convinced me. ill initialize breakresetforms appropriately.
+
+waren
+-------
+21-Sep-79 13:57:55-PDT,471;000000000001
+Date: 21 SEP 1979 1357-PDT
+From: KAPLAN
+Subject: Manual error
+To:   LISP
+cc:   TEITELMAN
+
+The manual on p. 14.2 says that INFILEP is the filename if the
+file can be opened for input.  This is false.  It merely indicates that
+the file exists.  Whether or not you can open it depends on whether you
+(or someone else) has it open for output at the time you do the INFILE.
+
+I.e., a non-NIL INFILEP does not mean you won't get a file won't open
+error.
+
+-------
+24-Sep-79 23:31:34-PDT,1115;000000000001
+Date: 24 SEP 1979 2331-PDT
+From: TEITELMAN
+Subject: new error numbers and interpreter
+To:   LEWIS at BBND
+cc:   DEUTSCH, LISP, WILLIE-SUE
+
+
+(1) whenever a u.b.a error occurs the error number will be set
+to 44 (error string = UNBOUND ATOM) with culprit the atom.
+note thatif dwim corrects the error, no error occurs and error number
+is not set. however, if an error is going to occur, whether or
+not it will cause a brak, the error number will be set.
+
+
+(2) whenever an undefined car of form occurs, error number will
+be 45 (error string = UNDEFINED CAR OF FORM), and culprit is the form.
+
+(3) whenever an undefined function in aply occurs,
+error number 46, culprit is list[fn;args]
+
+(4) whenever user types control-e, error nummer will be 47, errorstring=
+CONTROL-E.
+
+the purpose of this is to allow programs to be written in lisp
+which can detect what caused an error, and thus be made sufficiently
+robust to use as servers.  
+
+willie-sue, you should install these 4 new errors and errorstrings.
+you dont have to do anything else since is all aken care f in helpdl.
+
+warren
+-------
+25-Sep-79 00:32:38-PDT,996;000000000001
+Date: 25 SEP 1979 0032-PDT
+From: TEITELMAN
+Subject: experimental new feeature in spelling corrector
+To:   KAPLAN
+cc:   LISP
+
+
+fixspell1 has been modified so that if the value returned fro
+askuser is a list, it simply passes this back. (fixspell1 used
+to always return T or NIL).
+the default keylst used by askuser and dwim have been modified
+to allow user to type U for Use and then a value (one value - having
+user be able to esentially type in two things meaning a run on correction
+was too complicated an interaction with fixspell).
+
+fixspell has  een modified so thatif fixspell1 returns a list,
+it treats car of the list as the correct value.
+
+i will be reloadin gsoon. lets try playing with this and
+see if it has the desired properties. it was a little harder
+to put in that one would think at first because of all the
+interactios with runon corrections, synonyms, etc. and the
+fact that fixspell can be called in lots of different configuraions.
+
+warren
+-------
+26-Sep-79 21:33:40-PDT,232;000000000001
+Date: 26 SEP 1979 2133-PDT
+From: TEITELMAN
+Subject: loadcomp?
+To:   sheil
+cc:   kaplan, burton, fikes, lisp
+
+
+can now be used "recursively" (it looks up the stack to see 
+if it s under another loadcomp).
+
+warren
+-------
+26-Sep-79 21:59:05-PDT,1340;000000000001
+Date: 26 SEP 1979 2159-PDT
+From: TEITELMAN
+Subject: changes to loadfns-vars
+To:   KAPLAN
+cc:   LISP
+
+
+ok - here is what i have done.
+
+when you are doing a loadcomp or loadcomp?, it only
+evaluates things in a declare: where EVAL@COMPILE is specified.
+if you say DONTEVAL@COMPILE, it does not descend.
+if you are doing a loadvars, it evaluaes thngs
+in a declare: if you say EVAL@LOAD (or leave it out since
+thats the default, but if you say DONTEVAL@LOAD it doesnt).
+when doing a loadcop, the tags EVAL@LOAD DONTEVAL@LOAD are totally
+ignored. when doing a loadfns/vars  the tags
+eval@compile, donteval@compile are ignored. 
+
+note that the expressions are evaluated as well as being put
+on donelst and returned.
+
+i think this captures the semantics. the reason
+loadfrom used to work was that it simply evaluated the
+entire top level (DECLARE:  expression) i.e. never searched
+inside it, so the tags hhd the right effect, i.e.
+with a DONTEVAL@LOAD, it stopped. with loadfns or loadvars
+want to sarch for a specific expression, and so should be
+guided in a similar way by the tags.  
+
+i would like for you to ban  n this extensively. i am not
+sure tha i covered all cses, or thatsomething else
+didnt fall apart. rather than reload, why dont
+you load in loadfns.com and test it out
+directly.
+
+warren
+-------
+14-Nov-79 15:46:06-PST,163;000000000001
+Date: 14 NOV 1979 1546-PST
+From: TEITELMAN
+Subject: @ IN EDIT PATTERN
+To:   KAPLAN
+cc:   LISP
+
+
+now installed.  shall i reload tonight?
+
+warren
+-------
+21-Nov-79 00:57:00-PST,1042;000000000001
+Date: 21 NOV 1979 0057-PST
+From: KAPLAN
+Subject: New MASTERSCOPE on <NEWLISP>  - ANALYZEUSERFNS
+To:   TEITELMAN, LISP
+cc:   MASINTER
+
+I added a hook to the masterscope function analyzer so that the user
+could specify his own computations.
+
+After a function has been analyzed, masterscope looks at the variable
+ANALYZEUSERFNS.  If it is non-nil, it is assumed to be a list of functions.
+Each of them is applied in turn to the function-name, function-definition,
+and analysis data list for the function just analyzed.  The function should
+return a new data list (or perhaps just the old one if all that is intened
+is side-effecting).
+
+This is the hook that is needed to add various user defined relations to
+masterscope.  The MSHASH package will be able to store the argument
+list of a function so that DESCRIBE won't have to rummage around for it
+if the function is not loaded.  Also, DECL will be able to store the
+RETURNS declaration for a function so that inter-function declarations
+can be checked.
+
+--Ron
+-------
+21-Nov-79 21:54:56-PST,201;000000000001
+Date: 21 NOV 1979 2154-PST
+From: TEITELMAN
+To:   KAPLAN
+cc:   LISP
+
+
+by the way,  is sufficient to use (& .. FOO) as a pattern, you dont have to
+do (*any* FOO (& .. FOO)).
+
+
+warren
+-------
+23-Nov-79 22:57:49-PST,886;000000000001
+Date: 23 NOV 1979 2257-PST
+From: KAPLAN
+Subject: DESCRIBELST in masterscope
+To:   teitelman
+cc:   lisp, masinter
+
+there is also a new masterscope on <NEWLISP>.  I modified the dESCRIBE
+command so that the user can specify additional information
+that he would like to include in a functions description, other than
+the information that is already provided by the system.
+
+DESCRIBELST is a list each of whose elements is a pair conisting of
+a string descriptor and a form.  The form is evaluated (it can refer to the
+name of the funtion being described by the free variable FN), and if it
+returns a non-NIL value, the description string is printed followd by
+the items in the value in the standard describe format.
+
+Example:  To include the types used by a function in the describe, the entry
+("types:  " (GETRELATION FN '(USE TYPE) T) would suffice.
+
+--Ron
+-------
+ 5-Dec-79 12:36:17-PST,254;000000000001
+Date:  5 DEC 1979 1236-PST
+From: KAPLAN
+Subject: New <NEWLISP>FILEPKG - change to ADDTOFILEKEYLST
+To:   TEITELMAN, LISP
+cc:   GOLDMAN at USC-ISIE
+
+I made the promptstring and explainstring both include "list" along
+with "file".
+
+--Ron
+-------
+ 6-Dec-79 21:07:36-PST,605;000000000001
+Date:  6 DEC 1979 2107-PST
+From: TEITELMAN
+To:   LISP
+
+
+i fixed errortypelst so thatif a file wont open error occurs
+when no version was specified,it will try the next higher
+version. this will fix the problem of having a compilatin
+going in a higher fork, doing an exec and trying to
+compile something and gettting a file wont open error
+on bcompl.scratch.
+i also fixed bcompl so that it does not ave undo informaton
+when it is  ctually compiling (since it is compiling from
+the file anyway). this shuld save some space when
+compilng laage files with lots of clisp.
+
+warren
+
+
+-------
+12-Dec-79 22:46:33-PST,907;000000000001
+Date: 12 DEC 1979 2246-PST
+From: TEITELMAN
+Subject: new loadfns featre
+To:   KAPLAN
+cc:   lisp
+
+
+if VARS is a list and (FNTYP VARS ) is true, i.e. VARS is
+a lambda expresson, then instead of clling the editor to
+match the paatern, loadfns will invoke that function (aplying
+it to two arguments, the first and second elements in
+the expression being considered, but you can ignore the argument
+if you want).
+
+if
+(a) the result returned is NIL, loadfns will restore the file pointer
+and do a skread - i.e. you are free to do whatever you want to
+with file pointer
+
+(b) resule returned is non-nil but atom, e.g. T, loadfns
+will reset file pointer, do a READ, and use that as
+the expressin (and then either add it to donelst, evaluate
+it etc depending on value of LDFLG)
+
+(c) a list - the result is used as the expression. the file pinter
+in this case is not reset.
+
+warren
+-------
+15-Dec-79 17:24:20-PST,342;000000000001
+Date: 15 DEC 1979 1724-PST
+From: KAPLAN
+Subject: ADDMAPBUFFER
+To:   TEITELMAN
+cc:   LISP
+
+The manual says that it returns T if successful.  That should be changed to
+"non-NIL".  
+
+I had corrected LMMAC to obey the manual's description, but that led to
+bug in pmapping.  I have reverted to the earlier definition.
+
+--RON
+-------
+17-Dec-79 21:43:44-PST,620;000000000001
+Date: 17 DEC 1979 2143-PST
+From: KAPLAN
+Subject: SELECTC - SELECT on constant
+To:   LISP
+cc:   TEITELMAN
+
+This function lies somewhere between SELECTQ and SELECT (which previously
+existed but wasn't documented).  With SELECTC, the selection keys are
+evaluated when called from interpreted code, just like SELECT.  Unlike
+SELECT, the keys are also evaluated at compile-time to form a SELECTQ.
+
+The form of a selection clause is either 
+1.  an atom or list of atoms, whose values are treated as the keys.
+2.  a list of lists, the elements of which are forms whose values are treated
+as the keys.
+
+-------
+17-Dec-79 22:40:30-PST,464;000000000001
+Date: 17 DEC 1979 2240-PST
+From: TEITELMAN
+Subject: compile
+To:   LISP, KAPLAN, KAY, BURTON, WILLIE-SUE, HTHOMPSON
+cc:   LEWIS at BBND
+
+
+the first expression in a compiled file will now contain in addition
+to an indication whether file was bcompled, tcompled, recompiled,
+brecompiled, and if latter, which functions, (this is alredy i system),
+an indication of what sysout/makesys, by including its name and
+sysoutdate/makesysdate.
+
+warre
+
+-------
+17-Dec-79 23:50:59-PST,467;000000000001
+Date: 17 DEC 1979 2350-PST
+From: KAPLAN
+Subject: SELECTC again
+To:   lisp
+
+Description is now:
+
+SELECTC is like SELECTQ except that it evaluates the key positions of its
+arguments to obtain the actual keys for a selectq-type comparison.
+
+This evaluation is done at compile-time to produce a SELECTQ form--the
+keys are in a sense compile time constants.
+
+Note that the argument syntax for SELECTC differs from the
+undocumented function SELECT.
+-------
+14-Jan-80 22:07:41-PST,426;000000000001
+Date: 14 JAN 1980 2207-PST
+From: TEITELMAN
+Subject: NLEFT
+To:   LISP
+cc:   MASINTER, LEWIS at BBND
+
+
+(NLEFT L N TAIL) where TAIL is non-NIL and NOT a tail
+of L will now generate an error. this was thesouce
+of a nasty bug in reset logic. i feel if user specifies
+TAIL, means he expects it to be a tail of L. if
+he isnt sure, should say (TAILP TAIL L),
+
+
+new macros with blklibarydef for nleft
+
+warren
+-------
+21-Jan-80 20:32:13-PST,133;000000000001
+Date: 21 JAN 1980 2032-PST
+From: TEITELMAN
+To:   LISP
+
+
+existence of (getdummyvar)  for use under
+i.s. translation
+
+-------
+15-Feb-80 00:15:23-PST,1842;000000000000
+Date: 15 FEB 1980 0015-PST
+From: TEITELMAN
+To:   LISP
+
+getdummyvar
+
+
+
+larry reported a serious problem in current loadup which is that any
+iteraive statement containing a COLLECT which does not
+translate into a mapcar, e.g. a collect with a WHILE or a BIND etc.
+does not dwimify correctly.
+
+(1) there is a new loadup which I believe fixes the problem. Hoever,
+the fix was not straightforard and it is possible i may hve introduced
+a new problem. if anything develops while i am away, you can simply
+
+(2) repair the fix in the current byte.sav by remproving the
+I.S.OPR property from fcollect (thereby causing it to translate
+using the (SETQ $$VAL (NCONC1 $$VAL body)) translation.
+
+the problem stemmed from fcollect, which is the nly i.s.opr in
+the world which both evaluates its argument,
+and also defines an i.s.type. the problem is that
+it used to be handled by a kluge to take into account the fact that
+there wasnt anyay to compute the i.s.type so as to use a dummy
+variable, and also compute an expressionwhich bound the
+same dummy variable. similar i.s.oprs for inside used
+to do something like (SUBST (GENSYM) 'VAR exp) where
+exp included the BIND. but in fcollects case, this didnt work
+because the BIND and the i.s.type had to be handled separately.
+
+I had fixed this up in general but not handled the fcollect case
+correctly.
+
+In case any ofyou wish to use the new faciliy, which is somewhat cleaner,
+thre is now a functon called GETDUMMYVAR
+which is to be called from inside of an i.s.opr. It first
+takes variables from the list ($$TEM1 ... $$TEM6) and then uses
+GENSYM. If its argument is T, it ALSO effectively binds the
+variable, i.e. puts it in the progvars list. To see how it is used,
+look at the i.s.opr def for fcollect, and also for inside, outof etc.
+
+warren
+
+
+
+
+-------
+18-Mar-80 07:14:44-PST,449;000000000001
+Date: 18 MAR 1980 0714-PST
+From: KAPLAN
+Subject: New filepkg type property:  WHENUNFILED
+To:   TEITELMAN, MASINTER, GOLDMAN at ISIE
+cc:   LISP
+
+<NEWLISP>FILEPKG allows for a new filepkg type proprty WHENUNFILED.
+Parallel to WHENFILED, its valu is a list of functions that will be applied
+to name, type, and file whenever an item named name of type type is
+removed from file by the function DELFROMFILES (or DELFROMFILE).
+
+--Ron
+-------
+18-Jul-80 12:02:37-PDT,1533;000000000000
+Date: 18 JUL 1980 1202-PDT
+From: KAPLAN
+Subject: New FILEPKG on <NEWLISP>
+To:   TEITELMAN
+cc:   LISP
+
+I changed the way the FILES command works so that it puts out an
+expression that interprets the arguments at load-time instead of dump-time.
+In particular, this means that the load-time compile.ext will be used, so
+that the appropriate choice between COM and DBYTE will be made.
+
+The format of the command is checked at dump-time, by the function MAKEFILESCOMS,
+to make sure that there is no striking error.
+
+The expression put out on the file is of the form
+(FILESLOAD . arguments to the FILES command), where FILESLOAD is a new
+function that interprets the command.
+
+Another change:  The ARRAY command will now report that it contains
+variables (as per a request by Larry).
+
+This request raises another issue about the ARRAY command, however:  why have
+it at all.  It seems to me that the VARS command should be smart
+enough to know that if the user asks for a variable with an array value to
+be dumped, he does not want to see #123456 on the file.  The VARS command
+itself should be able to convert to what the ARRAY command current does
+in case the value is an array.  (Then, for backward compatibility, we could
+make ARRAY just be a synonym for VARS, and eventually have it drop from
+the documentation.)
+
+This proposed cleanup must be implemeneted in PRETTY (I think in PRETTYVAR1).
+If you go along with this, let me know and I will make the appropriate
+cleanups in FILEPKG.
+
+--Ron
+-------

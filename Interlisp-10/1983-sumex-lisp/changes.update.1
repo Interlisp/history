@@ -1,0 +1,2366 @@
+ 8-JUL-76 13:21:30-PDT,173;000000000001
+Date:  8 JUL 1976 1321-PDT
+From: TEITELMAN
+
+FIXED BUG IN HISTORY WHEREIN ?? TYPED UNDER TYPEAHEAD
+COMMAND CAUSED OUTPUT TO GO TO CURRENT OUTPU FILE, NOT
+T.
+
+-------
+ 8-JUL-76 13:21:54-PDT,190;000000000000
+Date:  8 JUL 1976 1321-PDT
+From: TEITELMAN
+
+
+made changes to file package to handle glitch caused by
+performing loadfrom(foo.com) followed by loadfns(somefunctions foo.com)
+
+-------
+ 8-JUL-76 13:22:28-PDT,178;000000000000
+Date:  8 JUL 1976 1322-PDT
+From: TEITELMAN
+
+fixed non-feature wherein if you did cldisable(+) you couldnt
+then use an iterative statement with a FROM/TO operator
+
+-------
+ 8-JUL-76 13:22:52-PDT,148;000000000000
+Date:  8 JUL 1976 1322-PDT
+From: TEITELMAN
+
+
+fixed bug in dwimify wherein you could not  efine a synonym for
+IN or ON using i.s.pr
+
+-------
+ 8-JUL-76 14:17:52-PDT,496;000000000000
+Date:  8 JUL 1976 1417-PDT
+From: TEITELMAN
+
+added new function SETLINELENGTH which asks tenex what it thinks
+the line length is. SETLINELENGTH is invoked automatically
+following a sysin. thus if you are running via a chat connection with
+a small font, lisp will know that the line can be longer.
+SETLINELENGTH sets the variable TTYLINELENGTH. all places in
+the system where output is to go to a terminal used to do a
+(LINELENGTH 72). it now does a (LINELENGTH TTYLINELENGTH)
+
+-------
+10-JUL-76 11:46:41-PDT,160;000000000000
+Date: 10 JUL 1976 1146-PDT
+From: TEITELMAN
+
+
+fixed a glitch in prettydef where it was checking
+(CAR PRETTYFNS) instead of (GETATOMVAL PRETTYFNS)
+-------
+10-JUL-76 11:47:27-PDT,198;000000000000
+Date: 10 JUL 1976 1147-PDT
+From: TEITELMAN
+
+fixed problem in clispify to make
+(NEQ X Y) go to (X~=Y) insead of ~(X=Y),
+and (NOT (ILESSP X Y)) go to (X GEQ Y) rather
+than ~(X LT Y]
+
+-------
+10-JUL-76 12:23:44-PDT,163;000000000000
+Date: 10 JUL 1976 1223-PDT
+From: TEITELMAN
+
+
+fixed bug in undonlsetq1 causing infinite loop when usr
+dwimified (IF X ~MEMB NUMBERS THEN (HELP].
+
+
+-------
+12-JUL-76 00:49:42-PDT,567;000000000001
+Date: 12 JUL 1976 0049-PDT
+From: MASINTER
+Subject: record
+To:   Teitelman, Kaplan
+
+Bug in record fixed: some CREATE's of BLOCKRECORDS and other
+user defined create forms used not to work.
+
+New feature: if the word DATUM is used in the "create" form, then
+it is replaced with whatever the "original" create form would be.
+For example:
+
+(RECORD AA (BB . CC) (CREATE (CAR (SETQ AALIST (CONS DATUM AALIST]
+
+then (create AA --) would dwimify as before but be imbedded in the
+(SETQ AALIST ---), i.e. keeping a list of all of the instances of AA.
+
+-------
+12-JUL-76 01:09:45-PDT,281;000000000000
+Date: 12 JUL 1976 0109-PDT
+From: MASINTER
+Subject: record
+To:   Teitelman, Kaplan
+
+New feature: the record operations
+
+FFETCH, FREPLACE, and /REPLACE are now implemented. E.g.
+
+(ffetch FOO of X) will translate as a (fetch FOO of X) in a 
+FAST context.
+
+Larry
+-------
+12-JUL-76 01:15:26-PDT,775;000000000000
+Date: 12 JUL 1976 0115-PDT
+From: MASINTER
+Subject: record: user supplied FAST/UNDOABLE versions of ACCESSFNS
+To:   Kaplan, teitelman
+
+The user can supply FAST or UNDOABLE versions of ACCESSFNS forms
+in the following manner. An ACCESSFNS record looks like
+
+(ACCESSFNS record.name ((field.name fetchdef replacedef) ...]
+
+As before, "fetchdef" and "replacedef" can be either a function 
+name, a lambda expression, or a form in terms of the variables
+DATUM (and NEWVALUE).
+
+In addition, they can be property lists with the properties
+FAST/UNDOABLE or STANDARD, e.g.
+
+(ACCESSFNS LITATOM
+  (DEF (STANDARD GETD FAST FGETD) (STANDARD PUTD UNDOABLE /PUTD]
+
+forms in terms of DATUM/NEWVALUE and function names may be freely
+mixed in the property list.
+
+-------
+12-JUL-76 01:33:23-PDT,451;000000000000
+Date: 12 JUL 1976 0133-PDT
+From: MASINTER
+Subject: clarification of DATUM feature in user create forms
+To:   Teitelman
+cc:   Kaplan
+
+Sometimes one does not wish to redefine the way a given record
+is created, but merely "advise" the create; for example, to keep
+a list of all of the instances of a given record, or to keep a counter,
+etc...
+
+This is indicated by the occurrence of the word DATUM in the
+user create form.
+
+Larry
+-------
+12-JUL-76 01:47:40-PDT,608;000000000000
+Date: 12 JUL 1976 0147-PDT
+From: MASINTER
+Subject: record feature
+To:   Teitelman, Kaplan
+
+There is a new record type, ARRAYBLOCK. An ARRAYBLOCK declaration
+is very much like a DATATYPE declaration, except that the objects
+one deals with are arrays. As with DATATYPE's, the actual order
+of the fields of the ARRAYBLOCK may be shuffled around in order
+to satisfy garbage collector constraints (for arrays, this means
+that the pointers actually come last).
+
+For example,
+
+(ARRAYBLOCK FOO ((F1 INTEGER) (F2 FLOATING) (F3 POINTER)
+		 (F4 BETWEEN -30 -2) (F5 BITS 12) (F6 FLAG)]
+
+Larry
+-------
+12-JUL-76 01:53:37-PDT,524;000000000000
+Date: 12 JUL 1976 0153-PDT
+From: MASINTER
+Subject: record fixes
+To:   Teitelman, Kaplan
+
+fixed several problems in compiling datatype accesses:
+
+(1) problem when field size is 35 bits and value of FETCH is used
+in a number computation
+
+(2) eliminated extraneous number boxes in many situations:
+ when fetch of FLOATING field is used immediately in a number operation;
+ when a REPLACE is done with the value of a number expression on
+ a numeric field and the value of the REPLACE is not used.
+
+Larry
+-------
+12-JUL-76 02:02:10-PDT,261;000000000000
+Date: 12 JUL 1976 0202-PDT
+From: MASINTER
+Subject: record package change
+To:   Teitelman, Kaplan
+
+The function RECLOOK now just returns NIL (rather than causing an error)
+if no declaration can be found for the atom which is given as its
+arg.
+
+-------
+12-JUL-76 02:10:40-PDT,158;000000000000
+Date: 12 JUL 1976 0210-PDT
+From: MASINTER
+Subject: record changes
+
+Fixed bug with CREATE of ASSOCRECORD/PROPRECORD when COPYING given.
+
+Larry
+-------
+12-JUL-76 02:33:03-PDT,820;000000000000
+Date: 12 JUL 1976 0233-PDT
+From: MASINTER
+
+Date: 12 JUL 1976 0032-PDT
+From: MASINTER
+Subject: record changes
+To:   Teitelman, Kaplan
+
+I am sending a cc: of these messages to <LISP>CHANGES.TXT.
+
+There is now a slightly more convenient way of defining
+"synonym's" for record fields... all that is necessary is to
+give a embedded declaration of the form
+(RECORD oldname newname). For example, if you have a record
+FOORECORD with parts FOOPART1 FOOPART2 FOOPART3 and you want to specify
+that FOOPART2 is really in instance of FUMRECORD then you can
+make the declaration
+(RECORD FOORECORD (FOOPART1 FOOPART2 FOOPART3) (RECORD FOOPART2 FUMRECORD]
+
+This facility can also be used to give alternate or abbreviated
+names for a field; either field name may be used in a CREATE, etc.
+(more)
+-------
+-------
+13-JUL-76 02:40:41-PDT,528;000000000000
+Date: 13 JUL 1976 0240-PDT
+From: MASINTER
+Subject: RECORD
+To:   TEITELMAN
+
+NEW RECORD, DATATYPE, RECORD.COM ON <NEWLISP>.
+
+FIXED BUG IN DECLAREDATATYPE; CHANGE CREATE SMASHING SO THAT
+IT SETS ALL FIELDS, FIXED USER-CREATE-EXPRESSION SO THAT ENTIRE
+FORM IS COPIED AND THE USER-SUPPLIED FORM IS DWIMIFIED AFTER THE
+SUBST IS PERFORMED. CHANGED THE SUBST FUNCTION SO THAT IT DOES NOT
+SUBST FOR THE FIELD NAME IF THE NAME APPEARS IN A FETCH/REPLACE..
+THUS THE USER-CREATE-FORM CAN CONTAIN REPLACE OPERATIONS.
+
+-------
+14-JUL-76 01:57:24-PDT,599;000000000000
+Date: 14 JUL 1976 0157-PDT
+From: MASINTER
+To:   TEITELMAN
+
+New RECORD and .COM, MASTERSCOPE and .COM on <NEWLISP>.
+Fixed bug in CREATE of records with HASHLINK's.
+Changed Masterscope to be compatible with new FILEMAP format.
+Made masterscope aware of new /replace freplace etc. features of record.
+You may now talk about functions which "USE AS CREATE" record names --
+e.g. EDIT WHERE ANY USE FOO AS CREATE will find all of the places
+where a (create FOO --) occurs; this differs from "USE AS RECORD" in
+that the latter will also find places like (fetch (FOO F) of X).
+
+Larry
+-------
+14-JUL-76 14:39:34-PDT,187;000000000000
+Date: 14 JUL 1976 1439-PDT
+From: TEITELMAN
+
+
+fixed bug in FIX command so that
+editing eval input would position the editor at
+the expression itself, rather than one up.
+
+-------
+14-JUL-76 16:37:47-PDT,378;000000000000
+Date: 14 JUL 1976 1637-PDT
+From: MASINTER
+Subject: MASTERSCOPE
+To:   TEITELMAN
+
+NEW MASTERSCOPE & .COM ON <NEWLISP>. IT NOW PRINTS A MESSAGE IF A SHOW
+OR EDIT COMMAND IS GIVEN FOR A FUNCTION WHICH CAN'T BE FOUND (E.G. THE
+FILE WENT AWAY, OR THE FUNCTION IS KNOWN IN THE DATABASE BECAUSE THE
+DATABASE WAS LOADED IN EVEN IF THE DEFINITION WASN'T, ETC).
+
+LARRY
+-------
+15-JUL-76 01:10:29-PDT,381;000000000000
+Date: 15 JUL 1976 0110-PDT
+From: MASINTER
+Subject: masterscope
+To:   Teitelman
+cc:   kaplan
+
+New MASTERSCOPE & .COM on <NEWLISP>; I removed "USE AS CREATE" and
+instead there are 3 new verbs: CREATE, FETCH, REPLACE:
+
+. WHO CREATES FOO
+. WHICH FNS CREATE WHICH RECORDS
+. SHOW WHERE ANY FETCH FOOFIELD
+. WHICH FNS CREATING MYREC REPLACE MYFIELD
+
+etc.
+
+Larry
+-------
+15-JUL-76 02:45:29-PDT,737;000000000000
+Date: 15 JUL 1976 0245-PDT
+From: TEITELMAN
+Subject: NEW FEATURES/CHANGES
+cc:   MASINTER, LEWIS at BBNE
+
+
+
+if the second argument to TAB, MINSPACES,
+is T, means tab to indicated column unless you are already
+at or past the column, in which case do nothing.
+if MINSPACES is NIL or a number, means if you are past that
+point, then start a new line.
+
+PRINTDEF now does a (TAB LEFT T) when starting up,
+rather than just a (TAB LEFT). the reason for this change was
+that it was not possible to map down a list of expressions
+cclling printdef such that the expression printed started
+whereever you were on the line, but did not indent to that
+point. the application was to be able to prettyprint
+history entries.
+
+-------
+15-JUL-76 02:49:37-PDT,658;000000000000
+Date: 15 JUL 1976 0249-PDT
+From: TEITELMAN
+Subject: CHANGE TO FONT PACKAGE.
+To:   LISP USERS:
+
+old:  if fontfns=T and car of form being printed is
+one of the functions on this file, or if fontfns is a list, and
+car of form is on that lit, print it in indicated font
+
+
+new: if car of form is one of the functions on the file,
+or car of form is a member of fontfns, then print it in indicated font.
+
+
+implication: if you want to specify additional functions to those
+contained in the file for printing in special font, you dont have
+to make fontfns contain the additional unctions as well as
+all the functions in the file.
+
+WARREN
+-------
+15-JUL-76 03:02:49-PDT,321;000000000000
+Date: 15 JUL 1976 0302-PDT
+From: TEITELMAN
+Subject: CHANGE TO CLISP
+cc:   HTHOMPSON, KAPLAN
+
+
+clisp now knows not to dwimify the arguments of operators
+that translate into nlambda functions. the functions can
+be defined in the file, since clisp also consults NLAMA and
+NLAML in making this decision.
+
+-------
+15-JUL-76 17:11:57-PDT,170;000000000000
+Date: 15 JUL 1976 1651-PDT
+From: MASINTER
+Subject: record
+To:   Teitelman
+
+In the new record, one may break the functions RECORD, TYPERECORD etc.
+
+Larry
+-------
+21-JUL-76 20:22:35-PDT,218;000000000000
+Date: 21 JUL 1976 2022-PDT
+From: TEITELMAN
+
+
+fixed bug in clispify wherein  NEGATIVE operators didnt
+work, i.e. clispify of (NOT (ILESSP X Y)) is supposed
+to go to (X GEQ Y) but was gong to ~(X LT Y)
+
+-------
+21-JUL-76 20:23:06-PDT,225;000000000000
+Date: 21 JUL 1976 2023-PDT
+From: TEITELMAN
+To:   lisp
+
+added feature DWIMCHECK#ARGSFLG, when T, its initial value,
+dwim checks for extra arguments for all
+lambda spreads, as well s for QUOTE and GO.
+
+warren
+-------
+24-JUL-76 15:08:59-PDT,199;000000000000
+Date: 24 JUL 1976 1508-PDT
+From: TEITELMAN
+
+
+fixed bug whereby if you hit a break, typed EDIT,
+changed a function, and then conrol-d'ed the functon was
+not marked as being changed.
+
+-------
+25-JUL-76 23:22:46-PDT,433;000000000000
+Date: 25 JUL 1976 2322-PDT
+From: TEITELMAN
+Subject: TREATMENT OF * IN PRETTYDEFCOMS
+To:   KAPLAN
+
+
+i have fixed it so that an error is not generated
+in the whereis context. the effect is the same as though
+the form evaluated to NIL. i left it to generate an error
+if you are actually dumping the file, since n that case
+presumably anything thatis actually being evaluated should
+not generate an error.
+
+warren
+-------
+26-JUL-76 17:57:22-PDT,139;000000000000
+Date: 26 JUL 1976 1757-PDT
+From: TEITELMAN
+
+
+fixed a bug in clispify relating to clispifying of expressions containing NOT
+
+-------
+27-JUL-76 05:00:58-PDT,731;000000000000
+Date: 27 JUL 1976 0500-PDT
+From: MASINTER
+Subject: record
+To:   Teitelman
+
+New RECORD and .COM on <NEWLISP>. Changes include:
+(1) any variables bound (e.g. by complicated CREATE's) are bound with
+   open-lambda expression, rather than PROG. This allows the CREATE expression
+   to have RETURN's in it.
+(2) There was a serious flaw in the "data path" code with respect to
+   embedded declarations. I completely rewrote the code for tracing data-paths
+   and hopefully fixed the bugs.
+(3) miscelaneous tuning for shallow, merged error messages. 
+
+(4) new record type SYNONYM for use as an embedded declaration, e.g.
+  (RECORD A (B C) (SYNONYM B (B1 B2] means the field B is either a B1 or
+   a B2.
+
+Larry
+-------
+29-JUL-76 20:42:47-PDT,201;000000000000
+Date: 29 JUL 1976 2042-PDT
+From: TEITELMAN
+Subject: COMMENTS
+
+
+fixed READ* and PRINT* so that user can change COMMENTFLG
+to another character and still use the comment map
+facility.
+
+-------
+ 2-AUG-76 16:05:54-PDT,183;000000000000
+Date:  2 AUG 1976 1605-PDT
+From: TEITELMAN
+
+fixed bug in clispiy whereby cldisable was setting
+i.s.oprlst to NIL.
+
+fixed bug in lispxstats - was printing gibberish.
+
+-------
+ 9-AUG-76 19:13:26-PDT,378;000000000000
+Date:  9 AUG 1976 1913-PDT
+From: TEITELMAN
+Subject: NORMALCOMENTSFLG AND CHANGECHAR
+To:   VANMELLE at SUMEX-AIM
+cc:   MASINTER
+
+
+i fixed printcomment to read in the comment and print it normally
+in the case that it was going to be printing the changechar and
+the comment was on the file. i fixed readcomment to check
+for E as well as declarations:
+
+warren
+-------
+ 9-AUG-76 21:16:41-PDT,636;000000000000
+Date:  9 AUG 1976 2116-PDT
+From: TEITELMAN
+Subject: TABS IN PRETTYPRINT FILES
+To:   VANMELLE at SUMEX-AIM
+cc:   MASINTER
+
+
+i fixed it so it uses tabs whenever it can, i.e. when
+going to the right margin to print the changechar.
+however, it still uses spaces when initially positioning
+itself for comments, otherwise the normal commentsflg feature
+would be unable to distinguish between comments to be printed in the right maagin and those that
+are centered. i dont think it worthwhile installing
+any more software such as marking those comments 
+with some special form when they are first written out.
+
+warren
+-------
+12-AUG-76 21:05:41-PDT,826;000000000000
+Date: 12 AUG 1976 2105-PDT
+From: TEITELMAN
+Subject: LOADCOMP
+To:   KAPLAN, MASINTER, BOBROW
+cc:   LEWIS at BBNE
+
+
+new feature:
+there is a function called LOADCOMP of two arguments, FILE and LDFLG.
+LOADCOMP effectively looks at FILE and
+makes all necessary changes to NOFIXFNSLST, NOFIXVARSLST, etc.
+so that the material in thatfile is "noticed" for the purposes
+of dwimifying. All expressions under a DECLARE:
+EVAL@COMPILE are also evaluated. Thus, if you are building
+a "system", and want to compile one file, you simply have
+to LOADCOMP the other files.
+
+note: LOADCOMP does not look atDEFLIST's or PUTPROPS
+unless they are under a DECLARE: . it also does not
+read in the function definitions, but
+uses the file map, and/or skread so it does not
+perform a lot of unnecessary conses.
+
+warren
+-------
+12-AUG-76 23:49:57-PDT,828;000000000000
+Date: 12 AUG 1976 2349-PDT
+From: TEITELMAN
+Subject: breaking/tracing clisp constructs
+To:   LISP USERS:, CLISP HONCHOS:
+
+
+i have instaaled the following new feature.
+CLISPBREAK is a list of elements . for each atom on
+clisp which appears as a member of an expression that
+has a clisp translation, a break will occur when thatexpression
+is evaluated. each list is matched against the
+corresponding clisp expression in the sense of an editor pattern.
+for example, FOO would mean that (fetch FOO of x) and
+(replace FOO of X) would both cause breaks.
+while appearing on tha list wold break on all iterative
+statements contaiing a while. (replace & & X --) on
+all replace operations on X, etc.
+
+CLISPTRACE is a similar list wich causes tracing.
+
+CLISPBREAK and CLISPTRACE are initially NIL.
+
+
+warren
+-------
+21-AUG-76 14:15:26-PDT,144;000000000000
+Date: 21 AUG 1976 1415-PDT
+From: TEITELMAN
+
+fixed a bug in clispify relating to clispifying
+when there were local declarations.
+
+-------
+23-AUG-76 00:48:34-PDT,232;000000000000
+Date: 23 AUG 1976 0048-PDT
+From: TEITELMAN
+Subject: BUG IN LOADFNS
+To:   MASINTER
+
+
+fixed bug in loadfns where in a DEFINEQ appearing inside
+of a DECLARE: DONTCOPY threw off the file map for subsequent
+defineqs.
+
+-------
+23-AUG-76 00:49:25-PDT,192;000000000000
+Date: 23 AUG 1976 0049-PDT
+From: TEITELMAN
+To:   LEWIS at BBNE
+cc:   MASINTER
+
+
+fixed bug in brkdwnfn in which CAR of an atom was
+being taken instead of obtaiing the value.
+
+-------
+23-AUG-76 02:33:56-PDT,1354;000000000000
+Date: 23 AUG 1976 0233-PDT
+From: MASINTER
+Subject: record, datatype
+To:   TEitelman
+
+New RECORD, DATATYPE and RECORD.COM on <NEWLISP>. Changes:
+
+(a) I fixed a bug in the path-finding code which happened when
+the desired field was in a separate declaration and there
+was a field with the same name in an embedded declaration.
+
+(b) I re-wrote almost all of the DATATYPE code: the format of
+a "field descriptor" is no longer a list (BITS n1 n2 ..) or
+(POINTER ...) etc but rather is a large number. Expressions
+involving datatype expressions should compile as before.
+Interpreted code using datatypes should be much faster.
+The format of a field descriptor is as follows (for the record):
+
+the field-descriptor resembles a byte pointer
+
+bits 0-5 (from the left) contains the number of bits to the right
+	of the given field
+bits 6-11 contains the number of bits in the field
+bits 13-14 contain the "field type":
+	0 is a pointer field
+	1 is a number field
+	2 is a floating-point field
+	3 is a "flag" field
+Bits 15-19 are currently unused
+Bits 21-26 contain the datatype number (or 0 if fetch/replace should not
+	check)
+Bits 27-36 contain the word offset of this field
+
+bit 20 is set if the field is either floating or flag; it
+signifies that this field-descriptor is not implemented in microcode
+on Maxc.
+
+Larry
+-------
+23-AUG-76 19:16:54-PDT,249;000000000000
+Date: 23 AUG 1976 1916-PDT
+From: TEITELMAN
+Subject: PRETTYDEF AND TTY:
+To:   JAMES, MASINTER
+
+
+fixed prettyprint and printdef to treat TTY: same
+as T, i.e. not print font information, and not print
+functio names every n seconds.
+
+-------
+24-AUG-76 00:11:32-PDT,464;000000000000
+Date: 24 AUG 1976 0011-PDT
+From: TEITELMAN
+Subject: CLISP BUG
+
+
+fixed bug in iterative statements wheeby expressions
+of the form NEVER (X _ Y) were causing extra levels
+of parenthesization. in the course of this,
+i established the conventionthat all user i.s.oprs
+could take multiple forms, but a PROGN would
+be put in front of the forms and converted to a single
+expression before substituting for BODY in the 
+i.s.opr definition.
+
+warren
+-------
+24-AUG-76 00:18:25-PDT,99;000000000000
+Date: 24 AUG 1976 0018-PDT
+From: TEITELMAN
+
+
+cancel message about prettydef and tty:
+-------
+26-AUG-76 22:51:12-PDT,474;000000000000
+Date: 26 AUG 1976 2251-PDT
+From: MASINTER
+Subject: fremainder
+
+Mail from BBN-TENEXE rcvd at 20-AUG-76 1455-PDT
+Date: 20 Aug 1976 1457-EDT
+From: LEWIS at BBN-TENEXE
+To:   TEITELMAN at PARC, HARTLEY
+cc:   masinter at PARC
+
+New lisp.mac, lisp.symbols, lisp.pdq on <newlisp>.
+All the floating subrs use rounding instructions.
+fremainder now has the new defiition.
+Daryle
+-------
+
+FREMAINDER(X Y)=(FDIFFERENCE X (FTIMES X (FIX (FQUOTIENT X Y ]
+
+Larry
+-------
+ 3-SEP-76 23:02:39-PDT,313;000000000000
+Date:  3 SEP 1976 2302-PDT
+From: TEITELMAN
+Subject: LOWERCASE AND CLISP
+To:   LEWIS at BBNE, MASINTER, LISP
+
+
+because you sked for it --
+converting to lower case will no longer be performed
+for inputs typed in at the top level so that users
+dont get confused about the history stuff.
+
+warren
+-------
+ 8-SEP-76 18:52:57-PDT,393;000000000000
+Date:  8 SEP 1976 1852-PDT
+From: TEITELMAN
+Subject: NEW VERSION OF COMPILE AND COMPILE.COM ON NEWLISP
+To:   lewis at BBNE
+cc:   hartley at BBNE, masinter, wolf at BBND
+
+
+fixing Wolf's bug relating to two users connectig to same
+directory and beig unable to compile at the sam eimt.e
+i implemented daryles suggesin of opening
+bcompl.scratch;t as the scratch file.
+
+warren
+-------
+ 8-SEP-76 18:53:38-PDT,206;000000000000
+Date:  8 SEP 1976 1853-PDT
+From: TEITELMAN
+Subject: CLIPIFY BUG
+To:   MASINTER, JP at SU-AI
+
+
+the bug tha you reported re clispifying (CDR (LAST X))
+has been fixed.
+
+thank you.
+
+waaren
+-------
+14-SEP-76 23:50:05-PDT,179;000000000000
+Date: 14 SEP 1976 2350-PDT
+From: TEITELMAN
+Subject: WRITEFILE
+To:   MASINTER, BPM at SU-AI
+
+
+fixed writefile so that it would do terpris
+between each printdef.
+
+-------
+15-SEP-76 02:21:38-PDT,328;000000000000
+Date: 15 SEP 1976 0221-PDT
+From: TEITELMAN
+Subject: CLISPIFY
+To:   MASINTER, REP at SU-AI
+
+
+
+fixed problem in which (OR (EQ A B) (EQ C D))
+clispified to (OR A = B C = D) when clispifypackflg
+was NIL (now goes to (OR (A = B) (C = D))
+
+fixed problem in which
+(FETCH A OF E)  clispified to (E : A).
+
+warren
+-------
+16-SEP-76 02:43:17-PDT,367;000000000000
+Date: 16 SEP 1976 0243-PDT
+From: TEITELMAN
+Subject: CLISPIFY
+To:   MASINTER, KAPLAN
+
+
+i believe i have fixed the problems relating to
+use of clisp operators as operand and interacton with
+clispify. i do not aprove, and there may be othe roblems
+yet unforeseen, either in the fix, or in another area,
+but for now you can try it your way.
+
+warren
+-------
+20-SEP-76 18:44:18-PDT,701;000000000000
+Date: 20 SEP 1976 1844-PDT
+From: TEITELMAN
+Subject: PACKING OF _ IN iterative statements
+To:   MASINTER, CARHART at SUMEX-AIM
+
+
+i will try a compromise solution and see if anyone complains.
+dwim will pack things back up if you initialize a variable
+to another variable, e.g. Y_T , but if you initialize
+a variable to a list, will leave it unpacked, e.g. (Y _ (CONS)).
+note that there is no way for me to make it dependent on 
+how you originally had it, i simply dont have that expression
+in hand anymore, and it might have been corrected in the process
+of translation. thus it is possible with new solution that
+if you write (Y_(CONS)) it will become (Y _ (CONS)).
+
+
+warren
+-------
+20-SEP-76 18:44:52-PDT,325;000000000000
+Date: 20 SEP 1976 1844-PDT
+From: TEITELMAN
+Subject: *
+cc:   LISP
+
+HELPFLAG AND COMPILEUSERFN
+
+if helpflg is NIL, compileuserfn will print amessage but not cause an
+error if it is unable to dwimify. thus you can go away and
+have the file compile and then just fix those functions with problems.
+
+
+warren
+-------
+21-SEP-76 16:58:41-PDT,279;000000000000
+Date: 21 SEP 1976 1658-PDT
+From: MASINTER
+Subject: MATCH, DATATYPE
+
+Fixed bug in MATCH with =(expr) in pattern - use to call HELP
+
+Fixed a bug in DATATYPE with using value of REPLACEFIELD in
+predicate context, e.g. (COND ((replace FOO of X with --) --]
+
+Larry
+-------
+22-SEP-76 13:37:29-PDT,263;000000000000
+Date: 22 SEP 1976 1337-PDT
+From: TEITELMAN
+Subject: BUG IN ASKUSER
+To:   JAMES
+
+
+fixed but in interaction between askuser and dwim wherein
+if user responded with ^, the terminal table was left
+to be that of askusers, i.e. no  echoing.
+
+warren
+-------
+23-SEP-76 21:20:13-PDT,211;000000000000
+Date: 23 SEP 1976 2120-PDT
+From: TEITELMAN
+Subject: ATTACH
+To:   GOLDMAN at ISIB
+cc:   LISP
+
+
+your suggestion about attaching an element to NIL acting
+like CONS has been implemented.
+
+warren
+-------
+24-SEP-76 01:33:52-PDT,263;000000000000
+Date: 24 SEP 1976 0133-PDT
+From: MASINTER
+Subject: record
+To:   teitelman
+cc:   steinberg at ISID
+
+New RECORD & .COM on <NEWLISP>.
+
+I fixed a glitch in translation of (create REC reusing X) -- i.e.
+where there are no fields specified.
+
+Larry
+-------
+24-SEP-76 02:08:01-PDT,389;000000000000
+Date: 24 SEP 1976 0208-PDT
+From: MASINTER
+Subject: record
+To:   steinberg at ISID
+
+I also fixed the bug with RECREDECLARE being called with garbage.
+
+RECREDECLARE will still be called twice from EDITREC:
+
+if you change (RECORD A (B C)) to (RECORD A (D E))
+
+the first time it will be called with A and (D E)
+the second time it will be called with A and (B C)
+
+Larry
+-------
+25-SEP-76 14:11:30-PDT,165;000000000000
+Date: 25 SEP 1976 1411-PDT
+From: TEITELMAN
+
+
+fixed bug reported by masinter relating to call to
+editor via EDIT command on an open lambda expression.
+-------
+28-SEP-76 14:08:45-PDT,2089;000000000000
+Date: 28 SEP 1976 1408-PDT
+From: TEITELMAN
+Subject: PRINNDEF, TAB ETC.
+To:   WEISSMAN at BBND
+
+
+a change was made some time ago butti guess this is the firt
+net release to get out with it. there is a minor incompatibility
+but it provides new capability hitherto not available.
+
+ussd to be the case thatprintdef alwayscaaled
+TAB giving it the position of its (PRINTDEF's)
+LEFT argument (which defaults to 0).
+TAB would do a terpri and space over if you
+were already beyond thatpoint. thus the net effect was if
+you were beyond the indicated column, you always got
+a free TERPRI. However, thi meant that it was not
+possible to do something like the following:
+print several atoms on a line, and then start a printdef
+without either havng it go to a new line, or having
+its left maagin unnecessarily far in, e.g. supppose
+you wanted to prettyprint a history event, say one inw hich
+you did DEFINEQ((FOO (LAMBDA (X) --))
+you would print DEFINEQ, and then call PRINTDEF on
+its argument. however, either you would then be
+forced to go to a new line or else have to specify LEFT
+to be greater than the current position.
+
+the way printdef now works is that it calls
+TAB but in a way so that a terpri is not done if
+you are already beyond thatposition, i.e. it is a nop.
+(this is indicated by value ofminspaces for TAB being T.)
+
+the manual does not specifically say what printdef does
+initially if you are already beyond its left hand margin,
+and there was no way i could get the intended effect without
+making this change.
+
+the solution from your standpoint if you want printdef to
+always staat a new line if it is beyond LEFT
+is simply to first prform (TAB LEFT).
+
+
+to summarize, you can now call printdef and start printing
+an  xpression on the same line, wheres befor you couldnt, i.e.
+you can print
+
+
+.....     (FOO (LAMBDA (X)
+    (COND
+      ((--  etc.
+
+if you want to always start a new line, either perform
+a TERPRI first, or else perform a (TAB N), which will
+perform the terpri only if you are already beyond N.
+
+warren
+-------
+12-OCT-76 21:41:26-PDT,211;000000000000
+Date: 12 OCT 1976 2141-PDT
+From: TEITELMAN
+Subject: PROG LABELS AND CLISP
+To:   WEGBREIT
+
+
+dwimify will now print a warning message if it sees
+a prog label contaaing clisp characters.
+
+warren
+-------
+17-OCT-76 23:40:34-PDT,369;000000000000
+Date: 17 OCT 1976 2340-PDT
+From: MASINTER
+Subject: recordaccess
+To:   Model
+
+Next release will have RECORDACCESS with args
+FIELD DATUM DEC TYPE NEWVALUE
+
+where TYPE is one of (fetch ffetch replace freplace /replace)
+TYPE=NIL means fetch.
+
+If type is replace, freplace or /replace then field FIELD of DATUM will
+be replaced with NEWVALUE.
+
+Larry
+-------
+18-OCT-76 00:16:27-PDT,165;000000000000
+Date: 18 OCT 1976 0016-PDT
+From: MASINTER
+Subject: record
+
+fixed record back so that declaring a HASHLINK record does NOT clrhash
+the array.
+
+larry
+-------
+18-OCT-76 00:17:39-PDT,123;000000000000
+Date: 18 OCT 1976 0017-PDT
+From: MASINTER
+Subject: record
+
+fixed glitch in (create DATATYPE reusing (FIELD))
+-------
+18-OCT-76 19:42:01-PDT,501;000000000000
+Date: 18 OCT 1976 1942-PDT
+From: TEITELMAN
+To:   MCCUNE at ISID
+cc:   MASINTER
+
+
+i fixed the bug you reported relating to leading 0 getting
+dropped in the (r$109 $051) case.
+this sort of situatonwill undoubtedly crop up again
+and is due to the fact that giving
+pack a list of characters to pak up does not guarantee
+that you get an atom whose printname is the
+same as the characters given in the case thatthe atom
+is a number, e.g. (UNPACK (PACK '(0 5 1)) is (5 1).
+
+warren
+
+-------
+18-OCT-76 19:43:37-PDT,182;000000000000
+Date: 18 OCT 1976 1943-PDT
+From: TEITELMAN
+Subject: prettydefmacro redeclared
+To:   YONKE at ISIB
+
+
+no longer printed under greeting, or when
+dfnflg is T.
+
+warren
+-------
+18-OCT-76 23:21:25-PDT,640;000000000000
+Date: 18 OCT 1976 2321-PDT
+From: TEITELMAN
+Subject: prettyprint and comments
+To:   YONKE at ISIB
+cc:   MASINTER, LISP
+
+
+
+have made the fixes necessary to support having several
+different characters indicating comments, to be
+indicated by making the appropriate entries on
+prettyequivlst. note that all will print on
+terminal as **COMMENT**, unless of course you define
+a prettyprintmacro which rebinds **COMMENT**FLG before
+prettyprinting. note however that doing a P command
+in the editor will still print all comments as **COMMENT**,
+i.e. there is no way to specify separate values of
+**COMMENT**FLG.
+
+warren
+-------
+20-OCT-76 23:43:48-PDT,279;000000000000
+Date: 20 OCT 1976 2343-PDT
+From: TEITELMAN
+Subject: CLISPHELPFLG
+To:   LISP
+
+
+
+if clisphelpflg is NIL , and compileuserfn is unable to
+dwimify an  xpression, the mmssage will be prited, but
+an error break will not occur and coputation will continue.
+
+warren
+-------
+ 3-NOV-76 23:28:13-PST,180;000000000000
+Date:  3 NOV 1976 2328-PST
+From: TEITELMAN
+To:   MASINTER
+
+
+new assist, assist.com on newlisp. prin3 used to print
+bells instead of prin1. request by mark james.
+
+-------
+ 6-NOV-76 17:00:13-PST,143;000000000000
+Date:  6 NOV 1976 1700-PST
+From: TEITELMAN
+
+
+fixed the prettyprit algorithm to handle
+printing of infix operator ~ correctly.
+
+-------
+ 8-NOV-76 16:34:09-PST,1112;000000000000
+Date:  8 NOV 1976 1634-PST
+From: TEITELMAN
+To:   HARTLEY at BBNE
+cc:   LISP
+
+
+
+
+previously, printdef always did a TAB to LEFT, which
+meant there was no way to start printing at a point
+to the right of where the margin would be, e.g..
+suppose you wanted to print
+DEFINEQ  and then PRINTDEF the aagument to DEFINEQ without having to
+have everything indented 10 spaces.
+
+the new printdef caals tab so that if it is to the right
+of the ndicated place, it is a nop. if
+you want to make it work like before, simply do a TAB before
+you call printdef. 
+
+warren
+
+p..s. if you will read the manual  arefully, you will see
+that in fact it doesnt specify what printdef does
+when starting up with respect to its left hand margin.
+
+
+p.p.s. your message says that printdef does not always
+start in te LEFT column. if the position when printdef is
+caaled is to the left of LEFT, then it should tab to
+LEFT. if you have an example when it doesnt, let me know.
+the only changes relates to when the current position
+is to the right of LEFT.
+
+warren
+
+
+
+(cc of message sent to burton)
+-------
+15-NOV-76 20:16:48-PST,1708;000000000000
+Date: 15 NOV 1976 2016-PST
+From: TEITELMAN
+Subject: REALFRAMPE AND DUMMYFRAMEP
+To:   LISP
+
+
+here is latest situaton:
+
+there is a function DUMMYFRAMEP(POS) which is T if the user
+never wrote a call to the function at POS, e.g. in interlisp-10
+DUMMYFRAMEP is T for *PROG*LAM frames, *ENV* frames, and
+FOOBLOCK frames.
+
+DUMMYFRAMEP is used in break for matching in the baktracelst,
+so that the baktraclest does not have to have dummyframes in it.
+however, baktrace will still print dummyframes that
+are not included in a sequence that matches baktrace.
+(question - maybe this sould be suppressed on BT but
+not !BT or some such?)
+
+there is a function REALFRAMEP(POS INTERPFLG) which is
+T if POS corresponds to a real frame, i.e. the user did
+write a call to POS, and furthermore either INTERPFLG is T,
+or else POS is a frame thatwould be there interpreted or
+compiled both. For example, for the frame corresponding
+to COND, REALFRAMEP(POS T) is T, but REALFRAMEP(POS) is NIL.
+
+REALSTKNTH(N POS INTERPFLG OLDPOS) skips
+back N or -N frames for which (REALFRAMEP POS INTERPFLG) is T.
+
+
+Thus, REALFRAMEP and REALSTKNTH can be used to write
+functions which work on interpreted or compiled
+code. For examppe, REALSTKNTH i s used in
+READLINEP, the function which checks to see if you
+are under a call to readlne. Used to be the case that
+if you had a lispxuserfn which was not compiled, READLINEP
+didnt work correctly.
+
+
+DUMMYFRAMEP, REALFRAMEP, and REALSTKNTH are in LOADUP
+on NEWLISP. DUMMYFRAMEP probably belons in the VM.
+not sure about the relationship betteen realframep and
+the vm.
+
+note difference in sign between dummyframep and realframep.
+
+
+warren
+
+-------
+16-NOV-76 22:42:51-PST,963;000000000000
+Date: 16 NOV 1976 2242-PST
+From: TEITELMAN
+Subject: FILEPKAGE
+To:   LISP USERS:
+cc:   LISP
+
+
+i have long been annoyed about the fct that if you have
+typeahead a  FILES?] or MAKEFILES] followed by
+some other operations, you cannot respond YES to the
+question *want to say where the above go" because
+the next call to askuser will gobble your typeahead.
+
+i have fixed it so that if you typed ahead before the
+files? or makefiles, it will not gobble your typeahead.
+however if you just type files?]  you can typeahead a Y 
+folowed by responses to the next set of questons.
+
+furthermore you can respond to the frist question,
+"want to say where the above go" with ] (the nowhee
+response) in which call all items will be marked
+as dummy items and it wont ask you anything more.
+
+i.e. is the same as typing ] to each of the questions
+that would follow the Y response, but of course doesnt
+affect subsequent calls to files?]
+
+warren
+-------
+17-NOV-76 19:53:01-PST,230;000000000000
+Date: 17 NOV 1976 1953-PST
+From: MASINTER
+Subject: match
+To:   teitelman
+
+New MATCH & .COM on <NEWLISP> which checks for COMMENTFLG inside patterns
+and calls GETCOMMENT on them if NORMALCOMMENTSFLG = NIL.
+
+Larry
+-------
+19-NOV-76 01:46:24-PST,193;000000000000
+Date: 19 NOV 1976 0146-PST
+From: TEITELMAN
+Subject: substring
+To:   lisp, moore at SRI-AI
+
+
+now takes an optional fourth argument which if a
+string ponter is reused.
+
+warren
+-------
+19-NOV-76 03:57:34-PST,775;000000000000
+Date: 19 NOV 1976 0357-PST
+From: TEITELMAN
+Subject: new compile feature
+To:   HARTLEY at BBNE
+cc:   LEWIS at BBNE, MASINTER, LISP, WILBER at SRI-AI,
+cc:   YONKE at ISIB
+
+
+there are now two new tags recognized in a DECLARE: expression.
+the tag FIRST means the indicated expressions are to be copied
+to the compiled file BEFORE any of the compiled functions go out.
+(FIRST is a NOP in a DONTCOPY context).
+the tag NOTFIRST can be used to reset the flag.
+e.g. if the coms for a file contains
+((FNS --) (DECLARE: FIRST (P (PRINT mess1)) NOTFIRST (P (PRINT mess2)))
+then on loading thecompiled file, the user will see:
+the file created expressions
+mess1
+any messages resulting from fns being redefined,
+the (name of) the coms
+then mess2.
+
+warren
+
+-------
+23-NOV-76 01:39:26-PST,577;000000000000
+Date: 23 NOV 1976 0139-PST
+From: TEITELMAN
+Subject: change to spelling corrector
+To:   DEUTSCH, MASINTER, KAPLAN, BOBROW, LEWIS at BBNE
+cc:   LISP
+
+
+the spelling corrector will now combine spelling completion
+and spelling correction, e.g. PRETY$ will match with PRETTYPRINT
+with one mistake. similar RPETTY$ will match with PRETTYPRINT
+with one mistake. (note that RPETTYPRINT would match with
+PRETTYPRINT with no mistakes. when thereis an alt-mode,
+transposition, or doubled characters are counted as a mistake,
+since the match is not exact.)
+
+warren
+-------
+23-NOV-76 01:50:04-PST,199;000000000000
+Date: 23 NOV 1976 0150-PST
+From: TEITELMAN
+Subject: normalcommentsflg=NIL
+To:   LISP, MASINTER
+
+
+fixed updating of comment boxes to be undoable.
+pass word on to vanmelle or whoever.
+-------
+28-NOV-76 22:37:19-PST,637;000000000000
+Date: 28 NOV 1976 2237-PST
+From: TEITELMAN
+Subject: spelling corrector
+To:   LISP WIZARDS:
+cc:   LISP
+
+
+i have made a change in the spelling corrector with respect
+to handling run on corections. previously if a spelling correction
+on a word with an extra letter or two was attempted,
+and the run on offered, but vetoed, the correction did not go through.
+it will now also consider the word without the extra letters.
+thus, if one types BREAK(MUMBLEZ], and the spelling corrector
+asks whether MUMBLEZ-> MUMBLE Z  and you say no, it
+will then be in the position to cnsider MUMBLE itself as
+a correction.
+
+warren
+-------
+ 8-DEC-76 13:39:12-PST,316;000000000000
+Date:  8 DEC 1976 1339-PST
+From: MASINTER
+Subject: DIRECTORY function
+To:   teitelman, deutsch
+
+New UTILITY & .COM on <NEWLISP>:
+
+The COLLECT option of the DIRECTORY function now returns complete
+file names including the directory name, as is standard everywhere
+else in the lisp system.
+
+Larry
+-------
+ 9-DEC-76 12:21:08-PST,956;000000000000
+Date:  9 DEC 1976 1221-PST
+From: MASINTER
+Subject: changes to datatype
+To:   teitelman, hartley at BBNE, lewis at BBNE, lisp
+
+In addition to the recent changes to TYPENAME to bring it to VM specs,
+the following functions have been added:
+
+HARRAYP[x] = if x is a hash array then x else NIL
+HARRAYSIZE[x]   { = ARRAYSIZE[x], I just do a MOVD}
+ARRAYTYP[x]: currently, this returns the number of unboxed arraywords
+of X. According to the VM, this should return FIXP or POINTER depending
+on whether X is an unboxed or boxed array (since the VM does not
+support mixed arrays). Logically, ARRAYTYP must satisfy
+(ARRAY (ARRAYSIZE X) (ARRAYTYP X)) should yield an array of the same
+type as X {that is how I use it in COPYALL}. If ARRAY is ever changed
+to correspond to VM specs (i.e. that 2nd arg can be either FIXP or POINTER)
+then ARRAYTYP can be changed to return either FIXP or POINTER or the
+number if it is a mixed array.
+
+Larry
+-------
+16-DEC-76 21:46:27-PST,280;000000000000
+Date: 16 DEC 1976 2146-PST
+From: TEITELMAN
+Subject: FILETYPE
+To:   LISP, HTHOMPSON
+
+
+the filetype proety cant now be a list. 
+in addition to DON'TCOMPILE and CLISP,
+DON'TLIST is now recognized.
+
+henry - if you're in a rush, you can load <newlisp>filepkg.com
+
+-------
+17-DEC-76 19:52:44-PST,414;000000000000
+Date: 17 DEC 1976 1952-PST
+From: TEITELMAN
+Subject: ASKUSER
+To:   HTHOMPSON
+cc:   LISP
+
+
+i installed the $$ key for readline. i am still not convinced
+you could not have done it some other way yoursel.f
+also, note that readlin does not accept a file
+argument, so if you call askuser with a string for the
+file argument, and use the $$ option, it will try to read
+from the terminal.
+
+warren
+-------
+22-DEC-76 14:57:14-PST,3261;000000000000
+Date: 22 DEC 1976 1457-PST
+From: MASINTER
+Subject: list of changes for <LISP>CHANGES.TXT
+cc:   TEITELMAN
+
+INTERLISP changes
+
+RANDACCESSP, OPENFILE, and FULLNAME as in INTERLISP-VM
+
+NAMEFIELD will accept SUFFIXFLG=ONLY and DIRFLG=ONLY.
+
+A bug in SYSBUF when more than 64 characters in system buffer
+has been fixed.
+
+The max # of open files has been increased.
+
+
+HARRAYP[x] = x if x is a hash array, otherwise NIL
+
+HARRAYSIZE[x] = the size of the hash array x (in INTERLISP-10, = ARRAYSIZE)
+
+ARRAYTYP[x] = POINTER if x is all pointers, FIXP if x is all unboxed pointers, 
+	otherwise, the number of unboxed arraywords in X.
+
+TYPENAME[x] as in the INTERLISP-VM, returns the type name of x;
+one of the atoms
+ARRAYP, TERMTABLEP, READTABLEP, CCODEP, LISTP, FLOATP,
+FIXP, SMALLP, LITATOM, etc.
+
+RECLAIM, MINFS, DEFPRINT, DEFEVAL all take type names as well
+as type numbers for the appropriate arguments.
+
+REALFRAMEP[pos] says whether pos is a stack frame which would
+be there independent of implementation; in INTERLISP-10 this 
+returns NIL on *PROG*LAM frames, internal block frames ,
+ENV* frames.
+
+REALSTKNTH(pos n opos) finds the nth real frame back from pos,
+smashing opos.
+----------------------
+
+Masterscope changes:
+   The CHECK <files> command has been improved in several ways:
+   Some bugs with regard to BLKLIBRARYDEF have been fixed.
+   The output format cleaned up considerably.
+   CHECK now knows about SYSSPECVARS.
+   ... plus a few other glitches tracked down.
+
+   GETTEMPLATE is now defined to get the template for a function.
+   SHOW <verb> OF <set> 
+    will do the same thing as
+   SHOW WHERE ANY <verb> <set>,
+		e.g. SHOW FREE USE OF X
+
+   Several parsing problems have been fixed, e.g.
+   SHOW WHERE x IS USED BY y used to ignore that the verb was
+   passive and act like SHOW WHERE x USES y.
+   I fixed a problem with the implicit modifier for USE not getting set
+   when the subject was a FIELD, e.g.
+   WHICH FIELDS ARE USED BY X now parses correctly.
+   Problems with analyzing functions which were on files on other
+   directories have been fixed.
+
+
+   NEW FEATURE: ALL commands can be followed by OUTPUT <filename>
+   to direct output of that command to a file, e.g.
+   WHO CALLS WHO OUTPUT FOO
+   DESCRIBE ALL FNS ON FOO OUTPUT LPT:
+
+   I fixed a glitch in the SHOW PATHS command where the output
+   would not be aligned correctly when functions with long names
+    were encountered.
+
+   The TEST relation was not working; this has been fixed now.
+
+   (DECLARE (LOCALVARS --)) no longer shows up as a call
+   on LOCALVARS.
+
+    When analyzing functions, if a paren error is encountered, Masterscope
+	will print a "?" instead of a ".".
+
+    I fixed a problem with the EDIT command where it would exit
+   the edit immediately without stopping for user commands.
+
+   SHOW PATHS by itself now works.
+
+   In a few circumstances, a use of ANY would cause an 
+  ARG NOT ARRAY error. This has been fixed.
+
+   New synonyms: ANY = SOMEONE SOME ALL; FIND = SHOW;
+   ANY PATHS = PATHS
+
+---------------------
+Fixed a bug in pattern match compiler where patterns with
+(-- !=expression --) were not getting translated correctly.
+
+--------------
+  
+-------
+27-DEC-76 12:43:03-PST,481;000000000000
+Date: 27 DEC 1976 1243-PST
+From: MASINTER
+Subject: masterscope
+To:   Teitelman
+
+New MASTERSCOPE & .COM on <NEWLISP>.
+
+(a) I changed again some of the formatting of MSCHECKBLOCKS.
+
+(b) If you ask a question and no functions have been analyzed, Masterscope
+will now ASKUSER "Shall I 'ANALYZE THE FNS IN CHANGEDFNSLST OR ON ANY FILES 
+IN FILELST' ? ". It seems like this is pretty much what casual users want...
+at least from the typescripts I've seen.
+
+Larry
+-------
+ 5-JAN-77 20:31:20-PST,82;000000000000
+Date:  5 JAN 1977 2031-PST
+From: TEITELMAN
+To:   LISP
+
+MESCO
+
+
+
+-------
+ 5-JAN-77 20:32:18-PST,687;000000000000
+Date:  5 JAN 1977 2032-PST
+From: TEITELMAN
+To:   LISP
+
+
+
+when working with a laage block compiled system, it is
+often not convenient to load in all the exprs to edit just one.
+then one has to suffer through a sequence of u.d.f errors
+each time a non-block entry is encountered by the now
+interpreted functions. i have added a feature to
+dwim analagous to that in the editor in that if a u.d.f
+is encountered from the course of evaluation,
+and dwimloadfns=T (which it initially is),
+dwim calls  ditloadfns? to see if it can find where
+the function is, and if so, loads it in automatically.
+setting dwimloadfnsflg to NIL will suppress this feature.
+
+warren
+
+
+-------
+ 5-JAN-77 20:32:45-PST,233;000000000000
+Date:  5 JAN 1977 2032-PST
+From: TEITELMAN
+To:   LISP
+
+*
+
+
+if dfnflg is PROP and you edit a function on its
+prorty list, editor will not unsave it even if it is
+changed, but will instead print a message.
+
+warren
+-------
+10-JAN-77 18:37:40-PST,413;000000000001
+Date: 10 JAN 1977 1837-PST
+From: TEITELMAN
+Subject: DWIMLOADFNS
+To:   MASINTER
+
+
+
+is supposed to work automaaically.
+if LOADFNS(FN) without a file, or editing
+the function would bring it in, then
+if it is called from within a function,
+it is loaded. i didnt want it to check on
+typein as this would mean a long check
+after every typo. and if you are typing it
+in, it probably is defined. 
+-------
+12-JAN-77 23:52:18-PST,800;000000000000
+Date: 12 JAN 1977 2352-PST
+From: TEITELMAN
+Subject: breaking or tracing clisp
+To:   BURTON at BBND
+cc:   LISP
+
+
+turns out that there is a facility which is undocumented, i.e.
+was done after the manual. it hasnt been used much, ss
+you might find a few problems, bbt basically here
+is the way it works.
+
+you can set CLISPBREAK or CLIPTRACE to a list.
+when an expression is encountered with a clisp translation
+if its CAR is equal to some member of the lit,
+e.g. fetch, while, for, replace, etc., or
+if it matches some list element
+of the list in the edit sense, e.g. (fetch (FOO &) --)
+ then a break or trace will occur.
+
+e.g. setting CLISPTRACE to 
+((fetch (FOO --) --) (relace (FOO --) --))
+will trace all accesses or replaces to any record field of
+FOO.
+
+warren
+
+-------
+17-JAN-77 18:14:20-PST,350;000000000000
+Date: 17 JAN 1977 1814-PST
+From: MASINTER
+Subject: record
+To:   teitelman
+cc:   kaplan
+
+New RECORD & .COM on <NEWLISP>.
+
+Fixed record error-message-printer so that it doesn't say
+"in  NIL " in calls from RECORDACCESS.
+
+Fixed bug that /REPLACE operations would not get retranslated when
+record declarations were edited.
+
+Larry
+-------
+17-JAN-77 18:45:13-PST,286;000000000000
+Date: 17 JAN 1977 1845-PST
+From: MASINTER
+Subject: masterscope
+To:   teitelman
+cc:   HThompson
+
+New masterscope & .com on <newlisp> fixing another problem with
+. ANALYZE ON X
+
+when X is on another directory but you have loaded the compiled version
+thereof.
+
+Larry
+-------
+20-JAN-77 20:45:26-PST,453;000000000000
+Date: 20 JAN 1977 2045-PST
+From: MASINTER
+Subject: STORAGE, TYPENAME
+
+The format for STORAGE has been changed. It prints, under TYPE,
+the TYPENAME (e.g. LISTP, STRINGP, etc., which is the name that
+you can pass to MINFS, DEFPRINT, etc.) as well as a more informal
+description.
+
+DEFPRINT and DEFEVAL have been fixed so that you can in fact
+specify action on ARRAYP, TERMTABLEP, HARRAYP, READTABLEP and CCODEP
+independently.
+
+Larry
+-------
+20-JAN-77 20:47:09-PST,257;000000000000
+Date: 20 JAN 1977 2047-PST
+From: MASINTER
+Subject: PARC-only change to GC messages
+
+In BLISP only: garbage collection messages now print
+
+"collecting arrays
+1024, 10000 free cells"
+
+rather than
+
+"GC: 1
+1024, 10000 FREE WORDS"
+
+Larry
+-------
+ 4-FEB-77 23:43:15-PST,127;000000000000
+Date:  4 FEB 1977 2343-PST
+From: TEITELMAN
+Subject: CO
+To:   LISP
+
+
+
+now affects 89 spelling correction
+
+
+
+-------
+10-FEB-77 10:50:53-PST,974;000000000000
+Date: 10 FEB 1977 1050-PST
+From: MASINTER
+Subject: triangular printlevel
+
+cdr printlevels have been put in:
+
+
+(1) If PLVLFLG is non-nil (plvlflg is bindable) then the current
+printlevel will affect output to files.
+
+(2) PRINTLEVEL[carn;cdrn] is now defined as follows:
+(in all cases printlevel will return the old printlevel as
+  (oldcarn . oldcdrn)
+)
+
+printlevel[carn;nil] will set the car printlevel and leave the
+cdr printlevel unchanged.
+
+printlevel[nil,cdrn] will set the cdr printlevel and leave the car
+printlevel unchanged.
+
+printlevel[nil,nil] just returns the current printlevel info.
+
+printlevel[carn;cdrn] sets both the car and cdr printlevels
+
+printlevel[(carn . cdrn);nil] is the same as printlevel[carn;cdrn]
+	this makes resetform's work better with the new printlevel.
+
+If the cdr printlevel is less than zero, then the action of
+cdr printlevels is disabled (ie, it is infinite).
+
+The initial cdr printlevel is -1.
+
+-------
+12-FEB-77 22:56:18-PST,525;000000000000
+Date: 12 FEB 1977 2256-PST
+From: TEITELMAN
+Subject: DWIMIFY AND CREATE
+To:   YONKE at ISIB, GOLDMAN at ISIB
+cc:   MASINTER, LISP
+
+
+neil,
+i have fixed your bug. it turned out to require just that
+configuration to manifest itself. i.e. you had to have
+the CREATE being ssisgned to a variable bound
+by a BIND operator, and furthermore, if you had written
+(BIND (Z_(CREATE --]
+or (BIND Z_(CREATE --]
+or (BIND Z _ (CREATE --]
+or anything except (BIND (Z _ (CREATE --
+it wold not have shown up.
+
+warren
+-------
+22-FEB-77 18:45:38-PST,154;000000000000
+Date: 22 FEB 1977 1845-PST
+From: TEITELMAN
+To:   MASINTER, WILLIE-SUE
+cc:   LISP
+
+
+fixed dwim so tha it will unsavedef CODE properties.
+
+-------
+25-FEB-77 02:31:08-PST,274;000000000001
+Date: 25 FEB 1977 0231-PST
+From: MASINTER
+
+Problem with GO not breaking correctly on ILLEGAL GO fixed.
+
+System has been changed so that it is runnable on a DEC TOPS20 system.
+This involved changes to several files & additional modifications
+are expected.
+
+-------
+27-FEB-77 15:12:17-PST,208;000000000001
+Date: 27 FEB 1977 1512-PST
+From: MASINTER
+To:   teitelman
+cc:   HThompson
+
+new CIRCL on <NEWLISP> fixing bug in COPYALL so that it copies user
+data types.
+
+{a RETURN was left out}.
+
+Larry
+-------
+ 2-MAR-77 12:47:11-PST,329;000000000001
+Date:  2 MAR 1977 1247-PST
+From: MASINTER
+Subject: compiler
+To:   teitelman, kaplan
+
+Apparently the new compiler finally has the feature that if you
+use a comment in a context where the value of that comment is used,
+it gives you a warning message, e.g.
+
+****** ((* Ignore --) COMMENT USED FOR VALUE)
+
+Larry
+-------
+10-MAR-77 20:50:01-PST,351;000000000001
+Date: 10 MAR 1977 2050-PST
+From: TEITELMAN
+Subject: DWIIFYING F/L
+To:   DEUTSCH
+cc:   LISP
+
+
+improved the test so that dwim checks to ee if
+CAR of the "variable list" is used freely in
+the body before attempting spelling correction
+to convert it to a function/.
+the case that cprovked this was
+(F/L (PROC) (FOO PROC)).
+
+warren
+-------
+11-MAR-77 21:57:14-PST,230;000000000001
+Date: 11 MAR 1977 2157-PST
+From: TEITELMAN
+Subject: E
+To:   WILBER at SRI-AI
+cc:   LISP
+
+
+E is no longer the name of a function. it is a lispx
+command for those used to typing E followed by expression.
+
+warren
+-------
+11-MAR-77 22:03:52-PST,449;000000000001
+Date: 11 MAR 1977 2203-PST
+From: TEITELMAN
+Subject: functions that are also names of history commands
+To:   BURTON at BBND
+cc:   LISP
+
+
+if a history command is defined as a function, a warning
+message will be printed to alert the user that when
+typed in the history command interpretation will
+take precedence. similarly, if a defined function is
+installed as a history command via NAME comand,
+user will be alerted.
+
+warren
+-------
+11-MAR-77 22:25:27-PST,1002;000000000001
+Date: 11 MAR 1977 2225-PST
+From: TEITELMAN
+Subject: ARGLIST
+To:   KAPLAN, DERKSEN, MASINTER, MOORE
+cc:   LISP, MOORE at SRI-AI
+
+
+a bug was reported to the effect that
+if GETD FOO was a list but not a functio object,
+arglist caused a stack overflow. the reason for this
+was that ARGLIST called fncheck to do spelling corection,
+and FNCHECK, since there was a defnition there just
+returned the original argument, hence it looped.
+(1) i fixed arglist so that in this case it would not
+loop but generate an error.
+
+the particular reason this came about was that
+kaplan had defined foo as (DLAMBDA (A B) (CONS A B))
+intending to presumably process DLAMBDA's via a
+DWIMUSERFN. i could see where he might want
+ARGLIST to work in this case. i exnteded arglist
+in the following way:
+
+(2) if CAR of DEF is member of LAMBDASPLST, then
+it returns CADR DEF same as for LAMBDA , NLAMBDA.
+
+
+in this situation, presumably user is extending
+the notion of functio object.
+
+warren
+-------
+11-MAR-77 22:38:00-PST,337;000000000001
+Date: 11 MAR 1977 2238-PST
+From: TEITELMAN
+Subject: u-case, l-case
+To:   LISP
+
+
+when given lists now construct lists consisting
+of result of applying function to each element,
+rather than they used to of constructing an atom
+corresponding to first converting list
+to an atom and then lowercase or uppercasing that.
+
+-------
+17-MAR-77 22:23:39-PST,1465;000000000001
+Date: 17 MAR 1977 2223-PST
+From: TEITELMAN
+Subject: CLISP DECLARATIONS
+To:   GOLDMAN at ISIB
+cc:   LISP
+
+
+neil,
+
+this really isnt teribly clean, and kind of makes me
+feel like it is a slap and paste job, but 
+(clisp declartions . form) or (clisp declarations form) are
+now or will be accepted. note that in the example you
+cite of declarations within compiler macros,
+it is not clear whether the declaration if any in the
+function should override that in the macro.
+i have arbitrarily implemented as when you
+use (CLISP --) you are basicaly staating over
+with a new context, except thatthe VARS of the higher
+expression are available. so that any declarations in effect
+atthe function level dispapear entirely. 
+
+there is no way to do this in the system you are currently
+using.
+
+note that the CLISP construct currently is only documented
+in a footnote, and was added as an afterthought to allow
+users to specify the retention of clisp. i dont
+paaticularly like this feature because if there are any
+errors corrected, e.g. spelling corrections, in the course
+of translating the form, the correction will not be performed
+in the original clisp. combining your desired feature of
+having declarations aatached to expressions with this
+construct when they arereally two
+independent things is not really the best way to go,
+but i doubt whether or not anybody is being affected
+by this, so let us see what happens.
+
+warren
+-------
+18-MAR-77 01:05:52-PST,691;000000000001
+Date: 18 MAR 1977 0105-PST
+From: TEITELMAN
+Subject: CLISPIFTRANFLG AND IF THEN STATEMENTS
+To:   KAPLAN
+cc:   LISP
+
+
+
+ron,
+
+let us try the following  and see how it works.
+if clipiftranflg=T, dwimify constructs an apprpriate
+IF,THEN,ELSE statement out of the translated COND and
+stores it back in the function definition. In particular,
+if you use uppercase, it will convert to lowercase, and
+if you write ELSE IF as two separate words, it will
+convert back to ELSEIF, and ELSEIF T THEN --
+will become ELSE --. note that the constitutens
+of the if then expression will be translated CLISP,
+not untranslated CLISP. is this more or less what you wanted?
+
+warren
+-------
+18-MAR-77 18:35:45-PST,322;000000000001
+Date: 18 MAR 1977 1835-PST
+From: TEITELMAN
+To:   YONKE at ISIB
+cc:   LISP
+
+
+the consensus seems to favor changing askuser
+confirmflg such that if a list, only those characters on
+the list are used for confirming. marty, please check
+this out thoroughly next time there is a release.
+
+warren
+
+
+
+
+
+-------
+24-MAR-77 14:41:27-PST,330;000000000000
+Date: 24 MAR 1977 1441-PST
+From: MASINTER
+Subject: masterscope
+To:   teitelman
+cc:   kaplan
+
+New MASTERSCOPE & .COM on <NEWLISP>. Only change is that
+if CAR of the definition is not LAMBDA or NLAMBDA, MASTERSCOPE
+calls COMPILEUSERFN to get an alternative definition, in the
+same way the compiler does.
+
+Larry
+-------
+24-MAR-77 14:51:16-PST,1361;000000000000
+Date: 24 MAR 1977 1451-PST
+From: MASINTER
+Subject: changes to HELPSYS
+cc:   teitelman
+
+This is a brief summary of the changes that I made to HELPSYS:
+
+a) I performed a large number of local-optimizations; i.e. played
+smart compiler. For example, I changed (PRIN1 (PACK (LIST A B))) to
+(PRIN1 A) (PRIN1 B); I also got rid of some of the code which was not used.
+
+
+b) I fixed the situation in which HELPSYS would occasionally
+put out a naked carriage return without line-feed, causing overprinting.
+
+c) I fixed two or three situations where HELPSYS would cause non-numeric
+arg errors.
+
+d) I simplified the interrupt structure as follows: control-O (or whatever
+character was assigned to OUTPUTBUFFER) is redefined when in HELPSYS
+to mean to stop the current type-out. This eliminates all confusion
+about when it is safe to type the interrupts-- it is always safe
+to type a control-O.
+
+e) Finally, I fixed HELPSYS so that it will not mess up if the
+HELPSYS files are not available (this used to cause several anomalous
+conditions, e.g. it would close the current input file).
+
+In general, performance should be slightly improved, a few bugs
+fixed and no new bugs introduced; however, HELPSYS is still
+quite flakey in that it often answers with irrelavant information
+or formats that information in an unusual way.
+
+Larry
+-------
+25-MAR-77 22:44:22-PST,843;000000000000
+Date: 25 MAR 1977 2244-PST
+From: TEITELMAN
+Subject: iterative operator extension
+To:   LISP
+cc:   WILBER at SRI-KL, VITTAL at BBN
+
+
+
+it is now possible to redefine built in iterative oprators
+using i.s.opr. to refer to the original definition, one uses
+the flag ORIGINAL (similar to prettyprint, compiler, editor conventions)>
+E.G.
+i.s.opr(while NIL (WHEN FOO ORIGINAL WHILE BODY))
+could be used to extend the definition of
+WHILE to include a FOO check.
+
+note thatin the case thatthe i.s.opr is already defined via a
+property list definiton, e.g. collect, do, count, etc.
+then if you redefiie it, ORIGINAL will not be abe
+to obtai the original definition. ORIGINAL is primarily
+intended for redefining and/or extending built in opratrs,
+such as WHILE, TO, IN, and (i hope it works) FOR, BIND, etc.
+
+warren
+
+
+-------
+26-MAR-77 11:58:08-PST,461;000000000000
+Date: 26 MAR 1977 1158-PST
+From: TEITELMAN
+Subject: I.S.OPRS
+To:   LISP, MASINTER, LEWIS at BBND, YONKE at ISIB,
+To:   GOLDMAN at ISIB, MOORE at SRI-KL, BOYER at SRI-KL,
+To:   WILBER at SRI-KL, BPM at SU-AI, DEUTSCH, KAPLAN
+
+
+when an i.s.opr is redefined, all expressions using
+thati.s.opr that have been translated will have their
+translation cleared,  xactly as with records being redefined.
+i.s.opr will print (opr REDEFINED).
+
+warren
+-------
+28-MAR-77 02:13:41-PST,207;000000000000
+Date: 28 MAR 1977 0213-PST
+From: MASINTER
+Subject: FFILEPOS
+To:   Teitelman
+
+New FFILEPOS & .COM on <NEWLISP>. I added an entry onto 
+GAINSPACEFORMS to wipe FFILEPOS initialization.
+
+Larry
+-------
+28-MAR-77 17:50:34-PST,3648;000000000000
+Date: 28 MAR 1977 1750-PST
+From: MASINTER
+Subject: file functions
+
+Specification for new functions for dealing with file names
+in a system-independent manner.
+
+The VM assumes that file names have "fields" which have
+different semantic interpretations; these functions are
+provided for manipulating file names and their
+corresponding fields.
+
+A Field Name is a literal atom which is the name of a
+file-name field. The INTERLISP system assumes that NAME and
+EXTENSION are valid field names; the implementer is free to
+allow other fields. In INTERLISP-10, allowable field names
+are: 
+DEVICE
+DIRECTORY
+NAME
+EXTENSION
+VERSION
+PROTECTION
+ACCOUNT
+TEMPORARY
+
+Functions are:
+
+FILENAMEFIELD[filename,fieldname]
+  return the atom which is the field fieldname of filename 
+e.g. FIELNAMEFIELD[FOO.BAZ EXTENSION]
+returns BAZ
+   FILENAMEFIELD[<MASINTER>FOO.BAZ;T TEMPORARY]
+returns T
+
+
+Returns NIL if no such field is present, or if fieldname is
+not a valid field name (i.e. FILENAMEFIELD just ignores
+unrecognized field names, on the assumption that they are
+for another op. system).
+
+
+UNPACKFILENAME[filename]
+
+returns a list such that
+(FILENAMEFIELD file field)
+            =(LISTGET field (UNPACKFILENAME file))
+
+i.e. a list (fieldname fieldvalue fieldname fieldvalue ---)
+
+e.g. FILENAMEFIELD(<MASINTER>FOO.BAZ;3)
+
+returns 
+(DIRECTORY MASINTER NAME FOO EXTENSION BAZ VERSION 3)
+
+
+PACKFILENAME[name value name value ...]
+a LAMBDA* function; the odd-numbered arguments are field
+names, and the even numbered arguments are the values.
+
+e.g. PACKFILENAME[DIRECTORY MASINTER NAME FOO]
+returns <MASINTER>FOO
+
+If the first argument is a list,
+APPLY[PACKFILENAME, arg1] is computed, i.e. the results are
+"spread" first. Thus, PACKFILENAME operates as an inverse to UNPACKFILENAME.
+In addition, a "name" may be the atom BODY; UNPACKFILENAME
+of the value is computed and the result interupreted as if they
+had been given in the corresponding place in the argument list.
+E.g.
+
+PACKFILENAME(n1 v1 BODY FOO.BAZ;3 n2 v2 n3 v3)
+
+is equivalent to
+
+PACKFILENAME(n1 v1 NAME FOO EXTENSION BAZ VERSION 3 n2 v2 n3 v3)
+
+In the INTERLISP-10 implementation, delimiting characters are optional, e.g.
+PACKFILENAME(DIRECTORY <MASINTER> NAME FOO EXTENSION .COM PROTECTION ;P770000]
+is acceptable.
+
+
+If the same field name is given twice, the FIRST
+is used, e.g.
+PACKFILENAME(NAME X NAME Y EXTENSION SAV)
+returns X.SAV. This is most useful in conjunction with the BODY feature:
+
+(a) to change a field. e.g. to take a file name and change the
+directory name, you can do:
+
+(PACKFILENAME 'DIRECTORY newdirectory 'BODY x)
+
+Even if X has a directory, the new directory will override.
+
+Alternatively, if one wishes to supply a default,
+
+(PACKFILENAME 'BODY oldname 'EXTENSION 'SAV)
+
+would say to add a .SAV if there was not already an extension.
+========================
+
+The specifications for OPENFILE and FULLNAME have changed
+from the VM as follows:
+
+a) OPENFILE and FULLNAME, if not given a literal atom,
+try to PACKFILENAME their argument.
+
+b) There is a new recognition mode OLD/NEW, which says:
+try to find an old file, but open a new one if you can't
+(useful only if you are writing the file).
+
+c) OPENFILE causes an error FILE NOT FOUND if there is no such file
+(it used to return NIL).
+
+d) OPENFILE has an additional argument
+MACHINE.DEPENDENT.PARAMETERS which is a list of flags;
+current flags recognized by INTERLISP-10:
+
+THAWED -- open the file in "thawed" mode
+WAIT -- always wait if file is busy
+DON'T.CHANGE.DATE -- don't change the read date
+
+
+-------
+ 4-APR-77 21:55:18-PST,444;000000000000
+Date:  4 APR 1977 2155-PST
+From: TEITELMAN
+Subject: RECOMPILEDEFAULT
+To:   MASINTER, LEWIS at BBND, DEUTSCH
+cc:   LISP
+
+
+when FNS=NIL and CFILE=NIL, recompile will henceforth
+use the value of RECOMPILEDEFAULT for FNS. this is
+initialized to EXPRS to be backwards compatible with
+current system. however, user can set it to CHANGES in order
+to force recompile to always recopile everything that
+has been changed.
+
+warren
+-------
+ 4-APR-77 23:31:55-PST,178;000000000000
+Date:  4 APR 1977 2331-PST
+From: TEITELMAN
+Subject: @ command in break
+To:   MASINTER, LEWIS at BBND, LISP
+
+
+now does spelling correction on the stack.
+
+warren
+-------
+ 5-APR-77 18:05:17-PST,286;000000000000
+Date:  5 APR 1977 1805-PST
+From: TEITELMAN
+Subject: new edit wedit and edit.com on newlisp
+To:   MASINTER
+cc:   LISP
+
+
+fixed bug wherein when you  ried to undo a redo in the editor
+it didnt do anything, just typed a c.r. (this has been around
+for a while.)
+
+warren
+-------
+ 8-APR-77 11:21:13-PST,1261;000000000000
+Date:  8 APR 1977 1121-PST
+From: MASINTER
+Subject: new feature in FFILEPOS
+To:   Moore at SRI, teitelman, deutsch
+cc:   lisp
+
+I recently made two changes to FFILEPOS: 
+a) FFILEPOS uses its "skip" argument, by calling itself
+  recursively; i.e. you can now arbitrarily
+  replace calls to FILEPOS by calls to FFILEPOS (but don't
+  really want to if the distance being searched is small).
+
+  This minimizes the overhead when SKIP is not given, and
+  is a reasonable approach if the segments of the pattern
+  between the skip-characters are large.
+
+b) FFILEPOS takes an additional argument, called a CASEARRAY.
+A CASEARRAY is an (ARRAY 128 128). Each character in the
+file and in the pattern is mapped "thru" CASEARRAY in
+the sense that character I is turned into character (ELT CASEARRAY I+1)
+before matching. This adds one instruction to the main
+loop of FFILEPOS and one to the setup loop.
+
+To do upper and lower case equivalence, one can give FFILEPOS
+an array where I -> I except that the lower case characters
+map to the upper-case characters.
+
+To search for a delimited atom on a file, one can search for
+" ATOM " with a case array with all of the separators and
+break characters mapped to the same character.
+
+Larry
+-------
+11-APR-77 19:29:20-PST,297;000000000000
+Date: 11 APR 1977 1929-PST
+From: TEITELMAN
+Subject: BREAK WITHIN A BREAK
+To:   LISP
+
+
+if the user breaks on a function used by break in such
+a fashion as to cause a loop, the message
+break within a breakis printed folloed by
+functon name and the break does not occur.
+
+warren
+-------
+22-APR-77 19:44:25-PST,2559;000000000000
+Date: 22 APR 1977 1944-PST
+From: TEITELMAN
+Subject: f.y.i. - file package change
+To:   LISP
+cc:   LEWIS at BBND
+
+
+
+i am always anxious when tinkering with file package that
+i might have forgotten some obscure useage.
+
+ron requested that when the editor automatically
+loaded a function from a file, it sould check to see if there
+were a newer version of the file (presumably written by someone else).
+i looked atthe code and it appeared thatthe code first of aal
+intended to get the newest version (but didnt in the case
+of a loadfrom due to later chanes to file package) and
+furthermore contained a lot of redundant and anachronistic checks
+which were necessary before file package was smartened up.
+
+i have cleaned up ediloatfns? and maybe introduced
+some new problems which i will fix. editloadfns? used
+to (1) check to see if there was a FILE property and if
+none use rootname of fiel. as far as i can tell, this
+check should always have succeeded. (unless you wiped out all
+the file properties, in which case you will have to suffer 
+at not being able to have an autoloadfns. probably something
+else wold break anyway.)
+(2) then it would check tose if the file property were the
+type compiled, in which case it would do a namefield FL rater
+than FL T, i.e. strip off the suufix. as far as i cn tell,
+the name aded to  filelst in this case would already
+have had the .com tkane off because addfile does this.
+
+(3) then check for the FILEDATES property and if there was one,
+use the file there, (this check also shuld always succed) and fially
+(4) fall back to the namefield again.
+
+i am now assuming thatthere will be a filedates property and what
+i now do is do an infilep on that file, and anther on the same
+file withut version number, i.e. the same directory. if these
+two files differ, i print a message, e.g. if you have deleted
+the version this file was loaded from, or made a newer version.
+i always use the newest version (on thatdirectory).
+
+i think this dominates in 90% of the cases. is possible i have
+disabled some featres involving switching connect
+directories in mid streap, but dont think so since as far as
+i can teel, all calls to  ditloadfns? was using the
+filedates property, which had the directory in it.
+
+i will fix anything that stops working of course.
+
+ron - since its your baby, i expect you to bng on it heavily.
+i will probably be reloading onne this weekend, and aain
+next week when larry merges alices fixes in for the vaious
+tops20 problems.
+
+warren
+
+
+-------
+22-APR-77 19:55:26-PST,994;000000000000
+Date: 22 APR 1977 1955-PST
+From: TEITELMAN
+Subject: MAKEFILEFORMS
+To:   HTHOMPSON, MASINTER, KAPLAN, LEWIS at BBND, LISP
+
+
+makefile now simply calls prettydef under a resetlst after
+rebinding prettytranflg, prettyflg, and clispifyprettyflg.
+before calling prettydef, it maps down MAKEFILEFORMS doing
+evals uner errorset protection. this gives user place to
+add things to be done before each makefile. by doing them
+with a resetsave, the effects will be restored. for example,
+makefileform is initialized to contain
+(AND (NEQ (LINELENGTH) FILELINELENGHT) (RESETSAVE (LINELENGTH FILELINELENGTH]
+it also contains expressions for resetting prettyflg,
+clipifyprettyflg, etc.
+it was my opinion thatthee overhead for moving
+thse out to makefileforms was tiny compared to the time
+to do a prettydef, and thatit gave added flexibility, e.g.
+the user could set it up so that clispifyprettyflg was
+set for all files whose filetype was CLISP except for
+... etc. 
+
+warren
+
+-------
+24-APR-77 13:10:05-PDT,134;000000000000
+Date: 24 APR 1977 1310-PDT
+From: TEITELMAN
+To:   LISP
+
+
+BEFORESYSOUTFORMS now operates similarly to AFTERSYSOUTFORMS..
+-------
+26-APR-77 20:02:28-PDT,190;000000000000
+Date: 26 APR 1977 2002-PDT
+From: TEITELMAN
+Subject: helpflag = BREAK!
+To:   LISP
+cc:   MASINTER
+
+
+means always break, even on calls to error with
+3rd argument T.
+
+warren
+-------
