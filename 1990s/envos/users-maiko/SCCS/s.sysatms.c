@@ -1,0 +1,1 @@
+h17271s 00002/00000/00000d D 1.1 92/04/21 15:30:19 sybalsky 1 0c date and time created 92/04/21 15:30:19 by sybalskyeuUf e 0tTI 1/* %Z% %M% Version %I% (%G%). copyright venue & Fuji Xerox  */static char *id = "%Z% %M%	%I% %G%	(venue & Fuji Xerox)";E 1

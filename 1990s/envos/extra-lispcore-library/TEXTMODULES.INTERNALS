@@ -1,0 +1,141 @@
+1
+
+TEXT FILE TRANSLATOR: DESIGN NOTES
+1
+
+TEXT FILE TRANSLATOR: DESIGN NOTES
+TEXTMODULES
+1
+
+TEXTMODULES
+1
+
+
+TEXT FILE TRANSLATOR
+DESIGN NOTES
+6
+
+Ron Fischer
+Xerox AI Systems
+3/25/87
+(last revised 8/25/88)
+
+TEXTMODULES is a Text File and File Manager File importer and exporter.  An appendix contains a query of potential users and their responses.
+Internal features of the Text File Translator are described here.
+2
+
+Overview
+1
+
+
+The Text File Translator supports the development of portable Common Lisp source code in the Xerox Lisp Environment.  It brings portable Common Lisp sources into the File Manager without losing any of their contents.   It also makes new text files based on the File Manager's description of the text file contents.
+The original file's function and ordering are retained, but exact formatting is not.  The pretty printer causes all comments and expressions on the text file to be uniformly formatted.
+There is no support for the use of "text"as a File Manager source file format.
+All symbols described in this document are in the TEXTMODULES package, nicknamed TM.
+2
+
+Programmer's Interface
+1
+
+
+ load-textmodule	[Function]
+[INTERNAL]  Should a warning be issued if *readtable* or *package* are reset (eq across forms?).  Is this likely to come up?
+[INTERNAL] The content description is edited after loading to remove setup information eg: mode line comment,  package or read-base setfs, or requiring of related modules.  These are turned into a makefile-environment statement (a let actually; see under make-textmodule).
+[INTERNAL] All of this stuff is handled by an "after file is read" function, which passes over the FILECOMS.  It was originally intended to compress like-level comments (at top leve), but it is now used to create the makefile-environment.
+
+make-textmodule	[Function]
+2
+
+Text file format
+1
+
+
+[INTERNAL] An open issue is where to save top level comments around these forms.  The simplest solution is to include them in the makefile-environment statement, which requires advising the evaluation of that form to strip them out.
+2
+
+File Manager description of contents
+1
+
+
+Makefile environment
+1
+
+
+Filecoms
+1
+
+[INTERNAL] Definers are made to handle presentations by replacing IL:REMOVE-COMMENTS with the presentation stripper.  A definer never has its presentations stripped unless evaluated to create a defintion, thus presentations, etc. are availible to be edited.
+Making new specifiers
+1
+
+make-specifier-type	[Function]
+[INTERNAL] The text file converter separates these ideas more completely than the File Manager, in whichthe  il:getdef and il:putdef methods must recognize the il:dfnflg mode.  This may not have been a good idea, since it adds overhead in the form of different semantics.
+2
+
+Presentation objects
+1
+
+[INTERNAL] Not yet addressed is the issue of symbol translation on lookup.  In essence, if a symbol explicitly qualified with a particular package is looked up, and the in-memory package inherits the symbol from somewhere else, there is a "translation" of the explicitly qualified symbol into the inherited package.  The same sort of translation applies when a symbol written as internal is actually found to be external in a package; it is translated to be external.  A solution to this would be a mechanism in the symbol lookup routines which signalled a condition whenever such a translation was about to take place (signalling would normally be disabled).  Then a handler could replace the symbol with a presentation type that preserved the original text form.  This is similar to treatment of broken atoms in SEdit.
+Making new presentations
+1
+
+[INTERNAL] this interface is presently not for release.  It could be more elegantly implemented with object programming.
+The hash-bar and semi-colon comment presentations are currently handled as special cases.  The presentation code otherwise depends on representation as structure with unique datatypes.
+defpresentation name &key fields include print-function read-macro translator	[Function]
+Creates a new type of presentation, which is represented as a structure.  The standard structure predicates may be used to identify instances of a presentation type.
+	name	A symbol naming the presentation.  This will be used as the name of the new structure, and must not conflict with others.
+	fields	A list of structure fields that instances of this presentation will have.
+	include	(optional; defaults to presentation) The name of a structure to inherit fields from.  Useful when defining a subclass of presentations.  All presentations must ultimately inherit from the structure presentation.  The full include syntax may be used here to override default field values.
+	print-function	prints the presentation object as plain text.
+	read-macro	list that describes the syntax of characters that indicate when object is found in text.  The list contains one or two characters followed by a function that creates the presentation.  If one character is provided it is set up as a macro-character with the given function.  If two are provided the first is made a dispatching macro character and a dispatching macro character with the given function is created.  The read macro is placed in the LISP-FILE readtable.
+	translator	Either the flag :delete, which causes the presentation to be removed from the containing form, or a function on the presentation which returns what is normally read.  The :delete flag is typically used with comments.  The function usually converts the presentation to its as read form, eg
+	#o10
+would be converted to the number
+	8
+and returned by the translator function.
+2
+
+Suggested functionality
+1
+
+	Patch option	Prettyprints a text file containing only changed defs.  Friendly fixes to sources being maintained primarily in text oriented environments.
+	Convert comments to doc strings	Using external comments and comments in doc string positions as documentation is a common idiom at Xerox AIS.  Limited usefulness.  One problem is that large doc strings are rather ugly and undesirable.  Would need to reconvert on the way out as well (back to an external comment).  The comment would need to be keyed on some indentation level.  This sort of feature would be disabled by default.
+2
+
+Query list
+1
+
+Do you expect the balance of use to be importing or exporting sources? [ie importance, percentage of use]
+Primary reason for importing?  For exporting?
+Please list systems whose lisp source text you'll load and the approximate frequency. [eg, "mostly Tops-20 Common Lisp."]
+How sensitive will you (or your programmers) be about changes in code formatting due to prettyprinting?  In comment formatting?  Any difficult cases?  Specific requests for prettyprint behavior?
+Please describe your typical use of the feature expression reader (#+ and #-) . [code or prose]
+How important are the rational base formats like #b #x #o to your code?  Would you use a translator which lost them on import?
+If you use a mode setting comment line in your text files: how important is it?  If not Symbolics ZMacs style, what is its format?  Does LOAD use it to set readtable, etc.?
+Are there other features of text based systems whose loss would keep you from using our import / export scheme as described?
+Please list any other concerns you may have about this idea or comments you'd like to make.
+2
+
+Replies from Martin Yonke (phone 3/20/87)
+1
+
+There must be a need or desire to make fairly large changes to a file using the Xerox environment to import it in the first place.
+There will likely be three types of users, those who develop in XAIE and transport out occasionally, those who import code from a text environment to use it, and those who switch in and out frequently.  First is existing customer base, which will tend to do second as well.  Last is least likely, but may be key customers like VARs.
+Most programmers will be personally sensitive to a loss of code formatting; most managers will not.  Systems that are maintained by multiple programmers tend toward polymorphic formatting.  Mechanical formatting for these latter systems is a boon.
+Most types of comments will be simple to read in.  Multiple adjacent comments should be merged.  Have no suggestions for how to deal with comments containing tables or diagrams.  Possible difficult case would be in multi-line right column single semicolon comments where the comment was contiguous but code continued to flow to the left, eg:
+(foo #'(lambda (a)	; This is
+	(+ a (bar a))	; a difficult
+     (baz b)		; case.
+)
+Martin doesn't believe Intellicorp programmers use this style of commenting at all [will ask].
+Rational base formats [will ask, doesn't think so].
+Need for mode lines [will ask, doesn't think so].
+A facility for producing text style patch files would probably be appreciated.  However, seems unlikely that the import would be done if this were a problem.  Would likely edit in TEdit instead.
+2
+
+Elliot James (via Will Snow 3/24/87)
+1
+
+This tool could be used to sell configurations where source is developed in XAIE and transported to Gold Hill Common Lisp running on the PCE.     (LIST ((PAGE NIL (PAPERSIZE NIL STARTINGPAGE# 1) (0 0 612 792) ((FOLIO NIL (PARALOOKS (QUAD RIGHT) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT MEDIUM INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO NIL) (270 15 288 36) NIL) (HEADING NIL (HEADINGTYPE FOOTINGR) (54 27 558 36) NIL) (TEXT NIL NIL (54 54 504 723) NIL))) (PAGE NIL (PAPERSIZE NIL) (0 0 612 792) ((FOLIO NIL (PARALOOKS (QUAD LEFT) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT MEDIUM INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO NIL) (54 15 288 36) NIL) (HEADING NIL (HEADINGTYPE FOOTINGV) (54 27 558 36) NIL) (HEADING NIL (HEADINGTYPE VERSOHEAD) (54 762 558 36) NIL) (TEXT NIL NIL (54 54 504 684) NIL))) (PAGE NIL (PAPERSIZE NIL) (0 0 612 792) ((FOLIO NIL (PARALOOKS (QUAD RIGHT) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT MEDIUM INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO NIL) (270 15 288 36) NIL) (HEADING NIL (HEADINGTYPE FOOTINGR) (54 27 558 36) NIL) (HEADING NIL (HEADINGTYPE RECTOHEAD) (54 762 558 36) NIL) (TEXT NIL NIL (54 54 504 684) NIL)))))       -    ¯                        T         5   Ã¯        ∆ Ã                              9 ` `¯       ê  ¿                      T         3 ` `¯       ¯                   T         , Ã Ã¯                                  -    ¯ 2                       T         -    ¯                         T         - Ã Ã¯                         T         - Ã Ã¯                         T         F    ¯        ¯       PAGEHEADING 	VERSOHEAD                   F    ¯        ¯       PAGEHEADING 	RECTOHEAD                   E    ¯      ¯       PAGEHEADING FOOTINGV                   E    ¯      ¯       PAGEHEADING FOOTINGR                   ,                                                MODERN          MODERN          MODERN          	HELVETICA           TERMINAL           MODERN          MODERN          MODERN               
+     HRULE.GETFN  MODERN                      
+   #               HRULE.GETFN  MODERN                         #                            HRULE.GETFN  MODERN                                        HRULE.GETFN  MODERN                      	   "               HRULE.GETFN  MODERN                        <                          é             B               HRULE.GETFN  MODERN                        	               HRULE.GETFN  MODERN                                    ;             π             O             U               HRULE.GETFN  MODERN                                       HRULE.GETFN  MODERN                                                                       *                     	       ;             Á                                         Ô                                                HRULE.GETFN  MODERN                                       HRULE.GETFN  MODERN                                     È               HRULE.GETFN  MODERN                        %               HRULE.GETFN  MODERN                                                    HRULE.GETFN  MODERN                                     	               HRULE.GETFN  MODERN                                                   HRULE.GETFN  MODERN                                            m       	              	       å               HRULE.GETFN  MODERN                                       HRULE.GETFN  MODERN                                                                               HRULE.GETFN  MODERN                        y             π                                         4                    ¶                    {                           K                          !                    /                   ”                                  î              ^                            ]               HRULE.GETFN  MODERN                                       HRULE.GETFN  MODERN                        ö            Æ               HRULE.GETFN  MODERN                                       HRULE.GETFN  MODERN                        j             .             z             √             `                          ≠             }             \               HRULE.GETFN  MODERN                        *               HRULE.GETFN  MODERN                        É            M             ¯            V             R             _             4             2             √               HRULE.GETFN  MODERN                        %               HRULE.GETFN  MODERN                        ç      #yz∫

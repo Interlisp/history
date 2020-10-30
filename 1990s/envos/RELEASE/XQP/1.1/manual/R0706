@@ -1,0 +1,1 @@
+ref-7-6                    Xerox Quintus Prolog Reference Manual                           Section 7-6: number(?X)number(X) succeeds if X is currently instantiated to either an integer or afloat; otherwise it fails.  Examples:            | ?- number(5.2).            yes            | ?- number(5).            yesnumber/1 has no associated error conditions.

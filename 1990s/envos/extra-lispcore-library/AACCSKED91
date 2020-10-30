@@ -1,0 +1,967 @@
+
+Schedule created:  "26-Jun-91 20:45:31"
+
+Todd Fellegy           A2: 3   C1: 3   C2: 3   C3A: 4   C3: 5   HARDC3: 1
+John Steckman          A2: 4   C1: 4   C2: 4   C3A: 4   C3: 0   HARDC3: 0
+Saundra Bryant         A2: 3   C1: 3   C2: 3   C3A: 2   C3: 4   HARDC3: 2
+Randy Dougherty        A2: 4   C1: 4   C2: 4   C3A: 3   C3: 0   HARDC3: 0
+Dave Kenney            A2: 3   C1: 3   C2: 3   C3A: 3   C3: 4   HARDC3: 0
+Mike Jacobs            A2: 3   C1: 3   C2: 3   C3A: 3   C3: 4   HARDC3: 2
+Tim Ploch              A2: 3   C1: 3   C2: 3   C3A: 4   C3: 4   HARDC3: 1
+Larry Perkins          A2: 4   C1: 4   C2: 4   C3A: 3   C3: 1   HARDC3: 0
+John Sybalsky          A2: 3   C1: 3   C2: 3   C3A: 4   C3: 4   HARDC3: 2
+Anne Uebelacker        A2: 3   C1: 3   C2: 3   C3A: 4   C3: 4   HARDC3: 1
+Norm Poisson           A2: 3   C1: 3   C2: 3   C3A: 3   C3: 4   HARDC3: 1
+Joe Uebelacker         A2: 3   C1: 3   C2: 3   C3A: 3   C3: 4   HARDC3: 1
+Bruce Busch            A2: 3   C1: 3   C2: 3   C3A: 2   C3: 5   HARDC3: 1
+Art Springer           A2: 3   C1: 3   C2: 3   C3A: 3   C3: 2   HARDC3: 0
+Todd Fellegy        Opens:  2,  Closes:  1,  Before-dinner:  2, After-dinner:  1.
+John Steckman       Opens:  0,  Closes:  2,  Before-dinner:  1, After-dinner:  1.
+Saundra Bryant      Opens:  1,  Closes:  2,  Before-dinner:  1, After-dinner:  1.
+Randy Dougherty     Opens:  1,  Closes:  2,  Before-dinner:  1, After-dinner:  1.
+Dave Kenney         Opens:  0,  Closes:  3,  Before-dinner:  0, After-dinner:  2.
+Mike Jacobs         Opens:  1,  Closes:  0,  Before-dinner:  1, After-dinner:  2.
+Tim Ploch           Opens:  1,  Closes:  1,  Before-dinner:  2, After-dinner:  1.
+Larry Perkins       Opens:  1,  Closes:  0,  Before-dinner:  0, After-dinner:  1.
+John Sybalsky       Opens:  1,  Closes:  2,  Before-dinner:  1, After-dinner:  1.
+Anne Uebelacker     Opens:  2,  Closes:  0,  Before-dinner:  1, After-dinner:  2.
+Norm Poisson        Opens:  1,  Closes:  1,  Before-dinner:  1, After-dinner:  1.
+Joe Uebelacker      Opens:  2,  Closes:  0,  Before-dinner:  2, After-dinner:  1.
+Bruce Busch         Opens:  1,  Closes:  1,  Before-dinner:  1, After-dinner:  1.
+Art Springer        Opens:  1,  Closes:  0,  Before-dinner:  1, After-dinner:  2.
+
+
+   Weights & Penalties used in this schedule:
+
+NO-SPOTS-YET-BOOST:  2000
+BELOW-MIN-BOOST:  2000
+BELOW-MIN-WEIGHT:  20
+ABOVE-MIN-PENALTY:  -50
+TAKES-MORE-SPOTS-BOOST:  50
+ABOVE-MAX-PENALTY:  -50000
+INIT-SAME-DAY-PENALTY:  -40
+INIT-CALL-WITH-BOOST:  60
+SELF-CONFLICT-PENALTY:  -50000
+SPOT-CLOSENESS-PENALTY:  2
+CLOSEST-SPOT-WEIGHT:  1
+AFT-EVE-BALANCE-WEIGHT:  500
+SAME-TIME-PENALTY:  250
+OPT-SAME-DAY-PENALTY:  5000
+SAME-SESSION-PENALTY:  7000
+OPT-CALL-WITH-PENALTY:  50
+NO-EVE-SPOT-PENALTY:  750
+DAY-EVENNESS-PENALTY:  25
+LONG-DINNER-PENALTY:  20
+OPEN-AND-CLOSE-PENALTY:  40
+BORDER-SPOT-PENALTY:  20
+EVENING-ONLY-PENALTY:  700
+BAD-CLOSE-PENALTY:  20
+SINGER-CLOSE-BOOST:  10
+
+With extra time C3A afternoons, saturday hall-closing preference
+
+
+Draft 1991 AACC Schedule
+for Todd Fellegy
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for John Steckman
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Saundra Bryant
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Randy Dougherty
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Dave Kenney
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Mike Jacobs
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Tim Ploch
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Larry Perkins
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for John Sybalsky
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Anne Uebelacker
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Norm Poisson
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Joe Uebelacker
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Bruce Busch
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+Draft 1991 AACC Schedule
+for Art Springer
+
+Thursday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Tim Ploch	John Sybalsky	---
+1	Larry Perkins	Norm Poisson	Joe Uebelacker	Mike Jacobs	Anne Uebelacker	---
+1:30	Tim Ploch	John Steckman	Randy Dougherty	Dave Kenney	Bruce Busch	---
+2	Art Springer	John Sybalsky	Anne Uebelacker	Todd Fellegy	Larry Perkins	---
+2:30	Saundra Bryant	Tim Ploch	Mike Jacobs	Norm Poisson	Joe Uebelacker	---
+3	John Sybalsky	Anne Uebelacker	John Steckman	Bruce Busch	Dave Kenney	---
+3:30	Mike Jacobs	Larry Perkins	Norm Poisson	Art Springer	Tim Ploch	---
+4	Anne Uebelacker	Randy Dougherty	John Sybalsky	Joe Uebelacker	Todd Fellegy	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Dave Kenney	Bruce Busch	John Steckman	Tim Ploch	Art Springer	Mike Jacobs
+8:30	Norm Poisson	Larry Perkins	Todd Fellegy	John Sybalsky	Anne Uebelacker	Saundra Bryant
+9	Joe Uebelacker	Randy Dougherty	Art Springer	Bruce Busch	Mike Jacobs	Tim Ploch
+9:30	Larry Perkins	Saundra Bryant	Dave Kenney	Anne Uebelacker	John Steckman	John Sybalsky
+10:	Bruce Busch	Art Springer	Tim Ploch	Joe Uebelacker	Norm Poisson	---
+10:30	Todd Fellegy	Mike Jacobs	Larry Perkins	Saundra Bryant	Randy Dougherty	---
+11	John Steckman	Dave Kenney	Bruce Busch	Norm Poisson	John Sybalsky	---
+
+Friday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Joe Uebelacker	Larry Perkins	Mike Jacobs	Anne Uebelacker	Todd Fellegy	---
+1	Tim Ploch	Dave Kenney	Art Springer	Bruce Busch	John Steckman	---
+1:30	John Sybalsky	Mike Jacobs	Larry Perkins	Todd Fellegy	Norm Poisson	---
+2	Randy Dougherty	Anne Uebelacker	Saundra Bryant	Dave Kenney	Joe Uebelacker	---
+2:30	Todd Fellegy	Art Springer	John Steckman	John Sybalsky	Bruce Busch	---
+3	Mike Jacobs	Norm Poisson	Joe Uebelacker	Saundra Bryant	Tim Ploch	---
+3:30	Dave Kenney	Bruce Busch	Anne Uebelacker	Todd Fellegy	Randy Dougherty	---
+4	John Steckman	Joe Uebelacker	Tim Ploch	Mike Jacobs	Art Springer	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Anne Uebelacker	Todd Fellegy	Larry Perkins	Norm Poisson	Saundra Bryant	John Sybalsky
+8:30	Randy Dougherty	Joe Uebelacker	Bruce Busch	Dave Kenney	John Steckman	Mike Jacobs
+9	Norm Poisson	John Sybalsky	Todd Fellegy	Tim Ploch	Larry Perkins	Saundra Bryant
+9:30	Art Springer	John Steckman	Randy Dougherty	Joe Uebelacker	Mike Jacobs	Anne Uebelacker
+10:	Larry Perkins	Saundra Bryant	Dave Kenney	John Sybalsky	Todd Fellegy	---
+10:30	Bruce Busch	Tim Ploch	Norm Poisson	Mike Jacobs	Anne Uebelacker	---
+11	Saundra Bryant	Randy Dougherty	John Sybalsky	Todd Fellegy	Dave Kenney	---
+
+Saturday
+	A-2	C-1	C-2	C-3	C-3A	Hard C-3
+12:30	Norm Poisson	Anne Uebelacker	Art Springer	Bruce Busch	Joe Uebelacker	---
+1	John Sybalsky	Larry Perkins	Mike Jacobs	Tim Ploch	Saundra Bryant	---
+1:30	Bruce Busch	Randy Dougherty	Todd Fellegy	Joe Uebelacker	John Steckman	---
+2	Saundra Bryant	Tim Ploch	Larry Perkins	Anne Uebelacker	Norm Poisson	---
+2:30	John Steckman	Mike Jacobs	Dave Kenney	Art Springer	John Sybalsky	---
+3	Joe Uebelacker	Saundra Bryant	Bruce Busch	Norm Poisson	Todd Fellegy	---
+3:30	Larry Perkins	John Steckman	Randy Dougherty	John Sybalsky	Anne Uebelacker	---
+4	Todd Fellegy	Bruce Busch	Norm Poisson	Saundra Bryant	Tim Ploch	---
+	[Dinner]	[Dinner]	[Dinner]	[Dinner]	[Dinner]
+8:	Art Springer	Dave Kenney	Anne Uebelacker	Mike Jacobs	Randy Dougherty	Joe Uebelacker
+8:30	John Steckman	John Sybalsky	Tim Ploch	Bruce Busch	Larry Perkins	Todd Fellegy
+9	Mike Jacobs	Art Springer	Joe Uebelacker	Anne Uebelacker	Dave Kenney	Norm Poisson
+9:30	Randy Dougherty	Todd Fellegy	Saundra Bryant	Larry Perkins	John Sybalsky	Bruce Busch
+10:	Tim Ploch	Joe Uebelacker	John Steckman	Dave Kenney	Mike Jacobs	---
+10:30	Anne Uebelacker	Norm Poisson	John Sybalsky	Todd Fellegy	Art Springer	---
+11	Dave Kenney	John Steckman	Randy Dougherty	Saundra Bryant	Tim Ploch	---
+
+
+       A               6 Š Þ2†¶                              A               6 Š Þ2†¶                                     MODERN          MODERN           MODERN           MODERN           GACHA           TERMINAL          V H(DEFAULTFONT 1 (GACHA 10) (GACHA 8) (TERMINAL 8) (POSTSCRIPT (GACHA 8)))                               (                          J             J             J             J             J             J             J             J             J             J             J             J             J             J             R             R             R             R             R             R             R             R             R             R             R             R             R             R                                       .                                                                                                                                                                                                                                                                                                                                                               A                                       *                    	             4       
+       í       
+      ,       
+       ž       
+      $       
+       †                                 ]       
+       t       
+       f       
+       ­       
+       ›       
+       «       
+       ½       
+       }       
+                           	             Õ       
+       î       
+       Y       
+              
+       h       
+       ¯       
+       ]                    ,                          	             Ç              â              ü                           ¨              8                                 Ÿ              ¾              µ              ø              o                                 	             ñ              S              ”                                        z              /                    -                          	             A                          Ü              c              ¬              ]                                              ”                           ¦              m              w              <                    	             ¡              U              ”              ¥             Z              ë                                  .                          	             $              ¡             U                                        M                                 þ                           Õ              ²              Ò              ,                    	             Å             -              Í              ¹              ÷                                  *                          	             å              à              Ì             	              Ô              ,                                 z              §              ª             9              ç              ¥                                  	            l             ?              Ç              ‘              b              =                    *                          	             ˜              Ç              o              ô              ”              ¾              z                                 A              w              É              °              á                            …              b                    	             ‹              É             g              s              Õ              Ÿ                    (                          	             P              c              š              ¯              «              ¹              w              ¹                                 p             V              q             #              Ö              {                    	             —              s             M              ª              ×              Ä                                  ,                          	             n              ¿              ©                                         ­              l                                 3                           â              ´              n              Ñ                    	             }              “              º             A              ‘              ü                    ,                          	             Z              ¨              {              £              Ç              »              Í                                               ¶              µ             c              e              ¼              |                                  	             o                                         ñ              Ã              v              j                    .                          	             ¤              j              y              s              ó                            ü                                 M              ±              Ý              ˜             7                            R                    	             1              ë              ä              “              §              ¿              …                    +                          	             |       
+       î       
+       |       
+       ê       
+      (       
+       }       
+                                        ë       
+       ­       
+             
+       u       
+             
+       n                    	             $       
+             
+       z       
+              
+      :       
+       ¶       
+       x                    -                          	             ‰              ì              Å              ç              À              ª                                 $                           j              {              Â              ³              ÿ                    	             Z              y              ¨             G              m                            Å                    *                          	             ñ              È              ä              ¹              t              ¤                                                “              è              \             !             $              …                    	             N              _              ò              €              Ú              »              â                    +                          	                   
+       ý       
+       ¿       
+       ‡       
+       Œ       
+       Ã                                 †       
+       Ë       
+       ö       
+      6       
+      ,                    	             A       
+      *       
+      %       
+       §       
+             
+       P                         Û}czº

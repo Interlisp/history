@@ -1,0 +1,1 @@
+ref-5-6-0                    Xerox Quintus Prolog Reference Manual                           Section 5-6-0: OverviewThe following predicates are supplied for DEC-10 Prolog compatibility.  Theyspecify an alternative, less powerful, mechanism for dealing with files andstreams.

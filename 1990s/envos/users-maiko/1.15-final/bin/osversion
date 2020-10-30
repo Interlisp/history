@@ -1,0 +1,1 @@
+#!/bin/csh -fset OSTYPE = `sed -e '1s/.*Release \(.\).*/\1/' -e '1q' < /etc/motd`echo sunos$OSTYPE

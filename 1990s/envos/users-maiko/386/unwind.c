@@ -1,0 +1,1 @@
+unixcomm.c1-Mar-1990TakeshiAssume 'n' is even numberAssume FNHEADSIZE,->ntsize are even address(in DLword)OK

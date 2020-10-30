@@ -1,0 +1,1 @@
+ref-5-3-13                    Xerox Quintus Prolog Reference Manual                    Section 5-3-13: current_input(-Stream)current_input(Stream) unifies Stream with the current input stream.current_input/1 has no associated error conditions.

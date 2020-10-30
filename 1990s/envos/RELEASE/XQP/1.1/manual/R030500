@@ -1,0 +1,1 @@
+ref-3-5-0                    Xerox Quintus Prolog Reference Manual                         Section 3-5-0: IntroductionThe multifile declaration allows the user to load clauses for a predicate fromone or more different files.

@@ -1,0 +1,1 @@
+;; Venue site init file(in-package "INTERLISP");; allow init files in a few other places(appendtovar usergreetfiles	     ("{DSK}/" user "/lisp/init." com)	     ("{DSK}/" user "/lisp/init.lisp")	     ("{DSK}/" user "/medley/init." com)	     ("{DSK}/" user "/medley/init.lisp")	     ("{DSK}/" user "/init." com)	     ("{DSK}/" user "/init.lisp") )

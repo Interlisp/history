@@ -1,0 +1,1 @@
+shift.ccommented out wordp in N_OP_lsh

@@ -1,0 +1,1 @@
+sysdep-3-3-2            Xerox Quintus Prolog System-Dependent Features Manual                              Section 3-3-2: gcgc/0 enables the garbage collector.  It is defined as if by            gc :- prolog_flag(gc, _, on).gc/0 has no associated error conditions.

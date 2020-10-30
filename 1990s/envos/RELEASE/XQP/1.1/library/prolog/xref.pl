@@ -1,0 +1,1 @@
+%   File   : xref.pl%   Author : Dave Bowen + Richard O'Keefe%   Updated: 6/10/86%   Purpose: Load the cross-referencer into Quintus Prolog.:- use_module(xrf, [	go/0	]).make_me :-	(   save(xref, 1) ->	    write('Quintus Prolog Cross-Referencer'), nl,	    go,	    halt	|	    true 	).

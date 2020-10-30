@@ -1,0 +1,54 @@
+                      Intel 386/486 C Code Builder(TM) Kit
+            Copyright 1991 Intel Corporation.  All Rights Reserved.
+
+                       TASM 2.0/2.5 - C Interface Example
+
+         The \TASMDEMO directory contains a sample program illustrat-
+         ing techniques used to interface C Code Builder programs with
+         code written for Borland's Turbo Assembler 2.0 or 2.5.  The same
+         source code can also be assembled using Microsoft's MASM 5.1
+         Assembler.  Refer to the MASM directory for a source file written
+         specifically for the MASM 6.0 Assembler.
+
+         A macro file is included to make it easier to declare C-callable
+         Assembly routines, as well as invoke C routines from your Assembly
+         code.  You may wish to study this file to learn more about the
+         Assembly - C Code Builder Interface, as well as use this file
+         when you create your own routines.
+
+         If you do not have an Assembler, you may still run the make
+         file to create an executable file since an Assembly object
+         file is included.
+
+         The following files are included:
+
+         TASM.RME     - Example program's information file (this file).
+
+         MAKEFILE     - Example program's make file.
+
+         LIFE_ASM.ASM - TASM 2.0/2.5 Assembly source module containing
+                        C-callable routines.  Comments included in
+                        the file provide help in using TASM 2.0/2.5
+                        with C Code Builder.
+
+         LIFE_ASM.OBJ - Object module created by the Borland TASM 2.5
+                        Assembler (Options used: /mx).
+
+         MACROS.INC   - A file containing macros used in LIFE_ASM.ASM.
+                        These macros make it easier to create C-callable
+                        Assembly routines, as well as invoke C routines
+                        from Assembly code.
+
+         LIFE.C       - The C Code Builder source module.  Contains
+                        the "main()" procedure, as well as a procedure
+                        called by the Assembly code.
+
+         To build the example program, change to the \TASMDEMO
+         directory and type "make" to compile, link, and bind the
+         program.  Type "life" to execute the example program.
+
+         Note:  If you wish to use MAKEFILE to re-create the Assembly
+         object file using MASM 5.1, you will need to modify it to
+         use MASM (it currently invokes TASM).  The required line is
+         in the make file, but it is commented-out.
+

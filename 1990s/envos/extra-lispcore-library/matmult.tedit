@@ -1,0 +1,157 @@
+1
+
+LISP LIBRARY PACKAGES MANUAL
+1
+
+LISP LIBRARY PACKAGES MANUAL
+MATMULT
+1
+
+EXTENSIONS TO LISP
+1
+
+
+MATMULT
+6
+
+Two dimensional graphical transformations, such as rotations, scalings, and translations are conveniently represented as homogeneous 3 x 3 matrices, which operate on homogeneous 3 vectors. Similarly, three dimensional graphical transformations  are conveniently represented as homogeneous 4 x 4  matrices, which operate on homogeneous 4 vectors. The MatMult Lisp Library package provides utilities for creating and manipulating such matrices and vectors, and takes advantage of microcode support for high-speed 3 x 3 and 4 x 4 matrix multiplication.
+All matrices and vectors in MatMult are represented as Common Lisp arrays of element type single-float, so the Common Lisp array functions are sufficient to create and access individual elements of these specialized arrays. However, Matmult provides convenient wrapper functions for most common operations on these arrays.
+All the following functions which return arrays accept optional array arguments which will be side-effected and returned as the result. It is an error for the optional array argument to be not of element type single-float, or to have incorrect dimensions. 
+2
+
+Matrix Creation Functions
+1
+
+(MAKE-HOMOGENEOUS-3-VECTOR &optional X Y)	[Function]
+Returns a 3 vector of element type single-float. If x or y is provided then the corresponding element of the vector is set appropriately, otherwise it defaults to 0.0. The third element of the vector is always initialized to 1.0.
+(MAKE-HOMOGENEOUS-3-BY-3 &key A00 A01 A10
+A20 A21)	[Function]
+Returns a 3 x 3 matrix of element type single-float. If a keyword arguments is provided, the corresponding element of the matrix is set appropriately, otherwise entries default to 0.0.  The (2 ,2) is always initialized to 1.0.
+(MAKE-HOMOGENEOUS-N-BY-3 N &key
+ INITIAL-ELEMENT)	[Function]
+Returns an n x 3 matrix of element type single-float. If the keyword argument is provided, all the elements in the first two columns are set appropriately, otherwise they default to 0.0.  The third column is always initialized to all 1.0's.
+(MAKE-HOMOGENEOUS-4-VECTOR &optional X Y Z)	[Function]
+Returns a 4 vector of element type single-float. If x, y or z is provided then the corresponding element of the vector is set appropriately, otherwise it defaults to 0.0. The forth element of the vector is always initialized to 1.0.
+(MAKE-HOMOGENEOUS-4-BY-4 &key A00 A01 A02 A03 A10
+A11 A12  A13 A20 A21 A22 A23 A30 A31 A32)	[Function]
+Returns a 4 x 4 matrix of element type single-float. If a keyword arguments is provided, the corresponding element of the matrix is set appropriately, otherwise entries default to 0.0.  The (3 ,3) is always initialized to 1.0.
+(MAKE-HOMOGENEOUS-N-BY-4 N &key
+ INITIAL-ELEMENT)	[Function]
+Returns an N x 4 matrix of element type single-float. If the keyword argument is provided, all the elements in the first three columns are set appropriately, otherwise they default to 0.0.  The forth column is always initialized to all 1.0's.
+(IDENTITY-3-BY-3 &optional RESULT)	[Function]
+Returns a 3-by-3 identity matrix. If RESULT is supplied, it is side effected and returned.
+(IDENTITY-4-BY-4 &optional RESULT)	[Function]
+Returns a 4-by-4 identity matrix. If RESULT is supplied, it is side effected and returned.
+(ROTATE-3-BY-3 RADIANS &optional RESULT)	[Function]
+Returns a 3-by-3 rotation matrix specified by a counter-clockwise rotation of RADIANS radians. If RESULT is supplied, it is set and returned.
+(ROTATE-4-BY-4-ABOUT-X RADIANS &optional RESULT)
+	[Function]
+Returns a 4-by-4 rotation matrix specified by a positive right-handed rotation of RADIANS radians about the X axis. If RESULT is supplied, it is set and returned.
+(ROTATE-4-BY-4-ABOUT-Y RADIANS &optional RESULT)
+	[Function]
+Returns a 4-by-4 rotation matrix specified by a positive right-handed rotation of RADIANS radians about the Y axis. If RESULT is supplied, it is set and returned.
+(ROTATE-4-BY-4-ABOUT-Z RADIANS &optional RESULT)
+	[Function]
+Returns a 4-by-4 rotation matrix specified by a positive right-handed rotation of RADIANS radians about the Z axis. If RESULT is supplied, it is set and returned.
+(SCALE-3-BY-3 SX SY &optional RESULT)	[Function]
+Returns a 3-by-3 homogeneous scaling transformation that scales by a factor of SX along the X-axis and SY along the Y-axis. If RESULT is supplied, it is set and returned.
+(SCALE-4-BY-4 SX SY SZ &optional RESULT)	[Function]
+Returns a 4-by-4 homogeneous scaling transformation that scales by a factor of SX along the X-axis, SY along the Y-axis, and SZ along the Z axis. If RESULT is supplied, it is set and returned.
+(TRANSLATE-3-BY-3 TX TY &optional RESULT)	[Function]
+Returns a 3-by-3 homogeneous translation that translates by TX along the X-axis and TY along the Y-axis. If RESULT is supplied, it is set and returned.
+(TRANSLATE-4-BY-4 TX TY TZ &optional RESULT)	[Function]
+Returns a 4-by-4 homogeneous translation that translates by TX along the X-axis, TY along the Y-axis and TZ along the Z axis. If RESULT is supplied, it is set and returned.
+(PERSPECTIVE-4-BY-4 PX PY PZ &optional RESULT)	[Function]
+Returns a 4-by-4 homogeneous perspective transformation defined by PX, PY, and PZ. If RESULT is supplied, it is set and returned.
+
+2
+
+Matrix Multiplication Functions
+1
+
+N.B. The results of the following matrix multiplication functions are not guaranteed to be correct unless the matrix arguments are all different (Not EQ).
+If run on workstations equipped with the extended processor option, these functions make good use of the hardware floating-point unit. The three digits at the end of each function's name describe the dimensions of their arguments.
+(MATMULT-133 VECTOR MATRIX &optional RESULT)	[Function]
+Returns the inner product of a 3 vector, VECTOR, and a 3 by 3 matrix,  MATRIX. If RESULT is supplied, it is set and returned.
+(MATMULT-331 MATRIX VECTOR &optional RESULT)	[Function]
+Returns the inner product of a 3 by 3 matrix,  MATRIX, and a 3 vector, VECTOR. If RESULT is supplied, it is set and returned.
+(MATMULT-333 MATRIX-1 MATRIX-2 &optional RESULT)
+	[Function]
+Returns the inner product of a 3 by 3 matrix,  MATRIX-1, and another 3 by 3 matrix, MATRIX-2. If RESULT is supplied, it is set and returned.
+(MATMULT-N33 MATRIX-1 MATRIX-2 &optional RESULT)
+	[Function]
+Returns the inner product of an N by 3 matrix,  MATRIX-1, and a 3 by 3 matrix, MATRIX-2. If RESULT is supplied, it is set and returned.
+(MATMULT-144 VECTOR MATRIX &optional RESULT)	[Function]
+Returns the inner product of a 4 vector, VECTOR, and a 4 by 4 matrix,  MATRIX. If RESULT is supplied, it is set and returned.
+(MATMULT-441 MATRIX VECTOR &optional RESULT)	[Function]
+Returns the inner product of a 4 by 4 matrix,  MATRIX, and a 4 vector, VECTOR. If RESULT is supplied, it is set and returned.
+(MATMULT-444 MATRIX-1 MATRIX-2 &optional RESULT)
+	[Function]
+Returns the inner product of a 4 by 4 matrix,  MATRIX-1, and another 4 by 4 matrix, MATRIX-2. If RESULT is supplied, it is set and returned.
+(MATMULT-N44 MATRIX-1 MATRIX-2 &optional RESULT)
+	[Function]
+Returns the inner product of an N by 4 matrix,  MATRIX-1, and a 4 by 4 matrix, MATRIX-2. If RESULT is supplied, it is set and returned.
+
+2
+
+Miscellaneous  Functions
+1
+
+
+(PROJECT-AND-FIX-3-VECTOR 3-VECTOR &optional 2-VECTOR)
+	[Function]
+The homogeneous 3 vector, 3-VECTOR, is projected onto the X - Y plane, coerced to integer coordinates (rounding by truncation) and returned. If 2-VECTOR is supplied, it is set and returned.
+(PROJECT-AND-FIX-N-BY-3 N-3-MATRIX &optional N-2-MATRIX)
+	[Function]
+The homogeneous N by 3 MATRIX, N-3-MATRIX, is projected onto the X - Y plane row-by-row, coerced to integer coordinates (rounding by truncation) and returned. If N-2-MATRIX is supplied, it is set and returned.
+(PROJECT-AND-FIX-4-VECTOR 4-VECTOR &optional 2-VECTOR)
+	[Function]
+The homogeneous 4 vector, 4-VECTOR, is projected onto the X - Y plane, coerced to integer coordinates (rounding by truncation) and returned. If 2-VECTOR is supplied, it is set and returned.
+(PROJECT-AND-FIX-N-BY-4 N-4-MATRIX &optional N-2-MATRIX)
+	[Function]
+The homogeneous N by 4 MATRIX, N-3-MATRIX, is projected onto the X - Y plane row-by-row, coerced to integer coordinates (rounding by truncation) and returned. If N-2-MATRIX is supplied, it is set and returned.
+(DEGREES-TO-RADIANS DEGREES)
+	[Function]
+Returns DEGREES converted to radians.
+
+
+
+
+[This page intentionally left blank]
+     (LIST ((PAGE NIL (PAPERSIZE LETTER FOLIOINFO (ARABIC) STARTINGPAGE# 290) (0 0 612 792) ((FOLIO NIL (
+PARALOOKS (QUAD LEFT) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF SIZE 10 
+FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT MEDIUM 
+INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO (ARABIC)) (54 12 288 36) NIL) (HEADING NIL (
+HEADINGTYPE FOOTINGV) (54 27 558 36) NIL) (HEADING NIL (HEADINGTYPE VERSOHEAD) (54 762 558 36) NIL) (
+TEXT NIL NIL (54 54 504 618) NIL))) (PAGE NIL (PAPERSIZE LETTER FOLIOINFO (ARABIC)) (0 0 612 792) ((
+FOLIO NIL (PARALOOKS (QUAD RIGHT) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF
+ SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT
+ MEDIUM INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO (ARABIC)) (270 12 288 36) NIL) (HEADING NIL (
+HEADINGTYPE FOOTINGR) (54 27 558 36) NIL) (HEADING NIL (HEADINGTYPE RECTOHEAD) (54 762 558 36) NIL) (
+TEXT NIL NIL (54 54 504 684) NIL))) (PAGE NIL (PAPERSIZE LETTER FOLIOINFO (ARABIC)) (0 0 612 792) ((
+FOLIO NIL (PARALOOKS (QUAD LEFT) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF 
+SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT 
+MEDIUM INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO (ARABIC)) (54 12 288 36) NIL) (HEADING NIL (
+HEADINGTYPE FOOTINGV) (54 27 558 36) NIL) (HEADING NIL (HEADINGTYPE VERSOHEAD) (54 762 558 36) NIL) (
+TEXT NIL NIL (54 54 504 684) NIL)))))       )            ‰Ï           T         .    ¯ 2      »                         /    ¯        »                   T     . Ã Ã¯       ¯                         /    ¯ 2      ¯                   T     /    ¯        ¯                   T     . Ã Ã¯       ¯                         . Ã Ã¯       ¯                         . Ã Ã¯       »                         / Ã Ã¯        »                   T     B    ¯        ¯       PAGEHEADING 	VERSOHEAD               B    ¯        ¯       PAGEHEADING 	RECTOHEAD               A    ¯      ¯       PAGEHEADING FOOTINGV               A    ¯      ¯       PAGEHEADING FOOTINGR                      MODERN          MODERN          MODERN          MODERN                    HRULE.GETFN  MODERN                                   
+     HRULE.GETFN  MODERN                      
+                               HRULE.GETFN  MODERN                                        HRULE.GETFN  MODERN                                        HRULE.GETFN  MODERN                      	  &          	  C          	                 HRULE.GETFN  MODERN                                       HRULE.GETFN  MODERN                               
+       
+             Ê                                        
+             „                           
+             Ò                           
+             È                                 (       
+             „                           
+             Û                           
+             [                           
+             [                                         
+             é                                                      £                                                      £                                                      £                           
+             ´                           
+             ¡                           
+             ò                           
+             ≠                                         
+             Ç                            HRULE.GETFN  MODERN                                        HRULE.GETFN  MODERN                        õ             Á                           
+             ~                           
+             ~                    #                    ç                    #                    à                           
+             ~                           
+             ~                    #                    ç                    #                    à                            HRULE.GETFN  MODERN                                       HRULE.GETFN  MODERN                                                                              æ                                                       “                                                      æ                                                       “                                        &                                                                 %            !z∫

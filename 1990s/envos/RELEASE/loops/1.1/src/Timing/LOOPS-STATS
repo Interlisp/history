@@ -1,0 +1,258 @@
+(FILECREATED " 8-May-86 13:28:01" {POGO:PARC:XEROX}<LOOPS>SOURCES>LOOPS-STATS.;7 10383  
+
+      changes to:  (FNS Dump-Loops-Stats Initialize-Loops-Stats FetchMethodOrHelp-stats)
+		   (VARS LOOPS-STATSCOMS)
+
+      previous date: " 7-May-86 19:29:48" {POGO:PARC:XEROX}<LOOPS>SOURCES>LOOPS-STATS.;6)
+
+
+(* Copyright (c) 1986 by Xerox Corporation. All rights reserved.)
+
+(PRETTYCOMPRINT LOOPS-STATSCOMS)
+
+(RPAQQ LOOPS-STATSCOMS ((* * Replacement functions for some standard Loops fns)
+	(FNS BlankInstance-stats FetchMethod-stats FetchMethodOrHelp-stats FindSuperMethod-stats 
+	     GetSuperMethod-stats GetValue-stats PutValue-stats)
+	(* * Fns for controlling gathering of stats)
+	(FNS Dump-Loops-Stats Initialize-Loops-Stats Loops-Stats)
+	[VARS (*Loops-Stats-Replaced-Fns* (QUOTE (BlankInstance FetchMethod FetchMethodOrHelp 
+								FindSuperMethod GetSuperMethod 
+								GetValue PutValue)))
+	      (*Loops-Stats-Counters* (QUOTE (NumberOfInstancesCreated NumberOfInstancesDestroyed NIL 
+								       NumberOfMessagesSent 
+								       NumberOfSendSupers NIL 
+								       NumberOfGetIVsLocal 
+								       NumberOfGetIVsInherited 
+								       NumberOfGetIVsLocalActive NIL 
+								       NumberOfPutIVLocal 
+								       NumberOfPutIVInherited 
+								       NumberOfPutIVLocalActive NIL 
+								       NumberOfGetIVPropsLocal 
+								      NumberOfGetIVPropsInherited 
+								    NumberOfGetIVPropsLocalActive NIL 
+								       NumberOfPutIVPropsLocal 
+								      NumberOfPutIVPropsInherited 
+								    NumberOfPutIVPropsLocalActive]
+	(GLOBALVARS *Loops-Stats-Counters* *Loops-Stats-Replaced-Fns* NumberOfGetIVPropsInherited 
+		    NumberOfGetIVPropsLocalActive NumberOfGetIVPropsLocal NumberOfGetIVsInherited 
+		    NumberOfGetIVsLocalActive NumberOfGetIVsLocal NumberOfInstancesCreated 
+		    NumberOfPutIVPropsInherited NumberOfPutIVPropsLocalActive NumberOfPutIVPropsLocal 
+		    NumberOfPutIVInherited NumberOfPutIVLocalActive NumberOfPutIVLocal 
+		    NumberOfMessagesSent NumberOfSendSupers InitialStorageLeft)
+	(* * Give the user a menu to control stats gathering)
+	(INITVARS (Loops-Stats-Menu-Position (create POSITION XCOORD _ 10 YCOORD _ 300)))
+	(P (Initialize-Loops-Stats)
+	   (ADDMENU (create MENU ITEMS _ (QUOTE (("Initialize stats" (Initialize-Loops-Stats)
+								     
+							      "Reinitialize Loops stats counters")
+						 ("Stats ON" (Loops-Stats)
+							     "Turn on gathering Loops stats")
+						 ("Stats OFF" (Loops-Stats T)
+							      "Turn off gathering Loops stats")
+						 ("Dump stats" (Dump-Loops-Stats)
+							       "Dump out Loops stats to a file")))
+			    CENTERFLG _ T TITLE _ "Loops Statistics")
+		    NIL Loops-Stats-Menu-Position))))
+(* * Replacement functions for some standard Loops fns)
+
+(DEFINEQ
+
+(BlankInstance-stats
+  [LAMBDA (class obj unmodifiedFlg)                          (* smL " 7-May-86 19:25")
+
+          (* * Comment)
+
+
+    (add NumberOfInstancesCreated 1)
+    (BlankInstance-old class obj unmodifiedFlg])
+
+(FetchMethod-stats
+  [LAMBDA (classRec selector)                                (* smL " 7-May-86 19:28")
+
+          (* * Replaces FetchMethod, counts the number of messages sent)
+
+
+    (change NumberOfMessagesSent (ADD1 DATUM))
+    (FetchMethod-old classRec selector])
+
+(FetchMethodOrHelp-stats
+  [LAMBDA (self selector)                                    (* smL " 8-May-86 13:16")
+
+          (* * Count the number of calls to FetchMethodOrHelp)
+
+
+    (add NumberOfMessagesSent 1)
+    (if (EQ selector (QUOTE DestroyInstance))
+	then (add NumberOfInstancesDestroyed 1))
+    (FetchMethodOrHelp-old self selector])
+
+(FindSuperMethod-stats
+  [LAMBDA (object selector classOfSendingMethod)             (* smL " 5-May-86 16:53")
+
+          (* * Replaces the function FindSuperMethod)
+
+
+    (add NumberOfSendSupers 1)
+    (FindSuperMethod-old object selector classOfSendingMethod])
+
+(GetSuperMethod-stats
+  [LAMBDA (object selector callerName)                       (* smL " 5-May-86 17:03")
+
+          (* * Comment)
+
+
+    (change NumberOfSendSupers (ADD1 DATUM))
+    (GetSuperMethod-old object selector callerName])
+
+(GetValue-stats
+  [LAMBDA (self varName propName)                            (* smL " 5-May-86 17:03")
+
+          (* * Replace the function GetValue)
+
+
+    [LET ((localValue (GetIVHere self varName propName)))
+         (COND
+	   [propName (if (NotSetValue localValue)
+			 then (change NumberOfGetIVPropsInherited (ADD1 DATUM))
+		       elseif (type? activeValue localValue)
+			 then (change NumberOfGetIVPropsLocalActive (ADD1 DATUM))
+		       else (change NumberOfGetIVPropsLocal (ADD1 DATUM]
+	   (T (if (NotSetValue localValue)
+		  then (change NumberOfGetIVsInherited (ADD1 DATUM))
+		elseif (type? activeValue localValue)
+		  then (change NumberOfGetIVsLocalActive (ADD1 DATUM))
+		else (change NumberOfGetIVsLocal (ADD1 DATUM]
+    (GetValue-old self varName propName])
+
+(PutValue-stats
+  [LAMBDA (self varName newValue propName)                   (* smL " 5-May-86 17:04")
+
+          (* * Comment)
+
+
+    [LET ((localValue (GetIVHere self varName propName)))
+         (COND
+	   [propName (if (NotSetValue localValue)
+			 then (change NumberOfPutIVPropsInherited (ADD1 DATUM))
+		       elseif (type? activeValue localValue)
+			 then (change NumberOfPutIVPropsLocalActive (ADD1 DATUM))
+		       else (change NumberOfPutIVPropsLocal (ADD1 DATUM]
+	   (T (if (NotSetValue localValue)
+		  then (change NumberOfPutIVInherited (ADD1 DATUM))
+		elseif (type? activeValue localValue)
+		  then (change NumberOfPutIVLocalActive (ADD1 DATUM))
+		else (change NumberOfPutIVLocal (ADD1 DATUM]
+    (PutValue-old self varName newValue propName])
+)
+(* * Fns for controlling gathering of stats)
+
+(DEFINEQ
+
+(Dump-Loops-Stats
+  [LAMBDA (fileName)                                         (* smL " 8-May-86 13:25")
+
+          (* * Dump out the Loops stats to a file)
+
+
+    (DECLARE (GLOBALVARS LoopsDate))
+    (LET [(outStream (OPENSTREAM (OR fileName (PROMPTFORWORD "Name of file for Loops stats? " 
+								   "{DSK}Loops-stats.txt"
+								   NIL PROMPTWINDOW))
+				   (QUOTE OUTPUT)
+				   (QUOTE NEW]
+         (printout outStream T "Loops statistics dumped " (DATE)
+		   " by "
+		   (FULLUSERNAME)
+		   T T "Loops date " LoopsDate T T)
+         (if (GETD (QUOTE PRINT-LISP-INFORMATION))
+	     then (PRINT-LISP-INFORMATION outStream)
+		    (printout outStream T T))
+         (AND (GETD (QUOTE STORAGE.LEFT))
+		(printout outStream "Storage left at beginning of run: " "FreeDataPages="
+			  (CAR InitialStorageLeft)
+			  , "FreeAtomPages=" (CADDDR InitialStorageLeft)
+			  T "Storage left at end of run: " "FreeDataPages=" (CAR (STORAGE.LEFT))
+			  , "FreeAtomPages=" (CADDDR (STORAGE.LEFT))
+			  T T))
+         (for var in *Loops-Stats-Counters* do (if (NULL var)
+							 then (TERPRI outStream)
+						       else (printout outStream var .TAB 50
+									(EVALV var)
+									T)))
+         (CLOSEF outStream)
+         (printout PROMPTWINDOW T "Done dumping Loops stats" T])
+
+(Initialize-Loops-Stats
+  [LAMBDA NIL                                                (* smL " 8-May-86 13:10")
+
+          (* * Reinitialize Loops stats counters)
+
+
+    (for var in *Loops-Stats-Counters* when (NOT (NULL var)) do (SET var 0))
+    (AND (GETD (QUOTE STORAGE.LEFT))
+	   (SETQ InitialStorageLeft (STORAGE.LEFT)))
+    (PROMPTPRINT "Loops stats are initialized"])
+
+(Loops-Stats
+  [LAMBDA (off?)                                             (* smL " 7-May-86 19:27")
+
+          (* * Turn stat gathering on or off)
+
+
+    (COND
+      (off? (for fn in *Loops-Stats-Replaced-Fns* do (MOVD (PACK* fn "-old")
+								   fn))
+	    (PROMPTPRINT "Loops stats gathering is OFF"))
+      (T (for fn in *Loops-Stats-Replaced-Fns*
+	    do (MOVD? fn (PACK* fn "-old"))
+		 (MOVD (PACK* fn "-stats")
+			 fn))
+	 (PROMPTPRINT "Loops stats gathering is ON"])
+)
+
+(RPAQQ *Loops-Stats-Replaced-Fns* (BlankInstance FetchMethod FetchMethodOrHelp FindSuperMethod 
+						   GetSuperMethod GetValue PutValue))
+
+(RPAQQ *Loops-Stats-Counters* (NumberOfInstancesCreated NumberOfInstancesDestroyed NIL 
+							  NumberOfMessagesSent NumberOfSendSupers NIL 
+							  NumberOfGetIVsLocal NumberOfGetIVsInherited 
+							  NumberOfGetIVsLocalActive NIL 
+							  NumberOfPutIVLocal NumberOfPutIVInherited 
+							  NumberOfPutIVLocalActive NIL 
+							  NumberOfGetIVPropsLocal 
+							  NumberOfGetIVPropsInherited 
+							  NumberOfGetIVPropsLocalActive NIL 
+							  NumberOfPutIVPropsLocal 
+							  NumberOfPutIVPropsInherited 
+							  NumberOfPutIVPropsLocalActive))
+(DECLARE: DOEVAL@COMPILE DONTCOPY
+
+(GLOBALVARS *Loops-Stats-Counters* *Loops-Stats-Replaced-Fns* NumberOfGetIVPropsInherited 
+	    NumberOfGetIVPropsLocalActive NumberOfGetIVPropsLocal NumberOfGetIVsInherited 
+	    NumberOfGetIVsLocalActive NumberOfGetIVsLocal NumberOfInstancesCreated 
+	    NumberOfPutIVPropsInherited NumberOfPutIVPropsLocalActive NumberOfPutIVPropsLocal 
+	    NumberOfPutIVInherited NumberOfPutIVLocalActive NumberOfPutIVLocal NumberOfMessagesSent 
+	    NumberOfSendSupers InitialStorageLeft)
+)
+(* * Give the user a menu to control stats gathering)
+
+
+(RPAQ? Loops-Stats-Menu-Position (create POSITION XCOORD _ 10 YCOORD _ 300))
+(Initialize-Loops-Stats)
+(ADDMENU (create MENU ITEMS _ (QUOTE (("Initialize stats" (Initialize-Loops-Stats)
+							  "Reinitialize Loops stats counters")
+				      ("Stats ON" (Loops-Stats)
+						  "Turn on gathering Loops stats")
+				      ("Stats OFF" (Loops-Stats T)
+						   "Turn off gathering Loops stats")
+				      ("Dump stats" (Dump-Loops-Stats)
+						    "Dump out Loops stats to a file")))
+		 CENTERFLG _ T TITLE _ "Loops Statistics")
+	 NIL Loops-Stats-Menu-Position)
+(PUTPROPS LOOPS-STATS COPYRIGHT ("Xerox Corporation" 1986))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (2775 6001 (BlankInstance-stats 2785 . 3025) (FetchMethod-stats 3027 . 3320) (
+FetchMethodOrHelp-stats 3322 . 3703) (FindSuperMethod-stats 3705 . 3982) (GetSuperMethod-stats 3984 . 
+4237) (GetValue-stats 4239 . 5126) (PutValue-stats 5128 . 5999)) (6053 8458 (Dump-Loops-Stats 6063 . 
+7473) (Initialize-Loops-Stats 7475 . 7911) (Loops-Stats 7913 . 8456)))))
+STOP

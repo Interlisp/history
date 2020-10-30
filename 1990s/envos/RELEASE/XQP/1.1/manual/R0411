@@ -1,0 +1,1 @@
+ref-4-11                    Xerox Quintus Prolog Reference Manual                             Section 4-11: falsefalse/0 always fails (the same as fail/0).  It has no associated errorconditions.

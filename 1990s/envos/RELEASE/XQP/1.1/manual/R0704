@@ -1,0 +1,1 @@
+ref-7-4                    Xerox Quintus Prolog Reference Manual                           Section 7-4: integer(?X)integer(X) succeeds if X is currently instantiated to an integer; otherwise itfails.  Examples:            | ?- integer(5).            yes            | ?- integer(5.0).            nointeger/1 has no associated error conditions.

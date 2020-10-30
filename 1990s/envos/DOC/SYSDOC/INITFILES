@@ -1,0 +1,178 @@
+LESSON H1:  INIT FILES
+T. Stansbury, J. Guibert;  1/31/86
+Filed on:  {PHYLUM}<SYSDOCRELEASES>InitFiles
+Objective:  To become familiar with the preparation of INIT files.  An INIT file is a program which initializes your Interlisp-D environment.  It allows you to personalize your world; for example, it can tell the system which printer you want it to use, how to arrange your windows on your screen, and which special programs it should load.  
+Prerequisites:  This lesson presumes familiarity with the program editor DEdit; see lesson G.  It also presumes that you have already installed LISP.  For information on installing LISP, if you have a Dorado, see lesson A2.  If you have a Dandelion and you want the standard configuration see lesson A5.  If you need a special configuration on a Dandelion, i.e., you need to run other environments in addition to LISP, see lesson A8.  
+General Information About Init Files:
+
+When you first bring up a brand-new Lisp sysout, the sysout will call the function GREET.  GREET attempts to find and load a system init file.  If there is a file named {DSK}INIT.LISP, GREET will assume that is your system init file, and will load it.  But if there is no such file, GREET will ask you where to find one:
+
+Please enter the name of system init file
+(e.g. {server}<directory>INIT.extension):
+
+In response to this prompt, you can either name an init file followed by carriage-return (see below), or you can just type a carriage-return, indicating that you don't want to bother with an init file.  Lisp can run perfectly well without having found an init file; init files are provided solely as a convenience to the user.
+
+How Init Files Are Usually Structured:
+
+Your init file can contain any Interlisp-D code you like.  However, for convenience and lack of redundancy, init files are usually structured in a particular way.  They are usually split into two parts: the first contains site-specific instructions, the second contains user-specific instructions, and the first automatically loads the second.  
+
+The site-specific part is usually shared by a group of users at a particular site, and maintained by one member of the group.  This site-specific INIT usually contains such things as the location of the most convenient font information and the name of the nearest printer.
+
+Each person usually has his own user-specific part and is responsible for maintaining it.   User-specific INIT files usually contain instructions such as commands to relocate windows where the user wants them and commands to load files that the user always wants to have loaded.
+
+The Site-Specific Init File:
+The site-specific INIT for ISL is filed as {PHYLUM}<LISP>CURRENT>INIT.PARC.  It is automatically copied to {DSK}INIT.LISP (where GREET will find it) as part of the initial LISP installation procedure.  The site-specific INIT is also clever enough to update itself on DSK whenever the copy on PHYLUM has been improved.  In other words, you don't really need to do anything about the site-specific INIT -- it's all automatic.
+If you are interested, here are some of the things that INIT.PARC will do when loaded:
+· Determine which printers are physically closest to your workstation and remember them, so that whenever you print something, it will come out on one of those printers.  
+Note: Your default printers are remembered on DEFAULTPRINTINGHOST, which usually is a list containing the name of a Press printer and of an Interpress (NS) printer.  Should your default printer go down, you will probably want to change your default so that things get printed on a different printer.  To do this, in the LISP Exec window (alias TTY window) type
+_  (push    DEFAULTPRINTINGHOST    'NewHost)
+replacing NewHost with the name of a good printer to substitute for the one that is down.  A list of potential alternate Press, Interpress and FullPress printers can be found in the table "Printer Types and Locations" in Lesson I1.  Once your normal printer has come back up, you can undo the printing redirection by typing
+_  (pop    DEFAULTPRINTINGHOST)
+· According to the location of your workstation and the release of Interlisp you are running, it sets file search paths and font directories so that (a) additional programs you load will be compatible, (b) you have access to a wide variety of fonts, and (c) font and program files will be fetched from the nearest file server.
+Note:  If the nearest file server goes down, you will probably want to change your search paths and font directories to point to another file server.  To do this, just type 
+	(SetDirectories    'your-other-favorite-host    NIL    NIL    T)
+(where your-other-favorite-host is ERIS for people in ISL) to the LISP executive with the capitalization as written.  Once the nearest file server has come back up, you could reset your search path by typing
+	(SetDirectories    'your-favorite-host    NIL    NIL    T)
+(where your-favorite-host is PHYLUM for people in ISL).
+· Include a Visitor Log form. 
+If you are really interested, go ahead and read INIT.PARC.  The code is pretty well commented and should not be too difficult to understand.
+User-specific Init Files
+
+User-specific INIT files should be stored where the site-specific INIT files expect them, so that they can be automatically loaded.  The site-specific INIT file looks for your user-specific INIT file in all of the following four places:
+
+{yourFileServer}<yourLoginName>lisp>Init.dcom
+{yourFileServer}<yourLoginName>lisp>Init
+{yourFileServer}<yourLoginName>Init.dcom
+{yourFileServer}<yourLoginName>Init
+
+The first of these files that is found (in the order presented above) will be the one loaded.  So you have to create your own user-specific INIT file and put it in one of these places.  
+
+The best way to do this as a new user to the community is to modify a generic user INIT file which has been created for you.   As you become more knowledgeable with the system you can modify it further to suit your taste.   For now you will modify it just enough to personalize it and put it on your own directory.  
+
+The instructions which follow tell you how to modify a particular version of the generic user INIT file.  Since this generic INIT file is subject to change (according to people's suggestions), these instructions may fall somewhat out of date.  With that caveat in mind, here's what to do:
+
+First load the generic INIT file:
+
+	_  (LOAD     '{PHYLUM}<sysdocreleases>INIT)
+
+Then you have to edit it somewhat.  To do this type 
+
+	_  DC    INIT    <CR>
+
+this will bring up DEdit on  the INIT.  It should look roughly like this: 
+
+((FNS GREETFN GREETFN.SCREEN GREETFN.TEXT GREETFN.LISP GREETFN.LOADMENU) 
+(FNS WHY.FILE NO.FILE) (MACROS pushnewequal PUSHNEWEQUAL)
+(DECLARE: DONTEVAL@LOAD 
+(P (GREETFN 
+(QUOTE YourLoginName) 
+(QUOTE YourRegistry) 
+(QUOTE YourFirstName) 
+(QUOTE YourInitials:) 
+(QUOTE YourFileServer) 
+(QUOTE (
+(" 6-JAN" . "Happy Epiphany") 
+("12-JUN" . "Happy Birthday"))) 
+(QUOTE MailMode)))))
+
+You should use DEdit to replace YourLoginName, YourRegistry, YourFirstName, YourInitials:, YourFileServer, the extra greet dates, and MailMode.  
+
+· YourLoginName should be your Grapevine login name, which unless there is a conflict is usually the same as your last name.  You should not include your registry.  You will probably want to capitalize it as you normally write it.  Thus YourLoginName should look something like deCato rather than deCato.PA, DECATO, or decato.  
+
+· YourRegistry should be PA if you work in Palo Alto.
+
+· YourFirstName is just your first name, preferably spelled and capitalized as you expect to see it written: Jackie, rather than jackie or JACKIE or Jacqueline.  The system occasionally uses YourFirstName to address you.
+
+· YourInitials: should be your initials followed by a colon.  This will be used as a brief identifying stamp on programs you write.
+
+· YourFileServer will be one of Phylum or QV if you are in ISL.
+
+· The next item is a list of special squibs with which the system is to greet you if it runs GREET on the specified days.  Provided you use exactly the same format as shown, you can fill in some of your own dates and corresponding messages.
+
+· MailMode should be GV if you have a Grapevine mail account (most people do), and NS if you have a Network Systems mail account (you probably don't).
+ 
+Check the changes you made very carefully for spelling, form, etc.  If you goof something here, it might make your system break later in a way not obviously related to the typo. 
+
+Now you need to save your now-personalized user INIT file where the site INIT file will find it.  To do this, first connect to the proper directory.  (Connecting controls what directory the user INIT file will be saved on.)
+
+_  CONN    {YourFileServer}<YourLoginName>Lisp>    <CR>
+
+Then save your newly-edited user INIT:
+
+_  (MAKEFILE    'INIT) 
+
+Finally, you need to compile it.  Note that if you do not compile it, it will not work.  (It was set up this way so that loading the INIT to edit it would not run it.)  Type
+
+_  (TCOMPL     'INIT)
+
+Listing?    File only    <CR>
+
+That's all.
+   
+This time round, to see the effects of your new user INIT file, you have to type
+
+_  (LOGIN)
+Login:    GRAPEVINE-NAME      (password)     ******
+
+_  (GREET)
+
+After this, whenever you fetch a new sysout, your new user INIT file will be run automatically.  (So this is the only time that you have to force it to run with a LOGIN and GREET.)
+
+The INIT file you have just made does a number of useful things.  Here are a few of them (again, subject to change):
+· Lays out the windows on your screen in a way which is designed to be maximally convenient.  The window layout, though unusual, was carefully designed, so please try it out before you rearrange your windows.
+· Loads WDWHACKS, which helps you manage your windows.  See the documentation on {Phylum}<lispusers>koto>WDWHACKS.tedit.
+· Provides a special background menu which has the most frequently used items available in the main menu and other items hidden as submenus to the "Exec" entry.
+      À ƒ """""""""""""""""""""""""""""""""/ÿÿÿÿÿÿÿÿÿÿÿÿÿ"ˆˆˆˆˆˆˆˆˆˆ            ˆˆˆˆˆˆˆˆˆˆˆ            Aˆ"""""""""( €        !""""""""""( @        Q"ˆˆˆˆˆˆˆˆˆˆ G":YâáĞ )ˆˆˆˆˆˆˆˆˆˆˆ ˆ‘$Fj0 Uˆ"""""""""( C(BB )""""""""""( L4BB Q"ˆˆˆˆˆˆˆˆˆˆ H‘"FB20 !ˆˆˆˆˆˆˆˆˆˆˆ ‡N!:AáÒĞ Aˆ"""""""""(     B      """"""""""(     <      "ˆˆˆˆˆˆˆˆˆˆ            ˆˆˆˆˆˆˆˆˆˆˆ            ˆ"""""""""(    Ä   """"""""""(    $   "ˆˆˆˆˆˆˆˆˆˆ  :G<âà ˆˆˆˆˆˆˆˆˆˆˆ  !"F„ˆ‘ ˆ"""""""""(  !B E‘ """"""""""(  !2B &ˆ "ˆˆˆˆˆˆˆˆˆˆ  !"F$H‘ ˆˆˆˆˆˆˆˆˆˆˆ ?:Ä'â ˆ"""""""""(            """"""""""(            "ˆˆˆˆˆˆˆˆˆˆ            ˆˆˆˆˆˆˆˆˆˆˆ            ˆ""""""""")   A  à  """""""""")   a    "ˆˆˆˆˆˆˆˆˆ‰ ğáĞQyÄÅˆˆˆˆˆˆˆˆˆˆ‰	0I!"$&£"ˆ""""""""")rI!#ä ä!"""""""""")	’E!"$!"ˆˆˆˆˆˆˆˆˆ‰	0C!""$#"ˆˆˆˆˆˆˆˆˆˆ‰øğéĞAÁáÔˆ"""""""""(            """"""""""(            "ˆˆˆˆˆˆˆˆˆˆ            ˆˆˆˆˆˆˆˆˆˆˆ            Aˆ"""""""""(   |@ 1    !""""""""""(   ‚@ 1    Q"ˆˆˆˆˆˆˆˆˆˆ   €Gb1   )ˆˆˆˆˆˆˆˆˆˆˆ   xH™‘J"   Uˆ"""""""""(   C‘J   )""""""""""(   L‘J   Q"ˆˆˆˆˆˆˆˆˆˆ   ‚H‘„"   !ˆˆˆˆˆˆˆˆˆˆˆ   |GQ„   Aˆ"""""""""(            """"""""""(            "ˆˆˆˆˆˆˆˆˆˆ            ˆˆˆˆˆˆˆˆˆˆˆ        €   Aˆ"""""""""(   ü   !""""""""""(   A    Q"ˆÿÿÿÿÿÿÿø   A t¼   )ˆˆÿÿÿÿÿÿÿø   AøŒ   Uˆ"/ÿÿÿÿÿÿşø    „   )""/ÿğÿÿÿÿx   A „   Q"ˆÿ÷ÿÿÿÿş¸    A Œ   !ˆˆÿ÷û¸ñÿÿX    AütŒ   Aˆ"/ÿğ=wnÿş¨            ""/ÿ÷şğoÿÿX            "ˆÿ÷ş÷ïÿş¸            ˆˆÿ÷ıwnÿÿx           ˆ"/ÿğ¸ñÿşø É ~       ""/ÿÿÿÿÿÿÿø  A       "ˆÿÿÿÿÿÿÿø 	A,ñ8q` ˆˆˆ        ‰"~5	D‰  ˆ"(        	>A!ª8ù  ""( €     	 A!ª  "ˆˆ @     	"A!DD‰  ˆˆˆ ‡   	~ ğD8q  ˆ"( H˜€             ""(  ˆC€             "ˆˆ  HL€             ˆˆˆ HH˜€             Aˆ"( ˆGW      @     !""(          @     Q"ˆˆ          :G     )ˆˆˆ           FH€    Uˆ"(           BO€    )""( Ağ     BH     Q"ˆˆ A €     FH€    !ˆˆˆ  B€€     :G     Aˆ"(  Â€€             ""(  D@€             "ˆˆ  GÀ€             ˆˆˆ H €             ˆ"( H €    ø     ""(              "ˆˆ          qÂ"Š   ˆˆˆ          ğ‰""Š   ˆ"(          8£áBR   ""( Ãâ1     È¢BR   "ˆˆ $1    ˆB ‚"   ˆˆˆ $1     øtAÀ‚"   ˆ"( #ÁJ              ""( À!J              "ˆˆ  J              ˆˆˆ „              Aˆ"( à„    @       !""(         @       Q"ˆˆ         Gtpñq  )ˆˆˆ         ÈšŒ‰	‰  Uˆ"(        C„	   )""( ßÀI    L„	   Q"ˆˆ  A    HŒ‰	ˆ@  !ˆˆˆ KÀ   GPtpñp@  Aˆ"( ˆÉ          @  ""( I         €  "ˆˆ I  ÿÿÿÿÿÿÿÿÿÿÿÿÿˆˆˆ É  ˆˆˆˆˆˆˆˆˆˆˆˆˆˆ"( ÇHÀ """""""""""""""(       """"""""""""""ˆˆ       ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ       ˆˆˆˆˆˆˆˆˆˆˆˆˆˆ"(      @"""""""""""""""(ø  	ƒ H""""""""""""""ˆ‰  	ƒ ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ‰ qpéEHˆˆˆˆˆˆˆˆˆˆˆˆˆˆ"(ğ‰‰E"H"""""""""""""""(ù		)H""""""""""""""ˆˆ		)2Hˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ‰‰	"Hˆˆˆˆˆˆˆˆˆˆˆˆˆˆ"(øqéH"""""""""""""""(       """"""""""""""ˆˆ       ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆÿÿÿÿÿÿÿüˆˆˆˆˆˆˆˆˆˆˆˆˆˆ""""""""""""""""""""""""""""""""""""""""""""""""ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ
+· Provides the items "Load Sketch" and "Load NoteCards" in the background menu, so that you can easily load the appropriate version of Sketch and Notecards.  These menu entries disappear once you have loaded the programs.  The programs were not automatically loaded by your INIT because they are large and it is a time consuming process; also, not everybody uses them.
+· Provides a background menu item which allows you to apply interesting pictures to the background of your screen.  You should note that these pictures take several minutes to load.  
+· Sets up the Idle program (previous incarnations of which were called Bounce or Sleep) so that login is not required after it has timed out.  Also loads a number of interesting screen pattern generators to run while your machine is idling.  To change the pattern generator, select the "Choose Display" subitem of the Idle button in the background menu.
+· Puts an analog clock on your screen.
+· Loads a calendar package which will remember important dates for you and remind you of them.  You should see the documentation on  {ERIS}<lispusers>koto>Calendar.Tedit to learn more about it.  Its icon looks like this:
+      @ C ˆˆˆˆˆˆˆˆÿÿÿÿÿÿÿÿñï|7a÷ÿï×}óvë·ÿï»|svİ·ÿïƒ}õvÁÿï»}õvİ§ÿñ»6aİ·ÿÿÿÿÿÿÿÿÿ€      € DòO’ € l“B € T’Â € T’B € DòB €      ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ€      ‡„Càğá„
+‚@€€‡‚@€àá‚€€€!‡‚€€€á€      ÿÿÿÿÿÿÿÿ€@ €@ …Â¡€@ „B¡€@ 	…Âñ€@ B!€@ …Â!€@ ÿÿÿÿÿÿÿÿ€@ ¸\.…r¡ P"…R¡¸\"…R¡ˆT"…R¡¸\"…r¡€@ ÿÿÿÿÿÿÿÿ€@ ®W*•Êår¹¢Q*•…©®W+ÕÊå¹¨Q(”J¥©®W(•Êå¹€@ ÿÿÿÿÿÿÿÿ€@ ®[®–ËuªİªJ¢’IªQ®Z®–Ëuºİ¢R¨”Š…¢[®–ËuŠİ€@ ÿÿÿÿÿÿÿÿ€@ ·[­Öët”H¥ÒéT§P©T)T·X­Ö+t€@ ÿÿÿÿÿÿÿÿˆˆˆˆˆˆˆˆ""""""""
+It should be on your screen now.  If it isn't, you blew something in the instructions above.
+· Sets up the Lafite mail program.  Causes Lafite to batch message hardcopies; this saves paper and simplifies sorting printer output.  Also loads LafiteFind, a package which helps you find mail.  To use it, click the middle mouse button on the title bar of a mail browser; from there on, it is fairly self-explanitory.
+· Loads MAINTAIN, a package which enables you manipulate mailing lists.  To use it, type to the Exec
+(MAINTAIN)
+· Loads a clever spelling checker program which can be used to monitor your spelling.  Documentation for the spelling checker is on {ERIS}<lispusers>koto>Proofreader.tedit.
+· Loads a special form of the Executive (Top-Level TTY) which is Tedit-based.  This means you can copy-select the text from the Executive (which you cannot do in the standard Exec window that is loaded in the sysout).  The Title Bar of the Exec window will also display the directory to which you are currently connected.  
+Note:  If the Executive process gets restarted (say, after your machine freezes) it will just be an ordinary Executive, unbacked by TEdit.  To restart the TEdit Executive, you have to type 
+_ (TTEXEC)
+· Also makes your Chat window be Tedit-based.  
+Note:  This will not work if you use Chat to run a screen editor such as Emacs on a remote host.  If you do, you should edit the function GREETFN.TEXT:
+_  DF    GREETFN .TEXT    <CR> 
+and use DEdit to replace the statement
+(RPAQQ    CHAT.DISPLAYTYPES    ((NIL    10    TEDIT)))
+with 
+(RPAQQ    CHAT.DISPLAYTYPES    ((NIL    10    DM2500)))
+This will cause Chat windows to emulate a DataMedia 2500 terminal (from which you cannot copy-select).
+· Loads TEditKey, a program which modifies the keyboard interface to TEdit, and provides some of the more useful Emacs editor commands.  Documentation is on {ERIS}<lispusers>koto>teditkey.tedit.  
+Note:  If you are a Tenex user and in the habit of typing control-A to backspace, this package will probably drive you a bit crazy, since control-A in Emacs puts you at beginning of line.  In this case, you might want not to load TEditKey.  Alternatively, Ron Kaplan (Kaplan.pa) has a procedure for selectively loading the inoffensive parts of TEditKey.
+· Loads SINGLEFILEINDEX, which generates indexes for Lisp program listings.
+· Loads SAMEDIR, which attempts to ensure that you don't save Lisp files in the wrong place. 
+· Defines the functions WHY.FILE and NO.FILE.  WHY.FILE will tell you why an edited Lisp file needs to be saved, and NO.FILE will trick the Lisp file manager into believing that a particular file does not need to be saved.
+These are just a few of the many things this user INIT file does.  The focus of this explanation has been on those items useful to non-programmer folks.  Those with programming experience might be interested in looking at the code to see what other useful features lie within.  It is very well documented and worth perusing.   To look at a hardcopy version just type
+_ (LISTFILES    {PHYLUM}<sysdocreleases>INIT) 
+ 
+       . H Z          Ô                         ( $ $                                )                          T         ( H H                                 . ~ ~          Ô                         . l l          Ô                         . Z Z          Ô                         ( N N                                . N N          l                          . H H          Ô                         . $ $          Ô                         . * *          l                          (                                    ( * *                                ( $ $                                 ( $ $R                               (                                     (                                    .              ´                          .              ´                          (                                            	HELVETICA          	HELVETICA          	HELVETICA       €  	HELVETICA        €  	HELVETICA       €  	HELVETICA        €  	HELVETICA           	HELVETICA          	HELVETICA          	HELVETICA           	HELVETICA           	HELVETICA          	HELVETICA           	HELVETICA                              #    
+         -    
+                +                           	                                  M              1              !              ä                                  &                          S                            I                            ]              !                          *                                  	              	                                G                          '                         Z                          ’              {                          j              ©                                                                   
+              !                            &              ,              +                            b                           8       	                    ¬             .              W              ¾                                                                                                           	  3                                                                   G             ®                                                                                                              	              Š                                                                                                                   0       	       T                                                     0              Q              #              +                                               
+                                         
+                                         
+                                         
+                                 Œ              *                                 S              æ                          ^                                                                                                      (                                 5                                                                         !              &                          J             :                          
+                    
+                                                      
+                           
+                                               	                          !                                                                    
+              
+                                                                                                z           	   a       
+                  	   
+       	    	              	              	                                    
+                                                             °       
+                                        
+       u                                                                                                            ]                                                                    <              B                          ³                          0                            v                                               	                     
+                                               !                                                                                …              %                                                                                                                                                  5                                                                                                                                                                 ;              d                                                                    m             Ñ                           A       (                               
+  T  BMOBJ.GETFN3  	HELVETICA                                      [             ¸            b             '             …       $       4          
+  $  BMOBJ.GETFN3  	HELVETICA                         ]             “              £                           U                                        „       '                    3                          ¾                                        0             Š                                                             '          	   7                       	   8             g                                  $                    æ              j                                         5                           O                                                       >              c             2             9                    +                                FDizº

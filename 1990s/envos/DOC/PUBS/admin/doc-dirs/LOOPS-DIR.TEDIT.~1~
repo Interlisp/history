@@ -1,0 +1,348 @@
+   {ERIS}<Doc>LOOPS>
+AA-ReadMe.tedit;2        2 TEXT    28-Jan-88 10:53:22 PST Brewster.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>
+BinderCover.tedit;1      6 BINARY  16-Sep-87 15:11:05 PDT Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>LibPkg>
+A1-TitlePage.tedit;1     4 BINARY   3-Sep-87  6:43:22 PDT Kontur.pa
+A2-TOC.tedit;1          11 BINARY  11-Sep-87 14:57:47 PDT Kontur.pa
+A3-Preface.tedit;1      17 BINARY  11-Sep-87 14:53:43 PDT Kontur.pa
+Gauges.tedit;1         222 BINARY  17-Sep-87 10:46:04 PDT kontur.pa
+VC.tedit;1             102 BINARY   3-Sep-87  7:26:13 PDT Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>LibPkg>X-Index>
+GAUGES.IMPTR;1           4 TEXT     3-Sep-87  7:28:23 PDT Kontur.pa
+LibIndex-BlankPage.tedit;1	5 BINARY   3-Sep-87  7:48:12 PDT Kontur.pa
+LibIndex-final.tedit;1	13 BINARY   3-Sep-87  8:23:24 PDT Kontur.pa
+LibIndex-Raw.tedit;1    13 BINARY   3-Sep-87  7:47:29 PDT Kontur.pa
+VC.IMPTR;1               2 TEXT     3-Sep-87  7:29:13 PDT Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>LibPkg>Z-ReleaseInfo>
+Conventions.tedit;1    174 BINARY   9-Sep-87  9:52:24 PDT Kontur.pa
+ProductionDetails.tedit;1	12 BINARY  10-Sep-87 11:49:00 PDT Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>Ref>
+A1-TitlePage.tedit;1     4 BINARY   1-Sep-87 16:11:49 PDT Kontur.pa
+A2-TOC.tedit;1          63 BINARY  22-Oct-87  8:05:56 PDT Kontur.pa
+A3-LOF.tedit;1          12 BINARY  16-Sep-87 14:23:46 PDT Kontur.pa
+A4-Preface.tedit;1      18 BINARY   7-Oct-87 15:41:34 PDT Kontur.pa
+Ch01-Intro.tedit;1     164 BINARY  24-Sep-87 11:09:32 PDT Kontur.pa
+Ch02-Instances.tedit;1	291 BINARY   6-Oct-87 17:34:46 PDT Kontur.pa
+Ch03-Classes.tedit;1   298 BINARY   6-Oct-87  9:56:57 PDT Kontur.pa
+Ch04-Metaclasses.tedit;1	45 BINARY   3-Sep-87  7:22:54 PDT Kontur.pa
+Ch05-ActiveValue.tedit;1	210 BINARY  22-Oct-87  8:03:13 PDT Kontur.pa
+Ch05-TOC.tedit;1        12 BINARY  22-Oct-87  8:11:54 PDT Kontur.pa
+Ch06-Methods.tedit;1   129 BINARY   5-Oct-87 12:22:48 PDT Kontur.pa
+Ch07-MsgForms.tedit;1	43 BINARY  21-Sep-87 11:38:03 PDT Kontur.pa
+Ch08-DataTypes.tedit;1	43 BINARY   9-Oct-87  9:02:15 PDT Kontur.pa
+Ch09-Misc.tedit;1       32 BINARY   3-Sep-87  8:48:39 PDT Kontur.pa
+Ch10-TOC.tedit;1        24 BINARY   3-Sep-87 14:57:54 PDT Kontur.pa
+Ch10a-Browsers.tedit;1	207 BINARY   7-Oct-87 14:33:17 PDT Kontur.pa
+Ch10b-Browsers.tedit;1	462 BINARY   7-Oct-87 15:03:15 PDT Kontur.pa
+Ch10c-Browsers.tedit;1	408 BINARY   7-Oct-87 15:29:25 PDT Kontur.pa
+Ch11-Errors.tedit;1     76 BINARY   6-Oct-87 10:07:32 PDT Kontur.pa
+Ch12-Breaking.tedit;1	69 BINARY   5-Oct-87 14:09:38 PDT Kontur.pa
+Ch13-Editing.tedit;1    87 BINARY   5-Oct-87 14:12:58 PDT Kontur.pa
+Ch14-FilePkg.tedit;1    86 BINARY   6-Oct-87 10:15:29 PDT Kontur.pa
+Ch15-Masterscope.tedit;1	30 BINARY  22-Oct-87  8:27:58 PDT Kontur.pa
+Ch16-Performance.tedit;1	27 BINARY  30-Oct-87 15:16:24 PST Kontur.pa
+Ch17-Processes.tedit;1	15 BINARY   5-Oct-87 14:48:30 PDT Kontur.pa
+Ch18-ReadPrint.tedit;1	111 BINARY   8-Oct-87 11:30:09 PDT Kontur.pa
+Ch19-TOC.tedit;1        11 BINARY   3-Sep-87 19:50:00 PDT Kontur.pa
+Ch19-UserIOpkgs.tedit;1 
+                       292 BINARY   7-Oct-87 13:57:04 PDT Kontur.pa
+Ch20-Windows.tedit;1   151 BINARY   9-Oct-87  9:36:54 PDT Kontur.pa
+PndxA-Previous.tedit;1	40 BINARY   5-Oct-87 15:36:05 PDT Kontur.pa
+Tab-Replacements.tedit;1	16 BINARY   9-Oct-87  8:35:41 PDT Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>Ref>X-Index>
+CH01-INTRO.IMPTR;1       4 TEXT    31-Aug-87 16:37:46 PDT Kontur.pa
+CH02-INSTANCES.IMPTR;1	9 TEXT     5-Oct-87 12:05:01 PDT Kontur.pa
+CH03-CLASSES.IMPTR;1    10 TEXT    24-Sep-87 12:54:03 PDT Kontur.pa
+CH04-METACLASSES.IMPTR;1	2 TEXT     1-Sep-87 11:49:04 PDT Kontur.pa
+CH05-ACTIVEVALUE.IMPTR;1	8 TEXT    22-Oct-87  8:17:02 PDT Kontur.pa
+CH06-METHODS.IMPTR;1     6 TEXT     5-Oct-87 12:43:18 PDT Kontur.pa
+CH07-MSGFORMS.IMPTR;1	2 TEXT     8-Oct-87 10:39:18 PDT Kontur.pa
+CH08-DATATYPES.IMPTR;1	2 TEXT     1-Sep-87 11:56:46 PDT Kontur.pa
+CH09-MISC.IMPTR;1        2 TEXT     1-Sep-87 11:58:20 PDT Kontur.pa
+CH10A-BROWSERS.IMPTR;1	5 TEXT     7-Oct-87 15:10:02 PDT Kontur.pa
+CH10B-BROWSERS.IMPTR;1	9 TEXT     7-Oct-87 15:24:36 PDT Kontur.pa
+CH10C-BROWSERS.IMPTR;1	17 TEXT     7-Oct-87 15:39:21 PDT Kontur.pa
+CH11-ERRORS.IMPTR;1      3 TEXT     5-Oct-87 14:17:13 PDT Kontur.pa
+CH12-BREAKING.IMPTR;1	2 TEXT     5-Oct-87 14:24:03 PDT Kontur.pa
+CH13-EDITING.IMPTR;1     2 TEXT     5-Oct-87 14:26:28 PDT Kontur.pa
+CH14-FILEPKG.IMPTR;1     4 TEXT     5-Oct-87 14:56:02 PDT Kontur.pa
+CH15-MASTERSCOPE.IMPTR;1	1 TEXT    22-Oct-87  8:31:00 PDT Kontur.pa
+CH16-PERFORMANCE.IMPTR;1	2 TEXT     8-Oct-87 11:34:40 PDT Kontur.pa
+CH17-PROCESSES.IMPTR;1	1 TEXT     5-Oct-87 15:03:20 PDT Kontur.pa
+CH18-READPRINT.IMPTR;1	4 TEXT     8-Oct-87 11:39:36 PDT Kontur.pa
+CH19-USERIOPKGS.IMPTR;1	9 TEXT     7-Oct-87 14:01:41 PDT Kontur.pa
+CH20-WINDOWS.IMPTR;1     8 TEXT     5-Oct-87 15:48:23 PDT Kontur.pa
+RefIndex-Final.tedit;2 
+                       119 BINARY  22-Oct-87  8:18:46 PDT Kontur.pa
+RefIndex-Raw.tedit;1   120 BINARY   8-Oct-87 12:08:08 PDT Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>Ref>Z-ReleaseInfo>
+Conventions.tedit;1    161 BINARY  14-Sep-87 11:48:55 PDT kontur.pa
+ProductionDetails.tedit;1	11 BINARY  14-Sep-87 11:52:09 PDT kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>Ref>
+ZZ-Glossary.tedit;1     15 BINARY   8-Oct-87 11:25:47 PDT Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>RelNote>
+A1-TitlePage.tedit;1     4 BINARY   3-Sep-87 21:11:36 PDT Kontur.pa
+A2-TOC.tedit;1          15 BINARY  26-Oct-87  8:00:57 PST Kontur.pa
+A3-Preface.tedit;1      12 BINARY  11-Sep-87 14:10:15 PDT Kontur.pa
+Ch01-Overview.tedit;1	10 BINARY   3-Sep-87 21:17:53 PDT Kontur.pa
+Ch02-Features.tedit;1	11 BINARY   3-Sep-87 21:19:38 PDT Kontur.pa
+Ch03-Documentation.tedit;1	11 BINARY  26-Oct-87  8:07:08 PST Kontur.pa
+Ch04-Installation.tedit;1	31 BINARY   3-Nov-87 15:48:55 PST Kontur.pa
+Ch05-Reporting.tedit;1	7 BINARY   3-Sep-87 21:27:00 PDT Kontur.pa
+Ch06-KnownProblems.tedit;1	66 BINARY  26-Oct-87 12:13:36 PST Kontur.pa
+Ch06zz-NumericalList.tedit;1	56 BINARY  26-Oct-87  6:46:38 PST Kontur.pa
+PndxA-Buttress.tedit;1	36 BINARY   5-Nov-87 10:52:51 PST Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>RelNote>X-Index>
+CH01-OVERVIEW.IMPTR;1	1 TEXT    24-Aug-87 17:30:45 PDT Kontur.pa
+CH02-FEATURES.IMPTR;1	1 TEXT    24-Aug-87 17:31:09 PDT Kontur.pa
+CH03-DOCUMENTATION.IMPTR;1	2 TEXT    26-Oct-87  8:15:09 PST Kontur.pa
+CH04-INSTALLATION.IMPTR;1	2 TEXT    26-Oct-87  8:45:07 PST Kontur.pa
+CH05-REPORTING.IMPTR;1	1 TEXT    24-Aug-87 17:36:22 PDT Kontur.pa
+CH06-KNOWNPROBLEMS.IMPTR;1	4 TEXT    26-Oct-87  8:46:33 PST Kontur.pa
+RelIndex-Blankpage.tedit;1	5 BINARY   3-Sep-87 21:33:23 PDT Kontur.pa
+RelIndex-Final.tedit;1	13 BINARY  26-Oct-87  8:43:49 PST Kontur.pa
+RelIndex-Raw.tedit;1    14 BINARY  26-Oct-87  8:26:44 PST Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>RelNote>Z-ReleaseInfo>
+Conventions.tedit;1    156 BINARY  14-Sep-87 11:55:52 PDT kontur.pa
+ProductionDetails.tedit;1	11 BINARY  14-Sep-87 13:43:10 PDT kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>
+Signoff.tedit;1          5 BINARY   3-Nov-87 10:55:35 PST Kontur.pa
+Tab-Replacement.tedit;1	4 BINARY   9-Oct-87  8:06:44 PDT Kontur.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>UserPkg>
+A1-TitlePage.tedit;1     6 BINARY  16-Sep-87 14:36:11 PDT Kontur.pa
+A2-TOC.tedit;1           8 BINARY  20-Oct-87 16:53:42 PDT KONTUR.pa
+A3-Preface.tedit;1      13 BINARY  16-Sep-87 14:25:30 PDT Kontur.pa
+BreakMenuPatch.tedit;1	8 BINARY  17-Sep-87  9:55:28 PDT kontur.pa
+CacheObject.tedit;1      9 BINARY  25-Jun-87  8:19:30 PDT Kontur.pa
+CIBrowser.tedit;1       34 BINARY  25-Jun-87  8:25:05 PDT Kontur.pa
+Loops-DEdit.tedit;1      7 BINARY  25-Jun-87  8:24:58 PDT Kontur.pa
+Loops-FB.tedit;1         6 BINARY  17-Sep-87  7:39:06 PDT Kontur.pa
+LoopsIdle.tedit;1        6 BINARY  25-Jun-87  8:33:37 PDT Kontur.pa
+LoopsIndex.tedit;1       6 BINARY  25-Jun-87  8:34:43 PDT Kontur.pa
+PrologMethods.tedit;1	68 BINARY  20-Oct-87 17:56:10 PDT KONTUR.pa
+Rules-A1-TitlePage.tedit;1	5 BINARY  20-Oct-87 17:41:59 PDT KONTUR.pa
+Rules-A2-TOC.tedit;1    13 BINARY  20-Oct-87 17:45:33 PDT KONTUR.pa
+Rules-A3-LOF.tedit;1     6 BINARY  20-Oct-87 17:46:28 PDT KONTUR.pa
+Rules1-Intro.tedit;1   105 BINARY  20-Oct-87 17:48:38 PDT KONTUR.pa
+Rules2-Language.tedit;1	86 BINARY  20-Oct-87 17:48:56 PDT KONTUR.pa
+Rules3-Use.tedit;1      55 BINARY  20-Oct-87 17:52:49 PDT KONTUR.pa
+RulesA-Convert.tedit;1	10 BINARY  20-Oct-87 17:53:05 PDT KONTUR.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>UserPkg>X-Index>
+BREAKMENUPATCH.IMPTR;1	1 TEXT    11-Aug-87 11:44:23 PDT Kontur.pa
+CACHEOBJECT.IMPTR;1      1 TEXT    11-Aug-87 11:45:17 PDT Kontur.pa
+CIBROWSER.IMPTR;1        1 TEXT    11-Aug-87 11:46:41 PDT Kontur.pa
+LOOPS-DEDIT.IMPTR;1      1 TEXT    11-Aug-87 11:47:43 PDT Kontur.pa
+LOOPS-FB.IMPTR;1         1 TEXT    11-Aug-87 11:48:26 PDT Kontur.pa
+LOOPSIDLE.IMPTR;1        1 TEXT    11-Aug-87 11:49:04 PDT Kontur.pa
+LOOPSINDEX.IMPTR;1       1 TEXT    11-Aug-87 11:49:42 PDT Kontur.pa
+PROLOGMETHODS.IMPTR;1	1 TEXT    21-Oct-87 14:16:36 PDT KONTUR.pa
+RULES1-INTRO.IMPTR;1     4 TEXT    21-Oct-87 14:20:06 PDT KONTUR.pa
+RULES2-LANGUAGE.IMPTR;1	8 TEXT    21-Oct-87 14:23:33 PDT KONTUR.pa
+RULES3-USE.IMPTR;1       6 TEXT    21-Oct-87 14:26:04 PDT KONTUR.pa
+RULESA-CONVERT.IMPTR;1	1 TEXT    21-Oct-87 14:54:16 PDT KONTUR.pa
+UserIndex-Final.tedit;2	28 BINARY  22-Oct-87  6:36:00 PDT Kontur.pa
+UserIndex-Raw.tedit;1	29 BINARY  21-Oct-87 15:10:25 PDT KONTUR.pa
+
+   {ERIS}<Doc>Loops>Koto>Final>UserPkg>Z-ReleaseInfo>
+Conventions.tedit;1    121 BINARY  14-Sep-87 14:00:54 PDT kontur.pa
+ProductionDetails.tedit;1	10 BINARY  14-Sep-87 14:05:02 PDT kontur.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>2.0-PRODUCTION-SPECS>
+KIT-CONFIGS.TEDIT;1      2 BINARY  29-Sep-88 10:34:30 PDT Biggs.pa
+KIT-CONFIGS.TEDIT;2      2 BINARY  29-Sep-88 10:34:57 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>BETA>
+.;1                      2 BINARY  25-Mar-88  8:49:58 PST biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>Beta>LibMods>Z-ReleaseInfo>
+Conventions.tedit;1    240 BINARY  28-Jan-88 11:30:40 PST Brewster.pa
+ProductionDetails.tedit;1	10 BINARY  28-Jan-88 11:35:19 PST Brewster.pa
+
+   {ERIS}<Doc>Loops>Lyric>Beta>Ref>
+Ch14-FileMgr.tedit;5    88 BINARY   1-Apr-88  9:54:16 PST Biggs.pa
+
+   {ERIS}<Doc>Loops>Lyric>Beta>UserMods>Z-ReleaseInfo>
+Conventions.tedit;1    121 BINARY  22-Feb-88 11:07:55 PST Brewster.pa
+ProductionDetails.tedit;1	8 BINARY  22-Feb-88 11:13:01 PST Brewster.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>
+FINAL.REF.PNDXA-BUTTRESS.TEDIT;1	40 BINARY   2-Jun-88 16:28:04 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>
+BINDERCOVER.TEDIT;2      7 BINARY  22-Jun-88 22:41:03 PDT Biggs.pa
+ERRATA.TEDIT;2          15 BINARY  22-Jul-88 15:29:08 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>LIBMODS>
+A1-TITLEPAGE.TEDIT;1     4 BINARY   2-Jun-88 10:08:11 PDT Biggs.pa
+A2-TOC.TEDIT;1          12 BINARY   2-Jun-88 10:11:35 PDT Biggs.pa
+A3-PREFACE.TEDIT;5      18 BINARY  22-Jun-88 23:24:18 PDT Biggs.pa
+FINAL-INDEX.TEDIT;3     15 BINARY  22-Jun-88 22:59:32 PDT Biggs.pa
+FINAL-INDEX.TEDIT;4     15 BINARY  24-Jun-88  9:12:50 PDT Biggs.pa
+GAUGES.TEDIT;3         237 BINARY  22-Jun-88 23:15:06 PDT Biggs.pa
+MASTERSCOPE.TEDIT;3     37 BINARY  22-Jun-88 10:50:30 PDT Biggs.pa
+VC.TEDIT;2             112 BINARY  22-Jun-88 10:52:43 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>REF>
+A1-TITLEPAGE.TEDIT;1     4 BINARY   2-Jun-88 10:48:49 PDT Biggs.pa
+A2-TOC.TEDIT;4          63 BINARY  23-Jun-88 16:59:03 PDT Biggs.pa
+A3-LOF.TEDIT;1          11 BINARY   2-Jun-88 10:53:15 PDT Biggs.pa
+A4-PREFACE.TEDIT;4      20 BINARY  20-Jun-88 13:42:26 PDT Biggs.pa
+CH02-INSTANCES.TEDIT;3 
+                       239 BINARY  19-Jun-88 14:38:48 PDT Biggs.pa
+CH03-CLASSES.TEDIT;3   283 BINARY  19-Jun-88 14:56:12 PDT Biggs.pa
+CH04-METACLASSES.TEDIT;2	60 BINARY  20-Jun-88 14:05:42 PDT Biggs.pa
+CH05-ACCESS.TEDIT;2    146 BINARY  20-Jun-88 14:23:42 PDT Biggs.pa
+CH06-METHODS.TEDIT;3    89 BINARY  20-Jun-88 14:17:31 PDT Biggs.pa
+CH07-MSGFORMS.TEDIT;2	45 BINARY  13-Jun-88 17:08:11 PDT Biggs.pa
+CH08-ACTIVEVALUES.TEDIT;3 
+                       373 BINARY  20-Jun-88 17:07:43 PDT Biggs.pa
+CH09-DATATYPES.TEDIT;2	26 BINARY  13-Jun-88 17:51:10 PDT Biggs.pa
+CH10A-BROWSERS.TEDIT;3 
+                       197 BINARY  20-Jun-88 17:23:53 PDT Biggs.pa
+CH10B-BROWSERS.TEDIT;1 
+                       377 BINARY   2-Jun-88 13:01:43 PDT Biggs.pa
+CH10C-BROWSERS.TEDIT;3 
+                       311 BINARY  20-Jun-88 18:28:44 PDT Biggs.pa
+CH11-ERRORS.TEDIT;1     78 BINARY   2-Jun-88 13:15:12 PDT Biggs.pa
+CH12-BREAKING.TEDIT;1	81 BINARY   2-Jun-88 13:19:57 PDT Biggs.pa
+CH13-EDITING.TEDIT;3   111 BINARY  17-Jun-88 14:53:01 PDT Biggs.pa
+CH14-FILEMGR.TEDIT;6    89 BINARY  22-Jun-88 13:54:56 PDT Biggs.pa
+CH15-PERFORMANCE.TEDIT;3	27 BINARY  22-Jun-88 11:05:58 PDT Biggs.pa
+CH16-PROCESSES.TEDIT;1	15 BINARY   2-Jun-88 13:32:09 PDT Biggs.pa
+CH17-READPRINT.TEDIT;2 
+                       112 BINARY  22-Jun-88 11:11:03 PDT Biggs.pa
+CH18-USERIOMODS.TEDIT;3 
+                       285 BINARY  14-Jun-88 17:31:53 PDT Biggs.pa
+CH19-WINDOWS.TEDIT;5   162 BINARY  22-Jun-88 23:31:47 PDT Biggs.pa
+CH20-SYSFUNS.TEDIT;6    23 BINARY  23-Jun-88 10:09:45 PDT Biggs.pa
+INDEX.TEDIT;4          118 BINARY  24-Jun-88  9:26:13 PDT Biggs.pa
+TAB-REPLACEMENTS.TEDIT;2	16 BINARY  23-Jun-88 15:14:43 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>REF>Z-ReleaseInfo>
+Conventions.tedit;1    161 BINARY  14-Sep-87 11:48:55 PDT Biggs.pa
+ProductionDetails.tedit;1	11 BINARY  14-Sep-87 11:52:09 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>REF>
+ZZ-GLOSSARY.TEDIT;2     15 BINARY  16-Jun-88  9:46:50 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>RELNOTE>
+A1-TITLEPAGE.TEDIT;1     4 BINARY   2-Jun-88 16:32:58 PDT Biggs.pa
+A2-TOC.TEDIT;3          13 BINARY  23-Jun-88 12:01:39 PDT Biggs.pa
+A3-PREFACE.TEDIT;6      13 BINARY  23-Jun-88 15:11:18 PDT Biggs.pa
+CH01-OVERVIEW.TEDIT;4	10 BINARY  20-Jun-88 22:00:40 PDT Biggs.pa
+CH01-OVERVIEW.TEDIT;5	10 BINARY  23-Jun-88 17:08:49 PDT Biggs.pa
+Ch02-Changes.tedit;5    19 BINARY  23-Jun-88 12:30:54 PDT Biggs.pa
+Ch02-Changes.tedit;6    20 BINARY  23-Jun-88 12:41:54 PDT Biggs.pa
+CH03-DOCUMENTATION.TEDIT;3	9 BINARY  23-Jun-88 13:16:09 PDT Biggs.pa
+Ch04-Installation.tedit;5	44 BINARY  23-Jun-88 11:52:02 PDT Biggs.pa
+CH05-REPORTING.TEDIT;2	7 BINARY   2-Jun-88 17:16:00 PDT Biggs.pa
+INDEX.TEDIT;3           12 BINARY  24-Jun-88  9:14:25 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>RELNOTES>
+CH06-KNOWNPROBLEMS.TEDIT;4	35 BINARY  23-Jun-88 11:34:31 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>
+TAB-REPLACEMENT.TEDIT;1	4 BINARY  21-Jun-88 14:12:04 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>FINAL>USERMODS>
+A1-TitlePage.tedit;3     6 BINARY  22-Jun-88 22:05:22 PDT Biggs.pa
+A2-TOC.tedit;3           7 BINARY  22-Jun-88 22:09:32 PDT Biggs.pa
+A3-Preface.tedit;3      14 BINARY  22-Jun-88 22:07:30 PDT Biggs.pa
+Converter.tedit;3       10 BINARY  22-Jun-88 16:57:56 PDT Biggs.pa
+INDEX.TEDIT;4           26 BINARY  24-Jun-88  9:19:20 PDT Biggs.pa
+LoopsBackwards.tedit;4	20 BINARY  22-Jun-88 17:29:06 PDT Biggs.pa
+LoopsMixin.tedit;2       9 BINARY  22-Jun-88 17:28:56 PDT Biggs.pa
+Rules-A1-TitlePage.tedit;2	5 BINARY  22-Jun-88 17:32:21 PDT Biggs.pa
+Rules-A2-TOC.tedit;3    13 BINARY  23-Jun-88 16:58:57 PDT Biggs.pa
+Rules-A3-LOF.tedit;2     6 BINARY  22-Jun-88 17:38:43 PDT Biggs.pa
+Rules1-Intro.tedit;2   105 BINARY  22-Jun-88 17:43:34 PDT Biggs.pa
+Rules2-Language.tedit;2	86 BINARY  22-Jun-88 17:47:36 PDT Biggs.pa
+Rules3-Use.tedit;2      55 BINARY  22-Jun-88 17:59:31 PDT Biggs.pa
+RulesA-Convert.tedit;2	10 BINARY  22-Jun-88 18:02:14 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>PRODUCTION-SPECS>
+COVERSPINE.SKETCH;2     10 BINARY  25-May-88 11:21:58 PDT Biggs.pa
+MAINTABS-LSCAPE.SKETCH;1	5 BINARY  10-Jun-88 11:14:07 PDT Biggs.pa
+MAINTABS-PORTRAIT.SKETCH;1	11 BINARY  10-Jun-88 11:03:46 PDT Biggs.pa
+SUBTABS-LSCAPE.SKETCH;1	19 BINARY  10-Jun-88 10:55:00 PDT Biggs.pa
+SUBTABS1-PORTRAIT.SKETCH;1	17 BINARY  13-May-88 16:28:36 PDT Biggs.pa
+SUBTABS1-PORTRAIT.SKETCH;3	17 BINARY  10-Jun-88 10:24:57 PDT Biggs.pa
+SUBTABS2-PORTRAIT.SKETCH;1	13 BINARY  13-May-88 16:35:20 PDT Biggs.pa
+SUBTABS2-PORTRAIT.SKETCH;2	13 BINARY  10-Jun-88 10:31:51 PDT Biggs.pa
+USERSCOVERSPINE.SKETCH;2	9 BINARY  25-May-88 11:30:10 PDT Biggs.pa
+
+   {ERIS}<Doc>LOOPS>LYRIC>PRODUCTIONS-SPECS>
+SUBTABS-LSCAPE.SKETCH;1	18 BINARY  13-May-88  9:09:15 PDT Biggs.pa
+
+   {ERIS}<Doc>loops>medley>rel-notes>
+APP-A-SUN-INSTALL.TEDIT;1	42 BINARY  18-Oct-88 14:16:48 PDT Biggs.envos
+update-sheet.tedit;1     4 BINARY  18-Oct-88 16:22:30 PDT Biggs.envos
+update-sheet.tedit;2     4 BINARY  18-Oct-88 16:51:52 PDT Biggs.envos
+
+   {ERIS}<Doc>loops>ProductionSpecs>
+BackCover.Sketch;1       4 BINARY   8-Jul-86 16:16:16 PDT hostrop.pa
+ComboCoverSpine.sketch;1	10 BINARY  26-Mar-87  8:26:14 PST hostrop.pa
+configuration-request.tedit;1	9 BINARY  30-Mar-87 17:08:32 PST hostrop.pa
+CoverSpine.Sketch;3     10 TEXT     2-Sep-87  9:55:12 PDT BIGGS.pa
+MainTabs-Lscape.sketch;1	5 BINARY  26-Mar-87 13:32:22 PST hostrop.pa
+MainTabs-Portrait.sketch;1	11 BINARY  30-Mar-87 15:56:13 PST hostrop.pa
+Packaging.tedit;1        7 BINARY  23-Mar-87 17:02:05 PST hostrop.pa
+partnumbers.tedit;1      1 BINARY   2-Sep-87 15:58:33 PDT BIGGS.pa
+Subtabs-Lscape.sketch;1	18 BINARY  26-Mar-87 11:35:33 PST hostrop.pa
+Subtabs1-Portrait.sketch;1	17 BINARY  30-Mar-87 16:13:58 PST hostrop.pa
+UsersCoverSpine.sketch;3	9 TEXT     2-Sep-87 10:00:15 PDT BIGGS.pa
+
+   {ERIS}<Doc>LOOPS>
+ReadMe.tedit;1           6 BINARY   8-Feb-88 14:23:32 PST brewster.pa
+
+   {ERIS}<Doc>LYRIC>LOOPS>INDEX>
+CH01-OVERVIEW.IMPTR;1	1 TEXT    21-Jun-88 15:43:06 PDT WESSLING.PA
+CH01-OVERVIEW.IMPTR;2	1 TEXT    22-Jun-88 10:03:50 PDT Biggs.pa
+CH01-OVERVIEW.IMPTR;3	1 TEXT    22-Jun-88 12:25:25 PDT Biggs.pa
+CH01-OVERVIEW.IMPTR;4	1 TEXT    23-Jun-88 13:22:29 PDT Biggs.pa
+CH03-DOCUMENTATION.IMPTR;1	1 TEXT    21-Jun-88 15:44:33 PDT WESSLING.PA
+CH03-DOCUMENTATION.IMPTR;2	1 TEXT    22-Jun-88 10:04:51 PDT Biggs.pa
+CH03-DOCUMENTATION.IMPTR;3	1 TEXT    22-Jun-88 10:33:16 PDT Biggs.pa
+CH03-DOCUMENTATION.IMPTR;4	1 TEXT    22-Jun-88 12:26:30 PDT Biggs.pa
+CH04-INSTALLATION.IMPTR;1	1 TEXT    21-Jun-88 15:45:36 PDT WESSLING.PA
+CH04-INSTALLATION.IMPTR;2	1 TEXT    22-Jun-88 10:34:00 PDT Biggs.pa
+CH04-INSTALLATION.IMPTR;3	1 TEXT    22-Jun-88 12:27:08 PDT Biggs.pa
+CH05-REPORTING.IMPTR;1	1 TEXT    21-Jun-88 15:46:44 PDT WESSLING.PA
+CH14-FILEMGR.IMPTR;1     4 TEXT    22-Jun-88 11:03:27 PDT Biggs.pa
+CH14-FILEMGR.IMPTR;2     4 TEXT    22-Jun-88 12:55:45 PDT Biggs.pa
+CH14-FILEMGR.IMPTR;3     4 TEXT    22-Jun-88 13:50:06 PDT Biggs.pa
+CH15-PERFORMANCE.IMPTR;1	2 TEXT    22-Jun-88 11:04:53 PDT Biggs.pa
+CH15-PERFORMANCE.IMPTR;2	2 TEXT    22-Jun-88 13:19:48 PDT Biggs.pa
+CH17-READPRINT.IMPTR;1	4 TEXT    22-Jun-88 13:36:27 PDT Biggs.pa
+CH17-READPRINT.IMPTR;2	4 TEXT    22-Jun-88 15:47:06 PDT Biggs.pa
+CH18-USERIOMODS.IMPTR;1	10 TEXT    22-Jun-88 15:58:44 PDT Biggs.pa
+CH19-WINDOWS.IMPTR;1     9 TEXT    22-Jun-88 16:38:20 PDT Biggs.pa
+GAUGES.IMPTR;1	4 TEXT    22-Jun-88 12:10:10 PDT Biggs.pa
+GAUGES.IMPTR;2           4 TEXT    22-Jun-88 12:38:54 PDT Biggs.pa
+LOOPSBACKWARDS.IMPTR;1	1 TEXT    22-Jun-88 14:05:37 PDT Biggs.pa
+MASTERSCOPE.IMPTR;1      2 TEXT    22-Jun-88 12:14:52 PDT Biggs.pa
+PREFACE-A.IMPTR;1        1 TEXT    22-Sep-88 11:23:34 PDT Biggs.pa
+RULES1-INTRO.IMPTR;1     4 TEXT    22-Jun-88 15:18:46 PDT Biggs.pa
+RULES2-LANGUAGE.IMPTR;1	8 TEXT    22-Jun-88 15:30:27 PDT Biggs.pa
+RULES3-USE.IMPTR;1       6 TEXT    22-Jun-88 15:34:27 PDT Biggs.pa
+RULESA-CONVERT.IMPTR;1	1 TEXT    22-Jun-88 15:36:44 PDT Biggs.pa
+VC.IMPTR;1	    2 TEXT    22-Jun-88 12:16:30 PDT Biggs.pa
+
+   {ERIS}<Doc>LYRIC>LOOPS>RELNOTES>
+CH04-INSTALLATION.TEDIT;1	72 BINARY	29-Sep-88 13:47:57 PDT Biggs.pa
+     (LIST ((PAGE NIL (PAPERSIZE Letter LANDSCAPE? T FOLIOINFO (ARABIC "" "") STARTINGPAGE# 1) (0 0 792 612) ((FOLIO NIL (PARALOOKS (QUAD CENTERED) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT MEDIUM INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO (ARABIC "" "")) (162 36 288 36) NIL) (TEXT NIL NIL (72 72 648 468) NIL))) (PAGE NIL (PAPERSIZE Letter LANDSCAPE? T FOLIOINFO (ARABIC "" "") STARTINGPAGE# NIL) (0 0 792 612) ((FOLIO NIL (PARALOOKS (QUAD CENTERED) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT MEDIUM INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO (ARABIC "" "")) (162 36 288 36) NIL) (TEXT NIL NIL (72 72 648 468) NIL))) (PAGE NIL (PAPERSIZE Letter LANDSCAPE? T FOLIOINFO (ARABIC "" "") STARTINGPAGE# NIL) (0 0 792 612) ((FOLIO NIL (PARALOOKS (QUAD CENTERED) CHARLOOKS (SUPERSCRIPT 0 INVISIBLE OFF SELECTPOINT OFF PROTECTED OFF SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF EXPANSION REGULAR SLOPE REGULAR WEIGHT MEDIUM INVERTED OFF USERINFO NIL STYLE NIL) FORMATINFO (ARABIC "" "")) (162 36 288 36) NIL) (TEXT NIL NIL (72 72 648 468) NIL)))))       ,    ˆ                                         	HELVETICA           	HELVETICA                              F                                        D                          '             D             D             D             D             D                          /             D             F             C             D             D                          5             D             F                          $             D             D             D             D             D             D             D             E             F             D             D             B             C             D             D             D             D             D             D             B             D             D             E             E             C             D             D                          D             D             C             E                          ,             D             B             D             D             D             D             A             B             D             B             B             C             D             A             D             D             D             D             B             B             C             D                          D             D                          2             D             F                          $             D                          (             D             D             D             B             B             G             F             B             G             I             C                          0             A             A             F             E             B             F             F             C             D                          6             D             F                                        D             C                          (             D             D             D             B             D             D             D             D             D             D             B             F             D             D             D             D             D             C                          0             B             D             D             D             D             D             D             A             D             C             D             B             D             B                          6             D             F                          0             C             C                                        C                          6             F             H                          $             C                          7             F             G                                       L                          !             C             C                          )             C             C             C             C             C             C             C             C                          %             C             C             C             C                          C             C             D             C             C             A                          C             B                          C                          C                          C             C             A             C             C             D             B                          C                          C             C             C             C             D                          3             C             E                          %             C                          )             C             C             C             A             A             C             C             E             E             A             C                          *             F                          !             B                          *             C             C             C             C             C             B             C             E             C             C             C             C             C             B                          ,             C             C             F             C             F             F             F             F             C                          -             C                          &             H             F             F                          %             E             F             J             C             E             H             E             C             E             H             C                                       F                          !             C             @             @             @             H             E             E             E             G             D             D             D             C             C             C             C             C             A             A             C             C             9             C             A             C             C             C             B             C             A             9                          $             D                 Lƒ¹zº

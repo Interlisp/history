@@ -1,0 +1,1 @@
+ref-6-6-6                    Xerox Quintus Prolog Reference Manual                             Section 6-6-6: toldtold/0 closes the current output stream.  The current output stream is then setto be user_output; that is, the user's terminal.told/0 always succeeds without error.

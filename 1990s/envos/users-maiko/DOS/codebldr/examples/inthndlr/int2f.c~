@@ -1,0 +1,196 @@
+/*============================================================================
+ * Intel 386/486 C Code Builder(TM) Kit
+ * Copyright 1991 Intel Corporation.  All Rights Reserved.
+ *-----------------------------------------------------------------------------
+ *
+ * INT2F.C
+ *
+ * Print spooler interrupt (0x2f, function 01h) example.
+ *
+ * Interrupt 2Fh, function 01h is not supported by the extender.  This file
+ * demonstrates the use of a user-installed intercept to provide support.
+ * The protected mode interrupt performs the processing necessary only for
+ * the print spooler interrupt services (Int 2Fh, function 01h,
+ * sub-functions 01h & 02h).  The interrupt could easily be expanded to
+ * provide processing for other 2Fh services.  (Only those services which
+ * pass or return addresses require a custom interrupt.  All other 2Fh
+ * services are supported by the extender without any additions.)
+ *
+ * Sub-functions 01h and 02h of the print spooler service expect to be
+ * called with an address in segment:offset form in registers DS:DX.  This
+ * cannot be done directly while executing under the extender's flat memory
+ * model.  Therefore, the address is passed in "flat" form in register EDX,
+ * and the intercept converts this address into segment:offset form & stores
+ * it in DS:DX.  (Note that the intercept does not actually store values
+ * directly into registers, but rather modifies the copy of registers passed
+ * to it in an "_XSTACK frame".  This modified copy is then passed to the
+ * V86 interrupt handler as its input registers.)
+ *
+ * The print spooler must be loaded into memory (by typing 'print' from the
+ * DOS command line) before executing this program.
+ *****************************************************************************/
+
+/******************************************************************************
+*  include files
+******************************************************************************/
+#include <i32.h>                       /* #pragma interrupt & _get_stk_frame */
+#include <dos.h>                       /* defines REGS & other structs       */
+#include <errno.h>
+#include <stdio.h>                     /* for 'perror()' of errno if error   */
+#include <stk.h>                       /* _XSTACK struct definition          */
+
+/******************************************************************************
+*  defines, structs
+******************************************************************************/
+                                       /* convrt a (low) flat addr to seg:off*/
+#define MAKE_SEG(low_flat) ((FP_OFF(low_flat) & 0xfffffff0) >> 4)
+#define MAKE_OFF(low_flat) (FP_OFF(low_flat & 0x0000000f))
+
+#pragma noalign(print_pkt)             /* must pack struct to match DOS defn */
+struct print_pkt                       /* struct for int 2f, func 1 call     */
+{
+   unsigned char  level;               /* always 0 in current MSDOS versions */
+   unsigned short fname_off;           /* off:seg form of ASCIIZ filenm addr */
+   unsigned short fname_seg;
+};
+
+/******************************************************************************
+*  Functions defined in this file
+******************************************************************************/
+#pragma interrupt(Int2f)               /* int 0x2f intercept                 */
+void  Int2f(void);
+
+/******************************************************************************
+*  Global variables
+******************************************************************************/
+void                *prev_2f;          /* addr of previous 2f intercept      */
+
+
+
+/******************************************************************************
+*  main()
+*
+*  This program installs the "custom" intercept for processing interrupt 2f,
+*  function 1 (print spooler), subfuntions 1 & 2.  It then allocates a small
+*  block of real (low) memory, in which it creates a spooler packet and copies
+*  the filename to be printed.  The filename is copied into the start of the
+*  allocated memory region, followed by the spooler packet.  The low memory
+*  usage ends up as follows:
+*        +0    "int2f.c"          ASCIIZ filename of file to print
+*        +64   spooler packet:
+*                 0               level
+*        +65      addr of +0      ptr to filename of file to print
+*                                 (4 bytes, seg:off form)
+*
+*  The int 2f is performed, and upon return the previous 2f intercept vector
+*  is restored, and the program exits.
+******************************************************************************/
+main()
+{
+   char             *fname;            /* keeps ptr to file name in low mem  */
+   struct print_pkt *packet;           /* print-packet struct ptr (low mem)  */
+   union REGS        regs;             /* 'int86()' in/out registers         */
+
+
+   printf("\n*** Interrupt 0x2f Intercept Test ***\n"
+      "This program installs a protected mode intercept routine to add\n"
+      "support for interrupt 0x2f, function 1 (the PRINT spooler).\n\n"
+      "The program will not function correctly unless PRINT is installed.\n"
+      "\nA request will be made using interrupt 0x2f, function 1, to\n"
+      "submit the file 'int2f.c' to the PRINT spooler for printing.\n\n");
+
+   prev_2f = _dos_getvect(0x2f);       /* get current 2f intercept, if any   */
+   _dos_setvect(0x2f, Int2f);          /* install our int 2f intercept       */
+
+   regs.h.ah = 0x48;                   /* alloc low mem for packet & filename*/
+   regs.w.ebx = 64+sizeof(struct print_pkt); /* enough for a filename + packt*/
+   int86(0x21, &regs, &regs);
+   if ((regs.x.cflag & 0x01) != 0)     /* exit - couldn't allocate memory    */
+   {
+      printf("Unable to allocate enough low memory - test program "
+               "terminated.\n");
+      goto exit_main;                  /* perform cleanup & exit to DOS      */
+   }
+   fname = (char *)regs.w.eax;         /* set filename ptr to top of area    */
+                                       /* leave enough room for filename     */
+   packet = (struct print_pkt*)(regs.w.eax+64); /* set ptr to pkt area       */
+
+   strcpy(fname, "int2f.c");           /* copy filename to low mem area      */
+
+                                       /* fill 'struct print_pkt' as needed  */
+   packet->level = 0;                  /* level always 0                     */
+   packet->fname_off = (unsigned short)MAKE_OFF(fname);  /* sto filename addr*/
+   packet->fname_seg = (unsigned short)MAKE_SEG(fname);  /* in off:seg form  */
+
+   regs.w.eax = 0x0101;                /* Submit-file-to-be-printed service  */
+   regs.w.edx = FP_OFF(packet);        /* pass flat packet addr to 'Int2f()' */
+   int86(0x2f, &regs, &regs);          /* perform int 2f; let 'Int2f()' in   */
+
+   if (regs.x.cflag != 0)
+   {
+      errno = regs.x.ax;               /* set errno since we didn't use lib  */
+      perror("Unable to print file 'int2f.c'");
+   }
+   else
+      printf("\nFile submitted for printing (assuming PRINT installed!)...\n");
+
+exit_main:
+   _dos_setvect(0x2f, prev_2f);        /* re-install previous 2f intercept   */
+   return(0);
+}
+
+
+
+/******************************************************************************
+*  Int2f
+*
+*  This routine intercepts all 0x2f interrupts before the interrupt gets passed
+*  to the V86 (real mode) interrupt handler.  It is written to provide support
+*  for the print spooler service (function 01h of interrupt 0x2f).
+*
+*  The intercept must ensure that it only processes those interrupt requests
+*  that it was intended to process.  In this case, it ensures that the request
+*  was issued from protected mode (not a V86 [real mode] interrupt), and that
+*  the request is for function 1, sub-function 1 or 2.
+*
+*  Sub-functions 1 and 2 of the print spooler service expect to be called with
+*  an address in segment:offset form in registers DS:DX.  The address is passed
+*  in "flat" form in register EDX, and this routine converts the address into
+*  segment:offset form & stores it in the _XSTACK frame's DS:DX.
+*
+*  This routine MUST be declared using '#pragma interrupt' to ensure the proper
+*  registers are preserved and to allow access to the _XSTACK frame.
+*
+*  Input:
+*     An _XSTACK frame (a pointer to which is obtained by calling the routine
+*        '_get_stk_frame()').  This frame contains a copy of the registers
+*        which will be passed to the V86 (real mode) interrupt handler.  See
+*        'STK.H' for the layout of this struct.
+*
+*  Output:
+*     The flat address contained in the _XSTACK copy of the EDX register is
+*        converted to segment:offset form & stored in the DS:DX locations of
+*        the _XSTACK frame.
+******************************************************************************/
+void  Int2f(void)
+{
+   int      reg;
+   _XSTACK *stk_ptr;
+
+                                          /* get ptr to _XSTACK - regs, etc  */
+   stk_ptr = (_XSTACK *)_get_stk_frame();
+
+   reg = (unsigned short)stk_ptr->eax;    /* get function & subfuction #s    */
+
+   if (((stk_ptr->flg & _FLAG_VM) == 0)   /* process only if NOT virtual mode*/
+   && ((reg == 0x0101) || (reg == 0x0102)))/* AND only if func 1, subf 1 or 2*/
+   {
+      reg = stk_ptr->edx;                 /* get edx as passed (flat addr)   */
+      stk_ptr->edx = MAKE_OFF(reg);       /* convert to seg:off form         */
+      stk_ptr->ds = MAKE_SEG(reg);        /* service requires it in ds:dx    */
+   }
+   _chain_intr(prev_2f);                  /* always best to chain to prev int*/
+}
+
+
+

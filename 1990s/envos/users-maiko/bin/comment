@@ -1,0 +1,1 @@
+#comment: fileif($1 == "") then	echo "Usage:: comment file"	exitendifsccs prs /users/maiko/SCCS/s.$1

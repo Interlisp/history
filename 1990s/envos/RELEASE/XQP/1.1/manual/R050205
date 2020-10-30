@@ -1,0 +1,1 @@
+ref-5-2-5                    Xerox Quintus Prolog Reference Manual                              Section 5-2-5: nlnl/0 starts a new line on the current output stream.  That is, a linefeedcharacter (ASCII 10; ASCII 13 on Xerox systems) is printed, as if by             | ?- put(10).     % put(13) on Xerox systemsnl/0 has no associated error conditions.

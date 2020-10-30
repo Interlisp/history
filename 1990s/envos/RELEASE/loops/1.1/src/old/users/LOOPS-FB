@@ -1,0 +1,41 @@
+(FILECREATED " 9-Sep-86 09:00:41" {POGO:PARC:XEROX}<LOOPSCORE>USERS>LOOPS-FB.;1 1455   
+
+      changes to:  (VARS LOOPS-FBCOMS)
+		   (FNS FB-Browse-File))
+
+
+(* Copyright (c) 1986 by Xerox Corporation. All rights reserved.)
+
+(PRETTYCOMPRINT LOOPS-FBCOMS)
+
+(RPAQQ LOOPS-FBCOMS [(* * Adds a command to the Lisp File Browsers for opening Loops browsers on 
+			  files)
+		       (FNS FB-Browse-File)
+		       (APPENDVARS (FB.MENU.ITEMS (Browse FB-Browse-File 
+							  "Open a Loops browser on the file"])
+(* * Adds a command to the Lisp File Browsers for opening Loops browsers on files)
+
+(DEFINEQ
+
+(FB-Browse-File
+  [LAMBDA (browser key item menu)                            (* smL " 9-Sep-86 08:59")
+
+          (* * Open Loops browsers on the selected files in the Lisp FileBrowser)
+
+
+    (for file-obj in (FB.SELECTEDFILES browser) bind file-name root-file-name
+       do (SETQ file-name (FB.FETCHFILENAME file-obj))
+	    (SETQ root-file-name (U-CASE (ROOTFILENAME file-name)))
+	    (if (NOT (MEMB root-file-name FILELST))
+		then (FB.PROMPTWPRINT browser "Loading file " file-name)
+		       (LOAD file-name))
+	    (_ (_New ($ FileBrowser)
+		     BrowseFile root-file-name)
+	       Move)])
+)
+
+(APPENDTOVAR FB.MENU.ITEMS (Browse FB-Browse-File "Open a Loops browser on the file"))
+(PUTPROPS LOOPS-FB COPYRIGHT ("Xerox Corporation" 1986))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (600 1284 (FB-Browse-File 610 . 1282)))))
+STOP

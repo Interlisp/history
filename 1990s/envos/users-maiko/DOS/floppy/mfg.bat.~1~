@@ -1,0 +1,1 @@
+@ECHO OFFanswer Enter medley key:del dsk1\emul.zippkzip -a -s%answer% dsk1\emul.zip medley.exe emul.exeanswer Put floppy 1 in drivecopy dsk1\*.* a:answer Put floppy 2 in drivecopy dsk2\*.* a:answer Put floppy 3 in drivecopy dsk3\*.* a:answer Put floppy 4 in drivecopy dsk4\*.* a:answer Put floppy 5 in drivecopy dsk5\*.* a:

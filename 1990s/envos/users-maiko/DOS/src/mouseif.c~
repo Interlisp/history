@@ -1,0 +1,1 @@
+#include "dbprint.h"#include "mouseif.h"#include "lispemul.h"MouseInterfaceRec _curmouse;MouseInterface currentmouse = &_curmouse;make_mouse_instance( mouse )MouseInterface mouse;{  mouse->LastCursorX = 0;  mouse->LastCursorY = 0;  mouse->LastCursorClippingX = 0;  mouse->LastCursorClippingY = 0;}

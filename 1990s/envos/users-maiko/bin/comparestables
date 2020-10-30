@@ -1,0 +1,1 @@
+#rm -f $3diff -b -r $1 $2 | sed -f /users/maiko/bin/comparestables.sed > $3

@@ -1,0 +1,20 @@
+(DEFINE-FILE-INFO READTABLE "XCL" PACKAGE "INTERLISP")
+(FILECREATED "24-Jan-90 15:53:22" |{DSK}/users/sybalsky/lispcore/sunloadup/SUNFONT.;2| 798    
+
+      |changes| |to:|  (VARS DISPLAYFONTDIRECTORIES))
+
+
+; Copyright (c) 1990 by John Sybalsky.  All rights reserved.
+
+(PRETTYCOMPRINT SUNFONTCOMS)
+
+(RPAQQ SUNFONTCOMS ((VARS DISPLAYFONTDIRECTORIES)))
+
+(RPAQQ DISPLAYFONTDIRECTORIES ("{DSK}/usr/local/lde/fonts/display/presentation/" 
+                                         "{DSK}/usr/local/lde/fonts/display/PRINTWHEEL/" 
+                                         "{DSK}/usr/local/lde/fonts/display/publishing/" 
+                                         "{DSK}/usr/local/lde/fonts/display/miscellaneous/"))
+(PUTPROPS SUNFONT COPYRIGHT ("John Sybalsky" 1990))
+(DECLARE\: DONTCOPY
+  (FILEMAP (NIL)))
+STOP

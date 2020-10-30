@@ -1,0 +1,1 @@
+ref-8-4                    Xerox Quintus Prolog Reference Manual                           Section 8-4: ?T1 @< ?T2T1 @< T2 succeeds if term T1 is before term T2 in the standard order.  Forexample:            | ?- a @< "a".            yes'@<'/2 has no associated error conditions.

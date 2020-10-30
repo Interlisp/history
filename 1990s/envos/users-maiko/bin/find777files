@@ -1,0 +1,1 @@
+#alias ll ls -Flatcd /users/maiko/foreach dir (stabl* *beta *alpha *final)	echo $dir	ll $dir/src/*.c | fgrep rwx	ll $dir/inc/*   | fgrep rwx	endforeach dir (sybalsky bane krivacic shimizu snow greep)	echo $dir	ll /users/$dir/maiko/src/*.c | fgrep rwx	ll /users/$dir/maiko/inc/*   | fgrep rwx	end

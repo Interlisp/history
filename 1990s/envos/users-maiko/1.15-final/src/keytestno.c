@@ -1,0 +1,1 @@
+/* This is G-file @(#) keytestno.c Version 1.2 (6/16/88). copyright Xerox & Fuji Xerox  */static char *id = "@(#) keytestno.c	1.2 6/16/88";/* Loaded instead of keytester.c, with unlocked definition of keytester */keytester ()    {    return 0;    }

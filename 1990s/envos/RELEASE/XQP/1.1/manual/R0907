@@ -1,0 +1,1 @@
+ref-9-7                    Xerox Quintus Prolog Reference Manual                           Section 9-7: ?T1 @>= ?T2T1 @>= T2 succeeds if term T1 is not before term T2 in the standard order.            | ?- 1 @>= 1.0.            no            | ?- 1.0 @>= 1.            yes'@>='/2 has no associated error conditions.

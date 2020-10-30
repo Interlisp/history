@@ -1,0 +1,14 @@
+(DEFINE-FILE-INFO READTABLE "INTERLISP" PACKAGE "INTERLISP")
+(FILECREATED "24-May-91 18:55:56" ("compiled on " |{PELE:MV:ENVOS}<LISPCORE>SOURCES>POSTLOADUP.;2|) 
+" 6-May-91 13:07:16" bcompl'd in "Lispcore  6-May-91 ..." dated " 6-May-91 13:34:43")
+(FILECREATED "16-May-90 21:05:36" {DSK}<usr>local>lde>lispcore>sources>POSTLOADUP.;2 870 changes to%: 
+(VARS POSTLOADUPCOMS) previous date%: " 8-DEC-81 15:27:54" 
+{DSK}<usr>local>lde>lispcore>sources>POSTLOADUP.;1)
+(PRETTYCOMPRINT POSTLOADUPCOMS)
+(RPAQQ POSTLOADUPCOMS ((* set up so that files can be loaded directly from phylum) (* turn off 
+checking for dates of source) (P (MOVD (QUOTE NILL) (QUOTE LOADUP2A)) (CHANGENAME (QUOTE LOADUP2) (
+QUOTE ASSOC) (QUOTE TRUE)))))
+(MOVD (QUOTE NILL) (QUOTE LOADUP2A))
+(CHANGENAME (QUOTE LOADUP2) (QUOTE ASSOC) (QUOTE TRUE))
+(PUTPROPS POSTLOADUP COPYRIGHT ("Venue" 1990))
+NIL

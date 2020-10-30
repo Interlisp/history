@@ -1,0 +1,6 @@
+/* EXAMPLE.MAC - This is an include macro file for DB32.  */
+/* It loads program EXAMPLE.EXE and executes that program */
+/* until its main function is reached. */
+load example
+go til main
+

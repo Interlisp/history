@@ -1,0 +1,1 @@
+# a C shell filesi   $1 $2lde gabriel.sysoutprof lde mon.out > outputsed -f opnames.sed output > output2date > output4echo benchmark: $1   itaration: $2 >> output4echo ' ' >> output4cat output4 output2 > $1.resultrm output output2 output4

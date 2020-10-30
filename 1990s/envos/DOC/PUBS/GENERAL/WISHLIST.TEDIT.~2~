@@ -1,0 +1,36 @@
+global search & replace over a group of files
+(e.g., Interlisp-D > Xerox Lisp; Koto > Lyric, etc.)
+
+
+access to XPSEDIT so as to write/revise macros
+(e.g., IRM-style of function format; format for parameter descriptions)
+
+
+expanded view of a TEDIT file, to show embedded format commands
+
+
+TEDIT to show page numbers and page breaks on-screen
+
+
+"go to page number" command
+
+
+one-ket switch to show text on the screen with enlarged or normal-size characters (10-pt modern is hard on these old eyes) -- while keeping the page breaks the same!
+
+
+UNDO to work on xpsedit commands
+
+
+include a "reset" in xpsedit such that you could point to a title in order to redefine its format, and it would delete/override details of the old format such as the old hrules (much like it redefines point size and weight)
+
+
+implement a switch to change uppercase <--> lowercase, init caps, etc.
+
+
+wildcard character strings for search (any number, letter, alphanumeric, character, command-symbol, etc)
+
+
+wildcard replace character strings: 
+look for (string1)(something), 
+replace with  (string2)(samething),
+where something and samething are different for each instance of the search string

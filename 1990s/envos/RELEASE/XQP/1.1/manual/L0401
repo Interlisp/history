@@ -1,0 +1,1 @@
+lib-4-1                     Xerox Quintus Prolog Library Manual                  Section 4-1: Introduction -- library(not)This chapter describes the predicates provided by library(not):  not/1, '\='/2,'~='/2, and once/1.  For comparison purposes, the negation facilities which arebuilt into the Prolog system are also described.

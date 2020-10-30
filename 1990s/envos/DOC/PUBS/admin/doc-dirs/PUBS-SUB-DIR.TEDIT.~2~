@@ -1,0 +1,219 @@
+   {ERIS}<Doc>printers>
+recommendation.tedit;2	10 BINARY	28-Jul-88 13:58:10 PDT Weisblatt.pa
+
+   {ERIS}<Doc>PUBS>1.0-OVERVIEW>
+TREE.TEDIT;2	33 BINARY	21-Jul-87 11:26:06 PDT Biggs.pa
+
+   {ERIS}<Doc>pubs>bob>xqprolog>
+releasenotes-template.tedit;1	6 BINARY	10-Jul-87 10:35:45 PDT MUELLER.pa
+
+   {ERIS}<Doc>PUBS>CHECKLISTS>
+final-edit-checklist.tedit;1	6 BINARY	11-Apr-87  7:45:51 PDT hostrop.pa
+PRE-PRODUCTION-CHECKLIST.TEDIT;1	6 BINARY	11-Apr-87  7:48:05 PDT hostrop.pa
+press-checklist.tedit;1	2 BINARY	 5-Mar-87 12:42:44 PST hostrop.pa
+PRODCHECKLIST.TEDIT;1	2 BINARY	23-Jan-89 13:44:49 PST biggs.envos
+
+   {ERIS}<Doc>PUBS>GENERAL>
+ALPHA-DOC-REQS.TEDIT;1	6 BINARY	24-May-88 15:11:44 PDT Biggs.pa
+DELIVERABLES.TEDIT;1	6 BINARY	20-Jun-86  9:23:35 PDT hostrop.pa
+DEVEL-DOC-DELIV.TEDIT;1	3 BINARY	17-Jul-86 14:23:06 PDT hostrop.pa
+doccycle.tedit;1	9 BINARY	12-May-86 16:09:44 PDT hostrop.pa
+DOCUMENTREQS.TEDIT;3	6 BINARY	22-Apr-88 12:53:15 PDT Biggs.pa
+FRONT-MATTER-INFO.MAIL;1	7 BINARY	16-Aug-88 10:33:52 PDT Biggs.pa
+handoff.tedit;1	15 BINARY	12-Aug-86 10:54:03 PDT hostrop.pa
+manuals-reviewers.tedit;1	4 BINARY	24-Sep-87  9:06:11 PDT Biggs.pa
+optima-font.tedit;1	2 BINARY	28-Apr-88 15:05:29 PDT Biggs.pa
+packaging-design.tedit;3	5 BINARY	11-Aug-88 16:08:54 PDT Biggs.pa
+PDHANDOFF-PD-TO-ALPHATEST.TEDIT;1	3 BINARY	 4-Aug-86 18:47:16 PDT hostrop.pa
+PDHANDOFF-SFTDSGNDOC.TEDIT;1	3 BINARY	 4-Aug-86 18:50:13 PDT hostrop.pa
+print-materials.tedit;1	1 BINARY	19-Jul-88 11:41:20 PDT Biggs.pa
+printers.tedit;1	11 BINARY	26-Feb-87 18:57:44 PST hostrop.pa
+project-phases.tedit;1	5 BINARY	11-Nov-86 10:13:26 PST hostrop.pa
+PUBS.MAIL;1	236 BINARY	21-Jan-89 17:27:29 PST hostrop.pa
+PUBS.MAIL-LAFITE-TOC;1	7 BINARY	21-Jan-89 17:30:40 PST hostrop.pa
+roundtable.tedit;2	3 BINARY	23-Jan-89  9:53:48 PST biggs.envos
+SYSTEMTOOL.TEDIT;1	12 BINARY	13-Oct-86 17:03:02 PDT hostrop.pa
+TOOLS-EVAL.TEDIT;4	11 BINARY	10-Mar-88 11:58:32 PST Biggs.pa
+WISHLIST.TEDIT;1	3 TEXT	12-Feb-87 15:22:47 PST hostrop.pa
+WriterNotes.tedit;3	5 BINARY	 2-Jul-87 16:38:29 PDT KONTUR.pa
+WRITERS-TASKS.TEDIT;1	3 BINARY	17-Sep-86 12:27:05 PDT hostrop.pa
+WRITERSCHED3.tedit;1	8 BINARY	 8-Dec-86 14:00:50 PST hostrop.pa
+WRITING.MAIL;1	156 TEXT	22-Feb-88  9:41:11 PST biggs.pa
+WRITING.MAIL-LAFITE-TOC;1	5 BINARY	23-Jan-89 13:35:21 PST biggs.pa
+
+   {ERIS}<Doc>PUBS>INDEXING>
+IMINDEX.;1	58 TEXT	18-Jul-88 14:27:09 PDT biggs.envos
+IMINDEX.LCOM;1	27 BINARY	18-Jul-88 14:28:41 PDT biggs.envos
+IMINDEX.TEDIT;1	53 BINARY	12-Aug-86  9:55:28 PDT biggs.envos
+IMNAME.LCOM;1	34 BINARY	 5-Mar-87 12:36:21 PST biggs.envos
+IMNAME.TEDIT;1	12 TEXT	29-May-86 10:33:33 PDT biggs.envos
+IMTEDIT.LCOM;1	118 BINARY	 5-Mar-87 12:39:31 PST biggs.envos
+IMTEDIT.TEDIT;1	68 BINARY	29-Jul-86  8:55:55 PDT biggs.envos
+IMTOOLS.;1	117 TEXT	29-Jun-88 12:03:51 PDT biggs.envos
+IMTOOLS.LCOM;1	49 BINARY	29-Jun-88 12:07:26 PDT biggs.envos
+IMTRAN.LCOM;1	46 BINARY	 5-Mar-87 12:49:01 PST biggs.envos
+INDEX-FORMAT.TEDIT;1	4 BINARY	20-Jan-89 12:23:51 PST biggs.envos
+UseIndex.tedit;1	55 BINARY	28-Apr-88 15:00:51 PDT biggs.envos
+
+   {ERIS}<Doc>pubs>lispusers>
+DOCUMENTATIONTEMPLATE.TEDIT;1	31 BINARY	 6-Jul-87 18:09:32 PDT Biggs.pa
+easytemplate.tedit;1	8 BINARY	27-Jul-87 15:45:08 PDT Biggs.pa
+lispusers-rules.tedit;1	15 BINARY	 3-Aug-87 19:07:36 PDT Biggs.pa
+
+   {ERIS}<Doc>PUBS>PART-NO>
+SW-CONFIG.TEDIT;1	16 BINARY	23-Aug-88 10:07:30 PDT Biggs.pa
+XAIS-manuals.tedit;3	14 BINARY	18-Oct-88 13:44:20 PDT Biggs.envos
+
+   {ERIS}<Doc>PUBS>PRIMERS>
+BREWSTER-IDEAS.TEDIT;1	2 BINARY	25-Feb-88 10:15:23 PST Biggs.pa
+PRIMERS.MAIL;1	99 BINARY	25-Jan-89 11:17:54 PST BIGGS.pa
+PRIMERS.MAIL-Lafite-toc;1	2 BINARY	25-Jan-89 11:18:12 PST biggs.envos
+
+   {ERIS}<Doc>pubs>procedures>
+8KCS.tedit;1	11 BINARY	23-Oct-86 16:01:19 PDT MUELLER.pa
+BREWSTER-FOLKWISDOM.TEDIT;1	77 BINARY	22-Feb-88  8:55:52 PST Biggs.pa
+changefontchars.tedit;1	4 BINARY	18-Jan-88 14:56:37 PST Biggs.pa
+clearinghouse-connection.tedit;1	2 BINARY	19-Jun-87 11:47:23 PDT MUELLER.pa
+fetch-lisp-microcode-instructions.tedit;1	5 BINARY	23-Apr-86 15:09:47 PDT MUELLER.pa
+FIXING-ARS.TEDIT;3	4 BINARY	24-Jan-89 14:13:11 PST biggs.envos
+idlehax-freeze.tedit;1	4 BINARY	 9-Jun-87 15:55:23 PDT MUELLER.pa
+KONTUR-PROCS.TEDIT;1	63 BINARY	25-Aug-88 11:24:50 PDT Biggs.pa
+loadinglisp.tedit;1	12 BINARY	15-Jul-86 17:47:22 PDT hostrop.pa
+MENUFREEZE.TEDIT;1	3 BINARY	11-Feb-87 16:04:02 PST MUELLER.pa
+PatchLeftArrow.;1	3 TEXT	1-Dec-87 11:09:36 PST Biggs.pa
+return-from-imageproblem.tedit;2	1 BINARY	22-Jul-87 11:26:15 PDT MUELLER.pa
+RETURN-to-old-koto-fonts.tedit;1	26 BINARY	15-Dec-86 17:32:32 PST MUELLER.pa
+SAMPLEIM.TEDIT;1	1 TEXT	1-Aug-86 17:18:22 PDT hostrop.pa
+special-characters.tedit;1	1 BINARY	 4-May-87 14:47:13 PDT MUELLER.pa
+TEDIT-AN-INDEX.TEDIT;1	1 TEXT	22-Jul-87 11:32:45 PDT MUELLER.pa
+TEDIT-SUBLOOKS.TEDIT;1	2 TEXT	22-Jul-87 11:30:10 PDT MUELLER.pa
+UNDERSCORE-PRINT.TEDIT;1	2 BINARY	21-Jan-89 17:32:05 PST Biggs.envos
+
+   {ERIS}<Doc>PUBS>PRODUCTION-SPECS>
+88-binding-printing.tedit;1	3 BINARY	29-Jan-88 18:08:42 PST Biggs.pa
+binding.tedit;5	10 BINARY	13-Jan-88  9:36:21 PST Biggs.pa
+cardstock.tedit;1	 5 BINARY	19-Jan-88 17:47:05 PST Biggs.pa
+cover-art-color-size-font.tedit;1	3 BINARY	24-Jan-89 17:29:43 PST biggs.envos
+cover-artcolor-size-font.tedit;1	3 BINARY	24-Jan-89 17:23:56 PST biggs.envos
+coverart.tedit;2	10 BINARY	13-Jan-88 10:33:57 PST Biggs.pa
+DRAWING.TEDIT;1	11 TEXT	2-Feb-88 17:45:06 PST BIGGS.pa
+License-Warning-Sticker.Tedit;1	4 BINARY	18-Apr-88 10:40:14 PDT Biggs.pa
+LYRIC-PRODUCTION.MAIL;1	75 BINARY	15-Aug-88 14:25:30 PDT Biggs.pa
+MANUAL-SPECS.TEDIT;4	2 BINARY	12-Jan-88 17:43:47 PST Biggs.pa
+packaging.tedit;3	12 BINARY	22-Jul-88 10:22:49 PDT Biggs.pa
+paper.tedit;1	8 BINARY	19-Jan-88 17:35:39 PST Biggs.pa
+polaroid-production.tedit;1	9 BINARY	 2-Oct-87 16:29:50 PDT biggs.pa
+PRINTING-ISSUES.TEDIT;1	10 BINARY	 3-Dec-87 11:34:05 PST Biggs.pa
+tabs.tedit;2	8 BINARY	13-Jan-88  9:10:26 PST Biggs.pa
+vendor-info.tedit;1	4 BINARY	23-Jan-89 10:36:14 PST biggs.envos
+
+   {ERIS}<Doc>PUBS>STYLE>
+ALL-STYLE.TEDIT;1	45 BINARY	27-Aug-87 15:33:36 PDT Biggs.pa
+full-glossary.tedit;4	66 BINARY	19-Jan-89  9:07:42 PST biggs.envos
+GLOSSARY.TEDIT;3	15 BINARY	 8-Jan-88 10:12:54 PST Biggs.pa
+MANUALSTANDARDS.TEDIT;5	21 BINARY	 3-Oct-88 18:19:58 PDT Biggs.pa
+PUNCTUATION.TEDIT;4	6 BINARY	27-Aug-87 11:34:13 PDT Biggs.pa
+REFERENCES.TEDIT;3	2 BINARY	27-Aug-87 14:55:12 PDT Biggs.pa
+Stylesheet.TEdit;3	45 BINARY	15-Jul-87 11:33:26 PDT Biggs.pa
+WORDUSAGE.TEDIT;3	4 BINARY	27-Aug-87 11:36:47 PDT Biggs.pa
+XPSDESIGN.TEDIT;3	3 BINARY	27-Aug-87 11:37:51 PDT Biggs.pa
+
+   {ERIS}<Doc>PUBS>SYMBOLS>
+CURSORSNAPS.TEDIT;1	7 BINARY	 6-Nov-86 13:53:21 PST hostrop.pa
+ENVOS-C.TEDIT;1	2 BINARY	26-Sep-88  9:49:43 PDT Biggs.pa
+envos-logo.tedit;4	27 BINARY	21-Oct-88 10:16:36 PDT Biggs.envos
+EXPAND-CHARS.TEDIT;2	6 BINARY	28-Sep-88 13:23:01 PDT Biggs.pa
+HOW-TO-INSERT-CHARACTERS.TEDIT;1	8 BINARY	15-Dec-86 18:51:32 PST hostrop.pa
+LOGOW-SNAP.TEDIT;1	8 BINARY	 1-Mar-87 15:07:27 PST hostrop.pa
+name-logo.tedit;1	9 BINARY	21-Sep-88 12:38:54 PDT Biggs.pa
+SYMBOLS.TEDIT;1	2 BINARY	13-Nov-87 17:55:37 PST BIGGS.pa
+
+   {ERIS}<Doc>PUBS>TEMPLATES>DOCTYPES>
+COPYRIGHTPAGE.TEDIT;3	2 BINARY	29-Jul-87 12:41:45 PDT Biggs.pa
+INTRODUCTION-CONTENTS.TEDIT;1	2 BINARY	29-Jul-87  9:48:52 PDT Biggs.pa
+PREFACE-CONTENTS.TEDIT;2	2 BINARY	29-Jul-87  9:47:59 PDT Biggs.pa
+RELEASENOTES.TEDIT;1	6 BINARY	 3-Nov-86 12:09:09 PST hostrop.pa
+SAMPLE-COPYRIGHTPAGE-TEMPLATE.TEDIT;5	5 BINARY	15-Feb-88 18:22:59 PST Biggs.pa
+STATEMENTS.TEDIT;6	6 BINARY	25-Jan-88  8:49:47 PST Biggs.pa
+TABLEOFCONTENTS.TEDIT;1	9 BINARY	19-Nov-86 11:31:09 PST hostrop.pa
+TEXT-POSITIONING.TEDIT;2	11 BINARY	17-Jan-89 12:37:10 PST Biggs.envos
+TITLEPAGE.TEDIT;4	 4 BINARY	 7-Oct-87 16:43:23 PDT Biggs.pa
+
+   {ERIS}<Doc>PUBS>TEMPLATES>GENERAL>
+86ACTIVITYCHARTL.SKETCH;1	40 BINARY	28-Apr-86 13:39:06 PDT hostrop.pa
+doc-comment-form.tedit;1	8 BINARY	29-Jan-87 17:18:18 PST hostrop.pa
+IRM-FORMATTING-TEMPLATE.TEDIT;1	6 BINARY	31-Mar-87 18:26:24 PST hostrop.pa
+KOTO-1108-KEYBOARD.SKETCH;1	49 BINARY	15-Jan-87 14:20:54 PST hostrop.pa
+KOTO-1108-TITLEPAGE.TEDIT;1	17 BINARY	 3-Dec-85 16:15:58 PST hostrop.pa
+PAGINATION-SHEET.SKETCH;1	16 BINARY	21-Apr-87 11:08:25 PDT hostrop.pa
+PEBULLETIN-TEMPLATE.TEDIT;1	1 TEXT	7-Jul-87 18:32:30 PDT Biggs.pa
+PRODUCTIONDETAILS.TEDIT;3	2 BINARY	30-Nov-87 14:25:23 PST BIGGS.pa
+Rel-CustSupp-Handoff.Tedit;1	2 BINARY	30-Apr-87 12:56:19 PDT hostrop.pa
+REVIEW-SHEET.TEDIT;1	9 BINARY	 5-Jan-87 16:54:47 PST hostrop.pa
+signoff.tedit;1	5 BINARY	31-Mar-87 11:17:22 PST hostrop.pa
+tab-replacement.tedit;3	2 BINARY	30-Nov-87 14:28:46 PST BIGGS.pa
+
+   {ERIS}<Doc>PUBS>TEMPLATES>LARGE-FORMAT>
+LARGEFORMAT-UPDATESHEET.TEDIT;1	3 BINARY	29-Jan-87 16:41:31 PST hostrop.pa
+UPDATE-SHEET-FULLSIZE.SKETCH;1	7 BINARY	 4-Apr-87 14:25:33 PST hostrop.pa
+UPDATESHEET.TEDIT;1	 TEXT	29-Jan-87 16:36:05 PST hostrop.pa
+
+   {ERIS}<Doc>PUBS>TEMPLATES>PRODUCTION-SPECS>
+BACKCOVER.SKETCH;1	4 BINARY	 8-Jul-86 16:16:16 PDT hostrop.pa
+COVER-SPINE.SKETCH;1	7 BINARY	10-Nov-86 15:43:20 PST hostrop.pa
+PKGING.TEDIT;1	4 BINARY	17-Nov-86 11:28:02 PST hostrop.pa
+TABS1.SKETCH;1	15 BINARY	10-Dec-86  9:43:20 PST hostrop.pa
+TABS2-5BANK.SKETCH;1	8 BINARY	16-Apr-87 12:15:49 PDT hostrop.pa
+TABS2.SKETCH;1	8 BINARY	10-Dec-86  9:49:43 PST hostrop.pa
+
+   {ERIS}<Doc>PUBS>TEMPLATES>SMALL-FORMAT>
+GLOSSARY.TEDIT;1	6 BINARY	 7-Apr-86 19:15:59 PDT hostrop.pa
+INDEX.TEDIT;1	8 BINARY	 2-Jul-86 19:11:07 PDT hostrop.pa
+left-center-blankpage.tedit;1	5 BINARY	 6-Mar-86 19:18:21 PST hostrop.pa
+left-corner-blankpage.tedit;1	5 BINARY	 5-Jun-86 19:38:07 PDT hostrop.pa
+TOCTEMPLATE.TEDIT;1	8 BINARY	30-Jun-86 18:09:26 PDT hostrop.pa
+UPDATE-SHEET-SMFORM.TEDIT;1	8 BINARY	 5-Aug-86 16:45:43 PDT hostrop.pa
+UPDATESHEET.TEDIT;1	5 BINARY	 8-Aug-86 15:20:05 PDT hostrop.pa
+
+   {ERIS}<Doc>PUBS>UTILITIES>GENERAL>
+DocumentationFormatter.TEdit;6	12 BINARY	20-Aug-86 11:32:18 PDT sybalsky.pa
+xps-large-format-running-head-template.tedit;3	2 binary	28-jul-87 15:57:56 pdt weisblatt.pa
+xps-small-format-running-heads-template.tedit;2	2 binary	28-jul-87 15:58:57 pdt weisblatt.pa
+XPSFORMATTER.TEDIT;4	45 BINARY	 7-Dec-87 17:57:31 PST Biggs.pa
+XPSLargeTitles.TEdit;1	2 BINARY	 2-Oct-85 15:06:40 PDT sybalsky.pa
+
+   {ERIS}<Doc>PUBS>UTILITIES>KOTO>
+XPSEDIT.;7	 111 TEXT	16-Dec-86 18:54:34 PST sybalsky.pa
+XPSEDIT.DCOM;7	60 BINARY	16-Dec-86 18:55:09 PST sybalsky.pa
+
+   {ERIS}<Doc>pubs>utilities>lyric>
+IMINDEX.;2	58 TEXT	18-Jul-88 14:27:09 PDT WESSLING.PA
+IMINDEX.LCOM;2	27 BINARY	18-Jul-88 14:28:41 PDT WESSLING.PA
+IMINDEX.TEDIT;1	53 BINARY	12-Aug-86  9:55:28 PDT Biggs.pa
+IMNAME.LCOM;1	34 BINARY	 5-Mar-87 12:36:21 PST Biggs.pa
+IMNAME.TEDIT;1	12 TEXT	29-May-86 10:33:33 PDT Biggs.pa
+IMTEDIT.LCOM;1	118 BINARY	 5-Mar-87 12:39:31 PST Biggs.pa
+IMTEDIT.TEDIT;1	68 BINARY	29-Jul-86  8:55:55 PDT Biggs.pa
+IMTOOLS.;2	 117 TEXT	29-Jun-88 12:03:51 PDT Biggs.pa
+IMTOOLS.LCOM;3	49 BINARY	29-Jun-88 12:07:26 PDT Biggs.pa
+IMTRAN.LCOM;1	46 BINARY	 5-Mar-87 12:49:01 PST Biggs.pa
+INDEX-FORMAT.TEDIT;1	4 BINARY	20-Jan-89 12:23:51 PST Biggs.envos
+TMAC.;1	13 TEXT	30-May-86 10:37:54 PDT Biggs.pa
+TMAC.LCOM;2	8 BINARY	 5-Mar-87 12:59:00 PST Biggs.pa
+UseIndex.tedit;5	55 BINARY	28-Apr-88 15:00:51 PDT Biggs.pa
+XPSEDIT.;1	131 TEXT	12-Dec-86 17:45:38 PST weisblatt.pa
+XPSEDIT.LCOM;2	59 BINARY	 7-Jan-87  4:23:32 PST SYBALSKY.pa
+
+   {ERIS}<Doc>PUBS>UTILITIES>NEW-IRM>
+tex2tedit.;1	    112 TEXT	23-Oct-86 18:09:17 PDT hostrop.pa
+
+   {ERIS}<Doc>PUBS>UTILITIES>PRINT-FUNCTIONS>
+PRINTLANDSCAPE.;1	3 TEXT	1-Apr-86 12:38:01 PST hostrop.pa
+PRINTLANDSCAPE.DCOM;1	2 BINARY	 1-Apr-86 12:38:30 PST hostrop.pa
+
+   {ERIS}<Doc>ROOMS>2.0-PRODUCTION-SPECS>
+MEDLEY-PROD-SPECS.TEDIT;5	10 BINARY	16-Sep-88 11:25:18 PDT Biggs.pa
+MEDLEY-PROD-SPECS.TEDIT;6	10 BINARY	16-Sep-88 11:34:41 PDT Biggs.pa
+MEDLEY-PROD-SPECS.TEDIT;7	10 BINARY	16-Sep-88 14:20:42 PDT Biggs.pa
+packaging.tedit;2	 5 BINARY	17-Feb-88 13:31:32 PST Biggs.pa
+       5    Ð       D Ð                                    	HELVETICA          	HELVETICA                               E                          !             7                          !             I                                       H             L             C             B                                       @             @             C             <             >             B             <             C             =             B             M             H             A             =             B             9             B             ?             ?             =             :             >             A             @             8             C                                       6             <             =             ;             :             =             =             7             <             ;             A             >                                       H             >             B                                       <             B                                       @             9             F                                       9             F             A             L             U             ?             B             ?             @             >             8             L             M             9             F             @             @             E                          %             E             :             <             N             M             ;             7             I             B             >             <             7             E             B             6             @                                       <             C             ;             B             =             <             =             ;             ;                                       ?             9             @             >             L             >             ;             9                          '             ?             G             B             @             O             <             C             F             <                          &             F             D             K             H             H             F             B             C             H             @             ;             A                          +             K             J             <                          /             >             @             :             ;             @             :                          +             <             9             I             I             ?             G             ?                          &             L             \             ]             ?             C                          #             8             <                          $             6             <             :             8             7             :             :             5             9             8             A             0             5             ;             8             <                          &             <                          .             :             A                          *             D             D             D             <                  .+¶zº

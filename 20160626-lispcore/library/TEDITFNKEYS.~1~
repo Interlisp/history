@@ -1,0 +1,575 @@
+(DEFINE-FILE-INFO PACKAGE "INTERLISP" READTABLE "INTERLISP" BASE 10)
+(FILECREATED " 6-Nov-87 11:03:20" {ERIS}<TEDIT>TEDITFNKEYS.;19 26439  
+
+      changes to%:  (VARS TEDITFNKEYSCOMS)
+                    (FNS \TEDIT.BOLD.SEL.OFF \TEDIT.BOLD.SEL.ON)
+
+      previous date%: "20-Oct-87 14:10:44" {ERIS}<TEDIT>TEDITFNKEYS.;18)
+
+
+(* "
+Copyright (c) 1985, 1986, 1987 by Xerox Corporation.  All rights reserved.
+")
+
+(PRETTYCOMPRINT TEDITFNKEYSCOMS)
+
+(RPAQQ TEDITFNKEYSCOMS 
+       [(FILES TEDITDECLS)
+        (DECLARE%: EVAL@COMPILE DONTCOPY (CONSTANTS (\SCRATCHLEN 64))
+               (FILES (LOADCOMP)
+                      TEDITDECLS))
+        (COMS 
+          
+          (* ;; "Functions that actually implement the commands for the function keys:")
+
+              (FNS \TEDIT.BOLD.SEL.OFF \TEDIT.BOLD.SEL.ON \TEDIT.CENTER.SEL \TEDIT.CENTER.SEL.REV 
+                   \TEDIT.DEFAULTS.CARET \TEDIT.DEFAULTSSEL \TEDIT.SETDEFAULT.FROM.SEL \TEDIT.FIND 
+                   \TEDIT.ITALIC.SEL.OFF \TEDIT.ITALIC.SEL.ON \TEDIT.LARGERSEL \TEDIT.LCASE.SEL 
+                   \TEDIT.SHOWCARETLOOKS \TEDIT.SMALLERSEL \TEDIT.SUBSCRIPTSEL \TEDIT.SUPERSCRIPTSEL 
+                   \TEDIT.UCASE.SEL \TEDIT.UNDERLINE.SEL.OFF \TEDIT.UNDERLINE.SEL.ON 
+                   \TEDIT.STRIKEOUT.SEL.ON \TEDIT.STRIKEOUT.SEL.OFF))
+        (COMS 
+          
+          (* ;; "Auxiliary functions used in the above main functions:")
+
+              (FNS \TEDIT.BOLD.CARET.OFF \TEDIT.BOLD.CARET.ON \TEDIT.ITALIC.CARET.OFF 
+                   \TEDIT.ITALIC.CARET.ON \TEDIT.LARGER.CARET \TEDIT.SMALLER.CARET 
+                   \TEDIT.SUBSCRIPT.CARET \TEDIT.SUPERSCRIPT.CARET \TEDIT.UNDERLINE.CARET.OFF 
+                   \TEDIT.UNDERLINE.CARET.ON \TEDIT.STRIKEOUT.CARET.OFF \TEDIT.STRIKEOUT.CARET.ON))
+        (COMS                                                (* ; 
+                                              "little selection utilities etc., for building hacks")
+
+              (FNS \SEL.LIMIT \SEL.LINEDESC \TK.DESCRIBEFONT \PARAS.IN.SEL))
+        [VARS (TEDIT.FNKEY.VERBOSE T)
+              (\TEDIT.KEYS '(("2,4" UNDO)
+                             ("2,44" UNDO)
+                             ("2,3" FN \TEDIT.FIND)
+                             ("2,43" FN \TEDIT.FIND)
+                             ("2,10" REDO)
+                             ("2,50" REDO)
+                             ("2,22" NEXT)
+                             ("2,62" NEXT)
+                             (ESC EXPAND)
+                             ("2,24" EXPAND)
+                             ("2,101" FN \TEDIT.CENTER.SEL)
+                             ("2,141" FN \TEDIT.CENTER.SEL.REV)
+                             ("2,102" FN \TEDIT.BOLD.SEL.ON)
+                             ("2,142" FN \TEDIT.BOLD.SEL.OFF)
+                             ("2,103" FN \TEDIT.ITALIC.SEL.ON)
+                             ("2,143" FN \TEDIT.ITALIC.SEL.OFF)
+                             ("2,104" FN \TEDIT.UCASE.SEL)
+                             ("2,144" FN \TEDIT.LCASE.SEL)
+                             ("2,105" FN \TEDIT.STRIKEOUT.SEL.ON)
+                             ("2,145" FN \TEDIT.STRIKEOUT.SEL.OFF)
+                             ("2,106" FN \TEDIT.UNDERLINE.SEL.ON)
+                             ("2,146" FN \TEDIT.UNDERLINE.SEL.OFF)
+                             ("2,107" FN \TEDIT.SUBSCRIPTSEL)
+                             ("2,147" FN \TEDIT.SUPERSCRIPTSEL)
+                             ("2,110" FN \TEDIT.SMALLERSEL)
+                             ("2,150" FN \TEDIT.LARGERSEL)
+                             ("2,113" FN \TEDIT.SUPERSCRIPTSEL)
+                             ("2,153" FN \TEDIT.SUBSCRIPTSEL)
+                             ("2,114" FN \TEDIT.SUBSCRIPTSEL)
+                             ("2,154" FN \TEDIT.SUPERSCRIPTSEL)
+                             ("2,115" FN \TEDIT.DEFAULTSSEL)
+                             ("2,155" FN \TEDIT.SETDEFAULT.FROM.SEL)
+                             ("2,1" FN \TEDIT.SHOWCARETLOOKS]
+        (P (FOR ENTRY IN \TEDIT.KEYS DO (SELECTQ (CADR ENTRY)
+                                               (FN (TEDIT.SETFUNCTION (CAR ENTRY)
+                                                          (CADDR ENTRY)))
+                                               (TEDIT.SETSYNTAX (CAR ENTRY)
+                                                      (CADR ENTRY])
+(FILESLOAD TEDITDECLS)
+(DECLARE%: EVAL@COMPILE DONTCOPY 
+(DECLARE%: EVAL@COMPILE 
+
+(RPAQQ \SCRATCHLEN 64)
+
+(CONSTANTS (\SCRATCHLEN 64))
+)
+
+(FILESLOAD (LOADCOMP)
+       TEDITDECLS)
+)
+
+
+
+(* ;; "Functions that actually implement the commands for the function keys:")
+
+(DEFINEQ
+
+(\TEDIT.BOLD.SEL.OFF
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL CHARCODE)              (* ; "Edited  6-Nov-87 11:00 by jds")
+          
+          (* ;; "Turn boldness off for the selected characters, and for future type-in.")
+
+    (\TEDIT.BOLD.CARET.OFF TEXTSTREAM TEXTOBJ SEL)
+    (TEDIT.LOOKS TEXTSTREAM '(WEIGHT MEDIUM) SEL])
+
+(\TEDIT.BOLD.SEL.ON
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                       (* ; "Edited  6-Nov-87 11:00 by jds")
+          
+          (* ;; "Turn boldness on for selected characters and for future type-in.")
+
+    (\TEDIT.BOLD.CARET.ON TEXTSTREAM TEXTOBJ SEL)
+    (TEDIT.LOOKS TEXTSTREAM '(WEIGHT BOLD) SEL])
+
+(\TEDIT.CENTER.SEL
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 24-Sep-87 10:07 by jds")
+          
+          (* ;; "makes the current paragraph centered")
+
+    (PROG (LOOKS OLDQUAD NEWQUAD NEWQUADS PARASEL (SAVECH# (fetch CH# of SEL))
+                 (SAVEDCH (fetch DCH of SEL)))
+          (for PARA in (\PARAS.IN.SEL SEL TEXTOBJ)
+             do (SETQ LOOKS (TEDIT.GET.PARALOOKS TEXTSTREAM PARA))
+                (SETQ OLDQUAD (LISTGET LOOKS 'QUAD))
+                [SETQ NEWQUAD (CADR (MEMB OLDQUAD (CONSTANT '(LEFT JUSTIFIED CENTERED LEFT]
+                (LISTPUT LOOKS 'QUAD NEWQUAD)
+                (SETQ PARASEL (TEDIT.SETSEL TEXTSTREAM PARA 1))
+                (TEDIT.PARALOOKS TEXTSTREAM LOOKS PARASEL)
+                (push NEWQUADS NEWQUAD))
+          (TEDIT.SETSEL TEXTSTREAM SAVECH# SAVEDCH)
+          (COND
+             (TEDIT.FNKEY.VERBOSE (TEDIT.PROMPTPRINT TEXTSTREAM (DREVERSE NEWQUADS)
+                                         T])
+
+(\TEDIT.CENTER.SEL.REV
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 24-Sep-87 10:07 by jds")
+          
+          (* ;; "acts like center.sel but cycles in the opposite direction")
+
+    (PROG (LOOKS OLDQUAD NEWQUAD NEWQUADS PARASEL (SAVECH# (fetch CH# of SEL))
+                 (SAVEDCH (fetch DCH of SEL)))
+          (for PARA in (\PARAS.IN.SEL SEL TEXTOBJ)
+             do (SETQ LOOKS (TEDIT.GET.PARALOOKS TEXTSTREAM PARA))
+                (SETQ OLDQUAD (LISTGET LOOKS 'QUAD))
+                [SETQ NEWQUAD (CADR (MEMB OLDQUAD (CONSTANT '(LEFT CENTERED JUSTIFIED LEFT]
+                (LISTPUT LOOKS 'QUAD NEWQUAD)
+                (SETQ PARASEL (TEDIT.SETSEL TEXTSTREAM PARA 1))
+                (TEDIT.PARALOOKS TEXTSTREAM LOOKS PARASEL)
+                (push NEWQUADS NEWQUAD))
+          (TEDIT.SETSEL TEXTSTREAM SAVECH# SAVEDCH)
+          (COND
+             (TEDIT.FNKEY.VERBOSE (TEDIT.PROMPTPRINT TEXTSTREAM (DREVERSE NEWQUADS)
+                                         T])
+
+(\TEDIT.DEFAULTS.CARET
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:24")
+    (PROGN (TEDIT.CARETLOOKS TEXTSTREAM (create CHARLOOKS using TEDIT.DEFAULT.CHARLOOKS))
+           (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))
+
+(\TEDIT.DEFAULTSSEL
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 20-Oct-87 11:12 by jds")
+                                                             (* acts on the selection)
+    (TEDIT.LOOKS TEXTSTREAM (create CHARLOOKS using TEDIT.DEFAULT.CHARLOOKS)
+           SEL])
+
+(\TEDIT.SETDEFAULT.FROM.SEL
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds " 8-Nov-85 15:22")
+                                                             (* Set the defaults from the current 
+                                                             selection.)
+    (PROG ((LOOKS (TEDIT.GET.LOOKS TEXTSTREAM SEL)))
+          (SETQ TEDIT.DEFAULT.CHARLOOKS (\TEDIT.PARSE.CHARLOOKS.LIST LOOKS)))))
+
+(\TEDIT.FIND
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "26-Sep-85 14:23")
+          
+          (* just calls the normal tedit.find starting at the right of the current 
+          selection)
+
+    (PROG (TARGET (TEXTOBJ (TEXTOBJ TEXTSTREAM))
+                 SEL CH W)                                   (* Case sensitive search, with * and 
+                                                             %# wildcards)
+          (SETQ W (CAR (MKLIST (fetch \WINDOW of TEXTOBJ))))
+          (SETQ TARGET (TEDIT.GETINPUT TEXTOBJ "Text to find: " (WINDOWPROP W 'TEDIT.LAST.FIND.STRING
+                                                                       )
+                              (CHARCODE (EOL LF ESC))))
+          (COND
+             (TARGET (SETQ SEL (fetch SEL of TEXTOBJ))
+                    (\SHOWSEL SEL NIL NIL)
+                    (TEDIT.PROMPTPRINT TEXTOBJ "Searching..." T)
+                    (SETQ CH (TEDIT.FIND TEXTOBJ (MKSTRING TARGET)
+                                    NIL NIL T))
+                    (COND
+                       (CH                                   (* We found the target text.)
+                           (TEDIT.PROMPTPRINT TEXTOBJ "Done.")
+                           (replace CH# of SEL with (CAR CH))(* Set up SELECTION to be the found 
+                                                             text)
+                           (replace CHLIM of SEL with (ADD1 (CADR CH)))
+                           (replace DCH of SEL with (ADD1 (IDIFFERENCE (CADR CH)
+                                                                 (CAR CH))))
+                           (replace POINT of SEL with 'RIGHT)
+                           (replace CARETLOOKS of TEXTOBJ with (\TEDIT.GET.INSERT.CHARLOOKS TEXTOBJ 
+                                                                      SEL))
+                           (TEDIT.RESET.EXTEND.PENDING.DELETE SEL)
+                                                             (* And never pending a deletion.)
+                           (\FIXSEL SEL TEXTOBJ)
+                           (TEDIT.NORMALIZECARET TEXTOBJ)
+                           (\SHOWSEL SEL NIL T)
+                           (WINDOWPROP W 'TEDIT.LAST.FIND.STRING TARGET)
+                                                             (* And get it into the window)
+                           )
+                       (T (TEDIT.PROMPTPRINT TEXTOBJ "(not found)")
+                          (\SHOWSEL SEL NIL T)))))
+          (replace \INSERTNEXTCH of TEXTOBJ with -1))))
+
+(\TEDIT.ITALIC.SEL.OFF
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL CHARCODE)                  (* ; "Edited 20-Oct-87 10:43 by jds")
+
+    (\TEDIT.ITALIC.CARET.OFF TEXTSTREAM TEXTOBJ SEL)
+    (TEDIT.LOOKS TEXTSTREAM '(SLOPE REGULAR) SEL])
+
+(\TEDIT.ITALIC.SEL.ON
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 20-Oct-87 10:43 by jds")
+
+    (TEDIT.LOOKS TEXTSTREAM '(SLOPE ITALIC) SEL])
+
+(\TEDIT.LARGERSEL
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 08:58")
+    (COND
+       ((SHIFTDOWNP 'META)
+        (\TEDIT.LARGER.CARET TEXTSTREAM TEXTOBJ SEL))
+       (T (TEDIT.LOOKS TEXTSTREAM (LIST 'SIZEINCREMENT 2)
+                 SEL)))))
+
+(\TEDIT.LCASE.SEL
+  [LAMBDA (STREAM TEXTOBJ SEL)                               (* ; "Edited  3-Sep-87 10:49 by jds")
+          
+          (* ;; "LOWER-CASEs the selection")
+
+    (PROG ((STR (TEDIT.SEL.AS.STRING STREAM SEL))
+           (POS (fetch CH# of SEL))
+           (LEN (fetch DCH of SEL))
+           (POINT (fetch POINT of SEL)))
+          (TEDIT.DELETE STREAM SEL)
+          (TEDIT.INSERT STREAM (L-CASE STR))
+          (TEDIT.SETSEL STREAM POS LEN POINT)
+          (TEDIT.NORMALIZECARET TEXTOBJ)
+          (replace (TEDITHISTORYEVENT THACTION) of (fetch (TEXTOBJ TXTHISTORY) of TEXTOBJ)
+             with 'LowerCase])
+
+(\TEDIT.SHOWCARETLOOKS
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* gbn "30-Jan-85 16:06")
+          
+          (* * comment)
+
+    (PROG ((LOOKS (fetch CARETLOOKS of TEXTOBJ)))
+          (TEDIT.PROMPTPRINT TEXTSTREAM (CONCAT (\TK.DESCRIBEFONT (fetch CLFONT of LOOKS))
+                                               (COND
+                                                  ((AND (fetch CLOFFSET of LOOKS)
+                                                        (NEQ (fetch CLOFFSET of LOOKS)
+                                                             0))
+                                                   (CONCAT " offset " (fetch CLOFFSET of LOOKS)))
+                                                  (T ""))
+                                               (COND
+                                                  ((fetch CLOLINE of LOOKS)
+                                                   " overlined")
+                                                  (T ""))
+                                               (COND
+                                                  ((fetch CLULINE of LOOKS)
+                                                   " underlined")
+                                                  (T "")))
+                 T)
+          (RETURN))))
+
+(\TEDIT.SMALLERSEL
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 08:58")
+    (COND
+       ((SHIFTDOWNP 'META)
+        (\TEDIT.SMALLER.CARET TEXTSTREAM TEXTOBJ SEL))
+       (T (TEDIT.LOOKS TEXTSTREAM (LIST 'SIZEINCREMENT -2)
+                 SEL)))))
+
+(\TEDIT.SUBSCRIPTSEL
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 20-Oct-87 11:12 by jds")
+
+    (TEDIT.LOOKS TEXTSTREAM (LIST 'OFFSETINCREMENT -2)
+           SEL])
+
+(\TEDIT.SUPERSCRIPTSEL
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 20-Oct-87 11:13 by jds")
+
+    (TEDIT.LOOKS TEXTSTREAM (LIST 'OFFSETINCREMENT 2)
+           SEL])
+
+(\TEDIT.UCASE.SEL
+  [LAMBDA (STREAM TEXTOBJ SEL)                               (* ; "Edited  3-Sep-87 10:53 by jds")
+                                                             (* ; "uppercasifies the selection")
+
+    (PROG ((STR (TEDIT.SEL.AS.STRING STREAM SEL))
+           (POS (fetch CH# of SEL))
+           (LEN (fetch DCH of SEL))
+           (POINT (fetch POINT of SEL)))
+          (TEDIT.DELETE STREAM SEL)
+          (TEDIT.INSERT STREAM (U-CASE STR))
+          (TEDIT.SETSEL STREAM POS LEN POINT)
+          (TEDIT.NORMALIZECARET TEXTOBJ)
+          (replace (TEDITHISTORYEVENT THACTION) of (fetch (TEXTOBJ TXTHISTORY) of TEXTOBJ)
+             with 'UpperCase])
+
+(\TEDIT.UNDERLINE.SEL.OFF
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 20-Oct-87 11:26 by jds")
+
+    (TEDIT.LOOKS TEXTSTREAM '(UNDERLINE OFF) SEL])
+
+(\TEDIT.UNDERLINE.SEL.ON
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 20-Oct-87 11:27 by jds")
+
+    (TEDIT.LOOKS TEXTSTREAM '(UNDERLINE ON) SEL])
+
+(\TEDIT.STRIKEOUT.SEL.ON
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 20-Oct-87 11:27 by jds")
+
+    (TEDIT.LOOKS TEXTSTREAM '(STRIKEOUT ON) SEL])
+
+(\TEDIT.STRIKEOUT.SEL.OFF
+  [LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* ; "Edited 20-Oct-87 11:27 by jds")
+
+    (TEDIT.LOOKS TEXTSTREAM '(STRIKEOUT OFF) SEL])
+)
+
+
+
+(* ;; "Auxiliary functions used in the above main functions:")
+
+(DEFINEQ
+
+(\TEDIT.BOLD.CARET.OFF
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:12")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(WEIGHT MEDIUM) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.BOLD.CARET.ON
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:12")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(WEIGHT BOLD) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.ITALIC.CARET.OFF
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:24")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(SLOPE REGULAR) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.ITALIC.CARET.ON
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:12")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(SLOPE ITALIC) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.LARGER.CARET
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:13")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(SIZEINCREMENT 2) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.SMALLER.CARET
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:13")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(SIZEINCREMENT -2) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.SUBSCRIPT.CARET
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:13")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(OFFSETINCREMENT -2) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.SUPERSCRIPT.CARET
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:13")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(OFFSETINCREMENT 2) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.UNDERLINE.CARET.OFF
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:13")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(UNDERLINE OFF) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.UNDERLINE.CARET.ON
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds "21-Sep-85 11:13")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(UNDERLINE ON) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.STRIKEOUT.CARET.OFF
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds " 5-Nov-85 20:33")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(STRIKEOUT OFF) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+
+(\TEDIT.STRIKEOUT.CARET.ON
+  (LAMBDA (TEXTSTREAM TEXTOBJ SEL)                           (* jds " 5-Nov-85 20:32")
+    (PROG ((LOOKS (\TEDIT.PARSE.CHARLOOKS.LIST '(STRIKEOUT ON) (fetch CARETLOOKS of TEXTOBJ)
+                         TEXTOBJ)))
+          (COND
+             (LOOKS (TEDIT.CARETLOOKS TEXTSTREAM LOOKS)
+                    (\TEDIT.SHOWCARETLOOKS TEXTSTREAM TEXTOBJ SEL))))))
+)
+
+
+
+(* ; "little selection utilities etc., for building hacks")
+
+(DEFINEQ
+
+(\SEL.LIMIT
+  (LAMBDA (SEL)                                              (* gbn " 8-Mar-85 12:58")
+          
+          (* returns the character that delimits this selection.
+          The first char if the point is left else the last)
+
+    (COND
+       ((EQ (fetch POINT of SEL)
+            'LEFT)
+        (fetch CH# of SEL))
+       (T (SUB1 (fetch CHLIM of SEL))))))
+
+(\SEL.LINEDESC
+  (LAMBDA (SEL)                                              (* gbn "16-Feb-85 23:20")
+          
+          (* returns the first line descriptor if the point is left, otherwise the last)
+
+    (COND
+       ((EQ (fetch POINT of SEL)
+            'LEFT)
+        (CAR (MKLIST (fetch L1 of SEL))))
+       (T (CAR (MKLIST (fetch LN of SEL)))))))
+
+(\TK.DESCRIBEFONT
+  (LAMBDA (FONT)                                             (* gbn "15-Dec-84 17:54")
+          
+          (* * returns a string which describes a font
+          (in short. If it's not italic then no mention is made of slope, etc.))
+
+    (CONCAT (L-CASE (FONTPROP FONT 'FAMILY))
+           " "
+           (FONTPROP FONT 'SIZE)
+           (COND
+              ((NEQ (FONTPROP FONT 'WEIGHT)
+                    'MEDIUM)
+               (CONCAT " " (L-CASE (FONTPROP FONT 'WEIGHT))))
+              (T ""))
+           (COND
+              ((NEQ (FONTPROP FONT 'SLOPE)
+                    'REGULAR)
+               (CONCAT " " (L-CASE (FONTPROP FONT 'SLOPE))))
+              (T "")))))
+
+(\PARAS.IN.SEL
+  (LAMBDA (SEL TEXTOBJ)                                      (* gbn " 7-Jun-85 16:05")
+          
+          (* returns a list which contains one character number for each paragraph 
+          included in the selection)
+
+    (PROG ((PARAS)
+           PARAENDED PCS (POS (fetch CH# of SEL)))
+          (COND
+             ((ZEROP (fetch DCH of SEL))
+          
+          (* there are not really any pieces in this selection, however, effect the 
+          change to the para containing this selection by starting the selection one 
+          character earlier. This is not the right soln, but TEdit has no looks on the 
+          empty last para as yet.)
+
+              (replace CH# of SEL with (IDIFFERENCE (fetch CH# of SEL)
+                                              1))
+              (replace DCH of SEL with 1)
+              (\FIXSEL SEL TEXTOBJ)))
+          (SETQ PCS (TEDIT.SELECTED.PIECES TEXTOBJ SEL))     (* to include the first char)
+          (SETQ PARAENDED T)
+          (for PC in PCS do (COND
+                               (PARAENDED 
+          
+          (* the last piece ended a paragraph, so include this character in the list)
+
+                                      (SETQ PARAENDED NIL)
+                                      (push PARAS POS)))
+                            (SETQ PARAENDED (fetch PPARALAST of PC))
+                            (add POS (fetch PLEN of PC)))
+          (RETURN (DREVERSE PARAS)))))
+)
+
+(RPAQQ TEDIT.FNKEY.VERBOSE T)
+
+(RPAQQ \TEDIT.KEYS (("2,4" UNDO)
+                        ("2,44" UNDO)
+                        ("2,3" FN \TEDIT.FIND)
+                        ("2,43" FN \TEDIT.FIND)
+                        ("2,10" REDO)
+                        ("2,50" REDO)
+                        ("2,22" NEXT)
+                        ("2,62" NEXT)
+                        (ESC EXPAND)
+                        ("2,24" EXPAND)
+                        ("2,101" FN \TEDIT.CENTER.SEL)
+                        ("2,141" FN \TEDIT.CENTER.SEL.REV)
+                        ("2,102" FN \TEDIT.BOLD.SEL.ON)
+                        ("2,142" FN \TEDIT.BOLD.SEL.OFF)
+                        ("2,103" FN \TEDIT.ITALIC.SEL.ON)
+                        ("2,143" FN \TEDIT.ITALIC.SEL.OFF)
+                        ("2,104" FN \TEDIT.UCASE.SEL)
+                        ("2,144" FN \TEDIT.LCASE.SEL)
+                        ("2,105" FN \TEDIT.STRIKEOUT.SEL.ON)
+                        ("2,145" FN \TEDIT.STRIKEOUT.SEL.OFF)
+                        ("2,106" FN \TEDIT.UNDERLINE.SEL.ON)
+                        ("2,146" FN \TEDIT.UNDERLINE.SEL.OFF)
+                        ("2,107" FN \TEDIT.SUBSCRIPTSEL)
+                        ("2,147" FN \TEDIT.SUPERSCRIPTSEL)
+                        ("2,110" FN \TEDIT.SMALLERSEL)
+                        ("2,150" FN \TEDIT.LARGERSEL)
+                        ("2,113" FN \TEDIT.SUPERSCRIPTSEL)
+                        ("2,153" FN \TEDIT.SUBSCRIPTSEL)
+                        ("2,114" FN \TEDIT.SUBSCRIPTSEL)
+                        ("2,154" FN \TEDIT.SUPERSCRIPTSEL)
+                        ("2,115" FN \TEDIT.DEFAULTSSEL)
+                        ("2,155" FN \TEDIT.SETDEFAULT.FROM.SEL)
+                        ("2,1" FN \TEDIT.SHOWCARETLOOKS)))
+[FOR ENTRY IN \TEDIT.KEYS DO (SELECTQ (CADR ENTRY)
+                                    (FN (TEDIT.SETFUNCTION (CAR ENTRY)
+                                               (CADDR ENTRY)))
+                                    (TEDIT.SETSYNTAX (CAR ENTRY)
+                                           (CADR ENTRY]
+(PUTPROPS TEDITFNKEYS COPYRIGHT ("Xerox Corporation" 1985 1986 1987))
+(DECLARE%: DONTCOPY
+  (FILEMAP (NIL (4612 16071 (\TEDIT.BOLD.SEL.OFF 4622 . 4961) (\TEDIT.BOLD.SEL.ON 4963 . 5292) (
+\TEDIT.CENTER.SEL 5294 . 6327) (\TEDIT.CENTER.SEL.REV 6329 . 7387) (\TEDIT.DEFAULTS.CARET 7389 . 7673)
+ (\TEDIT.DEFAULTSSEL 7675 . 7998) (\TEDIT.SETDEFAULT.FROM.SEL 8000 . 8439) (\TEDIT.FIND 8441 . 11102) 
+(\TEDIT.ITALIC.SEL.OFF 11104 . 11346) (\TEDIT.ITALIC.SEL.ON 11348 . 11531) (\TEDIT.LARGERSEL 11533 . 
+11828) (\TEDIT.LCASE.SEL 11830 . 12516) (\TEDIT.SHOWCARETLOOKS 12518 . 13871) (\TEDIT.SMALLERSEL 13873
+ . 14171) (\TEDIT.SUBSCRIPTSEL 14173 . 14377) (\TEDIT.SUPERSCRIPTSEL 14379 . 14584) (\TEDIT.UCASE.SEL 
+14586 . 15313) (\TEDIT.UNDERLINE.SEL.OFF 15315 . 15503) (\TEDIT.UNDERLINE.SEL.ON 15505 . 15691) (
+\TEDIT.STRIKEOUT.SEL.ON 15693 . 15879) (\TEDIT.STRIKEOUT.SEL.OFF 15881 . 16069)) (16143 21091 (
+\TEDIT.BOLD.CARET.OFF 16153 . 16560) (\TEDIT.BOLD.CARET.ON 16562 . 16966) (\TEDIT.ITALIC.CARET.OFF 
+16968 . 17377) (\TEDIT.ITALIC.CARET.ON 17379 . 17786) (\TEDIT.LARGER.CARET 17788 . 18195) (
+\TEDIT.SMALLER.CARET 18197 . 18606) (\TEDIT.SUBSCRIPT.CARET 18608 . 19021) (\TEDIT.SUPERSCRIPT.CARET 
+19023 . 19437) (\TEDIT.UNDERLINE.CARET.OFF 19439 . 19851) (\TEDIT.UNDERLINE.CARET.ON 19853 . 20263) (
+\TEDIT.STRIKEOUT.CARET.OFF 20265 . 20677) (\TEDIT.STRIKEOUT.CARET.ON 20679 . 21089)) (21160 24271 (
+\SEL.LIMIT 21170 . 21582) (\SEL.LINEDESC 21584 . 21977) (\TK.DESCRIBEFONT 21979 . 22694) (
+\PARAS.IN.SEL 22696 . 24269)))))
+STOP

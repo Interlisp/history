@@ -1,0 +1,1 @@
+/* This is G-file @(#) display.h Version 1.3 (4/1/88). copyright Xerox & Fuji Xerox  *//* *	Copyright (C) 1987 by Fuji Xerox Co., Ltd. All rights reserved. * *	Auther	:	Osamu Nakamura	 * *	display.h */#define BCPLDISPLAY	stdout#define	CURSORWIDTH	16#define	CURSORHEIGHT	16

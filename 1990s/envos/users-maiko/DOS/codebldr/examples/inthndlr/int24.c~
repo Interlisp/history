@@ -1,0 +1,211 @@
+/*=============================================================================
+ * Intel 386/486 C Code Builder(TM) Kit
+ * Copyright 1991 Intel Corporation.  All Rights Reserved.
+ *-----------------------------------------------------------------------------
+ *
+ * INT24.C
+ *
+ * An example Int 24h (critical error) interrupt routine and test program.
+ *
+ * This sample program hooks directly as the Int 24h handler, rather than
+ * the preferred method of using the C library function '_harderr()'.  It is
+ * done this way only as an example, and is not the recommended method of
+ * installing a critical error handler.
+ *****************************************************************************/
+
+/******************************************************************************
+*  Include files
+******************************************************************************/
+#include <i32.h>                       /* "#pragma interrupt" & '_chain_intr'*/
+#include <dos.h>                       /* defines REGS & other structs       */
+#include <fcntl.h>                     /* required by 'open()':              */
+#include <sys\stat.h>
+#include <sys\types.h>
+#include <io.h>
+#include <stdio.h>                     /* define NULL                        */
+#include <stk.h>                       /* _XSTACK struct definition          */
+
+/******************************************************************************
+*   Global variables
+******************************************************************************/
+void      (*prev_int_24)();            /* keeps address of previous 24 handlr*/
+
+/******************************************************************************
+*   Functions within this file
+******************************************************************************/
+#pragma interrupt(Int24)
+void  Int24(void);                     /* the critical err (int 0x24) handler*/
+
+
+
+/******************************************************************************
+*  main()
+*
+*  A sample program which sets the int 0x24 (critical error) vector to the
+*  example interrupt routine, and then causes a critical error.  It is up to
+*  the user to fix the error and retry, or abort the operation.  The test
+*  program then removes the int 0x24 vector & terminates.
+******************************************************************************/
+main()
+{
+   char  fname[] = "A:T_E_S_T";        /* name of file to write              */
+   FILE       *stream;                 /* ptr to open file stream            */
+
+
+/******************************************************************************
+*  Hook int 0x24 interrupt into "high interrupt" table
+******************************************************************************/
+   prev_int_24 = _dos_getvect(0x24);  /* get addr of current handler, if any */
+   _dos_setvect(0x24, Int24);         /* hook our int handler to interrupt   */
+
+/******************************************************************************
+*  Display test's sign-on message
+******************************************************************************/
+   printf("\n*** Critical Error Interrupt Test ***\n\n"
+      "This program will attempt to write to a scratch disk in A:\n"
+      "Insert a write-protected disk, or no disk, to cause a critical error.\n"
+      "\nA critical error interrupt handler has been installed to display\n"
+      "a \"custom\" message in place of the usual \"Abort, Retry, Fail?\".\n"
+      "After the error message is displayed, retry or quit, as desired.\n"
+      "(You may have to press <Esc> twice to quit - this is normal.)\n"
+      "Press any key when ready....\n\n");
+
+   getch();
+
+/******************************************************************************
+*  Try to create a file on drive A, hopefully causing a critical error
+******************************************************************************/
+   if ((stream = fopen(fname, "wb+")) == NULL)
+      perror("Unable to create file");
+   else
+   {
+      printf("File successfully created - will delete now.\n");
+      fclose(stream);
+      remove(fname);
+   }
+
+/******************************************************************************
+*  Unhook int 0x24 interrupt & exit
+******************************************************************************/
+   _dos_setvect(0x24, prev_int_24);    /* unhook our handlr, install previous*/
+   printf("\n\nThe critical error handler has been removed.\n");
+}
+
+
+
+
+
+/******************************************************************************
+*  Int24
+*
+*  Critical error handler.
+*
+*  This routine is called as the int 0x24 handler (critical error).  It
+*  must be declared using the "#pragma interrupt" statement in order to pre-
+*  serve all registers, as well as to ensure the correct operation of certain
+*  interrupt-specific routines (e.g., '_get_stk_frame()').
+*
+*  Whenever a critical error occurs, this routine is called.  Its purpose is
+*  to display a message in place of the standard "Abort, Retry, Fail?" message.
+*
+*  After displaying the error message, this routine waits for an acknowledge-
+*  ment from the user before returning a FAIL or RETRY indicator back to DOS.
+*
+*  Note that the user must press <Esc> twice to abort the operation, since
+*  the first FAIL does not do so.  This is not a problem with the Code Builder
+*  environment; similar 16-bit, real mode code acts the same way.
+*
+*  Input within _XSTACK (retrieved by '_get_stk_frame()'):
+*     AX -  Device error code (AX register passed to the int 0x24 interrupt):
+*              bit 15:     0 = disk device error.
+*                                 (AL = drive # [0=A, 1=B, ...].)
+*              bit 13:     1 = ignore response allowed.
+*              bit 12:     1 = retry response allowed.
+*              bit 11:     1 = fail response allowed.
+*              bits 10-9:  0 = error involved DOS system files.
+*                          1 = error involved file allocation table.
+*                          2 = error involved root directory.
+*                          3 = error involved data area of disk.
+*              bit 8:      0 = read error, 1 = write error.
+*     DI -  Value of low byte indicates error:
+*               0 = Disk write protected.
+*               1 = Unknown unit.
+*               2 = Drive not ready.
+*               3 = Unknown command.
+*               4 = CRC error in data.
+*               5 = Bad drive-request structure length.
+*               6 = Seek error.
+*               7 = Unknown media type.
+*               8 = Sector not found.
+*               9 = Printer out of paper.
+*              10 = Write fault.
+*              11 = Read fault.
+*              12 = General failure.
+*
+*  Output:
+*     FAIL or RETRY value to the DOS interrupt service which caused the
+*     critical error.
+******************************************************************************/
+void  Int24(void)
+{
+   char           buffer[80] = "\n\rDisk I/O error:  ";
+   unsigned       deverr, errcode;
+   char           err_types[13][40] =
+   {
+      "Disk write protected.$",       /* one of these strings will be added  */
+      "Unknown unit.$",               /* at end of "Disk I/O error" msg &    */
+      "Drive not ready.$",            /* displayed using DOS func 9 (uses a  */
+      "Unknown command.$",            /* "$" to terminate string)            */
+      "CRC error in data.$",
+      "Bad drive-request structure length.$",
+      "Seek error.$",
+      "Unknown media type.$",
+      "Sector not found.$",
+      "Printer out of paper.$",
+      "Write fault.$",
+      "Read fault.$",
+      "General failure.$"
+   };
+   char           msg[] = "\n\rPress <Esc> to give up, any other key to "
+                          "retry.\n\r$";
+   union REGS     regs;
+   _XSTACK    *stk;
+
+
+   stk = (_XSTACK *)_get_stk_frame();  /* get ptr to the V86 _XSTACK frame   */
+   deverr = stk->eax;
+
+   if ((deverr & 0x00008000) == 0)     /* is a disk error                    */
+   {
+      errcode = stk->edi & 0x000000ff; /* isolate LSB of edi (err indicator) */
+      strcat(buffer, err_types[errcode]); /* fill in with appropriate err msg*/
+
+      regs.h.ah = 9;                   /* display variable error message     */
+      regs.w.edx = FP_OFF(buffer);
+      intdos(&regs, &regs);
+
+      regs.h.ah = 9;                   /* display static error message       */
+      regs.w.edx = FP_OFF(msg);
+      intdos(&regs, &regs);
+
+      regs.h.ah = 8;                   /* char input, no echo                */
+      intdos(&regs, &regs);            /* wait for an answer                 */
+      if (regs.h.al == 0)              /* extended code - get rid of the rest*/
+      {
+         regs.h.ah = 1;
+         intdos(&regs, &regs);
+      }
+   }
+
+   if (regs.h.al == 27)                /* <Esc> hit - fail the i/o attempt   */
+      stk->eax = _HARDERR_FAIL;
+   else
+      stk->eax = _HARDERR_RETRY;       /* anything else - retry the operation*/
+
+   stk->opts |= _STK_NOINT;            /* set _STK_NOINT to prevent V86 call */
+   _chain_intr(prev_int_24);           /* call previous int 24 handlr, if any*/
+                                       /* (pts to 'ret' if no prev installed)*/
+}
+
+
+

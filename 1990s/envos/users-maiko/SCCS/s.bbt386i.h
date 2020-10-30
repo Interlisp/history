@@ -1,0 +1,1 @@
+h13224s 00001/00000/00000d D 1.1 92/04/21 15:31:47 sybalsky 1 0c date and time created 92/04/21 15:31:47 by sybalskyeuUf e 0tTI 1/* %Z% %M% Version %I% (%G%). copyright Venue & Fuji Xerox  */E 1

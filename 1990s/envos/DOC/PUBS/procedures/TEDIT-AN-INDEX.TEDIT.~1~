@@ -1,0 +1,3 @@
+Once you've created all the IMPTR files, type something like this into your Exec:
+
+(TEDIT (MAKE.IM.INDEX T NIL '{ERIS}<MUELLER>LISP>NOTES-FINAL-O4-11-WINDEX.IMPTR NIL))

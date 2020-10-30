@@ -1,0 +1,1 @@
+lib-5-6-2                     Xerox Quintus Prolog Library Manual                       Section 5-6-2: library(fromonto)This package provides a suite of I/O redirection operators which allow the userto execute a goal with the current input or output stream temporarilyredirected to a specified stream, file, or list of characters.

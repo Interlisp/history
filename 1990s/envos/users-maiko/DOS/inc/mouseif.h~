@@ -1,0 +1,1 @@
+typedef struct {  int		LastCursorX;  int		LastCursorY;  int		LastCursorClippingX;  int		LastCursorClippingY;  DLword	SaveBitmap[CURSORHEIGHT];  void		(* exit_device)();  void		(* enter_deviice)();} MouseInterfaceRec *MouseInterface;

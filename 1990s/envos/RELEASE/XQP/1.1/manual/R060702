@@ -1,0 +1,1 @@
+ref-6-7-2                    Xerox Quintus Prolog Reference Manual                          Section 6-7-2: ttyget(-N)ttyget(N) unifies N with the ASCII code of the next non-layout character fromthe current input stream.  If N cannot be unified with this character,ttyget(N) simply fails.

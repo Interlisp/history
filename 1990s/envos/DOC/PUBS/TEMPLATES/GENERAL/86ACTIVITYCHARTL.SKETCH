@@ -1,0 +1,200 @@
+((SKETCH %{ERINYES%}<DOC>ACTIVITYCHART>1986REVISED.SKETCH;1 VERSION 3 PRIRANGE  (164 . 0) 
+SKETCHCONTEXT  ((ROUND 1 0)  (GACHA 10  (MEDIUM REGULAR REGULAR))  (CENTER BASELINE)  (LINE  30.0 12) 
+NIL NIL  (CENTER CENTER)  (NIL NIL) T NIL NIL  1.0))  ((.05  13.0  (PRI 1))  (TEXT  (64.0 .  416.0)  (
+"March")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((49.5  412.5  29.0  13.0)) 
+NIL))  ((.05  13.0  (PRI 2))  (TEXT  (144.0 .  416.0)  ("April")  1.0  (CENTER BASELINE)  (MODERN 10  
+(MEDIUM REGULAR REGULAR))  ((132.5  412.5  23.0  13.0)) NIL))  ((.05  13.0  (PRI 3))  (TEXT  (224.0 . 
+ 416.0)  ("May")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((214.0  412.5  20.0 
+ 13.0)) NIL))  ((.05  13.0  (PRI 4))  (TEXT  (304.0 .  416.0)  ("June")  1.0  (CENTER BASELINE)  (
+MODERN 10  (MEDIUM REGULAR REGULAR))  ((293.0  412.5  22.0  13.0)) NIL))  ((.05  13.0  (PRI 5))  (TEXT
+  (384.0 .  416.0)  ("July")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((375.0  
+412.5  18.0  13.0)) NIL))  ((.05  13.0  (PRI 6))  (TEXT  (464.0 .  416.0)  ("August")  1.0  (CENTER 
+BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((447.5  412.5  33.0  13.0)) NIL))  ((.05  13.0  (
+PRI 7))  (TEXT  (544.0 .  416.0)  ("September")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR 
+REGULAR))  ((518.0  412.5  52.0  13.0)) NIL))  ((.05  13.0  (PRI 8))  (TEXT  (624.0 .  416.0)  (
+"October")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((605.0  412.5  38.0  13.0)
+) NIL))  ((.05  13.0  (PRI 9))  (TEXT  (712.0 .  416.0)  ("November")  1.0  (CENTER BASELINE)  (MODERN
+ 10  (MEDIUM REGULAR REGULAR))  ((687.5  412.5  49.0  13.0)) NIL))  ((.05  13.0  (PRI 10))  (TEXT  (
+784.0 .  416.0)  ("December")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((760.0 
+ 412.5  48.0  13.0)) NIL))  ((.016  40.0  (PRI 11))  (TEXTBOX  (24.0  408.0  80.0  16.0)  ("")  1.0  (
+CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((64.0  409.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL 
+NIL)))  ((.016  40.0  (PRI 12))  (TEXTBOX  (104.0  408.0  80.0  16.0)  ("")  1.0  (CENTER CENTER)  (
+GACHA 10  (MEDIUM REGULAR REGULAR))  ((144.0  409.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))  ((.016  
+40.0  (PRI 13))  (TEXTBOX  (184.0  408.0  80.0  16.0)  ("")  1.0  (CENTER CENTER)  (GACHA 10  (MEDIUM 
+REGULAR REGULAR))  ((224.0  409.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))  ((.016  40.0  (PRI 14))  (
+TEXTBOX  (264.0  408.0  80.0  16.0)  ("")  1.0  (CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR)) 
+ ((304.0  409.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))  ((.016  40.0  (PRI 15))  (TEXTBOX  (344.0  
+408.0  80.0  16.0)  ("")  1.0  (CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((384.0  409.5 0
+ 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))  ((.016  40.0  (PRI 16))  (TEXTBOX  (424.0  408.0  80.0  16.0)
+  ("")  1.0  (CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((464.0  409.5 0 13)) NIL  (ROUND 
+1 0) NIL  (NIL NIL)))  ((.016  40.0  (PRI 17))  (TEXTBOX  (504.0  408.0  80.0  16.0)  ("")  1.0  (
+CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((544.0  409.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL
+ NIL)))  ((.016  40.0  (PRI 18))  (TEXTBOX  (584.0  408.0  80.0  16.0)  ("")  1.0  (CENTER CENTER)  (
+GACHA 10  (MEDIUM REGULAR REGULAR))  ((624.0  409.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))  ((.016  
+40.0  (PRI 19))  (TEXTBOX  (664.0  408.0  80.0  16.0)  ("")  1.0  (CENTER CENTER)  (GACHA 10  (MEDIUM 
+REGULAR REGULAR))  ((704.0  409.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))  ((.016  40.0  (PRI 20))  (
+TEXTBOX  (744.0  408.0  80.0  16.0)  ("")  1.0  (CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR)) 
+ ((784.0  409.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))  ((.392  400.0  (PRI 21))  (BOX  (24.0  16.0 
+ 800.0  392.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((0.0  196.0  (PRI 22))  (WIRE  ((744.0 .  408.0)  
+(744.0 .  16.0))  (ROUND 1 0) NIL NIL  1.0  (743.0  15.0  2.0  394.0) NIL))  ((0.0  196.0  (PRI 23))  
+(WIRE  ((664.0 .  408.0)  (664.0 .  16.0))  (ROUND 1 0) NIL NIL  1.0  (663.0  15.0  2.0  394.0) NIL)) 
+ ((0.0  196.0  (PRI 24))  (WIRE  ((504.0 .  408.0)  (504.0 .  16.0))  (ROUND 1 0) NIL NIL  1.0  (503.0
+  15.0  2.0  394.0) NIL))  ((0.0  196.0  (PRI 25))  (WIRE  ((584.0 .  408.0)  (584.0 .  16.0))  (ROUND
+ 1 0) NIL NIL  1.0  (583.0  15.0  2.0  394.0) NIL))  ((0.0  196.0  (PRI 26))  (WIRE  ((184.0 .  408.0)
+  (184.0 .  16.0))  (ROUND 1 0) NIL NIL  1.0  (183.0  15.0  2.0  394.0) NIL))  ((0.0  196.0  (PRI 27))
+  (WIRE  ((264.0 .  408.0)  (264.0 .  16.0))  (ROUND 1 0) NIL NIL  1.0  (263.0  15.0  2.0  394.0) NIL)
+)  ((0.0  196.0  (PRI 28))  (WIRE  ((344.0 .  408.0)  (344.0 .  16.0))  (ROUND 1 0) NIL NIL  1.0  (
+343.0  15.0  2.0  394.0) NIL))  ((0.0  196.0  (PRI 29))  (WIRE  ((424.0 .  408.0)  (424.0 .  16.0))  (
+ROUND 1 0) NIL NIL  1.0  (423.0  15.0  2.0  394.0) NIL))  ((0.0  196.0  (PRI 30))  (WIRE  ((104.0 .  
+408.0)  (104.0 .  16.0))  (ROUND 1 0) NIL NIL  1.0  (103.0  15.0  2.0  394.0) NIL))  ((.05  13.0  (PRI
+ 32))  (TEXT  (-32.0 .  384.0)  ("Common Lisp")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR 
+REGULAR))  ((-63.0  380.5  62.0  13.0)) NIL))  ((.016  52.0  (PRI 34))  (TEXTBOX  (-80.0  128.0  104.0
+  16.0)  ("")  1.0  (CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((-28.0  129.5 0 13)) NIL  
+(ROUND 1 0) NIL  (NIL NIL)))  ((.016  52.0  (PRI 36))  (TEXTBOX  (-80.0  232.0  104.0  16.0)  ("")  
+1.0  (CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((-28.0  233.5 0 13)) NIL  (ROUND 1 0) NIL
+  (NIL NIL)))  ((.016  52.0  (PRI 37))  (TEXTBOX  (-80.0  376.0  104.0  16.0)  ("")  1.0  (CENTER 
+CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((-28.0  377.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))
+  ((.05  13.0  (PRI 39))  (TEXT  (-32.0 .  240.0)  ("PC Emulation")  1.0  (CENTER BASELINE)  (MODERN 
+10  (MEDIUM REGULAR REGULAR))  ((-63.5  236.5  63.0  13.0)) NIL))  ((.05  13.0  (PRI 40))  (TEXT  (
+-32.0 .  136.0)  ("Loops")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((-45.5  
+132.5  27.0  13.0)) NIL))  ((.05  11.0  (PRI 43))  (TEXT  (32.0 .  400.0)  ("1")  1.0  (CENTER 
+BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((30.0  397.5  4.0  11.0)) NIL))  ((.05  11.0  (PRI 
+44))  (TEXT  (64.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((
+60.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 45))  (TEXT  (112.0 .  400.0)  ("1")  1.0  (CENTER 
+BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((110.0  397.5  4.0  11.0)) NIL))  ((.05  11.0  (PRI 
+46))  (TEXT  (144.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  (
+(140.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 47))  (TEXT  (192.0 .  400.0)  ("1")  1.0  (CENTER
+ BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((190.0  397.5  4.0  11.0)) NIL))  ((.05  11.0  (PRI
+ 48))  (TEXT  (224.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  
+((220.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 49))  (TEXT  (272.0 .  400.0)  ("1")  1.0  (
+CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((270.0  397.5  4.0  11.0)) NIL))  ((.05  11.0
+  (PRI 50))  (TEXT  (304.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR 
+REGULAR))  ((300.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 51))  (TEXT  (352.0 .  400.0)  ("1")  
+1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((350.0  397.5  4.0  11.0)) NIL))  ((.05
+  11.0  (PRI 52))  (TEXT  (384.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR
+ REGULAR))  ((380.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 53))  (TEXT  (432.0 .  400.0)  ("1") 
+ 1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((430.0  397.5  4.0  11.0)) NIL))  ((
+.05  11.0  (PRI 54))  (TEXT  (464.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM 
+REGULAR REGULAR))  ((460.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 55))  (TEXT  (512.0 .  400.0) 
+ ("1")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((510.0  397.5  4.0  11.0)) NIL)
+)  ((.05  11.0  (PRI 56))  (TEXT  (544.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM
+ REGULAR REGULAR))  ((540.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 57))  (TEXT  (592.0 .  400.0)
+  ("1")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((590.0  397.5  4.0  11.0)) NIL
+))  ((.05  11.0  (PRI 58))  (TEXT  (624.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  (
+MEDIUM REGULAR REGULAR))  ((620.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 59))  (TEXT  (672.0 .  
+400.0)  ("1")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((670.0  397.5  4.0  11.0
+)) NIL))  ((.05  11.0  (PRI 60))  (TEXT  (704.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN 8  
+(MEDIUM REGULAR REGULAR))  ((700.0  397.5  8.0  11.0)) NIL))  ((.05  11.0  (PRI 61))  (TEXT  (752.0 . 
+ 400.0)  ("1")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((750.0  397.5  4.0  
+11.0)) NIL))  ((.05  11.0  (PRI 62))  (TEXT  (784.0 .  400.0)  ("15")  1.0  (CENTER BASELINE)  (MODERN
+ 8  (MEDIUM REGULAR REGULAR))  ((780.0  397.5  8.0  11.0)) NIL))  ((0.0  8.0  (PRI 63))  (WIRE  ((40.0
+ .  384.0)  (56.0 .  384.0)  (48.0 .  376.0)  (40.0 .  384.0))  (ROUND 1 0) NIL NIL  1.0  (39.0  375.0
+  18.0  10.0) NIL))  ((0.0  8.0  (PRI 64))  (WIRE  ((688.0 .  384.0)  (704.0 .  384.0)  (696.0 .  
+376.0)  (688.0 .  384.0))  (ROUND 1 0) NIL NIL  1.0  (687.0  375.0  18.0  10.0) NIL))  ((0.0  324.0  (
+PRI 65))  (WIRE  ((48.0 .  376.0)  (696.0 .  376.0))  (ROUND 1 0) NIL NIL  1.0  (47.0  375.0  650.0  
+2.0) NIL))  ((0.0  8.0  (PRI 66))  (WIRE  ((40.0 .  240.0)  (56.0 .  240.0)  (48.0 .  232.0)  (40.0 . 
+ 240.0))  (ROUND 1 0) NIL NIL  1.0  (39.0  231.0  18.0  10.0) NIL))  ((0.0  8.0  (PRI 67))  (WIRE  ((
+440.0 .  240.0)  (456.0 .  240.0)  (448.0 .  232.0)  (440.0 .  240.0))  (ROUND 1 0) NIL NIL  1.0  (
+439.0  231.0  18.0  10.0) NIL))  ((0.0  8.0  (PRI 68))  (WIRE  ((40.0 .  136.0)  (56.0 .  136.0)  (
+48.0 .  128.0)  (40.0 .  136.0))  (ROUND 1 0) NIL NIL  1.0  (39.0  127.0  18.0  10.0) NIL))  ((0.0  
+8.0  (PRI 69))  (WIRE  ((432.0 .  136.0)  (448.0 .  136.0)  (440.0 .  128.0)  (432.0 .  136.0))  (
+ROUND 1 0) NIL NIL  1.0  (431.0  127.0  18.0  10.0) NIL))  ((0.0  200.0  (PRI 70))  (WIRE  ((48.0 .  
+232.0)  (448.0 .  232.0))  (ROUND 1 0) NIL NIL  1.0  (47.0  231.0  402.0  2.0) NIL))  ((0.0  196.0  (
+PRI 71))  (WIRE  ((48.0 .  128.0)  (440.0 .  128.0))  (ROUND 1 0) NIL NIL  1.0  (47.0  127.0  394.0  
+2.0) NIL))  ((.05  11.0  (PRI 77))  (TEXT  (104.0 .  0.0)  ("Assumes a start date of 3/10")  1.0  (
+CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((55.0  -2.5  98.0  11.0)) NIL))  ((0.0  400.0
+  (PRI 78))  (WIRE  ((24.0 .  392.0)  (824.0 .  392.0))  (ROUND 1 0) NIL NIL  1.0  (23.0  391.0  802.0
+  2.0) NIL))  ((.05  13.0  (PRI 79))  (TEXT  (616.0 .  -24.0)  ("Carol M.")  1.0  (CENTER BASELINE)  (
+MODERN 10  (MEDIUM REGULAR REGULAR))  ((596.5  -27.5  39.0  13.0)) NIL))  ((.05  13.0  (PRI 80))  (
+TEXT  (0.0 .  360.0)  ("Carol M.")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((
+-19.5  356.5  39.0  13.0)) NIL))  ((.05  13.0  (PRI 81))  (TEXT  (0.0 .  112.0)  ("Carol M.")  1.0  (
+CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((-19.5  108.5  39.0  13.0)) NIL))  ((.05  
+13.0  (PRI 82))  (TEXT  (0.0 .  344.0)  ("Melissa B.")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM 
+REGULAR REGULAR))  ((-23.0  340.5  46.0  13.0)) NIL))  ((.05  13.0  (PRI 83))  (TEXT  (0.0 .  208.0)  
+("Bob W.")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((-16.5  204.5  33.0  13.0)
+) NIL))  ((.05  13.0  (PRI 88))  (TEXT  (616.0 .  -40.0)  ("Bob W.")  1.0  (CENTER BASELINE)  (MODERN 
+10  (MEDIUM REGULAR REGULAR))  ((599.5  -43.5  33.0  13.0)) NIL))  ((.05  11.0  (PRI 89))  (TEXT  (
+80.0 .  -16.0)  ("for all projects")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((
+54.0  -18.5  52.0  11.0)) NIL))  ((.05  13.0  (PRI 90))  (TEXT  (568.0 .  -16.0)  ("Current Staff:")  
+1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((535.5  -19.5  65.0  13.0)) NIL))  ((
+.05  13.0  (PRI 91))  (TEXT  (672.0 .  -16.0)  ("Proposed:")  1.0  (CENTER BASELINE)  (MODERN 10  (
+MEDIUM REGULAR REGULAR))  ((648.0  -19.5  48.0  13.0)) NIL))  ((.05  13.0  (PRI 92))  (TEXT  (616.0 . 
+ -56.0)  ("Melissa B.")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((593.0  -59.5
+  46.0  13.0)) NIL))  ((.05  13.0  (PRI 93))  (TEXT  (712.0 .  -24.0)  ("writer 1")  1.0  (CENTER 
+BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((693.5  -27.5  37.0  13.0)) NIL))  ((.05  13.0  (
+PRI 94))  (TEXT  (0.0 .  304.0)  ("writer 2")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR 
+REGULAR))  ((-18.5  300.5  37.0  13.0)) NIL))  ((.05  13.0  (PRI 95))  (TEXT  (0.0 .  328.0)  (
+"Bob W.")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((-16.5  324.5  33.0  13.0))
+ NIL))  ((0.0  324.0  (PRI 160))  (WIRE  ((48.0 .  360.0)  (696.0 .  360.0))  (ROUND 1 0)  (NIL NIL) 
+NIL  1.0  (47.0  359.0  650.0  2.0)  (NIL NIL)))  ((0.0  132.0  (PRI 156))  (WIRE  ((304.0 .  304.0)  
+(568.0 .  304.0))  (ROUND 1 0)  (NIL NIL)  (6 3 1 3)  1.0  (303.0  303.0  266.0  2.0)  (NIL NIL)))  ((
+0.0  172.0  (PRI 161))  (WIRE  ((352.0 .  296.0)  (696.0 .  296.0))  (ROUND 1 0)  (NIL NIL)  (6 3 1 3)
+  1.0  (351.0  295.0  346.0  2.0)  (NIL NIL)))  ((0.0  172.0  (PRI 157))  (WIRE  ((104.0 .  192.0)  (
+448.0 .  192.0))  (ROUND 1 0) NIL  (6 3 1 3)  1.0  (103.0  191.0  346.0  2.0) NIL))  ((0.0  252.0  (
+PRI 102))  (WIRE  ((192.0 .  344.0)  (696.0 .  344.0))  (ROUND 1 0)  (NIL NIL) NIL  1.0  (191.0  343.0
+  506.0  2.0)  (NIL NIL)))  ((0.0  324.0  (PRI 103))  (WIRE  ((48.0 .  328.0)  (696.0 .  328.0))  (
+ROUND 1 0)  (NIL NIL) NIL  1.0  (47.0  327.0  650.0  2.0)  (NIL NIL)))  ((.05  13.0  (PRI 104))  (TEXT
+  (712.0 .  -40.0)  ("writer 2")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((
+693.5  -43.5  37.0  13.0)) NIL))  ((0.0  4.0  (PRI 115))  (WIRE  ((696.0 .  360.0)  (704.0 .  360.0)) 
+ (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  9.750336)) NIL  1.0  (695.0  359.0  10.0  2.0)  (NIL  ((704.0
+ .  360.0)  (694 . 358)  (694 . 362)))))  ((0.0  4.0  (PRI 116))  (WIRE  ((696.0 .  344.0)  (704.0 .  
+344.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  9.750336)) NIL  1.0  (695.0  343.0  10.0  2.0)  (NIL  (
+(704.0 .  344.0)  (694 . 342)  (694 . 346)))))  ((0.0  4.0  (PRI 117))  (WIRE  ((696.0 .  336.0)  (
+704.0 .  336.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  9.750336)) NIL  1.0  (695.0  335.0  10.0  2.0)
+  (NIL  ((704.0 .  336.0)  (694 . 334)  (694 . 338)))))  ((0.0  4.0  (PRI 159))  (WIRE  ((568.0 .  
+304.0)  (576.0 .  304.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  9.750336)) NIL  1.0  (567.0  303.0  
+10.0  2.0)  (NIL  ((576.0 .  304.0)  (566 . 302)  (566 . 306)))))  ((0.0  4.0  (PRI 158))  (WIRE  ((
+448.0 .  192.0)  (456.0 .  192.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  9.750336)) NIL  1.0  (447.0 
+ 191.0  10.0  2.0)  (NIL  ((456.0 .  192.0)  (446 . 190)  (446 . 194)))))  ((0.0  196.0  (PRI 123))  (
+WIRE  ((48.0 .  112.0)  (440.0 .  112.0))  (ROUND  2.0 0) NIL NIL  1.0  (46.0  110.0  396.0  4.0) NIL)
+)  ((0.0  4.0  (PRI 124))  (WIRE  ((440.0 .  112.0)  (448.0 .  112.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE
+  10.0  9.750336)) NIL  1.0  (439.0  111.0  10.0  2.0)  (NIL  ((448.0 .  112.0)  (438 . 110)  (438 . 
+114)))))  ((.06400001  148.0  (PRI 130))  (TEXTBOX  (528.0  -72.0  296.0  64.0)  ("")  1.0  (CENTER 
+CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((676.0  -46.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL NIL)))
+  ((.05  13.0  (PRI 132))  (TEXT  (720.0 .  -56.0)  ("Ed. Assistant")  1.0  (CENTER BASELINE)  (MODERN
+ 10  (MEDIUM REGULAR REGULAR))  ((690.5  -59.5  59.0  13.0)) NIL))  ((.05  13.0  (PRI 135))  (TEXT  (
+-8.0 .  80.0)  ("Ed. Assistant")  1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((
+-37.5  76.5  59.0  13.0)) NIL))  ((.05  13.0  (PRI 136))  (TEXT  (-16.0 .  192.0)  ("Ed. Assistant")  
+1.0  (CENTER BASELINE)  (MODERN 10  (MEDIUM REGULAR REGULAR))  ((-45.5  188.5  59.0  13.0)) NIL))  ((
+.05  13.0  (PRI 137))  (TEXT  (-16.0 .  296.0)  ("Ed. Assistant")  1.0  (CENTER BASELINE)  (MODERN 10 
+ (MEDIUM REGULAR REGULAR))  ((-45.5  292.5  59.0  13.0)) NIL))  ((0.0  200.0  (PRI 139))  (WIRE  ((
+48.0 .  208.0)  (448.0 .  208.0))  (ROUND 1 0) NIL NIL  1.0  (47.0  207.0  402.0  2.0) NIL))  ((0.0  
+4.0  (PRI 140))  (WIRE  ((448.0 .  208.0)  (456.0 .  208.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  
+9.750336)) NIL  1.0  (447.0  207.0  10.0  2.0)  (NIL  ((456.0 .  208.0)  (446 . 206)  (446 . 210))))) 
+ ((0.0  16.0  (PRI 141))  (WIRE  ((264.0 .  -72.0)  (296.0 .  -72.0))  (ROUND 1 0) NIL  (6 3 1 3)  1.0
+  (263.0  -73.0  34.0  2.0) NIL))  ((0.0  16.0  (PRI 142))  (WIRE  ((264.0 .  -56.0)  (296.0 .  -56.0)
+)  (ROUND 1 0) NIL NIL  1.0  (263.0  -57.0  34.0  2.0) NIL))  ((0.0  16.0  (PRI 143))  (WIRE  ((264.0
+ .  -40.0)  (296.0 .  -40.0))  (ROUND  2.0 0) NIL NIL  1.0  (262.0  -42.0  36.0  4.0) NIL))  ((.05  
+11.0  (PRI 144))  (TEXT  (384.0 .  -40.0)  ("full-time effort to meet schedule")  1.0  (CENTER 
+BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((326.0  -42.5  116.0  11.0)) NIL))  ((.05  11.0  (
+PRI 145))  (TEXT  (384.0 .  -56.0)  ("part-time effort to meet schedule")  1.0  (CENTER BASELINE)  (
+MODERN 8  (MEDIUM REGULAR REGULAR))  ((324.5  -58.5  119.0  11.0)) NIL))  ((.05  11.0  (PRI 146))  (
+TEXT  (344.0 .  -72.0)  ("proposed staff")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR
+))  ((317.5  -74.5  53.0  11.0)) NIL))  ((.05  11.0  (PRI 147))  (TEXT  (312.0 .  -16.0)  (
+"What the Lines Mean")  1.0  (CENTER BASELINE)  (MODERN 8  (MEDIUM REGULAR REGULAR))  ((273.5  -18.5  
+77.0  11.0)) NIL))  ((.088  124.0  (PRI 148))  (TEXTBOX  (248.0  -88.0  248.0  88.0)  ("")  1.0  (
+CENTER CENTER)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((372.0  -50.5 0 13)) NIL  (ROUND 1 0) NIL  (NIL
+ NIL)))  ((.05  13.0  (PRI 149))  (TEXT  (416.0 .  472.0)  ("Documentation   Activity   Chart")  1.0  
+(CENTER BASELINE)  (MODERN 12  (BOLD REGULAR REGULAR))  ((326.0  468.5  180.0  13.0)) NIL))  ((.032  
+128.0  (PRI 150))  (TEXTBOX  (288.0  456.0  256.0  32.0)  ("")  1.0  (CENTER CENTER)  (GACHA 10  (
+MEDIUM REGULAR REGULAR))  ((416.0  465.5 0 13)) NIL  (ROUND  2.0 0) NIL  (NIL NIL)))  ((.05  12.0  (
+PRI 151))  (TEXT  (64.0 .  512.0)  ("To:  M. Biggs")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM 
+REGULAR REGULAR))  ((18.5  509.0  91.0  12.0)) NIL))  ((.05  13.0  (PRI 152))  (TEXT  (80.0 .  488.0) 
+ ("From:  C. Mueller")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((20.5  484.5  
+119.0  13.0)) NIL))  ((.05  12.0  (PRI 153))  (TEXT  (776.0 .  512.0)  ("April 28, 1986")  1.0  (
+CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((727.0  509.0  98.0  12.0)) NIL))  ((0.0  
+132.0  (PRI 156))  (WIRE  ((176.0 .  80.0)  (440.0 .  80.0))  (ROUND 1 0)  (NIL NIL)  (6 3 1 3)  1.0  
+(175.0  79.0  266.0  2.0)  (NIL NIL)))  ((0.0  4.0  (PRI 158))  (WIRE  ((440.0 .  80.0)  (448.0 .  
+80.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  9.750336)) NIL  1.0  (439.0  79.0  10.0  2.0)  (NIL  ((
+448.0 .  80.0)  (438 . 78)  (438 . 82)))))  ((0.0  4.0  (PRI 159))  (WIRE  ((696.0 .  296.0)  (704.0
+ .  296.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  9.750336)) NIL  1.0  (695.0  295.0  10.0  2.0)  (
+NIL  ((704.0 .  296.0)  (694 . 294)  (694 . 298)))))  ((0.0  4.0  (PRI 162))  (WIRE  ((696.0 .  328.0)
+  (704.0 .  328.0))  (ROUND 1 0)  (NIL  (CLOSEDLINE  10.0  9.750336)) NIL  1.0  (695.0  327.0  10.0  
+2.0)  (NIL  ((704.0 .  328.0)  (694 . 326)  (694 . 330)))))  ((0.0  8.0  (PRI 163))  (WIRE  ((24.0 .  
+304.0)  (24.0 .  288.0))  (ROUND 1 0) NIL NIL  1.0  (23.0  287.0  2.0  18.0) NIL))  ((0.0  12.0  (PRI 
+164))  (WIRE  ((24.0 .  224.0)  (24.0 .  200.0))  (ROUND 1 0) NIL NIL  1.0  (23.0  199.0  2.0  26.0) 
+NIL)))
+(-104.3623 -88.50978 953.7918 609.0)
+1.321041
+8.0
+       ? 1(DEFAULTFONT 1 (GACHA 10) (GACHA 8) (TERMINAL 8))           M½  SKIO.GETFN.2   M½ zº

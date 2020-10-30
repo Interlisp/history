@@ -1,0 +1,157 @@
+(FILECREATED "11-Apr-86 16:15:59" {POGO:PARC:XEROX}<LOOPS>USERS>LOOPSIDLE.;2 5340   
+
+      changes to:  (VARS BouncingLoopsIcon)
+
+      previous date: "12-Dec-85 14:12:32" {POGO:PARC:XEROX}<LOOPS>USERS>LOOPSIDLE.;1)
+
+
+(* Copyright (c) 1985, 1986 by Xerox Corporation. All rights reserved.)
+
+(PRETTYCOMPRINT LOOPSIDLECOMS)
+
+(RPAQQ LOOPSIDLECOMS [(* * Make IDLE bounce the Loops icon about)
+			(BITMAPS BouncingLoopsIcon)
+			(VARS (IDLE.BOUNCING.BOX BouncingLoopsIcon))
+			(P (LISTPUT IDLE.PROFILE (QUOTE DISPLAYFN)
+				    (QUOTE IDLE.BOUNCING.BOX])
+(* * Make IDLE bounce the Loops icon about)
+
+
+(RPAQ BouncingLoopsIcon (READBITMAP))
+(128 128
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@CLLLLL@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@CLLLLL@@@@@@@@@@@@@"
+"@@@@@@@@@@@C@L@@@@@LL@@@@@@@@@@@"
+"@@@@@@@@@@@C@L@@@@@LL@@@@@@@@@@@"
+"@@@@@@@@@@@L@@@@@@@@CL@@@@@@@@@@"
+"@@@@@@@@@@@L@@@@@@@@CL@@@@@@@@@@"
+"@@@@@@@@@CL@@@OOOO@@@CL@@@@@@@@@"
+"@@@@@@@@@CL@@@OOOO@@@CL@@@@@@@@@"
+"@@@@@@@@@L@@OOOOOOOO@@C@@@@@@@@@"
+"@@@@@@@@@L@@OOOOOOOO@@C@@@@@@@@@"
+"@@@@@@@@L@COOOOOOOOOO@@O@@@@@@@@"
+"@@@@@@@@L@COOOOOOOOOO@@O@@@@@@@@"
+"@@@@@@@C@@OOOOOOOOOOOO@@L@@@@@@@"
+"@@@@@@@C@@OOOOOOOOOOOO@@L@@@@@@@"
+"@@@@@@@L@COOCOLO@C@COOL@C@@@@@@@"
+"@@@@@@@L@COOCOLO@C@COOL@C@@@@@@@"
+"@@@@@@C@COOOCOLLOOCLOOOL@L@@@@@@"
+"@@@@@@C@COOOCOLLOOCLOOOL@L@@@@@@"
+"@@@@@@@@@OOOCOLLOOCLOOOO@C@@@@@@"
+"@@@@@@@@@OOOCOLLOOCLOOOO@C@@@@@@"
+"@@@@@@LCLCOOCOLO@O@COOOOL@@@@@@@"
+"@@@@@@LCLCOOCOLO@O@COOOOL@@@@@@@"
+"@@@@@C@OOCOOCOLOOCCOOOOOO@L@@@@@"
+"@@@@@C@OOCOOCOLOOCCOOOOOO@L@@@@@"
+"@@@@@L@OO@OOCOLOOCCOOOOOO@CL@@@@"
+"@@@@@L@OO@OOCOLOOCCOOOOOO@CL@@@@"
+"@@@@@@COOLOO@@LL@OCOOOOOL@@L@@@@"
+"@@@@@@COOLOO@@LL@OCOOOOOL@@L@@@@"
+"@@@@C@OOOLCOOOOOOOOOOOOLCL@O@@@@"
+"@@@@C@OOOLCOOOOOOOOOOOOLCL@O@@@@"
+"@@@@L@OOOOCOOOOOOOOOO@OCOO@CL@@@"
+"@@@@L@OOOOCOOOOOOOOOO@OCOO@CL@@@"
+"@@@@LCOOOOLOOOOOOOOOLL@OOOLCO@@@"
+"@@@@LCOOOOLOOOOOOOOOLL@OOOLCO@@@"
+"@@@@@COLOOLCOOOOOOOL@OOOOOL@@O@@"
+"@@@@@COLOOLCOOOOOOOL@OOOOOL@@O@@"
+"@@@C@OOCCOO@COOOOOL@OOOCOCO@@@L@"
+"@@@C@OOCCOO@COOOOOL@OOOCOCO@@@L@"
+"@@@O@OLOLOOO@OOOOO@COOOCOCO@O@C@"
+"@@@O@OLOLOOO@OOOOO@COOOCOCO@O@C@"
+"@@OO@OL@@OOOL@OOOLC@OOOLLOO@OO@L"
+"@@OO@OL@@OOOL@OOOLC@OOOLLOO@OO@L"
+"@COO@OLOLOOOLLCOL@OLOOOLLOO@OOLC"
+"@COO@OLOLOOOLLCOL@OLOOOLLOO@OOLC"
+"@OO@COLOLLOOLO@@@OOLCOOOCLOL@OL@"
+"@OO@COLOLLOOLO@@@OOLCOOOCLOL@OL@"
+"COL@COOOOOOO@OOOOOOOCOOOOOOL@CO@"
+"COL@COOOOOOO@OOOOOOOCOOOOOOL@CO@"
+"OO@LCOOOOOOOCOOOOOOO@OOOOOOLC@OL"
+"OO@LCOOOOOOOCOOOOOOO@OOOOOOLC@OL"
+"OOCLCOOOLCOOOOOOOOOOLOOOOOOLCLOL"
+"OOCLCOOOLCOOOOOOOOOOLOOOOOOLCLOL"
+"OO@LCOOOLCOOOOOOOOOOOOOOOOOLCLOL"
+"OO@LCOOOLCOOOOOOOOOOOOOOOOOLCLOL"
+"COL@COOOLCOO@COL@OLLCOL@OOOLC@OL"
+"COL@COOOLCOO@COL@OLLCOL@OOOLC@OL"
+"COO@@COOLCOL@@O@@CL@@O@LCOOL@CO@"
+"COO@@COOLCOL@@O@@CL@@O@LCOOL@CO@"
+"@OOO@@@CLCOLC@O@LCLCLC@OOL@@@OO@"
+"@OOO@@@CLCOLC@O@LCLCLC@OOL@@@OO@"
+"@COOOO@CLCOLC@O@LCLCLCL@OL@COOLC"
+"@COOOO@CLCOLC@O@LCLCLCL@OL@COOLC"
+"@@OOOOOOLCOLC@O@LCLCLCOLCOOOOO@L"
+"@@OOOOOOLCOLC@O@LCLCLCOLCOOOOO@L"
+"@@@OOOOOL@@L@@O@@CL@@O@LCOOOO@C@"
+"@@@OOOOOL@@L@@O@@CL@@O@LCOOOO@C@"
+"@@@@@COOL@@O@COL@OL@COL@OOOL@@L@"
+"@@@@@COOL@@O@COL@OL@COL@OOOL@@L@"
+"@@@L@@@COOOOOOOOOOLCOOOOL@@@OL@@"
+"@@@L@@@COOOOOOOOOOLCOOOOL@@@OL@@"
+"@@@CLC@@@@@COOOOOOLCOL@@@@@CL@@@"
+"@@@CLC@@@@@COOOOOOLCOL@@@@@CL@@@"
+"@@@@L@OL@@@@@@@@@@LC@@@@COL@@@@@"
+"@@@@L@OL@@@@@@@@@@LC@@@@COL@@@@@"
+"@@@@C@OOOOOL@@@@@@OO@COOOO@L@@@@"
+"@@@@C@OOOOOL@@@@@@OO@COOOO@L@@@@"
+"@@@@C@COOCOOOOOOOOOOOO@OOL@L@@@@"
+"@@@@C@COOCOOOOOOOOOOOO@OOL@L@@@@"
+"@@@@@L@OLOOO@CLOOOOOOOLOO@C@@@@@"
+"@@@@@L@OLOOO@CLOOOOOOOLOO@C@@@@@"
+"@@@@@@@O@OOLOLLOOLOOOOLCO@L@@@@@"
+"@@@@@@@O@OOLOLLOOLOOOOLCO@L@@@@@"
+"@@@@@@L@COOLOLLOOOOOOOO@L@L@@@@@"
+"@@@@@@L@COOLOLLOOOOOOOO@L@L@@@@@"
+"@@@@@@@@OOOLOLL@OLOOOOOO@C@@@@@@"
+"@@@@@@@@OOOLOLL@OLOOOOOO@C@@@@@@"
+"@@@@@@@@COOLOLLOCLOOOOOL@O@@@@@@"
+"@@@@@@@@COOLOLLOCLOOOOOL@O@@@@@@"
+"@@@@@@@C@COLOLLOCLOOOOL@C@@@@@@@"
+"@@@@@@@C@COLOLLOCLOOOOL@C@@@@@@@"
+"@@@@@@@@L@OO@CL@OLOOOO@@L@@@@@@@"
+"@@@@@@@@L@OO@CL@OLOOOO@@L@@@@@@@"
+"@@@@@@@@C@@OOOOOLLOOO@@O@@@@@@@@"
+"@@@@@@@@C@@OOOOOLLOOO@@O@@@@@@@@"
+"@@@@@@@@@L@@OOOOL@OO@@C@@@@@@@@@"
+"@@@@@@@@@L@@OOOOL@OO@@C@@@@@@@@@"
+"@@@@@@@@@CL@@@OOOO@@@CL@@@@@@@@@"
+"@@@@@@@@@CL@@@OOOO@@@CL@@@@@@@@@"
+"@@@@@@@@@@CL@@@@@@@@CL@@@@@@@@@@"
+"@@@@@@@@@@CL@@@@@@@@CL@@@@@@@@@@"
+"@@@@@@@@@@@OOL@@@@COL@@@@@@@@@@@"
+"@@@@@@@@@@@OOL@@@@COL@@@@@@@@@@@"
+"@@@@@@@@@@@@@COOOOL@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@COOOOL@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+(RPAQ IDLE.BOUNCING.BOX BouncingLoopsIcon)
+(LISTPUT IDLE.PROFILE (QUOTE DISPLAYFN)
+	 (QUOTE IDLE.BOUNCING.BOX))
+(PUTPROPS LOOPSIDLE COPYRIGHT ("Xerox Corporation" 1985 1986))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL)))
+STOP

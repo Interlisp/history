@@ -1,0 +1,1 @@
+ref-7-5                    Xerox Quintus Prolog Reference Manual                            Section 7-5: float(?X)float(X) succeeds if X is currently instantiated to a float; otherwise itfails.  Examples:            | ?- float(X).            no            | ?- float(5.2).            yesfloat/1 has no associated error conditions.

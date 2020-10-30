@@ -1,0 +1,75 @@
+(FILECREATED " 4-Sep-86 13:21:25" {POGO:PARC:XEROX}<LOOPSCORE>USERS>LOOPSINDEX.;2 2556   
+
+      changes to:  (VARS LOOPSINDEXCOMS)
+
+      previous date: "28-May-86 19:30:50" {POGO:PARC:XEROX}<LOOPSCORE>USERS>LOOPSINDEX.;1)
+
+
+(* Copyright (c) 1986 by Xerox Corporation. All rights reserved.)
+
+(PRETTYCOMPRINT LOOPSINDEXCOMS)
+
+(RPAQQ LOOPSINDEXCOMS ((* * Sets up the SINGLEFILEINDEX package to dump out classes, methods, and 
+			    instances in an intelligible way)
+			 (FILES (FROM LISPUSERS)
+				SINGLEFILEINDEX)
+			 (ADDVARS (SINGLEFILEINDEX.TYPES (CLASS DEFCLASS)
+							 (METHOD METH TestForMethod)
+							 (INSTANCE DEFINST TestForInstance))
+				  (SINGLEFILEINDEX.FILTERS (FUNCTION IndexMethodFilter)))
+			 (FNS IndexMethodFilter TestForInstance TestForMethod)))
+(* * Sets up the SINGLEFILEINDEX package to dump out classes, methods, and instances in an 
+intelligible way)
+
+(FILESLOAD (FROM LISPUSERS)
+	   SINGLEFILEINDEX)
+
+(ADDTOVAR SINGLEFILEINDEX.TYPES (CLASS DEFCLASS)
+				  (METHOD METH TestForMethod)
+				  (INSTANCE DEFINST TestForInstance))
+
+(ADDTOVAR SINGLEFILEINDEX.FILTERS (FUNCTION IndexMethodFilter))
+(DEFINEQ
+
+(IndexMethodFilter
+  [LAMBDA (indexEntry)                                       (* smL "31-Mar-86 18:50")
+
+          (* * The SINGLEFILEINDEX package has an entry for the given function. If it is a method on the file, don't index it
+	  as a function.)
+
+
+    (LET [(methodEntry (SFI.LOOKUP.NAME (CAR indexEntry)
+					  (QUOTE METHOD]
+         (COND
+	   (methodEntry                                      (* Clobber the function entry)
+			(change (CDR methodEntry)
+				  (NCONC DATUM (CDR indexEntry)))
+			T)
+	   (T                                                (* Keep the function entry)
+	      NIL])
+
+(TestForInstance
+  [LAMBDA (stream dumpFn entry)                              (* smL "31-Mar-86 19:23")
+
+          (* * For a SINGLEFILEINDEX, return the name of instance being defined by the current expression)
+
+
+    (LET ((expr (SFI.WHOLE.EXPRESSION stream)))
+         (CAR (CADDR expr])
+
+(TestForMethod
+  [LAMBDA (stream dumpFn entry)                              (* smL "31-Mar-86 19:23")
+
+          (* * For a SINGLEFILEINDEX, return the method name of method being defined by the current expression)
+
+
+    (LET ((expr (SFI.WHOLE.EXPRESSION stream)))
+         (PACK* (CADR expr)
+		  "."
+		  (CADDR expr])
+)
+(PUTPROPS LOOPSINDEX COPYRIGHT ("Xerox Corporation" 1986))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (1144 2475 (IndexMethodFilter 1154 . 1810) (TestForInstance 1812 . 2125) (TestForMethod 
+2127 . 2473)))))
+STOP

@@ -1,0 +1,1 @@
+lib-3-3-7                     Xerox Quintus Prolog Library Manual                Section 3-3-7: number_string(?Number, ?String)This predicate is exactly like atom_chars/2 except that the second argument isor will be unified with an Interlisp string.

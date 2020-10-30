@@ -1,0 +1,1 @@
+sysdep-3-3-3            Xerox Quintus Prolog System-Dependent Features Manual                             Section 3-3-3: nogcnogc/0 disables the garbage collector.  It is defined as if by            nogc :- prolog_flag(gc, _, off).nogc/0 has no associated error conditions.

@@ -1,0 +1,7 @@
+Scalebitmap
+
+This package scales bitmaps.  The bitmaps can be made either larger or smaller.  The algorithm does not do any smoothing or averaging.
+
+(SCALEBITMAP BITMAP FACTOR)
+
+Scales the bitmap BITMAP by FACTOR.  FACTOR can be any of the following: an integer representing the percentage amount, e.g., FACTOR=67 means reduce the x and y dimensions to 67% of their orginal; a floating point number, e.g. FACTOR=1.3 means increase the x and y dimensions by a factor of 1.3; a dotted pair whose CAR is the factor for the X dimension and whose CDR is the factor for the Y dimension, e.g. FACTOR=(2.3 . 81) means increase the X dimension 2.3 times and decrease the Y dimension to 81%.

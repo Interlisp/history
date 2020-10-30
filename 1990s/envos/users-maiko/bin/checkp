@@ -1,0 +1,1 @@
+#check?: Who checks out what file ?set files=`ls /users/maiko/SCCS/p.*`foreach file ($files)	echo $file	cat $fileend

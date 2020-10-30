@@ -1,0 +1,1 @@
+ref-4-2-0                    Xerox Quintus Prolog Reference Manual                           Section 4-2-0: OverviewA module-file is a Prolog file that begins with a module declaration.  For moreinformation on defining a module, see {manual(ref-13-3)}.

@@ -1,0 +1,1 @@
+ref-18-1                    Xerox Quintus Prolog Reference Manual                            Section 18-1: ?X = ?YX = Y unifies X and Y.  This is defined as if by the clause 'Z = Z.'.If '='/2 is not able to unify X and Y, it will simply fail.

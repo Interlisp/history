@@ -1,0 +1,281 @@
+SYSDOC GLOSSARY
+
+
+
+
+Filed on:	{Phylum}<Sysdocreleases>Glossary
+Revised:	1/17/86
+
+
+AISBU:  Acronym for the Artificial Intelligence Systems Business Unit headed by Beau Sheil.
+
+ANNOLAND:  Prototype document creation system that supports multiple authors.
+
+AR EDIT:  Action Request form on which to report bugs in various packages.  The Action Request form appears when selected from the background menu.
+ 
+ARPANET:  A network linking research computers.  ARPA is an acronym for the Advanced Research Projects Agency.
+
+ATOM:  The basic building block of Lisp; any contiguous string of characters.
+
+BITMAP:   A representation of a graphical entity as a sequence of bits.
+
+BLUE AND WHITE:  A report that has been cleared for distribution outside Xerox, and published in a blue and white cover.
+
+BOOT:  Short for "bootstrap" and refers to the process of loading and starting a program on a machine whose main memory has undefined contents.
+
+BOOT BUTTON:  The small button behind the keyboard of Dorados and Dolphins used to "boot" some programs into execution.
+
+BOUNCE/SLEEP:  A Lisp package.  When loaded, Bounce blacks out the screen and draws a continuous pattern when your system has been idle for a bit.  Once loaded, it can also be started from the background menu on which it is called sleep.  Bounce/sleep will run until a mouse button is clicked or any keyboard character is typed.
+
+BREAK WINDOW:  Appears when an error occurs in a process or computation.  The computation is suspended at the point of the break, and the error message printed in the window.
+
+CARET:  A blinking pointer, indicating where keyboard characters will appear when typed.  The caret is positioned by moving the mouse cursor.
+
+CHARDONNAY:  A Grapevine server.
+
+CHAT:  A program that provides teletype-like "interactive" access to a remote computer on the network.  Chat is mainly used to communicate with the IFS file servers and  to talk to a VAXC.
+
+CLEARINGHOUSE:  The analog of the Grapevine registration database in the NS world.  That is, a machine running STAR talks to the local Clearinghouse in order to find out how to talk to a particular file server or print server.
+
+CMS:  Acronym for Computer Maintenance Service, formerly PTS (PARC Technical Services).  This is the crew that installs and services the D-machines, file servers, printers, etc.
+
+CROCK:  A Lisp function for creating and manipulating an analog face clock.
+
+CRT:  Acronym for cathode-ray tube.  A vacuum tube used for displaying on-line graphic data.
+
+CSDG:  Acronym for Cognitive Science Discussion Group.
+
+CSL:  Acronym for Computer Science Lab at PARC.  Headed by Bob Ritchie
+
+CSLI:  Acronym for The Center for the Study of Language and Information.  CSLI is a major, joint research project between PARC, Stanford and SRI.
+
+CURSOR:  A small picture (ususally an arrow) on the display that tracks the motions of the mouse.
+
+D-MACHINE:  A generic name, referring to any of the current machines within Xerox that implement the PrincOps architecture: Dandelions, Dicentras, Dolphins, and Dorados are the primary D-machines.
+
+DANDELION:  A D-machine.
+
+DANDETIGER:  A D-machine.
+
+DEDIT:  The InterLisp-D editor for function definitions and other lists.  DEdit operates on Interlisp structures such as atoms, lists, etc.
+
+DEFAULT VALUES:  The values to which your system will revert unless otherwise specified.  For example, unless you  change it in your init file, the default printer for most of ISL is Quake, and  all work that you hardcopy will be printed by Quake.
+
+DIRECTORY:  The primary storage area for groups of files.  The directory name is always surrounded by angle brackets and is preceeded by the file server name and followed by either a subdirectory or a file name, i.e., {file server}<directory>subdirectory>file name
+
+DL:  Acronym for Distribution List.
+
+DOLPHIN:  A D-machine.
+
+DORADO:  A D-machine.
+
+DOVER:  Generic name for a type of 384 bpi laser-scan printer built on the Xerox 7000 engine and connected to an Alto by means of a Orbit interface.  Dovers are normally driven by the program Spruce.
+
+DRAGON:  Generic name of a new, custom-chip processor being designed in CSL; the hope is to have a Dorado much smaller in physical size.
+
+DWIM:  Acronym for Do What I Mean:  a facility intended to help the programmer by making Lisp do what you mean, rather than what you say.
+
+EDL:  Acronym for Exploratory Development Lab at PARC.  EDL is headed by Paul Turner.
+
+EMPRESS:   Command  that  can be typed in the TTY window (followed by the file name) that is used to convert text files to press format and sends them to a press printer.
+
+ERIS:  The name of the file server belonging primarily to AISBU.  All Lisp packages and sysouts are stored on Eris.
+
+ES:  Acronym for the El Segundo locations of Xerox (in So. Calif.) used in Lafite mail addresses.
+
+ETHERNET:  The communication line connecting many computers (with compatible interfaces) together.  Strictly speaking, an Ethernet is a single, continuous piece of co-axial cable, but the term is sometimes applied to the entire network accessible through the cooperation of Gateways. PARC has ethernets of 1.5, 3, and 10 MBits/sec.
+
+FILE BROWSER:  A command that enables you to see what you have what you have stored on your directory or a general directory.  From file browser you can edit, delete, rename, update, load, hardcopy, compile and see files.
+
+FILE SERVER:  A computer on the network that provides a file storage and retrieval service.  Servers at PARC have names such as:  Phylum,  QV, Ivy, Eris, Indigo, etc.
+
+FLOPPY DISK:  A pliable square disk that can be used in a Dandelion (and other personal computers).  A floppy disk is like a  small, blank record upon which you can write, store, copy and read files.
+
+FONT:  An assortment of characters all of one size and style:  more precisely, a mapping from a set of character code numbers to a consistent collection of graphic images.
+
+FORMAT:  To produce in a specified form; the layout of a program or document, etc.
+
+FORUM:  Weekly presentations held in the PARC auditorium on a variety of topics of interest to the PARC community.
+
+FTP:  Acronym for File Transfer Program.  An Alto world program that provides a convenient user interfact to the file transfer protocol, enabling the transfer of files between computers.
+
+FUNCTION:  A series of steps that return a value.
+
+GATEWAY:  A computer serving as a forwarding link between separate Ethernets.  Also called a "bridge."
+
+GET:  Term in TEDIT menu used to retrieve a file.
+
+GRAPEVINE:  The distributed electronic message transport system produced by PARC. 
+
+GSL:  Acronym for General Sciences Lab at PARC.  Headed by Stig Hagstrom.
+
+HARDCOPY:  The physical copy of an on-screen document.
+
+HEURISTIC:  Relating to or using a problem-solving technique in which the most appropriate solution of several found by alternative methods is selected at successive stages of a program for use in the next step of the program.
+
+ICL:  Acronym for Integrated Circuit Lab at PARC.  Headed by John Knights.
+
+ICON:  A small image representing some concept.  I.E., when you shrink a TEDIT file, it places an icon on the screen in an area of your choice.
+
+INIT FILE:  The file which allows you to initialize your Interlisp-D environment to make it site and user specific.  It allows you to personalize your Interlisp-D world.
+ 
+INTERLISP:  A highly interactive dialect of LISP which was largely developed at Xerox PARC and BBN
+
+INTERLISP-D:  A dialect of LISP which runs on the "D" machines: Dolphins, Dorados, Dandelions, Dandetigers
+
+INTERNET:  Many ethernets connected by Gateways form an Internet.
+
+ISL:  Acronym for Intelligent Systems Lab at PARC.  Headed by John Seely Brown.
+
+KSA:  Acronym for Knowledge Systems Area of ISL.  Headed by Mark Stefik.
+
+LAFITE:  The electronic mail program available within the Interlisp-D environment.
+
+LEAF:  A page-level file access protocol.
+
+LFG:  Acronym for Lexical Functional Grammar.  A general purpose parser that instantiates a computational theory of the syntax of "universal language."
+
+LISP:  An interactive, recursive language and programming environment that is widely used in the Artificial Intelligence Community.  LISP is an especially good language for manipulating symbolic expressions.
+
+LISP PACKAGES:  Sets of related functions contained on a single file or a small set of files that is designed to carry out some particular task in the InterLisp environment.  TEdit is an example of a Lisp package.
+
+LISPLIBRARY PACKAGES:  InterLisp-D packages that are submitted by the AISBU Lisp development group or by random hackers.  The main distinction between these packages and LispUsers packages is that these ARE maintained by the AISBU Lisp development group.
+
+LISPUSERS PACKAGES:  InterLisp-D packages that are submitted by random hackers and are NOT maintained by the AISBU Lisp development group.
+
+LITATOM:  In Lisp, a nonnumerical atom.
+
+LOCAL DISK:   The rigid disk in your Dandelion, Dorado, or Dolphin that can be used for local storage of files, etc.
+
+LOGICAL VOLUME:  The logical structuring of the media into specific categories such as initial microcode, system, and user areas.  Logical volume boundaries are predetermined by software.  Is to a Dandelion what  partitions are to Dolphins and Dorados.  
+
+LOOPS:  A "knowledge" programming environment built on top of Interlisp-D that turns itinto an object-orientated environment tailored for building rule-based expert; systems.
+
+MAIL SERVER:  A computer dedicated to collecting  Lafite mail.  Common names of mail servers servicing ISL are Cabernet, Semillion and Salvador.
+
+MAINTAIN:  A program for updating Grapevine registration information.
+
+MENU:  A collection of text strings, buttons, or icons on a display screen generally used to present a set of possible actions.
+
+MESA:  A high-level programming language used by Xerox.
+
+MOUSE:  A type of pointing device with which many personal computers are equipped.  The switches on the mouse are called "button" to distinguish them from the "keys" on the keyboard.
+
+NIL:  In Lisp, NIL is a special LITATOM  that translates to"false" and is used for several different purposes, i.e., at the end of lists.
+
+NLTT:  Acronym for the Natural Language Theory and Technology area of ISL.  Headed by Ron Kaplan.
+
+NOTECARDS:  An experimental, personal notetaking system designed to support the entire process of authoring a document.
+
+NS:   Acronym for Network Systems:  the protocols for using the Ethernet in the Star world.  NS packets are analogous to PUP's, and NS protocols include analogs to such higher-level protocols as FTP.
+
+OPERATING SYSTEM:  A collection of software routines used to supervise the sequencing and processing of computer programs.
+
+OSD:  Acronym for the Office Systems Division of Xerox.
+
+OTHELLO/HELLO:  A disk utility which can be used to do a number of things to a Dandelion disk including partitioning it into logical volumes.  Hello is a modified version of Othello that allows the user to do some other things related to fetching and modifying sysouts.
+
+PARSE:  To break down into component parts, i.e., when updating Lafite mail, the mail is parsed and the table of contents reconstructed.
+
+PARTITION:  A chunk of a large local disk that is being used to emulate the largest system disk that the OS allows.  A Dorado has five partitions, while a Dolphin a two.
+
+PATH NAME:  The complete name of a file, including the file server and directory or subdirectory on which it is stored - everything you need to know to get the file.
+
+PENTEL:  (Pentelps:)  The Raven NS printer serving ISL in the "Quake" room.
+
+PHYLUM:  The name of one of  the  two file servers for ISL.
+
+PHYSICAL VOLUME:  The highest level of logical structuring of the media (i.e., the rigid disk).
+
+PIXEL:  A contraction of the phrase "picture element", refers to the tiny, usually square cells out of which a raster image is built.
+
+PRESS FILE:  A file format used to encode documents to be transmitted to Xerox laser  printers known by the names Dover, Spruce, Penguin and Raven.  Files in this format are conventionally given the file extension .press.
+
+PROMPT WINDOW:  Black window that provides general feedback on the status of the system.
+
+PSW:  Process Status Window reached via the background menu.  
+
+PUT:  Term in TEDIT menu used to save a file.
+
+QUAKE:  Name of the large Dover  print server in the ISL area of the first floor.
+
+QV:  The name of one of the two file servers for ISL. 
+
+RAID:  A debugging program.
+
+RECURSION:  A recursive function (or program) is one defined in terms of itself.
+
+RELEASE NOTES:  Description of enhancements, new features, and bug fixes made to a software package or programming environment package.
+
+SCAVENGER:  Software facility capable of making repairs in page, file order, structure, and in some cases, content.
+
+SCL:  Acronym for System Concepts Lab at PARC.  Headed by Adele Goldberg.
+
+SCR:  Acronym for Symbolic Computation and Reasoning area of ISL.  Headed by Johan de Kleer.
+
+SCROLL:  Forward and backward movement through a document by use of the scroll bar.
+
+SCROLL BAR:  Vertical bar that appears at the left edge of a window when the cursor is moved to that area.  Enables the user to scroll  through a document.
+
+SETQ:  A function in LISP used to set the value of an atom
+
+SKETCH:  A drawing program for Interlisp-D.
+
+SMALLTALK:  An integrated programming system based on object-oriented style and message passing. 
+
+STAR:  A professional workstation environment (software) that provides a text editor and mail program, etc.  Star was the first office information professional workstation product offered for sale to the public by Xerox.
+
+SUBDIRECTORY:  Secondary name given to a file name if desired.  It is always followed by a right angle bracket.  File names can include more than one subdirectory or none at all, i.e, {file server}<directory>subdirectory>subdirectory>filename
+
+SWAT:   A debugging program. 
+
+SYSOUT:  A checkpointed version of an Interlisp-D environment.  It contains all information needed to initialize virtual memory when Interlisp-D is started.
+
+TEDIT:  The text editing program available within the Interlisp-D environment.
+
+TELERAID:  A debugging program.
+
+3-LISP:  A reflective lisp-like language.  Reflection means that the language interpreter has accessto and thus can reason about its own computations.
+
+TTY WINDOW:  Acronym for top level typescript window
+
+TRILLIUM:  A system used within Xerox to design the user interface to copiers and other machines.
+
+USR:  Acronym for User-System Research area of ISL.  Headed by Tom Moran.
+
+VIRTUAL MEMORY:  large working space on a local disk within which the machine runs LISP.
+
+WIZARD:  One who knows a programming system inside and out.
+
+WYSIWYG:  Acronym for "what you see is what you get."
+
+VAX:  Timesharing system such as PARC-VAXC (used as an interface to the ARPAnet) and PARC-CSLI (used for EMACS and other editors).
+
+
+Updated 17 January 1986
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+       .               0                          (                                     (                                            GACHA          	HELVETICA           	HELVETICA           GACHA           	HELVETICA                                                                                  +                                                           \                          N                          î                          o                          N                          H                          y                          ê                          x                         I                          Ø                          é                          !                          Ω                          „                          ≤                          L                          ]                          7                          G                          í                          b                          ≈                                                                              å                          ¯                         	                          $                                                                              »                          â                          ä                          V                          ´                          t                          b                         L                          ﬁ                          ß                          »                          ¨                          S                          s                          ª                          2                          g                          2                          S                          J                          7                          „                          K                          ê                          ™                          c                          k                          B                          P                          I                          S                          *                          ò                          –                          ÷                          ˇ                          ã                          (                          u                          ˇ                          Ø                          ë                          F                          Ä                          8                          ∑                          ä                          b                          x                          »                          {                          8                                                   â                          ™                          ¶                          L                          <                          `                          Ü                          ﬁ                          Y                          ?                          .                          R                          7                                                    Q                          à                          t                          J                          ]                          T                          ú                          ;                          ,                          b                          ›                          Û                                                    ù                          O                                                     ó                          5                          b                          J                          Y                          <                          6                          Ç                                                                                                                                                                                                                                                                                                                                                                                                      :ö4z∫

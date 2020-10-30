@@ -1,0 +1,1 @@
+.386P.MODEL tinyDATA SEGMENTvesabuf	DB DUP 256 (?)DATA ENDSCODE SEGMENTASSUME DS:DATAASSUME CS:CODEmode	= 8	;; The requested modePUBLIC VESA_optinfoVESA_optinfo PROC NEAR	enter	0,0	mov	eax, 4F01h	mov	cx,  100h	mov	eax, SEG vesabuf	mov	es,  ax	mov	edi, OFFSET vesabuf	int	10h	mov	eax, 0	mov	eax, vesabuf[eax]	leave	retVESA_optinfo ENDPCODE ENDSEND

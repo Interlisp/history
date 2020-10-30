@@ -1,0 +1,1 @@
+ref-5-8                    Xerox Quintus Prolog Reference Manual                              Section 5-8: truetrue/0 always succeeds.  This could have been trivially defined in Prolog bythe single clause            true.true/0 has no associated error conditions.

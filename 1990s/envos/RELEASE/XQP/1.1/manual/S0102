@@ -1,0 +1,1 @@
+sysdep-1-2            Xerox Quintus Prolog System-Dependent Features Manual                            Section 1-2: PackagesXerox Quintus Prolog interfaces with Xerox Lisp, which includes the concept ofpackages.  Please note that all Lisp symbols (variables and functions)discussed in this manual are accessible from the INTERLISP package (IL:).

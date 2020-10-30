@@ -1,0 +1,9 @@
+Use this file to shift-select into your exec when you want to do a TEdit Sublooks on an entire file.  Delete the "slope" entry if you don't care about that aspect. 
+
+Remember:
+	Before you finish typing this into your Exec, make sure the mouse cursor is in the TEdit window of the file you want to change.
+	Type the ending square bracket last, after you've made sure the mouse cursor is in the correct window.
+
+
+(TEDIT.SUBLOOKS (TEXTSTREAM(WHICHW)) '(FAMILY TITAN SIZE 12 SLOPE ITALIC) '(FAMILY MODERN SIZE 12 SLOPE ITALIC
+

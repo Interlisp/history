@@ -1,0 +1,159 @@
+XEROX	4045XLPStream
+2
+
+4
+
+1
+
+4045XLPStream
+1
+
+4
+
+By:  Will Snow (Snow.pasa@Xerox)
+DLRS232C/DLTTY/CENTRONICS
+INTRODUCTION
+4045XLPStream implements an image stream for the Xerox 4045 Laser CP, an inexpensive 300 dot/inch laser printer.  Output is sent directly to the 4045 printer (using the RS232, TTY or Centronics driver packages) .   Special thanks to Herb Jellinek for the original code and Tom Lipkis for his ideas and support.
+
+CONFIGURATION OF THE 4045
+The 4045 printer can normally emulate one of two printers: either the Xerox 2700-II laser printer or the Xerox/Diablo 630.   At this time, the 4045XlpStream package allows for 2700 emulation mode only.  Future releases will support the 630 mode. 
+The Configuration Cartridge  
+The switches on the configuration cartridge should be set according to the port you are using.  The 4045 User Manual gives details about switch settings.  If the RS232 or TTY port is being used, the switches should be set as follows:
+Bank A:  switches 1,5,6 on				Bank C:  switches 1,4,5 on
+Bank B:  switches 1,2,3,4,6 on				Bank D:  switch 6 on
+Cabling
+The cable between the 4045 and the communication port also depends on the port.  If you are using the Centronics or TTY port, you must build a special cable acording to the specifications in the User's  Guide for your workstation.  If you are using the RS232 port  from either the 1108 or 1186 workstations, the cable configuration is as follows:
+
+((SKETCH NIL SKETCHCONTEXT  ((ROUND 1 0)  (GACHA 10  (MEDIUM REGULAR REGULAR))  (CENTER BASELINE)  (
+LINE  30.0 12) NIL NIL  (CENTER CENTER)  (NIL NIL) T NIL NIL  1.0))  ((.05  13.0 NIL)  (TEXT  (72.0 . 
+ 116.0)  ("7")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((68.5  112.5  7.0  13.0
+)) NIL))  ((0.0  66.0 NIL)  (WIRE  ((80.0 .  120.0)  (212.0 .  120.0))  (ROUND 1 0) NIL NIL  1.0))  ((
+.016  8.0 NIL)  (BOX  (64.0  112.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  
+(TEXT  (72.0 .  140.0)  ("20")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((65.0  
+136.5  14.0  13.0)) NIL))  ((0.0  66.0 NIL)  (WIRE  ((212.0 .  168.0)  (80.0 .  144.0))  (ROUND 1 0) 
+NIL NIL  1.0))  ((.016  8.0 NIL)  (BOX  (64.0  136.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  
+((.05  13.0 NIL)  (TEXT  (72.0 .  164.0)  ("6")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR 
+REGULAR))  ((68.5  160.5  7.0  13.0)) NIL))  ((0.0  66.0 NIL)  (WIRE  ((80.0 .  168.0)  (212.0 .  
+144.0))  (ROUND 1 0) NIL NIL  1.0))  ((.016  8.0 NIL)  (BOX  (64.0  160.0  16.0  16.0)  (ROUND 1 0) 
+NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (72.0 .  188.0)  ("8")  1.0  (CENTER BASELINE)  (GACHA
+ 10  (MEDIUM REGULAR REGULAR))  ((68.5  184.5  7.0  13.0)) NIL))  ((0.0  58.0 NIL)  (WIRE  ((80.0 .  
+192.0)  (196.0 .  228.0))  (ROUND 1 0) NIL NIL  1.0))  ((.016  8.0 NIL)  (BOX  (64.0  184.0  16.0  
+16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (72.0 .  212.0)  ("5")  1.0  (
+CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((68.5  208.5  7.0  13.0)) NIL))  ((.016  8.0 
+NIL)  (BOX  (64.0  208.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (
+72.0 .  236.0)  ("4")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((68.5  232.5  
+7.0  13.0)) NIL))  ((0.0  12.0 NIL)  (WIRE  ((80.0 .  240.0)  (96.0 .  240.0)  (96.0 .  216.0)  (80.0
+ .  216.0))  (ROUND 1 0) NIL NIL  1.0))  ((.016  8.0 NIL)  (BOX  (64.0  232.0  16.0  16.0)  (ROUND 1 0
+) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (72.0 .  260.0)  ("3")  1.0  (CENTER BASELINE)  (
+GACHA 10  (MEDIUM REGULAR REGULAR))  ((68.5  256.5  7.0  13.0)) NIL))  ((0.0  66.0 NIL)  (WIRE  ((
+212.0 .  288.0)  (80.0 .  264.0))  (ROUND 1 0) NIL NIL  1.0))  ((.016  8.0 NIL)  (BOX  (64.0  256.0  
+16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (72.0 .  284.0)  ("2")  1.0  
+(CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((68.5  280.5  7.0  13.0)) NIL))  ((0.0  66.0
+ NIL)  (WIRE  ((80.0 .  288.0)  (212.0 .  264.0))  (ROUND 1 0) NIL NIL  1.0))  ((.016  8.0 NIL)  (BOX 
+ (64.0  280.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (72.0 .  308.0
+)  ("1")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((68.5  304.5  7.0  13.0)) NIL
+))  ((0.0  66.0 NIL)  (WIRE  ((80.0 .  312.0)  (212.0 .  312.0))  (ROUND 1 0) NIL NIL  1.0))  ((.016  
+8.0 NIL)  (BOX  (64.0  304.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT 
+ (72.0 .  332.0)  ("Workstation")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((
+33.5  328.5  77.0  13.0)) NIL))  ((0.0  58.0 NIL)  (WIRE  ((96.0 .  228.0)  (212.0 .  192.0))  (ROUND 
+1 0) NIL NIL  1.0))  ((.05  13.0 NIL)  (TEXT  (220.0 .  116.0)  ("7")  1.0  (CENTER BASELINE)  (GACHA 
+10  (MEDIUM REGULAR REGULAR))  ((216.5  112.5  7.0  13.0)) NIL))  ((.016  8.0 NIL)  (BOX  (212.0  
+112.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (220.0 .  140.0)  (
+"20")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((213.0  136.5  14.0  13.0)) NIL)
+)  ((.016  8.0 NIL)  (BOX  (212.0  136.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 
+NIL)  (TEXT  (220.0 .  164.0)  ("6")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((
+216.5  160.5  7.0  13.0)) NIL))  ((.016  8.0 NIL)  (BOX  (212.0  160.0  16.0  16.0)  (ROUND 1 0) NIL  
+1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (220.0 .  188.0)  ("8")  1.0  (CENTER BASELINE)  (GACHA 10 
+ (MEDIUM REGULAR REGULAR))  ((216.5  184.5  7.0  13.0)) NIL))  ((.016  8.0 NIL)  (BOX  (212.0  184.0  
+16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (220.0 .  212.0)  ("5")  1.0 
+ (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((216.5  208.5  7.0  13.0)) NIL))  ((.016  
+8.0 NIL)  (BOX  (212.0  208.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT
+  (220.0 .  236.0)  ("4")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((216.5  
+232.5  7.0  13.0)) NIL))  ((0.0  12.0 NIL)  (WIRE  ((212.0 .  240.0)  (196.0 .  240.0)  (196.0 .  
+216.0)  (212.0 .  216.0))  (ROUND 1 0) NIL NIL  1.0))  ((.016  8.0 NIL)  (BOX  (212.0  232.0  16.0  
+16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (220.0 .  260.0)  ("3")  1.0  (
+CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((216.5  256.5  7.0  13.0)) NIL))  ((.016  8.0
+ NIL)  (BOX  (212.0  256.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0 NIL)  (TEXT  (
+220.0 .  284.0)  ("2")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((216.5  280.5  
+7.0  13.0)) NIL))  ((.016  8.0 NIL)  (BOX  (212.0  280.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)
+))  ((.016  8.0 NIL)  (BOX  (212.0  304.0  16.0  16.0)  (ROUND 1 0) NIL  1.0  (NIL NIL)))  ((.05  13.0
+ NIL)  (TEXT  (220.0 .  308.0)  ("1")  1.0  (CENTER BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  (
+(216.5  304.5  7.0  13.0)) NIL))  ((.05  13.0 NIL)  (TEXT  (220.0 .  332.0)  ("4045")  1.0  (CENTER 
+BASELINE)  (GACHA 10  (MEDIUM REGULAR REGULAR))  ((206.0  328.5  28.0  13.0)) NIL)))
+(38.125 111.25 195.0 230.0)
+1.25
+4.0
+
+The cable is male-male 25 pin D shell and is available in two parts as #298-3 Null Modem Adapter, and #168-2 Data Cable from INMAC; 2465 Augustine Drive; Santa Anna, CA  98054  (714) 641-3100.
+
+USING THE COMMUNICATIONS PORTS FOR PRINTING
+There are two communications ports that are used most often for printing purposes; the RS232C port and the TTY port (on the 1186, they are labeled COMM/DTE and Printer/DCE respectively, and on the 1108 they are labeled RS232C and Printer respectively.)   They both use the RS232C standards for data communications, but they differ in that the RS232C port is buffered and is thus the prefered port for printing.  The default printing software has been designed primarily around the RS232 port.  The Centronics parallel port is available only on the 1108 with the CPE upgrade.    
+To use the RS232C and TTY ports, first load either DLRS232C.DCOM or DLTTY.DCOM.  Next you must initialize the port.  To initialize the RS232C port, from the top level call (RS232C.INIT 9600 8 'NONE 1 'XOnXOff) or for the TTY port, call (TTY.INIT 9600 8 'NONE 1 'XOnXOff).   If you are using the RS232 port call (RS232C.OUTPUT.PACKET.LENGTH 58) to set the output packet length for the port.  Also, if you are using the RS232 port, you can call (RS232C.TRACE T) which will ask you to draw out a window for use as a trace file.  The trace file allows you to determine if a problem is in the software, or if there is a problem with the printer.  
+To use the CENTRONICS port, load CENTRONICS.DCOM and, with the printer connected and on, call (CENTRONICS.RESET).  According to the documentation for Centronics, if there is a break window, fix whatever problem that is reported then enter "RETURN" (the word not the key) to continue printing.  
+
+OPENING A 4045 STREAM
+Before loading 4045XlpStream.dcom, you must set the variable INTERPRESSFONTDIRECTORIES to a list containing the directories where at least  the file TITAN10-C0.WD can be found.  Any font that is used must have a corresponding .wd file on one of INTERPRESSFONTDIRECTORIES as well in order for the 4045 to work properly.   For more information about  INTERPRESSFONTDIRECTORIES, see page 27.31 in the Interlisp-D Reference Manual.  
+4045 image streams are created by the OPENIMAGESTREAM  function.    Some examples:
+ˇˇ Ôfˇ 	(SETQ 4045STREAM (OPENIMAGESTREAM '{CENTRONICS}.4045XLP)) 
+creates a a stream to the 4045 connected to the workstation's Centronics port.  
+ˇˇ Ôfˇ 	(SETQ 4045STREAM (OPENIMAGESTREAM '{RS232}      '4045XLP )
+creates a a stream to the 4045 connected to the workstation's RS232 port.  
+ˇˇ Ôfˇ 	(SETQ 4045STREAM (OPENIMAGESTREAM '{RS232}.4045XLP )
+creates a a stream to the 4045 connected to the workstation's RS232 port.  Notice that the type need only be included as an extension to the port name.
+
+USING A 4045XLP STREAM
+In the above cases, we set the variable 4045STREAM to a 4045 image stream.  Once we have done that, the image stream can thereafter be used as the destination of any graphics 4045XLPStream implements an image stream for the Xerox 4045 Laser CP, an inexpensive 300 dot/inch laser printer.  Output is sent directly to the 4045 printer (using the RS232, TTY or Centronics driver packages) .operation.   Here are some examples of operations that may be performed on a 4045Xlp image stream:
+ˇˇ Ôfˇ 	(BITBLT (WHICHW) NIL NIL 4045STREAM 0 0) will place a window's image at position (0,0) on the 4045's page.
+ˇˇ Ôfˇ 	(DRAWLINE 500 500 3000 500 30 NIL  4045STREAM) will draw a line 30 spots (1/10 inch) wide from position (500,500) to position (3000,500).
+ˇˇ Ôfˇ 	(DSPNEWPAGE 4045STREAM) will cause the current page to be printed and a new one to be started.
+ˇˇ Ôfˇ 	(PRINTOUT 4045STREAM "Hello world" T) will print the string "Hello world'' on the 4045's page, followed by a carriage-return/linefeed.
+ˇˇ Ôfˇ 	To print a TEdit document, open a TEdit window and GET the file.  Select "Hardcopy"  from the right-button menu in the TEdit window's title bar.'' Slide off to the right of that selection and pick "To a file."  Type "{RS232}.4045XLP" (assuming the printer is connected to the RS232 port) and press a carriage return.
+For more information on imagestreams, see chapter 27 of the Interlisp-D Reference Manual.
+  
+USING THE 4045 AS A DEFAULT PRINTING HOST
+The 4045 may also be set up as a default printer,  which allows you to use the higher level system functions for hardcopying windows, bitmaps, tedit and text (source) files.  To set the 4045 up for doing default printing:
+	ˇˇ Ôf  ˇ  	Load the package 4045XlpDefaultPrinter.DCOM (Note: 4045XlpDefaultPrinter will try to load 4045XlpStream if it is not already loaded.)  
+	ˇˇ Ôfˇ 	Set the variable 4045XLP.DEFAULT.PORT to the port you wish to use the printer from (ie. {RS232}, {TTY},  or {CENTRONICS}.  Default is {RS232})
+	ˇˇ Ôfˇ 	If you would like a header page with information about the job between every  job, set the variable 4045XLP.PRINT.HEADERPAGE to T (default is not to print the header page).
+	ˇˇ Ôfˇ 	If DEFAULTPRINTINGHOST has not been set up, 4045 will be the default.  Otherwise, 4045 will be added to the list of known printers as the default.  
+To print  source or TEdit files to the 4045:
+	ˇˇ Ôf 	 ( S E N D . F I L E . T O . P R I N T E R  ˇ Fˇˇ  i l e   H o s tˇ  Options)  Where File is a Source or Tedit file, Host is one of {RS232}, {TTY},  or {CENTRONICS}, and Options are print options.  (Note:  the only supported options currently are #COPIES and HEADING.)  Some examples follow:
+	ˇˇ Ôf 	 ( S E N D . F I L E . T O . P R Iˇ NTER 'MySourceorTEditFile) will send the file MySourceorTEditFile to the default printer (4045xlp after loading this package).
+	ˇˇ Ôf 	 ( S E N D . F I L E . T O . P R I N T E R   ' M y S o u r c eˇ orTEditˇˇ  F i l e   ' { R S 2 3 2 }ˇ .4045XLPˇˇ  )     s e n d s   t h e   f i l e   t o   t h e  ˇ 4045 attached to the RS232 port.  (Note: '.4045XLP must be supplied if the 4045 is not the default printer, and the port must be specified if it is not the value of 4045XLP.DEFAULT.PORT)
+To print windows to the 4045XLP:
+	ˇˇ Ôf 	 S e l e c t   " H A R D C O P Y "   f r o m   t h e   R i g h t - b u t t o n   m e n u   o f   t h e   s e l e c t e d   w i n d o w   ( N o t e :     i f   t h e   4 0 4 5 X L P   i s   n o t   t h e   d e f a u l t   p r i n t e r ,   s l i d e   o f f   t o   t h e   r i g h t   o f   t h e   H A R D C O P Y   a n d   s e l e c t   " T O   A   P R I N T E R , "   t h e n   c h o o s e   4 0 4 5 X L P .     Y o u   w i l l   o n l y   n e e d   t o   d o   t h i s   i f  ˇ DEFAULTPRINTINGHOST has been changed after loading this package.
+Special Features of Default Printing to the 4045XLP
+	ˇˇ Ôf 	ˇ Any window may be printed using the HARDCOPY menu item, including TEdit and Sketch windows.
+	ˇˇ Ôf 	 J o b   Q u e u e i n g   i s   i m p l e m e n t e d ,   a l l o w i n g   t h e   u s e r   t o   d o   m a n y   h a r d c o p y ' s   o f   w i n d o w s   a n d   S e n d . F i l e . T o . P r i n t e r ' s   w i t h o u t   w o r r y   o f   m i x i n g   t h i n g s   u p   ( e s p e c i a l l y   i f  ˇ 4045XLP.PRINT.HEADERPAGE is T).
+Creating 4045Xlp Master Files
+	ˇˇ Ôfˇ 	4045xlp Master files are files similar to Interpress master files in that can be printed without further formatting.   They can be from windows, bitmaps, and TEdit/Sketch files.  To create a 4045Xlp master from a window (including Tedit and Sketch windows), select "Hardcopy" from the background menu, slide off to the right and select "To a file," and enter the name you wish for the master file with an extension of .4045XLP.  To create a master for a bitmap,  follow these steps:	(SETQ FOO (OPENIMAGESTREAM 'MYMASTERFILE.4045XLP))
+	(BITBLT MYBITMAP 0 0 FOO 0 0)
+	(CLOSEF FOO)
+The file MYMASTERFILE.4045XLP can now be printed or saved for later printing.  
+	ˇˇ Ôf 	 P r i n t i n g   a   m a s t e r   f i l e   i s   e a s y .     C a l l   ( S e n d . f i l e . t o . p r i n t e r   ' M a s t e r f i l e . 4 0 4 5 x l p   ' 4 0 4 5 x l p )   a n d   p r e s t o !   i t   i s   p r i n t e d   ( b u t   w i t h o u t   t h e   d e l a y  ˇ forˇˇ    f o r m a t t i n g ! )ˇ 
+Printing using FTPServer
+	ˇˇ Ôf 	ˇ The Lisp Library Package FTPSERVER will allow 2 11xx machines to share files via the Ethernet (see complete FTPSERVER documentation in the Lisp Library Packages Manual.)
+With the FTPSERVER process running on the 1108/86 connected to the 4045 (where 0#2# is the PUP host number of the FTPSERVER), another 11xx machine can print to the 4045 by the PUP host number of the FTPSERVER), another 11xx machine can print to the 4045 by calling the function:
+(COPYFILE 'foo.4045xlp '{0#2#}LPT:.4045xlp)
+The file "foo.4045xlp"  is a 4045xlp master file that has previously been created (see "creating 4045xlp Master files" above.)  You can also copy source files, but leave the extension .4045xlp off the file name.
+
+LIMITATIONS
+As always, there are limitations to this software.  Below is a list of the currently known limitations:
+	ˇˇ Ôfˇ 	DRAWCURVE - doesn't work
+	ˇˇ Ôfˇ 	DRAWELLIPSE - doesn't work
+	ˇˇ Ôfˇ 	FILLPOLYGON - doesn't work
+	ˇˇ Ôf 	 B u l l e t s  ˇ (ˇˇ Ôf )   i n s i d e   o f   T E d i t   d o c u m e n t s   c a u s e   e r r o r s   w h e n   p r i n t i n gˇ .
+	The current version of 4045STREAM does not use fonts other than TITAN 10.   Documents can be made up of any font that has a .wd file but the document will print in Titan 10 and Titan 10 Bold only.  Source files print in landscape mode, but regular printing in landscape mode is not supported.This is a temporary limitation.
+	ˇˇ Ôfˇ 	DRAWCIRCLE  - should only be used on small circles or the page becomes too complex.  
+	ˇˇ Ôfˇ 	FILLCIRCLE - should only be used on VERYsmall circles or the page becomes too complex (will show up as split halves of the circle
+	ˇˇ Ôf 	 S I N G L E F I L E I N D E X   d o e s   n o t   w o r k   w i t h   t h i s   p a c k a g e   ( p r i n t s   2   p a g e s   f o r   e v e r y   p a g e   n e e d e d   b y   s i n g l e f i l e i n d e x ) . 
+ 
+ˇ 
+
+
+
+
+
+
+
+     (LIST ((PAGE NIL (FOLIOINFO (ARABIC) STARTINGPAGE# 1) (0 0 612 792) ((FOLIO NIL (PARALOOKS (QUAD CENTERED) CHARLOOKS (SUPERSCRIPT 0 SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF SLOPE REGULAR WEIGHT MEDIUM) FORMATINFO (ARABIC)) (174 36 288 36) NIL) (HEADING NIL (HEADINGTYPE RUNNINGHEAD) (84 744 444 36) NIL) (TEXT NIL NIL (84 96 456 600) NIL))) (PAGE NIL NIL (0 0 612 792) ((FOLIO NIL (PARALOOKS (QUAD CENTERED) CHARLOOKS (SUPERSCRIPT 0 SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF SLOPE REGULAR WEIGHT MEDIUM)) (282 42 72 36) NIL) (HEADING NIL (HEADINGTYPE RUNNINGHEAD) (84 744 444 36) NIL) (TEXT NIL NIL (84 96 456 600) NIL))) (PAGE NIL NIL (0 0 612 792) ((FOLIO NIL (PARALOOKS (QUAD CENTERED) CHARLOOKS (SUPERSCRIPT 0 SIZE 10 FAMILY MODERN OVERLINE OFF STRIKEOUT OFF UNDERLINE OFF SLOPE REGULAR WEIGHT MEDIUM)) (282 42 72 36) NIL) (HEADING NIL (HEADINGTYPE RUNNINGHEAD) (84 744 444 36) NIL) (TEXT NIL NIL (84 96 456 600) NIL)))))       ( ê ê                              )    »                       T     (    »                             )    @                         T     ( H H¯                              (    »                             ( ä ä8                             (    »                             ( ä ä8                              D    »        »       PAGEHEADING RUNNINGHEAD                      MODERN           MODERN          GACHA          GACHA           MODERN           MODERN       Ä  MODERN          MODERN           MODERN          MODERN           MODERN          LOGO                                               HRULE.GETFN  MODERN                      	     HRULE.GETFN  MODERN                      	     HRULE.GETFN  MODERN                             	           HRULE.GETFN  MODERN               	      	     HRULE.GETFN  MODERN               	         !                                             7                 	                      ˜                                 d              v                                                                                                                  [                 	        _  SKIO.GETFN.2  MODERN                         ¡                          +                   f              ’            É            '                                       Ç                                        S                   >             Q                   >             L                   8             ò                                      Ê                   n                   ç                   b                   ä                  @             <                                               *             ﬁ                          å                                        j                          g                                                      ò             -                    3                   ‚                    )      Å                    E      	                    5      ß                           !                   Á      C             4                          ^                   ?                                                                                          P                                                                             ¨                         ,             ”                                                     h                                                                                                               q                  E                          Y                          Ö                    ›                                                                                                                               C)!z∫

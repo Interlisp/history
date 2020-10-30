@@ -1,0 +1,1 @@
+/* This is G-file @(#) osmessage.h Version 1.1 (7/26/88). copyright Xerox & Fuji Xerox  *//*************************************************	This is OSNESSAGE stuf.*************************************************/#define	OSMESSAGE_PRINT(print_exp){	\		 flush_pty();		\		 print_exp;		\		}

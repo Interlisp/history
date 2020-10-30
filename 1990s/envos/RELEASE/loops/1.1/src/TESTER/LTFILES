@@ -1,0 +1,37 @@
+(FILECREATED "22-Apr-86 11:32:24" {POGO:PARC:XEROX}<LOOPS>TESTER>LTFILES.;2 1264   
+
+      changes to:  (VARS LTFILESCOMS)
+
+      previous date: "25-Mar-85 16:05:07" {POGO:PARC:XEROX}<LOOPS>TESTER>LTFILES.;1)
+
+
+(* Copyright (c) 1985, 1986 by Xerox Corporation. All rights reserved.)
+
+(PRETTYCOMPRINT LTFILESCOMS)
+
+(RPAQQ LTFILESCOMS [(* File created by MITTAL)
+		      (* * This file contains pointers to the actual files containing the test data 
+			 bases)
+		      (VARS (AllTestFiles (QUOTE (LTCORETESTS LTLISPFUNTESTS LTMETHODTESTS 
+							      LTPUTMETHODTEST)))
+			    (CoreTestFiles (QUOTE (LTCORETESTS LTLISPFUNTESTS LTMETHODTESTS)))
+			    (LOOPSTESTGROUPS (QUOTE ((All AllTestFiles "All known test files")
+						     (Core CoreTestFiles "Basic set of tests"])
+
+
+
+(* File created by MITTAL)
+
+(* * This file contains pointers to the actual files containing the test data bases)
+
+
+(RPAQQ AllTestFiles (LTCORETESTS LTLISPFUNTESTS LTMETHODTESTS LTPUTMETHODTEST))
+
+(RPAQQ CoreTestFiles (LTCORETESTS LTLISPFUNTESTS LTMETHODTESTS))
+
+(RPAQQ LOOPSTESTGROUPS ((All AllTestFiles "All known test files")
+			  (Core CoreTestFiles "Basic set of tests")))
+(PUTPROPS LTFILES COPYRIGHT ("Xerox Corporation" 1985 1986))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL)))
+STOP

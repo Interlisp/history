@@ -1,0 +1,97 @@
+(FILECREATED "28-May-86 19:18:20" {POGO:PARC:XEROX}<LOOPS>USERS>CACHEOBJECT.;2 2521   
+
+      previous date: "24-Mar-86 18:05:56" {POGO:PARC:XEROX}<LOOPS>USERS>CACHEOBJECT.;1)
+
+
+(* Copyright (c) 1985, 1986 by Xerox Corporation. All rights reserved.)
+
+(PRETTYCOMPRINT CACHEOBJECTCOMS)
+
+(RPAQQ CACHEOBJECTCOMS ((* File created by LANNING)
+			  (CLASSES ObjectWithCache)
+			  (METHODS ObjectWithCache.ClearCache ObjectWithCache.ClearCacheEntry 
+				   ObjectWithCache.GetCache ObjectWithCache.PutCache)
+			  (FNS)
+			  (VARS)
+			  (INSTANCES)))
+
+
+
+(* File created by LANNING)
+
+(DEFCLASSES ObjectWithCache)
+[DEFCLASS ObjectWithCache
+   (MetaClass Class Edited:                                  (* smL "24-Mar-86 16:31"))
+   (Supers Object)
+   (InstanceVariables (cache NIL doc                         (* Holds cached values in an ALIST on the IV)
+			     DontSave Any))]
+
+[METH ObjectWithCache  ClearCache NIL
+      (* * Clear the cache)]
+
+
+[METH ObjectWithCache  ClearCacheEntry (name)
+      (* * Clear a cache entry)]
+
+
+[METH ObjectWithCache  GetCache (name)
+      (* * Try to get a datum from the cache)]
+
+
+[METH ObjectWithCache  PutCache (name datum)
+      (* * Add an item to the cache)]
+
+
+(DEFINEQ
+
+(ObjectWithCache.ClearCache
+  (Method ((ObjectWithCache ClearCache)
+	   self)                                             (* smL "24-Mar-86 16:27")
+
+          (* * Clear the cache)
+
+
+	  (change (@ cache)
+		    NIL)))
+
+(ObjectWithCache.ClearCacheEntry
+  (Method ((ObjectWithCache ClearCacheEntry)
+	   self name)                                        (* smL "24-Mar-86 16:29")
+
+          (* * Clear a cache entry)
+
+
+	  (change (@ cache)
+		    (DELASSOC name DATUM))))
+
+(ObjectWithCache.GetCache
+  (Method ((ObjectWithCache GetCache)
+	   self name)                                        (* smL "24-Mar-86 16:30")
+
+          (* * Try to get a datum from the cache)
+
+
+	  (LET [(value (ASSOC name (@ cache]
+	       (if value
+		   then (CDR value)
+		 else NIL))))
+
+(ObjectWithCache.PutCache
+  (Method ((ObjectWithCache PutCache)
+	   self name datum)                                  (* smL "24-Mar-86 16:31")
+
+          (* * Add an item to the cache)
+
+
+	  [LET [(value (ASSOC name (@ cache]
+	       (COND
+		 (value (RPLACD value datum))
+		 (T (push (@ cache)
+			    (CONS name datum]
+	  datum))
+)
+(PUTPROPS CACHEOBJECT COPYRIGHT ("Xerox Corporation" 1985 1986))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL (1233 2434 (ObjectWithCache.ClearCache 1243 . 1475) (ObjectWithCache.ClearCacheEntry 
+1477 . 1745) (ObjectWithCache.GetCache 1747 . 2069) (ObjectWithCache.PutCache 2071 . 2432)))))
+STOP

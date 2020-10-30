@@ -1,0 +1,1 @@
+sed -f /users/maiko/bin/opnames.sed $1 | sed -f /users/maiko/bin/opnames2.sed | head -50 > ../profile2/$1

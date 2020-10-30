@@ -1,0 +1,1 @@
+#temp copy of file: file1 ... fileNif($1 == "") then	echo "Usage:: local-copy f1 ... fn"	exitendifforeach file ($*)	echo $file	cp $file temp	rm -f $file	mv temp $file	chmod +w $file	echo "local copy of " $fileend

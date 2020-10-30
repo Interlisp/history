@@ -1,0 +1,1 @@
+#! /bin/sh##if [ -f Notecards-demo.sysout.Z ]	then uncompress Notecards-demo.sysout.Zfi		lde Notecards-demo.sysout

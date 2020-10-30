@@ -1,0 +1,7 @@
+h47894s 00012/00000/00000d D 1.1 88/03/14 18:42:20 snow 1 0c date and time created 88/03/14 18:42:20 by snoweuUtTI 1(DEFINE-FILE-INFO PACKAGE "IL" READTABLE "XCL" BASE 10)
+(filecreated " 9-Mar-88 19:37:59" ("compiled on " {eris}<snow>sun>fs>unixfs2patch.\;1) 
+"27-Apr-87 16:48:49" |brecompiled| all |in| "Xerox Lisp 25-Jan-88 ..." |dated| "25-Jan-88 16:04:01")
+(filecreated " 9-Mar-88 19:37:40" {eris}<snow>sun>fs>unixfs2patch.\;1 4008 |changes| |to:| (vars 
+unixfs2patchcoms) (props (unixfs2patch makefile-environment)))
+\\ufs.sort.filesa0001 :d4
+(i 1 b i 0 a)  p 0 si::*locked-monitor* i 2 desiredprops i 1 pattern i 0 fdev) E 1

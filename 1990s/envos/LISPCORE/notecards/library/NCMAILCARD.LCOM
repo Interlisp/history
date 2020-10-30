@@ -1,0 +1,13 @@
+(FILECREATED "11-Jul-91 23:22:32" ("compiled on " 
+{DSK}<python>release>notecards>2.0>src>library>ncmailcard.;1) "12-Jun-91 10:34:54" bcompl'd in 
+"Lispcore 12-Jun-91 ..." dated "12-Jun-91 10:54:29")
+(FILECREATED " 7-Aug-86 14:04:11" {QV}<NOTECARDS>1.3K>LIBRARY>NCMAILCARD.;1 777 changes to: (VARS 
+NCMAILCARDCOMS CHAT.ALLHOSTS))
+(PRETTYCOMPRINT NCMAILCARDCOMS)
+(RPAQQ NCMAILCARDCOMS ((* * Fake Mail Card. All it does is inherit everything from TextCard for 
+purposes of converting old files.) (FILES NCTEXTCARD) (P (NCP.CreateCardType (QUOTE Mail) (QUOTE Text)
+ NIL NIL))))
+(FILESLOAD NCTEXTCARD)
+(NCP.CreateCardType (QUOTE Mail) (QUOTE Text) NIL NIL)
+(PUTPROPS NCMAILCARD COPYRIGHT ("Xerox Corporation" 1986))
+NIL

@@ -1,0 +1,1 @@
+# Csh fileset version = `sed -n -e '/Release [1-9]\.[0-9]/ s/.*Release \([1-9]*\)\.\([0-9]*\).*/\1\2/p' < /etc/motd`if ($version >= 41) then	echo sunos4.1else if($version>39) then	echo sunos4else	echo sunos3endif

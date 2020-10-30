@@ -1,0 +1,1 @@
+## assume shell variables FONTDEST and FONTSRCE are set (to xxxx/fonts).#foreach dir (JIS1 JIS2 chinese miscellaneous presentation printwheel publishing)	foreach file (modern10 gacha12)		echo $dir/$file		end	end

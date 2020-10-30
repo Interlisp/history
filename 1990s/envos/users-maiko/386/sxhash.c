@@ -1,0 +1,1 @@
+sxhash.cunsigned short hashOffset;-> Not used, commented outIn stringequalhashTo get 'len' use GETBYTE

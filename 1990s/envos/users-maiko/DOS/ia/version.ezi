@@ -1,0 +1,11 @@
+{ VERSION.EZI, TSF 04/01/92 - Check EZ-INSTALL Version
+  EZ-Install Installation Aid System
+  Developed by: The Software Factory, Inc.  Dallas, Texas (TLC)
+}
+
+scrclr
+Show '**********************************'
+Show version
+Show '**********************************'
+End
+

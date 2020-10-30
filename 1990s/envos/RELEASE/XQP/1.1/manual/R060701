@@ -1,0 +1,1 @@
+ref-6-7-1                    Xerox Quintus Prolog Reference Manual                          Section 6-7-1: ttyget0(-N)ttyget0(N) unifies N with the ASCII code of the next character input from theterminal.  If N cannot be unified with this character, ttyget0(N) simply fails.

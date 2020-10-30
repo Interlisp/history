@@ -1,0 +1,109 @@
+
+                                 EZ-INSTALL
+                            Documentation Updates
+
+                  ----------------------------------------
+                       This file is called README.DOC
+                  It has been installed to your hard drive
+                  ----------------------------------------
+
+     The following changes should be noted for your EZ-INSTALL documentation:
+
+
+        1) NOTE TO CURRENT EZ-INSTALL USERS UPGRADING FROM VERSION 3.12
+           (OR PRIOR)
+
+        If you are using compressed files that were created with LHARC you
+        need to recompress your files using the LHA compressor provided with
+        this version.
+
+        The compression utility provided with this version, LHA, uses
+        a different and updated method.  Previous compression utilities, eg,
+        EZARC or LHARC will not be compatible with this newest release of
+        EZ-INSTALL.  LHA will provide better and faster compression and de-         compression during the installation.
+        compression during the installation.
+
+
+        2) Notes on use of SETUP Installation Aid Option
+           (User's Guide, Volume 1, Chapter 13)
+
+        If you use the automatic disk SETUP option, you cannot utilize the
+        Ask Group feature described in the Installation Aid Handbook.
+
+        Because SETUP updates your file lists, when you invoke SETUP and
+        then UPDATE from the SETUP menu, any previous file lists you entered
+        will no longer be available.  SETUP manages the file list input and
+        description.
+
+        When using the SPLIT option in SETUP, the reserved space necessary
+        for your particular application cannot always be precisely determined.
+        Although a default reserve space is provided, the amount actually
+        needed can be affected by the size of your EZI.CFG file or your use
+        of a PCXLOGO.PCX file with PCXVIEW.EXE.  Thus, you may find you need
+        to adjust the reserve space from the default dependent on the
+        particular EZ-INSTALL features you are using.  The screen displayed
+        prior to performing the actual split of the files provides for an
+        adjustment of the reserve value.
+
+
+        3) FICLOSE Documentation (User's Guide, Volume , Chapter 12)
+
+        The index entry for the FICLOSE statement is incorrect.  The following
+        documentation belongs at the end of Chapter 12 (pages 12-9 and 12-10)
+        regarding FICLOSE:
+
+                 _______________________________________________________
+
+                                     Library Closing
+                 _______________________________________________________
+
+                   Normally, you will load the executing installation
+                   routine to memory when you execute the EZ-INSTALL
+                   runtime command (INSTALL.EXE.)  In addition, you
+                   should load to memory at the beginning of your
+                   routine all forms and menus you will be working with
+                   (once they are loaded to memory they can be displayed
+                   with the DEFLOAD function whenever you need them.)
+                   This allows disks to be pulled and swapped while
+                   still providing EZ-INSTALL all files that are
+                   required.
+
+                   FICLOSE provides a means for "shutting down" the .OLB
+                   library file that contains your executing
+                   installation routine so that the operating system
+                   does not continue to try to reference it.  This is
+                   important if you have a multiple disk installation.
+
+                   Once all forms and menus in your routine are loaded,
+                   the FICLOSE command should be issued to "shut down"
+                   the library.  Simply issue FICLOSE with a null
+                   filename (two single quotes):
+
+                      FICLOSE('')
+
+                   This command can be placed anywhere in your
+                   installation routine but should be placed before
+                   there is a possibility of the first installation
+                   diskette being pulled by the user (i.e., before you
+                   ask them to "Insert Disk # 2.....".)
+
+                   This use of FICLOSE prevents the operating system
+                   from needlessly trying to further reference the
+                   library after the floppy disk containing the library
+                   has been pulled.
+
+                   See the EZ-PAINT User's Guide, Chapter 8, for further
+                   information on loading and displaying menus and forms
+                   with DEFLOAD and DEFDISP.  See Chapter 11 in this
+                   manual for further information on the EZ-INSTALL
+                   runtime command.
+
+
+        4) SWAP_ (User's Guide, Volume 2, page C-13)
+
+        The last line on page C-13, describing SWAP_, should read:
+
+        "....EZ-INSTALL will swap itself out of memory to the drive
+        indicated by..."
+
+

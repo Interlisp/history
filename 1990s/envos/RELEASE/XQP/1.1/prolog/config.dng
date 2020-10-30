@@ -1,0 +1,1 @@
+(ASSEMBLE.CLAUSE ( major_system_version 1 si ) 4    (get.Ai.constant 1 703)    (proceed))(ASSEMBLE.CLAUSE ( target_host 1 si ) 4    (get.Ai.constant 1 11xx)    (proceed))(ASSEMBLE.CLAUSE ( target_host 1 config ) 4    (get.Ai.constant 1 11xx)    (proceed))(ASSEMBLE.CLAUSE ( xerox 0 config ) 4    (put.Ai.symbol 1 11xx)    (execute target_host 1 config))STOP

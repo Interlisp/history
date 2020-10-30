@@ -1,0 +1,1 @@
+xc.cTakeshi Feb-21 1990=================================#define BCE_CURRENTFX	((struct  frameex2 *)((DLword *) PVAR - FRAMESIZE))PVAR should be Quad word alignment?(PVAR - FRAMESIZE) always points top of FX?=================================Inside displatch loop:You should use GETBYTE when the byte should be sign-extended.else use Get_BYTE

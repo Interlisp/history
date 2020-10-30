@@ -1,0 +1,45 @@
+4.1 Overview of the distribution kits
+
+The distribution kits for ENVOS LOOPS contain different media for the 1186, 1108 and SUN.
+
+4.1.3. SUN Distribution kit
+
+The distribution kit for ENVOS LOOPS on the SUN consists of a single 1/4" tape cartridge.  It contains the complete release in "tar" format and will create appropriate directories when extracted.
+
+4.3. Installation
+
+The installation procedure is slightly different for 1186 and 1108 users than for those using the SUN release of Lyric/medley LOOPS.
+
+4.3.1 Installing Lyric/Medley LOOPS on the 1186 or 1108
+
+<copy existing section here>
+
+4.3.2 Installing Lyric/Medley LOOPS on the SUN
+
+You must already have Medley-1.0S installed on your SUN workstation to use LOOPS.
+
+To install Lyric/Medley LOOPS you must decide a location for the resulting directories and then use the tar utility to extract the release directories from the distribution tape.
+
+A standard location for the loops distribution could be /usr/local/loops/, to create this directory type the following to a UNIX shell that is root enabled:
+
+	mkdir /usr/local/loops/
+
+Now connect to the directory
+
+	cd /usr/local/loops/
+
+Extract the distribution files from the release tape:
+
+	tar xvf /dev/rst0
+
+This will create directories named:
+
+	/usr/local/loops/system/
+	/usr/local/loops/library/
+	/usr/local/loops/users/
+
+This is an opportune time to set the protection of the extracted directories and files so that the workgroup using LOOPS has at least read access to the files.
+
+Once the files are extracted start up Medley 1.0S.
+
+From a LISP EXEC inside of Medley 1.0S you can now follow the LOOPS installation outlines in the previous section but 

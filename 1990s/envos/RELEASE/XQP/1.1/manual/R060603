@@ -1,0 +1,1 @@
+ref-6-6-3                    Xerox Quintus Prolog Reference Manual                             Section 6-6-3: seenseen/0 closes the current input stream.  The current input stream is then setto be user_input; that is, the user's terminal.seen/0 has no associated error conditions.

@@ -1,0 +1,707 @@
+Enter make_dsp_instance, dosdisplaymode is: 0
+Enter VESA_init
+Enter VESA_describemode
+Exit VESA_describemode
+Mode display is: 260
+dsp->displaywidth = 0
+dsp->displayheight = 0
+Exit VESA_init
+Enter VESA_enter
+Enter VESA_describemode
+Exit VESA_describemode
+Exit VESA_enter
+Enter tmpclearbanks
+Exit tmpclearbanks
+Enter flush_display_buffer
+Exit flush_display_buffer
+Enter flush_display_region x=8, y=192, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=8, y=192, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=0, y=297, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=0, y=297, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=0, y=297, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=0, y=297, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=8, y=92, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=8, y=92, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=211, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=211, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=211, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=211, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=297, w=550, h=3
+Exit flush_display_region
+Enter flush_display_region x=0, y=297, w=550, h=3
+Exit flush_display_region
+Enter flush_display_region x=0, y=297, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=0, y=297, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=0, y=211, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=211, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=1024, h=768
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=1024, h=768
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=79, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=79, w=550, h=89
+Exit flush_display_region
+Enter flush_display_region x=0, y=165, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=0, y=165, w=550, h=330
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_lineregion
+ x=4, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=4, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=11, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=11, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=18, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=18, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=25, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=25, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=32, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=32, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=39, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=39, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=46, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=46, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=53, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=53, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=60, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=60, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=67, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=67, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=74, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=74, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=81, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=81, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=88, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=88, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=95, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=95, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=102, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=102, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=109, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=109, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=116, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=116, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=123, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=123, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=130, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=130, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=137, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=137, y=181, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_region x=724, y=0, w=300, h=170
+Exit flush_display_region
+Enter flush_display_region x=724, y=0, w=300, h=170
+Exit flush_display_region
+Enter flush_display_region x=724, y=0, w=300, h=170
+Exit flush_display_region
+Enter flush_display_region x=724, y=0, w=300, h=170
+Exit flush_display_region
+Enter flush_display_region x=724, y=0, w=300, h=170
+Exit flush_display_region
+Enter flush_display_region x=724, y=0, w=300, h=170
+Exit flush_display_region
+Enter flush_display_region x=724, y=0, w=300, h=170
+Exit flush_display_region
+Enter flush_display_region x=724, y=0, w=300, h=170
+Exit flush_display_region
+Enter flush_display_lineregion
+ x=4, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=4, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=11, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=11, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=18, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=18, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=25, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=25, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=32, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=32, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=39, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=39, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=46, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=46, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=53, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=53, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=60, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=60, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=67, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=67, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=74, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=74, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=81, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=81, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=88, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=88, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=95, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=95, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=102, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=102, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=109, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=109, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=116, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=116, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=123, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=123, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=130, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=130, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=137, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=137, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=144, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=144, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=151, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=151, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=158, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=158, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=165, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=165, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=172, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=172, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=179, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=179, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=186, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=186, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=193, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=193, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=200, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=200, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=207, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=207, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=214, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=214, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=221, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=221, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=228, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=228, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=235, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=235, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=242, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=242, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=249, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=249, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=256, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=256, y=193, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=4, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=4, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=11, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=11, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=18, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=18, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=25, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=25, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=32, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=32, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=39, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=39, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=46, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=46, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=53, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=53, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=60, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=60, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=67, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=67, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=74, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=74, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=81, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=81, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=88, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=88, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=95, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=95, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=102, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=102, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=109, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=109, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=116, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=116, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=123, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=123, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=130, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=130, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=137, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=137, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=144, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=144, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=151, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=151, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=158, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=158, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=165, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=165, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=172, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=172, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=179, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=179, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=186, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=186, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=193, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=193, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=200, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=200, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=207, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=207, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=214, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=214, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=221, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=221, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=228, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=228, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=235, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=235, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=242, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=242, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=249, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=249, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=256, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=256, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=263, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=263, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=270, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=270, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=277, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=277, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=284, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=284, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=291, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=291, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=298, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_lineregion
+ x=298, y=205, w=7, h=12
+Exit flush_display_lineregion
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+Enter flush_display_region x=0, y=0, w=16, h=16
+Exit flush_display_region
+

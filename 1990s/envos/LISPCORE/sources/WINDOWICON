@@ -1,0 +1,268 @@
+(DEFINE-FILE-INFO READTABLE "INTERLISP" PACKAGE "INTERLISP")
+(FILECREATED "18-May-90 01:01:36" {DSK}<usr>local>lde>lispcore>sources>WINDOWICON.;2 17814  
+
+      changes to%:  (VARS WINDOWICONCOMS)
+
+      previous date%: "23-Apr-88 22:51:57" {DSK}<usr>local>lde>lispcore>sources>WINDOWICON.;1)
+
+
+(* ; "
+Copyright (c) 1986, 1987, 1988, 1990 by Venue & Xerox Corporation.  All rights reserved.
+")
+
+(PRETTYCOMPRINT WINDOWICONCOMS)
+
+(RPAQQ WINDOWICONCOMS
+       ((FNS SHRINKW ICONBUTTONEVENTFN ICONPOSITION.FROM.WINDOW MAKETITLEBARICON \TITLEICONMINSIZE 
+             \NOTENEWICONPOSITION EXPANDW DOICONWINDOWCOM CLOSEMAINWINDOW CLOSEICONWINDOW)
+        (INITVARS (IconWindowMenu)
+               (DEFAULTICONFN 'MAKETITLEBARICON))
+        (ADDVARS (IconWindowMenuCommands (Close 'CLOSEW "Closes the icon and its associated window")
+                        (Snap 'SNAPW "Saves a snapshot of a region of the screen.")
+                        (Paint 'PAINTW 
+  "Starts a painting mode in which the mouse can
+be used to draw pictures or make notes on the icon.")
+                        (Bury 'BURYW "Puts the icon on the bottom.")
+                        (Move 'MOVEW "Moves the icon by a corner.")
+                        (Shape 'SHAPEW "Gets a new region for the icon.")
+                        (Expand 'EXPANDW "Expands the window for which this is the ICON.")))
+        (GLOBALVARS DEFAULTICONFN IconWindowMenu IconWindowMenuCommands)))
+(DEFINEQ
+
+(SHRINKW
+(LAMBDA (WINDOW TOWHAT ICONPOSITION EXPANDFN) (* ; "Edited 23-Apr-88 22:09 by drc:") (* ;; "Create a small WINDOW which acts as an Icon of window.  This 'icon window' provides a popup menu which will open the main WINDOW again, and run the function EXPANDFN.  TOWHAT can be a BITMAP which will be used to make a WINDOW image, an existing window, or a string which will be printed in TITLE only icon window, or can be an existing window.  If TOWHAT is NIL, the TITLE of the main WINDOW is used as the TOWHAT for the icon.") (SETQ WINDOW (\INSUREWINDOW WINDOW)) (COND ((NOT (OPENWP WINDOW)) (* ;; "if it is not currently open, don't do anything.  Maybe something should happen here but I don't understand what --- rrb") NIL) ((WINDOWPROP WINDOW (QUOTE ICONFOR)) (* ; "This is already an icon!") NIL) ((EQ (DOUSERFNS (WINDOWPROP WINDOW (QUOTE SHRINKFN)) WINDOW T) (QUOTE DON'T)) (* ; "one of the shrinkfns disallowed the shrinkage.") NIL) (T (LET (TITLE ICONW FN ICONISBITMAP) (* ; "get the icon specification from the window if none is given.") (SETQ ICONW (COND ((type? BITMAP TOWHAT) (* ; "use bitMap to create a WINDOW") (WINDOWPROP WINDOW (QUOTE ICON) (SETQ TOWHAT (CREATEWFROMIMAGE (BITMAPCOPY (SETQ ICONISBITMAP TOWHAT)) (fetch (WINDOW SCREEN) of WINDOW)))) (* ; "save the icon on the window so that next time it will shrink to the same thing.") TOWHAT) ((WINDOWP TOWHAT) (* ; "use given WINDOW as icon") (WINDOWPROP WINDOW (QUOTE ICON) TOWHAT) (* ; "save the icon on the window so that next time it will shrink to the same thing.") TOWHAT) ((STRINGP TOWHAT) (WINDOWPROP WINDOW (QUOTE ICON) (SETQ TOWHAT (\DTEST (APPLY* DEFAULTICONFN WINDOW TOWHAT) (QUOTE WINDOW)))) TOWHAT) (T (* ; "current call doesn't specify an icon window.  Look for something on the window.") (SETQ TOWHAT (COND ((SETQ FN (WINDOWPROP WINDOW (QUOTE ICONFN))) (* ; "User fn to create an icon.  Can return cached value") (APPLY* FN WINDOW (WINDOWPROP WINDOW (QUOTE ICONWINDOW)) (POSITIONP ICONPOSITION))) (T (WINDOWPROP WINDOW (QUOTE ICON))))) (COND ((WINDOWP TOWHAT) (* ; "use given WINDOW as icon") TOWHAT) ((type? BITMAP TOWHAT) (* ; "use bitMap to create a WINDOW") (CREATEWFROMIMAGE (BITMAPCOPY (SETQ ICONISBITMAP TOWHAT)) (fetch (WINDOW SCREEN) of WINDOW))) (T (* ;; "Call default icon maker.  Note: don't store this as the ICON property, because we want it to be recomputed each time, because, for example, the window's title, from which the icon text is derived, might change.  Not a problem for windows that have an ICONFN because then the ICONFN is responsible for keeping it up to date") (\DTEST (APPLY* DEFAULTICONFN WINDOW TOWHAT) (QUOTE WINDOW))))))) (WINDOWPROP WINDOW (QUOTE ICONWINDOW) ICONW) (WINDOWPROP ICONW (QUOTE ICONFOR) WINDOW) (* ; "set up so that if icon is closed, main window will be also.") (WINDOWADDFNPROP ICONW (QUOTE CLOSEFN) (FUNCTION CLOSEMAINWINDOW)) (* ; "set up so that if main window is opened, icon is closed.") (COND ((EQ (WINDOWPROP ICONW (QUOTE BUTTONEVENTFN)) (QUOTE TOTOPW)) (* ; "if the iconw doesn't have a buttoneventfn, give it one that the middle expands it.") (WINDOWPROP ICONW (QUOTE BUTTONEVENTFN) (FUNCTION ICONBUTTONEVENTFN)))) (WINDOWADDFNPROP WINDOW (QUOTE OPENFN) (FUNCTION CLOSEICONWINDOW)) (WINDOWADDFNPROP ICONW (QUOTE MOVEFN) (FUNCTION \NOTENEWICONPOSITION)) (AND EXPANDFN (WINDOWADDFNPROP WINDOW (QUOTE EXPANDFN) EXPANDFN)) (WINDOWPROP ICONW (QUOTE DOWINDOWCOMFN) (FUNCTION DOICONWINDOWCOM)) (COND ((AND (NEQ ICONPOSITION (QUOTE SAME)) (OR ICONISBITMAP (POSITIONP ICONPOSITION))) (* ;; "If ICONPOSITION given explicitly, or we derived the icon as a bitmap, need to move it into new position") (MOVEW ICONW (COND ((POSITIONP ICONPOSITION) ICONPOSITION) ((PROG1 (POSITIONP (SETQ ICONPOSITION (WINDOWPROP WINDOW (QUOTE ICONPOSITION)))) (* ; "leave it in its current location."))) (T (SETQ ICONPOSITION (ICONPOSITION.FROM.WINDOW WINDOW (WINDOWPROP ICONW (QUOTE REGION)))))))) (T (SETQ ICONPOSITION (LET ((REG (WINDOWPROP ICONW (QUOTE REGION)))) (create POSITION XCOORD _ (fetch (REGION LEFT) of REG) YCOORD _ (fetch (REGION BOTTOM) of REG)))))) (WINDOWPROP WINDOW (QUOTE ICONPOSITION) ICONPOSITION) (TOTOPW WINDOW T) (* ;; "bring it to the top without callings its totopfns in case the shrinkfns brought another window to the top.") (\CLOSEW1 WINDOW) (OPENW ICONW) ICONW))))
+)
+
+(ICONBUTTONEVENTFN
+  [LAMBDA (ICONW)                                            (* bvm%: "25-Mar-86 17:23")
+          
+          (* * Default icon BUTTONEVENTFN -- middle button expands it, left button moves 
+          it)
+
+    (COND
+       [(LASTMOUSESTATE MIDDLE)
+        (CURSOR (PROG1 (CURSOR WAITINGCURSOR)
+                       (EXPANDW ICONW]
+       (T (MOVEW ICONW])
+
+(ICONPOSITION.FROM.WINDOW
+  [LAMBDA (WINDOW ICONREGION)                                (* bvm%: "18-Mar-86 14:03")
+    (OR (POSITIONP (WINDOWPROP WINDOW 'ICONPOSITION))
+        (LET ((WREG (WINDOWPROP WINDOW 'REGION))
+              SCREEN)
+             (SETQ SCREEN (fetch (WINDOW SCREEN) of WINDOW))
+             (create POSITION
+                    XCOORD _ [COND
+                                ((ILESSP (fetch (REGION LEFT) of WREG)
+                                        (IDIFFERENCE (fetch (SCREEN SCWIDTH) of SCREEN)
+                                               (fetch (REGION PRIGHT) of WREG)))
+                                 (IMAX 0 (fetch (REGION LEFT) of WREG)))
+                                (T (IDIFFERENCE (IMIN (fetch (SCREEN SCWIDTH) of SCREEN)
+                                                      (fetch (REGION PRIGHT) of WREG))
+                                          (fetch (REGION WIDTH) of ICONREGION]
+                    YCOORD _ (COND
+                                ((ILESSP (fetch (REGION BOTTOM) of WREG)
+                                        (IDIFFERENCE (fetch (SCREEN SCHEIGHT) of SCREEN)
+                                               (fetch (REGION PTOP) of WREG)))
+                                 (IMAX 0 (fetch (REGION BOTTOM) of WREG)))
+                                (T (IDIFFERENCE (IMIN (fetch (SCREEN SCHEIGHT) of SCREEN)
+                                                      (fetch (REGION PTOP) of WREG))
+                                          (fetch (REGION HEIGHT) of ICONREGION])
+
+(MAKETITLEBARICON
+  [LAMBDA (WINDOW TEXT)                                      (* bvm%: "18-Mar-86 14:04")
+          
+          (* * Make a "title bar" icon consisting of TEXT or WINDOW's TITLE if TEXT is 
+          NIL)
+
+    (PROG ((SCREEN (fetch (WINDOW SCREEN) of WINDOW))
+           W REG POS)
+          [COND
+             ((AND (NULL TEXT)
+                   (OR [NULL (SETQ TEXT (WINDOWPROP WINDOW 'TITLE]
+                       (EQ (NCHARS TEXT)
+                           0)))
+              (SETQ TEXT (CONCAT "Icon made " (DATE]
+          [SETQ POS (ICONPOSITION.FROM.WINDOW WINDOW
+                           (SETQ REG (create REGION
+                                            LEFT _ 0
+                                            BOTTOM _ 0
+                                            HEIGHT _ (IMINUS (DSPLINEFEED NIL (fetch (SCREEN 
+                                                                                            SCTITLEDS
+                                                                                            )
+                                                                                 of SCREEN)))
+                                            WIDTH _ (IMAX MinWindowWidth
+                                                          (IPLUS 8 (STRINGWIDTH TEXT
+                                                                          (fetch (SCREEN SCTITLEDS)
+                                                                             of SCREEN]
+          
+          (* Position the icon near the current location of the window)
+
+          (replace (REGION LEFT) of REG with (fetch (POSITION XCOORD) of POS))
+          (replace (REGION BOTTOM) of REG with (fetch (POSITION YCOORD) of POS))
+          (SETQ W (CREATEW REG TEXT NIL T))
+          (WINDOWPROP W 'MINSIZE (FUNCTION \TITLEICONMINSIZE))
+          (RETURN W])
+
+(\TITLEICONMINSIZE
+  [LAMBDA (WINDOW)                                           (* kbr%: "29-Mar-85 14:14")
+                                                             (* returns the minimum size the 
+                                                             default icon can be.)
+    (CONS MinWindowWidth (IMINUS (DSPLINEFEED NIL (fetch (SCREEN SCTITLEDS)
+                                                     of (fetch (WINDOW SCREEN) of WINDOW])
+
+(\NOTENEWICONPOSITION
+  [LAMBDA (ICONW NEWPOS)                                     (* rrb "13-Jan-84 10:39")
+          
+          (* saves the new position of the icon on the property list so that the icon 
+          will come up there again.)
+
+    (AND (SETQ ICONW (WINDOWPROP ICONW 'ICONFOR))
+         (WINDOWPROP ICONW 'ICONPOSITION NEWPOS))
+    NEWPOS])
+
+(EXPANDW
+  [LAMBDA (ICONW)                                            (* ; "Edited 27-Mar-87 14:54 by woz")
+
+(* ;;; "expands an icon window into its main window.")
+
+    (PROG ((IW ICONW)
+           MAINWINDOW USEREXPANDFN EXPANDREGION)
+          [COND
+             [(SETQ MAINWINDOW (WINDOWPROP IW 'ICONFOR]
+             ((SETQ IW (WINDOWPROP IW 'ICONWINDOW))          (* ; 
+                                             "user has passed in the window to expand, not its icon.")
+              (COND
+                 ((OPENWP (SETQ MAINWINDOW ICONW))           (* make sure the window is shrunken.)
+                  (RETURN ICONW]
+          (COND
+             ([AND MAINWINDOW (NULL (\USERFNISDON'T (SETQ USEREXPANDFN (WINDOWPROP MAINWINDOW
+                                                                              'EXPANDFN]
+          
+          (* ;; "if the main window will open and none of the expandfns stop it, open the main window and Close icon Window")
+
+              (if (AND (WINDOWPROP MAINWINDOW 'EXPANDREGIONFN)
+                       (SETQ EXPANDREGION (APPLY* (WINDOWPROP MAINWINDOW 'EXPANDREGIONFN)
+                                                 MAINWINDOW)))
+                  then 
+          
+          (* ;; "there is an EXPANDREGIONFN to calculate a new region to expand into, and it didn't return NIL, so assume EXPANDREGION is a valid region.  SHAPE instead of just openning.  SHAPEW2 will open the window, ignoring an openfn or doshapefn, but allowing the reshapefns to run.")
+
+                       (\SHAPEW2 MAINWINDOW EXPANDREGION)
+                else (\OPENW1 MAINWINDOW))
+              (\CLOSEW1 IW)
+              (WINDOWDELPROP MAINWINDOW 'OPENFN 'CLOSEICONWINDOW)
+              (WINDOWDELPROP IW 'CLOSEFN 'CLOSEMAINWINDOW)   (* ; 
+                                        "call the expand functions after the window has been opened.")
+              (DOUSERFNS USEREXPANDFN MAINWINDOW)            (* ; "break link from icon to window.")
+              (RETURN (WINDOWPROP IW 'ICONFOR NIL])
+
+(DOICONWINDOWCOM
+  [LAMBDA (WINDOW)                                           (* rrb " 7-AUG-83 18:52")
+          
+          (* the button handler for an ICON window Test for non-NIL WINDOW means that 
+          caller needn't worry about whether the mouse is pointing at a window.)
+
+    (AND (type? WINDOW WINDOW)
+         (PROG (COM)
+               (TOTOPW WINDOW)
+               (RETURN (COND
+                          ((SETQ COM (MENU [COND
+                                              ((TYPENAMEP IconWindowMenu 'MENU)
+                                               IconWindowMenu)
+                                              ((SETQ IconWindowMenu
+                                                (create MENU
+                                                       ITEMS _ IconWindowMenuCommands
+                                                       CHANGEOFFSETFLG _ 'Y
+                                                       MENUOFFSET _
+                                                       (create POSITION
+                                                              XCOORD _ -1
+                                                              YCOORD _ 0)
+                                                       WHENHELDFN _ (FUNCTION PPROMPT3)
+                                                       WHENUNHELDFN _ (FUNCTION CLRPROMPT)
+                                                       CENTERFLG _ T]
+                                           IconWindowMenu))
+                           (APPLY* COM WINDOW)
+                           T])
+
+(CLOSEMAINWINDOW
+  [LAMBDA (ICONWIN)                                          (* rrb "28-JUN-83 11:58")
+          
+          (* the closefn for an icon window that closes the main window as well.)
+
+    (PROG [(MAINWIN (WINDOWPROP ICONWIN 'ICONFOR]
+          [COND
+             (MAINWIN (COND
+                         ((NULL (\OKTOCLOSEW MAINWIN))
+          
+          (* Call the main windows closefns. If main window won't close, don't close the 
+          icon. The main window has already been removed from the window stack but its 
+          closefns haven't been executed.)
+
+                          (RETURN 'DON'T))
+                         (T 
+          
+          (* closefns for main window may have opened it for example by printing to it.
+          Close it if it is open.)
+
+                            (AND (OPENWP MAINWIN)
+                                 (\CLOSEW1 MAINWIN]
+          
+          (* break link between the icon and the main window.
+          This may give problems if someone holds onto the icon window and explicitly 
+          reopens it and expects it to still be an icon.)
+
+          (WINDOWPROP ICONWIN 'ICONFOR NIL)
+          (RETURN NIL])
+
+(CLOSEICONWINDOW
+  [LAMBDA (MAINWIN)                                          (* rrb " 1-May-85 15:55")
+          
+          (* the open function for a window which has an icon.
+          It closes the (icon and does the expandfns))
+
+    (PROG ((ICONW (WINDOWPROP MAINWIN 'ICONWINDOW))
+           USEREXPANDFN)
+          
+          (* this code duplicates much of EXPANDW but I couldn't quite get it to be a 
+          call because EXPANDW opens the main window which in this case is already open.)
+
+          (COND
+             (ICONW                                          (* Don't die if user removed the 
+                                                             ICONWINDOW prop)
+                    (WINDOWDELPROP ICONW 'CLOSEFN 'CLOSEMAINWINDOW)
+                                                             (* remove the mainwindowclosing 
+                                                             function first.)
+                    (CLOSEW ICONW)
+                    (DOUSERFNS (WINDOWPROP MAINWIN 'EXPANDFN)
+                           MAINWIN)                          (* break link from icon to main 
+                                                             window.)
+                    (WINDOWPROP ICONW 'ICONFOR NIL)))        (* remove icon closing function.)
+          (WINDOWDELPROP MAINWIN 'OPENFN 'CLOSEICONWINDOW])
+)
+
+(RPAQ? IconWindowMenu )
+
+(RPAQ? DEFAULTICONFN 'MAKETITLEBARICON)
+
+(ADDTOVAR IconWindowMenuCommands
+          (Close 'CLOSEW "Closes the icon and its associated window")
+          (Snap 'SNAPW "Saves a snapshot of a region of the screen.")
+          (Paint 'PAINTW 
+  "Starts a painting mode in which the mouse can
+be used to draw pictures or make notes on the icon.")
+          (Bury 'BURYW "Puts the icon on the bottom.")
+          (Move 'MOVEW "Moves the icon by a corner.")
+          (Shape 'SHAPEW "Gets a new region for the icon.")
+          (Expand 'EXPANDW "Expands the window for which this is the ICON."))
+(DECLARE%: DOEVAL@COMPILE DONTCOPY
+
+(GLOBALVARS DEFAULTICONFN IconWindowMenu IconWindowMenuCommands)
+)
+(PUTPROPS WINDOWICON COPYRIGHT ("Venue & Xerox Corporation" 1986 1987 1988 1990))
+(DECLARE%: DONTCOPY
+  (FILEMAP (NIL (1445 16978 (SHRINKW 1455 . 5777) (ICONBUTTONEVENTFN 5779 . 6178) (
+ICONPOSITION.FROM.WINDOW 6180 . 7856) (MAKETITLEBARICON 7858 . 9807) (\TITLEICONMINSIZE 9809 . 10296) 
+(\NOTENEWICONPOSITION 10298 . 10675) (EXPANDW 10677 . 12762) (DOICONWINDOWCOM 12764 . 14349) (
+CLOSEMAINWINDOW 14351 . 15574) (CLOSEICONWINDOW 15576 . 16976)))))
+STOP

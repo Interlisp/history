@@ -1,0 +1,611 @@
+(FILECREATED "21-Apr-86 14:02:26" {POGO:PARC:XEROX}<LOOPS>TESTER>LTCORETESTS.;2 21519  
+
+      changes to:  (INSTANCES LTP20 LTP11 LTP13 LTP15 LTP53 LTP54 LTP57 LTP19 LTP9 LTP10 LTP12 LTP14 
+			      LAVGetValue LTP1 LTFPutValue LTFGetValue LTFSend LTMethod 
+			      LTLoadInstance LTDumpInstance)
+
+      previous date: "18-Mar-85 12:00:38" {POGO:PARC:XEROX}<LOOPS>TESTER>LTCORETESTS.;1)
+
+
+(* Copyright (c) 1985, 1986 by Xerox Corporation. All rights reserved.)
+
+(PRETTYCOMPRINT LTCORETESTSCOMS)
+
+(RPAQQ LTCORETESTSCOMS ((* File created by MITTAL)
+			  (* Database of core test instances, i.e., instances neccessary for running 
+			     other tests)
+			  (CLASSES)
+			  (METHODS)
+			  (FNS)
+			  (VARS)
+			  (INSTANCES * LTCORETESTSINSTANCES)))
+
+
+
+(* File created by MITTAL)
+
+
+
+
+(* Database of core test instances, i.e., instances neccessary for running other tests)
+
+(DEFCLASSES)
+
+(RPAQQ LTCORETESTSINSTANCES (LTTemplate LTDumpInstance LTLoadInstance LTMethod LTObject 
+					  LTActiveValue LTFSend LTFGetValue LTFPutValue LTP86 LTP1 
+					  LAVGetValue LTP14 LTP12 LTP10 LTP9 LAVPutValue LTP19 LTP18 
+					  LTP17 LTP16 LTP57 LTP54 LTP53 LTP15 LTP13 LTP11 LTP58 LTP56 
+					  LTP55 LTP20))
+[DEFINST LOOPSTestBasic (LTTemplate "NXR@@E")
+         (name #.($A LTTemplate NIL RememberName))
+	 (TestDesc "Creation of an instance of Template")
+	 (SetUp (ATEST (SETQ LTV11 (SEND ($ LOOPSTestTemplate1)
+					 New))
+		       "Create an instance of a Template Class"))
+	 (TestExpr (EQ LTV11 (@ (@ LTV11 A)
+				A)))
+	 (PreTest #.($A (LTFGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestBasic (LTDumpInstance "OSR@@A")
+         (name #.($A LTDumpInstance NIL RememberName))
+	 (TestDesc "Dumping instances to file")
+	 [SetUp (PROGN (SETQ LTDUMPCOMS LTLOADCOMS)
+		       (MAKEFILE (QUOTE LTDUMP))
+		       (for x in LTLOADINSTANCES do (SEND (GetObjectRec x)
+							  Destroy))
+		       (LOAD (QUOTE LTDUMP]
+	 [TestExpr (AND (TestLoadedInstances ($ LD4))
+			(TestLoadedInstances ($ LD1]
+	 (SubTest #.($A (LTP86) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (PreTest #.($A (LTMDestroyInObj LTLoadInstance) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)]
+
+
+[DEFINST LOOPSTestBasic (LTLoadInstance "OSR@@A")
+         (name #.($A LTLoadInstance NIL RememberName))
+	 (TestDesc "Loading instances from a file")
+	 (SetUp (LTLoadFile (QUOTE LTLOAD)))
+	 [TestExpr (AND (TestLoadedInstances ($ LD4))
+			(TestLoadedInstances ($ LD1]
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.($A (LTFGetValue) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LD4 LD3 LD2 LD1 LOOPSTestClassLD) NIL AllowRemove))]
+
+
+[DEFINST LOOPSTestBasic (LTMethod "OER@@E#")
+         (name #.($A LTMethod NIL RememberName))
+	 (TestDesc "the basic mechanisms for methods")
+	 (TestExpr T)
+	 (SubTest #.($A (LTP1) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (PreTest #.($A (LTFSend) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)]
+
+
+[DEFINST LOOPSTestBasic (LTObject "OER@@E9")
+         (name #.($A LTObject NIL RememberName))]
+
+
+[DEFINST LOOPSTestBasic (LTActiveValue "OER@@E8")
+         (name #.($A LTActiveValue NIL RememberName))]
+
+
+[DEFINST LOOPSTestLispFunc (LTFSend "OER@@E*")
+         (name #.($A LTFSend NIL RememberName))
+	 (TestDesc "invoked message executes properly")
+	 (SetUp (SEND ($ LTC1)
+		      SENDTest1
+		      (QUOTE Var1)
+		      5))
+	 (TestExpr (EQ (GetValue ($ LTC1)
+				 (QUOTE Var1))
+		       5)
+		   FailedExpr #.NotSetValue)
+	 (ResetExp (PutValue ($ LTC1)
+			     (QUOTE Var1)
+			     NotSetValue))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue Failed #.NotSetValue)
+	 (PreTest #.($A (LTFPutValue LTFGetValue) NIL MakeBackLink) Tested? #.NotSetValue Failed 
+		  #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue Failed #.NotSetValue)
+	 (CasesUsed #.($A (LTC1) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue Failed #.NotSetValue)
+	 (LispName SEND)]
+
+
+[DEFINST LOOPSTestLispFunc (LTFGetValue "OER@@E+")
+         (name #.($A LTFGetValue NIL RememberName))
+	 (TestDesc "GetValue")
+	 (TestExpr (EQUAL (GetValue ($ LOOPSTestCases)
+				    (QUOTE GV1))
+			  (QUOTE LTP10))
+		   FailedExpr #.NotSetValue)
+	 (SubTest #.($A (LAVGetValue LTP14 LTP12 LTP10 LTP9) NIL MakeBackLink) Tested? #.NotSetValue 
+		  Failed #.NotSetValue)
+	 (PreTest #.($A NIL NIL MakeBackLink) Tested? #.NotSetValue Failed #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue Failed #.NotSetValue)
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue Failed #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestCases) NIL AllowRemove))
+	 (LispName GetValue)]
+
+
+[DEFINST LOOPSTestLispFunc (LTFPutValue "OER@@E2")
+         (name #.($A LTFPutValue NIL RememberName))
+	 (TestDesc "PutValue")
+	 [SetUp (SETQ LTV21 (PutValue ($ LTCA2)
+				      (QUOTE PV1)
+				      (QUOTE PutValue]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCA2)
+					    (QUOTE PV1))
+				  (QUOTE PutValue))
+			   (ATEST (EQUAL LTV21 (QUOTE PutValue))
+				  "PutValue returns newValue"))
+		   FailedExpr #.NotSetValue)
+	 (ResetExp (PutValue ($ LTCA2)
+			     (QUOTE PV1)
+			     (QUOTE Value)))
+	 (SubTest #.($A (LAVPutValue LTP19 LTP18 LTP17 LTP16) NIL MakeBackLink) Tested? #.NotSetValue 
+		  Failed #.NotSetValue)
+	 (PreTest #.($A (LTFGetValue) NIL MakeBackLink) Tested? #.NotSetValue Failed #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue Failed #.NotSetValue)
+	 (CasesUsed #.($A (LTCA2) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue Failed #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass1) NIL AllowRemove))
+	 (LispName PutValue)]
+
+
+[DEFINST LOOPSTestPrimitive (LTP86 "Y_SC@8e")
+         (name #.($A LTP86 NIL RememberName))
+	 (TestDesc "Dumping instances to file and compiling file")
+	 [SetUp (PROGN (LTLoadFile (QUOTE LTLOAD))
+		       (SETQ LTDUMPCCOMS LTLOADCOMS)
+		       (MAKEFILE (QUOTE LTDUMPC)
+				 (QUOTE (C F)))
+		       (for x in LTLOADINSTANCES do (_ (GetObjectRec x)
+						       Destroy))
+		       (LOAD (QUOTE LTDUMPC.DCOM]
+	 [TestExpr (AND (TestLoadedInstances ($ LD4))
+			(TestLoadedInstances ($ LD1]
+	 (SubTestOf #.($A (LTDumpInstance) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP1 "OGR@@E")
+         (name #.($A LTP1 NIL RememberName))
+	 (TestDesc "local method overrides inherited method")
+	 (SetUp (SEND ($ LTC2)
+		      SENDTest2
+		      (QUOTE Var2)
+		      7))
+	 (TestExpr (EQ (GetValue ($ LTC2)
+				 (QUOTE Var2))
+		       7))
+	 (ResetExp (PutValue ($ LTC2)
+			     (QUOTE Var2)
+			     NotSetValue))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.($A (LTFGetValue LTFPutValue) BuildPreTest MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTC2) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestSuper) NIL AllowRemove))
+	 (SubTestOf #.($A (LTMethod) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LAVGetValue "OYR@@E~")
+         (name #.($A LAVGetValue NIL RememberName))
+	 (TestDesc "Active Value: default GetFn")
+	 (TestExpr (EQUAL (GetValue ($ LTCF1)
+				    (QUOTE AV1))
+			  (QUOTE LTC6)))
+	 (SubTest #.($A (LTP57 LTP54 LTP53) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (PreTest #.NotSetValue Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTCF1) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass6) NIL AllowRemove))
+	 (SubTestOf #.($A (LTFGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP14 "ONR@@A")
+         (name #.($A LTP14 NIL RememberName))
+	 (TestDesc "GetValue works for a newly added IV to class")
+	 (SetUp (SEND ($ LOOPSTestClass1)
+		      Add
+		      (QUOTE IV)
+		      (QUOTE GV2)
+		      (QUOTE LTP14)))
+	 (TestExpr (EQUAL (GetValue ($ LTCA1)
+				    (QUOTE GV2))
+			  (QUOTE LTP14)))
+	 (ResetExp (SEND ($ LOOPSTestClass1)
+			 Delete
+			 (QUOTE IV)
+			 (QUOTE GV2)))
+	 (SubTest #.($A (LTP15) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (PreTest #.($A (LTMDeleteInClass LTMAdd) BuildPreTest MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTCA1) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass1) NIL AllowRemove))
+	 (SubTestOf #.($A (LTFGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP12 "ONR@@A")
+         (name #.($A LTP12 NIL RememberName))
+	 (TestDesc "GetValue gets local over inherited")
+	 (TestExpr (EQUAL (GetValue ($ LTC6)
+				    (QUOTE GV1))
+			  (QUOTE LTP12)))
+	 (SubTest #.($A (LTP13) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (PreTest #.NotSetValue Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTC6) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestCases) NIL AllowRemove))
+	 (SubTestOf #.($A (LTFGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP10 "ONR@@A")
+         (name #.($A LTP10 NIL RememberName))
+	 (TestDesc "GetValue inherits value")
+	 (TestExpr (EQUAL (GetValue ($ LTC5)
+				    (QUOTE GV1))
+			  (QUOTE LTP10)))
+	 (SubTest #.($A (LTP11) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (PreTest #.NotSetValue Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTC5) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestCases) NIL AllowRemove))
+	 (SubTestOf #.($A (LTFGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP9 "ONR@@A")
+         (name #.($A LTP9 NIL RememberName))
+	 (TestDesc "GetValue a prop")
+	 (TestExpr (EQUAL (GetValue ($ LTC4)
+				    (QUOTE Var4)
+				    (QUOTE Prop1))
+			  2))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.NotSetValue Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTC4) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (SubTestOf #.($A (LTFGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LAVPutValue "OYR@@E")
+         (name #.($A LAVPutValue NIL RememberName))
+	 (TestDesc "Active Value: Put using default fn")
+	 [SetUp (SETQ LTV21 (PutValue ($ LTCF2)
+				      (QUOTE AV3)
+				      (QUOTE LAVPut]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCF2)
+					    (QUOTE AV3))
+				  (QUOTE LAVPut))
+			   (ATEST (EQUAL LTV21 (QUOTE LAVPut))
+				  "PutValue returns newValue")))
+	 (ResetExp (PutValue ($ LTCF2)
+			     (QUOTE AV3)
+			     (QUOTE LTC6)))
+	 (SubTest #.($A (LTP58 LTP56 LTP55) NIL MakeBackLink))
+	 (PreTest #.($A (LAVGetValue) BuildPreTest MakeBackLink))
+	 (CasesUsed #.($A (LTCF2) NIL MakeBackLink))
+	 (UsesObj #.($A (LOOPSTestClass6) NIL AllowRemove))
+	 (SubTestOf #.($A (LTFPutValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP19 "ONR@@A")
+         (name #.($A LTP19 NIL RememberName))
+	 (TestDesc "PutValue works for a newly added IV to class")
+	 [SetUp (PROGN (SEND ($ LOOPSTestClass1)
+			     New
+			     (QUOTE LTCA4))
+		       (SEND ($ LOOPSTestClass1)
+			     Add
+			     (QUOTE IV)
+			     (QUOTE NewPV1)
+			     (QUOTE DEF))
+		       (SETQ LTV21 (PutValue ($ LTCA4)
+					     (QUOTE NewPV1)
+					     (QUOTE LTP19]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCA4)
+					    (QUOTE NewPV1))
+				  (QUOTE LTP19))
+			   (ATEST (EQUAL LTV21 (QUOTE LTP19))
+				  "PutValue returns newValue")))
+	 [ResetExp (PROGN (SEND ($ LTCA4)
+				Destroy)
+			  (SEND ($ LOOPSTestClass1)
+				Delete
+				(QUOTE IV)
+				(QUOTE NewPV1]
+	 (SubTest #.($A (LTP20) NIL MakeBackLink) Tested? #.NotSetValue)
+	 (PreTest #.($A (LTMNew LTMDeleteInClass LTMAdd) BuildPreTest MakeBackLink) Tested? 
+		  #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTCA4) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass1) NIL AllowRemove))
+	 (SubTestOf #.($A (LTFPutValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP18 "ONR@@A")
+         (name #.($A LTP18 NIL RememberName))
+	 (TestDesc "PutValue a prop on an inherited IV")
+	 [SetUp (SETQ LTV21 (PutValue ($ LTCA3)
+				      (QUOTE PV2)
+				      (QUOTE LTP18)
+				      (QUOTE Prop1]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCA3)
+					    (QUOTE PV2)
+					    (QUOTE Prop1))
+				  (QUOTE LTP18))
+			   (ATEST (EQUAL LTV21 (QUOTE LTP18))
+				  "PutValue returns newValue")))
+	 (ResetExp (PutValue ($ LTCA3)
+			     (QUOTE PV2)
+			     NotSetValue
+			     (QUOTE Prop1)))
+	 (PreTest #.($A (LTP9) BuildPreTest MakeBackLink))
+	 (CasesUsed #.($A (LTCA3) NIL MakeBackLink))
+	 (SubTestOf #.($A (LTFPutValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP17 "ONR@@A")
+         (name #.($A LTP17 NIL RememberName))
+	 (TestDesc "PutValue on an inherited IV")
+	 [SetUp (SETQ LTV21 (PutValue ($ LTCA3)
+				      (QUOTE PV2)
+				      (QUOTE LTP17]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCA3)
+					    (QUOTE PV2))
+				  (QUOTE LTP17))
+			   (ATEST (EQUAL LTV21 (QUOTE LTP17))
+				  "PutValue returns newValue")))
+	 (ResetExp (PutValue ($ LTCA3)
+			     (QUOTE PV2)
+			     NotSetValue))
+	 (CasesUsed #.($A (LTCA3) NIL MakeBackLink))
+	 (SubTestOf #.($A (LTFPutValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP16 "ONR@@A")
+         (name #.($A LTP16 NIL RememberName))
+	 (TestDesc "PutValue a prop on a local IV")
+	 [SetUp (SETQ LTV21 (PutValue ($ LTCA2)
+				      (QUOTE PV1)
+				      (QUOTE LTP16)
+				      (QUOTE Prop1]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCA2)
+					    (QUOTE PV1)
+					    (QUOTE Prop1))
+				  (QUOTE LTP16))
+			   (ATEST (EQUAL LTV21 (QUOTE LTP16))
+				  "PutValue returns newValue")))
+	 (ResetExp (PutValue ($ LTCA2)
+			     (QUOTE PV1)
+			     (QUOTE LTP16)
+			     NIL))
+	 (PreTest #.($A (LTP9) BuildPreTest MakeBackLink))
+	 (CasesUsed #.($A (LTCA2) NIL MakeBackLink))
+	 (SubTestOf #.($A (LTFPutValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP57 "OYR@@E")
+         (name #.($A LTP57 NIL RememberName))
+	 (TestDesc "Embedded Active Val: Get using user fn")
+	 (TestExpr (EQUAL (GetValue ($ LTCF1)
+				    (QUOTE AV5))
+			  (QUOTE LTP57)))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.($A (LTFGetLocalState) BuildPreTest MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTCF1) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass6) NIL AllowRemove))
+	 (SubTestOf #.($A (LAVGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP54 "OYR@@E ")
+         (name #.($A LTP54 NIL RememberName))
+	 (TestDesc "Active Val: Get using user fn")
+	 (TestExpr (EQUAL (GetValue ($ LTCF1)
+				    (QUOTE AV2))
+			  (QUOTE LTC6)))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.($A (LTFGetLocalState) BuildPreTest MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTCF1) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass6) NIL AllowRemove))
+	 (SubTestOf #.($A (LAVGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP53 "OYR@@E")
+         (name #.($A LTP53 NIL RememberName))
+	 (TestDesc "Active Value: Get prop using default fn")
+	 (TestExpr (EQUAL (GetValue ($ LTCF1)
+				    (QUOTE AV1)
+				    (QUOTE Prop1))
+			  (QUOTE LTCP6)))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.NotSetValue Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTCF1) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass6) NIL AllowRemove))
+	 (SubTestOf #.($A (LAVGetValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP15 "ONR@@A!")
+         (name #.($A LTP15 NIL RememberName))
+	 (TestDesc "GetValue works for a newly added IVProp to class")
+	 (SetUp (SEND ($ LOOPSTestClass1)
+		      Add
+		      (QUOTE IV)
+		      (QUOTE GV2)
+		      (QUOTE LTP15)
+		      (QUOTE Prop1)))
+	 (TestExpr (EQUAL (GetValue ($ LTCA1)
+				    (QUOTE GV2)
+				    (QUOTE Prop1))
+			  (QUOTE LTP15)))
+	 (ResetExp (SEND ($ LOOPSTestClass1)
+			 Delete
+			 (QUOTE IV)
+			 (QUOTE GV2)
+			 (QUOTE Prop1)))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.($A (LTMDeleteInClass LTMAdd) BuildPreTest MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTCA1) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass1) NIL AllowRemove))
+	 (SubTestOf #.($A (LTP14) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP13 "ONR@@A")
+         (name #.($A LTP13 NIL RememberName))
+	 (TestDesc "GetValue inherits prop, though var has local value")
+	 (TestExpr (EQUAL (GetValue ($ LTC6)
+				    (QUOTE GV1)
+				    (QUOTE Prop1))
+			  (QUOTE LTP11)))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.NotSetValue Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTC6) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (SubTestOf #.($A (LTP12) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP11 "ONR@@A")
+         (name #.($A LTP11 NIL RememberName))
+	 (TestDesc "GetValue inherits prop")
+	 (TestExpr (EQUAL (GetValue ($ LTC5)
+				    (QUOTE GV1)
+				    (QUOTE Prop1))
+			  (QUOTE LTP11)))
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.NotSetValue Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTC5) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestCases) NIL AllowRemove))
+	 (SubTestOf #.($A (LTP10) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP58 "OYR@@E")
+         (name #.($A LTP58 NIL RememberName))
+	 (TestDesc "Embedded Active Val: Put using user fn")
+	 [SetUp (SETQ LTV21 (PutValue ($ LTCF2)
+				      (QUOTE AV6)
+				      (QUOTE LTP58]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCF2)
+					    (QUOTE AV6))
+				  (QUOTE LTP58))
+			   (ATEST (EQUAL LTV21 (QUOTE LTP58))
+				  "PutValue returns newValue")))
+	 (ResetExp (PutValue ($ LTCF2)
+			     (QUOTE AV6)
+			     (QUOTE LTC6)))
+	 (PreTest #.($A (LTFPutLocalState) BuildPreTest MakeBackLink))
+	 (CasesUsed #.($A (LTCF2) NIL MakeBackLink))
+	 (UsesObj #.($A (LOOPSTestClass6) NIL AllowRemove))
+	 (SubTestOf #.($A (LAVPutValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP56 "OYR@@E")
+         (name #.($A LTP56 NIL RememberName))
+	 (TestDesc "Active Value: Put using user fn")
+	 [SetUp (SETQ LTV21 (PutValue ($ LTCF2)
+				      (QUOTE AV4)
+				      (QUOTE LTP56]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCF2)
+					    (QUOTE AV4))
+				  (QUOTE LTP56))
+			   (ATEST (EQUAL LTV21 (QUOTE LTP56))
+				  "PutValue returns newValue")))
+	 (ResetExp (PutValue ($ LTCF2)
+			     (QUOTE AV4)
+			     (QUOTE LTC6)))
+	 (PreTest #.($A (LTFPutLocalState) BuildPreTest MakeBackLink))
+	 (CasesUsed #.($A (LTCF2) NIL MakeBackLink))
+	 (UsesObj #.($A (LOOPSTestClass6) NIL AllowRemove))
+	 (SubTestOf #.($A (LAVPutValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP55 "OYR@@E")
+         (name #.($A LTP55 NIL RememberName))
+	 (TestDesc "Active Value: Put prop using default fn")
+	 [SetUp (SETQ LTV21 (PutValue ($ LTCF2)
+				      (QUOTE AV3)
+				      (QUOTE LTP55)
+				      (QUOTE Prop1]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCF2)
+					    (QUOTE AV3)
+					    (QUOTE Prop1))
+				  (QUOTE LTP55))
+			   (ATEST (EQUAL LTV21 (QUOTE LTP55))
+				  "PutValue returns newValue")))
+	 (ResetExp (PutValue ($ LTCF2)
+			     (QUOTE AV3)
+			     (QUOTE LTCP6)
+			     (QUOTE Prop1)))
+	 (CasesUsed #.($A (LTCF2) NIL MakeBackLink))
+	 (UsesObj #.($A (LOOPSTestClass6) NIL AllowRemove))
+	 (SubTestOf #.($A (LAVPutValue) NIL MakeBackLink))]
+
+
+[DEFINST LOOPSTestPrimitive (LTP20 "ONR@@A")
+         (name #.($A LTP20 NIL RememberName))
+	 (TestDesc "PutValue: a prop on a newly added IV to class")
+	 [SetUp (PROGN (SEND ($ LOOPSTestClass1)
+			     New
+			     (QUOTE LTCA5))
+		       (SEND ($ LOOPSTestClass1)
+			     Add
+			     (QUOTE IV)
+			     (QUOTE SecondNewPV1)
+			     (QUOTE Def))
+		       (SEND ($ LOOPSTestClass1)
+			     Add
+			     (QUOTE IVProp)
+			     (QUOTE SecondNewPV1)
+			     (QUOTE Def)
+			     (QUOTE Prop1))
+		       (SETQ LTV21 (PutValue ($ LTCA5)
+					     (QUOTE SecondNewPV1)
+					     (QUOTE LTP20)
+					     (QUOTE Prop1]
+	 (TestExpr (ANDALL (EQUAL (GetValue ($ LTCA5)
+					    (QUOTE SecondNewPV1)
+					    (QUOTE Prop1))
+				  (QUOTE LTP20))
+			   (ATEST (EQUAL LTV21 (QUOTE LTP20))
+				  "PutValue returns newValue")))
+	 [ResetExp (PROGN (SEND ($ LTCA5)
+				Destroy)
+			  (SEND ($ LOOPSTestClass1)
+				Delete
+				(QUOTE IV)
+				(QUOTE SecondNewPV1]
+	 (SubTest #.NotSetValue Tested? #.NotSetValue)
+	 (PreTest #.($A NIL BuildPreTest MakeBackLink) Tested? #.NotSetValue)
+	 (AltTest #.NotSetValue Tested? #.NotSetValue)
+	 (CasesUsed #.($A (LTCA5) NIL MakeBackLink))
+	 (SyntaxTest #.NotSetValue Tested? #.NotSetValue)
+	 (UsesObj #.($A (LOOPSTestClass1) NIL AllowRemove))
+	 (SubTestOf #.($A (LTP19) NIL MakeBackLink))]
+
+
+(PUTPROPS LTCORETESTS COPYRIGHT ("Xerox Corporation" 1985 1986))
+(DECLARE: DONTCOPY
+  (FILEMAP (NIL)))
+STOP

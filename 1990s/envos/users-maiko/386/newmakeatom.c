@@ -1,0 +1,1 @@
+newmakeatom.cNot use GETBYTE in parse_numberBecause, it assumes this function should use "C string"as its argument.

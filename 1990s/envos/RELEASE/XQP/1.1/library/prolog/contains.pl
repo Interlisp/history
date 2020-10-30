@@ -1,0 +1,1 @@
+%   sccs_id('"@(#)87/01/20 contains.pl	95.1"').:- write('! library(contains) is OBSOLETE.'), nl,   write('! It has been replaced by library(occurs).'), nl,   write('! See the Quintus Prolog Release 2.0 Library Manual.'), nl.

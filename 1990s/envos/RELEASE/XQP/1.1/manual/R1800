@@ -1,0 +1,1 @@
+ref-18-0                    Xerox Quintus Prolog Reference Manual                          Section 18-0: IntroductionThis chapter describes Xerox Quintus Prolog's grammar rules, and thetranslation of these rules into Prolog clauses.  At the end of the chapter is alist of grammar-related built-in predicates.

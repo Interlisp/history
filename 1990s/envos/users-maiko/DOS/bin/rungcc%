@@ -1,0 +1,1 @@
+#! /bin/cshset path = ($path /python2/gnu/gcc/gcc2)xgcc -nostdinc -fno-defer-pop -I/users/maiko/DOS/codebldr/inc -I/users/maiko/DOS/inc -S -O2 /users/maiko/DOS/src/{$1}.c -o /users/maiko/DOS/{$1}.asm -DKBINT -DFSERROR -DNEW_STORAGE -DBIGATOMS -DNOPIXRECT -DDOS -DNOFORN -DNOETHER -DBYTESWAP -DOPDISP $2 $3 $4 $5 $6

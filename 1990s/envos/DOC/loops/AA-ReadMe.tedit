@@ -1,0 +1,23 @@
+This directory contains all the documentation for Xerox Loops in all its various incarnations.  Directories are as follows:
+
+{ERIS}<Doc>LOOPS> - most general information
+{ERIS}<Doc>loops>ProductionSpecs> -  specs for all versions of Koto LOOPS
+
+{ERIS}<Doc>Loops>Koto>Final - Product Release for Koto LOOPS (Oct 87)
+{ERIS}<Doc>Loops>Lyric>Alpha - Alpha Lyric LOOPS (Jan 88)
+
+Most directories have the following subdirectories:
+Ref> - Reference Manual 
+RelNote> - Release Notes
+LibMod> - Library Modules Manual (Lyric Release)
+LibPkg> - Library Packages Manual (Koto Release)
+UserMod> - Users' Modules Manual (Lyric Release)
+UserPkg> - Users' Packages Manual (Koto Release)
+
+And even further in the diectory maze, 
+X-Index> - has IMPTR files and resulting index
+Z-ReleaseInfo> - holds more details on conventions and production details.
+
+Enjoy,
+  Raven Brewster
+

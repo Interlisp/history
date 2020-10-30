@@ -1,0 +1,1 @@
+(FILESLOAD NEW-WHERE-IS)(RENAMEFILE (XCL::WHERE-IS-NOTICE  "{CORE}LOOPS.NEW-WHEREISHASH"  :NEW T  :FILES "{pogo:aisnorth:Xerox}<loopscore>lyric>*.;") "{pogo:aisnorth:xerox}<loopscore>lyric>sources>LOOPS.NEW-WHEREISHASH")STOP

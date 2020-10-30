@@ -1,0 +1,1 @@
+The sources directory was checked the 12-Dec-89 so that it nowmatches the release on {ERINYES}<LISP>MEDLEY>SOURCES>.Previously some of the files where created after the release date.Sources have now also been checked for library modules so that it now reflects {Erinyes}<Lisp>library>. 26-dec-89Carl Gadener

@@ -1,0 +1,1 @@
+ref-16-3                    Xerox Quintus Prolog Reference Manual                              Section 16-3: X^PX ^ P is recognized as meaning "there exists an X such that P is true", and istreated as equivalent to simply calling P.  The use of the explicit existentialquantifier outside setof/3 ({manual(ref-16-1)}) and bagof/3({manual(ref-16-2)}) is superfluous.

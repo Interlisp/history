@@ -1,0 +1,1081 @@
+(DEFINE-FILE-INFO READTABLE "XCL" PACKAGE "LISP")
+(IL:FILECREATED " 7-Jun-91 15:42:35" ("compiled on " IL:|{PELE:MV:ENVOS}<LISPCORE>SOURCES>CMLARITH.;2|
+) " 6-May-91 13:07:16" "COMPILE-FILEd" IL:|in| "Lispcore  6-May-91 ..." IL:|dated| 
+" 6-May-91 13:34:43")
+(IL:FILECREATED "16-May-90 12:46:36" IL:|{DSK}<usr>local>lde>lispcore>sources>CMLARITH.;3| 100891 
+IL:|changes| IL:|to:| (IL:VARS IL:CMLARITHCOMS) IL:|previous| IL:|date:| "30-Mar-90 06:12:35" 
+IL:|{DSK}<usr>local>lde>lispcore>sources>CMLARITH.;2|)
+(IL:RPAQQ IL:CMLARITHCOMS ((IL:* IL:|;;;| "Common Lisp Arithmetic ") (IL:COMS (IL:* IL:|;;| 
+"Error utilities") (IL:FUNCTIONS %NOT-NUMBER-ERROR %NOT-NONCOMPLEX-NUMBER-ERROR %NOT-INTEGER-ERROR 
+%NOT-RATIONAL-ERROR %NOT-FLOAT-ERROR)) (IL:COMS (IL:* IL:|;;;| "Section 2.1.2 Ratios. ") (IL:COMS (
+IL:STRUCTURES RATIO) (IL:* IL:|;;| "The following makes NUMBERP true on ratios") (IL:DECLARE\: 
+IL:DONTEVAL@LOAD IL:DOCOPY (IL:P (IL:\\SETTYPEMASK (IL:\\TYPENUMBERFROMNAME (QUOTE RATIO)) (IL:LOGOR 
+IL:\\TT.NUMBERP IL:\\TT.ATOM))))) (IL:FUNCTIONS DENOMINATOR NUMERATOR RATIONALP %RATIO-PRINT 
+%BUILD-RATIO RATIONAL RATIONALIZE) (IL:FUNCTIONS %RATIO-PLUS %RATIO-TIMES)) (IL:COMS (IL:* IL:|;;;| 
+"Section 2.1.4 Complex Numbers.") (IL:COMS (IL:STRUCTURES COMPLEX) (IL:* IL:|;;| 
+"So we don't inherit the deftype from defstruct") (IL:TYPES COMPLEX) (IL:* IL:|;;| 
+"Make Complex  NUMBERP") (IL:DECLARE\: IL:DONTEVAL@LOAD IL:DOCOPY (IL:P (IL:\\SETTYPEMASK (
+IL:\\TYPENUMBERFROMNAME (QUOTE COMPLEX)) (IL:LOGOR IL:\\TT.NUMBERP IL:\\TT.ATOM))))) (IL:FUNCTIONS 
+COMPLEX REALPART IMAGPART CONJUGATE PHASE %COMPLEX-PRINT %COMPLEX-+ %COMPLEX-- %COMPLEX-* %COMPLEX-/ 
+%COMPLEX-ABS)) (IL:COMS (IL:* IL:|;;;| "Datatype predicates") (IL:* IL:|;;| 
+"cl:integerp is defined in cmlpred (has an optimizer)") (IL:* IL:|;;| 
+"cl:floatp is defined in cmltypes (has an optimizer). il:floatp is defined on llbasic") (IL:* IL:|;;| 
+"cl:complexp is a defstruct predicate (compiles in line)") (IL:* IL:|;;| 
+"cl:numberp is defined in cmltypes (has an optimizer). il:numberp is defined on llbasic")) (IL:COMS (
+IL:* IL:|;;;| "Section 12.2 Predicates on Numbers (generic).") (IL:* IL:|;;| 
+"cl:zerop  is not shared with il:zerop, although they are equivalent. There is no il;plusp ") (IL:COMS
+ (IL:FUNCTIONS ZEROP PLUSP) (XCL:OPTIMIZERS ZEROP PLUSP)) (IL:* IL:|;;| 
+"cl:minusp is shared with il:minusp, but must be redefined to work with ratios. Old version resides in llarith"
+) (IL:COMS (IL:FUNCTIONS MINUSP) (XCL:OPTIMIZERS MINUSP)) (IL:* IL:|;;| 
+"Both cl:evenp and cl:oddp are shared with il:. The functions are extended by allowing a second optional modulus argument. Another version of il:oddp exists on llarith, but the definition of il:evenp has disappeared"
+) (IL:COMS (IL:FUNCTIONS EVENP ODDP) (XCL:OPTIMIZERS EVENP ODDP))) (IL:COMS (IL:* IL:|;;;| 
+"Section 12.3 Comparisons on Numbers. (generic)") (IL:COMS (IL:FUNCTIONS %= %/= %> %< %>= %<=) (IL:PROP
+ IL:DOPVAL %= %> %<) (IL:* IL:\; "For the byte compiler") (IL:PROP IL:DMACRO %> %< %>= %<=) (
+IL:DECLARE\: IL:DONTEVAL@LOAD IL:DOCOPY (IL:P (IL:* IL:|;;| "Backward compatibility") (IL:* IL:\; 
+" il:%= is listed as the punt function for the = opcode") (IL:MOVD (QUOTE %=) (QUOTE IL:%=)) (IL:* IL:\;
+ "Greaterp is the UFN for the greaterp opcode. Effectively redefines the opcode") (IL:MOVD (QUOTE %>) 
+(QUOTE IL:GREATERP)) (IL:* IL:\; "Interlisp Greaterp and Lessp are defined in llarith") (IL:MOVD (
+QUOTE %<) (QUOTE IL:LESSP))))) (IL:* IL:|;;| 
+"=, <, >, <=, and >= are shared with il:, but cl:/= is NOT shared (?!)") (IL:COMS (IL:DECLARE\: 
+IL:DONTCOPY IL:DOEVAL@COMPILE (IL:FUNCTIONS %COMPARISON-MACRO)) (IL:FNS = /= < > <= >=) (IL:FUNCTIONS 
+%COMPARISON-OPTIMIZER) (XCL:OPTIMIZERS = /= < > <= >=)) (IL:* IL:|;;| 
+"Note: the related predicates EQL, EQUAL, and EQUALP should be consulted if any of the above change. EQL is on LLNEW (?), EQUAL and EQUALP on CMLTYPES."
+) (IL:* IL:|;;| 
+"cl:min and cl:max are shared with il: (defined in llarith). They  are written in terms of GREATERP and hence work on ratios. Note (min) returns #.max.integer , which is an extension on the CLtl spec. We only optimize the case of two args"
+) (XCL:OPTIMIZERS MIN MAX)) (IL:COMS (IL:* IL:|;;;| "Section 12.4 Arithmetic Operations (generic). ") 
+(IL:COMS (IL:FUNCTIONS %+ %- %* %/) (IL:* IL:\; 
+"NOTE: %/ cannot compile out to the existinq quotient opcode because it produces ratios rather than truncating"
+) (IL:PROP IL:DOPVAL %+ %- %*) (IL:* IL:\; "For the byte compiler") (IL:PROP IL:DMACRO %+ %- %*) (
+IL:DECLARE\: IL:DONTEVAL@LOAD IL:DOCOPY (IL:P (IL:* IL:|;;| "Backward compatibility") (IL:MOVD (QUOTE 
+%/) (QUOTE IL:%/)) (IL:* IL:|;;| 
+"Redefine UFNs for generic plus, difference, and times. Old UFN defined in llarith.") (IL:MOVD (QUOTE 
+%+) (QUOTE IL:\\SLOWPLUS2)) (IL:MOVD (QUOTE %-) (QUOTE IL:\\SLOWDIFFERENCE)) (IL:MOVD (QUOTE %*) (
+QUOTE IL:\\SLOWTIMES2))))) (IL:COMS (IL:FNS + - * /) (IL:FUNCTIONS 1+ 1- %RECIPROCOL) (XCL:OPTIMIZERS 
++ - * / 1+ 1-) (IL:* IL:\; "For the byte compiler") (IL:PROP IL:DMACRO + *) (IL:* IL:|;;| 
+"Redefine Interlisp generic arithmetic to work with ratios") (IL:DECLARE\: IL:DONTEVAL@LOAD IL:DOCOPY 
+(IL:P (IL:MOVD (QUOTE +) (QUOTE IL:PLUS)) (IL:* IL:|;;| 
+"Don't need to redefine difference since it is defined in terms of the difference opcode (redefined above)"
+) (IL:MOVD (QUOTE *) (QUOTE IL:TIMES)) (IL:* IL:|;;| 
+"So Interlisp quotient will do something reasonable with ratios") (IL:* (IL:MOVD (QUOTE IL:NEW-QUOTIENT
+) (QUOTE IL:QUOTIENT))) (IL:* IL:|;;| 
+"because QUOTIENT is already defined in LLARITH to do something useful with ratios. AR 8062.")))) (IL:*
+ IL:|;;| "INCF and DECF implemented by CMLSETF.") (IL:FUNCTIONS %GCD %LCM) (IL:FNS GCD LCM)) (IL:COMS 
+(IL:* IL:|;;| "Optimizers for Interlisp functions, so that they compile open with the PavCompiler.") (
+IL:* IL:|;;| "optimizer of IL:minus") (XCL:OPTIMIZERS IL:MINUS) (XCL:OPTIMIZERS IL:PLUS IL:IPLUS 
+IL:FPLUS IL:TIMES IL:ITIMES IL:FTIMES IL:RSH) (IL:PROP IL:DOPVAL IL:PLUS2 IL:IPLUS2 IL:FPLUS2 IL:TIMES2
+ IL:ITIMES2 IL:FTIMES2)) (IL:COMS (IL:* IL:|;;;| 
+"Section 12.5 Irrational and Transcendental functions. Most of these will be found on cmlfloat.") (
+IL:FUNCTIONS ISQRT) (IL:* IL:|;;| "Abs is shared with il: abs ia also defined in llarith.") (
+IL:FUNCTIONS ABS %ABS) (IL:FUNCTIONS SIGNUM %SIGNUM)) (IL:COMS (IL:* IL:|;;;| 
+"Section 12.6 Type Conversions and Component Extractions on Numbers.") (IL:* IL:|;;| 
+"Float implemented in cmlfloat  ") (IL:DECLARE\: IL:DONTCOPY IL:DOEVAL@COMPILE (IL:FILES IL:UNBOXEDOPS
+)) (IL:* IL:\; "These should be exported from xcl") (IL:COMS (IL:FUNCTIONS XCL::STRUNCATE XCL::SFLOOR 
+XCL::SCEILING XCL::SROUND) (XCL:OPTIMIZERS XCL::STRUNCATE XCL::SROUND)) (IL:* IL:\; 
+"Round is shared with il: (?!)") (IL:COMS (IL:DECLARE\: IL:DONTCOPY IL:DOEVAL@COMPILE (IL:FUNCTIONS 
+%INTEGER-COERCE-MACRO)) (IL:FUNCTIONS TRUNCATE FLOOR CEILING ROUND) (IL:FUNCTIONS 
+%INTEGER-COERCE-OPTIMIZER) (XCL:OPTIMIZERS TRUNCATE FLOOR CEILING ROUND)) (IL:COMS (IL:FUNCTIONS 
+FTRUNCATE FFLOOR FCEILING FROUND) (XCL:OPTIMIZERS FTRUNCATE FFLOOR FCEILING FROUND)) (IL:COMS (
+IL:FUNCTIONS MOD REM)) (IL:* IL:|;;| 
+"Should IL:remainder be equivalent to cl:rem?. Thereis no IL:mod in the IRM, although it has a macro which makes it equivalent to imod."
+) (IL:* IL:|;;| "See cmlfloat for ffloor and friends, decode-float and friends")) (IL:COMS (IL:* 
+IL:|;;;| "Section 12.7 Logical Operations on Numbers.") (IL:* IL:|;;| 
+"LOGXOR and LOGAND are shared with IL. (definitions in llarith)") (IL:COMS (IL:FUNCTIONS 
+%LOGICAL-OPTIMIZER) (XCL:OPTIMIZERS LOGXOR LOGAND)) (IL:COMS (IL:FUNCTIONS %LOGIOR %LOGEQV) (IL:PROP 
+IL:DOPVAL %LOGIOR) (IL:* IL:\; "for the byte compiler") (IL:PROP IL:DMACRO %LOGIOR)) (IL:COMS (IL:FNS 
+LOGIOR LOGEQV) (XCL:OPTIMIZERS LOGIOR LOGEQV)) (IL:COMS (IL:FUNCTIONS LOGNAND LOGNOR LOGANDC1 LOGANDC2
+ LOGORC1 LOGORC2) (XCL:OPTIMIZERS LOGNAND LOGNOR LOGANDC1 LOGANDC2 LOGORC1 LOGORC2)) (IL:COMS (
+IL:VARIABLES BOOLE-CLR BOOLE-SET BOOLE-1 BOOLE-2 BOOLE-C1 BOOLE-C2 BOOLE-AND BOOLE-IOR BOOLE-XOR 
+BOOLE-EQV BOOLE-NAND BOOLE-NOR BOOLE-ANDC1 BOOLE-ANDC2 BOOLE-ORC1 BOOLE-ORC2) (IL:FUNCTIONS BOOLE)) (
+IL:* IL:|;;| "Lognot is shared with IL.(in addarith) ") (IL:COMS (IL:FUNCTIONS LOGTEST LOGBITP) (
+XCL:OPTIMIZERS LOGTEST)) (IL:COMS (IL:FUNCTIONS ASH) (IL:PROP IL:DOPVAL ASH) (IL:* IL:\; 
+"For the byte compiler") (IL:PROP IL:DMACRO ASH)) (IL:COMS (IL:FUNCTIONS LOGCOUNT %LOGCOUNT) (
+IL:DECLARE\: IL:DONTCOPY IL:DOEVAL@COMPILE (IL:FILES (IL:LOADCOMP) IL:LLBIGNUM)) (IL:* IL:\; 
+"Should be in llbignum") (IL:FUNCTIONS %BIGNUM-LOGCOUNT)) (IL:FUNCTIONS INTEGER-LENGTH) (IL:* IL:|;;| 
+"OPTIMIZERS FOR IL:LLSH AND IL:LRSH") (IL:COMS (IL:FUNCTIONS %LLSH8 %LLSH1 %LRSH8 %LRSH1) (IL:PROP 
+IL:DOPVAL %LLSH8 %LLSH1 %LRSH8 %LRSH1) (XCL:OPTIMIZERS IL:LLSH IL:LRSH))) (IL:COMS (IL:* IL:|;;;| 
+"Section 12.8 Byte Manipulations Functions.") (IL:COMS (IL:FUNCTIONS BYTE BYTE-SIZE BYTE-POSITION) (IL:*
+ IL:|;;| 
+"Byte doesn't need an optimizer since the side-effects data-base will do constant folding, but the byte-compiler can profit from an optimizer"
+) (IL:FUNCTIONS OPTIMIZE-BYTE) (IL:PROP IL:DMACRO BYTE)) (IL:COMS (IL:DECLARE\: IL:DONTCOPY 
+IL:DOEVAL@COMPILE (IL:FUNCTIONS %MAKE-BYTE-MASK-1 %MAKE-BYTE-MASK-0)) (IL:FUNCTIONS LDB DPB MASK-FIELD
+ DEPOSIT-FIELD) (IL:FUNCTIONS %CONSTANT-BYTESPEC-P) (XCL:OPTIMIZERS LDB DPB MASK-FIELD DEPOSIT-FIELD))
+ (IL:COMS (IL:FUNCTIONS LDB-TEST) (XCL:OPTIMIZERS LDB-TEST))) (IL:DECLARE\: IL:DONTCOPY 
+IL:DOEVAL@COMPILE (IL:LOCALVARS . T)) (IL:PROP (IL:MAKEFILE-ENVIRONMENT IL:FILETYPE) IL:CMLARITH) (
+IL:DECLARE\: IL:DONTEVAL@LOAD IL:DOEVAL@COMPILE IL:DONTCOPY IL:COMPILERVARS (IL:ADDVARS (IL:NLAMA) (
+IL:NLAML) (IL:LAMA LOGEQV LOGIOR LCM GCD / * - + >= <= > < /= =)))))
+%NOT-NUMBER-ERROR :D7
+(IL:L (0 OBJECT))     g   g   g   g   @g   @
+    (26 ERROR)
+(20 :VALUE 15 :NAME 11 NUMBER 7 :EXPECTED-TYPE 3 XCL:TYPE-MISMATCH)
+()
+%NOT-NONCOMPLEX-NUMBER-ERROR :D7
+(IL:L (0 OBJECT))  +   @3ôo   @   g   g   g   g   @g   @
+    (40 ERROR 12 ERROR)
+(34 :VALUE 29 :NAME 25 NUMBER 21 :EXPECTED-TYPE 17 XCL:TYPE-MISMATCH)
+( 7 "Arg a complex number~%~s")
+%NOT-INTEGER-ERROR :D7
+(IL:L (0 OBJECT))     g   g   g   g   @g   @
+    (26 ERROR)
+(20 :VALUE 15 :NAME 11 INTEGER 7 :EXPECTED-TYPE 3 XCL:TYPE-MISMATCH)
+()
+%NOT-RATIONAL-ERROR :D7
+(IL:L (0 OBJECT))     g   g   g   g   @g   @
+    (26 ERROR)
+(20 :NAME 15 :VALUE 11 RATIONAL 7 :EXPECTED-TYPE 3 XCL:TYPE-MISMATCH)
+()
+%NOT-FLOAT-ERROR :D7
+(IL:L (0 OBJECT))     g   g   g   g   @g   @
+    (26 ERROR)
+(20 :VALUE 15 :NAME 11 FLOAT 7 :EXPECTED-TYPE 3 XCL:TYPE-MISMATCH)
+()
+(SET-PARSED-STRUCTURE (QUOTE RATIO) T (QUOTE (PS RATIO NIL (NUMERATOR DENOMINATOR) DATATYPE NIL NIL 
+"RATIO-" ((%MAKE-RATIO (NUMERATOR DENOMINATOR))) %RATIO-P %RATIO-PRINT NIL NIL 0 NIL ((NUMERATOR 
+:READ-ONLY T NIL (RATIO 0 IL:POINTER) RATIO-NUMERATOR) (DENOMINATOR :READ-ONLY T NIL (RATIO 2 IL:POINTER
+) RATIO-DENOMINATOR)) NIL NIL (IL:POINTER IL:POINTER) NIL (:ACCESSOR :PREDICATE) NIL NIL NIL)))
+(SI::%STRUCTURE-DECLARE-DATATYPE (QUOTE RATIO) (QUOTE (IL:POINTER IL:POINTER)) (QUOTE ((RATIO 0 
+IL:POINTER) (RATIO 2 IL:POINTER))) 4 (QUOTE STRUCTURE-OBJECT))
+(IL:PUTPROP (QUOTE RATIO) (QUOTE :TYPE-EXPANDER) (QUOTE TYPE-EXPAND-STRUCTURE))
+%RATIO-P :D7
+(IL:L (0 OBJECT))     @√    NIL
+(4 RATIO)
+()
+(ESTABLISH-PREDICATE (QUOTE RATIO))
+RATIO-NUMERATOR :D7
+(IL:L (0 RATIO))  	   @   …  NIL
+(4 RATIO)
+()
+RATIO-DENOMINATOR :D7
+(IL:L (0 RATIO))  	   @   … NIL
+(4 RATIO)
+()
+(ESTABLISH-SETFS-AND-OPTIMIZERS (QUOTE RATIO))
+%MAKE-RATIO :D7
+(IL:L (1 DENOMINATOR 0 NUMERATOR))    l H@ HAH NIL
+NIL
+()
+(IL:\\SETTYPEMASK (IL:\\TYPENUMBERFROMNAME (QUOTE RATIO)) (IL:LOGOR IL:\\TT.NUMBERP IL:\\TT.ATOM))
+DENOMINATOR :D7
+(IL:L (0 RATIONAL))     @d√   òø@   …3 ëk@	    (25 %NOT-RATIONAL-ERROR)
+(12 RATIO 5 RATIO)
+()
+NUMERATOR :D7
+(IL:L (0 RATIONAL))     @d√   òø@   … 3 ë@@	    (25 %NOT-RATIONAL-ERROR)
+(12 RATIO 5 RATIO)
+()
+RATIONALP :D7
+(IL:L (0 NUMBER))  
+   @d3 ëi√    NIL
+(10 RATIO)
+()
+|definline-RATIONALP| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  
+  @ o   H NIL
+NIL
+( 8 (LAMBDA (NUMBER) (BLOCK RATIONALP (OR (INTEGERP NUMBER) (%RATIO-P NUMBER)))))
+(IL:PUTPROP (QUOTE RATIONALP) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |definline-RATIONALP|) (
+GET (QUOTE RATIONALP) (QUOTE COMPILER:OPTIMIZER-LIST))))
+%RATIO-PRINT :D7
+(IL:L (1 STREAM 0 NUMBER) IL:P 8 *PRINT-RADIX* IL:P 7 IL:\\THISFILELINELENGTH IL:P 6 *PRINT-RADIX* IL:P 5 *PRINT-BASE* IL:F 9 *PRINT-BASE* IL:F 10 *READTABLE* IL:F 11 IL:\\THISFILELINELENGTH IL:F 12 *PRINT-RADIX*)  ¸	 @   … @   …2W     j≤o   A   g   HIhA   W≤pg   W    [“l¥KlˇÂlˇh¥lK—	   Wdlñøo   ∞6lïo   ∞,Wlïo   ∞ g   WºlL	   o         ∫W≤&kH	   ‘I	   ‘Jµ:j‘A   »ÿWÒïA	   ø JµHA   o   A   IA   A   ø∞‰	   ∞≈ (248 IL:NCHARS 241 IL:\\SOUT 235 IL:\\PRINDATUM 229 IL:\\SOUT 220 IL:\\PRINDATUM 207 IL:FRESHLINE 184 IL:NCHARS 178 IL:NCHARS 167 CONCATENATE 163 CONCATENATE 153 PRINC-TO-STRING 97 STRING 53 IL:\\PRINDATUM 38 IL:PRIN1)
+(195 STREAM 137 STRING 68 READTABLEP 62 STRING 42 / 22 READTABLEP 11 RATIO 4 RATIO)
+( 224 "/" 159 "r" 131 "x" 119 "o" 109 "b" 33 "|.")
+%BUILD-RATIO :D7
+(IL:L (1 Y 0 X))  9  @dA‹jíA€A    Hk´@H€b øAH€bøjAÛöj@’jA’   @A    (54 %MAKE-RATIO 47 %MAKE-RATIO 14 %GCD)
+NIL
+()
+RATIONAL :D7
+(IL:L (0 NUMBER))  G  @HY√   £I3 ë@Hd√   ñø@	   √   ≤@   … 	   @   …	      @	    (68 %NOT-NUMBER-ERROR 62 %MAKE-COMPLEX 58 RATIONAL 47 RATIONAL 29 %RATIONAL-FLOAT)
+(52 COMPLEX 41 COMPLEX 34 COMPLEX 22 IL:FLOATP 9 RATIO)
+()
+RATIONALIZE :D7
+(IL:L (0 NUMBER))  G  @HY√   £I3 ë@Hd√   ñø@	   √   ≤@   … 	   @   …	      @	    (68 %NOT-NUMBER-ERROR 62 %MAKE-COMPLEX 58 RATIONALIZE 47 RATIONALIZE 29 %RATIONALIZE-FLOAT)
+(52 COMPLEX 41 COMPLEX 34 COMPLEX 22 IL:FLOATP 9 RATIO)
+()
+%RATIO-PLUS :D7
+(IL:L (3 DENOMINATOR-2 2 NUMERATOR-2 1 DENOMINATOR-1 0 NUMERATOR-1))  R  AC   AHkû@C÷BA÷‘AC÷   AH€π@CH€÷BI÷‘ZH   ªCºKkßCK€ºJK€∫LkïIkëJJIL÷    (79 %MAKE-RATIO 46 %GCD 26 %MAKE-RATIO 5 %GCD)
+NIL
+()
+%RATIO-TIMES :D7
+(IL:L (3 DENOMINATOR-2 2 NUMERATOR-2 1 DENOMINATOR-1 0 NUMERATOR-1))  V  @C   BA   Hk´@H€b øCH€bøIk´BI€bøAI€bø@B÷AC÷IkëHjIÛöjH’jI’   HI    (83 %MAKE-RATIO 76 %MAKE-RATIO 11 %GCD 5 %GCD)
+NIL
+()
+(SET-PARSED-STRUCTURE (QUOTE COMPLEX) T (QUOTE (PS COMPLEX NIL (REALPART IMAGPART) DATATYPE NIL NIL 
+"COMPLEX-" ((%MAKE-COMPLEX (REALPART IMAGPART))) COMPLEXP %COMPLEX-PRINT NIL NIL 0 NIL ((REALPART 
+:READ-ONLY T NIL (COMPLEX 0 IL:POINTER) COMPLEX-REALPART) (IMAGPART :READ-ONLY T NIL (COMPLEX 2 
+IL:POINTER) COMPLEX-IMAGPART)) NIL NIL (IL:POINTER IL:POINTER) NIL (:ACCESSOR :PREDICATE) NIL NIL NIL)
+))
+(SI::%STRUCTURE-DECLARE-DATATYPE (QUOTE COMPLEX) (QUOTE (IL:POINTER IL:POINTER)) (QUOTE ((COMPLEX 0 
+IL:POINTER) (COMPLEX 2 IL:POINTER))) 4 (QUOTE STRUCTURE-OBJECT))
+(IL:PUTPROP (QUOTE COMPLEX) (QUOTE :TYPE-EXPANDER) (QUOTE TYPE-EXPAND-STRUCTURE))
+COMPLEXP :D7
+(IL:L (0 OBJECT))     @√    NIL
+(4 COMPLEX)
+()
+(ESTABLISH-PREDICATE (QUOTE COMPLEX))
+COMPLEX-REALPART :D7
+(IL:L (0 COMPLEX))  	   @   …  NIL
+(4 COMPLEX)
+()
+COMPLEX-IMAGPART :D7
+(IL:L (0 COMPLEX))  	   @   … NIL
+(4 COMPLEX)
+()
+(ESTABLISH-SETFS-AND-OPTIMIZERS (QUOTE COMPLEX))
+%MAKE-COMPLEX :D7
+(IL:L (1 IMAGPART 0 REALPART))    l H@ HAH NIL
+NIL
+()
+|type-expand-COMPLEX| :D7
+(IL:L (0 SI::%$$TYPE-FORM))  k  @µg    Hg   óo   ∞g   g   g   g   o   g   g   o   g   Hhhg   o   g   Hhhhhhh NIL
+(81 QUOTE 73 TYPEP 61 QUOTE 53 TYPEP 49 AND 41 IL:LAMBDA 37 SATISFIES 33 COMPLEX 29 AND 15 * 7 *)
+( 77 (COMPLEX-IMAGPART IL:X) 57 (COMPLEX-REALPART IL:X) 45 (IL:X) 21 (:DATATYPE COMPLEX))
+(IL:PUTPROP (QUOTE COMPLEX) (QUOTE :TYPE-EXPANDER) (QUOTE |type-expand-COMPLEX|))
+(IL:\\SETTYPEMASK (IL:\\TYPENUMBERFROMNAME (QUOTE COMPLEX)) (IL:LOGOR IL:\\TT.NUMBERP IL:\\TT.ATOM))
+COMPLEX :D7
+(IL:L (0 IL:|-args-|))  k  e kaQlHÒëjÇla∫I[\√   §L3 ≤4J]^d√   •øN3 úJjëIIJ   M√   öI   J   J	   K√   öIJ      I	    (104 %NOT-NONCOMPLEX-NUMBER-ERROR 98 %MAKE-COMPLEX 81 %NOT-NONCOMPLEX-NUMBER-ERROR 75 %MAKE-COMPLEX 58 %MAKE-COMPLEX)
+(94 IL:FLOATP 87 IL:FLOATP 70 IL:FLOATP 64 IL:FLOATP 40 RATIO 26 RATIO)
+()
+REALPART :D7
+(IL:L (0 NUMBER))     @d√   òø@   … 3ë@@	    (25 %NOT-NUMBER-ERROR)
+(12 COMPLEX 5 COMPLEX)
+()
+IMAGPART :D7
+(IL:L (0 NUMBER))  '   @d√   òø@   …d√   îo   3ëj@	    (36 %NOT-NUMBER-ERROR)
+(20 IL:FLOATP 12 COMPLEX 5 COMPLEX)
+( 25 0.0)
+CONJUGATE :D7
+(IL:L (0 NUMBER))  *   @d√   ≤ø@   … j@   …’   3ë@@	    (39 %NOT-NUMBER-ERROR 28 %MAKE-COMPLEX)
+(21 COMPLEX 13 COMPLEX 5 COMPLEX)
+()
+PHASE :D7
+(IL:L (0 NUMBER))  2   @djˇîo   √   ≤@   …@   …    j@Ûîo   o    (33 ATAN)
+(27 COMPLEX 20 COMPLEX 13 COMPLEX)
+( 47 0.0 42 3.1415927 8 0.0)
+%COMPLEX-PRINT :D7
+(IL:L (1 STREAM 0 NUMBER) IL:F 5 IL:\\THISFILELINELENGTH IL:F 6 *READTABLE*)  ~ @   … @   …2U≤!lH	   ‘I	   ‘A   »ÿUÒïA	   øAV    º[   …(∫KLlJøo   A   o   A   HA   o   A   IA   o   A    (123 IL:\\SOUT 114 IL:\\PRINDATUM 108 IL:\\SOUT 99 IL:\\PRINDATUM 93 IL:\\SOUT 84 IL:\\SOUT 49 IL:FRESHLINE 32 IL:NCHARS 26 IL:NCHARS)
+(65 STREAM 56 READTABLEP 38 STREAM 11 COMPLEX 4 COMPLEX)
+( 118 ")" 103 " " 88 "(" 79 "C")
+%COMPLEX-+ :D7
+(IL:L (3 IMAG-2 2 REAL-2 1 IMAG-1 0 REAL-1))  &   Ajˇò@B‘C   Cjˇò@B‘A   @B‘AC‘    (35 COMPLEX 24 COMPLEX 11 COMPLEX)
+NIL
+()
+%COMPLEX-- :D7
+(IL:L (3 IMAG-2 2 REAL-2 1 IMAG-1 0 REAL-1))  (   Ajˇö@B’jC’   Cjˇò@B’A   @B’AC’    (37 COMPLEX 26 COMPLEX 13 COMPLEX)
+NIL
+()
+%COMPLEX-* :D7
+(IL:L (3 IMAG-2 2 REAL-2 1 IMAG-1 0 REAL-1))  2   Ajˇö@B÷@C÷   Cjˇö@B÷AB÷   @B÷AC÷’AB÷@C÷‘    (47 COMPLEX 28 COMPLEX 13 COMPLEX)
+NIL
+()
+%COMPLEX-/ :D7
+(IL:L (3 IMAG-2 2 REAL-2 1 IMAG-1 0 REAL-1))  d  jAˇ≤#Bd÷Cd÷‘ @B÷H   j@C÷’H      jCˇ≤@B   AB      Bd÷Cd÷‘ @B÷AC÷‘H   AB÷@C÷’H       (97 COMPLEX 93 %/ 81 %/ 58 COMPLEX 54 %/ 48 %/ 36 COMPLEX 32 %/ 22 %/)
+NIL
+()
+%COMPLEX-ABS :D7
+(IL:L (0 Z))  .  @   … Ì@   …ÌHÌ HÌ ÷IÌ IÌ ÷‘ÌÌ 	    (43 SQRT)
+(13 COMPLEX 4 COMPLEX)
+()
+ZEROP :D7
+(IL:L (0 NUMBER))     j@ˇ NIL
+NIL
+()
+PLUSP :D7
+(IL:L (0 NUMBER))     @jÛ NIL
+NIL
+()
+|optimize-ZEROP| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @ g   jHh NIL
+(9 =)
+()
+(IL:PUTPROP (QUOTE ZEROP) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-ZEROP|) (GET (QUOTE
+ ZEROP) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-PLUSP| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @ g   Ho    NIL
+(9 >)
+( 14 (0))
+(IL:PUTPROP (QUOTE PLUSP) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-PLUSP|) (GET (QUOTE
+ PLUSP) (QUOTE COMPILER:OPTIMIZER-LIST))))
+MINUSP :D7
+(IL:L (0 NUMBER))     j@Û NIL
+NIL
+()
+|optimize-MINUSP| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @ g   Ho    NIL
+(9 <)
+( 14 (0))
+(IL:PUTPROP (QUOTE MINUSP) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-MINUSP|) (GET (
+QUOTE MINUSP) (QUOTE COMPILER:OPTIMIZER-LIST))))
+EVENP :D7
+(IL:L (1 MODULUS 0 INTEGER))     A•@kÂjj@A   ˇ (14 MOD)
+NIL
+()
+ODDP :D7
+(IL:L (1 MODULUS 0 INTEGER))     A•@kÂkj@A   ˇh (14 MOD)
+NIL
+()
+|optimize-EVENP| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  +  @!HπHZíJ≥g   g   Io   o   g    NIL
+(40 COMPILER:PASS 22 LOGAND 18 EQ)
+( 33 (0) 27 (1))
+(IL:PUTPROP (QUOTE EVENP) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-EVENP|) (GET (QUOTE
+ EVENP) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-ODDP| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  +  @!HπHZíJ≥g   g   Io   o   g    NIL
+(40 COMPILER:PASS 22 LOGAND 18 EQ)
+( 33 (1) 27 (1))
+(IL:PUTPROP (QUOTE ODDP) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-ODDP|) (GET (QUOTE 
+ODDP) (QUOTE COMPILER:OPTIMIZER-LIST))))
+%= :D7
+(IL:NAME = IL:L (1 Y 0 X)) H  @1Hd3 ≤JøAYd3 ñø@AŸj√   ñ@A   Id√   ëh√   ≤@A   … ˇ¥Ç±jA   …ˇA	   √   ≤9AZ[d3 íøiä√   ≥∑K√   ≥∞J√   ≤ÿ@A   … ˇ¥Ç± æjA   …ˇHd√   ≤aøAd3 ≥èd√   ≤(ø@   … A   … :¥Ç± à@   …A   …:d√   óø@A   √   ¢±ˇn@A   … ˇ¥VjA   …ˇ√   ≤GAd√   ≤$ø@   … A   … ˇ¥,@   …A   …ˇ3¢±ˇ#A@   … ˇ¥j@   …ˇ@	    (325 %NOT-NUMBER-ERROR 215 IL:FEQP 80 %NOT-NUMBER-ERROR 34 IL:FEQP)
+(316 COMPLEX 305 COMPLEX 289 COMPLEX 282 COMPLEX 272 COMPLEX 265 COMPLEX 257 COMPLEX 249 COMPLEX 241 COMPLEX 230 COMPLEX 220 COMPLEX 207 IL:FLOATP 198 RATIO 191 RATIO 177 RATIO 170 RATIO 162 RATIO 148 RATIO 138 COMPLEX 123 COMPLEX 115 COMPLEX 108 RATIO 101 IL:FLOATP 85 IL:FLOATP 71 COMPLEX 56 COMPLEX 48 COMPLEX 41 RATIO 27 IL:FLOATP)
+()
+|expand-%/=| :D7
+(IL:L (1 SI::$$MACRO-ENVIRONMENT 0 SI::$$MACRO-FORM))    @!HπH∫g   g   IJhh NIL
+(19 %= 15 NOT)
+()
+(IL:SETF-MACRO-FUNCTION (QUOTE %/=) (QUOTE |expand-%/=|))
+%> :D7
+(IL:NAME > IL:L (1 Y 0 X))  ”  @1Hd3 ≤6øAYd3 îø@AÒ√   ì@AÚI√   ≤A   …@÷A   … ÒA	   √   ≤*AZd3 íøiÉ√   ≥ J√   ≤‡A   …@÷A   … ÚH√   ≤[A[d3 ≤ø@   … @   …A÷Ò√   ≤@   … @   …A÷ÚK√   ≤é@   … A   …÷A   … @   …÷Ò@	    (208 %NOT-NONCOMPLEX-NUMBER-ERROR 60 %NOT-NONCOMPLEX-NUMBER-ERROR)
+(198 RATIO 191 RATIO 183 RATIO 176 RATIO 169 RATIO 158 RATIO 151 RATIO 144 IL:FLOATP 134 RATIO 127 RATIO 112 RATIO 103 RATIO 94 RATIO 87 RATIO 80 IL:FLOATP 65 IL:FLOATP 51 RATIO 42 RATIO 35 RATIO 25 IL:FLOATP)
+()
+%< :D7
+(IL:L (1 Y 0 X))     A@Û NIL
+NIL
+()
+|expand-%>=| :D7
+(IL:L (1 SI::$$MACRO-ENVIRONMENT 0 SI::$$MACRO-FORM))    @!HπH∫g   g   IJhh NIL
+(19 %< 15 NOT)
+()
+(IL:SETF-MACRO-FUNCTION (QUOTE %>=) (QUOTE |expand-%>=|))
+|expand-%<=| :D7
+(IL:L (1 SI::$$MACRO-ENVIRONMENT 0 SI::$$MACRO-FORM))    @!HπH∫g   g   IJhh NIL
+(19 %> 15 NOT)
+()
+(IL:SETF-MACRO-FUNCTION (QUOTE %<=) (QUOTE |expand-%<=|))
+(IL:PUTPROPS %= IL:DOPVAL (2 =))
+(IL:PUTPROPS %> IL:DOPVAL (2 IL:GREATERP))
+(IL:PUTPROPS %< IL:DOPVAL (2 IL:SWAP IL:GREATERP))
+(IL:PUTPROPS %> IL:DMACRO (= . IL:GREATERP))
+(IL:PUTPROPS %< IL:DMACRO (= . IL:LESSP))
+(IL:PUTPROPS %>= IL:DMACRO (= . IL:GEQ))
+(IL:PUTPROPS %<= IL:DMACRO (= . IL:LEQ))
+(IL:MOVD (QUOTE %=) (QUOTE IL:%=))
+(IL:MOVD (QUOTE %>) (QUOTE IL:GREATERP))
+(IL:MOVD (QUOTE %<) (QUOTE IL:LESSP))
+= :D7
+(IL:L (0 ARGS))  6  e kHÛòo   	   økalId3£	   øJHÛëiIJaˇ°hJk‘Z∞ (32 %NOT-NUMBER-ERROR 15 ERROR)
+NIL
+( 11 "= requires at least one argument")
+/= :D7
+(IL:L (0 ARGS))  :  e kHÛòo   	   øk!IdHÛëia∫Ik‘[HÛëiÖJKaˇìh§hK∞ÓIk‘Y∞ﬂ (15 ERROR)
+NIL
+( 11 "/= requires at least one argument")
+< :D7
+(IL:L (0 ARGS))  >  e kHÛòo   	   økalId3ï√   ïI	   øJHÛëiJadIÛ°hπJk‘Z∞Ó (38 %NOT-NUMBER-ERROR 15 ERROR)
+(32 COMPLEX)
+( 11 "< requires at least one argument")
+> :D7
+(IL:L (0 ARGS))  @  e kHÛòo   	   økalId3ï√   ïI	   øJHÛëiJaªIKÛ°hKπJk‘Z∞Ï (38 %NOT-NUMBER-ERROR 15 ERROR)
+(32 COMPLEX)
+( 11 "> requires at least one argument")
+<= :D7
+(IL:L (0 ARGS))  @  e kHÛòo   	   økalId3ï√   ïI	   øJHÛëiJaªIKÛëhKπJk‘Z∞Ï (38 %NOT-NUMBER-ERROR 15 ERROR)
+(32 COMPLEX)
+( 11 "<= requires at least one argument")
+>= :D7
+(IL:L (0 ARGS))  >  e kHÛòo   	   økalId3ï√   ïI	   øJHÛëiJadIÛëhπJk‘Z∞Ó (38 %NOT-NUMBER-ERROR 15 ERROR)
+(32 COMPLEX)
+( 11 ">= requires at least one argument")
+%COMPARISON-OPTIMIZER :D7
+(IL:L (3 THIRD-NUMBER 2 SECOND-NUMBER 1 FIRST-NUMBER 0 PREDICATE))  =   B§g   Cß@ABhg   o   g   @o   @g   ChhhABh NIL
+(39 SI::%$$COMPARISON-MIDDLE-NUMBER 28 AND 20 IL:OPENLAMBDA 5 COMPILER:PASS)
+( 33 (SI::%$$COMPARISON-FIRST-NUMBER SI::%$$COMPARISON-MIDDLE-NUMBER) 24 (SI::%$$COMPARISON-FIRST-NUMBER SI::%$$COMPARISON-MIDDLE-NUMBER))
+|optimize-=| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  ä  @ë	HπHZdêªJhhºJΩL§g   M™g   IKhKM]g   o   g   h__øM^µOhIh_øO≤Og   g   Oh&_ø∞g   g   Ohh__øN∞º NIL
+(119 SI::%$$=FIRST-NUMBER 115 %= 99 SI::%$$=FIRST-NUMBER 95 %= 59 AND 51 IL:OPENLAMBDA 36 %= 29 COMPILER:PASS)
+( 55 (SI::%$$=FIRST-NUMBER))
+(IL:PUTPROP (QUOTE =) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-=|) (GET (QUOTE =) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-/=| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  .  @QHπHZdêªJhhºJΩL§g   M≥˙g   IKh NIL
+(37 %/= 29 COMPILER:PASS)
+()
+(IL:PUTPROP (QUOTE /=) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-/=|) (GET (QUOTE /=) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-<| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  +  @QHπHZdêªJ\dêΩL´g   IKM   g    (35 %COMPARISON-OPTIMIZER)
+(40 COMPILER:PASS 28 %<)
+()
+(IL:PUTPROP (QUOTE <) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-<|) (GET (QUOTE <) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize->| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  +  @QHπHZdêªJ\dêΩL´g   IKM   g    (35 %COMPARISON-OPTIMIZER)
+(40 COMPILER:PASS 28 %>)
+()
+(IL:PUTPROP (QUOTE >) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize->|) (GET (QUOTE >) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-<=| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  +  @QHπHZdêªJ\dêΩL´g   IKM   g    (35 %COMPARISON-OPTIMIZER)
+(40 COMPILER:PASS 28 %<=)
+()
+(IL:PUTPROP (QUOTE <=) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-<=|) (GET (QUOTE <=) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize->=| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  +  @QHπHZdêªJ\dêΩL´g   IKM   g    (35 %COMPARISON-OPTIMIZER)
+(40 COMPILER:PASS 28 %>=)
+()
+(IL:PUTPROP (QUOTE >=) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize->=|) (GET (QUOTE >=) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-MIN| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  5  @QHdêπHhh∫H[dêºKhhΩKÆJúMöo   ILhg    NIL
+(50 COMPILER:PASS)
+( 39 (IL:OPENLAMBDA (SI::%$$MIN-X SI::%$$MIN-Y) (IF (< SI::%$$MIN-X SI::%$$MIN-Y) SI::%$$MIN-X SI::%$$MIN-Y)))
+(IL:PUTPROP (QUOTE MIN) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-MIN|) (GET (QUOTE MIN
+) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-MAX| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  5  @QHdêπHhh∫H[dêºKhhΩKÆJúMöo   ILhg    NIL
+(50 COMPILER:PASS)
+( 39 (IL:OPENLAMBDA (SI::%$$MAX-X SI::%$$MAX-Y) (IF (> SI::%$$MAX-X SI::%$$MAX-Y) SI::%$$MAX-X SI::%$$MAX-Y)))
+(IL:PUTPROP (QUOTE MAX) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-MAX|) (GET (QUOTE MAX
+) (QUOTE COMPILER:OPTIMIZER-LIST))))
+%+ :D7
+(IL:NAME + IL:L (1 Y 0 X)) õ  @AHd3 ≤CøAYd3 îø@Aÿ√   ì@AËId√   ≤ø@kA   … A   …   √   í± …A	   √   ≤JAZd3 íøiÉ√   ≥ΩJd√   ≤ø@A   … A   …ÎË√   ≤∆@o   A   … A   …   Hd√   ¢± ÄøA[d3 ≤ø@   … @   …Ak   √   ≤@   … @   …ÎAËKd√   ≤$ø@   … @   …A   … A   …   √   ¢±ˇ=@jA   … A   …   √   ≤pA\d3 íøiÉ√   ≤@   … @   …Aj   Ld√   ≤ø@   … @   …Ao      √   ¢±˛’@   … @   …A   … A   …   @	    (408 %NOT-NUMBER-ERROR 402 %COMPLEX-+ 361 %COMPLEX-+ 328 %COMPLEX-+ 286 %COMPLEX-+ 257 %RATIO-PLUS 191 %RATIO-PLUS 151 %COMPLEX-+ 73 %NOT-NUMBER-ERROR 59 %RATIO-PLUS)
+(396 COMPLEX 389 COMPLEX 382 COMPLEX 375 COMPLEX 366 COMPLEX 350 COMPLEX 343 COMPLEX 335 IL:FLOATP 320 COMPLEX 313 COMPLEX 306 RATIO 291 COMPLEX 280 COMPLEX 273 COMPLEX 262 COMPLEX 251 RATIO 244 RATIO 237 RATIO 230 RATIO 222 RATIO 210 RATIO 203 RATIO 196 IL:FLOATP 183 RATIO 176 RATIO 158 RATIO 145 COMPLEX 138 COMPLEX 126 COMPLEX 117 RATIO 110 RATIO 101 RATIO 93 IL:FLOATP 78 IL:FLOATP 64 COMPLEX 53 RATIO 46 RATIO 36 RATIO 25 IL:FLOATP)
+( 357 0.0 133 0.0)
+%- :D7
+(IL:NAME - IL:L (1 Y 0 X)) °  @AHd3 ≤EøAYd3 îø@AŸ√   ì@AÈId√   ≤ø@kjA   … ’A   …   √   í± ÕA	   √   ≤JAZd3 íøiÉ√   ≥ªJd√   ≤ø@A   … A   …ÎÈ√   ≤∆@o   A   … A   …   Hd√   ¢± ÑøA[d3 ≤ø@   … @   …jA’k   √   ≤@   … @   …ÎAÈKd√   ≤&ø@   … @   …jA   … ’A   …   √   ¢±ˇ9@jA   … A   …   √   ≤pA\d3 íøiÉ√   ≤@   … @   …Aj   Ld√   ≤ø@   … @   …Ao      √   ¢±˛—@   … @   …A   … A   …   @	    (414 %NOT-NUMBER-ERROR 408 %COMPLEX-- 367 %COMPLEX-- 334 %COMPLEX-- 292 %COMPLEX-- 263 %RATIO-PLUS 195 %RATIO-PLUS 153 %COMPLEX-- 75 %NOT-NUMBER-ERROR 61 %RATIO-PLUS)
+(402 COMPLEX 395 COMPLEX 388 COMPLEX 381 COMPLEX 372 COMPLEX 356 COMPLEX 349 COMPLEX 341 IL:FLOATP 326 COMPLEX 319 COMPLEX 312 RATIO 297 COMPLEX 286 COMPLEX 279 COMPLEX 268 COMPLEX 257 RATIO 249 RATIO 241 RATIO 234 RATIO 226 RATIO 214 RATIO 207 RATIO 200 IL:FLOATP 185 RATIO 178 RATIO 160 RATIO 147 COMPLEX 140 COMPLEX 128 COMPLEX 119 RATIO 112 RATIO 103 RATIO 95 IL:FLOATP 80 IL:FLOATP 66 COMPLEX 55 RATIO 47 RATIO 36 RATIO 25 IL:FLOATP)
+( 363 0.0 135 0.0)
+%* :D7
+(IL:NAME * IL:L (1 Y 0 X)) õ  @AHd3 ≤CøAYd3 îø@A⁄√   ì@AÍId√   ≤ø@kA   … A   …   √   í± …A	   √   ≤JAZd3 íøiÉ√   ≥ΩJd√   ≤ø@A   … A   …ÎÍ√   ≤∆@o   A   … A   …   Hd√   ¢± ÄøA[d3 ≤ø@   … @   …Ak   √   ≤@   … @   …ÎAÍKd√   ≤$ø@   … @   …A   … A   …   √   ¢±ˇ=@jA   … A   …   √   ≤pA\d3 íøiÉ√   ≤@   … @   …Aj   Ld√   ≤ø@   … @   …Ao      √   ¢±˛’@   … @   …A   … A   …   @	    (408 %NOT-NUMBER-ERROR 402 %COMPLEX-* 361 %COMPLEX-* 328 %COMPLEX-* 286 %COMPLEX-* 257 %RATIO-TIMES 191 %RATIO-TIMES 151 %COMPLEX-* 73 %NOT-NUMBER-ERROR 59 %RATIO-TIMES)
+(396 COMPLEX 389 COMPLEX 382 COMPLEX 375 COMPLEX 366 COMPLEX 350 COMPLEX 343 COMPLEX 335 IL:FLOATP 320 COMPLEX 313 COMPLEX 306 RATIO 291 COMPLEX 280 COMPLEX 273 COMPLEX 262 COMPLEX 251 RATIO 244 RATIO 237 RATIO 230 RATIO 222 RATIO 210 RATIO 203 RATIO 196 IL:FLOATP 183 RATIO 176 RATIO 158 RATIO 145 COMPLEX 138 COMPLEX 126 COMPLEX 117 RATIO 110 RATIO 101 RATIO 93 IL:FLOATP 78 IL:FLOATP 64 COMPLEX 53 RATIO 46 RATIO 36 RATIO 25 IL:FLOATP)
+( 357 0.0 133 0.0)
+%/ :D7
+(IL:NAME / IL:L (1 Y 0 X)) ÷  @düøAô@dA‹jìA€@AHd3 ≤jøAYd3 ≤-ø@d`   ≥d`   ØøA`   ¶A`   ì@A€@A   √   ì@AÎId√   ≤ø@kA   …A   …    √   í± …A	   √   ≤JAZd3 íøiÉ√   ≥ΩJd√   ≤øA   …@÷A   … Î√   ≤∆@o   A   … A   …   Hd√   ¢± ÄøA[d3 ≤ø@   … @   …kA   √   ≤@   … @   …A÷ÎKd√   ≤$ø@   … @   …A   …A   …    √   ¢±ˇ=@jA   … A   …   √   ≤pA\d3 íøiÉ√   ≤@   … @   …Aj   Ld√   ≤ø@   … @   …Ao      √   ¢±˛’@   … @   …A   … A   …   @	    (467 %NOT-NUMBER-ERROR 461 %COMPLEX-/ 420 %COMPLEX-/ 387 %COMPLEX-/ 345 %COMPLEX-/ 316 %RATIO-TIMES 250 %RATIO-TIMES 210 %COMPLEX-/ 132 %NOT-NUMBER-ERROR 118 %RATIO-TIMES 79 %BUILD-RATIO)
+(455 COMPLEX 448 COMPLEX 441 COMPLEX 434 COMPLEX 425 COMPLEX 409 COMPLEX 402 COMPLEX 394 IL:FLOATP 379 COMPLEX 372 COMPLEX 365 RATIO 350 COMPLEX 339 COMPLEX 332 COMPLEX 321 COMPLEX 310 RATIO 303 RATIO 296 RATIO 289 RATIO 281 RATIO 269 RATIO 262 RATIO 255 IL:FLOATP 242 RATIO 235 RATIO 217 RATIO 204 COMPLEX 197 COMPLEX 185 COMPLEX 177 RATIO 168 RATIO 160 RATIO 152 IL:FLOATP 137 IL:FLOATP 123 COMPLEX 112 RATIO 105 RATIO 95 RATIO 84 IL:FLOATP 67 IL:MAX.INTEGER 60 IL:MIN.INTEGER 52 IL:MAX.INTEGER 44 IL:MIN.INTEGER)
+( 416 0.0 192 0.0)
+(IL:PUTPROPS %+ IL:DOPVAL (2 IL:PLUS2))
+(IL:PUTPROPS %- IL:DOPVAL (2 IL:DIFFERENCE))
+(IL:PUTPROPS %* IL:DOPVAL (2 IL:TIMES2))
+(IL:PUTPROPS %+ IL:DMACRO (= . IL:PLUS))
+(IL:PUTPROPS %- IL:DMACRO (= . IL:DIFFERENCE))
+(IL:PUTPROPS %* IL:DMACRO (= . IL:TIMES))
+(IL:MOVD (QUOTE %/) (QUOTE IL:%/))
+(IL:MOVD (QUOTE %+) (QUOTE IL:\\SLOWPLUS2))
+(IL:MOVD (QUOTE %-) (QUOTE IL:\\SLOWDIFFERENCE))
+(IL:MOVD (QUOTE %*) (QUOTE IL:\\SLOWTIMES2))
++ :D7
+(IL:L (0 ARGS))  -  e HjëjkalId3£	   øJHÛëIIJa‘πJk‘Z∞Ú (25 %NOT-NUMBER-ERROR)
+NIL
+()
+- :D7
+(IL:L (0 ARGS))  4  e Hdjôøo   	   kîjka’kalJHÛëIIJa’πJk‘Z∞Ú (17 ERROR)
+NIL
+( 13 "- requires at least one argument")
+* :D7
+(IL:L (0 ARGS))  -  e HjëkkalId3£	   øJHÛëIIJa÷πJk‘Z∞Ú (25 %NOT-NUMBER-ERROR)
+NIL
+()
+/ :D7
+(IL:L (0 ARGS))  9  e Hdjôøo   	   kñka	   kalJHÛëIIJa   πJk‘Z∞Ô (48 %/ 27 %RECIPROCOL 17 ERROR)
+NIL
+( 13 "/ requires at least one argument")
+1+ :D7
+(IL:L (0 NUMBER))     @k‘ NIL
+NIL
+()
+1- :D7
+(IL:L (0 NUMBER))     @k’ NIL
+NIL
+()
+%RECIPROCOL :D7
+(IL:L (0 NUMBER))     @ño   @Îk@    (16 %/)
+NIL
+( 7 1.0)
+|optimize-+| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  $  @1HµjπHZµIªg   IKhπJ∞Ï NIL
+(24 %+)
+()
+(IL:PUTPROP (QUOTE +) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-+|) (GET (QUOTE +) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize--| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  1  @QHπHZ™g   jIhIªJ\µKΩg   KMhªL∞Ï NIL
+(36 %- 15 %-)
+()
+(IL:PUTPROP (QUOTE -) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize--|) (GET (QUOTE -) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-*| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  $  @1HµkπHZµIªg   IKhπJ∞Ï NIL
+(24 %*)
+()
+(IL:PUTPROP (QUOTE *) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-*|) (GET (QUOTE *) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-/| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  /  @QHπHZ®g   IhIªJ\µKΩg   KMhªL∞Ï NIL
+(34 %/ 15 %RECIPROCOL)
+()
+(IL:PUTPROP (QUOTE /) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-/|) (GET (QUOTE /) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-1+| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @ g   Ho    NIL
+(9 +)
+( 14 (1))
+(IL:PUTPROP (QUOTE 1+) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-1+|) (GET (QUOTE 1+) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-1-| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @ g   Ho    NIL
+(9 -)
+( 14 (1))
+(IL:PUTPROP (QUOTE 1-) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-1-|) (GET (QUOTE 1-) (
+QUOTE COMPILER:OPTIMIZER-LIST))))
+(IL:PUTPROPS + IL:DMACRO (IL:ARGS (IL:|if| (IL:GREATERP (IL:LENGTH IL:ARGS) 1) IL:|then| (IL:BQUOTE (
+IL:PLUS (IL:\\\,@ IL:ARGS))) IL:|else| (QUOTE IL:IGNOREMACRO))))
+(IL:PUTPROPS * IL:DMACRO (IL:ARGS (IL:|if| (IL:GREATERP (IL:LENGTH IL:ARGS) 1) IL:|then| (IL:BQUOTE (
+IL:TIMES (IL:\\\,@ IL:ARGS))) IL:|else| (QUOTE IL:IGNOREMACRO))))
+(IL:MOVD (QUOTE +) (QUOTE IL:PLUS))
+(IL:MOVD (QUOTE *) (QUOTE IL:TIMES))
+%GCD :D7
+(IL:L (1 Y 0 X))  ê  j@Ûìj@’Ä@b jAÛìjA’ÄAb@jêAdjë@k£@këkj @kÂk¶AkÂk≤H@dkÂk≤øjA’∞@mˇÁb øAmˇÁbøHk‘∏∞ŒmˇÁYdjîø@HÁkÂk¶ImˇÁY∞ˆIjÛìIb ÜjI’bø@A’∞Ÿ NIL
+NIL
+()
+%LCM :D7
+(IL:L (1 Y 0 X))  D  @këAAkë@@j£Ajëjj@Ûìj@’Ä@b jAÛìjA’ÄAb@A    Hkì@A÷@H€A÷ (49 %GCD)
+NIL
+()
+GCD :D7
+(IL:L (0 ARGS))  D  e HdjëjkûkajIÛìjI’Ikala   lJHÛ§IdkëIJa   πJk‘Z∞Î (59 %GCD 37 %GCD)
+NIL
+()
+LCM :D7
+(IL:L (0 ARGS))  L  e Hdjôøo   	   kûkajIÛìjI’Ikala   lJHÛ§IdjëIJa   πJk‘Z∞Î (67 %LCM 45 %LCM 17 ERROR)
+NIL
+( 13 "lcm requires at least one argument")
+IL:|optimize-MINUS| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @ g   jHh NIL
+(9 -)
+()
+(IL:PUTPROP (QUOTE IL:MINUS) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-MINUS|) (GET 
+(QUOTE IL:MINUS) (QUOTE COMPILER:OPTIMIZER-LIST))))
+IL:|optimize-PLUS| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  $  @1HµjπHZµIªg   IKhπJ∞Ï NIL
+(24 IL:PLUS2)
+()
+(IL:PUTPROP (QUOTE IL:PLUS) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-PLUS|) (GET (
+QUOTE IL:PLUS) (QUOTE COMPILER:OPTIMIZER-LIST))))
+IL:|optimize-IPLUS| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  4  @1HµjπH≤HZµIªg   IKhπJ∞Ïg   Io    NIL
+(42 IL:IPLUS2 28 IL:IPLUS2)
+( 47 (0))
+(IL:PUTPROP (QUOTE IL:IPLUS) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-IPLUS|) (GET 
+(QUOTE IL:IPLUS) (QUOTE COMPILER:OPTIMIZER-LIST))))
+IL:|optimize-FPLUS| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  $  @1HµjπHZµIªg   IKhπJ∞Ï NIL
+(24 IL:FPLUS2)
+()
+(IL:PUTPROP (QUOTE IL:FPLUS) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-FPLUS|) (GET 
+(QUOTE IL:FPLUS) (QUOTE COMPILER:OPTIMIZER-LIST))))
+IL:|optimize-TIMES| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  $  @1HµjπHZµIªg   IKhπJ∞Ï NIL
+(24 IL:TIMES2)
+()
+(IL:PUTPROP (QUOTE IL:TIMES) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-TIMES|) (GET 
+(QUOTE IL:TIMES) (QUOTE COMPILER:OPTIMIZER-LIST))))
+IL:|optimize-ITIMES| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  $  @1HµjπHZµIªg   IKhπJ∞Ï NIL
+(24 IL:ITIMES2)
+()
+(IL:PUTPROP (QUOTE IL:ITIMES) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-ITIMES|) (
+GET (QUOTE IL:ITIMES) (QUOTE COMPILER:OPTIMIZER-LIST))))
+IL:|optimize-FTIMES| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  '  @1Hµo   πHZµIªg   IKhπJ∞Ï NIL
+(27 IL:FTIMES2)
+( 11 1.0)
+(IL:PUTPROP (QUOTE IL:FTIMES) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-FTIMES|) (
+GET (QUOTE IL:FTIMES) (QUOTE COMPILER:OPTIMIZER-LIST))))
+IL:|optimize-RSH| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @!HπH∫g   Ig   Jhh NIL
+(20 IL:IMINUS 15 IL:LSH)
+()
+(IL:PUTPROP (QUOTE IL:RSH) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-RSH|) (GET (
+QUOTE IL:RSH) (QUOTE COMPILER:OPTIMIZER-LIST))))
+(IL:PUTPROPS IL:PLUS2 IL:DOPVAL (2 IL:PLUS2))
+(IL:PUTPROPS IL:IPLUS2 IL:DOPVAL (2 IL:IPLUS2))
+(IL:PUTPROPS IL:FPLUS2 IL:DOPVAL (2 IL:FPLUS2))
+(IL:PUTPROPS IL:TIMES2 IL:DOPVAL (2 IL:TIMES2))
+(IL:PUTPROPS IL:ITIMES2 IL:DOPVAL (2 IL:ITIMES2))
+(IL:PUTPROPS IL:FTIMES2 IL:DOPVAL (2 IL:FTIMES2))
+ISQRT :D7
+(IL:L (0 INTEGER))  i  @3 îj@Û≤&g   g   o   g   @g   @g   o   
+	   ø@	   1kHk’mˇÁÁYdHkÂkímˇÄjÁ‘∫IJ‘mˇÁªJk’IÛ°IKdd÷@Û≥ÍøKY∞Á (49 INTEGER-LENGTH 43 ERROR)
+(34 :MESSAGE 29 :VALUE 24 :NAME 16 :EXPECTED-TYPE 12 XCL:TYPE-MISMATCH)
+( 38 "a nonnegative integer" 20 (INTEGER 0))
+ABS :D7
+(IL:L (0 NUMBER))  c  @ Hd3 öøj@Ûìj@’@√   ûo   @Û≤Ûo   @’Hd√   ≤#øj@   … Û≤ÿj@   … ’@   …   √   ï@	   @	    (96 %NOT-NUMBER-ERROR 90 %COMPLEX-ABS 79 %MAKE-RATIO)
+(84 COMPLEX 73 RATIO 65 RATIO 54 RATIO 45 RATIO 23 IL:FLOATP)
+( 36 0.0 28 0.0)
+|expand-%ABS| :D7
+(IL:L (1 SI::$$MACRO-ENVIRONMENT 0 SI::$$MACRO-FORM))    @ o   Hh NIL
+NIL
+( 9 (IL:OPENLAMBDA (X) (IF (< X 0) (- 0 X) X)))
+(IL:SETF-MACRO-FUNCTION (QUOTE %ABS) (QUOTE |expand-%ABS|))
+SIGNUM :D7
+(IL:L (0 NUMBER))  K  j@ˇë@@HY√   £I3 ò@jÛëkmˇHd√   ûø@jÛîo   o   √   ö@d	      @	    (72 %NOT-NUMBER-ERROR 66 %/ 62 ABS)
+(55 COMPLEX 35 IL:FLOATP 15 RATIO)
+( 50 -1.0 45 1.0)
+|expand-%SIGNUM| :D7
+(IL:L (1 SI::$$MACRO-ENVIRONMENT 0 SI::$$MACRO-FORM))    @ o   Hh NIL
+NIL
+( 9 (IL:OPENLAMBDA (X) (COND ((EQ X 0) 0) ((PLUSP X) 1) (T -1))))
+(IL:SETF-MACRO-FUNCTION (QUOTE %SIGNUM) (QUOTE |expand-%SIGNUM|))
+XCL::STRUNCATE :D7
+(IL:L (1 DIVISOR 0 NUMBER))  i  Aµ3@d√   ñø@	   d√   ≤ø@   … @   …€3 ë@@	    Hd3 îø@A€√   ö@ÌAÌÏÌH√   ö@A   	   A	    (102 %NOT-NONCOMPLEX-NUMBER-ERROR 96 XCL::STRUNCATE 92 %/ 50 %NOT-NONCOMPLEX-NUMBER-ERROR 15 IL:\\FIXP.FROM.FLOATP)
+(85 RATIO 68 IL:FLOATP 36 RATIO 29 RATIO 21 RATIO 8 IL:FLOATP)
+()
+XCL::SFLOOR :D7
+(IL:L (1 DIVISOR 0 NUMBER))  D  A≥@	    H@ˇëHj@Û≤˚Hk’@A    @A   jˇëHjd@ÛóAÛ≥˜Hk’AÛ≤ÔHk’ (40 REM 31 XCL::STRUNCATE 7 XCL::STRUNCATE)
+NIL
+()
+XCL::SCEILING :D7
+(IL:L (1 DIVISOR 0 NUMBER))  ?  A≥@	    H@ˇëHj@Û≥˚Hk‘@A    @A   jˇØjd@ÛñAÛóHk‘AÛ≤˙H (40 REM 31 XCL::STRUNCATE 7 XCL::STRUNCATE)
+NIL
+()
+XCL::SROUND :D7
+(IL:L (1 DIVISOR 0 NUMBER))  %   A•@	   @µAó@AÎ	   @A   	    (34 IL:FIXR 30 %/ 23 IL:FIXR 6 IL:FIXR)
+NIL
+()
+XCL::|optimize-STRUNCATE| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  "  @!HπHdêZ3 ög   IJhg    NIL
+(31 COMPILER:PASS 20 IL:IQUOTIENT)
+()
+(IL:PUTPROP (QUOTE XCL::STRUNCATE) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE 
+XCL::|optimize-STRUNCATE|) (GET (QUOTE XCL::STRUNCATE) (QUOTE COMPILER:OPTIMIZER-LIST))))
+XCL::|optimize-SROUND| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @!HπHZëJ®g   Ihg    NIL
+(26 COMPILER:PASS 17 IL:FIXR)
+()
+(IL:PUTPROP (QUOTE XCL::SROUND) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE XCL::|optimize-SROUND|)
+ (GET (QUOTE XCL::SROUND) (QUOTE COMPILER:OPTIMIZER-LIST))))
+TRUNCATE :D7
+(IL:L (1 DIVISOR 0 NUMBER))  #  A•@	   Ö@A   A¢@HÉ@AH÷’πHI$ (13 XCL::STRUNCATE 6 XCL::STRUNCATE)
+NIL
+()
+FLOOR :D7
+(IL:L (1 DIVISOR 0 NUMBER))  #  A•@	   Ö@A   A¢@HÉ@AH÷’πHI$ (13 XCL::SFLOOR 6 XCL::SFLOOR)
+NIL
+()
+CEILING :D7
+(IL:L (1 DIVISOR 0 NUMBER))  #  A•@	   Ö@A   A¢@HÉ@AH÷’πHI$ (13 XCL::SCEILING 6 XCL::SCEILING)
+NIL
+()
+ROUND :D7
+(IL:L (1 DIVISOR 0 NUMBER))  #  A•@	   Ö@A   A¢@HÉ@AH÷’πHI$ (13 XCL::SROUND 6 IL:FIXR)
+NIL
+()
+%INTEGER-COERCE-OPTIMIZER :D7
+(IL:L (4 FLOAT-RESULT 3 CONTEXT 2 DIVISOR 1 NUMBER 0 SINGLE-VALUE-FN))  *  C   …k≤@ABdëh Dòg   HhHg    NIL
+(39 COMPILER:PASS 28 FLOAT 4 COMPILER:CONTEXT)
+()
+|optimize-TRUNCATE| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @1HπHdê∫Bªg   IJK    (26 %INTEGER-COERCE-OPTIMIZER)
+(19 XCL::STRUNCATE)
+()
+(IL:PUTPROP (QUOTE TRUNCATE) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-TRUNCATE|) (GET 
+(QUOTE TRUNCATE) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-FLOOR| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @1HπHdê∫Bªg   IJK    (26 %INTEGER-COERCE-OPTIMIZER)
+(19 XCL::SFLOOR)
+()
+(IL:PUTPROP (QUOTE FLOOR) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-FLOOR|) (GET (QUOTE
+ FLOOR) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-CEILING| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @1HπHdê∫Bªg   IJK    (26 %INTEGER-COERCE-OPTIMIZER)
+(19 XCL::SCEILING)
+()
+(IL:PUTPROP (QUOTE CEILING) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-CEILING|) (GET (
+QUOTE CEILING) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-ROUND| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @1HπHdê∫Bªg   IJK    (26 %INTEGER-COERCE-OPTIMIZER)
+(19 XCL::SROUND)
+()
+(IL:PUTPROP (QUOTE ROUND) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-ROUND|) (GET (QUOTE
+ ROUND) (QUOTE COMPILER:OPTIMIZER-LIST))))
+FTRUNCATE :D7
+(IL:L (1 DIVISOR 0 NUMBER))  '  A•@	   Ö@A   A¢@HÉ@AH÷’πH   I$ (13 XCL::STRUNCATE 6 XCL::STRUNCATE)
+(32 IL:FLOATP)
+()
+FFLOOR :D7
+(IL:L (1 DIVISOR 0 NUMBER))  '  A•@	   Ö@A   A¢@HÉ@AH÷’πH   I$ (13 XCL::SFLOOR 6 XCL::SFLOOR)
+(32 IL:FLOATP)
+()
+FCEILING :D7
+(IL:L (1 DIVISOR 0 NUMBER))  '  A•@	   Ö@A   A¢@HÉ@AH÷’πH   I$ (13 XCL::SCEILING 6 XCL::SCEILING)
+(32 IL:FLOATP)
+()
+FROUND :D7
+(IL:L (1 DIVISOR 0 NUMBER))  '  A•@	   Ö@A   A¢@HÉ@AH÷’πH   I$ (13 XCL::SROUND 6 IL:FIXR)
+(32 IL:FLOATP)
+()
+|optimize-FTRUNCATE| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @1HπHdê∫Bªg   IJKi
+    (28 %INTEGER-COERCE-OPTIMIZER)
+(19 XCL::STRUNCATE)
+()
+(IL:PUTPROP (QUOTE FTRUNCATE) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-FTRUNCATE|) (
+GET (QUOTE FTRUNCATE) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-FFLOOR| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @1HπHdê∫Bªg   IJKi
+    (28 %INTEGER-COERCE-OPTIMIZER)
+(19 XCL::SFLOOR)
+()
+(IL:PUTPROP (QUOTE FFLOOR) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-FFLOOR|) (GET (
+QUOTE FFLOOR) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-FCEILING| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @1HπHdê∫Bªg   IJKi
+    (28 %INTEGER-COERCE-OPTIMIZER)
+(19 XCL::SCEILING)
+()
+(IL:PUTPROP (QUOTE FCEILING) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-FCEILING|) (GET 
+(QUOTE FCEILING) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-FROUND| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @1HπHdê∫Bªg   IJKi
+    (28 %INTEGER-COERCE-OPTIMIZER)
+(19 XCL::SROUND)
+()
+(IL:PUTPROP (QUOTE FROUND) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-FROUND|) (GET (
+QUOTE FROUND) (QUOTE COMPILER:OPTIMIZER-LIST))))
+MOD :D7
+(IL:L (1 DIVISOR 0 NUMBER))  j  @µA≤C@ÌAÌhHdIÏÌ   IÌ ÷ÌÏZddhÏ≤øhIÏ¥HhÄHÏôJÌ IÌ ‘ÌÄJÌ @A    jHˇÆjAÛí@jÅj@ÛìHA‘H (80 REM)
+(30 IL:FLOATP)
+()
+REM :D7
+(IL:L (1 DIVISOR 0 NUMBER))  B  @d3 ôøA3 ì@A‹@§A≤!@ÌAÌHdIÏÌ   IÌ ÷ÌÏÌ @A@A   ÷’ (61 XCL::STRUNCATE)
+(42 IL:FLOATP)
+()
+%LOGICAL-OPTIMIZER :D7
+(IL:L (4 MORE-INTEGERS 3 SECOND-INTEGER 2 FIRST-INTEGER 1 IDENTITY 0 BINARY-LOGICAL-FN))  1  B°AC°BDß@BCh@BCh!DYµH∫@HJh∏I∞Ô NIL
+NIL
+()
+|optimize-LOGXOR| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE) IL:F 5 COMPILER::*NEW-COMPILER-IS-EXPANDING*)  ( @AHπHZªJºUüLùg   jIKL
+   g    (32 %LOGICAL-OPTIMIZER)
+(37 COMPILER:PASS 23 LOGXOR)
+()
+(IL:PUTPROP (QUOTE LOGXOR) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGXOR|) (GET (
+QUOTE LOGXOR) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-LOGAND| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE) IL:F 5 COMPILER::*NEW-COMPILER-IS-EXPANDING*)  * @AHπHZªJºU≤Lûg   mˇIKL
+   g    (34 %LOGICAL-OPTIMIZER)
+(39 COMPILER:PASS 24 LOGAND)
+()
+(IL:PUTPROP (QUOTE LOGAND) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGAND|) (GET (
+QUOTE LOGAND) (QUOTE COMPILER:OPTIMIZER-LIST))))
+%LOGIOR :D7
+(IL:L (1 Y 0 X))     @A‰ NIL
+NIL
+()
+|expand-%LOGEQV| :D7
+(IL:L (1 SI::$$MACRO-ENVIRONMENT 0 SI::$$MACRO-FORM))    @!HπH∫g   g   IJhh NIL
+(19 LOGXOR 15 LOGNOT)
+()
+(IL:SETF-MACRO-FUNCTION (QUOTE %LOGEQV) (QUOTE |expand-%LOGEQV|))
+(IL:PUTPROPS %LOGIOR IL:DOPVAL (2 IL:LOGOR2))
+(IL:PUTPROPS %LOGIOR IL:DMACRO (= . IL:LOGOR))
+LOGIOR :D7
+(IL:L (0 ARGS))  ;  e Hdjëjdkìøkalñkala‰kala‰lJHÛëIIJa‰πJk‘Z∞Ú NIL
+NIL
+()
+LOGEQV :D7
+(IL:L (0 ARGS))  E  e HdjímˇdkìøkalôkalamˇÊÊkalamˇÊÊlJHÛëIIJamˇÊÊπJk‘Z∞Ô NIL
+NIL
+()
+|optimize-LOGIOR| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @AHπHZªJºg   jIKL
+    (28 %LOGICAL-OPTIMIZER)
+(19 %LOGIOR)
+()
+(IL:PUTPROP (QUOTE LOGIOR) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGIOR|) (GET (
+QUOTE LOGIOR) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-LOGEQV| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))     @AHπHZªJºg   mˇIKL
+    (29 %LOGICAL-OPTIMIZER)
+(19 %LOGEQV)
+()
+(IL:PUTPROP (QUOTE LOGEQV) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGEQV|) (GET (
+QUOTE LOGEQV) (QUOTE COMPILER:OPTIMIZER-LIST))))
+LOGNAND :D7
+(IL:L (1 INTEGER2 0 INTEGER1))     @AÂmˇÊ NIL
+NIL
+()
+LOGNOR :D7
+(IL:L (1 INTEGER2 0 INTEGER1))     @A‰mˇÊ NIL
+NIL
+()
+LOGANDC1 :D7
+(IL:L (1 INTEGER2 0 INTEGER1))     @mˇÊAÂ NIL
+NIL
+()
+LOGANDC2 :D7
+(IL:L (1 INTEGER2 0 INTEGER1))     @AmˇÊÂ NIL
+NIL
+()
+LOGORC1 :D7
+(IL:L (1 INTEGER2 0 INTEGER1))     @mˇÊA‰ NIL
+NIL
+()
+LOGORC2 :D7
+(IL:L (1 INTEGER2 0 INTEGER1))     @AmˇÊ‰ NIL
+NIL
+()
+|optimize-LOGNAND| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @!HπH∫g   g   IJhh NIL
+(19 LOGAND 15 LOGNOT)
+()
+(IL:PUTPROP (QUOTE LOGNAND) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGNAND|) (GET (
+QUOTE LOGNAND) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-LOGNOR| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @!HπH∫g   g   IJhh NIL
+(19 LOGIOR 15 LOGNOT)
+()
+(IL:PUTPROP (QUOTE LOGNOR) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGNOR|) (GET (
+QUOTE LOGNOR) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-LOGANDC1| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @!HπH∫g   g   IhJh NIL
+(19 LOGNOT 15 LOGAND)
+()
+(IL:PUTPROP (QUOTE LOGANDC1) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGANDC1|) (GET 
+(QUOTE LOGANDC1) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-LOGANDC2| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @!HπH∫g   Ig   Jhh NIL
+(20 LOGNOT 15 LOGAND)
+()
+(IL:PUTPROP (QUOTE LOGANDC2) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGANDC2|) (GET 
+(QUOTE LOGANDC2) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-LOGORC1| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @!HπH∫g   g   IhJh NIL
+(19 LOGNOT 15 LOGIOR)
+()
+(IL:PUTPROP (QUOTE LOGORC1) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGORC1|) (GET (
+QUOTE LOGORC1) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-LOGORC2| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))    @!HπH∫g   Ig   Jhh NIL
+(20 LOGNOT 15 LOGIOR)
+()
+(IL:PUTPROP (QUOTE LOGORC2) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGORC2|) (GET (
+QUOTE LOGORC2) (QUOTE COMPILER:OPTIMIZER-LIST))))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-CLR) NIL)
+(IL:SETQ BOOLE-CLR 0)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-CLR)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-SET) NIL)
+(IL:SETQ BOOLE-SET 1)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-SET)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-1) NIL)
+(IL:SETQ BOOLE-1 2)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-1)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-2) NIL)
+(IL:SETQ BOOLE-2 3)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-2)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-C1) NIL)
+(IL:SETQ BOOLE-C1 4)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-C1)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-C2) NIL)
+(IL:SETQ BOOLE-C2 5)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-C2)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-AND) NIL)
+(IL:SETQ BOOLE-AND 6)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-AND)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-IOR) NIL)
+(IL:SETQ BOOLE-IOR 7)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-IOR)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-XOR) NIL)
+(IL:SETQ BOOLE-XOR 8)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-XOR)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-EQV) NIL)
+(IL:SETQ BOOLE-EQV 9)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-EQV)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-NAND) NIL)
+(IL:SETQ BOOLE-NAND 10)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-NAND)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-NOR) NIL)
+(IL:SETQ BOOLE-NOR 11)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-NOR)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-ANDC1) NIL)
+(IL:SETQ BOOLE-ANDC1 12)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-ANDC1)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-ANDC2) NIL)
+(IL:SETQ BOOLE-ANDC2 13)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-ANDC2)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-ORC1) NIL)
+(IL:SETQ BOOLE-ORC1 14)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-ORC1)))
+(XCL::SET-CONSTANTP (QUOTE BOOLE-ORC2) NIL)
+(IL:SETQ BOOLE-ORC2 15)
+(PROCLAIM (QUOTE (SI::CONSTANT BOOLE-ORC2)))
+BOOLE :D7
+(IL:L (2 INTEGER2 1 INTEGER1 0 OP))  Æ   @djëjdkímˇlëA@dlëBlîAmˇÊ@dlïøBmˇÊlìABÂ@dlîøAB‰lìABÊ@dl	óøABmˇÊÊlñABÂmˇÊ@dlóøAB‰mˇÊlñAmˇÊBÂ@dl
+óøABmˇÊÂlñAmˇÊB‰@lñABmˇÊ‰o   @    (171 ERROR)
+NIL
+( 166 "Not a valid op: ~s")
+LOGTEST :D7
+(IL:L (1 INTEGER2 0 INTEGER1))  	   @AÂjh NIL
+NIL
+()
+LOGBITP :D7
+(IL:L (1 INTEGER 0 INDEX))     Aj@’ÁkÂk NIL
+NIL
+()
+|definline-LOGBITP| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  
+  @ o   H NIL
+NIL
+( 8 (LAMBDA (INDEX INTEGER) (BLOCK LOGBITP (EQ 1 (LOGAND 1 (ASH INTEGER (- INDEX)))))))
+(IL:PUTPROP (QUOTE LOGBITP) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |definline-LOGBITP|) (GET (
+QUOTE LOGBITP) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-LOGTEST| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  (  @!HπH∫g   g   jg   IJhhh NIL
+(24 LOGAND 19 EQ 15 NOT)
+()
+(IL:PUTPROP (QUOTE LOGTEST) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LOGTEST|) (GET (
+QUOTE LOGTEST) (QUOTE COMPILER:OPTIMIZER-LIST))))
+ASH :D7
+(IL:L (1 COUNT 0 INTEGER))     @AÁ NIL
+NIL
+()
+(IL:PUTPROPS ASH IL:DOPVAL (2 IL:LSH))
+(IL:PUTPROPS ASH IL:DMACRO (= . IL:LSH))
+LOGCOUNT :D7
+(IL:L (0 INTEGER))     j@Ûñ@mˇÊb Ä@√   •@	   @	    (27 %BIGNUM-LOGCOUNT 21 %LOGCOUNT)
+(15 BIGNUM)
+()
+%LOGCOUNT :D7
+(IL:L (0 POSITIVE-INTEGER))    j @jëHHk‘∏@dk’Âb ∞ NIL
+NIL
+()
+%BIGNUM-LOGCOUNT :D7
+(IL:L (0 BIGNUM))     @   … j"HZµIªIK	   ‘πJ∞Ô (24 %LOGCOUNT)
+(4 BIGNUM)
+()
+INTEGER-LENGTH :D7
+(IL:L (0 INTEGER))  ß   j@Ûñmˇ@’b øo   @Û¢± àn @Û≤=l@Û≤l@Ûôl@Ûë@ll@Ûílll@@Ûöl @ÛílllÄ@Ûílln @Û≤ n @Ûõn @Ûíl	ln @Ûílln@ @Ûõn  @Ûíl
+lnÄ @Ûílll@mÁ	   ‘ (163 INTEGER-LENGTH)
+NIL
+( 14 65536)
+%LLSH8 :D7
+(IL:L (0 X))     @· NIL
+NIL
+()
+%LLSH1 :D7
+(IL:L (0 X))     @‡ NIL
+NIL
+()
+%LRSH8 :D7
+(IL:L (0 X))     @„ NIL
+NIL
+()
+%LRSH1 :D7
+(IL:L (0 X))     @‚ NIL
+NIL
+()
+(IL:PUTPROPS %LLSH8 IL:DOPVAL (1 IL:LLSH8))
+(IL:PUTPROPS %LLSH1 IL:DOPVAL (1 IL:LLSH1))
+(IL:PUTPROPS %LRSH8 IL:DOPVAL (1 IL:LRSH8))
+(IL:PUTPROPS %LRSH1 IL:DOPVAL (1 IL:LRSH1))
+IL:|optimize-LLSH| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE) IL:F 6 COMPILER::*NEW-COMPILER-IS-EXPANDING*)  X @QHπH∫V≤J	   ¥J	   [3 µg   ºjLÛ≥˜IΩlKÛØg   MhΩKl’ª∞ÌKjÛûg   MhΩKk’[∞M (26 EVAL 19 CONSTANTP)
+(73 %LLSH1 53 %LLSH8 35 COMPILER:PASS)
+()
+(IL:PUTPROP (QUOTE IL:LLSH) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-LLSH|) (GET (
+QUOTE IL:LLSH) (QUOTE COMPILER:OPTIMIZER-LIST))))
+IL:|optimize-LRSH| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE) IL:F 6 COMPILER::*NEW-COMPILER-IS-EXPANDING*)  X @QHπH∫V≤J	   ¥J	   [3 µg   ºjLÛ≥˜IΩlKÛØg   MhΩKl’ª∞ÌKjÛûg   MhΩKk’[∞M (26 EVAL 19 CONSTANTP)
+(73 %LRSH1 53 %LRSH8 35 COMPILER:PASS)
+()
+(IL:PUTPROP (QUOTE IL:LRSH) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE IL:|optimize-LRSH|) (GET (
+QUOTE IL:LRSH) (QUOTE COMPILER:OPTIMIZER-LIST))))
+BYTE :D7
+(IL:L (1 POSITION 0 SIZE))  +   j@Û£jAÛöo   @A   n @Ûún AÛñ@lÁA‘@A (17 ERROR)
+NIL
+( 11 "Not a valid bytespec: ~s ~s")
+BYTE-SIZE :D7
+(IL:L (0 BYTESPEC))     @dìm¯Á NIL
+NIL
+()
+|definline-BYTE-SIZE| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  
+  @ o   H NIL
+NIL
+( 8 (LAMBDA (BYTESPEC) (BLOCK BYTE-SIZE (IF (TYPEP BYTESPEC (QUOTE FIXNUM)) (ASH BYTESPEC -8) (CAR BYTESPEC)))))
+(IL:PUTPROP (QUOTE BYTE-SIZE) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |definline-BYTE-SIZE|) (
+GET (QUOTE BYTE-SIZE) (QUOTE COMPILER:OPTIMIZER-LIST))))
+BYTE-POSITION :D7
+(IL:L (0 BYTESPEC))     @dìlˇÂ NIL
+NIL
+()
+|definline-BYTE-POSITION| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  
+  @ o   H NIL
+NIL
+( 8 (LAMBDA (BYTESPEC) (BLOCK BYTE-POSITION (IF (TYPEP BYTESPEC (QUOTE FIXNUM)) (LOGAND BYTESPEC 255) (CDR BYTESPEC)))))
+(IL:PUTPROP (QUOTE BYTE-POSITION) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE 
+|definline-BYTE-POSITION|) (GET (QUOTE BYTE-POSITION) (QUOTE COMPILER:OPTIMIZER-LIST))))
+OPTIMIZE-BYTE :D7
+(IL:L (1 POSITION 0 SIZE))  B  @H¥HπjIÛh¥IlˇÛh≤#AH¥HπjIÛh¥IlˇÛhñ@lÁA‘g    NIL
+(63 COMPILER:PASS)
+()
+(IL:PUTPROPS BYTE IL:DMACRO (IL:ARGS (OPTIMIZE-BYTE (CAR IL:ARGS) (CADR IL:ARGS))))
+LDB :D7
+(IL:L (1 INTEGER 0 BYTESPEC))  $  @dìm¯ÁÄ@dìlˇÂÄAjI’ÁkHÁk’Â NIL
+NIL
+()
+DPB :D7
+(IL:L (2 INTEGER 1 BYTESPEC 0 NEWBYTE))  /  Adìm¯ÁÄAdìlˇÂÄ@kHÁk’ÂIÁBkHÁk’IÁmˇÊÂ‰ NIL
+NIL
+()
+MASK-FIELD :D7
+(IL:L (1 INTEGER 0 BYTESPEC))  "  @dìm¯ÁÄ@dìlˇÂÄAkHÁk’IÁÂ NIL
+NIL
+()
+DEPOSIT-FIELD :D7
+(IL:L (2 INTEGER 1 BYTESPEC 0 NEWBYTE))  ,  Adìm¯ÁÄ!AdìlˇÂÄπkHÁk’IÁ∫@JÂBJmˇÊÂ‰ NIL
+NIL
+()
+%CONSTANT-BYTESPEC-P :D7
+(IL:L (0 BYTESPEC))  (   @d≥"¥@g   ¥@3 ¥@3 ¥@	    (37 EVAL)
+(14 BYTE)
+()
+|optimize-LDB| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  \  @QHπH∫I	   [µg   dìm¯ÁÄKdìlˇÂÄΩºjMˇûg   JkLÁk’hg   g   JjM’hkLÁk’h (16 %CONSTANT-BYTESPEC-P)
+(72 ASH 68 LOGAND 53 LOGAND 23 COMPILER:PASS)
+()
+(IL:PUTPROP (QUOTE LDB) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LDB|) (GET (QUOTE LDB
+) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-DPB| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  ô  @qHπHZªJºK	   ]µg   dìm¯ÁÄMdìlˇÂÄ_øæjOˇ≤*g   g   IkNÁk’hg   LkNÁk’mˇÊhhg   g   g   IkNÁk’hOhg   LkNÁk’OÁmˇÊhh (21 %CONSTANT-BYTESPEC-P)
+(130 LOGAND 110 LOGAND 106 ASH 102 LOGIOR 80 LOGAND 66 LOGAND 62 LOGIOR 28 COMPILER:PASS)
+()
+(IL:PUTPROP (QUOTE DPB) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-DPB|) (GET (QUOTE DPB
+) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-MASK-FIELD| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  @  @QHπH∫I	   [µg   dìm¯ÁÄKdìlˇÂÄΩºg   JkLÁk’MÁh (16 %CONSTANT-BYTESPEC-P)
+(49 LOGAND 23 COMPILER:PASS)
+()
+(IL:PUTPROP (QUOTE MASK-FIELD) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-MASK-FIELD|) (
+GET (QUOTE MASK-FIELD) (QUOTE COMPILER:OPTIMIZER-LIST))))
+|optimize-DEPOSIT-FIELD| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  c	  @ÅHπHZªJºK	   ]µg   dìm¯ÁÄæMdìlˇÂÄ_økNÁk’OÁ_øg   g   IOhg   LOmˇÊhh (21 %CONSTANT-BYTESPEC-P)
+(82 LOGAND 71 LOGAND 67 LOGIOR 28 COMPILER:PASS)
+()
+(IL:PUTPROP (QUOTE DEPOSIT-FIELD) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE 
+|optimize-DEPOSIT-FIELD|) (GET (QUOTE DEPOSIT-FIELD) (QUOTE COMPILER:OPTIMIZER-LIST))))
+LDB-TEST :D7
+(IL:L (1 INTEGER 0 BYTESPEC))     @A   jh (5 LDB)
+NIL
+()
+|optimize-LDB-TEST| :D7
+(IL:L (2 IL:$$CTX 1 IL:$$ENV 0 IL:$$WHOLE))  (  @!HπH∫g   g   jg   IJhhh NIL
+(24 LDB 19 EQ 15 NOT)
+()
+(IL:PUTPROP (QUOTE LDB-TEST) (QUOTE COMPILER:OPTIMIZER-LIST) (ADJOIN (QUOTE |optimize-LDB-TEST|) (GET 
+(QUOTE LDB-TEST) (QUOTE COMPILER:OPTIMIZER-LIST))))
+(IL:PUTPROPS IL:CMLARITH IL:MAKEFILE-ENVIRONMENT (:READTABLE "XCL" :PACKAGE "LISP"))
+(IL:PUTPROPS IL:CMLARITH IL:FILETYPE COMPILE-FILE)
+(IL:PUTPROPS IL:CMLARITH IL:COPYRIGHT ("Venue & Xerox Corporation" 1985 1986 1987 1988 1989 1990))
+NIL
