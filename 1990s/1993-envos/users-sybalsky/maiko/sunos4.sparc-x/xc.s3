@@ -1,0 +1,10050 @@
+LL0:
+	.seg	"data"
+	.align	4
+_id:
+	.seg	"data1"
+L12:
+	.ascii	"@(#) xc.c\011"
+	.ascii	"1.33 2/8/93\011(venue & Fuji Xerox)\0"
+	.seg	"data"
+	.word	L12+0x0
+	.align	4
+	.global	_dbgflag
+_dbgflag:
+	.word	0x0
+	.common	_extended_frame,0x4,"data"
+	.seg	"data"
+	.align	4
+	.global	_n_mask_array
+_n_mask_array:
+	.word	0x1
+	.word	0x3
+	.word	0x7
+	.word	0xf
+	.word	0x1f
+	.word	0x3f
+	.word	0x7f
+	.word	0xff
+	.word	0x1ff
+	.word	0x3ff
+	.word	0x7ff
+	.word	0xfff
+	.word	0x1fff
+	.word	0x3fff
+	.word	0x7fff
+	.word	0xffff
+	.seg	"text"
+	.proc 04
+	.global	_dispatch
+_dispatch:
+	!#PROLOGUE# 0
+	sethi	%hi(LF122),%g1
+	add	%g1,%lo(LF122),%g1
+	save	%sp,%g1,%sp
+	!#PROLOGUE# 1
+	set	_MachineState,%o0
+	mov	%o0,%i1
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	ld	[%i1+0x14],%o0
+	lduh	[%o0],%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	ld	[%i1+0x18],%o4
+	mov	%o4,%o5
+	st	%o5,[%i1+0x20]
+	mov	%o5,%o7
+	sub	%o7,%o3,%l0
+	st	%l0,[%i1+0x1c]
+ set L2000037,%i4
+	b	L125
+	nop
+L126:
+	ld	[%i1+0x8],%i3
+	st	%g0,[%i1+0x28]
+	b	L127
+	nop
+L128:
+	add	%i3,0x4,%i3
+	b	L129
+	nop
+L130:
+	add	%i3,0x4,%i3
+	b	L129
+	nop
+L131:
+	add	%i3,0x4,%i3
+	b	L129
+	nop
+L132:
+	st	%g0,[%i1+0x28]
+	add	%i3,0x4,%i3
+	ld	[%i1+0xc],%i2
+	ld	[%i1+0x20],%l1
+	tst	%l1
+	bne	L133
+	nop
+	b	L134
+	nop
+L133:
+	b	L127
+	nop
+L135:
+	st	%g0,[%i1+0x28]
+	ld	[%i1+0xc],%i2
+	ld	[%i1+0x24],%o0
+	st	%o0,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i1+0x20],%o1
+	tst	%o1
+	bne	L136
+	nop
+	b	L134
+	nop
+L136:
+	b	L127
+	nop
+L129:
+	ld	[%i1+0xc],%i2
+	st	%g0,[%i1+0x28]
+	b	L127
+	nop
+L127:
+	ldub	[%i5+-0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x2,%o2
+	sethi	%hi(_UFNTable),%o3
+	ld	[%o3+%lo(_UFNTable)],%o3
+	add	%o3,%o2,%o4
+	mov	%o4,%i0
+	ldub	[%i0+0x3],%o5
+	mov	%o5,%o7
+	st	%o7,[%fp+-0x10]
+	ldub	[%i0+0x2],%l0
+	mov	%l0,%l1
+	add	%l1,0x1,%l2
+	st	%l2,[%fp+-0xc]
+	lduh	[%i0],%l3
+	mov	%l3,%l4
+	st	%l4,[%fp+-0x8]
+	ld	[%fp+-0x8],%l5
+	cmp	%l5,0x14e
+	bne	L137
+	nop
+	.seg	"data1"
+L139:
+	.ascii	"unk ufn\012.\0"
+	.seg	"text"
+	set	L139,%o0
+	call	_printf,1
+	nop
+L137:
+	ld	[%fp+-0x8],%l6
+	set	0xfff0000,%l7
+	andcc	%l6,%l7,%g0
+	be	L2000000
+	nop
+	ld	[%fp+-0x8],%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_Lisp_world),%o3
+	ld	[%o3+%lo(_Lisp_world)],%o3
+	add	%o3,%o2,%o4
+	add	%o4,0x8,%o5
+	b	L2000001
+	nop
+L2000000:
+	ld	[%fp+-0x8],%o7
+	mov	%o7,%l0
+	sll	%l0,2,%l0
+	add	%o7,%l0,%o7
+	mov	%o7,%l1
+	sll	%l1,0x2,%l2
+	sethi	%hi(_Pnamespace),%o5
+	ld	[%o5+%lo(_Pnamespace)],%o5
+	add	%o5,%l2,%o5
+	add	%o5,0x8,%o5
+L2000001:
+	st	%o5,[%fp+-0x4]
+	ldub	[%i0+0x2],%l3
+	mov	%l3,%l4
+	add	%l4,0x2,%l5
+	st	%l5,[%fp+-0x14]
+	b	L140
+	nop
+L140:
+	mov	-0x1,%o0
+	st	%o0,[%fp+-0x20]
+	mov	0,%l6
+	ld	[%fp+-0x4],%l7
+	ldub	[%l7],%o0
+	srl	%o0,0x7,%o1
+	andcc	%o1,0x1,%g0
+	bne	L141
+	nop
+	ld	[%l7],%o2
+	set	0xfffffff,%o3
+	and	%o2,%o3,%o4
+	srl	%o4,0x9,%o5
+	mov	%o5,%o7
+	sll	%o7,0x1,%l0
+	sethi	%hi(_MDStypetbl),%l1
+	ld	[%l1+%lo(_MDStypetbl)],%l1
+	lduh	[%l1+%l0],%l2
+	mov	%l2,%l3
+	and	%l3,0x7ff,%l4
+	cmp	%l4,0xd
+	bne	L142
+	nop
+	ld	[%l7],%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	mov	%o2,%o3
+	sll	%o3,0x1,%o4
+	sethi	%hi(_Lisp_world),%o5
+	ld	[%o5+%lo(_Lisp_world)],%o5
+	add	%o5,%o4,%o7
+	st	%o7,[%fp+-0x1c]
+	ld	[%fp+-0x1c],%l7
+	ld	[%fp+-0x1c],%l0
+	ld	[%l0+0x4],%l1
+	set	0xfffffff,%l2
+	andcc	%l1,%l2,%g0
+	be	L143
+	nop
+	ld	[%fp+-0x1c],%o0
+	ld	[%o0+0x4],%o1
+	set	0xfffffff,%o2
+	and	%o1,%o2,%o3
+	st	%o3,[%fp+-0x20]
+L143:
+	b	L144
+	nop
+L142:
+	sethi	%hi(_Pnamespace),%o0
+	ld	[%o0+%lo(_Pnamespace)],%o0
+	set	0x1408,%o1
+	add	%o0,%o1,%o2
+	mov	%o2,%l7
+	mov	0x1,%l6
+L144:
+L141:
+	ld	[%l7],%o3
+	set	0xfffffff,%o4
+	and	%o3,%o4,%o5
+	mov	%o5,%o7
+	sll	%o7,0x1,%l0
+	sethi	%hi(_Lisp_world),%l1
+	ld	[%l1+%lo(_Lisp_world)],%l1
+	add	%l1,%l0,%l2
+	mov	%l2,%i0
+	ld	[%i1+0x4],%l3
+	sub	%i5,0x1,%l4
+	mov	%l4,%l5
+	ld	[%i1+0x14],%o0
+	mov	%o0,%o1
+	sub	%l5,%o1,%o2
+	ld	[%fp+-0xc],%o3
+	mov	%o3,%o4
+	add	%o2,%o4,%o5
+	sth	%o5,[%l3+-0xa]
+	lduh	[%i0],%o7
+	mov	%o7,%l0
+	sll	%l0,0x1,%l1
+	ld	[%i1+0x20],%l2
+	mov	%l2,%l3
+	sub	%l3,%l1,%l4
+	st	%l4,[%i1+0x1c]
+	mov	%i3,%l5
+	cmp	%l5,%l4
+	ble	L145
+	nop
+	b	L134
+	nop
+L145:
+	b	L147
+	nop
+L148:
+	b	L146
+	nop
+L149:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%o0,%i2
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+	b	L146
+	nop
+L150:
+	b	L146
+	nop
+L151:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%o1
+	mov	%o1,%o2
+	set	0xe0000,%o3
+	or	%o2,%o3,%o4
+	mov	%o4,%i2
+	b	L146
+	nop
+L152:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5+0x1],%o1
+	mov	%o1,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o5,%o2,%o7
+	set	0xe0000,%l0
+	or	%o7,%l0,%l1
+	mov	%l1,%i2
+	b	L146
+	nop
+L153:
+L154:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x2],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x3],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%o0
+	st	%o0,[%fp+-0x24]
+	ld	[%fp+-0x24],%o0
+	set	0xfff0000,%o1
+	andcc	%o0,%o1,%g0
+	be	L155
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%fp+-0x24],%i2
+	b	L156
+	nop
+L155:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%fp+-0x24],%o1
+	set	0xe0000,%o2
+	or	%o1,%o2,%o3
+	mov	%o3,%i2
+L156:
+	b	L146
+	nop
+L157:
+	.seg	"data1"
+L159:
+	.ascii	"Storage error: invalid UFN entry\0"
+	.seg	"text"
+	set	L159,%o0
+	call	_error,1
+	nop
+	b	L146
+	nop
+L147:
+	ld	[%fp+-0x14],%o0
+	cmp	%o0,6
+	bgu	L157
+	sll	%o0,2,%o0
+	set	L2000002,%o1
+	ld	[%o0+%o1],%o0
+	jmp	%o0
+	nop
+	L2000002:  
+	.word	L148
+	.word	L149
+	.word	L150
+	.word	L151
+	.word	L152
+	.word	L154
+	.word	L153
+L146:
+	tst	%l6
+	be	L160
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%fp+-0x8],%i2
+L160:
+	mov	0x1,%o0
+	ld	[%fp+-0x10],%o1
+	sub	%o0,%o1,%o2
+	sub	%o2,%l6,%o3
+	sll	%o3,0x2,%o4
+	add	%i3,%o4,%o5
+	st	%o5,[%i1]
+	mov	%o5,%o7
+	mov	%o7,%l5
+	ld	[%i1+0x4],%l0
+	sethi	%hi(_Stackspace),%l1
+	ld	[%l1+%lo(_Stackspace)],%l1
+	mov	%l1,%l2
+	mov	%l5,%l3
+	sub	%l3,%l2,%l4
+	srl	%l4,0x1,%o0
+	mov	%o0,%l6
+	sth	%o0,[%l0+-0xc]
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldsh	[%i0+0x2],%o2
+	mov	%o2,%o3
+	tst	%o3
+	bl	L161
+	nop
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	ld	[%fp+-0x10],%o2
+	sub	%o2,%o1,%o3
+	mov	%o3,%l5
+L162:
+	tst	%l5
+	bge	L163
+	nop
+	st	%g0,[%i3]
+	add	%i3,0x4,%i3
+	add	%l5,0x1,%l5
+	b	L162
+	nop
+L163:
+	sll	%l5,0x2,%o2
+	sub	%i3,%o2,%i3
+L161:
+	set	-0x80000000,%o3
+	or	%l6,%o3,%o4
+	mov	%o4,%o5
+	st	%o5,[%i3]
+	add	%i3,0x4,%i3
+	sethi	%hi(_Stackspace),%l0
+	ld	[%l0+%lo(_Stackspace)],%l0
+	mov	%l0,%l1
+	ld	[%i1+0x4],%l2
+	mov	%l2,%l3
+	sub	%l3,%l1,%l4
+	srl	%l4,0x1,%o0
+	set	-0x40000000,%o1
+	or	%o0,%o1,%o2
+	st	%o2,[%i3]
+	ld	[%l7],%o3
+	set	0xfffffff,%o4
+	and	%o3,%o4,%o5
+	st	%o5,[%i3+0x4]
+	add	%i3,0x14,%o7
+	mov	%o7,%i3
+	st	%i3,[%i1+0x4]
+	mov	-0x1,%l5
+	ldsh	[%i0+0x4],%o0
+	mov	%o0,%o1
+	mov	%o1,%l6
+	ld	[%fp+-0x20],%o2
+	st	%o2,[%i3]
+	add	%i3,0x4,%i3
+	st	%l5,[%i3]
+	add	%i3,0x4,%i3
+L166:
+	sub	%l6,0x1,%l6
+	tst	%l6
+	bl	L165
+	nop
+	st	%l5,[%i3]
+	add	%i3,0x4,%i3
+	st	%l5,[%i3]
+	add	%i3,0x4,%i3
+L164:
+	b	L166
+	nop
+L165:
+	add	%i3,0x4,%i3
+	lduh	[%i0+0x6],%o2
+	mov	%o2,%o3
+	add	%i0,%o3,%o4
+	add	%o4,0x1,%o5
+	mov	%o5,%i5
+	st	%i0,[%i1+0x14]
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L167
+	nop
+	b	L134
+	nop
+L167:
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L125:
+	b	L170
+	nop
+L171:
+L172:
+	b	L127
+	nop
+L173:
+L174:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0x5
+	bne	L175
+	nop
+	mov	%i2,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	mov	%o3,%i0
+	ldub	[%i0],%o0
+	srl	%o0,0x4,%o1
+	andcc	%o1,0xf,%g0
+	bne	L176
+	nop
+	ld	[%i0],%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	mov	%o2,%o3
+	sll	%o3,0x1,%o4
+	sethi	%hi(_Lisp_world),%o5
+	ld	[%o5+%lo(_Lisp_world)],%o5
+	ld	[%o5+%o4],%o7
+	set	0xfffffff,%l0
+	and	%o7,%l0,%l1
+	mov	%l1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L176:
+	ld	[%i0],%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	mov	%o2,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L175:
+	tst	%i2
+	bne	L177
+	nop
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L177:
+	cmp	%i2,0x4c
+	bne	L178
+	nop
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L178:
+	b	L127
+	nop
+L179:
+L180:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0x5
+	bne	L181
+	nop
+	mov	%i2,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	mov	%o3,%i0
+	ldub	[%i0],%o0
+	srl	%o0,0x4,%o1
+	and	%o1,0xf,%o2
+	mov	%o2,%l7
+	cmp	%l7,0x8
+	bne	L182
+	nop
+	mov	0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L182:
+	cmp	%l7,0x8
+	ble	L183
+	nop
+	and	%l7,0x7,%o0
+	sll	%o0,0x1,%o1
+	mov	%o1,%o2
+	add	%i2,%o2,%o3
+	mov	%o3,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L183:
+	tst	%l7
+	bne	L184
+	nop
+	ld	[%i0],%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o0
+	call	_cdr,1
+	nop
+	mov	%o0,%o2
+	mov	%o2,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L184:
+	sll	%l7,0x1,%o0
+	mov	%o0,%o1
+	add	%i2,%o1,%o2
+	mov	%o2,%o3
+	sll	%o3,0x1,%o4
+	sethi	%hi(_Lisp_world),%o5
+	ld	[%o5+%lo(_Lisp_world)],%o5
+	ld	[%o5+%o4],%o7
+	set	0xfffffff,%l0
+	and	%o7,%l0,%l1
+	mov	%l1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L181:
+	tst	%i2
+	bne	L186
+	nop
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L186:
+	b	L127
+	nop
+L187:
+L188:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	sll	%o7,16,%l0
+	srl	%l0,16,%l0
+	mov	%l0,%l1
+	cmp	%l1,0x5
+	be	L189
+	nop
+	mov	0,%i2
+L189:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L190:
+L191:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	sll	%o7,16,%l0
+	srl	%l0,16,%l0
+	mov	%l0,%l1
+	set	0xe0000,%l2
+	or	%l1,%l2,%l3
+	mov	%l3,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L192:
+L193:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	sll	%o7,16,%l0
+	srl	%l0,16,%l0
+	ldub	[%i5],%l1
+	sll	%l1,16,%l2
+	srl	%l2,16,%l2
+	cmp	%l0,%l2
+	be	L194
+	nop
+	mov	0,%i2
+L194:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L195:
+L196:
+L197:
+L198:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x2],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x3],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%l6
+	mov	%l6,%i0
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	sll	%o7,0x1,%l0
+	mov	%l0,%l1
+	sll	%l1,0x1,%l2
+	srl	%i2,0x9,%l3
+	mov	%l3,%l4
+	sll	%l4,0x1,%l5
+	sethi	%hi(_MDStypetbl),%l6
+	ld	[%l6+%lo(_MDStypetbl)],%l6
+	lduh	[%l6+%l5],%o0
+	mov	%o0,%o1
+	and	%o1,0x7ff,%o2
+	sll	%o2,0x4,%o3
+	mov	%o3,%o4
+	sll	%o4,0x1,%o5
+	sethi	%hi(_DTDspace),%o7
+	ld	[%o7+%lo(_DTDspace)],%o7
+	add	%o7,%o5,%l0
+	add	%l0,%l2,%l1
+	mov	%l1,%l7
+L201:
+	ld	[%l7],%l2
+	set	0xfffffff,%l3
+	and	%l2,%l3,%l4
+	mov	%i0,%l5
+	cmp	%l5,%l4
+	be	L200
+	nop
+	lduh	[%l7+0x22],%o0
+	mov	%o0,%o1
+	tst	%o1
+	bne	L202
+	nop
+	b	L127
+	nop
+L202:
+L199:
+	lduh	[%l7+0x22],%o0
+	mov	%o0,%o1
+	sll	%o1,0x4,%o2
+	mov	%o2,%o3
+	sll	%o3,0x1,%o4
+	sethi	%hi(_DTDspace),%o5
+	ld	[%o5+%lo(_DTDspace)],%o5
+	add	%o5,%o4,%o7
+	lduh	[%l7+0x22],%l0
+	mov	%l0,%l1
+	sll	%l1,0x1,%l2
+	mov	%l2,%l3
+	sll	%l3,0x1,%l4
+	add	%o7,%l4,%l5
+	mov	%l5,%l7
+	b	L201
+	nop
+L200:
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L203:
+L204:
+	ldub	[%i5],%o2
+	ldub	[%i5+0x1],%o3
+	mov	%i2,%o1
+	mov	%i3,%o0
+	call	_N_OP_unwind,4
+	nop
+	mov	%o0,%i3
+	tst	%o0
+	bge	L206
+	nop
+	b	L126
+	nop
+L206:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x3+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x3,%i5
+	b	L125
+	nop
+L207:
+L208:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x2],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x3],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%o0
+	set	0xfff0000,%o1
+	and	%o0,%o1,%o2
+	st	%o2,[%fp+-0x8]
+	tst	%o2
+	be	L2000003
+	nop
+	ldub	[%i5+0x1],%o3
+	mov	%o3,%o4
+	sll	%o4,0x10,%o5
+	ldub	[%i5],%o7
+	mov	%o7,%l0
+	sll	%l0,0x18,%l1
+	or	%l1,%o5,%l2
+	ldub	[%i5+0x2],%l3
+	mov	%l3,%l4
+	sll	%l4,0x8,%l5
+	or	%l2,%l5,%o0
+	ldub	[%i5+0x3],%o1
+	mov	%o1,%o2
+	or	%o0,%o2,%o3
+	st	%o3,[%fp+-0x8]
+	mov	%o3,%o4
+	sll	%o4,0x1,%o5
+	sethi	%hi(_Lisp_world),%o7
+	ld	[%o7+%lo(_Lisp_world)],%o7
+	add	%o7,%o5,%l0
+	add	%l0,0x8,%l1
+	b	L2000004
+	nop
+L2000003:
+	ldub	[%i5+0x1],%l2
+	mov	%l2,%l3
+	sll	%l3,0x10,%l4
+	ldub	[%i5],%l5
+	mov	%l5,%o0
+	sll	%o0,0x18,%o1
+	or	%o1,%l4,%o2
+	ldub	[%i5+0x2],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o2,%o5,%o7
+	ldub	[%i5+0x3],%l0
+	mov	%l0,%l1
+	or	%o7,%l1,%l2
+	st	%l2,[%fp+-0x8]
+	mov	%l2,%l3
+	sll	%l3,2,%l3
+	add	%l2,%l3,%l2
+	mov	%l2,%l4
+	sll	%l4,0x2,%l5
+	sethi	%hi(_Pnamespace),%l1
+	ld	[%l1+%lo(_Pnamespace)],%l1
+	add	%l1,%l5,%l1
+	add	%l1,0x8,%l1
+L2000004:
+	st	%l1,[%fp+-0x4]
+	ld	[%fp+-0x4],%o0
+	ld	[%o0],%o1
+	mov	%o1,%l7
+	ld	[%fp+-0x4],%o2
+	ldub	[%o2],%o3
+	srl	%o3,0x7,%o4
+	andcc	%o4,0x1,%g0
+	bne	L209
+	nop
+	st	%g0,[%fp+-0x10]
+	mov	0x5,%o0
+	st	%o0,[%fp+-0xc]
+	st	%g0,[%fp+-0x14]
+	b	L140
+	nop
+L209:
+	set	0xfffffff,%o1
+	and	%l7,%o1,%l7
+	sll	%l7,0x1,%o2
+	sethi	%hi(_Lisp_world),%o3
+	ld	[%o3+%lo(_Lisp_world)],%o3
+	add	%o3,%o2,%o4
+	mov	%o4,%i0
+	ld	[%i1+0x4],%o5
+	sub	%i5,0x1,%o7
+	mov	%o7,%l0
+	ld	[%i1+0x14],%l1
+	mov	%l1,%l2
+	sub	%l0,%l2,%l3
+	add	%l3,0x5,%l4
+	sth	%l4,[%o5+-0xa]
+	lduh	[%i0],%l5
+	mov	%l5,%o0
+	sll	%o0,0x1,%o1
+	ld	[%i1+0x20],%o2
+	mov	%o2,%o3
+	sub	%o3,%o1,%o4
+	st	%o4,[%i1+0x1c]
+	mov	%i3,%o5
+	cmp	%o5,%o4
+	ble	L210
+	nop
+	b	L134
+	nop
+L210:
+	add	%i3,0x4,%o0
+	st	%o0,[%i1]
+	mov	%o0,%o1
+	mov	%o1,%l5
+	ld	[%i1+0x4],%o2
+	sethi	%hi(_Stackspace),%o3
+	ld	[%o3+%lo(_Stackspace)],%o3
+	mov	%o3,%o4
+	mov	%l5,%o5
+	sub	%o5,%o4,%o7
+	srl	%o7,0x1,%l0
+	mov	%l0,%l6
+	sth	%l0,[%o2+-0xc]
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldsh	[%i0+0x2],%l2
+	mov	%l2,%l3
+	tst	%l3
+	bl	L211
+	nop
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	mov	0,%o2
+	sub	%o2,%o1,%o3
+	mov	%o3,%l5
+L212:
+	tst	%l5
+	bge	L213
+	nop
+	st	%g0,[%i3]
+	add	%i3,0x4,%i3
+	add	%l5,0x1,%l5
+	b	L212
+	nop
+L213:
+	sll	%l5,0x2,%o2
+	sub	%i3,%o2,%i3
+L211:
+	set	-0x80000000,%o3
+	or	%l6,%o3,%o4
+	mov	%o4,%o5
+	st	%o5,[%i3]
+	add	%i3,0x4,%i3
+	sethi	%hi(_Stackspace),%l0
+	ld	[%l0+%lo(_Stackspace)],%l0
+	mov	%l0,%l1
+	ld	[%i1+0x4],%l2
+	mov	%l2,%l3
+	sub	%l3,%l1,%l4
+	srl	%l4,0x1,%o0
+	set	-0x40000000,%o1
+	or	%o0,%o1,%o2
+	st	%o2,[%i3]
+	mov	%l7,%o3
+	st	%o3,[%i3+0x4]
+	add	%i3,0x14,%o4
+	mov	%o4,%i3
+	st	%i3,[%i1+0x4]
+	ldsh	[%i0+0x4],%o0
+	mov	%o0,%o1
+	mov	%o1,%l5
+	tst	%l5
+	bl	L214
+	nop
+	mov	-0x1,%l4
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	tst	%l5
+	ble	L215
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	sub	%l5,0x1,%l5
+L218:
+	sub	%l5,0x1,%l5
+	tst	%l5
+	bl	L217
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+L216:
+	b	L218
+	nop
+L217:
+L215:
+L214:
+	add	%i3,0x4,%i3
+	lduh	[%i0+0x6],%o2
+	mov	%o2,%o3
+	add	%i0,%o3,%o4
+	add	%o4,0x1,%o5
+	mov	%o5,%i5
+	st	%i0,[%i1+0x14]
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L219:
+L220:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x2],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x3],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%o0
+	set	0xfff0000,%o1
+	and	%o0,%o1,%o2
+	st	%o2,[%fp+-0x8]
+	tst	%o2
+	be	L2000005
+	nop
+	ldub	[%i5+0x1],%o3
+	mov	%o3,%o4
+	sll	%o4,0x10,%o5
+	ldub	[%i5],%o7
+	mov	%o7,%l0
+	sll	%l0,0x18,%l1
+	or	%l1,%o5,%l2
+	ldub	[%i5+0x2],%l3
+	mov	%l3,%l4
+	sll	%l4,0x8,%l5
+	or	%l2,%l5,%o0
+	ldub	[%i5+0x3],%o1
+	mov	%o1,%o2
+	or	%o0,%o2,%o3
+	st	%o3,[%fp+-0x8]
+	mov	%o3,%o4
+	sll	%o4,0x1,%o5
+	sethi	%hi(_Lisp_world),%o7
+	ld	[%o7+%lo(_Lisp_world)],%o7
+	add	%o7,%o5,%l0
+	add	%l0,0x8,%l1
+	b	L2000006
+	nop
+L2000005:
+	ldub	[%i5+0x1],%l2
+	mov	%l2,%l3
+	sll	%l3,0x10,%l4
+	ldub	[%i5],%l5
+	mov	%l5,%o0
+	sll	%o0,0x18,%o1
+	or	%o1,%l4,%o2
+	ldub	[%i5+0x2],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o2,%o5,%o7
+	ldub	[%i5+0x3],%l0
+	mov	%l0,%l1
+	or	%o7,%l1,%l2
+	st	%l2,[%fp+-0x8]
+	mov	%l2,%l3
+	sll	%l3,2,%l3
+	add	%l2,%l3,%l2
+	mov	%l2,%l4
+	sll	%l4,0x2,%l5
+	sethi	%hi(_Pnamespace),%l1
+	ld	[%l1+%lo(_Pnamespace)],%l1
+	add	%l1,%l5,%l1
+	add	%l1,0x8,%l1
+L2000006:
+	st	%l1,[%fp+-0x4]
+	ld	[%fp+-0x4],%o0
+	ld	[%o0],%o1
+	mov	%o1,%l7
+	ld	[%fp+-0x4],%o2
+	ldub	[%o2],%o3
+	srl	%o3,0x7,%o4
+	andcc	%o4,0x1,%g0
+	bne	L221
+	nop
+	mov	0x1,%o0
+	st	%o0,[%fp+-0x10]
+	mov	0x5,%o1
+	st	%o1,[%fp+-0xc]
+	st	%g0,[%fp+-0x14]
+	b	L140
+	nop
+L221:
+	set	0xfffffff,%o2
+	and	%l7,%o2,%l7
+	sll	%l7,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	add	%o4,%o3,%o5
+	mov	%o5,%i0
+	ld	[%i1+0x4],%o7
+	sub	%i5,0x1,%l0
+	mov	%l0,%l1
+	ld	[%i1+0x14],%l2
+	mov	%l2,%l3
+	sub	%l1,%l3,%l4
+	add	%l4,0x5,%l5
+	sth	%l5,[%o7+-0xa]
+	lduh	[%i0],%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	ld	[%i1+0x20],%o3
+	mov	%o3,%o4
+	sub	%o4,%o2,%o5
+	st	%o5,[%i1+0x1c]
+	mov	%i3,%o7
+	cmp	%o7,%o5
+	ble	L222
+	nop
+	b	L134
+	nop
+L222:
+	st	%i3,[%i1]
+	mov	%i3,%o0
+	mov	%o0,%l5
+	ld	[%i1+0x4],%o1
+	sethi	%hi(_Stackspace),%o2
+	ld	[%o2+%lo(_Stackspace)],%o2
+	mov	%o2,%o3
+	mov	%l5,%o4
+	sub	%o4,%o3,%o5
+	srl	%o5,0x1,%o7
+	mov	%o7,%l6
+	sth	%o7,[%o1+-0xc]
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldsh	[%i0+0x2],%l1
+	mov	%l1,%l2
+	tst	%l2
+	bl	L223
+	nop
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	mov	0x1,%o2
+	sub	%o2,%o1,%o3
+	mov	%o3,%l5
+L224:
+	tst	%l5
+	bge	L225
+	nop
+	st	%g0,[%i3]
+	add	%i3,0x4,%i3
+	add	%l5,0x1,%l5
+	b	L224
+	nop
+L225:
+	sll	%l5,0x2,%o2
+	sub	%i3,%o2,%i3
+L223:
+	set	-0x80000000,%o3
+	or	%l6,%o3,%o4
+	mov	%o4,%o5
+	st	%o5,[%i3]
+	add	%i3,0x4,%i3
+	sethi	%hi(_Stackspace),%l0
+	ld	[%l0+%lo(_Stackspace)],%l0
+	mov	%l0,%l1
+	ld	[%i1+0x4],%l2
+	mov	%l2,%l3
+	sub	%l3,%l1,%l4
+	srl	%l4,0x1,%o0
+	set	-0x40000000,%o1
+	or	%o0,%o1,%o2
+	st	%o2,[%i3]
+	mov	%l7,%o3
+	st	%o3,[%i3+0x4]
+	add	%i3,0x14,%o4
+	mov	%o4,%i3
+	st	%i3,[%i1+0x4]
+	ldsh	[%i0+0x4],%o0
+	mov	%o0,%o1
+	mov	%o1,%l5
+	tst	%l5
+	bl	L226
+	nop
+	mov	-0x1,%l4
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	tst	%l5
+	ble	L227
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	sub	%l5,0x1,%l5
+L230:
+	sub	%l5,0x1,%l5
+	tst	%l5
+	bl	L229
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+L228:
+	b	L230
+	nop
+L229:
+L227:
+L226:
+	add	%i3,0x4,%i3
+	lduh	[%i0+0x6],%o2
+	mov	%o2,%o3
+	add	%i0,%o3,%o4
+	add	%o4,0x1,%o5
+	mov	%o5,%i5
+	st	%i0,[%i1+0x14]
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L231:
+L232:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x2],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x3],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%o0
+	set	0xfff0000,%o1
+	and	%o0,%o1,%o2
+	st	%o2,[%fp+-0x8]
+	tst	%o2
+	be	L2000007
+	nop
+	ldub	[%i5+0x1],%o3
+	mov	%o3,%o4
+	sll	%o4,0x10,%o5
+	ldub	[%i5],%o7
+	mov	%o7,%l0
+	sll	%l0,0x18,%l1
+	or	%l1,%o5,%l2
+	ldub	[%i5+0x2],%l3
+	mov	%l3,%l4
+	sll	%l4,0x8,%l5
+	or	%l2,%l5,%o0
+	ldub	[%i5+0x3],%o1
+	mov	%o1,%o2
+	or	%o0,%o2,%o3
+	st	%o3,[%fp+-0x8]
+	mov	%o3,%o4
+	sll	%o4,0x1,%o5
+	sethi	%hi(_Lisp_world),%o7
+	ld	[%o7+%lo(_Lisp_world)],%o7
+	add	%o7,%o5,%l0
+	add	%l0,0x8,%l1
+	b	L2000008
+	nop
+L2000007:
+	ldub	[%i5+0x1],%l2
+	mov	%l2,%l3
+	sll	%l3,0x10,%l4
+	ldub	[%i5],%l5
+	mov	%l5,%o0
+	sll	%o0,0x18,%o1
+	or	%o1,%l4,%o2
+	ldub	[%i5+0x2],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o2,%o5,%o7
+	ldub	[%i5+0x3],%l0
+	mov	%l0,%l1
+	or	%o7,%l1,%l2
+	st	%l2,[%fp+-0x8]
+	mov	%l2,%l3
+	sll	%l3,2,%l3
+	add	%l2,%l3,%l2
+	mov	%l2,%l4
+	sll	%l4,0x2,%l5
+	sethi	%hi(_Pnamespace),%l1
+	ld	[%l1+%lo(_Pnamespace)],%l1
+	add	%l1,%l5,%l1
+	add	%l1,0x8,%l1
+L2000008:
+	st	%l1,[%fp+-0x4]
+	ld	[%fp+-0x4],%o0
+	ld	[%o0],%o1
+	mov	%o1,%l7
+	ld	[%fp+-0x4],%o2
+	ldub	[%o2],%o3
+	srl	%o3,0x7,%o4
+	andcc	%o4,0x1,%g0
+	bne	L233
+	nop
+	mov	0x2,%o0
+	st	%o0,[%fp+-0x10]
+	mov	0x5,%o1
+	st	%o1,[%fp+-0xc]
+	st	%g0,[%fp+-0x14]
+	b	L140
+	nop
+L233:
+	set	0xfffffff,%o2
+	and	%l7,%o2,%l7
+	sll	%l7,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	add	%o4,%o3,%o5
+	mov	%o5,%i0
+	ld	[%i1+0x4],%o7
+	sub	%i5,0x1,%l0
+	mov	%l0,%l1
+	ld	[%i1+0x14],%l2
+	mov	%l2,%l3
+	sub	%l1,%l3,%l4
+	add	%l4,0x5,%l5
+	sth	%l5,[%o7+-0xa]
+	lduh	[%i0],%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	ld	[%i1+0x20],%o3
+	mov	%o3,%o4
+	sub	%o4,%o2,%o5
+	st	%o5,[%i1+0x1c]
+	mov	%i3,%o7
+	cmp	%o7,%o5
+	ble	L234
+	nop
+	b	L134
+	nop
+L234:
+	sub	%i3,0x4,%o0
+	st	%o0,[%i1]
+	mov	%o0,%o1
+	mov	%o1,%l5
+	ld	[%i1+0x4],%o2
+	sethi	%hi(_Stackspace),%o3
+	ld	[%o3+%lo(_Stackspace)],%o3
+	mov	%o3,%o4
+	mov	%l5,%o5
+	sub	%o5,%o4,%o7
+	srl	%o7,0x1,%l0
+	mov	%l0,%l6
+	sth	%l0,[%o2+-0xc]
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldsh	[%i0+0x2],%l2
+	mov	%l2,%l3
+	tst	%l3
+	bl	L235
+	nop
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	mov	0x2,%o2
+	sub	%o2,%o1,%o3
+	mov	%o3,%l5
+L236:
+	tst	%l5
+	bge	L237
+	nop
+	st	%g0,[%i3]
+	add	%i3,0x4,%i3
+	add	%l5,0x1,%l5
+	b	L236
+	nop
+L237:
+	sll	%l5,0x2,%o2
+	sub	%i3,%o2,%i3
+L235:
+	set	-0x80000000,%o3
+	or	%l6,%o3,%o4
+	mov	%o4,%o5
+	st	%o5,[%i3]
+	add	%i3,0x4,%i3
+	sethi	%hi(_Stackspace),%l0
+	ld	[%l0+%lo(_Stackspace)],%l0
+	mov	%l0,%l1
+	ld	[%i1+0x4],%l2
+	mov	%l2,%l3
+	sub	%l3,%l1,%l4
+	srl	%l4,0x1,%o0
+	set	-0x40000000,%o1
+	or	%o0,%o1,%o2
+	st	%o2,[%i3]
+	mov	%l7,%o3
+	st	%o3,[%i3+0x4]
+	add	%i3,0x14,%o4
+	mov	%o4,%i3
+	st	%i3,[%i1+0x4]
+	ldsh	[%i0+0x4],%o0
+	mov	%o0,%o1
+	mov	%o1,%l5
+	tst	%l5
+	bl	L238
+	nop
+	mov	-0x1,%l4
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	tst	%l5
+	ble	L239
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	sub	%l5,0x1,%l5
+L242:
+	sub	%l5,0x1,%l5
+	tst	%l5
+	bl	L241
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+L240:
+	b	L242
+	nop
+L241:
+L239:
+L238:
+	add	%i3,0x4,%i3
+	lduh	[%i0+0x6],%o2
+	mov	%o2,%o3
+	add	%i0,%o3,%o4
+	add	%o4,0x1,%o5
+	mov	%o5,%i5
+	st	%i0,[%i1+0x14]
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L243:
+L244:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x2],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x3],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%o0
+	set	0xfff0000,%o1
+	and	%o0,%o1,%o2
+	st	%o2,[%fp+-0x8]
+	tst	%o2
+	be	L2000009
+	nop
+	ldub	[%i5+0x1],%o3
+	mov	%o3,%o4
+	sll	%o4,0x10,%o5
+	ldub	[%i5],%o7
+	mov	%o7,%l0
+	sll	%l0,0x18,%l1
+	or	%l1,%o5,%l2
+	ldub	[%i5+0x2],%l3
+	mov	%l3,%l4
+	sll	%l4,0x8,%l5
+	or	%l2,%l5,%o0
+	ldub	[%i5+0x3],%o1
+	mov	%o1,%o2
+	or	%o0,%o2,%o3
+	st	%o3,[%fp+-0x8]
+	mov	%o3,%o4
+	sll	%o4,0x1,%o5
+	sethi	%hi(_Lisp_world),%o7
+	ld	[%o7+%lo(_Lisp_world)],%o7
+	add	%o7,%o5,%l0
+	add	%l0,0x8,%l1
+	b	L2000010
+	nop
+L2000009:
+	ldub	[%i5+0x1],%l2
+	mov	%l2,%l3
+	sll	%l3,0x10,%l4
+	ldub	[%i5],%l5
+	mov	%l5,%o0
+	sll	%o0,0x18,%o1
+	or	%o1,%l4,%o2
+	ldub	[%i5+0x2],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o2,%o5,%o7
+	ldub	[%i5+0x3],%l0
+	mov	%l0,%l1
+	or	%o7,%l1,%l2
+	st	%l2,[%fp+-0x8]
+	mov	%l2,%l3
+	sll	%l3,2,%l3
+	add	%l2,%l3,%l2
+	mov	%l2,%l4
+	sll	%l4,0x2,%l5
+	sethi	%hi(_Pnamespace),%l1
+	ld	[%l1+%lo(_Pnamespace)],%l1
+	add	%l1,%l5,%l1
+	add	%l1,0x8,%l1
+L2000010:
+	st	%l1,[%fp+-0x4]
+	ld	[%fp+-0x4],%o0
+	ld	[%o0],%o1
+	mov	%o1,%l7
+	ld	[%fp+-0x4],%o2
+	ldub	[%o2],%o3
+	srl	%o3,0x7,%o4
+	andcc	%o4,0x1,%g0
+	bne	L245
+	nop
+	mov	0x3,%o0
+	st	%o0,[%fp+-0x10]
+	mov	0x5,%o1
+	st	%o1,[%fp+-0xc]
+	st	%g0,[%fp+-0x14]
+	b	L140
+	nop
+L245:
+	set	0xfffffff,%o2
+	and	%l7,%o2,%l7
+	sll	%l7,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	add	%o4,%o3,%o5
+	mov	%o5,%i0
+	ld	[%i1+0x4],%o7
+	sub	%i5,0x1,%l0
+	mov	%l0,%l1
+	ld	[%i1+0x14],%l2
+	mov	%l2,%l3
+	sub	%l1,%l3,%l4
+	add	%l4,0x5,%l5
+	sth	%l5,[%o7+-0xa]
+	lduh	[%i0],%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	ld	[%i1+0x20],%o3
+	mov	%o3,%o4
+	sub	%o4,%o2,%o5
+	st	%o5,[%i1+0x1c]
+	mov	%i3,%o7
+	cmp	%o7,%o5
+	ble	L246
+	nop
+	b	L134
+	nop
+L246:
+	sub	%i3,0x8,%o0
+	st	%o0,[%i1]
+	mov	%o0,%o1
+	mov	%o1,%l5
+	ld	[%i1+0x4],%o2
+	sethi	%hi(_Stackspace),%o3
+	ld	[%o3+%lo(_Stackspace)],%o3
+	mov	%o3,%o4
+	mov	%l5,%o5
+	sub	%o5,%o4,%o7
+	srl	%o7,0x1,%l0
+	mov	%l0,%l6
+	sth	%l0,[%o2+-0xc]
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldsh	[%i0+0x2],%l2
+	mov	%l2,%l3
+	tst	%l3
+	bl	L247
+	nop
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	mov	0x3,%o2
+	sub	%o2,%o1,%o3
+	mov	%o3,%l5
+L248:
+	tst	%l5
+	bge	L249
+	nop
+	st	%g0,[%i3]
+	add	%i3,0x4,%i3
+	add	%l5,0x1,%l5
+	b	L248
+	nop
+L249:
+	sll	%l5,0x2,%o2
+	sub	%i3,%o2,%i3
+L247:
+	set	-0x80000000,%o3
+	or	%l6,%o3,%o4
+	mov	%o4,%o5
+	st	%o5,[%i3]
+	add	%i3,0x4,%i3
+	sethi	%hi(_Stackspace),%l0
+	ld	[%l0+%lo(_Stackspace)],%l0
+	mov	%l0,%l1
+	ld	[%i1+0x4],%l2
+	mov	%l2,%l3
+	sub	%l3,%l1,%l4
+	srl	%l4,0x1,%o0
+	set	-0x40000000,%o1
+	or	%o0,%o1,%o2
+	st	%o2,[%i3]
+	mov	%l7,%o3
+	st	%o3,[%i3+0x4]
+	add	%i3,0x14,%o4
+	mov	%o4,%i3
+	st	%i3,[%i1+0x4]
+	ldsh	[%i0+0x4],%o0
+	mov	%o0,%o1
+	mov	%o1,%l5
+	tst	%l5
+	bl	L250
+	nop
+	mov	-0x1,%l4
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	tst	%l5
+	ble	L251
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	sub	%l5,0x1,%l5
+L254:
+	sub	%l5,0x1,%l5
+	tst	%l5
+	bl	L253
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+L252:
+	b	L254
+	nop
+L253:
+L251:
+L250:
+	add	%i3,0x4,%i3
+	lduh	[%i0+0x6],%o2
+	mov	%o2,%o3
+	add	%i0,%o3,%o4
+	add	%o4,0x1,%o5
+	mov	%o5,%i5
+	st	%i0,[%i1+0x14]
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L255:
+L256:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x2],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x3],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%o0
+	set	0xfff0000,%o1
+	and	%o0,%o1,%o2
+	st	%o2,[%fp+-0x8]
+	tst	%o2
+	be	L2000011
+	nop
+	ldub	[%i5+0x1],%o3
+	mov	%o3,%o4
+	sll	%o4,0x10,%o5
+	ldub	[%i5],%o7
+	mov	%o7,%l0
+	sll	%l0,0x18,%l1
+	or	%l1,%o5,%l2
+	ldub	[%i5+0x2],%l3
+	mov	%l3,%l4
+	sll	%l4,0x8,%l5
+	or	%l2,%l5,%o0
+	ldub	[%i5+0x3],%o1
+	mov	%o1,%o2
+	or	%o0,%o2,%o3
+	st	%o3,[%fp+-0x8]
+	mov	%o3,%o4
+	sll	%o4,0x1,%o5
+	sethi	%hi(_Lisp_world),%o7
+	ld	[%o7+%lo(_Lisp_world)],%o7
+	add	%o7,%o5,%l0
+	add	%l0,0x8,%l1
+	b	L2000012
+	nop
+L2000011:
+	ldub	[%i5+0x1],%l2
+	mov	%l2,%l3
+	sll	%l3,0x10,%l4
+	ldub	[%i5],%l5
+	mov	%l5,%o0
+	sll	%o0,0x18,%o1
+	or	%o1,%l4,%o2
+	ldub	[%i5+0x2],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o2,%o5,%o7
+	ldub	[%i5+0x3],%l0
+	mov	%l0,%l1
+	or	%o7,%l1,%l2
+	st	%l2,[%fp+-0x8]
+	mov	%l2,%l3
+	sll	%l3,2,%l3
+	add	%l2,%l3,%l2
+	mov	%l2,%l4
+	sll	%l4,0x2,%l5
+	sethi	%hi(_Pnamespace),%l1
+	ld	[%l1+%lo(_Pnamespace)],%l1
+	add	%l1,%l5,%l1
+	add	%l1,0x8,%l1
+L2000012:
+	st	%l1,[%fp+-0x4]
+	ld	[%fp+-0x4],%o0
+	ld	[%o0],%o1
+	mov	%o1,%l7
+	ld	[%fp+-0x4],%o2
+	ldub	[%o2],%o3
+	srl	%o3,0x7,%o4
+	andcc	%o4,0x1,%g0
+	bne	L257
+	nop
+	mov	0x4,%o0
+	st	%o0,[%fp+-0x10]
+	mov	0x5,%o1
+	st	%o1,[%fp+-0xc]
+	st	%g0,[%fp+-0x14]
+	b	L140
+	nop
+L257:
+	set	0xfffffff,%o2
+	and	%l7,%o2,%l7
+	sll	%l7,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	add	%o4,%o3,%o5
+	mov	%o5,%i0
+	ld	[%i1+0x4],%o7
+	sub	%i5,0x1,%l0
+	mov	%l0,%l1
+	ld	[%i1+0x14],%l2
+	mov	%l2,%l3
+	sub	%l1,%l3,%l4
+	add	%l4,0x5,%l5
+	sth	%l5,[%o7+-0xa]
+	lduh	[%i0],%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	ld	[%i1+0x20],%o3
+	mov	%o3,%o4
+	sub	%o4,%o2,%o5
+	st	%o5,[%i1+0x1c]
+	mov	%i3,%o7
+	cmp	%o7,%o5
+	ble	L258
+	nop
+	b	L134
+	nop
+L258:
+	sub	%i3,0xc,%o0
+	st	%o0,[%i1]
+	mov	%o0,%o1
+	mov	%o1,%l5
+	ld	[%i1+0x4],%o2
+	sethi	%hi(_Stackspace),%o3
+	ld	[%o3+%lo(_Stackspace)],%o3
+	mov	%o3,%o4
+	mov	%l5,%o5
+	sub	%o5,%o4,%o7
+	srl	%o7,0x1,%l0
+	mov	%l0,%l6
+	sth	%l0,[%o2+-0xc]
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldsh	[%i0+0x2],%l2
+	mov	%l2,%l3
+	tst	%l3
+	bl	L259
+	nop
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	mov	0x4,%o2
+	sub	%o2,%o1,%o3
+	mov	%o3,%l5
+L260:
+	tst	%l5
+	bge	L261
+	nop
+	st	%g0,[%i3]
+	add	%i3,0x4,%i3
+	add	%l5,0x1,%l5
+	b	L260
+	nop
+L261:
+	sll	%l5,0x2,%o2
+	sub	%i3,%o2,%i3
+L259:
+	set	-0x80000000,%o3
+	or	%l6,%o3,%o4
+	mov	%o4,%o5
+	st	%o5,[%i3]
+	add	%i3,0x4,%i3
+	sethi	%hi(_Stackspace),%l0
+	ld	[%l0+%lo(_Stackspace)],%l0
+	mov	%l0,%l1
+	ld	[%i1+0x4],%l2
+	mov	%l2,%l3
+	sub	%l3,%l1,%l4
+	srl	%l4,0x1,%o0
+	set	-0x40000000,%o1
+	or	%o0,%o1,%o2
+	st	%o2,[%i3]
+	mov	%l7,%o3
+	st	%o3,[%i3+0x4]
+	add	%i3,0x14,%o4
+	mov	%o4,%i3
+	st	%i3,[%i1+0x4]
+	ldsh	[%i0+0x4],%o0
+	mov	%o0,%o1
+	mov	%o1,%l5
+	tst	%l5
+	bl	L262
+	nop
+	mov	-0x1,%l4
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	tst	%l5
+	ble	L263
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	sub	%l5,0x1,%l5
+L266:
+	sub	%l5,0x1,%l5
+	tst	%l5
+	bl	L265
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+L264:
+	b	L266
+	nop
+L265:
+L263:
+L262:
+	add	%i3,0x4,%i3
+	lduh	[%i0+0x6],%o2
+	mov	%o2,%o3
+	add	%i0,%o3,%o4
+	add	%o4,0x1,%o5
+	mov	%o5,%i5
+	st	%i0,[%i1+0x14]
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L267:
+L268:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	st	%o1,[%fp+-0x1c]
+	ldub	[%i5+0x2],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5+0x1],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x3],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x4],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%o0
+	set	0xfff0000,%o1
+	andcc	%o0,%o1,%g0
+	be	L2000013
+	nop
+	ldub	[%i5+0x2],%o2
+	mov	%o2,%o3
+	sll	%o3,0x10,%o4
+	ldub	[%i5+0x1],%o5
+	mov	%o5,%o7
+	sll	%o7,0x18,%l0
+	or	%l0,%o4,%l1
+	ldub	[%i5+0x3],%l2
+	mov	%l2,%l3
+	sll	%l3,0x8,%l4
+	or	%l1,%l4,%l5
+	ldub	[%i5+0x4],%o0
+	mov	%o0,%o1
+	or	%l5,%o1,%o2
+	mov	%o2,%o3
+	sll	%o3,0x1,%o4
+	sethi	%hi(_Lisp_world),%o5
+	ld	[%o5+%lo(_Lisp_world)],%o5
+	add	%o5,%o4,%o7
+	add	%o7,0x8,%l0
+	b	L2000014
+	nop
+L2000013:
+	ldub	[%i5+0x2],%l1
+	mov	%l1,%l2
+	sll	%l2,0x10,%l3
+	ldub	[%i5+0x1],%l4
+	mov	%l4,%l5
+	sll	%l5,0x18,%o0
+	or	%o0,%l3,%o1
+	ldub	[%i5+0x3],%o2
+	mov	%o2,%o3
+	sll	%o3,0x8,%o4
+	or	%o1,%o4,%o5
+	ldub	[%i5+0x4],%o7
+	mov	%o7,%l0
+	or	%o5,%l0,%l1
+	mov	%l1,%l2
+	sll	%l2,2,%l2
+	add	%l1,%l2,%l1
+	mov	%l1,%l3
+	sll	%l3,0x2,%l4
+	sethi	%hi(_Pnamespace),%l0
+	ld	[%l0+%lo(_Pnamespace)],%l0
+	add	%l0,%l4,%l0
+	add	%l0,0x8,%l0
+L2000014:
+	mov	%l0,%l7
+	ldub	[%l7],%l5
+	srl	%l5,0x7,%o0
+	andcc	%o0,0x1,%g0
+	bne	L269
+	nop
+	st	%l7,[%fp+-0x4]
+	ld	[%fp+-0x1c],%o0
+	st	%o0,[%fp+-0x10]
+	mov	0x6,%o1
+	st	%o1,[%fp+-0xc]
+	ldub	[%i5+0x2],%o2
+	mov	%o2,%o3
+	sll	%o3,0x10,%o4
+	ldub	[%i5+0x1],%o5
+	mov	%o5,%o7
+	sll	%o7,0x18,%l0
+	or	%l0,%o4,%l1
+	ldub	[%i5+0x3],%l2
+	mov	%l2,%l3
+	sll	%l3,0x8,%l4
+	or	%l1,%l4,%l5
+	ldub	[%i5+0x4],%o0
+	mov	%o0,%o1
+	or	%l5,%o1,%o2
+	st	%o2,[%fp+-0x8]
+	st	%g0,[%fp+-0x14]
+	b	L140
+	nop
+L269:
+	ld	[%l7],%o3
+	set	0xfffffff,%o4
+	and	%o3,%o4,%o5
+	mov	%o5,%o7
+	sll	%o7,0x1,%l0
+	sethi	%hi(_Lisp_world),%l1
+	ld	[%l1+%lo(_Lisp_world)],%l1
+	add	%l1,%l0,%l2
+	mov	%l2,%i0
+	ld	[%i1+0x4],%l3
+	sub	%i5,0x1,%l4
+	mov	%l4,%l5
+	ld	[%i1+0x14],%o0
+	mov	%o0,%o1
+	sub	%l5,%o1,%o2
+	add	%o2,0x6,%o3
+	sth	%o3,[%l3+-0xa]
+	lduh	[%i0],%o4
+	mov	%o4,%o5
+	sll	%o5,0x1,%o7
+	ld	[%i1+0x20],%l0
+	mov	%l0,%l1
+	sub	%l1,%o7,%l2
+	st	%l2,[%i1+0x1c]
+	mov	%i3,%l3
+	cmp	%l3,%l2
+	ble	L270
+	nop
+	b	L134
+	nop
+L270:
+	ld	[%fp+-0x1c],%o0
+	sll	%o0,0x2,%o1
+	sub	%i3,%o1,%o2
+	add	%o2,0x4,%o3
+	st	%o3,[%i1]
+	mov	%o3,%o4
+	mov	%o4,%l5
+	ld	[%i1+0x4],%o5
+	sethi	%hi(_Stackspace),%o7
+	ld	[%o7+%lo(_Stackspace)],%o7
+	mov	%o7,%l0
+	mov	%l5,%l1
+	sub	%l1,%l0,%l2
+	srl	%l2,0x1,%l3
+	mov	%l3,%l6
+	sth	%l3,[%o5+-0xc]
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	tst	%o1
+	bl	L271
+	nop
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	ld	[%fp+-0x1c],%o2
+	sub	%o2,%o1,%o3
+	mov	%o3,%l5
+L272:
+	tst	%l5
+	bge	L273
+	nop
+	st	%g0,[%i3]
+	add	%i3,0x4,%i3
+	add	%l5,0x1,%l5
+	b	L272
+	nop
+L273:
+	sll	%l5,0x2,%o2
+	sub	%i3,%o2,%i3
+L271:
+	set	-0x80000000,%o3
+	or	%l6,%o3,%o4
+	mov	%o4,%o5
+	st	%o5,[%i3]
+	add	%i3,0x4,%i3
+	sethi	%hi(_Stackspace),%l0
+	ld	[%l0+%lo(_Stackspace)],%l0
+	mov	%l0,%l1
+	ld	[%i1+0x4],%l2
+	mov	%l2,%l3
+	sub	%l3,%l1,%l4
+	srl	%l4,0x1,%o0
+	set	-0x40000000,%o1
+	or	%o0,%o1,%o2
+	st	%o2,[%i3]
+	ld	[%l7],%o3
+	set	0xfffffff,%o4
+	and	%o3,%o4,%o5
+	st	%o5,[%i3+0x4]
+	add	%i3,0x14,%o7
+	mov	%o7,%i3
+	st	%i3,[%i1+0x4]
+	ldsh	[%i0+0x4],%o0
+	mov	%o0,%o1
+	mov	%o1,%l5
+	tst	%l5
+	bl	L274
+	nop
+	mov	-0x1,%l4
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	tst	%l5
+	ble	L275
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	sub	%l5,0x1,%l5
+L278:
+	sub	%l5,0x1,%l5
+	tst	%l5
+	bl	L277
+	nop
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+	st	%l4,[%i3]
+	add	%i3,0x4,%i3
+L276:
+	b	L278
+	nop
+L277:
+L275:
+L274:
+	add	%i3,0x4,%i3
+	lduh	[%i0+0x6],%o2
+	mov	%o2,%o3
+	add	%i0,%o3,%o4
+	add	%o4,0x1,%o5
+	mov	%o5,%i5
+	st	%i0,[%i1+0x14]
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L279:
+L280:
+	lduh	[%i3+-0x4],%o0
+	mov	%o0,%o1
+	cmp	%o1,0xe
+	bne	L281
+	nop
+	lduh	[%i3+-0x2],%o0
+	mov	%o0,%o1
+	st	%o1,[%fp+-0x10]
+	mov	0x1,%o2
+	st	%o2,[%fp+-0xc]
+	mov	0x1,%o3
+	st	%o3,[%fp+-0x14]
+	st	%i2,[%fp+-0x8]
+	set	0xfff0000,%o4
+	andcc	%i2,%o4,%g0
+	bne	L282
+	nop
+	mov	%i2,%o0
+	mov	%o0,%o1
+	sll	%o1,2,%o1
+	add	%o0,%o1,%o0
+	mov	%o0,%o2
+	sll	%o2,0x2,%o3
+	sethi	%hi(_Pnamespace),%o4
+	ld	[%o4+%lo(_Pnamespace)],%o4
+	add	%o4,%o3,%o5
+	add	%o5,0x8,%o7
+	st	%o7,[%fp+-0x4]
+	b	L140
+	nop
+L282:
+	b	L284
+	nop
+L285:
+	mov	%i2,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	add	%o3,0x8,%o4
+	st	%o4,[%fp+-0x4]
+	b	L140
+	nop
+L286:
+	st	%i2,[%i1+0xc]
+	add	%i1,0xc,%o5
+	st	%o5,[%fp+-0x4]
+	b	L140
+	nop
+L287:
+	sethi	%hi(_Pnamespace),%o7
+	ld	[%o7+%lo(_Pnamespace)],%o7
+	add	%o7,0x8,%l0
+	st	%l0,[%fp+-0x4]
+	b	L140
+	nop
+L284:
+	srl	%i2,0x9,%l1
+	mov	%l1,%l2
+	sll	%l2,0x1,%l3
+	sethi	%hi(_MDStypetbl),%l4
+	ld	[%l4+%lo(_MDStypetbl)],%l4
+	lduh	[%l4+%l3],%o0
+	and	%o0,0x7ff,%o0
+	cmp	%o0,13
+	be	L286
+	cmp	%o0,21
+	be	L285
+	nop
+	b	L287
+	nop
+L283:
+L281:
+	b	L127
+	nop
+L288:
+L289:
+	andcc	%i2,0,%g0
+	be	L2000016
+	nop
+	set	0xffff,%o0
+	and	%i2,%o0,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	add	%o4,%o3,%o5
+	add	%o5,0x8,%o7
+	b	L2000017
+	nop
+L2000016:
+	set	0xffff,%l0
+	and	%i2,%l0,%l1
+	mov	%l1,%l2
+	sll	%l2,2,%l2
+	add	%l1,%l2,%l1
+	mov	%l1,%l3
+	sll	%l3,0x2,%l4
+	sethi	%hi(_Pnamespace),%o7
+	ld	[%o7+%lo(_Pnamespace)],%o7
+	add	%o7,%l4,%o7
+	add	%o7,0x8,%o7
+L2000017:
+	mov	%o7,%i0
+	ldub	[%i0],%l5
+	srl	%l5,0x7,%l6
+	andcc	%l6,0x1,%g0
+	be	L2000018
+	nop
+	set	0xfff0000,%l7
+	andcc	%i2,%l7,%g0
+	bne	L2000018
+	nop
+	ldub	[%i0],%o0
+	srl	%o0,0x4,%o1
+	andcc	%o1,0x3,%g0
+	be	L290
+	nop
+	ldub	[%i0],%o2
+	srl	%o2,0x4,%o3
+	and	%o3,0x3,%o4
+	cmp	%o4,0x2
+	be	L290
+	nop
+L2000018:
+	b	L127
+	nop
+L290:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L291:
+L292:
+	ld	[%i1+0x4],%o0
+	lduh	[%o0+-0x12],%o1
+	mov	%o1,%o2
+	mov	%o2,%l7
+	andcc	%l7,0x1,%g0
+	be	L293
+	nop
+	sub	%i5,0x1,%o0
+	st	%o0,[%i1+0x10]
+	st	%i2,[%i1+0xc]
+	sub	%i3,0x4,%o0
+	st	%o0,[%i1+0x8]
+	call	_slowreturn,0
+	nop
+	tst	%o0
+	be	L295
+	nop
+	b	L296
+	nop
+L295:
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	ld	[%i1+0x14],%o2
+	lduh	[%o2],%o3
+	mov	%o3,%o4
+	sll	%o4,0x1,%o5
+	ld	[%i1+0x18],%o7
+	mov	%o7,%l0
+	mov	%l0,%l1
+	sub	%l1,%o5,%l2
+	st	%l2,[%i1+0x1c]
+	mov	%i3,%l3
+	ld	[%i1+0x1c],%l4
+	cmp	%l3,%l4
+	bg	L2000019
+	nop
+	ld	[%i1+0x20],%l5
+	tst	%l5
+	bg	L297
+	nop
+L2000019:
+	b	L134
+	nop
+L297:
+	ld	[%i1+0x18],%o0
+	mov	%o0,%o1
+	st	%o1,[%i1+0x20]
+	b	L298
+	nop
+L293:
+	ld	[%i1],%i3
+	sll	%l7,0x1,%o2
+	sethi	%hi(_Stackspace),%o3
+	ld	[%o3+%lo(_Stackspace)],%o3
+	add	%o3,%o2,%o4
+	st	%o4,[%i1+0x4]
+	sub	%o4,0x14,%o5
+	mov	%o5,%i0
+	lduh	[%i0+-0x2],%o7
+	mov	%o7,%l0
+	sll	%l0,0x1,%l1
+	sethi	%hi(_Stackspace),%l2
+	ld	[%l2+%lo(_Stackspace)],%l2
+	add	%l2,%l1,%l3
+	st	%l3,[%i1]
+	ld	[%i0+0x4],%l4
+	set	0xfffffff,%l5
+	and	%l4,%l5,%l6
+	mov	%l6,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	st	%o3,[%i1+0x14]
+	lduh	[%i0+0xa],%o4
+	mov	%o4,%o5
+	add	%o5,%o3,%o7
+	add	%o7,0x1,%l0
+	mov	%l0,%i5
+	ld	[%i1+0x14],%l1
+	lduh	[%l1],%l2
+	mov	%l2,%l3
+	sll	%l3,0x1,%l4
+	ld	[%i1+0x18],%l5
+	mov	%l5,%l6
+	mov	%l6,%o0
+	sub	%o0,%l4,%o1
+	st	%o1,[%i1+0x1c]
+	mov	%i3,%o2
+	ld	[%i1+0x1c],%o3
+	cmp	%o2,%o3
+	bg	L2000020
+	nop
+	ld	[%i1+0x20],%o4
+	tst	%o4
+	bg	L299
+	nop
+L2000020:
+	b	L134
+	nop
+L299:
+	ld	[%i1+0x18],%o0
+	mov	%o0,%o1
+	st	%o1,[%i1+0x20]
+L298:
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L300:
+L301:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	srl	%o1,0x4,%o2
+	mov	%o2,%i0
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	and	%o4,0xf,%o5
+	mov	%o5,%l7
+	ld	[%i1+0x4],%o7
+	add	%o7,0x4,%l0
+	ldub	[%i5+0x1],%l1
+	mov	%l1,%l2
+	sll	%l2,0x2,%l3
+	add	%l0,%l3,%l4
+	mov	%l4,%l6
+	mov	%i0,%l5
+L304:
+	sub	%l5,0x1,%l5
+	tst	%l5
+	bl	L303
+	nop
+	sub	%l6,0x4,%l6
+	st	%g0,[%l6]
+L302:
+	b	L304
+	nop
+L303:
+	tst	%l7
+	bne	L305
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	b	L306
+	nop
+L305:
+	sub	%l6,0x4,%l6
+	st	%i2,[%l6]
+	mov	0x1,%l5
+L309:
+	cmp	%l5,%l7
+	bge	L308
+	nop
+	sub	%l6,0x4,%l6
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	st	%o0,[%l6]
+L307:
+	add	%l5,0x1,%l5
+	b	L309
+	nop
+L308:
+L306:
+	add	%i0,%l7,%o2
+	xor	%o2,-1,%o3
+	mov	%o3,%l5
+	ldub	[%i5+0x1],%o4
+	mov	%o4,%o5
+	sll	%o5,0x1,%o7
+	sll	%l5,0x10,%l0
+	mov	%l0,%l1
+	or	%l1,%o7,%l2
+	mov	%l2,%i2
+ ldub [%i5+0x3+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x3,%i5
+	b	L125
+	nop
+L310:
+L311:
+L314:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%o0,%o1
+	tst	%o1
+	bl	L313
+	nop
+L312:
+	b	L314
+	nop
+L313:
+	ld	[%i3],%l5
+	xor	%l5,-1,%o2
+	srl	%o2,0x10,%o3
+	mov	%o3,%i0
+	ld	[%i1+0x4],%o4
+	add	%o4,0x4,%o5
+	sll	%l5,16,%o7
+	srl	%o7,16,%o7
+	mov	%o7,%l0
+	sll	%l0,0x1,%l1
+	add	%o5,%l1,%l2
+	mov	%l2,%l7
+	mov	%i0,%l6
+L317:
+	sub	%l6,0x1,%l6
+	tst	%l6
+	bl	L316
+	nop
+	sub	%l7,0x4,%l7
+	mov	-0x1,%o0
+	st	%o0,[%l7]
+L315:
+	b	L317
+	nop
+L316:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L318:
+L319:
+	mov	%i2,%o0
+	tst	%o0
+	bge	L320
+	nop
+	xor	%i2,-1,%o0
+	srl	%o0,0x10,%o1
+	mov	%o1,%i0
+	tst	%i0
+	be	L321
+	nop
+	ld	[%i1+0x4],%o0
+	add	%o0,0x4,%o1
+	sll	%i2,16,%o2
+	srl	%o2,16,%o2
+	mov	%o2,%o3
+	sll	%o3,0x1,%o4
+	add	%o1,%o4,%o5
+	mov	%o5,%l7
+	mov	%i0,%l6
+L324:
+	sub	%l6,0x1,%l6
+	tst	%l6
+	bl	L323
+	nop
+	sub	%l7,0x4,%l7
+	mov	-0x1,%o0
+	st	%o0,[%l7]
+L322:
+	b	L324
+	nop
+L323:
+L321:
+	b	L325
+	nop
+L320:
+L328:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%o0,%o1
+	tst	%o1
+	bl	L327
+	nop
+L326:
+	b	L328
+	nop
+L327:
+	ld	[%i3],%l5
+	xor	%l5,-1,%o2
+	srl	%o2,0x10,%o3
+	mov	%o3,%i0
+	ld	[%i1+0x4],%o4
+	add	%o4,0x4,%o5
+	sll	%l5,16,%o7
+	srl	%o7,16,%o7
+	mov	%o7,%l0
+	sll	%l0,0x1,%l1
+	add	%o5,%l1,%l2
+	mov	%l2,%l7
+	mov	%i0,%l6
+L331:
+	sub	%l6,0x1,%l6
+	tst	%l6
+	bl	L330
+	nop
+	sub	%l7,0x4,%l7
+	mov	-0x1,%o0
+	st	%o0,[%l7]
+L329:
+	b	L331
+	nop
+L330:
+L325:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L332:
+L333:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	ldub	[%i5],%o2
+	mov	%i2,%o1
+	call	_N_OP_rplptr,3
+	nop
+	mov	%o0,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L335:
+L336:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	set	0x8000,%o7
+	andcc	%o5,%o7,%g0
+	bne	L337
+	nop
+	sethi	%hi(_GcDisabled_word),%l0
+	ld	[%l0+%lo(_GcDisabled_word)],%l0
+	ld	[%l0],%l1
+	cmp	%l1,0x4c
+	be	L337
+	nop
+	sethi	%hi(_Reclaim_cnt_word),%o0
+	ld	[%o0+%lo(_Reclaim_cnt_word)],%o0
+	ld	[%o0],%o1
+	tst	%o1
+	be	L338
+	nop
+	ldub	[%i5],%o1
+	mov	%i2,%o0
+	call	_htfind,2
+	nop
+	mov	%o0,%o2
+	mov	%o2,%i2
+	b	L340
+	nop
+L338:
+	ldub	[%i5],%o1
+	mov	%i2,%o0
+	call	_rec_htfind,2
+	nop
+	mov	%o0,%o3
+	mov	%o3,%i2
+L340:
+	b	L342
+	nop
+L337:
+	mov	0,%i2
+L342:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L343:
+L344:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_assoc,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L346
+	nop
+	b	L132
+	nop
+L346:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L347:
+L348:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o1
+	sll	%o1,0x18,%o1
+	or	%o1,%o2,%o1
+	ldub	[%i5+0x2],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o1,%o5,%o1
+	ldub	[%i5+0x3],%o7
+	mov	%o7,%l0
+	or	%o1,%l0,%o1
+	mov	%i2,%o0
+	call	_N_OP_gvar_,2
+	nop
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L350:
+L351:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_rplaca,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L353
+	nop
+	b	L131
+	nop
+L353:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L354:
+L355:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_rplacd,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L357
+	nop
+	b	L131
+	nop
+L357:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L358:
+L359:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_cons,2
+	nop
+	mov	%o0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L361:
+L362:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_classoc,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L364
+	nop
+	b	L132
+	nop
+L364:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L365:
+L366:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_fmemb,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L368
+	nop
+	b	L132
+	nop
+L368:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L369:
+L370:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_clfmemb,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L372
+	nop
+	b	L132
+	nop
+L372:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L373:
+L374:
+	ldub	[%i5],%o1
+	mov	%i2,%o0
+	call	_N_OP_findkey,2
+	nop
+	mov	%o0,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L376:
+L377:
+	mov	%i2,%o0
+	call	_N_OP_createcell,1
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L379
+	nop
+	b	L129
+	nop
+L379:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L380:
+L381:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0xb
+	bne	L382
+	nop
+	mov	%i2,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	mov	%o3,%i0
+	ldub	[%i0+0x14],%o4
+	srl	%o4,0x7,%o5
+	andcc	%o5,0x1,%g0
+	be	L2000021
+	nop
+	lduh	[%i0],%o7
+	lduh	[%i0+0x2],%l0
+	cmp	%o7,%l0
+	blu	L383
+	nop
+L2000021:
+	b	L127
+	nop
+L383:
+	ld	[%i0+0x4],%l1
+	set	0xfffffff,%l2
+	and	%l1,%l2,%l3
+	mov	%l3,%l4
+	sll	%l4,0x1,%l5
+	sethi	%hi(_Lisp_world),%l6
+	ld	[%l6+%lo(_Lisp_world)],%l6
+	add	%l6,%l5,%o0
+	mov	%o0,%l7
+	lduh	[%i0],%o1
+	mov	%o1,%o2
+	ldub	[%l7+%o2],%o3
+	mov	%o3,%o4
+	set	0xe0000,%o5
+	or	%o4,%o5,%o7
+	mov	%o7,%i2
+	lduh	[%i0],%l0
+	add	%l0,0x1,%l0
+	sll	%l0,16,%l0
+	srl	%l0,16,%l0
+	sth	%l0,[%i0]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L382:
+	b	L127
+	nop
+L384:
+L385:
+	b	L127
+	nop
+L386:
+L387:
+	b	L127
+	nop
+L388:
+L389:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	ldub	[%i5],%o2
+	mov	%i2,%o1
+	call	_N_OP_restlist,3
+	nop
+	mov	%o0,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L391:
+L392:
+	sub	%i5,0x1,%o0
+	st	%o0,[%i1+0x10]
+	st	%i2,[%i1+0xc]
+	sub	%i3,0x4,%o0
+	st	%o0,[%i1+0x8]
+	ldub	[%i5],%o0
+	ldub	[%i5+0x1],%o1
+	call	_OP_miscn,2
+	nop
+	tst	%o0
+	be	L394
+	nop
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	b	L127
+	nop
+L394:
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L395:
+L396:
+	b	L127
+	nop
+L397:
+L398:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_rplcons,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L400
+	nop
+	b	L131
+	nop
+L400:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L401:
+L402:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_listget,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L404
+	nop
+	b	L135
+	nop
+L404:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L405:
+L406:
+	b	L127
+	nop
+L407:
+L408:
+	b	L127
+	nop
+L409:
+L410:
+	b	L127
+	nop
+L411:
+L412:
+	b	L127
+	nop
+L413:
+L414:
+	b	L416
+	nop
+L417:
+L418:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L419:
+	tst	%i2
+	be	L2000022
+	nop
+	cmp	%i2,0x4c
+	bne	L420
+	nop
+L2000022:
+	b	L421
+	nop
+L420:
+	ld	[%i1+0x4],%o0
+	sub	%o0,0x14,%o0
+	sub	%fp,0x1c,%o1
+	set	0xffff,%o2
+	and	%i2,%o2,%o2
+	call	_nnewframe,3
+	nop
+	ld	[%fp+-0x1c],%o3
+	and	%o3,0xfff,%o4
+	sll	%o4,0x10,%o5
+	ld	[%fp+-0x1c],%o7
+	set	-0x10000,%l0
+	and	%o7,%l0,%l1
+	srl	%l1,0x10,%l2
+	or	%l2,%o5,%l3
+	mov	%l3,%i0
+	mov	%i0,%l4
+	sll	%l4,0x1,%l5
+	sethi	%hi(_Lisp_world),%l6
+	ld	[%l6+%lo(_Lisp_world)],%l6
+	ld	[%l6+%l5],%o0
+	mov	%o0,%l7
+	cmp	%l7,0x1
+	bne	L423
+	nop
+	b	L127
+	nop
+L423:
+	mov	%l7,%i2
+L421:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L424:
+	b	L426
+	nop
+L427:
+L428:
+L429:
+L430:
+L431:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L432:
+	mov	0xf8,%o0
+	st	%o0,[%fp+-0x8]
+	mov	0x1,%o1
+	st	%o1,[%fp+-0x10]
+	mov	0x1,%o2
+	st	%o2,[%fp+-0xc]
+	sethi	%hi(_Pnamespace),%o3
+	ld	[%o3+%lo(_Pnamespace)],%o3
+	set	0x1368,%o4
+	add	%o3,%o4,%o5
+	st	%o5,[%fp+-0x4]
+	st	%g0,[%fp+-0x14]
+	b	L140
+	nop
+L433:
+	ld	[%i1+0x4],%o0
+	sub	%o0,0x14,%o0
+	sub	%fp,0x1c,%o1
+	mov	%i2,%o2
+	call	_nnewframe,3
+	nop
+	ld	[%fp+-0x1c],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o7
+	and	%o0,%o7,%l0
+	mov	%l0,%l1
+	mov	%l1,%i0
+	mov	%i0,%l2
+	sll	%l2,0x1,%l3
+	sethi	%hi(_Lisp_world),%l4
+	ld	[%l4+%lo(_Lisp_world)],%l4
+	ld	[%l4+%l3],%l5
+	mov	%l5,%l7
+	cmp	%l7,0x1
+	bne	L435
+	nop
+	b	L127
+	nop
+L435:
+	mov	%l7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L436:
+	b	L127
+	nop
+L426:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o0
+	and	%o0,0x7ff,%o0
+	sub	%o0,2,%o0
+	cmp	%o0,19
+	bgu	L436
+	sll	%o0,2,%o0
+	set	L2000023,%o1
+	ld	[%o0+%o1],%o0
+	jmp	%o0
+	nop
+	L2000023:  
+	.word	L427
+	.word	L428
+	.word	L436
+	.word	L432
+	.word	L436
+	.word	L429
+	.word	L436
+	.word	L436
+	.word	L436
+	.word	L436
+	.word	L436
+	.word	L436
+	.word	L430
+	.word	L436
+	.word	L431
+	.word	L436
+	.word	L436
+	.word	L436
+	.word	L436
+	.word	L433
+L425:
+L416:
+	set	0xfff0000,%o4
+	and	%i2,%o4,%o0
+	cmp	%o0,0
+	be	L419
+	sethi	%hi(917504),%o1
+	add	%o1,%lo(917504),%o1
+	cmp	%o0,%o1
+	be	L417
+	sethi	%hi(983040),%o1
+	add	%o1,%lo(983040),%o1
+	cmp	%o0,%o1
+	be	L418
+	nop
+	b	L424
+	nop
+L415:
+L437:
+L438:
+	mov	%i2,%l6
+	ld	[%i3+-0x4],%l4
+	mov	%l4,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	mov	%o3,%i0
+	ld	[%i3+-0x8],%l5
+	b	L440
+	nop
+L441:
+	set	0xffff,%o0
+	and	%l5,%o0,%o1
+	mov	%o1,%l5
+	b	L439
+	nop
+L442:
+	set	-0x10000,%o2
+	or	%l5,%o2,%o3
+	mov	%o3,%l5
+	b	L439
+	nop
+L443:
+	sra	%l5,0x9,%o4
+	sll	%o4,0x1,%o5
+	sethi	%hi(_MDStypetbl),%o7
+	ld	[%o7+%lo(_MDStypetbl)],%o7
+	lduh	[%o7+%o5],%l0
+	mov	%l0,%l1
+	and	%l1,0x7ff,%l2
+	cmp	%l2,0x2
+	be	L444
+	nop
+	b	L127
+	nop
+L444:
+	sll	%l5,0x1,%o0
+	sethi	%hi(_Lisp_world),%o1
+	ld	[%o1+%lo(_Lisp_world)],%o1
+	ld	[%o1+%o0],%o2
+	mov	%o2,%l5
+	b	L439
+	nop
+L440:
+	set	0xfff0000,%o3
+	and	%l5,%o3,%o0
+	sethi	%hi(917504),%o1
+	add	%o1,%lo(917504),%o1
+	cmp	%o0,%o1
+	be	L441
+	sethi	%hi(983040),%o1
+	add	%o1,%lo(983040),%o1
+	cmp	%o0,%o1
+	be	L442
+	nop
+	b	L443
+	nop
+L439:
+	ld	[%i1+0x4],%o4
+	sub	%i5,0x1,%o5
+	mov	%o5,%o7
+	ld	[%i1+0x14],%l0
+	mov	%l0,%l1
+	sub	%o7,%l1,%l2
+	add	%l2,0x1,%l3
+	sth	%l3,[%o4+-0xa]
+	lduh	[%i0],%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	ld	[%i1+0x20],%o3
+	mov	%o3,%o4
+	sub	%o4,%o2,%o5
+	st	%o5,[%i1+0x1c]
+	mov	%i3,%o7
+	cmp	%o7,%o5
+	ble	L445
+	nop
+	b	L134
+	nop
+L445:
+	sub	%i3,0x8,%i3
+	sll	%l5,0x2,%o0
+	sub	%i3,%o0,%o1
+	st	%o1,[%i1]
+	mov	%o1,%o2
+	mov	%o2,%l3
+	ld	[%i1+0x4],%o3
+	sethi	%hi(_Stackspace),%o4
+	ld	[%o4+%lo(_Stackspace)],%o4
+	mov	%o4,%o5
+	mov	%l3,%o7
+	sub	%o7,%o5,%l0
+	srl	%l0,0x1,%l1
+	mov	%l1,%l7
+	sth	%l1,[%o3+-0xc]
+	ldsh	[%i0+0x2],%l2
+	mov	%l2,%o0
+	tst	%o0
+	bl	L446
+	nop
+	ldsh	[%i0+0x2],%o0
+	mov	%o0,%o1
+	sub	%l5,%o1,%o2
+	mov	%o2,%l3
+L447:
+	tst	%l3
+	bge	L448
+	nop
+	st	%g0,[%i3]
+	add	%i3,0x4,%i3
+	add	%l3,0x1,%l3
+	b	L447
+	nop
+L448:
+	sll	%l3,0x2,%o2
+	sub	%i3,%o2,%i3
+L446:
+	set	-0x80000000,%o3
+	or	%l7,%o3,%o4
+	mov	%o4,%o5
+	st	%o5,[%i3]
+	add	%i3,0x4,%i3
+	sethi	%hi(_Stackspace),%l0
+	ld	[%l0+%lo(_Stackspace)],%l0
+	mov	%l0,%l1
+	ld	[%i1+0x4],%l2
+	mov	%l2,%o0
+	sub	%o0,%l1,%o1
+	srl	%o1,0x1,%o2
+	set	-0x40000000,%o3
+	or	%o2,%o3,%o4
+	st	%o4,[%i3]
+	st	%l4,[%i3+0x4]
+	add	%i3,0x14,%o5
+	mov	%o5,%i3
+	st	%i3,[%i1+0x4]
+	ldsh	[%i0+0x4],%o0
+	mov	%o0,%o1
+	mov	%o1,%l3
+	tst	%l3
+	bl	L449
+	nop
+	mov	-0x1,%l2
+	tst	%l6
+	bne	L450
+	nop
+	st	%l2,[%i3]
+	add	%i3,0x4,%i3
+	b	L451
+	nop
+L450:
+	st	%l6,[%i3]
+	add	%i3,0x4,%i3
+L451:
+	st	%l2,[%i3]
+	add	%i3,0x4,%i3
+	tst	%l3
+	ble	L452
+	nop
+	st	%l2,[%i3]
+	add	%i3,0x4,%i3
+	st	%l2,[%i3]
+	add	%i3,0x4,%i3
+	sub	%l3,0x1,%l3
+L455:
+	sub	%l3,0x1,%l3
+	tst	%l3
+	bl	L454
+	nop
+	st	%l2,[%i3]
+	add	%i3,0x4,%i3
+	st	%l2,[%i3]
+	add	%i3,0x4,%i3
+L453:
+	b	L455
+	nop
+L454:
+L452:
+L449:
+	add	%i3,0x4,%i3
+	lduh	[%i0+0x6],%o2
+	mov	%o2,%o3
+	add	%i0,%o3,%o4
+	add	%o4,0x1,%o5
+	mov	%o5,%i5
+	st	%i0,[%i1+0x14]
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L456:
+L457:
+	mov	%i2,%o0
+	call	_N_OP_stkscan,1
+	nop
+	mov	%o0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L459:
+L460:
+	b	L127
+	nop
+L461:
+L462:
+	b	L127
+	nop
+L463:
+L464:
+	ldub	[%i5],%o3
+	ld	[%i3+-0x4],%o1
+	ld	[%i3+-0x8],%o0
+	mov	%i2,%o2
+	call	_N_OP_ubfloat3,4
+	nop
+	mov	%o0,%i2
+	ld	[%i1+0x28],%o1
+	tst	%o1
+	be	L466
+	nop
+	b	L129
+	nop
+L466:
+	sub	%i3,0x8,%i3
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L467:
+L468:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	ldub	[%i5],%o7
+	sll	%o7,16,%l0
+	srl	%l0,16,%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	andcc	%o5,%l2,%g0
+	bne	L469
+	nop
+	mov	0,%i2
+L469:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L470:
+L471:
+	b	L127
+	nop
+L472:
+L473:
+	b	L127
+	nop
+L474:
+L475:
+	b	L127
+	nop
+L476:
+L477:
+	b	L127
+	nop
+L478:
+L479:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	st	%o1,[%sp+0x60]
+	st	%i2,[%sp+0x5c]
+	ld	[%i3+-0x18],%o0
+	ld	[%i3+-0x14],%o1
+	ld	[%i3+-0x10],%o2
+	ld	[%i3+-0xc],%o3
+	ld	[%i3+-0x8],%o4
+	ld	[%i3+-0x4],%o5
+	call	_N_OP_misc7,6
+	nop
+	mov	%o0,%o2
+	mov	%o2,%i2
+	mov	%o2,%o3
+	tst	%o3
+	bge	L481
+	nop
+	b	L129
+	nop
+L481:
+	sub	%i3,0x18,%i3
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L482:
+L483:
+	b	L127
+	nop
+L484:
+L485:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_eqlop,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L487
+	nop
+	b	L131
+	nop
+L487:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L488:
+L489:
+	ld	[%i3+-0x8],%o0
+	st	%o0,[%sp+0x5c]
+	ld	[%i3+-0x4],%o1
+	st	%o1,[%sp+0x60]
+	st	%i2,[%sp+0x64]
+	ld	[%i3+-0x20],%o0
+	ld	[%i3+-0x1c],%o1
+	ld	[%i3+-0x18],%o2
+	ld	[%i3+-0x14],%o3
+	ld	[%i3+-0x10],%o4
+	ld	[%i3+-0xc],%o5
+	call	_N_OP_drawline,6
+	nop
+	mov	%o0,%o2
+	mov	%o2,%i2
+	mov	%o2,%o3
+	tst	%o3
+	bge	L491
+	nop
+	b	L129
+	nop
+L491:
+	sub	%i3,0x20,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L492:
+L493:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	add	%o1,0x2,%o2
+	srl	%o2,0x1,%o3
+	mov	%o3,%o4
+	sll	%o4,0x2,%o5
+	sub	%i3,%o5,%o7
+	st	%i2,[%o7]
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L494:
+L495:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%o1
+	mov	%o1,%o2
+	add	%o2,0x2,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%o5
+	sll	%o5,0x2,%o7
+	sub	%i3,%o7,%l0
+	ld	[%l0],%l1
+	mov	%l1,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L496:
+L497:
+	b	L127
+	nop
+L498:
+L499:
+	b	L127
+	nop
+L500:
+L501:
+	ld	[%i1],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L502:
+L503:
+	ld	[%i1],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x4],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L504:
+L505:
+	ld	[%i1],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x8],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L506:
+L507:
+	ld	[%i1],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0xc],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L508:
+L509:
+	ld	[%i1],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x10],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L510:
+L511:
+	ld	[%i1],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x14],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L512:
+L513:
+	ld	[%i1],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x18],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L514:
+L515:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	ld	[%i1],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L516:
+L517:
+	ld	[%i1+0x4],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L518:
+L519:
+	ld	[%i1+0x4],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x4],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L520:
+L521:
+	ld	[%i1+0x4],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x8],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L522:
+L523:
+	ld	[%i1+0x4],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0xc],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L524:
+L525:
+	ld	[%i1+0x4],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x10],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L526:
+L527:
+	ld	[%i1+0x4],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x14],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L528:
+L529:
+	ld	[%i1+0x4],%i0
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%l7
+	ld	[%i0+0x18],%i2
+	add	%i5,0x1,%i5
+	mov	%l7,%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L530:
+L531:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	ld	[%i1+0x4],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L532:
+L533:
+	ld	[%i1+0x4],%i0
+	ldub	[%i0+0x1],%o0
+	andcc	%o0,0x1,%g0
+	be	L534
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0,%o0
+	call	_native_newframe,1
+	nop
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L534:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i0],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L536:
+L537:
+	ld	[%i1+0x4],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i0
+	ldub	[%i0+0x1],%o2
+	andcc	%o2,0x1,%g0
+	be	L538
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0x1,%o0
+	call	_native_newframe,1
+	nop
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L538:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i0],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L539:
+L540:
+	ld	[%i1+0x4],%o0
+	add	%o0,0x8,%o1
+	mov	%o1,%i0
+	ldub	[%i0+0x1],%o2
+	andcc	%o2,0x1,%g0
+	be	L541
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0x2,%o0
+	call	_native_newframe,1
+	nop
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L541:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i0],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L542:
+L543:
+	ld	[%i1+0x4],%o0
+	add	%o0,0xc,%o1
+	mov	%o1,%i0
+	ldub	[%i0+0x1],%o2
+	andcc	%o2,0x1,%g0
+	be	L544
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0x3,%o0
+	call	_native_newframe,1
+	nop
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L544:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i0],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L545:
+L546:
+	ld	[%i1+0x4],%o0
+	add	%o0,0x10,%o1
+	mov	%o1,%i0
+	ldub	[%i0+0x1],%o2
+	andcc	%o2,0x1,%g0
+	be	L547
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0x4,%o0
+	call	_native_newframe,1
+	nop
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L547:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i0],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L548:
+L549:
+	ld	[%i1+0x4],%o0
+	add	%o0,0x14,%o1
+	mov	%o1,%i0
+	ldub	[%i0+0x1],%o2
+	andcc	%o2,0x1,%g0
+	be	L550
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0x5,%o0
+	call	_native_newframe,1
+	nop
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L550:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i0],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L551:
+L552:
+	ld	[%i1+0x4],%o0
+	add	%o0,0x18,%o1
+	mov	%o1,%i0
+	ldub	[%i0+0x1],%o2
+	andcc	%o2,0x1,%g0
+	be	L553
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0x6,%o0
+	call	_native_newframe,1
+	nop
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L553:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i0],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L554:
+L555:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	mov	%o1,%i0
+	sll	%i0,0x1,%o0
+	ld	[%i1+0x4],%o1
+	add	%o1,%o0,%o2
+	mov	%o2,%l7
+	ldub	[%l7+0x1],%o3
+	andcc	%o3,0x1,%g0
+	be	L556
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	sra	%i0,0x1,%o0
+	call	_native_newframe,1
+	nop
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L556:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%l7],%o0
+	nop
+	sll	%o0,16,%o1
+	srl	%o0,16,%o0
+	or	%o0,%o1,%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	ld	[%o4+%o3],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L557:
+L558:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L559:
+L560:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x4]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L561:
+L562:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x8]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L563:
+L564:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0xc]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L565:
+L566:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x10]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L567:
+L568:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x14]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L569:
+L570:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x18]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L571:
+L572:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	ld	[%i1+0x4],%o3
+	st	%i2,[%o3+%o2]
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L573:
+L574:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x18,%o5
+	or	%o5,%o2,%o7
+	ldub	[%i5+0x2],%l0
+	mov	%l0,%l1
+	sll	%l1,0x8,%l2
+	or	%o7,%l2,%l3
+	ldub	[%i5+0x3],%l4
+	mov	%l4,%l5
+	or	%l3,%l5,%l6
+	mov	%l6,%i0
+	set	0xfff0000,%o0
+	andcc	%i0,%o0,%g0
+	be	L575
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	add	%i0,0x2,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_Lisp_world),%o3
+	ld	[%o3+%lo(_Lisp_world)],%o3
+	ld	[%o3+%o2],%o4
+	mov	%o4,%o5
+	mov	%o5,%i2
+	b	L576
+	nop
+L575:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	%i0,%o1
+	sll	%o1,2,%o1
+	mov	%o1,%o2
+	sll	%o2,2,%o2
+	add	%o1,%o2,%o1
+	sethi	%hi(_Pnamespace),%o3
+	ld	[%o3+%lo(_Pnamespace)],%o3
+	add	%o3,%o1,%o4
+	ld	[%o4+0x4],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+L576:
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L577:
+L578:
+	mov	%i2,%o0
+	call	_N_OP_arg0,1
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L580
+	nop
+	b	L129
+	nop
+L580:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L581:
+L582:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	ld	[%i1],%o3
+	st	%i2,[%o3+%o2]
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L583:
+L584:
+	ldub	[%i5],%o1
+	mov	%i2,%o0
+	call	_N_OP_fvar_,2
+	nop
+	mov	%o0,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L586:
+L587:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L588:
+L589:
+	ld	[%i1+0x4],%o0
+	lduh	[%o0+-0x12],%o1
+	mov	%o1,%o2
+	andcc	%o2,0x1,%g0
+	bne	L590
+	nop
+	ld	[%i1+0x4],%o3
+	sub	%o3,0x18,%o4
+	mov	%o4,%o5
+	mov	%o5,%i0
+	b	L591
+	nop
+L590:
+	ld	[%i1+0x4],%o7
+	lduh	[%o7+-0x4],%l0
+	mov	%l0,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Stackspace),%l3
+	ld	[%l3+%lo(_Stackspace)],%l3
+	add	%l3,%l2,%l4
+	mov	%l4,%l5
+	mov	%l5,%i0
+L591:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i1],%o1
+	mov	%o1,%o2
+	sub	%i0,%o2,%o3
+	sra	%o3,0x2,%o4
+	sll	%o4,16,%o5
+	srl	%o5,16,%o5
+	mov	%o5,%o7
+	set	0xe0000,%l0
+	or	%o7,%l0,%l1
+	mov	%l1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L592:
+L593:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ld	[%i1+0x4],%o1
+	lduh	[%o1+-0x12],%o2
+	mov	%o2,%o3
+	set	0xfffe,%o4
+	and	%o3,%o4,%o5
+	sub	%o5,0xa,%o7
+	set	0xe0000,%l0
+	or	%o7,%l0,%l1
+	mov	%l1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L594:
+L595:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5+0x1],%o1
+	mov	%o1,%o2
+	sll	%o2,0x10,%o3
+	ldub	[%i5],%o4
+	mov	%o4,%o5
+	sll	%o5,0x18,%o7
+	or	%o7,%o3,%l0
+	ldub	[%i5+0x2],%l1
+	mov	%l1,%l2
+	sll	%l2,0x8,%l3
+	or	%l0,%l3,%l4
+	ldub	[%i5+0x3],%l5
+	mov	%l5,%l6
+	or	%l4,%l6,%l7
+	mov	%l7,%i2
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L596:
+L597:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L598:
+L599:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	mov	0x4c,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L600:
+L601:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	set	0xe0000,%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L602:
+L603:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	set	0xe0001,%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L604:
+L605:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%o1
+	mov	%o1,%o2
+	set	0xe0000,%o3
+	or	%o2,%o3,%o4
+	mov	%o4,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L606:
+L607:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5],%o1
+	mov	%o1,%o2
+	set	0xfff00,%o3
+	or	%o2,%o3,%o4
+	mov	%o4,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L608:
+L609:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5+0x1],%o1
+	mov	%o1,%o2
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o5,%o2,%o7
+	set	0xe0000,%l0
+	or	%o7,%l0,%l1
+	mov	%l1,%i2
+ ldub [%i5+0x3+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x3,%i5
+	b	L125
+	nop
+L610:
+L611:
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	ldub	[%i5+0x1],%o1
+	mov	%o1,%o2
+	sll	%o2,0x10,%o3
+	ldub	[%i5],%o4
+	mov	%o4,%o5
+	sll	%o5,0x18,%o7
+	or	%o7,%o3,%l0
+	ldub	[%i5+0x2],%l1
+	mov	%l1,%l2
+	sll	%l2,0x8,%l3
+	or	%l0,%l3,%l4
+	ldub	[%i5+0x3],%l5
+	mov	%l5,%l6
+	or	%l4,%l6,%l7
+	mov	%l7,%i2
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L612:
+L613:
+	b	L127
+	nop
+L614:
+L615:
+	b	L127
+	nop
+L616:
+L617:
+	b	L127
+	nop
+L618:
+L619:
+	b	L127
+	nop
+L620:
+L621:
+	b	L127
+	nop
+L622:
+L623:
+	b	L127
+	nop
+L624:
+L625:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_pilotbitblt,2
+	nop
+	mov	%o0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L627:
+L628:
+	mov	%i2,%o0
+	call	_N_OP_rclk,1
+	nop
+	mov	%o0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L630:
+L631:
+	b	L127
+	nop
+L632:
+L633:
+	b	L127
+	nop
+L634:
+L635:
+	b	L127
+	nop
+L636:
+L637:
+	set	0xffff,%o0
+	and	%i2,%o0,%o0
+	call	_gcscan1,1
+	nop
+	mov	%o0,%o1
+	mov	%o1,%i2
+	tst	%i2
+	be	L639
+	nop
+	set	0xe0000,%o0
+	or	%i2,%o0,%i2
+L639:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L640:
+L641:
+	set	0xffff,%o0
+	and	%i2,%o0,%o0
+	call	_gcscan2,1
+	nop
+	mov	%o0,%o1
+	mov	%o1,%i2
+	tst	%i2
+	be	L643
+	nop
+	set	0xe0000,%o0
+	or	%i2,%o0,%i2
+L643:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L644:
+L645:
+	sub	%i5,0x1,%o0
+	st	%o0,[%i1+0x10]
+	st	%i2,[%i1+0xc]
+	sub	%i3,0x4,%o0
+	st	%o0,[%i1+0x8]
+	ldub	[%i5],%o0
+	ldub	[%i5+0x1],%o1
+	call	_OP_subrcall,2
+	nop
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L647:
+L648:
+	sub	%i5,0x1,%o0
+	st	%o0,[%i1+0x10]
+	st	%i2,[%i1+0xc]
+	sub	%i3,0x4,%o0
+	st	%o0,[%i1+0x8]
+	call	_OP_contextsw,0
+	nop
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	ld	[%i1+0x14],%o0
+	lduh	[%o0],%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	ld	[%i1+0x18],%o4
+	mov	%o4,%o5
+	st	%o5,[%i1+0x20]
+	mov	%o5,%o7
+	sub	%o7,%o3,%l0
+	st	%l0,[%i1+0x1c]
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L650:
+L651:
+	b	L127
+	nop
+L652:
+L653:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L654
+	nop
+	b	L134
+	nop
+L654:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L655:
+L656:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L657
+	nop
+	b	L134
+	nop
+L657:
+ ldub [%i5+0x3+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x3,%i5
+	b	L125
+	nop
+L658:
+L659:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L660
+	nop
+	b	L134
+	nop
+L660:
+	add	%i5,0x4,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L661:
+L662:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L663
+	nop
+	b	L134
+	nop
+L663:
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L664:
+L665:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L666
+	nop
+	b	L134
+	nop
+L666:
+	add	%i5,0x6,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L667:
+L668:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L669
+	nop
+	b	L134
+	nop
+L669:
+	add	%i5,0x7,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L670:
+L671:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L672
+	nop
+	b	L134
+	nop
+L672:
+	add	%i5,0x8,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L673:
+L674:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L675
+	nop
+	b	L134
+	nop
+L675:
+	add	%i5,0x9,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L676:
+L677:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L678
+	nop
+	b	L134
+	nop
+L678:
+	add	%i5,0xa,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L679:
+L680:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L681
+	nop
+	b	L134
+	nop
+L681:
+	add	%i5,0xb,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L682:
+L683:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L684
+	nop
+	b	L134
+	nop
+L684:
+	add	%i5,0xc,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L685:
+L686:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L687
+	nop
+	b	L134
+	nop
+L687:
+	add	%i5,0xd,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L688:
+L689:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L690
+	nop
+	b	L134
+	nop
+L690:
+	add	%i5,0xe,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L691:
+L692:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L693
+	nop
+	b	L134
+	nop
+L693:
+	add	%i5,0xf,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L694:
+L695:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L696
+	nop
+	b	L134
+	nop
+L696:
+	add	%i5,0x10,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L697:
+L698:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L699
+	nop
+	b	L134
+	nop
+L699:
+	add	%i5,0x11,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L700:
+L701:
+	tst	%i2
+	be	L702
+	nop
+	b	L703
+	nop
+L702:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L704
+	nop
+	b	L134
+	nop
+L704:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L705:
+L706:
+	tst	%i2
+	be	L707
+	nop
+	b	L703
+	nop
+L707:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L708
+	nop
+	b	L134
+	nop
+L708:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+ ldub [%i5+0x3+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x3,%i5
+	b	L125
+	nop
+L709:
+L710:
+	tst	%i2
+	be	L711
+	nop
+	b	L703
+	nop
+L711:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L712
+	nop
+	b	L134
+	nop
+L712:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x4,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L713:
+L714:
+	tst	%i2
+	be	L715
+	nop
+	b	L703
+	nop
+L715:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L716
+	nop
+	b	L134
+	nop
+L716:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L717:
+L718:
+	tst	%i2
+	be	L719
+	nop
+	b	L703
+	nop
+L719:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L720
+	nop
+	b	L134
+	nop
+L720:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x6,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L721:
+L722:
+	tst	%i2
+	be	L723
+	nop
+	b	L703
+	nop
+L723:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L724
+	nop
+	b	L134
+	nop
+L724:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x7,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L725:
+L726:
+	tst	%i2
+	be	L727
+	nop
+	b	L703
+	nop
+L727:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L728
+	nop
+	b	L134
+	nop
+L728:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x8,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L729:
+L730:
+	tst	%i2
+	be	L731
+	nop
+	b	L703
+	nop
+L731:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L732
+	nop
+	b	L134
+	nop
+L732:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x9,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L733:
+L734:
+	tst	%i2
+	be	L735
+	nop
+	b	L703
+	nop
+L735:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L736
+	nop
+	b	L134
+	nop
+L736:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xa,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L737:
+L738:
+	tst	%i2
+	be	L739
+	nop
+	b	L703
+	nop
+L739:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L740
+	nop
+	b	L134
+	nop
+L740:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xb,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L741:
+L742:
+	tst	%i2
+	be	L743
+	nop
+	b	L703
+	nop
+L743:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L744
+	nop
+	b	L134
+	nop
+L744:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xc,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L745:
+L746:
+	tst	%i2
+	be	L747
+	nop
+	b	L703
+	nop
+L747:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L748
+	nop
+	b	L134
+	nop
+L748:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xd,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L749:
+L750:
+	tst	%i2
+	be	L751
+	nop
+	b	L703
+	nop
+L751:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L752
+	nop
+	b	L134
+	nop
+L752:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xe,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L753:
+L754:
+	tst	%i2
+	be	L755
+	nop
+	b	L703
+	nop
+L755:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L756
+	nop
+	b	L134
+	nop
+L756:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xf,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L757:
+L758:
+	tst	%i2
+	be	L759
+	nop
+	b	L703
+	nop
+L759:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L760
+	nop
+	b	L134
+	nop
+L760:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x10,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L761:
+L762:
+	tst	%i2
+	be	L763
+	nop
+	b	L703
+	nop
+L763:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L764
+	nop
+	b	L134
+	nop
+L764:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x11,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L765:
+L766:
+	tst	%i2
+	bne	L767
+	nop
+	b	L703
+	nop
+L767:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L768
+	nop
+	b	L134
+	nop
+L768:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L769:
+L770:
+	tst	%i2
+	bne	L771
+	nop
+	b	L703
+	nop
+L771:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L772
+	nop
+	b	L134
+	nop
+L772:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+ ldub [%i5+0x3+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x3,%i5
+	b	L125
+	nop
+L773:
+L774:
+	tst	%i2
+	bne	L775
+	nop
+	b	L703
+	nop
+L775:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L776
+	nop
+	b	L134
+	nop
+L776:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x4,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L777:
+L778:
+	tst	%i2
+	bne	L779
+	nop
+	b	L703
+	nop
+L779:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L780
+	nop
+	b	L134
+	nop
+L780:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L781:
+L782:
+	tst	%i2
+	bne	L783
+	nop
+	b	L703
+	nop
+L783:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L784
+	nop
+	b	L134
+	nop
+L784:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x6,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L785:
+L786:
+	tst	%i2
+	bne	L787
+	nop
+	b	L703
+	nop
+L787:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L788
+	nop
+	b	L134
+	nop
+L788:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x7,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L789:
+L790:
+	tst	%i2
+	bne	L791
+	nop
+	b	L703
+	nop
+L791:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L792
+	nop
+	b	L134
+	nop
+L792:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x8,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L793:
+L794:
+	tst	%i2
+	bne	L795
+	nop
+	b	L703
+	nop
+L795:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L796
+	nop
+	b	L134
+	nop
+L796:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x9,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L797:
+L798:
+	tst	%i2
+	bne	L799
+	nop
+	b	L703
+	nop
+L799:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L800
+	nop
+	b	L134
+	nop
+L800:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xa,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L801:
+L802:
+	tst	%i2
+	bne	L803
+	nop
+	b	L703
+	nop
+L803:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L804
+	nop
+	b	L134
+	nop
+L804:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xb,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L805:
+L806:
+	tst	%i2
+	bne	L807
+	nop
+	b	L703
+	nop
+L807:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L808
+	nop
+	b	L134
+	nop
+L808:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xc,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L809:
+L810:
+	tst	%i2
+	bne	L811
+	nop
+	b	L703
+	nop
+L811:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L812
+	nop
+	b	L134
+	nop
+L812:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xd,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L813:
+L814:
+	tst	%i2
+	bne	L815
+	nop
+	b	L703
+	nop
+L815:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L816
+	nop
+	b	L134
+	nop
+L816:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xe,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L817:
+L818:
+	tst	%i2
+	bne	L819
+	nop
+	b	L703
+	nop
+L819:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L820
+	nop
+	b	L134
+	nop
+L820:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0xf,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L821:
+L822:
+	tst	%i2
+	bne	L823
+	nop
+	b	L703
+	nop
+L823:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L824
+	nop
+	b	L134
+	nop
+L824:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x10,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L825:
+L826:
+	tst	%i2
+	bne	L827
+	nop
+	b	L703
+	nop
+L827:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L828
+	nop
+	b	L134
+	nop
+L828:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	add	%i5,0x11,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L829:
+L830:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L831
+	nop
+	b	L134
+	nop
+L831:
+	ldsb	[%i5],%o2
+	mov	%o2,%o3
+	add	%i5,%o3,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L832:
+L833:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L834
+	nop
+	b	L134
+	nop
+L834:
+	ldub	[%i5+0x1],%o2
+	mov	%o2,%o3
+	ldsb	[%i5],%o4
+	mov	%o4,%o5
+	sll	%o5,0x8,%o7
+	mov	%o7,%l0
+	or	%l0,%o3,%l1
+	mov	%l1,%l2
+	add	%i5,%l2,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L835:
+L836:
+	tst	%i2
+	be	L837
+	nop
+	b	L838
+	nop
+L837:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L839
+	nop
+	b	L134
+	nop
+L839:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	ldsb	[%i5],%o3
+	mov	%o3,%o4
+	add	%i5,%o4,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L840:
+L841:
+	tst	%i2
+	bne	L842
+	nop
+	b	L838
+	nop
+L842:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L843
+	nop
+	b	L134
+	nop
+L843:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+	ldsb	[%i5],%o3
+	mov	%o3,%o4
+	add	%i5,%o4,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L844:
+L845:
+	tst	%i2
+	be	L846
+	nop
+	b	L838
+	nop
+L846:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L847
+	nop
+	b	L134
+	nop
+L847:
+	ldsb	[%i5],%o2
+	mov	%o2,%o3
+	add	%i5,%o3,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L848:
+L849:
+	tst	%i2
+	bne	L850
+	nop
+	b	L838
+	nop
+L850:
+	mov	%i3,%o0
+	ld	[%i1+0x1c],%o1
+	cmp	%o0,%o1
+	ble	L851
+	nop
+	b	L134
+	nop
+L851:
+	ldsb	[%i5],%o2
+	mov	%o2,%o3
+	add	%i5,%o3,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L852:
+L853:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	st	%o0,[%fp+-0x1c]
+	ld	[%fp+-0x1c],%o1
+	srl	%o1,0x9,%o2
+	mov	%o2,%o3
+	sll	%o3,0x1,%o4
+	sethi	%hi(_MDStypetbl),%o5
+	ld	[%o5+%lo(_MDStypetbl)],%o5
+	lduh	[%o5+%o4],%o7
+	mov	%o7,%l0
+	and	%l0,0x7ff,%l1
+	cmp	%l1,0xe
+	be	L854
+	nop
+	b	L855
+	nop
+L854:
+	ld	[%fp+-0x1c],%l2
+	mov	%l2,%l3
+	sll	%l3,0x1,%l4
+	sethi	%hi(_Lisp_world),%l5
+	ld	[%l5+%lo(_Lisp_world)],%l5
+	add	%l5,%l4,%o0
+	mov	%o0,%l6
+	set	0xfff0000,%o1
+	and	%i2,%o1,%o2
+	set	0xe0000,%o3
+	cmp	%o2,%o3
+	be	L856
+	nop
+	b	L855
+	nop
+L856:
+	set	0xffff,%o4
+	and	%i2,%o4,%o5
+	mov	%o5,%l7
+	mov	%l7,%o7
+	ld	[%l6+0xc],%l0
+	cmp	%o7,%l0
+	blu	L857
+	nop
+	b	L855
+	nop
+L857:
+	lduh	[%l6+0x6],%l1
+	mov	%l1,%l2
+	add	%l7,%l2,%l7
+	ld	[%l6],%l3
+	set	0xfffffff,%l4
+	and	%l3,%l4,%l5
+	mov	%l5,%i0
+	b	L859
+	nop
+L860:
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	sll	%l7,0x2,%o4
+	ld	[%o3+%o4],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L861:
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	sll	%l7,0x1,%o4
+	lduh	[%o3+%o4],%o5
+	mov	%o5,%o7
+	set	0xffff,%l0
+	and	%o7,%l0,%l1
+	mov	%l1,%i2
+	set	0x8000,%l2
+	andcc	%i2,%l2,%g0
+	be	L862
+	nop
+	set	0xf0000,%l3
+	or	%i2,%l3,%i2
+	b	L863
+	nop
+L862:
+	set	0xe0000,%l4
+	or	%i2,%l4,%i2
+L863:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L864:
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	ldsb	[%o3+%l7],%o4
+	mov	%o4,%o5
+	and	%o5,0xff,%o7
+	set	0x70000,%l0
+	or	%o7,%l0,%l1
+	mov	%l1,%l2
+	mov	%l2,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L865:
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	sll	%l7,0x2,%o4
+	ld	[%o3+%o4],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+	b	L867
+	nop
+L868:
+	set	0xe0000,%o0
+	or	%i2,%o0,%i2
+	b	L866
+	nop
+L869:
+	set	0xf0000,%o1
+	and	%i2,%o1,%i2
+	b	L866
+	nop
+L870:
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	st	%i2,[%l5]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l5,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L866
+	nop
+L867:
+	set	-0x10000,%o5
+	and	%i2,%o5,%o0
+	sethi	%hi(-65536),%o1
+	add	%o1,%lo(-65536),%o1
+	cmp	%o0,%o1
+	be	L869
+	cmp	%o0,0
+	be	L868
+	nop
+	b	L870
+	nop
+L866:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L871:
+	and	%l7,0x7,%o0
+	mov	0x7,%o1
+	sub	%o1,%o0,%o2
+	mov	%i0,%o3
+	sll	%o3,0x1,%o4
+	sethi	%hi(_Lisp_world),%o5
+	ld	[%o5+%lo(_Lisp_world)],%o5
+	add	%o5,%o4,%o7
+	sra	%l7,0x3,%l0
+	ldsb	[%o7+%l0],%l1
+	mov	%l1,%l2
+	sra	%l2,%o2,%l3
+	and	%l3,0x1,%l4
+	set	0xe0000,%l5
+	or	%l4,%l5,%o0
+	mov	%o0,%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L872:
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	ldsb	[%o3+%l7],%o4
+	mov	%o4,%o5
+	and	%o5,0xff,%o7
+	set	0xe0000,%l0
+	or	%o7,%l0,%l1
+	mov	%l1,%l2
+	mov	%l2,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L873:
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	sll	%l7,0x1,%o4
+	lduh	[%o3+%o4],%o5
+	mov	%o5,%o7
+	set	0xffff,%l0
+	and	%o7,%l0,%l1
+	set	0xe0000,%l2
+	or	%l1,%l2,%l3
+	mov	%l3,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L874:
+	mov	0x3,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	sll	%l7,0x2,%o4
+	ld	[%o3+%o4],%o5
+	st	%o5,[%l5]
+	sethi	%hi(_Lisp_world),%o7
+	ld	[%o7+%lo(_Lisp_world)],%o7
+	mov	%o7,%l0
+	mov	%l5,%l1
+	sub	%l1,%l0,%l2
+	srl	%l2,0x1,%l3
+	mov	%l3,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L875:
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	sll	%l7,0x1,%o4
+	lduh	[%o3+%o4],%o5
+	mov	%o5,%o7
+	set	0xffff,%l0
+	and	%o7,%l0,%l1
+	set	0x70000,%l2
+	or	%l1,%l2,%l3
+	mov	%l3,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L876:
+	mov	%i0,%o0
+	sll	%o0,0x1,%o1
+	sethi	%hi(_Lisp_world),%o2
+	ld	[%o2+%lo(_Lisp_world)],%o2
+	add	%o2,%o1,%o3
+	sll	%l7,0x2,%o4
+	ld	[%o3+%o4],%o5
+	mov	%o5,%o7
+	mov	%o7,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L877:
+	b	L855
+	nop
+L859:
+	ldub	[%l6+0x5],%o0
+	cmp	%o0,86
+	bgu	L877
+	sethi	%hi(L2000027),%o2
+	or	%o2,%lo(L2000027),%o2
+	srl	%o0,0x4,%o1
+	mov	%o1,%o3
+	sll	%o3,2,%o3
+	add	%o1,%o3,%o1
+	add	%o1,%o0,%o1
+	mov	15,%o4
+	and	%o1,%o4,%o1
+	sll	%o1,3,%o4
+1:	ld	[%o4+%o2],%o3
+	cmp	%o3,%o0
+	be	2f
+	nop
+3:	cmp	%o3,-1
+	be	L877
+	nop
+	add	%o4,8,%o4
+	and	%o4,120,%o4
+	ld	[%o4+%o2],%o3
+	cmp	%o3,%o0
+	be	2f
+	nop
+	b	3b
+	nop
+2:	add     %o4,%o2,%o4
+	ld	[%o4+4], %o0
+	jmp	%o0
+	nop
+L2000027:
+	.word	0,L871
+	.word	38,L860
+        .word   -1,L877
+	.word	3,L872
+	.word	4,L873
+	.word	54,L874
+        .word   -1,L877
+	.word	67,L864
+	.word	68,L875
+	.word	20,L861
+        .word   -1,L877
+	.word	22,L865
+        .word   -1,L877
+        .word   -1,L877
+        .word   -1,L877
+	.word	86,L876
+L858:
+L855:
+	ld	[%fp+-0x1c],%o0
+	mov	%i2,%o1
+	call	_N_OP_aref1,2
+	nop
+	mov	%o0,%o5
+	mov	%o5,%i2
+	mov	%o5,%o7
+	tst	%o7
+	bge	L879
+	nop
+	b	L131
+	nop
+L879:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L880:
+L881:
+	ld	[%i3+-0x8],%o0
+	ld	[%i3+-0x4],%o1
+	mov	%i2,%o2
+	call	_N_OP_aset1,3
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L883
+	nop
+	b	L129
+	nop
+L883:
+	sub	%i3,0x8,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L884:
+L885:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0]
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L886:
+L887:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x4]
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L888:
+L889:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x8]
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L890:
+L891:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0xc]
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L892:
+L893:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x10]
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L894:
+L895:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x14]
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L896:
+L897:
+	ld	[%i1+0x4],%o0
+	st	%i2,[%o0+0x18]
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o1
+	mov	%o1,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L898:
+L899:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%o0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L900:
+L901:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	add	%o1,0x1,%o2
+	mov	%o2,%o3
+	sll	%o3,0x2,%o4
+	sub	%i3,%o4,%i3
+	ld	[%i3],%o5
+	mov	%o5,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L902:
+L903:
+	ldub	[%i5],%o0
+	mov	%o0,%o1
+	mov	%o1,%i0
+	set	0xfff0000,%o0
+	andcc	%i2,%o0,%g0
+	bne	L904
+	nop
+	b	L906
+	nop
+L907:
+	mov	%i2,%o0
+	sll	%o0,1,%o0
+	mov	%o0,%o1
+	sll	%o1,2,%o1
+	add	%o0,%o1,%o0
+	set	0x80006,%o2
+	add	%o0,%o2,%o3
+	mov	%o3,%i2
+	b	L905
+	nop
+L908:
+	mov	%i2,%o4
+	sll	%o4,1,%o4
+	mov	%o4,%o5
+	sll	%o5,2,%o5
+	add	%o4,%o5,%o4
+	set	0x80000,%o7
+	add	%o4,%o7,%l0
+	mov	%l0,%i2
+	b	L905
+	nop
+L909:
+	mov	%i2,%l1
+	sll	%l1,1,%l1
+	mov	%l1,%l2
+	sll	%l2,2,%l2
+	add	%l1,%l2,%l1
+	set	0x80002,%l3
+	add	%l1,%l3,%l4
+	mov	%l4,%i2
+	b	L905
+	nop
+L910:
+	mov	%i2,%l5
+	sll	%l5,1,%l5
+	mov	%l5,%l6
+	sll	%l6,2,%l6
+	add	%l5,%l6,%l5
+	set	0x80004,%l7
+	add	%l5,%l7,%o0
+	mov	%o0,%i2
+	b	L905
+	nop
+L911:
+	b	L127
+	nop
+L906:
+	mov	%i0,%o0
+	sub	%o0,3,%o0
+	cmp	%o0,9
+	bgu	L911
+	sll	%o0,2,%o0
+	set	L2000028,%o1
+	ld	[%o0+%o1],%o0
+	jmp	%o0
+	nop
+	L2000028:  
+	.word	L907
+	.word	L911
+	.word	L911
+	.word	L911
+	.word	L911
+	.word	L908
+	.word	L911
+	.word	L910
+	.word	L911
+	.word	L909
+L905:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L904:
+	srl	%i2,0x9,%o0
+	mov	%o0,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0x15
+	bne	L912
+	nop
+	b	L914
+	nop
+L915:
+	add	%i2,0x6,%o0
+	mov	%o0,%i2
+	b	L913
+	nop
+L916:
+	b	L913
+	nop
+L917:
+	add	%i2,0x2,%o1
+	mov	%o1,%i2
+	b	L913
+	nop
+L918:
+	add	%i2,0x4,%o2
+	mov	%o2,%i2
+	b	L913
+	nop
+L919:
+	b	L127
+	nop
+L914:
+	mov	%i0,%o0
+	sub	%o0,3,%o0
+	cmp	%o0,9
+	bgu	L919
+	sll	%o0,2,%o0
+	set	L2000029,%o1
+	ld	[%o0+%o1],%o0
+	jmp	%o0
+	nop
+	L2000029:  
+	.word	L915
+	.word	L919
+	.word	L919
+	.word	L919
+	.word	L919
+	.word	L916
+	.word	L919
+	.word	L918
+	.word	L919
+	.word	L917
+L913:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L912:
+	b	L127
+	nop
+L920:
+L921:
+	b	L923
+	nop
+L924:
+	set	0xffff,%o0
+	and	%i2,%o0,%i2
+	b	L922
+	nop
+L925:
+	set	-0x10000,%o1
+	or	%i2,%o1,%i2
+	b	L922
+	nop
+L926:
+	srl	%i2,0x9,%o2
+	mov	%o2,%o3
+	sll	%o3,0x1,%o4
+	sethi	%hi(_MDStypetbl),%o5
+	ld	[%o5+%lo(_MDStypetbl)],%o5
+	lduh	[%o5+%o4],%o7
+	mov	%o7,%l0
+	and	%l0,0x7ff,%l1
+	cmp	%l1,0x2
+	bne	L927
+	nop
+	mov	%i2,%l2
+	sll	%l2,0x1,%l3
+	sethi	%hi(_Lisp_world),%l4
+	ld	[%l4+%lo(_Lisp_world)],%l4
+	ld	[%l4+%l3],%l5
+	mov	%l5,%l6
+	mov	%l6,%i2
+	b	L928
+	nop
+L927:
+	b	L127
+	nop
+L928:
+	b	L922
+	nop
+L923:
+	set	0xfff0000,%l7
+	and	%i2,%l7,%o0
+	sethi	%hi(917504),%o1
+	add	%o1,%lo(917504),%o1
+	cmp	%o0,%o1
+	be	L924
+	sethi	%hi(983040),%o1
+	add	%o1,%lo(983040),%o1
+	cmp	%o0,%o1
+	be	L925
+	nop
+	b	L926
+	nop
+L922:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%i0
+	set	0xfffffff,%o0
+	and	%i0,%o0,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	add	%o4,%o3,%o5
+	mov	%i2,%o7
+	ldsb	[%o5+%o7],%l0
+	mov	%l0,%l1
+	and	%l1,0xff,%l2
+	set	0xe0000,%l3
+	or	%l2,%l3,%l4
+	mov	%l4,%l5
+	mov	%l5,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L929:
+L930:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	sll	%o1,0x10,%o2
+	ldub	[%i5],%o1
+	sll	%o1,0x18,%o1
+	or	%o1,%o2,%o1
+	ldub	[%i5+0x2],%o3
+	mov	%o3,%o4
+	sll	%o4,0x8,%o5
+	or	%o1,%o5,%o1
+	ldub	[%i5+0x3],%o7
+	mov	%o7,%l0
+	or	%o1,%l0,%o1
+	mov	%i2,%o0
+	call	_N_OP_instancep,2
+	nop
+	mov	%o0,%l1
+	mov	%l1,%i2
+	add	%i5,0x5,%i5
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L932:
+L933:
+	ld	[%i3+-0x8],%o0
+	ld	[%i3+-0x4],%o1
+	mov	%i2,%o2
+	call	_N_OP_blt,3
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L935
+	nop
+	b	L129
+	nop
+L935:
+	sub	%i3,0x8,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L936:
+L937:
+	b	L127
+	nop
+L938:
+L939:
+	b	L127
+	nop
+L940:
+L941:
+	set	0xfff0000,%o0
+	and	%i2,%o0,%o1
+	set	0xe0000,%o2
+	cmp	%o1,%o2
+	bne	L2000031
+	nop
+	sll	%i2,16,%o3
+	srl	%o3,16,%o3
+	mov	%o3,%o4
+	cmp	%o4,0x100
+	blu	L942
+	nop
+L2000031:
+	b	L127
+	nop
+L942:
+	ld	[%i3+-0x4],%i0
+	b	L944
+	nop
+L945:
+	set	0xffff,%o0
+	and	%i0,%o0,%i0
+	b	L943
+	nop
+L946:
+	set	-0x10000,%o1
+	or	%i0,%o1,%i0
+	b	L943
+	nop
+L947:
+	b	L127
+	nop
+L944:
+	set	0xfff0000,%o2
+	and	%i0,%o2,%o0
+	sethi	%hi(917504),%o1
+	add	%o1,%lo(917504),%o1
+	cmp	%o0,%o1
+	be	L945
+	sethi	%hi(983040),%o1
+	add	%o1,%lo(983040),%o1
+	cmp	%o0,%o1
+	be	L946
+	nop
+	b	L947
+	nop
+L943:
+	sub	%i3,0x4,%i3
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o3
+	set	0xfffffff,%o4
+	and	%o3,%o4,%o5
+	mov	%o5,%o7
+	sll	%o7,0x1,%l0
+	sethi	%hi(_Lisp_world),%l1
+	ld	[%l1+%lo(_Lisp_world)],%l1
+	add	%l1,%l0,%l2
+	add	%l2,%i0,%l3
+	mov	%l3,%l7
+	and	%i2,0xff,%l4
+	stb	%l4,[%l7]
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L948:
+L949:
+	set	0xfffffff,%o0
+	and	%i2,%o0,%o1
+	ldub	[%i5],%o2
+	mov	%o2,%o3
+	add	%o1,%o3,%o4
+	mov	%o4,%o5
+	sll	%o5,0x1,%o7
+	sethi	%hi(_Lisp_world),%l0
+	ld	[%l0+%lo(_Lisp_world)],%l0
+	lduh	[%l0+%o7],%l1
+	mov	%l1,%l2
+	set	0xe0000,%l3
+	or	%l2,%l3,%l4
+	mov	%l4,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L950:
+L951:
+	set	0xfffffff,%o0
+	and	%i2,%o0,%o1
+	ldub	[%i5],%o2
+	mov	%o2,%o3
+	add	%o1,%o3,%o4
+	mov	%o4,%o5
+	sll	%o5,0x1,%o7
+	sethi	%hi(_Lisp_world),%l0
+	ld	[%l0+%lo(_Lisp_world)],%l0
+	ld	[%l0+%o7],%l1
+	set	0xfffffff,%l2
+	and	%l1,%l2,%l3
+	mov	%l3,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L952:
+L953:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	mov	%o1,%l7
+	and	%l7,0xf,%o0
+	mov	%o0,%i0
+	sra	%l7,0x4,%o1
+	and	%o1,0xf,%o2
+	add	%o2,%i0,%o3
+	add	%o3,0x1,%o4
+	mov	0x10,%o5
+	sub	%o5,%o4,%o7
+	ldub	[%i5],%l0
+	mov	%l0,%l1
+	add	%i2,%l1,%l2
+	set	0xfffffff,%l3
+	and	%l2,%l3,%l4
+	mov	%l4,%l5
+	sll	%l5,0x1,%l6
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	lduh	[%o0+%l6],%o1
+	mov	%o1,%o2
+	srl	%o2,%o7,%o3
+	sll	%i0,0x2,%o4
+	set	_n_mask_array,%o5
+	ld	[%o4+%o5],%o7
+	mov	%o7,%l0
+	and	%o3,%l0,%l1
+	set	0xe0000,%l2
+	or	%l1,%l2,%l3
+	mov	%l3,%i2
+ ldub [%i5+0x3+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x3,%i5
+	b	L125
+	nop
+L954:
+L955:
+	b	L127
+	nop
+L956:
+L957:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_clequal,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L959
+	nop
+	b	L131
+	nop
+L959:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L960:
+L961:
+	srl	%i2,0x10,%o0
+	sll	%o0,16,%o1
+	srl	%o1,16,%o1
+	mov	%o1,%o2
+	cmp	%o2,0xe
+	be	L962
+	nop
+	b	L127
+	nop
+L962:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o3
+	set	0xfffffff,%o4
+	and	%o3,%o4,%o5
+	mov	%o5,%i0
+	ldub	[%i5],%o7
+	mov	%o7,%l0
+	mov	%i0,%l1
+	add	%l1,%l0,%l2
+	mov	%l2,%l3
+	sll	%l3,0x1,%l4
+	sethi	%hi(_Lisp_world),%l5
+	ld	[%l5+%lo(_Lisp_world)],%l5
+	sth	%i2,[%l5+%l4]
+	mov	%i0,%l6
+	mov	%l6,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L963:
+L964:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	mov	%o2,%i0
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	mov	%i0,%o5
+	add	%o5,%o4,%o7
+	mov	%o7,%l0
+	sll	%l0,0x1,%l1
+	sethi	%hi(_Lisp_world),%l2
+	ld	[%l2+%lo(_Lisp_world)],%l2
+	st	%i2,[%l2+%l1]
+	mov	%i0,%l3
+	mov	%l3,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L965:
+L966:
+	ldub	[%i5+0x1],%o0
+	mov	%o0,%o1
+	mov	%o1,%i0
+	set	0xfff0000,%o0
+	and	%i2,%o0,%o1
+	set	0xe0000,%o2
+	cmp	%o1,%o2
+	be	L967
+	nop
+	b	L127
+	nop
+L967:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	set	0xfffffff,%o1
+	and	%o0,%o1,%o2
+	st	%o2,[%fp+-0x1c]
+	ldub	[%i5],%o3
+	mov	%o3,%o4
+	ld	[%fp+-0x1c],%o5
+	mov	%o5,%o7
+	add	%o7,%o4,%l0
+	mov	%l0,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	add	%l3,%l2,%o0
+	mov	%o0,%l7
+	and	%i0,0xf,%o1
+	mov	%o1,%l5
+	sra	%i0,0x4,%o2
+	and	%o2,0xf,%o3
+	mov	0xf,%o4
+	sub	%o4,%o3,%o5
+	sub	%o5,%l5,%o7
+	mov	%o7,%l6
+	sll	%l5,0x2,%l0
+	set	_n_mask_array,%l1
+	ld	[%l0+%l1],%l2
+	sll	%l2,%l6,%l3
+	mov	%l3,%l4
+	xor	%l4,-1,%o0
+	mov	%o0,%o1
+	lduh	[%l7],%o2
+	mov	%o2,%o3
+	and	%o3,%o1,%o4
+	sll	%i2,%l6,%o5
+	mov	%l4,%o7
+	and	%o5,%o7,%l0
+	or	%l0,%o4,%l1
+	sth	%l1,[%l7]
+	ld	[%fp+-0x1c],%l2
+	mov	%l2,%l3
+	mov	%l3,%i2
+ ldub [%i5+0x3+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x3,%i5
+	b	L125
+	nop
+L968:
+L969:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_addbase,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L971
+	nop
+	b	L131
+	nop
+L971:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L972:
+L973:
+	set	0xffff,%o0
+	and	%i2,%o0,%o1
+	ld	[%i3+-0x4],%o2
+	sll	%o2,0x10,%o3
+	or	%o3,%o1,%o4
+	mov	%o4,%i2
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L974:
+L975:
+	srl	%i2,0x10,%o0
+	sll	%o0,16,%o1
+	srl	%o1,16,%o1
+	mov	%o1,%o2
+	set	0xe0000,%o3
+	or	%o2,%o3,%o4
+	mov	%o4,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L976:
+L977:
+	sll	%i2,16,%o0
+	srl	%o0,16,%o0
+	mov	%o0,%o1
+	set	0xe0000,%o2
+	or	%o1,%o2,%o3
+	mov	%o3,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L978:
+L979:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	bne	L980
+	nop
+	sra	%i0,0x11,%o1
+	xorcc	%o1,0x7,%g0
+	bne	L980
+	nop
+	mov	%i2,%o0
+	sll	%o0,0xf,%o1
+	sra	%o1,0xf,%o2
+	mov	%o2,%l7
+	sll	%i0,0xf,%o3
+	sra	%o3,0xf,%o4
+	mov	%o4,%i0
+	add	%i0,%l7,%o5
+	mov	%o5,%l6
+	sll	%l6,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l6,%g0
+	be	L981
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	st	%l6,[%l5]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l5,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L982
+	nop
+L981:
+	mov	%l6,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L982:
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L980:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_plus2,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L984
+	nop
+	b	L131
+	nop
+L984:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L985:
+L986:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	bne	L987
+	nop
+	sra	%i0,0x11,%o1
+	xorcc	%o1,0x7,%g0
+	bne	L987
+	nop
+	mov	%i2,%o0
+	sll	%o0,0xf,%o1
+	sra	%o1,0xf,%o2
+	mov	%o2,%l7
+	sll	%i0,0xf,%o3
+	sra	%o3,0xf,%o4
+	mov	%o4,%i0
+	sub	%i0,%l7,%o5
+	mov	%o5,%l6
+	sll	%l6,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l6,%g0
+	be	L988
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	st	%l6,[%l5]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l5,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L989
+	nop
+L988:
+	mov	%l6,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L989:
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L987:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_difference,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L991
+	nop
+	b	L131
+	nop
+L991:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L992:
+L993:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_times2,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L995
+	nop
+	b	L131
+	nop
+L995:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L996:
+L997:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_quot,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L999
+	nop
+	b	L131
+	nop
+L999:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1000:
+L1001:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	bne	L1002
+	nop
+	sra	%i0,0x11,%o1
+	xorcc	%o1,0x7,%g0
+	bne	L1002
+	nop
+	mov	%i2,%o0
+	sll	%o0,0xf,%o1
+	sra	%o1,0xf,%o2
+	mov	%o2,%l7
+	sll	%i0,0xf,%o3
+	sra	%o3,0xf,%o4
+	mov	%o4,%i0
+	add	%i0,%l7,%o5
+	mov	%o5,%l6
+	sll	%l6,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l6,%g0
+	be	L1003
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	st	%l6,[%l5]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l5,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1004
+	nop
+L1003:
+	mov	%l6,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1004:
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1002:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_iplus2,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1006
+	nop
+	b	L131
+	nop
+L1006:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1007:
+L1008:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	bne	L1009
+	nop
+	sra	%i0,0x11,%o1
+	xorcc	%o1,0x7,%g0
+	bne	L1009
+	nop
+	mov	%i2,%o0
+	sll	%o0,0xf,%o1
+	sra	%o1,0xf,%o2
+	mov	%o2,%l7
+	sll	%i0,0xf,%o3
+	sra	%o3,0xf,%o4
+	mov	%o4,%i0
+	sub	%i0,%l7,%o5
+	mov	%o5,%l6
+	sll	%l6,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l6,%g0
+	be	L1010
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	st	%l6,[%l5]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l5,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1011
+	nop
+L1010:
+	mov	%l6,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1011:
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1009:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_idifference,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1013
+	nop
+	b	L131
+	nop
+L1013:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1014:
+L1015:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_itimes2,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1017
+	nop
+	b	L131
+	nop
+L1017:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1018:
+L1019:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_iquot,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1021
+	nop
+	b	L131
+	nop
+L1021:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1022:
+L1023:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_iremainder,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1025
+	nop
+	b	L131
+	nop
+L1025:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1026:
+L1027:
+	ldub	[%i5],%o1
+	mov	%i2,%o0
+	call	_N_OP_iplusn,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1029
+	nop
+	b	L129
+	nop
+L1029:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L1030:
+L1031:
+	ldub	[%i5],%o1
+	mov	%i2,%o0
+	call	_N_OP_idifferencen,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1033
+	nop
+	b	L129
+	nop
+L1033:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L1034:
+L1035:
+	b	L127
+	nop
+L1036:
+L1037:
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1038
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1039
+	nop
+	b	L127
+	nop
+L1039:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%i0
+	b	L1040
+	nop
+L1038:
+	mov	%i2,%l5
+	sll	%l5,0xf,%l6
+	sra	%l6,0xf,%o0
+	mov	%o0,%i0
+L1040:
+	sll	%i0,0x1,%o1
+	mov	%o1,%l7
+	tst	%i0
+	bge	L1041
+	nop
+	b	L127
+	nop
+L1041:
+	sll	%l7,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l7,%g0
+	be	L1042
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l6
+	st	%l7,[%l6]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l6,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1043
+	nop
+L1042:
+	mov	%l7,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1043:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1044:
+L1045:
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1046
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1047
+	nop
+	b	L127
+	nop
+L1047:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%i0
+	b	L1048
+	nop
+L1046:
+	mov	%i2,%l5
+	sll	%l5,0xf,%l6
+	sra	%l6,0xf,%o0
+	mov	%o0,%i0
+L1048:
+	sll	%i0,0x8,%o1
+	mov	%o1,%l7
+	sra	%i0,0x18,%o2
+	tst	%o2
+	be	L1049
+	nop
+	b	L127
+	nop
+L1049:
+	sll	%l7,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l7,%g0
+	be	L1050
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l6
+	st	%l7,[%l6]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l6,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1051
+	nop
+L1050:
+	mov	%l7,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1051:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1052:
+L1053:
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1054
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1055
+	nop
+	b	L127
+	nop
+L1055:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%i0
+	b	L1056
+	nop
+L1054:
+	mov	%i2,%l5
+	sll	%l5,0xf,%l6
+	sra	%l6,0xf,%o0
+	mov	%o0,%i0
+L1056:
+	mov	%i0,%o1
+	srl	%o1,0x1,%o2
+	mov	%o2,%l7
+	b	L1057
+	nop
+	b	L127
+	nop
+L1057:
+	sll	%l7,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l7,%g0
+	be	L1058
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l6
+	st	%l7,[%l6]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l6,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1059
+	nop
+L1058:
+	mov	%l7,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1059:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1060:
+L1061:
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1062
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1063
+	nop
+	b	L127
+	nop
+L1063:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%i0
+	b	L1064
+	nop
+L1062:
+	mov	%i2,%l5
+	sll	%l5,0xf,%l6
+	sra	%l6,0xf,%o0
+	mov	%o0,%i0
+L1064:
+	mov	%i0,%o1
+	srl	%o1,0x8,%o2
+	mov	%o2,%l7
+	b	L1065
+	nop
+	b	L127
+	nop
+L1065:
+	sll	%l7,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l7,%g0
+	be	L1066
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l6
+	st	%l7,[%l6]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l6,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1067
+	nop
+L1066:
+	mov	%l7,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1067:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1068:
+L1069:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1070
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1071
+	nop
+	b	L127
+	nop
+L1071:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%l7
+	b	L1072
+	nop
+L1070:
+	mov	%i2,%l5
+	sll	%l5,0xf,%o0
+	sra	%o0,0xf,%o1
+	mov	%o1,%l7
+L1072:
+	sra	%i0,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1073
+	nop
+	sra	%i0,0x9,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0x2
+	be	L1074
+	nop
+	b	L127
+	nop
+L1074:
+	sll	%i0,0x1,%l0
+	sethi	%hi(_Lisp_world),%l1
+	ld	[%l1+%lo(_Lisp_world)],%l1
+	ld	[%l1+%l0],%l2
+	mov	%l2,%i0
+	b	L1075
+	nop
+L1073:
+	sll	%i0,0xf,%l3
+	sra	%l3,0xf,%l4
+	mov	%l4,%i0
+L1075:
+	or	%i0,%l7,%l5
+	mov	%l5,%l6
+	b	L1076
+	nop
+	b	L127
+	nop
+L1076:
+	sll	%l6,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l6,%g0
+	be	L1077
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	st	%l6,[%l5]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l5,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1078
+	nop
+L1077:
+	mov	%l6,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1078:
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1079:
+L1080:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1081
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1082
+	nop
+	b	L127
+	nop
+L1082:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%l7
+	b	L1083
+	nop
+L1081:
+	mov	%i2,%l5
+	sll	%l5,0xf,%o0
+	sra	%o0,0xf,%o1
+	mov	%o1,%l7
+L1083:
+	sra	%i0,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1084
+	nop
+	sra	%i0,0x9,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0x2
+	be	L1085
+	nop
+	b	L127
+	nop
+L1085:
+	sll	%i0,0x1,%l0
+	sethi	%hi(_Lisp_world),%l1
+	ld	[%l1+%lo(_Lisp_world)],%l1
+	ld	[%l1+%l0],%l2
+	mov	%l2,%i0
+	b	L1086
+	nop
+L1084:
+	sll	%i0,0xf,%l3
+	sra	%l3,0xf,%l4
+	mov	%l4,%i0
+L1086:
+	and	%i0,%l7,%l5
+	mov	%l5,%l6
+	b	L1087
+	nop
+	b	L127
+	nop
+L1087:
+	sll	%l6,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l6,%g0
+	be	L1088
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	st	%l6,[%l5]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l5,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1089
+	nop
+L1088:
+	mov	%l6,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1089:
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1090:
+L1091:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1092
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1093
+	nop
+	b	L127
+	nop
+L1093:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%l7
+	b	L1094
+	nop
+L1092:
+	mov	%i2,%l5
+	sll	%l5,0xf,%o0
+	sra	%o0,0xf,%o1
+	mov	%o1,%l7
+L1094:
+	sra	%i0,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1095
+	nop
+	sra	%i0,0x9,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0x2
+	be	L1096
+	nop
+	b	L127
+	nop
+L1096:
+	sll	%i0,0x1,%l0
+	sethi	%hi(_Lisp_world),%l1
+	ld	[%l1+%lo(_Lisp_world)],%l1
+	ld	[%l1+%l0],%l2
+	mov	%l2,%i0
+	b	L1097
+	nop
+L1095:
+	sll	%i0,0xf,%l3
+	sra	%l3,0xf,%l4
+	mov	%l4,%i0
+L1097:
+	xor	%i0,%l7,%l5
+	mov	%l5,%l6
+	b	L1098
+	nop
+	b	L127
+	nop
+L1098:
+	sll	%l6,0xf,%o0
+	sra	%o0,0xf,%o1
+	xorcc	%o1,%l6,%g0
+	be	L1099
+	nop
+	mov	0x2,%o0
+	call	_createcell68k,1
+	nop
+	mov	%o0,%l5
+	st	%l6,[%l5]
+	sethi	%hi(_Lisp_world),%o0
+	ld	[%o0+%lo(_Lisp_world)],%o0
+	mov	%o0,%o1
+	mov	%l5,%o2
+	sub	%o2,%o1,%o3
+	srl	%o3,0x1,%o4
+	mov	%o4,%i2
+	b	L1100
+	nop
+L1099:
+	mov	%l6,%o5
+	sll	%o5,0xf,%o7
+	srl	%o7,0xf,%l0
+	set	0xe0000,%l1
+	or	%l0,%l1,%l2
+	mov	%l2,%i2
+L1100:
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1101:
+L1102:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_lsh,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1104
+	nop
+	b	L131
+	nop
+L1104:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1105:
+L1106:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_fplus2,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1108
+	nop
+	b	L131
+	nop
+L1108:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1109:
+L1110:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_fdifference,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1112
+	nop
+	b	L131
+	nop
+L1112:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1113:
+L1114:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_ftimes2,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1116
+	nop
+	b	L131
+	nop
+L1116:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1117:
+L1118:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_fquotient,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1120
+	nop
+	b	L131
+	nop
+L1120:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1121:
+L1122:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	ldub	[%i5],%o2
+	mov	%i2,%o1
+	call	_N_OP_ubfloat2,3
+	nop
+	mov	%o0,%i2
+	ld	[%i1+0x28],%o1
+	tst	%o1
+	be	L1124
+	nop
+	b	L128
+	nop
+L1124:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L1125:
+L1126:
+	ldub	[%i5],%o1
+	mov	%i2,%o0
+	call	_N_OP_ubfloat1,2
+	nop
+	mov	%o0,%i2
+	ld	[%i1+0x28],%o1
+	tst	%o1
+	be	L1128
+	nop
+	b	L129
+	nop
+L1128:
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L1129:
+L1130:
+	ld	[%i3+-0x8],%o0
+	ld	[%i3+-0x4],%o1
+	mov	%i2,%o2
+	call	_N_OP_aref2,3
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1132
+	nop
+	b	L129
+	nop
+L1132:
+	sub	%i3,0x8,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1133:
+L1134:
+	ld	[%i3+-0xc],%o0
+	ld	[%i3+-0x8],%o1
+	ld	[%i3+-0x4],%o2
+	mov	%i2,%o3
+	call	_N_OP_aset2,4
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1136
+	nop
+	b	L129
+	nop
+L1136:
+	sub	%i3,0xc,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1137:
+L1138:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	cmp	%i2,%o0
+	bne	L1139
+	nop
+	mov	0x4c,%i2
+	b	L1140
+	nop
+L1139:
+	mov	0,%i2
+L1140:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1141:
+L1142:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1143
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1144
+	nop
+	b	L127
+	nop
+L1144:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%l7
+	b	L1145
+	nop
+L1143:
+	mov	%i2,%l5
+	sll	%l5,0xf,%o0
+	sra	%o0,0xf,%o1
+	mov	%o1,%l7
+L1145:
+	sra	%i0,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1146
+	nop
+	sra	%i0,0x9,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0x2
+	be	L1147
+	nop
+	b	L127
+	nop
+L1147:
+	sll	%i0,0x1,%l0
+	sethi	%hi(_Lisp_world),%l1
+	ld	[%l1+%lo(_Lisp_world)],%l1
+	ld	[%l1+%l0],%l2
+	mov	%l2,%i0
+	b	L1148
+	nop
+L1146:
+	sll	%i0,0xf,%l3
+	sra	%l3,0xf,%l4
+	mov	%l4,%i0
+L1148:
+	cmp	%i0,%l7
+	ble	L2000033
+	nop
+	mov	0x4c,%l5
+	b	L2000034
+	nop
+L2000033:
+	mov	0,%l5
+L2000034:
+	mov	%l5,%o0
+	mov	%o0,%i2
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1149:
+L1150:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_fgreaterp,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1152
+	nop
+	b	L131
+	nop
+L1152:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1153:
+L1154:
+	ld	[%i3+-0x4],%i0
+	srl	%i2,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1155
+	nop
+	srl	%i2,0x9,%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_MDStypetbl),%o4
+	ld	[%o4+%lo(_MDStypetbl)],%o4
+	lduh	[%o4+%o3],%o5
+	mov	%o5,%o7
+	and	%o7,0x7ff,%l0
+	cmp	%l0,0x2
+	be	L1156
+	nop
+	b	L127
+	nop
+L1156:
+	mov	%i2,%l1
+	sll	%l1,0x1,%l2
+	sethi	%hi(_Lisp_world),%l3
+	ld	[%l3+%lo(_Lisp_world)],%l3
+	ld	[%l3+%l2],%l4
+	mov	%l4,%l7
+	b	L1157
+	nop
+L1155:
+	mov	%i2,%l5
+	sll	%l5,0xf,%o0
+	sra	%o0,0xf,%o1
+	mov	%o1,%l7
+L1157:
+	sra	%i0,0x11,%o0
+	xorcc	%o0,0x7,%g0
+	be	L1158
+	nop
+	sra	%i0,0x9,%o1
+	sll	%o1,0x1,%o2
+	sethi	%hi(_MDStypetbl),%o3
+	ld	[%o3+%lo(_MDStypetbl)],%o3
+	lduh	[%o3+%o2],%o4
+	mov	%o4,%o5
+	and	%o5,0x7ff,%o7
+	cmp	%o7,0x2
+	be	L1159
+	nop
+	b	L127
+	nop
+L1159:
+	sll	%i0,0x1,%l0
+	sethi	%hi(_Lisp_world),%l1
+	ld	[%l1+%lo(_Lisp_world)],%l1
+	ld	[%l1+%l0],%l2
+	mov	%l2,%i0
+	b	L1160
+	nop
+L1158:
+	sll	%i0,0xf,%l3
+	sra	%l3,0xf,%l4
+	mov	%l4,%i0
+L1160:
+	cmp	%i0,%l7
+	ble	L2000035
+	nop
+	mov	0x4c,%l5
+	b	L2000036
+	nop
+L2000035:
+	mov	0,%l5
+L2000036:
+	mov	%l5,%o0
+	mov	%o0,%i2
+	sub	%i3,0x4,%i3
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1161:
+L1162:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_equal,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1164
+	nop
+	b	L131
+	nop
+L1164:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1165:
+L1166:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_makenumber,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1168
+	nop
+	b	L131
+	nop
+L1168:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1169:
+L1170:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_boxiplus,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1172
+	nop
+	b	L131
+	nop
+L1172:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1173:
+L1174:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%i2,%o1
+	call	_N_OP_boxidiff,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1176
+	nop
+	b	L131
+	nop
+L1176:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1177:
+L1178:
+	b	L127
+	nop
+L1179:
+L1180:
+	b	L127
+	nop
+L1181:
+L1182:
+	ldub	[%i5],%o3
+	ld	[%i3+-0x4],%o1
+	ld	[%i3+-0x8],%o0
+	mov	%i2,%o2
+	call	_N_OP_misc3,4
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1184
+	nop
+	b	L129
+	nop
+L1184:
+	sub	%i3,0x8,%i3
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L1185:
+L1186:
+	ldub	[%i5],%o4
+	ld	[%i3+-0x8],%o1
+	ld	[%i3+-0xc],%o0
+	mov	%i2,%o3
+	ld	[%i3+-0x4],%o2
+	call	_N_OP_misc4,5
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1188
+	nop
+	b	L129
+	nop
+L1188:
+	sub	%i3,0xc,%i3
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+L1189:
+L1190:
+	b	L127
+	nop
+L1191:
+L1192:
+	ld	[%i3+-0x4],%i0
+	st	%i2,[%i3+-0x4]
+	mov	%i0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1193:
+L1194:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1195:
+L1196:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%o0,%i0
+	set	0xfff0000,%o1
+	and	%i2,%o1,%o2
+	set	0xe0000,%o3
+	cmp	%o2,%o3
+	bne	L1197
+	nop
+	mov	%i0,%o0
+	cmp	%o0,%i2
+	bne	L1198
+	nop
+	mov	0x4c,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1198:
+	set	0xfff0000,%o0
+	and	%i0,%o0,%o1
+	set	0xe0000,%o2
+	cmp	%o1,%o2
+	bne	L1199
+	nop
+	mov	0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1199:
+L1197:
+	mov	%i0,%o0
+	mov	%i2,%o1
+	call	_N_OP_eqq,2
+	nop
+	mov	%o0,%i2
+	mov	%o0,%o1
+	tst	%o1
+	bge	L1201
+	nop
+	b	L131
+	nop
+L1201:
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L1202:
+	.seg	"data1"
+L1203:
+	.ascii	"should not default\0"
+	.seg	"text"
+	set	L1203,%o0
+	call	_error,1
+	nop
+	b	L169
+	nop
+L170:
+	ldub	[%i5+-0x1],%o0
+	cmp	%o0,255
+	bgu	L1202
+	sll	%o0,2,%o0
+	set	L2000037,%o1
+	ld	[%o0+%o1],%o0
+	jmp	%o0
+	nop
+	L2000037:  
+	.word	L171
+	.word	L173
+	.word	L179
+	.word	L187
+	.word	L190
+	.word	L192
+	.word	L197
+	.word	L203
+	.word	L207
+	.word	L219
+	.word	L231
+	.word	L243
+	.word	L255
+	.word	L267
+	.word	L279
+	.word	L288
+	.word	L291
+	.word	L300
+	.word	L310
+	.word	L318
+	.word	L332
+	.word	L335
+	.word	L343
+	.word	L347
+	.word	L350
+	.word	L354
+	.word	L358
+	.word	L361
+	.word	L365
+	.word	L369
+	.word	L373
+	.word	L376
+	.word	L380
+	.word	L384
+	.word	L386
+	.word	L388
+	.word	L391
+	.word	L395
+	.word	L397
+	.word	L401
+	.word	L405
+	.word	L407
+	.word	L409
+	.word	L411
+	.word	L413
+	.word	L437
+	.word	L195
+	.word	L456
+	.word	L459
+	.word	L461
+	.word	L463
+	.word	L467
+	.word	L470
+	.word	L472
+	.word	L474
+	.word	L476
+	.word	L478
+	.word	L482
+	.word	L484
+	.word	L488
+	.word	L492
+	.word	L494
+	.word	L496
+	.word	L498
+	.word	L500
+	.word	L502
+	.word	L504
+	.word	L506
+	.word	L508
+	.word	L510
+	.word	L512
+	.word	L514
+	.word	L516
+	.word	L518
+	.word	L520
+	.word	L522
+	.word	L524
+	.word	L526
+	.word	L528
+	.word	L530
+	.word	L532
+	.word	L536
+	.word	L539
+	.word	L542
+	.word	L545
+	.word	L548
+	.word	L551
+	.word	L554
+	.word	L557
+	.word	L559
+	.word	L561
+	.word	L563
+	.word	L565
+	.word	L567
+	.word	L569
+	.word	L571
+	.word	L573
+	.word	L577
+	.word	L581
+	.word	L583
+	.word	L586
+	.word	L588
+	.word	L592
+	.word	L594
+	.word	L596
+	.word	L598
+	.word	L600
+	.word	L602
+	.word	L604
+	.word	L606
+	.word	L608
+	.word	L610
+	.word	L612
+	.word	L614
+	.word	L616
+	.word	L618
+	.word	L620
+	.word	L622
+	.word	L624
+	.word	L627
+	.word	L630
+	.word	L632
+	.word	L634
+	.word	L636
+	.word	L640
+	.word	L644
+	.word	L647
+	.word	L650
+	.word	L652
+	.word	L655
+	.word	L658
+	.word	L661
+	.word	L664
+	.word	L667
+	.word	L670
+	.word	L673
+	.word	L676
+	.word	L679
+	.word	L682
+	.word	L685
+	.word	L688
+	.word	L691
+	.word	L694
+	.word	L697
+	.word	L700
+	.word	L705
+	.word	L709
+	.word	L713
+	.word	L717
+	.word	L721
+	.word	L725
+	.word	L729
+	.word	L733
+	.word	L737
+	.word	L741
+	.word	L745
+	.word	L749
+	.word	L753
+	.word	L757
+	.word	L761
+	.word	L765
+	.word	L769
+	.word	L773
+	.word	L777
+	.word	L781
+	.word	L785
+	.word	L789
+	.word	L793
+	.word	L797
+	.word	L801
+	.word	L805
+	.word	L809
+	.word	L813
+	.word	L817
+	.word	L821
+	.word	L825
+	.word	L829
+	.word	L832
+	.word	L835
+	.word	L840
+	.word	L844
+	.word	L848
+	.word	L852
+	.word	L880
+	.word	L884
+	.word	L886
+	.word	L888
+	.word	L890
+	.word	L892
+	.word	L894
+	.word	L896
+	.word	L898
+	.word	L900
+	.word	L902
+	.word	L920
+	.word	L929
+	.word	L932
+	.word	L936
+	.word	L938
+	.word	L940
+	.word	L948
+	.word	L950
+	.word	L952
+	.word	L954
+	.word	L956
+	.word	L960
+	.word	L963
+	.word	L965
+	.word	L968
+	.word	L972
+	.word	L974
+	.word	L976
+	.word	L978
+	.word	L985
+	.word	L992
+	.word	L996
+	.word	L1000
+	.word	L1007
+	.word	L1014
+	.word	L1018
+	.word	L1022
+	.word	L1026
+	.word	L1030
+	.word	L1034
+	.word	L1036
+	.word	L1044
+	.word	L1052
+	.word	L1060
+	.word	L1068
+	.word	L1079
+	.word	L1090
+	.word	L1101
+	.word	L1105
+	.word	L1109
+	.word	L1113
+	.word	L1117
+	.word	L1121
+	.word	L1125
+	.word	L1129
+	.word	L1133
+	.word	L1137
+	.word	L1141
+	.word	L1149
+	.word	L1153
+	.word	L1161
+	.word	L1165
+	.word	L1169
+	.word	L1173
+	.word	L1177
+	.word	L1179
+	.word	L1181
+	.word	L1185
+	.word	L1189
+	.word	L1191
+	.word	L1193
+	.word	L1195
+L169:
+L1204:
+	b	L125
+	nop
+L134:
+	ld	[%i1+0x18],%o0
+	mov	%o0,%o1
+	mov	%i3,%o2
+	cmp	%o2,%o1
+	ble	L1205
+	nop
+	sub	%i5,0x1,%o0
+	st	%o0,[%i1+0x10]
+	st	%i2,[%i1+0xc]
+	sub	%i3,0x4,%o0
+	st	%o0,[%i1+0x8]
+	.seg	"data1"
+L1206:
+	.ascii	"Unrecoverable Stack Overflow\0"
+	.seg	"text"
+	set	L1206,%o0
+	call	_error,1
+	nop
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+L1205:
+	.seg	"data"
+	.align	4
+L1207:
+	.word	0x3c
+	.seg	"text"
+L1220:
+	mov	0,%i0
+	add	%i3,0x4,%o0
+	mov	%o0,%o1
+	ld	[%i1+0x1c],%o2
+	cmp	%o1,%o2
+	ble	L1221
+	nop
+	ld	[%i1+0x20],%o3
+	tst	%o3
+	ble	L1221
+	nop
+	ld	[%i1+0x1c],%o4
+	tst	%o4
+	ble	L1221
+	nop
+	st	%i2,[%i3]
+	add	%i3,0x4,%i3
+	sub	%i5,0x1,%o0
+	st	%o0,[%i1+0x10]
+	st	%i2,[%i1+0xc]
+	sub	%i3,0x4,%o0
+	st	%o0,[%i1+0x8]
+	sethi	%hi(_extended_frame),%o1
+	st	%g0,[%o1+%lo(_extended_frame)]
+	mov	0,%o0
+	call	_do_stackoverflow,1
+	nop
+	tst	%o0
+	be	L1223
+	nop
+L296:
+	mov	0x3c,%o0
+	sethi	%hi(L1207),%o1
+	st	%o0,[%o1+%lo(L1207)]
+	mov	0x1,%i0
+	.seg	"data1"
+L1224:
+	.ascii	"Stack Overflow, MUST HARDRESET!\0"
+	.seg	"text"
+	set	L1224,%o0
+	call	_error,1
+	nop
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	mov	0,%i2
+	b	L1225
+	nop
+L1223:
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o2
+	mov	%o2,%i2
+L1225:
+	ld	[%i1+0x14],%o3
+	lduh	[%o3],%o4
+	mov	%o4,%o5
+	sll	%o5,0x1,%o7
+	ld	[%i1+0x18],%l0
+	mov	%l0,%l1
+	mov	%l1,%l2
+	sub	%l2,%o7,%l3
+	st	%l3,[%i1+0x1c]
+	ld	[%i1+0x20],%l4
+	tst	%l4
+	be	L2000039
+	nop
+	sethi	%hi(_extended_frame),%l5
+	ld	[%l5+%lo(_extended_frame)],%l5
+	tst	%l5
+	be	L2000038
+	nop
+L2000039:
+	mov	1,%l6
+	b	L2000040
+	nop
+L2000038:
+	mov	0,%l6
+L2000040:
+	mov	%l6,%i0
+	sethi	%hi(_PENDINGINTERRUPT68k),%l7
+	ld	[%l7+%lo(_PENDINGINTERRUPT68k)],%l7
+	sethi	%hi(_extended_frame),%o0
+	ld	[%o0+%lo(_extended_frame)],%o0
+	mov	%o0,%o1
+	ld	[%l7],%o2
+	or	%o2,%o1,%o2
+	st	%o2,[%l7]
+	ld	[%i1+0x18],%o3
+	mov	%o3,%o4
+	st	%o4,[%i1+0x20]
+L1221:
+	ld	[%i1+0x20],%o5
+	tst	%o5
+	ble	L2000041
+	nop
+	ld	[%i1+0x1c],%o7
+	tst	%o7
+	ble	L2000041
+	nop
+	tst	%i0
+	be	L1226
+	nop
+L2000041:
+	sethi	%hi(_InterfacePage),%o0
+	ld	[%o0+%lo(_InterfacePage)],%o0
+	lduh	[%o0+0x3c],%o1
+	mov	%o1,%o2
+	sethi	%hi(_Stackspace),%o3
+	ld	[%o3+%lo(_Stackspace)],%o3
+	mov	%o3,%o4
+	mov	%i3,%o5
+	sub	%o5,%o4,%o7
+	srl	%o7,0x1,%l0
+	cmp	%l0,%o2
+	bleu	L1227
+	nop
+	call	_getsignaldata,0
+	nop
+	sub	%i5,0x1,%o0
+	st	%o0,[%i1+0x10]
+	st	%i2,[%i1+0xc]
+	sub	%i3,0x4,%o0
+	st	%o0,[%i1+0x8]
+	call	_update_timer,0
+	nop
+	sethi	%hi(_URaid_req),%o1
+	ld	[%o1+%lo(_URaid_req)],%o1
+	cmp	%o1,0x1
+	bne	L1230
+	nop
+	sethi	%hi(_URaid_req),%o0
+	st	%g0,[%o0+%lo(_URaid_req)]
+	.seg	"data1"
+L1231:
+	.ascii	"Call URaid by User Interrupt\0"
+	.seg	"text"
+	set	L1231,%o0
+	call	_error,1
+	nop
+	b	L1232
+	nop
+L1230:
+	sethi	%hi(_KBDEventFlg),%o1
+	ld	[%o1+%lo(_KBDEventFlg)],%o1
+	tst	%o1
+	ble	L1233
+	nop
+	sethi	%hi(_KEYBUFFERING68k),%o2
+	ld	[%o2+%lo(_KEYBUFFERING68k)],%o2
+	ld	[%o2],%o3
+	cmp	%o3,0x4c
+	bne	L1233
+	nop
+	sethi	%hi(_KEYBUFFERING68k),%o0
+	ld	[%o0+%lo(_KEYBUFFERING68k)],%o0
+	sethi	%hi(_ATOM_STARTED),%o1
+	ld	[%o1+%lo(_ATOM_STARTED)],%o1
+	st	%o1,[%o0]
+	sethi	%hi(_DOBUFFEREDTRANSITION_index),%o0
+	ld	[%o0+%lo(_DOBUFFEREDTRANSITION_index)],%o0
+	call	_cause_interruptcall,1
+	nop
+	sethi	%hi(_KBDEventFlg),%o2
+	ld	[%o2+%lo(_KBDEventFlg)],%o2
+	sub	%o2,0x1,%o2
+	sethi	%hi(_KBDEventFlg),%o3
+	st	%o2,[%o3+%lo(_KBDEventFlg)]
+	b	L1235
+	nop
+L1233:
+	sethi	%hi(_Reclaim_cnt_word),%o4
+	ld	[%o4+%lo(_Reclaim_cnt_word)],%o4
+	ld	[%o4],%o5
+	set	0xe0000,%o7
+	cmp	%o5,%o7
+	bne	L1236
+	nop
+	sethi	%hi(_Reclaim_cnt_word),%o0
+	ld	[%o0+%lo(_Reclaim_cnt_word)],%o0
+	st	%g0,[%o0]
+	sethi	%hi(_DORECLAIM_index),%o0
+	ld	[%o0+%lo(_DORECLAIM_index)],%o0
+	call	_cause_interruptcall,1
+	nop
+	b	L1237
+	nop
+L1236:
+	sethi	%hi(_PENDINGINTERRUPT68k),%o1
+	ld	[%o1+%lo(_PENDINGINTERRUPT68k)],%o1
+	ld	[%o1],%o2
+	tst	%o2
+	be	L1238
+	nop
+	sethi	%hi(_INTERRUPTSTATE_word),%o0
+	ld	[%o0+%lo(_INTERRUPTSTATE_word)],%o0
+	ld	[%o0],%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	add	%o4,%o3,%o5
+	st	%o5,[%fp+-0x1c]
+	ld	[%fp+-0x1c],%o0
+	ldub	[%o0+0x1],%o1
+	mov	%o1,%o2
+	ld	[%fp+-0x1c],%o3
+	ldub	[%o3],%o4
+	mov	%o4,%o5
+	andn	%o5,%o2,%o7
+	stb	%o7,[%fp+-0x1d]
+	ld	[%fp+-0x1c],%o0
+	ld	[%fp+-0x1c],%o1
+	ldub	[%o1],%o2
+	mov	%o2,%o3
+	ldub	[%o0+0x1],%o4
+	mov	%o4,%o5
+	or	%o5,%o3,%o5
+	stb	%o5,[%o0+0x1]
+	sethi	%hi(_PENDINGINTERRUPT68k),%l0
+	ld	[%l0+%lo(_PENDINGINTERRUPT68k)],%l0
+	st	%g0,[%l0]
+	sethi	%hi(_INTERRUPTFRAME_index),%o0
+	ld	[%o0+%lo(_INTERRUPTFRAME_index)],%o0
+	call	_cause_interruptcall,1
+	nop
+	b	L1239
+	nop
+L1238:
+	sethi	%hi(_ETHEREventCount),%l1
+	ld	[%l1+%lo(_ETHEREventCount)],%l1
+	tst	%l1
+	ble	L1240
+	nop
+	sethi	%hi(_INTERRUPTSTATE_word),%o0
+	ld	[%o0+%lo(_INTERRUPTSTATE_word)],%o0
+	ld	[%o0],%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	sethi	%hi(_Lisp_world),%o4
+	ld	[%o4+%lo(_Lisp_world)],%o4
+	add	%o4,%o3,%o5
+	st	%o5,[%fp+-0x1c]
+	ld	[%fp+-0x1c],%o0
+	ldub	[%o0],%o1
+	srl	%o1,0x6,%o2
+	andcc	%o2,0x1,%g0
+	bne	L1241
+	nop
+	ld	[%fp+-0x1c],%o3
+	ldub	[%o3+0x1],%o4
+	mov	%o4,%o5
+	andcc	%o5,0x40,%g0
+	bne	L1241
+	nop
+	ld	[%fp+-0x1c],%o0
+	ldub	[%o0],%o1
+	or	%o1,0100,%o1
+	stb	%o1,[%o0]
+	ld	[%fp+-0x1c],%o3
+	ld	[%fp+-0x1c],%o4
+	ldub	[%o4],%o5
+	mov	%o5,%o7
+	ldub	[%o3+0x1],%l0
+	mov	%l0,%l1
+	or	%l1,%o7,%l1
+	stb	%l1,[%o3+0x1]
+	sethi	%hi(_INTERRUPTFRAME_index),%o0
+	ld	[%o0+%lo(_INTERRUPTFRAME_index)],%o0
+	call	_cause_interruptcall,1
+	nop
+	sethi	%hi(_ETHEREventCount),%l3
+	ld	[%l3+%lo(_ETHEREventCount)],%l3
+	sub	%l3,0x1,%l3
+	sethi	%hi(_ETHEREventCount),%l4
+	st	%l3,[%l4+%lo(_ETHEREventCount)]
+	b	L1242
+	nop
+L1241:
+	sethi	%hi(_PENDINGINTERRUPT68k),%l5
+	ld	[%l5+%lo(_PENDINGINTERRUPT68k)],%l5
+	mov	0x4c,%l6
+	st	%l6,[%l5]
+L1242:
+	b	L1243
+	nop
+L1240:
+	sethi	%hi(_PERIODIC_INTERRUPT68k),%l7
+	ld	[%l7+%lo(_PERIODIC_INTERRUPT68k)],%l7
+	ld	[%l7],%o0
+	tst	%o0
+	be	L1244
+	nop
+	sethi	%hi(L1207),%o0
+	ld	[%o0+%lo(L1207)],%o0
+	tst	%o0
+	ble	L1245
+	nop
+	sethi	%hi(L1207),%o1
+	ld	[%o1+%lo(L1207)],%o1
+	sub	%o1,0x1,%o1
+	sethi	%hi(L1207),%o2
+	st	%o1,[%o2+%lo(L1207)]
+	b	L1246
+	nop
+L1245:
+	sethi	%hi(_PERIODIC_INTERRUPTFRAME_index),%o0
+	ld	[%o0+%lo(_PERIODIC_INTERRUPTFRAME_index)],%o0
+	call	_cause_interruptcall,1
+	nop
+	sethi	%hi(_PERIODIC_INTERRUPT_FREQUENCY68k),%o0
+	ld	[%o0+%lo(_PERIODIC_INTERRUPT_FREQUENCY68k)],%o0
+	ld	[%o0],%o1
+	tst	%o1
+	bne	L1247
+	nop
+	sethi	%hi(L1207),%o2
+	st	%g0,[%o2+%lo(L1207)]
+	b	L1248
+	nop
+L1247:
+	sethi	%hi(_PERIODIC_INTERRUPT_FREQUENCY68k),%o3
+	ld	[%o3+%lo(_PERIODIC_INTERRUPT_FREQUENCY68k)],%o3
+	ld	[%o3],%o0
+	set	0xffff,%o4
+	and	%o0,%o4,%o0
+	sll	%o0,1,%o0
+	mov	%o0,%o5
+	sll	%o5,2,%o5
+	add	%o0,%o5,%o0
+	sll	%o5,1,%o5
+	add	%o0,%o5,%o0
+	sll	%o5,4,%o5
+	add	%o0,%o5,%o0
+	sll	%o5,6,%o5
+	add	%o0,%o5,%o0
+	sethi	%hi(_TIMER_INTERVAL),%o1
+	ld	[%o1+%lo(_TIMER_INTERVAL)],%o1
+	call	.udiv,2
+	nop
+	sethi	%hi(L1207),%o7
+	st	%o0,[%o7+%lo(L1207)]
+L1248:
+L1246:
+L1244:
+L1243:
+L1239:
+L1237:
+L1235:
+L1232:
+	ld	[%i1+0x10],%o0
+	add	%o0,0x1,%o1
+	mov	%o1,%i5
+	ld	[%i1+0x8],%o0
+	add	%o0,0x4,%o1
+	mov	%o1,%i3
+	ld	[%i1+0xc],%i2
+	ld	[%i1+0x14],%o0
+	lduh	[%o0],%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	ld	[%i1+0x18],%o4
+	mov	%o4,%o5
+	st	%o5,[%i1+0x20]
+	mov	%o5,%o7
+	sub	%o7,%o3,%l0
+	st	%l0,[%i1+0x1c]
+	b	L1249
+	nop
+L1227:
+	ld	[%i1+0x14],%o0
+	lduh	[%o0],%o1
+	mov	%o1,%o2
+	sll	%o2,0x1,%o3
+	ld	[%i1+0x18],%o4
+	mov	%o4,%o5
+	st	%o5,[%i1+0x20]
+	mov	%o5,%o7
+	sub	%o7,%o3,%l0
+	st	%l0,[%i1+0x1c]
+	b	L1220
+	nop
+L1249:
+L1226:
+	ldub	[%i5+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+ nop
+	b	L125
+	nop
+L703:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%o0,%i2
+ ldub [%i5+0x1+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x1,%i5
+	b	L125
+	nop
+L838:
+	sub	%i3,0x4,%i3
+	ld	[%i3],%o0
+	mov	%o0,%i2
+ ldub [%i5+0x2+-0x1],%o1
+ sll %o1,2,%o1
+ ld [%o1+%i4],%o1
+ jmp %o1
+	add	%i5,0x2,%i5
+	b	L125
+	nop
+	mov	0,%o0
+LE122:
+	mov	%o0,%i0
+	ret
+	restore
+       LF122 = -144
+	LP122 = 104
+	LT122 = 104
+	.seg	"data"
+	.seg	"text"
+	.proc 04
+	.global	_retfun
+_retfun:
+	!#PROLOGUE# 0
+	sethi	%hi(LF1251),%g1
+	add	%g1,%lo(LF1251),%g1
+	save	%sp,%g1,%sp
+	!#PROLOGUE# 1
+	mov	0,%o0
+	b	LE1251
+	nop
+	mov	0,%o0
+LE1251:
+	mov	%o0,%i0
+	ret
+	restore
+       LF1251 = -64
+	LP1251 = 64
+	LT1251 = 64
+	.seg	"data"
+	.seg	"text"
+	.proc 04
+	.global	_do_brk
+_do_brk:
+	!#PROLOGUE# 0
+	sethi	%hi(LF1254),%g1
+	add	%g1,%lo(LF1254),%g1
+	save	%sp,%g1,%sp
+	!#PROLOGUE# 1
+	mov	0,%o0
+LE1254:
+	mov	%o0,%i0
+	ret
+	restore
+       LF1254 = -64
+	LP1254 = 64
+	LT1254 = 64
+	.seg	"data"

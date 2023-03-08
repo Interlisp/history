@@ -1,0 +1,3 @@
+../bin/endiffix < $1 > tmp
+cp tmp $1
+rm tmp

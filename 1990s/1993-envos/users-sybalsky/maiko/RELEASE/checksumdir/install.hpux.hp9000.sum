@@ -1,0 +1,17 @@
+Checksum for directory: install.hpux.hp9000
+
+E > 65496 48 lde lde
+E > 38748 32 ldeether ldeether
+E > 59966 10 ldeether.c ldeether.c
+E > 16876 848 ldex ldex
+E > 30985 856 ldex.o ldex.o
+E > 38748 32 ldeether ldeether
+E > 59966 10 ldeether.c ldeether.c
+E > 59966 10 ldeether.c ldeether.c
+E > 16876 848 ldex ldex
+E > 30985 856 ldex.o ldex.o
+E > 30985 856 ldex.o ldex.o
+E > 0 0 makefile makefile
+E > 23171 848 noeuro-ldex noeuro-ldex
+E > 21635 3 usersubrs.c usersubrs.c
+E > 36218 3 usrsubr.c usrsubr.c

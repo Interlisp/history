@@ -1,0 +1,1 @@
+XClose.c Xopendsp.c Xscrolb.c byteswap.c draw.c dsk.c dspsubrs.c ether.c foreign.c inet.c initdsp.c initkbd.c kbdsubrs.c keyevent.c ldeboot.c ldeether.c lineblt8.c llcolor.c llstk.c misc7.c miscn.c mkatom.c mkvdate.c ocrproc.c osmsg.c picture.c rpc.c subr.c sxhash.c timer.c truecolor.c ubf1.c ufs.c uutils.c
