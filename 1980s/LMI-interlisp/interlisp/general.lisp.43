@@ -1,0 +1,694 @@
+;-*- Mode:LISP; Package:INTERLISPUSERS; Base:10; Readtable:INTERLISP -*-
+
+;;; General utility functions, including useful iterative operators, storage maintenance
+;;; primitives, etc.
+
+;;; Variable that holds free lists for the allocation of lists of fixed sizes
+(DEFCONST FreeLists (NCONS NIL))
+
+;;; *****
+;;; Storage maintenance routines.
+;;; *****
+
+(DEFMACRO AllocateNode (Type &BODY Declarations)
+  `(LET ((!FreeNode (PopFreeList ,(FreeListName Type))))
+     (COND (!FreeNode ,@(SELECTQ (RecordImplementation Type)
+			  (ArraySegment NIL)
+			  (OTHERWISE `((create ,Type smashing !FreeNode ,.Declarations)))))
+	   (T (create ,Type ,.Declarations)))))
+
+(DEFMACRO *And (FormSelector &BODY Forms)
+  `(PROG (!!Result)
+	 ,.(bind Test for Form in Forms as i from 1 collect
+		 (SETQ Test (OR (FormCannotReturnNIL? Form) `(OR ,Form (RETURN))))
+		 (COND ((EQ i FormSelector) `(SETQ !!Result ,Test))
+		       (T Test)))
+	 (RETURN !!Result)))
+
+(DEFUN FormCannotReturnNIL? (Form)
+  (AND (COND ((EQ Form T))
+	     ((LISTP Form) (AND (EQ (CAR Form) 'PROGN)
+				(EQ T (CAR (LAST Form)))))
+	     ((NOT (SYMBOLP Form))))
+       Form))
+
+(DEFMACRO ClearScratch (ScratchList)
+  (LET ((Free (ScratchListName ScratchList)))
+    `(COND (,ScratchList (bind tail,ScratchList while (CDR tail) do
+			       (RPLACA tail NIL) (SETQ tail (CDR tail))
+			       finally (RPLACD (RPLACA tail NIL) (CDR ,Free)))
+	    (RPLACD ,Free ,ScratchList)
+	    (SETQ ,ScratchList NIL)))))
+
+(DEFMACRO DeleteScratch (ScratchList Node &OPTIONAL Predecessor)
+  (LET ((Free (ScratchListName ScratchList)))
+    (COND
+      (Predecessor
+       `(RPLACD ,Predecessor
+		(PROG1 (CDDR ,Predecessor)
+		       (RPLACD ,Free (RPLACD (RPLACA (CDR ,Predecessor) NIL)
+					     (CDR ,Free))))))
+      (T
+       `(bind tail !!Node,Node sl(CBOX NIL ,ScratchList)
+	      first (SETQ tail sl)
+	      while (CDR tail) thereis
+	      (COND
+		((EQ !!Node (CDR tail)))
+		(T (SETQ tail (CDR tail)) NIL))
+	      then (RPLACD ,Free (RPLACD (PROG1 (RPLACA (CDR tail) NIL)
+						(RPLACD tail (CDDR tail)))
+					 (CDR ,Free)))
+	      (SETQ ,ScratchList (CDR sl)))))))
+
+(DEFMACRO DeleteScratch* (ScratchList Predicate)
+  (LET ((Free (ScratchListName ScratchList)))
+    `(bind originaltail(CBOX NIL ,ScratchList) tail
+	   first (SETQ tail originaltail)
+	   while (CDR tail) do
+	   (COND (,Predicate
+		  (RPLACD tail (PROG1 (CDDR tail)
+				      (RPLACD ,Free (RPLACD (RPLACA (CDR tail) NIL)
+							    (CDR ,Free))))))
+		 (T (SETQ tail (CDR tail))))
+	   finally (RETURN (SETQ ,ScratchList (CDR originaltail))))))
+
+(DEFMACRO FloatingRandomBranch (&BODY Clauses)
+  (LET ((Variables (for i from 1 to (LENGTH Clauses) collect (PACK* '!FRB i))))
+    `(LET ((!FRBSum 0S0) (!FRBChoice 0S0)
+	   ,.(for v in Variables as c in Clauses collect (LIST v (CAR c))))
+       (SETQ !FRBChoice (RandomFloating 0S0 (+ ,.Variables)))
+       (COND ,.(for c in Clauses as vtail on Variables collect
+		    (COND ((NULL (CDR vtail)) `(T ,.(CDR c)))
+			  (T `((> (SETQ !FRBSum (+ !FRBSum ,(CAR vtail))) !FRBChoice)
+			       ,.(CDR c)))))))))
+
+(DEFMACRO FreeNode (Type Node)
+  `(PushFreeList ,(FreeListName Type) ,(RecordClearStatement Type Node)))
+
+(DEFMACRO MoveNode (SourceListName TargetListName)
+  `(SETQ ,SourceListName
+	 (PROG1 (CDR ,SourceListName)
+		(SETQ ,TargetListName (RPLACD ,SourceListName ,TargetListName)))))
+
+(DEFMACRO PopFreeList (FreeListName)
+  (LET ((FreeLinkField (OR (GET FreeListName 'FreeLinkField)
+			   (HELP "You boob!  You forgot to define a FreeLinkField for "
+				 FreeListName))))
+    `(*And 1 ,FreeListName (PROGN (SETQ ,FreeListName (fetch ,FreeLinkField of ,FreeListName))
+				  T))))
+
+(DEFMACRO PopScratch (ScratchList)
+  (LET ((Free (ScratchListName ScratchList)))
+    `(AND ,ScratchList
+	  (PROG1 (CAR ,ScratchList)
+		 (SETQ ,ScratchList
+		       (PROG1 (CDR ,ScratchList)
+			      (RPLACD ,Free (RPLACD ,ScratchList (CDR ,Free)))))))))
+
+(DEFMACRO PushFreeList (FreeList Node)
+  (LET ((FreeLinkField (OR (GET FreeList 'FreeLinkField)
+			   (HELP "You boob!  You forgot to define a FreeLinkField for "
+				 FreeList))))
+    `(LET ((N ,Node))
+       (replace ,FreeLinkField of N with ,FreeList)
+       (SETQ ,FreeList N))))
+
+(DEFMACRO ConsScratch (ScratchList &OPTIONAL Car Cdr)
+  (LET ((Free (ScratchListName ScratchList)))
+    `(RPLACA (RPLACD (COND ((CDR ,Free)
+			    (PROG1 (CDR ,Free) (RPLACD ,Free (CDDR ,Free))))
+			   (T (NCONS NIL)))
+		     ,Cdr)
+	     ,Car)))
+
+(DEFMACRO PushScratch (ScratchList Entry)
+  (LET ((Free (ScratchListName ScratchList)))
+    `(RPLACA (COND ((CDR ,Free)
+		    (SETQ ,ScratchList (RPLACD (PROG1 (CDR ,Free) (RPLACD ,Free (CDDR ,Free)))
+					       ,ScratchList)))
+		   (T (push NIL ,ScratchList)))
+	     ,Entry)))
+
+(DEFMACRO ExtendScratch (ScratchList Entry)
+  `(PROGN (RPLACD (OR (LAST ,ScratchList) (VALUE-CELL-LOCATION ',ScratchList))
+		  (ConsScratch ,ScratchList ,Entry))
+	  ,ScratchList))
+
+(DEFMACRO ScratchList (Name &BODY Forms)
+  (LET ((Free (ScratchListName Name)))
+    `(LET (,Name (,Free (CONSTANT (NCONS NIL))))
+       (DECLARE (SPECIAL ,Name ,Free)
+		(PROG1 (PROGN ,.Forms)	(ClearScratch ,Name))))))
+
+(DEFMACRO ScratchLists (Names &BODY Forms)
+  (LET ((FreeLists (for current in Names scratchcollect (ScratchListName current))))
+    `(LET ,(for current in Names as free in FreeLists join
+		`(,current
+		  (,free (CONSTANT (NCONS NIL)))))
+       (declare (SPECIAL ,@Names ,.FreeLists))
+       
+       (PROG1 (PROGN ,.Forms) ,.(for current in Names collect `(ClearScratch ,current))))))
+
+(DEFUN FreeListName (Type) (PACK* 'Free Type 's))
+
+(DEFUN InstantiateMacro (MacroCall MacroDefinition)
+  (LEXPR-FUNCALL MacroDefinition (CDR MacroCall)))
+
+(DEFUN RecordClearStatement (RecordName InstanceForm)
+  (SELECTQ (RecordImplementation RecordName)
+    (ArraySegment
+     `(LETP (,InstanceForm)
+	(for i from 1 to (1- (ARRAY-LENGTH ,InstanceForm)) do (ASET NIL ,InstanceForm i)
+	     finally (ASET 1 ,InstanceForm 0) (RETURN ,InstanceForm))))
+    (OTHERWISE `(create ,RecordName smashing ,InstanceForm
+			,.(for fieldname in (TopLevelFieldNames RecordName) collect
+			       `(,(LocalizeFieldName fieldname RecordName)  NIL))))))
+
+(DEFUN RecordImplementation (RecordName)
+  (for option in (CDDR (SeeRecord RecordName)) thereis (EQ (CAR (LISTP Option))
+							   'Implementation)
+       then (CADR option) else rp:DEFRECORDDefaultImplementation))
+
+(DEFUN LocalizeFieldName (CompleteFieldName RecordName)
+  (COND ((LISTP RecordName)
+	 (for element in RecordName do
+	      (SETQ CompleteFieldName (CDR (MEMQ element CompleteFieldName)))))
+	(T (SETQ CompleteFieldName (CDR (MEMQ RecordName CompleteFieldName)))))
+  CompleteFieldName)
+
+(DEFUN ReplaceListElement (List OldElement NewElement)
+  (bind LastResult Result(CBOX NIL NIL)
+	first (SETQ LastResult Result)
+	for tail on List do
+	(COND ((EQ (CAR tail) OldElement)
+	       (RPLACD LastResult (CONS NewElement (CDR tail)))
+	       (RETURN (CDR Result)))
+	      (T (RPLACD LastResult (SETQ LastResult (NCONS (CAR tail))))))))
+
+(DEFUN ReverseInto (Source Target)
+  (SETQ Source (NREVERSE Source))
+  (LET (stail (ttail Target))
+    (SETQ stail (CDR Source))
+    (RPLACD Source NIL)
+    (RPLACA ttail (CAR Source))
+    (POP ttail)
+    (PROG NIL
+       Loop(COND (stail (RPLACA ttail (CAR stail))
+			(POP ttail)
+			(SETQ stail (PROG1 (CDR stail) (SETQ Source (RPLACD stail Source))))
+			(GO Loop)))))
+  Target)
+
+(DEFUN ScratchListName (NodesName) (PACK* 'Scratch NodesName))
+
+(DEFMACRO boxcreate (RecordName &BODY Assignments)
+  `(create ,RecordName smashing (CONSTANT (create ,RecordName))
+	   ,.Assignments))
+
+(DEFMACRO UnpackAtom (Atom &BODY Forms) 
+  `(LET (Unpacked (Scratch (CBOX 0)) (Length (NCHARS ,Atom)))
+     (while (< (CAR Scratch) Length) do
+	    (add (CAR Scratch) 1)
+	    (RPLACD Scratch (CONS NIL (CDR Scratch))))
+     (SETQ Unpacked (DUNPACK ,Atom Scratch))
+     ,.Forms))
+
+(DEFUN SubsetOf (List1 List2) (for element in List1 always (MEMQ element List2)))
+
+(DEFUN SetsEqual? (Set1 Set2) 
+  (AND (EQ (LENGTH Set1) (LENGTH Set2))
+       (for element in Set1 always (MEMQ element Set2))))
+
+(DEFUN SetsIntersect? (Set1 Set2)
+  (for element in Set1 thereis (MEMQ element Set2)))
+
+(DEFUN SetDifference (Set1 Set2)
+  (for element in Set1 unless (MEMQ element Set2) collect element))
+
+; This must be a macro!!!!  (The reason is obvious)
+(DEFMACRO ScratchAppend1 (List) `(for element in ,List scratchcollect element))
+
+(DEFUN ReturnList (Size List)
+  (LET ((tail (NTHCDR (SUB1 Size) FreeLists)))
+    (for node on (CDR List) do (RPLACA node NIL))
+    (COND (tail (RPLACA tail (RPLACA List (CAR tail))))
+	  (T (RPLACA List NIL)
+	     (RPLACD (LAST FreeLists)
+		     (from 1 to (SUB1 (- Size (LENGTH FreeLists))) collect NIL
+			   finally (RETURN (NCONC $$VAL (NCONS List)))))))))
+
+(DEFMACRO Replace* (list predicate replacementform) 
+  `(bind originaltail(CBOX NIL ,list) tail lastreplace
+	 first (SETQ lastreplace (SETQ tail originaltail))
+	 while (CDR tail) do
+	 (COND
+	   (,predicate (until (EQ (CDR lastreplace) (CDR tail)) do
+			      (RPLACD lastreplace
+				      (CONS (CADR lastreplace) (CDDR lastreplace)))
+			      (SETQ lastreplace (CDR lastreplace)))
+	    (RPLACD lastreplace (SETQ lastreplace
+				      (SETQ tail (CONS ,replacementform (CDDR tail))))))
+	   (T (SETQ tail (CDR tail))))
+	 finally (RETURN (CDR originaltail))))
+
+(DEFUN RemoveDuplicates (List) 
+  (bind originaltail tail(CBOX NIL List)
+	first (SETQ originaltail tail)
+	while (CDDR tail) do
+	(COND ((MEMQ (CADR tail) (CDDR tail))
+	       (RPLACD tail (CDDR tail)))
+	      (T (SETQ tail (CDR tail))))
+	finally (RETURN (CDR originaltail))))
+
+(DEFMACRO Remove1 (list predicate) 
+  `(bind originaltail(CBOX NIL ,list) tail
+	 first (SETQ tail originaltail)
+	 while (CDR tail) do
+	 (COND (,predicate (RPLACD tail (CDDR tail))
+		(RETURN (CDR originaltail)))
+	       (T (RPLACD tail (CONS (CADR tail) (CDDR tail)))
+		  (SETQ tail (CDR tail))))
+	 finally (RETURN (CDR originaltail))))
+
+(DEFMACRO Remove* (list predicate) 
+  `(bind tail lastdelete originaltail(CBOX NIL ,list)
+	 first (SETQ lastdelete (SETQ tail originaltail))
+	 while (CDR tail) do
+	 (COND (,predicate (until (EQ (CDR lastdelete) (CDR tail)) do
+				  (RPLACD lastdelete
+					  (CONS (CADR lastdelete) (CDDR lastdelete)))
+				  (SETQ lastdelete (CDR lastdelete)))
+		(RPLACD (SETQ tail lastdelete) (CDDR tail)))
+	       (T (SETQ tail (CDR tail))))
+	 finally (RETURN (CDR originaltail))))
+
+(DEFUN RandomInteger (Lower Upper) (+ Lower (RANDOM (1+ (- Upper Lower)))))
+
+(DEFUN RandomFloating (Lower Upper)
+  (+ Lower (* (- Upper Lower)
+	      (// (SMALL-FLOAT (ABS (RANDOM)))
+		  (SMALL-FLOAT (CONSTANT (+ 1_22 (- 1_22 1))))))))
+
+(DEFUN PutProperty (List Property Value) 
+  (COND
+    (List (COND ((EQ (CAR List) Property)
+		 (RPLACA (CDR List) Value)
+		 List)
+		(T (PROG1 List (PROG ((tail (CDDR List)))
+				  Loop (COND (tail (COND
+						     ((EQ (CAR tail) Property)
+						      (RPLACA (CDR tail) Value)
+						      (RETURN))
+						     (T (SETQ tail (CDDR tail))
+							(SETQ List (CDDR List))
+							(GO Loop))))
+					     (T (RPLACD (CDR List) (LIST Property Value))
+						(RETURN))))))))
+    (T (LIST Property Value))))
+
+;;; We SETF invert to PUTPROPNonNIL.
+(DEFF GETPROPNonNil #'GET)
+(DEFPROP GETPROPNonNil
+	 ((GETPROPNonNil Symbol Indicator) . (PUTPROPNonNil Symbol si:VAL Indicator))
+	 SETF)
+(DEFPROP GETPROPNonNil
+	 ((GETPROPNonNil Symbol Indicator) . (si:GET-LOCATION Symbol Indicator))
+	 LOCF)
+(DEFPROP GETPROPNonNil
+	 (('GETPROPNonNil Indicator) . ('PUTPROPNonNil si:VAL Indicator))
+	 si:FUNCALL-SETF)
+
+(DEFUN PUTPROPNonNil (Symbol Property Indicator)
+  (COND (Property (PUTPROP Symbol Property Indicator))
+	(T (REMPROP Symbol Indicator))))
+
+(DEFMACRO PushScratchNew (ScratchListName Element) 
+  `(LET ((E ,Element))
+     (OR (MEMQ E ,ScratchListName) (PushScratch ,ScratchListName E))))
+
+(DEFUN GetProperty (PropertyList Property) 
+  (for tail on PropertyList by (CDDR tail) thereis (EQ (CAR tail) Property)
+       then (CADR tail)))
+
+(DEFUN GetList (Size) 
+  (LET ((tail (NTHCDR (SUB1 Size) FreeLists)))
+    (COND ((CAR tail)
+	   (RPLACA (PROG1 (CAR tail) (RPLACA tail (CAAR tail)))
+		   NIL))
+	  (T (to Size collect NIL)))))
+
+(DEFUN RangesIntersect? (lower1 upper1 lower2 upper2) 
+  (COND (( lower1 lower2) ( lower2 upper1))
+	(( lower1 upper2))))
+
+(DEFMACRO MakeIntoList (Item)
+  `(LETP (,Item)
+     (COND ((AND ,Item (NLISTP ,Item))
+	    (LIST ,Item))
+	   (T ,Item))))
+
+(DEFUN RNTH (ElementNumber List &AUX Index)
+  (AND ( 0 Index(- (LENGTH List) ElementNumber 1))
+       (NTH Index List)))
+(DEFPROP RNTH ((RNTH n list) . (CAR (RNTHCDR n list))) si:SETF-EXPANDER)
+
+(DEFUN RNTHCDR (ElementNumber List &AUX Index)
+  (AND ( 0 Index(- (LENGTH List) ElementNumber 1))
+       (NTHCDR Index List)))
+(DEFPROP RNTHCDR ((RNTHCDR n list) . (CDR (RNTHCDR (1+ n) list))) si:SETF-EXPANDER)
+
+;;; Make list have at least Total+1 elements and return the Total'th CDR going backwards.
+;;; Element is REEVALUATED to supply the CAR of each added CONS.  Each added CONS is put
+;;; at the BEGINNING of the list.
+(DEFMACRO ExtendListBackwards (List Total &OPTIONAL Element)
+  `(LET* ((!l (LOCF ,List)) (!t ,Total) (!length (1- (LENGTH (CAR !l)))))
+     (to (- !t !length) do (push ,Element (CAR !l)))
+     (NTHCDR (- (MAX !length !t) !t) (CAR !l))))
+
+(DEFMACRO Delete1 (list predicate) 
+  `(bind tail originaltail(CBOX NIL ,list)
+	 first (SETQ tail originaltail)
+	 while (CDR tail) do
+	 (COND (,predicate
+		(RPLACD tail (CDDR tail))
+		(RETURN (CDR originaltail)))
+	       (T (SETQ tail (CDR tail))))
+	 finally (RETURN (CDR originaltail))))
+
+(DEFMACRO Delete* (list predicate) 
+  `(bind tail originaltail(CBOX NIL ,list)
+	 first (SETQ tail originaltail)
+	 while (CDR tail) do
+	 (COND (,predicate (RPLACD tail (CDDR tail)))
+	       (T (SETQ tail (CDR tail))))
+	 finally (RETURN (CDR originaltail))))
+
+(DEFMACRO Insert1 (newnode list predicate)
+  `(bind tail originaltail(CBOX NIL ,list)
+	 first (SETQ tail originaltail)
+	 while (CDR tail) do (AND ,predicate (GO $$OUT))
+			     (SETQ tail (CDR tail))
+         finally (RPLACD tail (CONS ,newnode (CDR tail)))
+		 (RETURN (CDR originaltail))))
+
+(DEFMACRO Substitute (ReplacementForm InstancePredicateForm Expression &OPTIONAL NoTails?)
+  `(GeneralSubstitute #'(LAMBDA (**Form** **Tail?**) **Form** **Tail?** ,ReplacementForm)
+		      #'(LAMBDA (**Form** **Tail?**) **Form** **Tail?**
+				,InstancePredicateForm)
+		      ,Expression
+		      ,NoTails?))
+
+(SPECIAL ReplacementFunction Predicate NoTails?)
+(DEFUN GeneralSubstitute (ReplacementFunction Predicate Expression &OPTIONAL NoTails?)
+  (COND ((FUNCALL Predicate Expression NIL)
+	 (FUNCALL ReplacementFunction Expression NIL))
+	((LISTP Expression) (GeneralSubstitute1 Expression))
+	(T Expression)))
+
+(SPECIAL ReplacementFunction Predicate NoTails?)
+(DEFUN GeneralSubstitute1 (Expression)
+  Expression0(COND ((FUNCALL Predicate Expression0 NIL)
+		      (FUNCALL ReplacementFunction Expression0 NIL))
+		     ((LISTP Expression0) (GeneralSubstitute1 Expression0))
+		     (T Expression0))
+  Expression1(COND ((AND (NOT NoTails?) (FUNCALL Predicate Expression1 T))
+		       (FUNCALL ReplacementFunction Expression1 T))
+		      ((LISTP Expression1) (GeneralSubstitute1 Expression1))
+		      (T Expression1))
+  Expression)
+
+(DEFMACRO AppendScratch (ScratchListName ListExpression) 
+  `(for element in ,ListExpression do (PushScratch ,ScratchListName element)))
+
+(DEFUN CompilingToFile? ()
+  (AND (BOUNDP 'compiler:QC-FILE-IN-PROGRESS)
+       compiler:QC-FILE-IN-PROGRESS
+       (NOT compiler:QC-FILE-LOAD-FLAG)))
+
+(DEFUN CompilingToCore? ()
+  (NOT (CompilingToFile?)))
+
+(DEFUN Macro? (Symbol)
+  (AND (FBOUNDP Symbol)
+       (EQ 'MACRO (CAR (LISTP (FSYMEVAL Symbol))))
+       Symbol))
+
+(DEFUN LiteralForm? (Form)
+  (COND ((LISTP Form) (OR (EQ Form0 'QUOTE)
+			  (for argument in Form1 always (LiteralForm? argument))))
+	((SYMBOLP Form) (MEMQ Form '(T NIL)))
+	(T)))
+
+(DEFUN SimplifyConsing (Expression &AUX Simplification Simplifier)
+  (COND ((LISTP Expression)
+	 (AND (SYMBOLP (CAR Expression))
+	      (EQ 'si:GRIND-BQ (GET (CAR Expression) 'si:GRIND-MACRO))
+	      (SETQ Expression (MACROEXPAND Expression)))
+	 (SETQ Simplification
+	       (CONS (CAR Expression)
+		     (for arg in (CDR Expression) collect (SimplifyConsing arg))))
+	 (COND ((SETQ Simplifier (GET (CAR Expression) 'ConsSimplifier))
+		(FUNCALL Simplifier Simplification))
+	       (T Simplification)))
+	(T Expression)))
+
+(DEFUN (CONS ConsSimplifier) (Expression)
+  (COND ((EQ 'LIST (CAR (LISTP (CADDR Expression))))
+	 `(LIST ,(CADR Expression) ,.(CDADDR Expression)))
+	(T Expression)))
+
+(DEFUN (NCONS ConsSimplifier) (Expression) `(LIST ,(CADR Expression)))
+
+(DEFUN (NCONC ConsSimplifier) (Expression)
+  (SegmentizeExpression Expression 'NCONC)
+  (CollapseAdjacentExpressions Expression 'LIST)
+  (CONSifyInnerLISTs Expression)
+  (for tail on (CDR Expression) while (CDR tail)
+       thereis (EQ 'COPYLIST (CAR (LISTP (CAR tail)))) then
+       (RPLNODE tail (SimplifyConsing `(APPEND ,(CADAR tail) (NCONC ,.(CDR tail))))
+		NIL))
+  (COND ((NULL (CDDR Expression)) (CADR Expression))
+	((EQ 'APPEND (CAR (LISTP (CADR Expression))))
+	 (SimplifyConsing
+	   `(APPEND ,.(BUTLAST (CDADR Expression))
+		    (NCONC ,(CAR (LAST (CADR Expression))) ,.(CDDR Expression)))))
+	(T Expression)))
+
+(DEFUN (APPEND ConsSimplifier) (Expression)
+  (SegmentizeExpression Expression 'APPEND)
+  (for tail on (CDR Expression) while (CDR tail) when (EQ 'COPYLIST (CAR (LISTP (CAR tail))))
+       do (RPLACA tail (CADAR tail)))
+  (CollapseAdjacentExpressions Expression 'LIST)
+  (CONSifyInnerLISTs Expression)
+  (COND ((NULL (CDDR Expression)) (CADR Expression))
+	(T Expression)))
+
+(DEFUN SegmentizeExpression (Expression Symbol)
+  (for tail on Expression while (CDR tail) when (EQ Symbol (CAR (LISTP (CADR tail)))) do
+       (RPLACD tail (NCONC (CDADR tail) (CDDR tail)))))
+
+(DEFUN CollapseAdjacentExpressions (Expression Symbol)
+  (bind tail(CDR Expression) while (CDR tail) do
+	(while (AND (EQ Symbol (CAR (LISTP (CAR tail))))
+		    (EQ Symbol (CAR (LISTP (CADR tail))))) do
+	       (RPLACD (LAST (CAR tail)) (CDADR tail))
+	       (RPLACD tail (CDDR tail)))
+	(pop tail)))
+
+(DEFUN CONSifyInnerLISTs (Expression)
+  (for tail on (CDR Expression) while (CDR tail)
+    do (COND ((EQ 'LIST (CAR (LISTP (CAR tail))))
+	      (RPLNODE tail (CONSify (CDAR tail)
+				     (SimplifyConsing `(,(CAR Expression) ,.(CDR tail))))
+		       NIL))
+	     ((AND (EQ 'QUOTE (CAR (LISTP (CAR tail))))
+		   (LISTP (CADAR tail)))
+	      (RPLNODE tail (CONSifyQUOTE (CADAR tail)
+					  (SimplifyConsing `(,(CAR Expression) ,.(CDR tail))))
+		       NIL)))))
+
+(DEFUN CONSify (ElementForms ListForm)
+  (COND (ElementForms `(CONS ,(POP ElementForms) ,(CONSify ElementForms ListForm)))
+	(T ListForm)))
+
+(DEFUN CONSifyQUOTE (ElementForms ListForm)
+  (COND (ElementForms `(CONS ',(POP ElementForms) ,(CONSifyQUOTE ElementForms ListForm)))
+	(T ListForm)))
+
+(DEFUN MakeSpecial (Variable)
+  (LET (compiler:UNDO-DECLARATIONS-FLAG) (FUNCALL 'SPECIAL Variable))
+  Variable)
+
+(DEFCONST TimeUnits '((1000 . "usec")
+		      (1000 . "msec")
+		      (60 . "sec")
+		      (60 . "min")
+		      (24 . "hour")
+		      "day"))
+
+(DEFUN PrintTimeInterval (Microseconds)
+  (for pair in (NREVERSE (bind RemainingMicroseconds for tu in TimeUnits collect
+			       (COND ((LISTP tu) (PROG1 (LIST (\ Remaining tu0) tu1)
+							Remaining(// Remaining tu0)))
+				     (T (LIST Remaining tu)))
+			   repeatwhile ( 0 Remaining)))
+     exceptfirst (printout t " ")
+     do (printout t pair0 " " pair1 ? ( pair0 1) "s")))
+
+;;; Time the computation performed by Form.
+(DEFUN tc (&QUOTE Form &EVAL &OPTIONAL (Times 1) &AUX Values (Time (time:MICROSECOND-TIME)))
+  Values(to Times collect (EVAL Form))
+  Time(- (time:MICROSECOND-TIME) Time)
+  (AND (MINUSP Time) Time(+ Time 1_32))
+  (printout t t t)
+  (COND ((= Times 1)
+	 (PrintTimeInterval Time)
+	 (printout t t)
+	 Values0)
+	(T (printout t "Total time:  ")
+	   (PrintTimeInterval Time)
+	   (printout t t "Average time per call:  ")
+	   (PrintTimeInterval (// Time Times))
+	   (printout t t)
+	   (COND ((for val in Values1 thereis (NEQ val Values0))
+		  (printout t "Different Values:  " t)
+		  (VALUES-LIST Values))
+		 (T Values0)))))
+
+(DEFVAR UnboundIndicator (LIST NIL))
+(DEFVAR AlwaysBoundVariables NIL)
+
+(DEFMACRO VariableValue (Variable)
+  (COND ((AND (EQ (LISTP Variable)0 'QUOTE)
+	      (MEMQ Variable1 AlwaysBoundVariables))
+	 Variable1)
+	(T `(LETP (,Variable)
+	      (COND ((BOUNDP ,Variable) (SYMEVAL ,Variable))
+		    (T UnboundIndicator))))))
+
+(DEFMACRO SetVariableValue (Variable Value)
+  (COND ((AND (EQ (LISTP Variable)0 'QUOTE)
+	      (MEMQ Variable1 AlwaysBoundVariables))
+	 `(SETQ ,(Variable1) ,Value))
+	(T `(LETP (,Value)
+	      (COND ((EQ ,Value UnboundIndicator) (MAKUNBOUND ,Variable))
+		    (T (SET ,Variable ,Value)))))))
+
+(DEFUN RecordLocalDeclaration (&QUOTE Declaration)
+  (push Declaration LOCAL-DECLARATIONS))
+
+(DEFUN RemoveLocalDeclaration (&QUOTE Declaration)
+  (OR (EQ Declaration LOCAL-DECLARATIONS0)
+      (FERROR NIL "Process compiler declarations screwed."))
+  (pop LOCAL-DECLARATIONS))
+
+
+;;; *****
+;;; Process functions
+;;; *****
+
+(DEFMACRO WithLock (Lock &BODY Forms)
+  `(LETP (,Lock) (UNWIND-PROTECT (PROGN (PROCESS-LOCK ,Lock) ,.Forms)
+				 (PROCESS-UNLOCK ,Lock))))
+
+;;; *****
+;;; ZMACS Macro saving and restoring utilities
+;;; *****
+
+(DEFVAR LastZMacsMacros NIL)
+
+(DEFVAR InsideInstallMacro NIL)
+
+(ADVISE zwei:COM-INSTALL-MACRO AROUND ZMacsMacroSavingAdvice 0
+	(LET ((InsideInstallMacro T))
+	  :DO-IT))
+
+(ADVISE zwei:COMMAND-STORE BEFORE ZMacsMacroSavingAdvice 0
+	(AND InsideInstallMacro
+	     (PUTPROP (SYMEVAL-IN-CLOSURE ARGLIST0 'zwei:SYMBOL)
+		      ARGLIST1
+		      'KeyInstalledOn)))
+
+(DEFUN SaveZMacsMacros (FileName MacroNames)
+  (PKG-BIND "InterlispUsers"			;Necessary because of compiler lossage
+    (PUTPROP 'LastZMacsMacros
+	     LastZMacsMacros(for name in MacroNames collect (INTERN name "user"))
+	     'ZMacsMacroNames)
+    (compiler:FASD-FILE-SYMBOLS-PROPERTIES
+      FileName
+      (CONS 'LastZMacsMacros LastZMacsMacros)
+      '(zwei:MACRO-STREAM-MACRO KeyInstalledOn ZMacsMacroNames)
+      NIL NIL NIL)))
+
+(DEFUN szm (&QUOTE FileName &REST MacroNames)
+  (SaveZMacsMacros FileName MacroNames))
+
+(DEFUN RestoreZMacsMacros (FileName)
+  (PKG-BIND "InterlispUsers"			;Necessary because of compiler lossage
+    (LOAD FileName)
+    (for name in (GET 'LastZMacsMacros 'ZMacsMacroNames) do
+	 (zwei:COMMAND-STORE (zwei:MAKE-MACRO-COMMAND name)
+			     (GET name 'KeyInstalledOn)
+			     zwei:*STANDARD-COMTAB*))))
+
+(DEFUN rzm (&QUOTE FileName)
+  (RestoreZMacsMacros FileName))
+
+;;; *****
+;;; Equality functions
+;;; *****
+
+(DEFUN EqualModuloNameDifferences? (List1 Names1 List2 Names2)
+  (COND ((LISTP List1)
+	 (AND (LISTP List2)
+	      (for tail1 on List1 as tail2 on List2 always
+		   (COND ((LISTP tail1)
+			  (AND (LISTP tail2)
+			       (EqualModuloNameDifferences? tail10 Names1 tail20 Names2)))
+			 ((NLISTP tail1)
+			  (RETURN (EqualAtomsModuloNameDifferences?
+				    tail1 Names1 tail2 Names2))))
+		then (AND (NULL tail1) (NULL tail21)))))
+	((NLISTP List2)
+	 (EqualAtomsModuloNameDifferences? List1 Names1 List2 Names2))))
+
+(DEFUN EqualAtomsModuloNameDifferences? (Atom1 Names1 Atom2 Names2)
+  (for name1 in Names1 as name2 in Names2 do
+       (COND ((EQ Atom1 name1) (RETURN (EQ Atom2 name2)))
+	     ((EQ Atom2 name2) (RETURN NIL)))
+    finally (RETURN (EQ Atom1 Atom2))))
+
+(DEFUN PropertiesEqual? (PropertyList1 PropertyList2 &AUX (plist (CBOX NIL PropertyList2)))
+  (AND (= (LENGTH PropertyList1) (LENGTH PropertyList2))
+       (for tail on PropertyList1 by tail2 always
+	    (EQ tail1 (GET plist tail0)))))
+
+
+(DEFMACRO DEFILISPLAMBDAMACRO (MacroName MacroArgList &BODY MacroBody)
+  `(DEFMACRO ,MacroName ,MacroArgList 
+    (LIST* 'LET
+           ,@(LIST (LIST* 'LIST
+			  (for Arg
+			       in
+			       MacroArgList 
+			       collect
+			       (LIST 'LIST (LIST 'QUOTE Arg) Arg)))
+		   (LIST 'QUOTE MacroBody)))))
+
+
+(DEFMACRO DEFILISPNLAMBDAMACRO (MacroName MacroArgList &BODY MacroBody)
+  `(DEFMACRO ,MacroName ,MacroArgList 
+    (LIST* 'LET
+           ,@(LIST (LIST* 'LIST
+			  (for Arg
+			       in
+			       MacroArgList 
+			       collect
+			       (LIST 'LIST (LIST 'QUOTE Arg) (LIST 'LIST ''QUOTE Arg))))
+		   (LIST 'QUOTE MacroBody)))))
+
+
+
+
+
+

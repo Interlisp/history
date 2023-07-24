@@ -1,0 +1,209 @@
+;-*- Mode:LISP; Package:RANDOMFUNCTIONSPACKAGE; Base:10; Readtable:INTERLISP -*-
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+(DEFCONST BogusSymbol (GENSYM))
+(DEFCONST BogusSymbol2 (GENSYM))
+
+(EVAL-WHEN (LOAD COMPILE) (COND ((STATUS FEATURE CADR)
+				 (DEFDECL LISTP compiler:MICROCOMPILE T)
+				 ;; Below is not supposed to be necessary, but it is.
+				 (DEFPROP LISTP T :DEPEND-ON-BEING-MICROCOMPILED))))
+
+(DEFUN LISTP (Entity)
+  (AND (EQ (%DATA-TYPE Entity) DTP-LIST)
+       Entity))
+
+(EVAL-WHEN (LOAD) (AND (STATUS FEATURE CADR) (COMPILER:MA-LOAD 'LISTP)))
+
+(DEFUN HELP (Message1 Message2) (FERROR NIL "~A~%~S~%" Message1 Message2))
+
+(DEFUN POSITION (&OPTIONAL Stream) (CDR (CURSORPOS (OutputStream Stream))))
+
+(DEFMACRO OutputStream (StreamSpecification)
+  (SELECTQ StreamSpecification
+    ((T) 'TERMINAL-IO)
+    (NIL 'STANDARD-OUTPUT)
+    (OTHERWISE
+     `(LET ((,BogusSymbol ,StreamSpecification))
+	(SELECTQ ,BogusSymbol
+	  ((T) TERMINAL-IO)
+	  (NIL STANDARD-OUTPUT)
+	  (OTHERWISE ,BogusSymbol))))))
+
+(SPECIAL Sources Targets)
+(DEFUN SUBPAIR (Sources Targets Tree) (SUBPAIR1 Tree))
+
+(SPECIAL Sources Targets)
+(DEFUN SUBPAIR1 (Tree)
+  (bind (stail _ Sources) (ttail _ Targets) while (AND stail ttail) do
+       (COND ((LISTP stail)
+	      (AND (EQ Tree (CAR stail)) (RETURN (CAR ttail))))
+	     ((EQ Tree stail) (RETURN ttail))
+	     (T (GO $$OUT)))
+       (SETQ stail (CDR stail) ttail (CDR ttail))
+       finally (RETURN (COND ((LISTP Tree)
+			      (LET ((CAR (SUBPAIR1 (CAR Tree)))
+				    (CDR (SUBPAIR1 (CDR Tree))))
+				(COND ((AND (EQ CAR (CAR Tree)) (EQ CDR (CDR Tree)))
+				       Tree)
+				      (T (CONS CAR CDR)))))
+			     (T Tree)))))
+
+(DEFMACRO printout (Stream . Directives)
+  `(LET ((STANDARD-OUTPUT (OutputStream ,Stream)))
+     ,.(bind d while Directives collect
+	     (SETQ d (POP Directives))
+	     (COND ((FIXP d) (COND ((PLUSP d) `(TAB ,d))
+				   (T `(SPACES ,(MINUS d)))))
+		   (T (SELECTQ d
+			(.SP `(SPACES ,(POP Directives)))
+			((T) `(TERPRI))
+			(.TAB0 `(TAB ,(POP Directives) 0))
+			(.TAB `(TAB ,(POP Directives)))
+			((.PPV .PPF) `(PrettyPrint ,(POP Directives)))
+			(.P1 `(PRINC ,(POP Directives)))
+			(.P2 `(PRIN1 ,(POP Directives)))
+			(.E (POP Directives))
+			(? `(AND ,(POP Directives)
+				 ,(COND ((LISTP (CAR Directives))
+					 `(printout NIL ,@(POP Directives)))
+					(T `(PRINC ,(POP Directives))))))
+			(OTHERWISE `(PRINC ,d))))))))
+
+(DEFUN PrettyPrint (Expression &OPTIONAL Indentation Width Stream AtomPrinter)
+  (GRIND-TOP-LEVEL Expression Width (OR Stream STANDARD-OUTPUT) NIL 'si:DISPLACED NIL NIL
+		   (NCONS Expression) 'si:GRIND-OPTI-MISER
+		   (OR Indentation (POSITION Stream))
+		   (OR AtomPrinter #'PRIN1)))
+
+(DEFUN pp (Expression &OPTIONAL Indentation Width Stream)
+  (TERPRI Stream)
+  (PrettyPrint Expression Indentation Width Stream))
+
+(DEFUN SPACES (Number &OPTIONAL (Stream STANDARD-OUTPUT))
+  (SETQ Stream (OutputStream Stream))
+  (for i from 1 to Number do (FUNCALL Stream ':TYO #\SP)))
+
+(DEFUN TAB (GoalPosition &OPTIONAL (MinimumSpaces 1) (Stream STANDARD-OUTPUT))
+  (LET ((CurrentPosition (POSITION Stream)))
+    (COND ((<= (+ CurrentPosition MinimumSpaces) GoalPosition)
+	   (SPACES (- GoalPosition CurrentPosition)))
+	  (T (TERPRI)
+	     (SPACES GoalPosition)))))
+
+(DEFMACRO RPLNODE (List Car Cdr)
+  `(RPLACD (RPLACA ,List ,Car) ,Cdr))
+
+(DEFMACRO RPLNODE2 (TargetCONS SourceCONS)
+  `(LET ((,BogusSymbol ,SourceCONS))
+     (RPLACA (RPLACD ,TargetCONS (CDR ,BogusSymbol)) (CAR ,BogusSymbol))))
+
+(DEFMACRO NCONC1 (List Element)
+  `(NCONC ,List (NCONS ,Element)))
+
+;(DEFMACRO CONSTANT (Form)
+;  (COND ((AND (BOUNDP 'COMPILER:QC-FILE-READ-IN-PROGRESS)
+;	      COMPILER:QC-FILE-READ-IN-PROGRESS)
+;	 `',(CONS compiler:EVAL-AT-LOAD-TIME-MARKER Form))
+;	(T Form)))
+
+(DEFF CONSTANT #'sys:QUOTE-EVAL-AT-LOAD-TIME)
+
+(DEFVAR LastDeferredConstant T)
+
+(DEFMACRO DEFERREDCONSTANT (Form)
+  `(LET ((,BogusSymbol (CONSTANT (NCONS NIL))))
+     (COND ((CDR ,BogusSymbol) (CAR ,BogusSymbol))
+	   (T (CAR (SETQ LastDeferredConstant
+			 (RPLACA (RPLACD ,BogusSymbol LastDeferredConstant)
+				 ,Form)))))))
+
+(DEFUN RecomputeDeferredConstants (&AUX (dc LastDeferredConstant))
+  (until (EQ dc T) do (SETQ dc (PROG1 (CDR dc)
+				      (RPLACD dc NIL))))
+  (SETQ LastDeferredConstant T))
+
+(DEFMACRO CBOX (&OPTIONAL Car Cdr)
+  `(RPLNODE (CONSTANT (NCONS NIL)) ,Car ,Cdr))
+
+(DEFMACRO LBOX (&REST Elements)
+  (COND ((CDR Elements)
+	 `(LET ((,BogusSymbol (CONSTANT (LIST ,.(for e in Elements collect NIL)))))
+	    ,(bind (Result _ `(RPLACA ,BogusSymbol ,(CAR Elements)))
+		   for e in (CDR Elements) do
+		   (SETQ Result `(RPLACA (CDR ,Result) ,e))
+		   finally (RETURN Result))
+	    ,BogusSymbol))
+	(T `(CBOX ,.Elements))))
+
+;;; MUST used LEXPR-FUNCALL since APPLY is not guaranteed to spread its argument (in fact,
+;;; it does not spread it in exactly this case; instead it uses the existing Strings list
+;;; structure, and thus StringAppend clobbers it!).
+(DEFUN PACK (Strings) (INTERN (LEXPR-FUNCALL #'StringAppend Strings)))
+
+;;; See note on PACK.
+(DEFUN PACK* (&REST Strings) (INTERN (LEXPR-FUNCALL #'StringAppend Strings)))
+
+(DEFUN StringAppend (&REST Strings)
+  (for tail on Strings do (RPLACA tail (MakeString (CAR tail))))
+  (APPLY #'STRING-APPEND Strings))
+
+(DEFUN MakeString (Object &AUX Negative?)
+  (COND ((FIXP Object)
+	 (SETQ Negative? (IF (< Object 0) 2 1))
+	 (SETQ Object (ABS Object))
+	 (bind Result for i from Negative? as (j _ 10) by (* j 10)
+	       thereis (MINUSP (- Object j)) then
+	       (SETQ Result (MAKE-ARRAY NIL 'ART-STRING i))
+	       (for index from (- i 1) by -1 to (- Negative? 1) do
+		    (ASET (+ #/0 (\ Object 10)) Result index)
+		    (SETQ Object (// Object 10)))
+	       (AND (EQ Negative? 2) (ASET #/- Result 0))
+	       Result))
+	(T (STRING Object))))
+
+(DEFMACRO CharacterAtom (CharacterCode) `(INTERN (STRING ,CharacterCode)))
+
+(DEFUN DUNPACK (String ScratchList)
+  (LET ((String (STRING String))
+	Length)
+    (for i from 0 to (SETQ Length (SUB1 (STRING-LENGTH String)))
+	 as tail on (CDR ScratchList) do
+	 (RPLACA tail (CharacterAtom (AREF String i)))
+	 finally
+	 (RETURN
+	   (COND ((> i Length)
+		  (COND (tail
+			 (RPLACD (NLEFT 1 ScratchList tail)
+				 NIL)
+			 (RPLACD (LAST tail) (CDR ScratchList))
+			 (PROG1 (CDR ScratchList)
+				(RPLACD ScratchList
+					tail)))
+			(T (CDR ScratchList))))
+		 (T (APPEND (CDR ScratchList)
+			    (for j from i to Length collect (CharacterAtom
+							      (AREF String j))))))))))
+
+(FSET 'NCHARS (FSYMEVAL 'STRING-LENGTH))
+
+(DEFUN COPY (Structure)
+  (bind Result LastTail first (SETQ LastTail (VALUE-CELL-LOCATION 'Result))
+	for tail on Structure do
+	(COND ((NLISTP tail) (RPLACD LastTail tail) (RETURN Result))
+	      (T (RPLACD LastTail (SETQ LastTail (NCONS (COPY (CAR tail)))))))
+	finally (RETURN Result)))
+
+(DEFMACRO //F (Number &REST Numbers) `(// (SMALL-FLOAT ,Number) ,.Numbers))
+
+(DEFUN MaybeMap (Item AssociationList)
+  (OR (CDR (ASSQ Item AssociationList))
+      Item))
+
+

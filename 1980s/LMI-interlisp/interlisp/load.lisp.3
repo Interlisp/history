@@ -1,0 +1,22 @@
+;;; -*- Mode:LISP; Package:USER; Base:10 -*-
+
+(let* ((pathname (send fs:fdefine-file-pathname :translated-pathname))
+       (phys-host (send pathname :host))
+       (directory (send pathname :directory))
+       (directory-as-string ""))
+  (dolist (dir (if (atom directory) (list directory) directory))
+    (if (not (zerop (string-length directory-as-string)))
+	(setq directory-as-string (string-append directory-as-string ".")))
+    (setq directory-as-string (string-append directory-as-string dir)))
+  (fs:set-logical-pathname-host
+    "INTERLISP"
+    :physical-host phys-host
+    :translations `(("INTERLISP;" ,(format nil "<~A>" directory-as-string))
+		    ("*;" ,(format nil "<~A.*>" directory-as-string)))))
+
+
+
+(load "interlisp:interlisp;pkgdef" :set-default-pathname nil)
+
+(load "interlisp:interlisp;sysdef" :set-default-pathname nil)
+

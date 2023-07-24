@@ -1,0 +1,409 @@
+;-*- Mode:LISP; Package:INTERLISPUSERS; Base:10; Readtable:INTERLISP -*-
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+(SPECIAL ConsCount StackGroups UnwindHappened? TotalRealTime TotalRunTime
+	 CurrentStack CurrentStackActive? CurrentEntry CurrentFunction
+	 sys:%METER-GLOBAL-ENABLE sys:%CURRENT-STACK-GROUP sys:%METER-MICRO-ENABLES
+	 SI:%METER-FUNCTION-ENTRY-EVENT SI:%METER-FUNCTION-EXIT-EVENT
+	 SI:%METER-FUNCTION-UNWIND-EVENT SI:%METER-STACK-GROUP-SWITCH-EVENT
+	 SI:%METER-CONS-EVENT SI:%METER-PAGE-IN-EVENT SI:%METER-PAGE-OUT-EVENT)
+
+(DEFVAR ResourceDisplaySorter 'MaximumTotalRealTime)
+
+(DEFVAR EnabledStackGroups NIL)
+(DEFVAR PreviousEnabledStackGroups NIL)
+(DEFVAR AllStackGroupsEnabled? NIL)
+(DEFVAR AllStackGroupsWereEnabled? NIL)
+
+(DEFCONST DefaultMeteringEnables (DPB 1 SI:%%METER-FUNCTION-ENTRY-EXIT-ENABLE
+				      (DPB 1 SI:%%METER-STACK-GROUP-SWITCH-ENABLE
+					   (DPB 1 SI:%%METER-CONS-ENABLE 0))))
+
+(DEFRECORD FunctionEntry (Function StackGroup StackDepth LowRealTime HighRealTime
+				   LowRunTime HighRunTime PageFaults Conses)
+  (Implementation ArraySegment) Typed)
+(DEFRECORD FreeFunctionEntry ((FreeLink (AREF DATUM 1))) (Implementation Functional))
+(DEFVAR FreeFunctionEntrys NIL)
+(EVAL-WHEN (LOAD COMPILE EVAL)
+	   (DEFPROP FreeFunctionEntrys (FreeFunctionEntry FreeLink) FreeLinkField))
+
+(DEFRECORD ResourceCounter (RealTime RunTime PageFaults Conses)
+  (RealTime  0) (RunTime  0) (PageFaults  0) (Conses  0))
+
+(DEFCONST ThisFrame (create FunctionEntry))
+(DEFCONST ThisFrameIndex (PROGN (pushsegment (FunctionEntry ThisFrame))
+				(topsegment (FunctionEntry ThisFrame))))
+
+(DEFCONST LastFrame (create FunctionEntry))
+(DEFCONST LastFrameIndex (PROGN (pushsegment (FunctionEntry LastFrame))
+				(topsegment (FunctionEntry LastFrame))))
+
+(I.S.OPR mapmeterdata NIL
+	 (bind Buffer Index LastBuffer LastIndex
+	       first (MULTIPLE-VALUE (Buffer Index) (Meter:FRAME-SETUP))
+	       while Buffer
+	       repeateachtime (SETQ LastBuffer Buffer LastIndex Index)
+			      (MULTIPLE-VALUE (Buffer Index)
+				(Meter:NEXT-FRAME Buffer Index))))
+
+(I.S.OPR inentriesof NIL
+	 (first (SETQ I.V. (topsegment (FunctionEntry BODY)))
+		while I.V.
+		repeateachtime (SETQ I.V. (previoussegment (FunctionEntry BODY) I.V.))))
+
+(SPECIAL MeterAroundStackGroups MeterAroundEnables)
+(DEFUN MeterFunctions (Form Functions &OPTIONAL MeterAroundStackGroups
+						(MeterAroundEnables DefaultMeteringEnables))
+  (for fn in Functions do (si:ADVISE-1 fn ':AROUND "MeterAroundAdvice" NIL
+				       '((MeterAround ':DO-IT))))
+  (Meter:BUFFER-RESET)
+  (PROG1 (EVAL Form)
+	 (for fn in Functions do (si:UNADVISE-1 fn ':AROUND))))
+(DEFF mf #'MeterFunctions)
+
+(SPECIAL MeterAroundStackGroups MeterAroundEnables)
+(DEFUN MeterAround (Form)
+  (EnableStackGroups MeterAroundStackGroups)
+  (PROG1 (LET-GLOBALLY ((sys:%METER-MICRO-ENABLES MeterAroundEnables))
+	   (EVAL Form))
+	 (DisableStackGroups)))
+
+(DEFUN Meter (Form &OPTIONAL StackGroups (Enables DefaultMeteringEnables))
+  (Meter:BUFFER-RESET)
+  (EnableStackGroups StackGroups)
+  (PROG1 (LET-GLOBALLY ((sys:%METER-MICRO-ENABLES Enables))
+	   (EVAL Form))
+	 (DisableStackGroups)))
+
+(DEFUN EnableStackGroups (StackGroups)
+  (DisableStackGroups)
+  (SELECTQ StackGroups
+    (NIL (Meter:ENABLE-STACK-GROUP sys:%CURRENT-STACK-GROUP 1)
+	 (SETQ EnabledStackGroups (LIST sys:%CURRENT-STACK-GROUP)))
+    ((T) (SETQ sys:%METER-GLOBAL-ENABLE T AllStackGroupsEnabled? T))
+    (OTHERWISE (for sg in StackGroups do (Meter:ENABLE-STACK-GROUP sg 1))
+	       (SETQ EnabledStackGroups (COPYLIST StackGroups)))))
+
+(DEFUN DisableStackGroups (&OPTIONAL (StackGroups NIL Supplied?))
+  (COND (Supplied?
+	 (SELECTQ StackGroups
+	   ((T) (SETQ sys:%METER-GLOBAL-ENABLE NIL
+		      AllStackGroupsWereEnabled? AllStackGroupsEnabled?
+		      AllStackGroupsEnabled? NIL))
+	   (OTHERWISE (SETQ PreviousEnabledStackGroups EnabledStackGroups)
+		      (for sg in StackGroups do
+			   (SETQ EnabledStackGroups (REMQ sg EnabledStackGroups))
+			   (Meter:ENABLE-STACK-GROUP sg 0)))))
+	(T (DisableStackGroups EnabledStackGroups) (DisableStackGroups T))))
+
+(DEFUN StackGroupEnabled? (StackGroup)
+  (OR AllStackGroupsWereEnabled? (MEMQ StackGroup PreviousEnabledStackGroups)))
+
+(SPECIAL Functions)
+(DEFUN BreakdownFunctions (&QUOTE &REST Functions)
+  (ClearFunctionState Functions)
+  (Breakdown (CLOSURE '(Functions) #'(LAMBDA (Function) (MEMQ Function Functions)))))
+
+(DEFF bf #'BreakdownFunctions)
+
+(DEFUN Breakdown (Predicate)
+  (bind EnabledFunctions StackGroups Event StackGroup ConsCount0
+	NewFunction BaseFunction ActiveMiscellaneous(create ResourceCounter)
+	LastEnteredFunction InactiveMiscellaneous(create ResourceCounter)
+	CurrentFunction CurrentStackActive? CurrentEntry CurrentStack FirstTimeFlagT
+	UnwindHappened? FirstEventAfterUnwind?
+
+	mapmeterdata do
+
+	(SETQ Event (AREF Buffer Index))
+	(SELECT Event
+	  (SI:%METER-FUNCTION-UNWIND-EVENT
+	   (COND (CurrentStackActive?
+		  (LoadThisFrame Buffer Index)
+		  (ChargeRelativeResources)
+		  (SETQ UnwindHappened? T
+			FirstEventAfterUnwind? T)
+		  (CopyFrame ThisFrame ThisFrameIndex LastFrame LastFrameIndex))))
+	  (SI:%METER-CONS-EVENT (add 1 ConsCount))	;This is not yet implemented in ucode
+						        ;and should clearly not always be 1!
+	  (SI:%METER-STACK-GROUP-SWITCH-EVENT
+	   (LoadThisFrame Buffer Index)
+	   (COND (CurrentStackActive?
+		  (ChargeRelativeResources)
+		  (for entry inentriesof CurrentStack
+		       when (EQ entry (GetStackProperty
+					(SETQ CurrentFunction
+					      CurrentStack{entry}FunctionEntry.Function)
+					'TopEntry))
+		       do (IncrementResourceCounter
+			    (GET CurrentFunction 'TotalResourceCounter)
+			    CurrentStack entry ThisFrame ThisFrameIndex)))
+		 (FirstTimeFlag (SETQ FirstTimeFlag NIL))
+		 (T (IncrementResourceCounter
+		      (COND (CurrentStack ActiveMiscellaneous)
+			    (T InactiveMiscellaneous))
+		      LastFrame LastFrameIndex ThisFrame ThisFrameIndex)))
+	   (SETQ StackGroup ThisFrame{ThisFrameIndex}FunctionEntry.StackGroup)
+	   (COND
+	     ((StackGroupEnabled? StackGroup)
+	      (OR (SETQ CurrentStack (CDR (ASSQ StackGroup StackGroups)))
+		  (NewStackGroup))
+	      (COND ((SETQ CurrentEntry (topsegment (FunctionEntry CurrentStack))
+			   CurrentStackActive? CurrentEntry)
+		     (SETQ CurrentFunction
+			   CurrentStack{CurrentEntry}FunctionEntry.Function)
+		     (for entry inentriesof CurrentStack do
+			  (alter (FunctionEntry CurrentStack{entry})
+			    LowRealTimeThisFrame{ThisFrameIndex}FunctionEntry.LowRealTime
+			    HighRealTimeThisFrame{ThisFrameIndex}FunctionEntry.HighRealTime
+			    LowRunTimeThisFrame{ThisFrameIndex}FunctionEntry.LowRunTime
+			    HighRunTimeThisFrame{ThisFrameIndex}FunctionEntry.HighRunTime
+			    PageFaultsThisFrame{ThisFrameIndex}FunctionEntry.PageFaults
+			    ConsesThisFrame{ThisFrameIndex}FunctionEntry.Conses)))))
+	     (T (SETQ CurrentStackActive? NIL CurrentStack NIL)))
+	   (CopyFrame ThisFrame ThisFrameIndex LastFrame LastFrameIndex))
+	  ((SI:%METER-FUNCTION-ENTRY-EVENT SI:%METER-FUNCTION-EXIT-EVENT)
+	   (COND (FirstTimeFlag
+		  (LoadThisFrame Buffer Index T)
+		  (NewStackGroup)
+		  (CopyFrame ThisFrame ThisFrameIndex LastFrame LastFrameIndex)
+		  (SETQ FirstTimeFlag NIL)))
+	   (SETQ NewFunction (BufferFrameFunction Buffer Index T))
+	   (COND (FirstEventAfterUnwind?
+		  LastEnteredFunction(BufferFrameFunction Buffer Index NIL)
+		  FirstEventAfterUnwind?NIL))
+	   (COND ((AND (EQ Event SI:%METER-FUNCTION-ENTRY-EVENT)
+		       (FUNCALL Predicate BaseFunction(BufferFrameFunction Buffer Index NIL))
+		       (NEQ LastEnteredFunction BaseFunction))
+		  ;; An implicit enter has occurred!  Get ready for it.
+		  (LoadThisFrame Buffer Index BaseFunction)
+		  (COND ((NOT CurrentStackActive?)
+			 (IncrementResourceCounter ActiveMiscellaneous
+						   LastFrame LastFrameIndex
+						   ThisFrame ThisFrameIndex)
+			 (SETQ CurrentStackActive? T))
+			(T (ChargeRelativeResources)))
+		  (allocatesegment (FunctionEntry CurrentStack))
+		  CurrentFunctionBaseFunction
+		  CurrentEntry(topsegment (FunctionEntry CurrentStack))
+		  (CopyFrame ThisFrame ThisFrameIndex LastFrame LastFrameIndex)
+		  (CopyFrame LastFrame LastFrameIndex CurrentStack CurrentEntry)
+		  (COND ((NOT (GET CurrentFunction 'TotalResourceCounter))
+			 (PUTPROP CurrentFunction (create ResourceCounter)
+				  'TotalResourceCounter)
+			 (PUTPROP CurrentFunction (create ResourceCounter)
+				  'RelativeResourceCounter)
+			 (push CurrentFunction EnabledFunctions)))
+		  (OR (GetStackProperty CurrentFunction 'TopEntry)
+		      (PutStackProperty CurrentFunction CurrentEntry 'TopEntry))))
+	   LastEnteredFunctionNewFunction
+	   (COND
+	     ((FUNCALL Predicate NewFunction)
+	      (LoadThisFrame Buffer Index NewFunction)
+	      (AND CurrentStackActive? (ChargeRelativeResources))
+	      (SELECT Event
+		(SI:%METER-FUNCTION-ENTRY-EVENT
+		 (allocatesegment (FunctionEntry CurrentStack))
+		 (SETQ CurrentEntry (topsegment (FunctionEntry CurrentStack)))
+		 (CopyFrame ThisFrame ThisFrameIndex CurrentStack CurrentEntry)
+		 (SETQ CurrentFunction NewFunction)
+		 (COND ((NOT CurrentStackActive?)
+			(IncrementResourceCounter ActiveMiscellaneous LastFrame LastFrameIndex
+						  ThisFrame ThisFrameIndex)
+			(SETQ CurrentStackActive? T)))
+		 (COND ((NOT (GET CurrentFunction 'TotalResourceCounter))
+			(PUTPROP CurrentFunction (create ResourceCounter)
+				 'TotalResourceCounter)
+			(PUTPROP CurrentFunction (create ResourceCounter)
+				 'RelativeResourceCounter)
+			(push CurrentFunction EnabledFunctions)))
+		 (OR (GetStackProperty CurrentFunction 'TopEntry)
+		     (PutStackProperty CurrentFunction CurrentEntry 'TopEntry)))
+		(SI:%METER-FUNCTION-EXIT-EVENT
+		 (ExitFunction)))
+	      (CopyFrame ThisFrame ThisFrameIndex LastFrame LastFrameIndex))))
+	  (OTHERWISE (FERROR NIL "Unknown metering event:  ~S" Event)))
+
+	finally
+
+	(LoadThisFrame LastBuffer LastIndex)
+	(IncrementResourceCounter ActiveMiscellaneous LastFrame LastFrameIndex
+				  ThisFrame ThisFrameIndex)
+	(DisplayResourceUtilization EnabledFunctions
+				    ActiveMiscellaneous InactiveMiscellaneous)
+	(ClearFunctionState EnabledFunctions)
+	(for sg in StackGroups do (FreeNode FunctionEntry (CDR sg)))))
+
+(DEFUN NewStackGroup NIL
+  (push (CONS ThisFrame{ThisFrameIndex}FunctionEntry.StackGroup
+	      (SETQ CurrentStack (AllocateNode FunctionEntry !NumberInstances50)))
+	StackGroups))
+
+(DEFUN ExitFunction NIL
+  (COND ((EQ CurrentEntry (GetStackProperty CurrentFunction 'TopEntry))
+	 (IncrementResourceCounter
+	   (GET CurrentFunction 'TotalResourceCounter)
+	   CurrentStack CurrentEntry ThisFrame ThisFrameIndex)
+	 (PutStackProperty CurrentFunction NIL 'TopEntry)))
+  (popsegment (FunctionEntry CurrentStack))
+  (COND ((SETQ CurrentEntry (topsegment (FunctionEntry CurrentStack)))
+	 (SETQ CurrentFunction CurrentStack{CurrentEntry}FunctionEntry.Function))
+	(T (SETQ CurrentStackActive? NIL))))
+
+(DEFUN ChargeRelativeResources NIL
+  (IncrementResourceCounter (GET CurrentFunction 'RelativeResourceCounter)
+			    LastFrame LastFrameIndex ThisFrame ThisFrameIndex))
+
+(DEFUN LoadThisFrame (Buffer Index &OPTIONAL FrameFunction &AUX lrt hrt ldt Depth)
+  (SETQ lrt (AREF Buffer (+ Index 2))
+	hrt (AREF Buffer (+ Index 3))
+	ldt (AREF Buffer (+ Index 4)))
+  (create FunctionEntry smashing ThisFrame{ThisFrameIndex}
+	  Function(BufferFrameFunction Buffer Index FrameFunction)
+	  StackGroup(Meter:METER-Q Buffer (+ Index 8))
+	  StackDepth(SETQ Depth (Meter:METER-FIX Buffer (+ Index 12)))
+	  LowRealTimelrt
+	  HighRealTimehrt
+	  LowRunTime(LOGAND (- lrt ldt) #O177777)
+	  HighRunTime(- hrt (AREF Buffer (+ Index 5)) (COND ((MINUSP (- lrt ldt)) 1)
+							     (T 0)))
+	  PageFaults(Meter:METER-FIX Buffer (+ Index 6))
+	  ConsesConsCount)
+  (COND (UnwindHappened?
+	 (SETQ UnwindHappened? NIL)
+	 (while CurrentStackActive?
+		until ( Depth CurrentStack{CurrentEntry}FunctionEntry.StackDepth)
+		do (ExitFunction)))))
+
+(DEFUN BufferFrameFunction (Buffer Index &OPTIONAL FrameFunction)
+  (SELECTQ FrameFunction
+    (NIL (Meter:FUNCTION-NAME (Meter:METER-Q Buffer (+ Index 10))))
+    ((T) (Meter:FUNCTION-NAME (Meter:METER-Q Buffer (+ Index 14))))
+    (OTHERWISE FrameFunction)))
+
+(DEFUN CopyFrame (FromFrame FromIndex ToFrame ToIndex)
+  (create FunctionEntry smashing ToFrame{ToIndex} using FromFrame{FromIndex}))
+
+(DEFUN IncrementResourceCounter (Counter OldFrame OldIndex NewFrame NewIndex)
+  (add (Meter:TIME-DIFF OldFrame{OldIndex}FunctionEntry.HighRealTime
+			OldFrame{OldIndex}FunctionEntry.LowRealTime
+			NewFrame{NewIndex}FunctionEntry.HighRealTime
+			NewFrame{NewIndex}FunctionEntry.LowRealTime)
+       CounterResourceCounter.RealTime)
+  (add (Meter:TIME-DIFF OldFrame{OldIndex}FunctionEntry.HighRunTime
+			OldFrame{OldIndex}FunctionEntry.LowRunTime
+			NewFrame{NewIndex}FunctionEntry.HighRunTime
+			NewFrame{NewIndex}FunctionEntry.LowRunTime)
+       CounterResourceCounter.RunTime)
+  (add (%24-BIT-DIFFERENCE NewFrame{NewIndex}FunctionEntry.PageFaults
+			   OldFrame{OldIndex}FunctionEntry.PageFaults)
+       CounterResourceCounter.PageFaults)
+  (add (- NewFrame{NewIndex}FunctionEntry.Conses OldFrame{OldIndex}FunctionEntry.Conses)
+       CounterResourceCounter.Conses))
+
+(DEFUN ClearFunctionState (Functions)
+  (for fn in Functions do (REMPROP fn 'TotalResourceCounter)
+       (REMPROP fn 'RelativeResourceCounter)
+       (SETPLIST fn (bind tail(PLIST fn) while tail do
+			  (COND ((type? FunctionEntry (CAR tail))
+				 (RPLACD tail (SETQ tail (CDDR tail))))
+				(T (SETQ tail (CDDR tail))))))))
+
+(DEFUN DisplayResourceUtilization (Functions ActiveMiscellaneous InactiveMiscellaneous
+				   &AUX TotalRealTime TotalRunTime)
+  (SETQ Functions (SORT Functions ResourceDisplaySorter))
+  (bind rc for fn in Functions do (SETQ rc (GET fn 'RelativeResourceCounter))
+	into old TotalRealTime sum rcResourceCounter.RealTime
+	into old TotalRunTime sum rcResourceCounter.RunTime)
+  (printout T T "Total active real time:  ") (PrintElapsedTime TotalRealTime)
+  (printout T T "Total active run time:  ") (PrintElapsedTime TotalRunTime)
+  (printout T T T 11 "Function"  30 "|" 39 "Relative (%)" 60 "|" 70 "Total (%)")
+  (printout T T 35 "Real time" 47 "Run time" 65 "Real time" 77 "Run time")
+  (bind rc tc for fn in Functions do
+	(SETQ rc (GET fn 'RelativeResourceCounter)
+	      tc (GET fn 'TotalResourceCounter))
+	(printout T T fn
+		  35 (DecimalRound (PercentageOf rcResourceCounter.RealTime TotalRealTime) 1)
+		  47 (DecimalRound (PercentageOf rcResourceCounter.RunTime TotalRunTime) 1)
+		  65 (DecimalRound (PercentageOf tcResourceCounter.RealTime TotalRealTime) 1)
+		  77 (DecimalRound (PercentageOf tcResourceCounter.RunTime TotalRunTime) 1)))
+  (printout T T)
+  (PrintMiscellaneousTime "Miscellaneous in active stack groups:"
+			  ActiveMiscellaneousResourceCounter.RealTime
+			  ActiveMiscellaneousResourceCounter.RunTime)
+  (PrintMiscellaneousTime "Miscellaneous in other stack groups:"
+			  InactiveMiscellaneousResourceCounter.RealTime
+			  InactiveMiscellaneousResourceCounter.RunTime)
+  (printout T T))
+
+(DEFUN PrintMiscellaneousTime (String RealTime RunTime)
+  (COND (( 0 RealTime)
+	 (printout T T String T 10 "Real time:  ")
+	 (PrintElapsedTime RealTime)
+	 (printout T " (" (DecimalRound (PercentageOf RealTime TotalRealTime) 1)
+		          "% of active time.)"
+		   T 10 "Run time:  ")
+	 (PrintElapsedTime RunTime)
+	 (printout T " (" (DecimalRound (PercentageOf RunTime TotalRunTime) 1)
+		   "% of active time.)"))))
+
+(DEFUN PrintElapsedTime (Time &AUX Hours Minutes Seconds Milliseconds)
+  (COND ((= Time 0) (printout T "Zero"))
+	(T (SETQ Hours (FIX (//F Time 3600000000))
+		 Minutes (FIX (//F (\ Time 3600000000) 60000000))
+		 Seconds (DecimalRound (//F (\ Time 60000000) 1000000) 3))
+	   (COND ((AND (= Hours 0) (= Minutes 0) ( Seconds 100))
+		  (SETQ Seconds (FIX Seconds)
+			Milliseconds (DecimalRound (//F (\ Time 1000000) 1000) 1))
+		  (PrintOneElapsedUnit Seconds "second" (= Milliseconds 0))
+		  (PrintOneElapsedUnit Milliseconds "millisecond" T))
+		 (T (PrintOneElapsedUnit Hours "hour" (AND (= Minutes 0) (= Seconds 0)))
+		    (PrintOneElapsedUnit Minutes "minute" (= Seconds 0))
+		    (PrintOneElapsedUnit Seconds "second" T))))))
+
+(DEFUN PrintOneElapsedUnit (Time Name NoFinalSpace?)
+  (COND ((= Time 0))
+	(T (COND ((= Time 1) (printout T Time " " Name))
+		 (T (printout T Time " " Name "s")))
+	   (OR NoFinalSpace? (printout T " ")))))
+
+(DEFMACRO PercentageOf (Quantity Total) `(* 100.0 (//F ,Quantity ,Total)))
+
+(DEFUN DecimalRound (Number DecimalPlaces &AUX Absolute (Scale (^ 10 (ABS DecimalPlaces))))
+  Absolute(COND ((> DecimalPlaces 0) (// (FLOAT (FIXR (* (ABS Number) Scale))) Scale))
+		 (T (* (FIXR (//F (ABS Number) Scale)) Scale)))
+  (COND ((MINUSP Number) (- Absolute))
+	(T Absolute)))
+
+(DEFUN MaximumTotalRealTime (Function1 Function2)
+  (> ((GET Function1 'TotalResourceCounter)ResourceCounter.RealTime)
+     ((GET Function2 'TotalResourceCounter)ResourceCounter.RealTime)))
+
+(DEFUN PutStackProperty (Item Property Indicator &AUX Properties)
+  (OR (SETQ Properties (GET Item CurrentStack))
+      (PUTPROP Item (SETQ Properties (NCONS NIL)) CurrentStack))
+  (PUTPROP Properties Property Indicator))
+
+(DEFUN GetStackProperty (Item Property &AUX Properties)
+  (AND (SETQ Properties (GET Item CurrentStack))
+       (GET Properties Property)))
+
+(DEFUN RemoveStackProperty (Item Property &AUX Properties)
+  (COND ((SETQ Properties (GET Item CurrentStack))
+	 (REMPROP Properties Property)
+	 (AND (NULL (CDR Properties))
+	      (REMPROP Item CurrentStack)))))
+

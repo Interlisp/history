@@ -1,0 +1,39 @@
+;-*- Mode:Lisp; Package:User; Base:8. -*-
+
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+;; Modified by GJC 7/30/84 21:38:54 for correct loading into standard LMI distribution.
+
+(COND ((and (boundp 'si:processor-type-code)
+	    (boundp 'si:lambda-type-code)
+	    (eq si:processor-type-code si:lambda-type-code))
+       (SSTATUS NOFEATURE CADR)
+       (SSTATUS FEATURE LAMBDA)))
+
+
+(fs:add-logical-pathname-host "inference"
+			      (let ((h (send fs:fdefine-file-pathname ':host)))
+				(if (typep h 'fs:logical-host) (send h ':host) h))
+			      '(("interlisp" "interlisp-release;")))
+
+;;; *****
+;;; Patches
+;;; *****
+
+(load "inference: interlisp; Patches SYSTEM")
+(MAKE-SYSTEM 'Patches ':NOCONFIRM)
+
+;;; *****
+;;; Interlisp
+;;; *****
+
+(load "inference: interlisp; Interlisp SYSTEM")
+(MAKE-SYSTEM 'Interlisp ':NOCONFIRM)
+

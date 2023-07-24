@@ -1,0 +1,87 @@
+;;; -*- Mode:LISP; Package:INTERLISPUSERS; Base:10; Readtable:INTERLISP -*-
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+(DEFRECORD FastAdviceRecord (Function Definition))
+
+(DEFVAR **InTimingRegion?** NIL)
+
+(DEFVAR **TotalRegionTime** 0)
+
+(DEFVAR **RegionTimingScale** 1000)
+
+(DEFVAR FastAdvisedFunctions NIL)
+
+(DEFUN RegionResults NIL
+  (printout T T "Total time spent in the timing region:  ")
+  (PrintRegionTime)
+  (ResetRegionTiming))
+
+(DEFUN PrintRegionTime NIL
+  (PrintTimeInterval (* **TotalRegionTime** **RegionTimingScale**)))
+
+(DEFUN ResetRegionTiming NIL **TotalRegionTime**0)
+
+(DEFUN TimeRegion (&QUOTE &REST Functions)
+  (for fn in Functions do
+       (FastAdvise fn NIL NIL
+	 `(COND (**InTimingRegion?** :DO-IT)
+		(T (LET ((**InTimingRegion?** T)
+			 (StartTime (time:MICROSECOND-TIME)))
+		     (PROG1 :DO-IT
+			    (add (ROUND (NormalizeDuration (- (time:MICROSECOND-TIME)
+							      StartTime))
+					**RegionTimingScale**)
+				 **TotalRegionTime**))))))))
+
+(DEFUN NormalizeDuration (Duration)
+  (COND ((MINUSP Duration) (+ Duration 1_32))
+	(T Duration)))
+
+(DeclareTypes ((FastAdviceRecord far))
+(DEFUN FastAdvise (FunctionName &OPTIONAL BeforeCode AfterCode AroundCode &AUX CallingForm)
+  (for far in FastAdvisedFunctions thereis (EQ FunctionName farFunction)
+    then (FERROR NIL "Cannot fast-advise ~S because it is already fast-advised."
+		 FunctionName))
+  (push (create FastAdviceRecord FunctionFunctionName
+				 Definition(FSYMEVAL FunctionName))
+	FastAdvisedFunctions)
+  CallingForm`(APPLY ',(FSYMEVAL FunctionName) ARGLIST)
+  (SETF (FSYMEVAL FunctionName)
+	`(LAMBDA (&REST ARGLIST &AUX VALUES)
+	   (DECLARE (SPECIAL ARGLIST VALUES))
+	   ,BeforeCode
+	   VALUES(MULTIPLE-VALUE-LIST ,(COND (AroundCode
+					       (SUBST CallingForm ':DO-IT AroundCode))
+					      (T CallingForm)))
+	   ,AfterCode
+	   (VALUES-LIST VALUES)))
+  (COMPILE FunctionName)
+  FunctionName))
+
+(DeclareTypes ((FastAdviceRecord far))
+(DEFUN UnFastAdvise (&REST FunctionNames)
+  (COND (FunctionNames
+	 (for name in FunctionNames collect
+	      (for far in FastAdvisedFunctions thereis (EQ name farFunction)
+		then (SETF (FSYMEVAL name) farDefinition)
+		     FastAdvisedFunctions(DELQ far FastAdvisedFunctions)
+		     name
+		else `("****" ,name "is not fast advised!"))))
+	(T (for far in old FastAdvisedFunctions collect
+		(SETF (FSYMEVAL farFunction) farDefinition)
+		farFunction)))))
+
+

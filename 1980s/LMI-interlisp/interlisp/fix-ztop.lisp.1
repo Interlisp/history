@@ -1,0 +1,102 @@
+;-*- Mode:Lisp; Package:InterlispUsers; Base:10. -*-
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+;;; What needs to be done:  ***(and now has been done)
+;;;
+;;;  1.  Build a stream that does all output to a "with-output-to-string" stream
+;;;      (actually, this may want to be enhanced a little)...
+;;;  2.  On input, dump the queued up output string to the underlying (ztop) stream
+;;;      and do the input from the underlying stream.
+;;;  3.  Support a :force-output message that will dump the rest of the output on demand.
+;;;      (Note:  ":force-output" is the system-wide standard name for this type of operation.)
+
+;;;  With this stream as TERMINAL-IO, STANDARD-OUTPUT and STANDARD-INPUT, nothing should need
+;;;  to be done to ztop at all (the :force-output will not actually be used; ztop's attempt
+;;;  to READ the next input will force the preceding output)...
+;;;  *** (This was wishful thinking; losing ZTOP did have to be modified a little.)
+
+(SPECIAL OLD-TERMINAL-IO OLD-STANDARD-INPUT OLD-STANDARD-OUTPUT)
+
+(LOCAL-DECLARE ((SPECIAL zwei:ZTOP-WINDOW))
+(DEFUN fixztop NIL
+  OLD-TERMINAL-IOTERMINAL-IO
+  OLD-STANDARD-INPUTSTANDARD-INPUT
+  OLD-STANDARD-OUTPUTSTANDARD-OUTPUT
+  TERMINAL-IOSTANDARD-INPUTSTANDARD-OUTPUTzwei:ZTOP-WINDOW
+  zwei:ZTOP-SG-TERMINAL-IOzwei:ZTOP-SG-STANDARD-INPUTzwei:ZTOP-SG-STANDARD-OUTPUT
+     (MakeStringBatchStream TERMINAL-IO)
+  (printout OLD-TERMINAL-IO T "Fixed." T)
+  (*THROW 'zwei:ZTOP-TOP-LEVEL NIL)))
+
+(LOCAL-DECLARE ((SPECIAL zwei:ZTOP-WINDOW))
+(DEFUN unfixztop NIL
+  zwei:ZTOP-WINDOWTERMINAL-IOzwei:ZTOP-SG-TERMINAL-IOOLD-TERMINAL-IO
+  STANDARD-INPUTzwei:ZTOP-SG-STANDARD-INPUTOLD-STANDARD-INPUT
+  STANDARD-OUTPUTzwei:ZTOP-SG-STANDARD-OUTPUTOLD-STANDARD-OUTPUT))
+
+(LOCAL-DECLARE ((SPECIAL UnderlyingStream UnderlyingWindow
+			 si:WITH-OUTPUT-TO-STRING-INTERNAL-STRING
+			 si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX))
+(DEFUN MakeStringBatchStream (&OPTIONAL (UnderlyingStream TERMINAL-IO))
+  (LET ((UnderlyingWindow (COND ((TYPEP UnderlyingStream 'zwei:EDITOR-STREAM-FROM-WINDOW)
+				 (zwei:WINDOW-SHEET (FUNCALL UnderlyingStream ':*WINDOW*)))
+				(T UnderlyingStream)))
+	(si:WITH-OUTPUT-TO-STRING-INTERNAL-STRING (MAKE-ARRAY NIL 'ART-STRING 100))
+	(si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX 0))
+    (CLOSURE '(UnderlyingStream UnderlyingWindow si:WITH-OUTPUT-TO-STRING-INTERNAL-STRING
+						 si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX)
+	     'StringBatchStream))))
+
+(DEFCONST ForcingOutput NIL)
+
+(LOCAL-DECLARE ((SPECIAL UnderlyingStream UnderlyingWindow
+			 si:WITH-OUTPUT-TO-STRING-INTERNAL-STRING
+			 si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX))
+(DEFUN StringBatchStream (Operation &REST Arguments &AUX Units)
+  (SELECTQ Operation
+    (:WHICH-OPERATIONS (FUNCALL UnderlyingStream ':WHICH-OPERATIONS))
+    ((:TYO :STRING-OUT :LINE-OUT :FRESH-LINE)  ; :INCREMENT-CURSORPOS :READ-CURSORPOS
+     (PROG1 (LEXPR-FUNCALL #'si:WITH-OUTPUT-TO-STRING-INTERNAL-FUNCTION Operation Arguments)
+	    (AND ( si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX 1000)
+		 (StringBatchStream ':FORCE-OUTPUT))))
+    (:READ-CURSORPOS
+      Units(OR Arguments0 ':PIXEL)
+      (MULTIPLE-VALUE-BIND (X Y) (FUNCALL UnderlyingStream ':READ-CURSORPOS Units)
+	(bind index newlines0 for beginline0 by (1+ index) do
+	      index(%STRING-SEARCH-CHAR #\CR si:WITH-OUTPUT-TO-STRING-INTERNAL-STRING
+					 beginline si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX)
+	  repeatwhile (AND index (add 1 newlines))
+	  finally (OR (= newlines 0) X0)
+	          (SELECTQ Units
+		    (:PIXEL (RETURN (+ X (* (- si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX
+					       beginline)
+					    (FUNCALL UnderlyingWindow ':CHAR-WIDTH)))
+				    (+ Y (* newlines
+					    (FUNCALL UnderlyingWindow ':LINE-HEIGHT)))))
+		    (:CHARACTER (RETURN (+ X (- si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX
+						beginline))
+					(+ Y newlines)))))))
+    (:FORCE-OUTPUT (AND ( 0 si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX)
+			(LET ((ForcingOutput T))
+			  (printout UnderlyingStream
+			    (ADJUST-ARRAY-SIZE si:WITH-OUTPUT-TO-STRING-INTERNAL-STRING
+					       si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX))))
+		   si:WITH-OUTPUT-TO-STRING-INTERNAL-STRING(MAKE-ARRAY NIL 'ART-STRING 100)
+		   si:WITH-OUTPUT-TO-STRING-INTERNAL-INDEX0)
+    (OTHERWISE (OR ForcingOutput (StringBatchStream ':FORCE-OUTPUT))
+	       (LEXPR-FUNCALL UnderlyingStream Operation Arguments)))))
+
+

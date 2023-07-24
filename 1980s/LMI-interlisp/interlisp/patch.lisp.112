@@ -1,0 +1,433 @@
+;-*- Mode:LISP; Package:User; Patch-File:T; Base:8 -*-
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+;;; Problem mentioned in point 6 of bugnotes is fixed.
+;Compute and return the special-variable bitmap for the function.
+;The bit saying whether the map is active is correctly set in the value returned.
+;In addition, S-V-BITMAP-ACTIVE is left T if the bitmap is active.
+;The map is active if the AP-relative addresses of all the values
+;to be bound to specials are constant, and if the addresses are not
+;too large to be expressed in a 1-word bit map.
+compiler:
+(DEFUN COMPUTE-S-V-MAP NIL
+  (PROG (S-MAP)
+	(COND ((NOT (SPECIAL-BIND-NEEDED-P))
+	       (SETQ S-V-BITMAP-ACTIVE T)
+	       (RETURN %FEFHI-SVM-ACTIVE))  ;Null bitmap, no specials
+	      (REST-ARG (RETURN 0)))	    ;Can't predict addresses
+	(SETQ S-MAP 0 S-V-BITMAP-ACTIVE T)  ;Assume will use bitmap, unless too many to fit
+	(DO ((BIT (LSH %FEFHI-SVM-ACTIVE -1) (LSH BIT -1))
+	     (ENDARG)
+	     (VS ALLVARS (CDR VS)))
+	    ((NULL VS))
+	  (COND ((LAP-ARGP (CAR VS))
+		 (OR (EQ (VAR-TYPE (CAR VS)) 'FEF-LOCAL)
+		     (COND ((OR ENDARG (ZEROP BIT))	;Special past the end of the bit map
+			    (SETQ S-V-BITMAP-ACTIVE NIL) ;so give up on using bit map
+			    (RETURN NIL))
+			   (T (SETQ S-MAP (+ S-MAP BIT))))))
+		(T (SETQ ENDARG T))))
+	(COND (S-V-BITMAP-ACTIVE
+		(RETURN (+ S-MAP %FEFHI-SVM-ACTIVE)))
+	      (T (RETURN 0)))))			;Couldn't use bit map after all
+
+;;; Make END work properly.
+zwei:
+(DEFMAJOR COM-ZTOP-MODE ZTOP-MODE "ZTOP"
+	  "Sets things up for zmacs buffer editor top level." () 
+  (COMMAND-HOOK (MAKE-ZTOP-COMMAND-HOOK *INTERVAL* *WINDOW*) *POST-COMMAND-HOOK*)
+  (SETQ *SPACE-INDENT-FLAG* T)
+  (SETQ *PARAGRAPH-DELIMITER-LIST* NIL)
+  (SETQ *COMMENT-START* 'LISP-FIND-COMMENT-START-AND-END)
+  (SET-COMTAB *MODE-COMTAB* '(#\ABORT COM-ZTOP-ABORT
+			      #\TAB COM-INDENT-FOR-LISP
+			      #\RUBOUT COM-TAB-HACKING-RUBOUT
+			      #\RUBOUT COM-RUBOUT)
+	      '(("Require Activation Mode" . COM-REQUIRE-ACTIVATION-MODE)))
+  (SETQ *MODE-LINE-LIST*
+	(APPEND *MODE-LINE-LIST*
+		'((*ZTOP-ACTIVATION-NEEDED* "  Type End to resume reading input")
+		  (*ZTOP-READING-INPUT* "  Reading input")
+		  (*ZTOP-EDITING* "  Editing"))))
+  (PROGN (SET-COMTAB *STANDARD-COMTAB* '(#\END COM-FINISH-ZTOP-EVALUATION
+					 #\CR COM-FINISH-ZTOP-EVALUATION))
+	 (AND (TYPEP *INTERVAL* 'FILE-BUFFER)
+	      (SETQ *LAST-ZTOP-BUFFER* *INTERVAL*))))
+
+;;; Fix of ZTop's first form lossage.
+zwei:
+(DEFMETHOD (ZTOP-STREAM-MIXIN :AFTER :INIT) (IGNORE)
+  (SETQ *ZTOP-SG* (MAKE-STACK-GROUP "ZTOP" ':REGULAR-PDL-SIZE 40000
+					   ':SPECIAL-PDL-SIZE 4000))
+  (INITIALIZE-ZTOP-SG))
+
+;;; New variables that allow the ZTOP-SG to redefine its standard streams in such a way
+;;; that the rebinds are local to this stack group only and that they are invariant
+;;; to presets (as occurs with control-meta-abort).
+;;; (These really should be instance variables of ztop-stream-mixin so that they are
+;;; local to a particular ztop buffer...)
+zwei:
+(DEFVAR ZTOP-SG-STANDARD-INPUT NIL)
+zwei:
+(DEFVAR ZTOP-SG-STANDARD-OUTPUT NIL)
+zwei:
+(DEFVAR ZTOP-SG-TERMINAL-IO NIL)
+
+;;; New function -- needed in both the previous method and in the :COMMAND-HOOK.
+zwei:
+(DECLARE-FLAVOR-INSTANCE-VARIABLES (ZTOP-STREAM-MIXIN)
+(DEFUN INITIALIZE-ZTOP-SG NIL
+  (STACK-GROUP-PRESET *ZTOP-SG* 'ZTOP-TOP-LEVEL
+		      (OR ZTOP-SG-TERMINAL-IO SELF)
+		      PACKAGE
+		      (OR ZTOP-SG-STANDARD-INPUT SELF)
+		      (OR ZTOP-SG-STANDARD-OUTPUT SELF))
+  (LET-GLOBALLY ((PACKAGE PACKAGE)) (FUNCALL *ZTOP-SG*))
+  (STREAM-REDISPLAY T)))
+
+;;; Since the editor binds PACKAGE, LET-GLOBALLY cannot be used to initialize the package
+;;; in *ZTOP-SG* (initializing rather than rebinding after entry seems to be crucial for
+;;; some mysterious reason).  So, PACKAGE made an argument.
+zwei:
+(LOCAL-DECLARE ((SPECIAL ZTOP-STREAM))
+(DEFUN ZTOP-TOP-LEVEL (ZTOP-STREAM PACKAGE STANDARD-INPUT STANDARD-OUTPUT
+		       &AUX (PRIN1 *ZTOP-PRIN1*) (*PACKAGE* PACKAGE))
+  (DO () (NIL)
+    (*CATCH 'ZTOP-TOP-LEVEL
+      (SI:LISP-TOP-LEVEL1 ZTOP-STREAM)))))
+
+;;; MMcM's ZTOP evaluator modified to use Henry's ZTOP buffer selector.
+zwei:
+;;; This is like the DO-IT command in HENRY's ZTOP
+(DEFCOM COM-FINISH-ZTOP-EVALUATION "Begin execution of buffered input." ()
+  (LET ((ZTOP-BUFFER *INTERVAL*) ZTOP-STREAM STREAM-START-BP)
+    (OR (SETQ ZTOP-STREAM (FUNCALL *INTERVAL* ':GET 'ZTOP-STREAM))
+	(SETQ ZTOP-BUFFER (OR *LAST-ZTOP-BUFFER* (MAKE-ZTOP-BUFFER))
+	      ZTOP-STREAM (FUNCALL ZTOP-BUFFER ':GET 'ZTOP-STREAM)))
+    (SETQ STREAM-START-BP (FUNCALL ZTOP-STREAM ':*STREAM-START-BP*))
+    (COND ((WINDOW-MARK-P *WINDOW*)		;If there is a region
+	   (SETF (WINDOW-MARK-P *WINDOW*) NIL)
+	   (WITH-BP (BP (INTERVAL-LAST-BP ZTOP-BUFFER) ':NORMAL)
+	     (INSERT-INTERVAL BP (POINT) (MARK))	;copy it to the end
+	     (DELETE-INTERVAL STREAM-START-BP BP T))
+	   (COND ((NEQ *INTERVAL* ZTOP-BUFFER)
+		  (FUNCALL ZTOP-BUFFER ':SET-ATTRIBUTE ':PACKAGE PACKAGE)
+		  (DO-IT-SELECT-WINDOW-BUFFER ZTOP-BUFFER))))
+	  ((NEQ *INTERVAL* ZTOP-BUFFER)
+	   (BARF "There is no region"))))
+  (LET ((LAST-BP (INTERVAL-LAST-BP *INTERVAL*)))
+    (LET ((CH (BP-CHAR-BEFORE LAST-BP)))
+      (COND ((= CH #\CR)
+	     (DELETE-INTERVAL (FORWARD-CHAR LAST-BP -1) LAST-BP T))
+	    ((= (LIST-SYNTAX CH) LIST-ALPHABETIC)
+	     (INSERT LAST-BP #\SP))))
+    (MOVE-BP (POINT) LAST-BP))
+  (SETQ *CURRENT-COMMAND-TYPE* 'ACTIVATE-ZTOP)
+  DIS-TEXT)
+
+;;; Fix to package stuff:  enables PKG-GOTO to really win in ZTop.
+;;; Also, a fix to the error exit of *ZTOP-SG*; allows control-meta-abort to work.
+;;;
+;;; This gets called by the editor after each command
+zwei:
+(DEFMETHOD (ZTOP-STREAM-MIXIN :COMMAND-HOOK) (TYPE &AUX (OLD-STATE *RUBOUT-HANDLER-STATE*))
+  (AND (ASSQ ':FULL-RUBOUT *RUBOUT-HANDLER-ARGS*) (BP-= *STREAM-START-BP* *STREAM-BP*)
+       (SETQ OLD-STATE ':EDITING TYPE ':FULL-RUBOUT))
+  (SETQ *RUBOUT-HANDLER-STATE*
+	(COND ((AND (BP-= *STREAM-BP* (INTERVAL-LAST-BP (WINDOW-INTERVAL *STREAM-SHEET*)))
+		    (OR (NOT *STREAM-ACTIVATION-NEEDED*)
+			(EQ TYPE 'ACTIVATE-ZTOP))
+		    (MEMQ TYPE '(SELF-INSERT INSERT-CR ACTIVATE-ZTOP ZTOP-MODE :FULL-RUBOUT)))
+	       ':NORMAL)
+	      (T
+	       ':EDITING)))
+  (COND ((EQ *RUBOUT-HANDLER-STATE* ':NORMAL)
+	 (AND (NEQ OLD-STATE ':NORMAL)		;If we were editing
+	      (MOVE-BP *STREAM-BP* *STREAM-START-BP*))
+	 (SETQ *ZMACS-SG* SYS:%CURRENT-STACK-GROUP)
+	 (FUNCALL CURRENT-PROCESS ':ADD-COROUTINE-STACK-GROUP *ZTOP-SG*)
+	 (LET ((ABNORMAL-EXIT-P T))
+	   (UNWIND-PROTECT
+	     (PROGN
+	       (FUNCALL *ZTOP-SG* (EQ OLD-STATE ':EDITING))
+	       (SETQ ABNORMAL-EXIT-P NIL))
+	     (COND (ABNORMAL-EXIT-P
+		    (FUNCALL-SELF ':FRESH-LINE)
+		    (FUNCALL-SELF ':LINE-OUT ";*** Aborted Computation ***")
+		    (INITIALIZE-ZTOP-SG)))))
+	 (SETQ PACKAGE (SYMEVAL-IN-STACK-GROUP '*PACKAGE* *ZTOP-SG*))
+	 (SETF (BUFFER-PACKAGE (WINDOW-INTERVAL *STREAM-SHEET*)) PACKAGE)
+	 (AND (NEQ OLD-STATE ':NORMAL)
+	      (MUST-REDISPLAY *WINDOW* DIS-BPS)))
+	(T
+	 (SETQ *STREAM-ACTIVATION-NEEDED*
+	       (AND *ZTOP-REQUIRE-ACTIVATION*
+		    (OR (EQ *RUBOUT-HANDLER-STATE* ':EDITING)
+			(NOT (BP-= *STREAM-START-BP*
+				   (INTERVAL-LAST-BP (WINDOW-INTERVAL *STREAM-SHEET*)))))))))
+  (SETQ *ZTOP-ACTIVATION-NEEDED* *STREAM-ACTIVATION-NEEDED*)
+  (SETQ *ZTOP-EDITING*
+	(AND (NOT *ZTOP-ACTIVATION-NEEDED*)
+	     (EQ *RUBOUT-HANDLER-STATE* ':EDITING)))
+  (SETQ *ZTOP-READING-INPUT* (AND (NOT *ZTOP-ACTIVATION-NEEDED*) (NOT *ZTOP-EDITING*))))
+
+;;; Henry's more winning remote-evaluation ztop buffer selector (slightly modified)
+zwei:
+(DEFUN DO-IT-SELECT-WINDOW-BUFFER (BUFFER)
+  ;; If there's a window with this buffer in it, switch to that window.
+  ;; otherwise, switch to the buffer in the current window.
+  (DO ((REST-WINDOWS *WINDOW-LIST* (CDR REST-WINDOWS))
+       (WINDOW)
+       (LIST-OF-EXPOSED-SHEETS (LIST-OF-EXPOSED-SHEETS)))
+      ((COND ((NULL REST-WINDOWS) (MAKE-BUFFER-CURRENT BUFFER) T)
+	     ((AND (EQ (WINDOW-INTERVAL (SETQ WINDOW (CAR REST-WINDOWS))) BUFFER)
+		   (MEMQ (WINDOW-SHEET WINDOW) LIST-OF-EXPOSED-SHEETS))
+	      (MAKE-WINDOW-CURRENT WINDOW)
+	      T)))))
+
+(SPECIAL zwei:LIST-OF-EXPOSED-SHEETS)
+
+zwei:
+(DEFUN LIST-OF-EXPOSED-SHEETS NIL
+  (LET ((LIST-OF-EXPOSED-SHEETS NIL))
+    (TV:MAP-OVER-EXPOSED-SHEETS
+      (CLOSURE '(LIST-OF-EXPOSED-SHEETS)
+	       '(LAMBDA (SHEET) (PUSH SHEET LIST-OF-EXPOSED-SHEETS))))
+    LIST-OF-EXPOSED-SHEETS))
+
+;;; ***** Changed not to turn more mode on when it has been turned off!!!!!!
+;After waiting for input, don't **more** until three more glitches go by
+;because until then all text that will scroll off has already been read.
+;This method has no effect if it returns nil (method-combination-type is OR).
+zwei:
+(DEFMETHOD (ZWEI :NOTICE) (EVENT &REST IGNORE)
+  (AND tv:more-vpos
+       (EQ EVENT ':INPUT-WAIT)
+       *INSIDE-EDITOR-STREAM*
+       (SETQ TV:MORE-VPOS
+	     (+ (* 100000
+		   ;; Number of glitches we can do without this line going off screen.
+		   (TRUNCATE (- TV:CURSOR-Y TV:TOP-MARGIN-SIZE)
+			     (* TV:LINE-HEIGHT
+				(TRUNCATE (1- N-PLINES) 3))))
+		(TV:SHEET-DEDUCE-MORE-VPOS SELF)))))
+
+;;; ***** Changed not to slashify package prefixes.  This wins so long as package names do
+;;; ***** not have strange characters in them and is much prettier when package names do
+;;; ***** have lower case characters.
+;Print out a symbol's print-name.  If slashification is on,, try slashify it
+;so that if read in the right thing will happen.
+si:
+(DEFUN PRINT-PNAME-STRING (SYMBOL SLASHIFY-P STREAM FASTP &OPTIONAL NO-PACKAGE-PREFIXES
+			   &AUX STRING LEN FSMWINS MUST// TEM)
+    (DECLARE (SPECIAL XP-STREAM XP-FASTP XR-EXTENDED-IBASE-P))
+    (AND SLASHIFY-P (NOT NO-PACKAGE-PREFIXES)
+	 (SYMBOL-PACKAGE SYMBOL)
+	 (FBOUNDP 'PKG-PREFIX)
+	 (LET ((XP-FASTP FASTP)
+	       (XP-STREAM STREAM))
+	   (PKG-PREFIX SYMBOL
+		       #'(LAMBDA (REFNAME IGNORE)
+;			   (PRINT-RAW-STRING REFNAME XP-STREAM XP-FASTP)
+			   (OR (STRING-EQUAL REFNAME "")
+			       (PRINT-PNAME-STRING REFNAME NIL XP-STREAM XP-FASTP T))
+			   (FUNCALL XP-STREAM ':TYO (PTTBL-PACKAGE-CHAR READTABLE))))))
+    (SETQ STRING (STRING SYMBOL))
+    (COND ((NOT SLASHIFY-P)
+	   (PRINT-RAW-STRING STRING STREAM FASTP))
+	  (T
+	   (SETQ FSMWINS
+	    (AND (PLUSP (SETQ LEN (ARRAY-ACTIVE-LENGTH STRING)))
+		 (DO ((I 0 (1+ I))
+		      (STATE (RDTBL-STARTING-STATE READTABLE))
+		      (FSM (RDTBL-FSM READTABLE))
+		      (CHAR))
+		     ((= I LEN)
+		      (COND ((NOT (NUMBERP STATE))
+			     (DO L (RDTBL-MAKE-SYMBOL READTABLE) (CDR L) (NULL L)
+				 (AND (EQ (CAR STATE) (CAAR L))
+				      (EQ (CDR STATE) (CDAR L))
+				      (RETURN T))))
+			    ((NOT (NUMBERP (SETQ STATE
+						 (AR-2 FSM
+						       STATE
+						       (RDTBL-BREAK-CODE READTABLE)))))
+			     (DO L (RDTBL-MAKE-SYMBOL-BUT-LAST READTABLE) (CDR L) (NULL L)
+				 (AND (EQ (CAR STATE) (CAAR L))
+				      (EQ (CDR STATE) (CDAR L))
+				      (RETURN
+					;;kludge to cause |+TYO| to be slashified if
+					;;XR-EXTENDED-IBASE-P is T.
+					(NOT (AND XR-EXTENDED-IBASE-P
+						  (EQ 'EXTENDED-FIXNUM (CDR STATE))))))))
+			    (T NIL)))
+		     (SETQ CHAR (AR-1 STRING I))
+		     (COND ((OR (NOT (NUMBERP STATE))	;FSM ran out OR
+				(NOT			;Translated char? then fsm loses
+				 (= CHAR (RDTBL-TRANS READTABLE CHAR))))
+			    (OR MUST//				   ;Must we slash?
+				(DO I (1+ I) (1+ I) (= I LEN)
+				    (COND ((NOT
+					    (ZEROP
+					     (LOGAND 26 (RDTBL-BITS READTABLE
+								    (AR-1 STRING I)))))
+					   (SETQ MUST// T)
+					   (RETURN NIL)))))
+			    (RETURN NIL)))
+		     (SETQ STATE
+			   (AR-2 FSM
+				 STATE
+				 (COND ((NOT		;Must we slash?
+					 (ZEROP
+					  (LOGAND 26 (RDTBL-BITS READTABLE CHAR))))
+					(SETQ MUST// T)	;YES: set flag.
+					(RDTBL-SLASH-CODE READTABLE))
+				       (T
+					(RDTBL-CODE READTABLE CHAR))))))))
+	   (OR FSMWINS
+	       (FUNCALL STREAM ':TYO (PTTBL-OPEN-QUOTE-SYMBOL READTABLE)))
+	   (COND (MUST//
+		  (DO I 0 (1+ I) (= I LEN)
+		      (COND ((NOT (ZEROP (LOGAND 26 (RDTBL-BITS READTABLE
+                                                                (SETQ TEM (AR-1 STRING I))))))
+			     (FUNCALL STREAM ':TYO (PTTBL-SLASH READTABLE))))
+		      (FUNCALL STREAM ':TYO TEM)))
+		 (T (PRINT-RAW-STRING STRING STREAM FASTP)))
+	   (OR FSMWINS
+	       (FUNCALL STREAM ':TYO (PTTBL-CLOSE-QUOTE-SYMBOL READTABLE)))
+	   )))
+
+;;; ***** A version of TYIPEEK that uses XR-XRTYI so that XR-XRTYI-LAST-CHAR gets set
+;;; ***** properly so that READ-CHECK-INDENTATION doesnt supuriously BARF.  (This is very
+;;; ***** useful inside read macros!)
+si:
+(DEFUN XR-TYIPEEK (&OPTIONAL PEEK-TYPE &REST READ-ARGS)
+  (DECLARE (ARGLIST PEEK-TYPE STREAM EOF-OPTION))
+  (MULTIPLE-VALUE-BIND (STREAM EOF-OPTION)
+      (DECODE-READ-ARGS READ-ARGS)
+    (AND (NUMBERP PEEK-TYPE) (>= PEEK-TYPE 1000)
+	 (FERROR NIL "The ~S flavor of TYIPEEK is not implemented." PEEK-TYPE))
+    (DO ((CH))	      ;Pass over characters until termination condition reached
+	(())
+      (OR (SETQ CH (FUNCALL STREAM ':TYI))
+	  (IF (EQ EOF-OPTION 'NO-EOF-OPTION)
+	      (FERROR 'SYS:END-OF-FILE-1 "End of file encountered on stream ~S." STREAM)
+	      (RETURN EOF-OPTION)))
+      (FUNCALL STREAM ':UNTYI CH)		;Put it back
+      (AND (COND ((NULL PEEK-TYPE))		;Break on every
+		 ((EQ CH PEEK-TYPE))		;Break on specified character
+		 ((EQ PEEK-TYPE T)		;Break on start-of-object
+		  (AND (< CH RDTBL-ARRAY-SIZE)
+		       (ZEROP (LOGAND (RDTBL-BITS READTABLE CH) 1)))))
+	   (RETURN CH))				;Break here
+      (XR-XRTYI STREAM))))
+
+
+;;; *****
+;;; Patches that were true system patches in system 91.
+;;; Local changes in lower case.
+;;; *****
+
+;;; ** 91.54
+
+si:
+(DEFVAR GrindAtom)		;Function used to grind atoms
+
+si:
+(DEFUN GRIND-ATOM (ATOM STREAM LOC)
+  (AND GRIND-RENAMING-ALIST
+       (DOLIST (ELT GRIND-RENAMING-ALIST)
+	 (AND (EQ (CADR ELT) ATOM)
+	      (RETURN (SETQ ATOM (CAR ELT))))))
+  (AND GRIND-NOTIFY-FUN
+       (NEQ STREAM #'GRIND-COUNT-IO)
+       (FUNCALL GRIND-NOTIFY-FUN ATOM LOC T))
+  ;; Allow other atom printing functions
+  (FUNCALL GrindAtom ATOM STREAM)
+; (PRIN1 ATOM STREAM)
+  )
+
+;;; **** Added capability to specify initial indentation level and to specifiy the printing
+;;; **** function used for atoms (defaults to PRIN1).
+;;; Top level grinding function.
+;;; GRIND-WIDTH used to default to 95.  Now, it defaults to NIL, meaning
+;;; try to figure it out and use 95. if you can't.
+si:
+(DEFUN GRIND-TOP-LEVEL (EXP &OPTIONAL (GRIND-WIDTH NIL)
+			    	      (GRIND-REAL-IO STANDARD-OUTPUT)
+				      (GRIND-UNTYO-P NIL)
+				      (GRIND-DISPLACED 'DISPLACED)
+				      (TERPRI-P T)
+				      (GRIND-NOTIFY-FUN NIL)
+				      (LOC (NCONS EXP))
+				      (GRIND-FORMAT 'GRIND-OPTI-MISER)
+				      (InitialIndentation 0)
+				      (GrindAtom #'PRIN1))
+  "Pretty-print the list EXP on stream GRIND-REAL-IO.
+GRIND-WIDTH is the width to fit within; NIL is the default,
+ meaning try to find out the stream's width or else use 95. characters.
+GRIND-UNTYO-P is T if GRIND should try to use the :UNTYO operation.
+GRIND-DISPLACED should be 'SI:DISPLACED if displacing is to be ignored,
+ (displaced macros print just the original code)
+ or NIL if displacing should be printed out.
+TERPRI-P non-NIL says go to a fresh line before printing.
+GRIND-NOTIFY-FUN, if non-NIL, is called for each cons-cell processed.
+ Use this to keep records of how list structure was traversed during printing.
+LOC is the location where EXP was found, for passing to GRIND-NOTIFY-FUN.
+GRIND-FORMAT is the format to use for printing EXP.
+It should be a suitable subroutine of GRIND.
+InitialIndentation is the left margin for printing EXP."
+  (IF (NULL GRIND-WIDTH)
+      (SETQ GRIND-WIDTH (GRIND-WIDTH-OF-STREAM GRIND-REAL-IO)))
+  (AND TERPRI-P (FUNCALL GRIND-REAL-IO ':FRESH-LINE))
+  (LET ((GRIND-IO (FUNCTION GRIND-PRINT-IO))
+	(GRIND-INDENT InitialIndentation)
+	(GRIND-DEPTH 0)
+	(GRIND-HPOS InitialIndentation)
+	(GRIND-VPOS 0))
+     (COND ((CONSP EXP)
+	    (FUNCALL GRIND-FORMAT EXP LOC))
+	   (T (GRIND-ATOM EXP GRIND-IO LOC)))))
+
+;;; *****
+;;; General lisp machine system enhancements required by Interlisp.
+;;; *****
+
+(si:DEFINE-SIMPLE-TRANSFORMATION :READ-FOR-COMPILATION ReadForCompilation ReadForCompilation?
+				 ("") ()
+				 ("Read for compilation" "Reading for compilation"
+				  "read for compilation")
+				 NIL)
+
+(DEFUN ReadForCompilation? (Name &AUX (Source (FUNCALL Name ':NEW-TYPE "LISP"))
+				      (Binary (FUNCALL Name ':NEW-TYPE
+						       si:*SYSTEM-DEFAULT-BINARY-FILE-TYPE*)))
+  (COND ((si:FILE-NEWER-THAN-FILE-P Source Binary)
+	 (si:FILE-NEWER-THAN-INSTALLED-P Source))
+	(T (si:FILE-NEWER-THAN-INSTALLED-P Binary))))
+
+(DEFUN ReadForCompilation (Name &AUX (Source (FUNCALL Name ':NEW-TYPE "LISP"))
+				     (Binary (FUNCALL Name ':NEW-TYPE
+						      si:*SYSTEM-DEFAULT-BINARY-FILE-TYPE*)))
+  (COND ((si:FILE-NEWER-THAN-FILE-P Source Binary)
+	 (si:READFILE-1 Source))
+	(T (si:FASLOAD-1 Binary))))
+
+(DEFMACRO (:PROPERTY :PROGN si:DEFSYSTEM-MACRO) (&REST Transformations &AUX Values)
+  (DOLIST (Transformation Transformations)
+    (SETQ Values (MULTIPLE-VALUE-LIST (si:CALL-DEFSYSTEM-MACRO Transformation))))
+  (VALUES-LIST (LIST* NIL Values)))
+
+(DEFMACRO (:PROPERTY :READ-COMPILE-LOAD si:DEFSYSTEM-MACRO)
+	      (Input &OPTIONAL Read-Dependencies Compile-Dependencies Load-Dependencies
+			       Read-Condition    Compile-Condition    Load-Condition)
+  `(:PROGN (:SKIP :READ-FOR-COMPILATION ,Input ,Read-Dependencies ,Read-Condition)
+	   (:FASLOAD (:COMPILE ,Input ((:READ-FOR-COMPILATION ,Input) ,@Compile-Dependencies)
+			       ,Compile-Condition)
+		     ,Load-Dependencies ,Load-Condition)))

@@ -1,0 +1,13 @@
+;;; -*- Mode:LISP; Package:USER; Base:10 -*-
+
+
+(DEFSYSTEM Interlisp
+  (:NAME "Interlisp")
+  (:SHORT-NAME "IL")
+  (:PATHNAME-DEFAULT "interlisp:Interlisp;")
+  (:PATCHABLE)
+  (:INITIAL-STATUS :RELEASED)
+  (:MODULE Main ("Iterate" "LETP" "Random-Functions" "ChangeTran" "DEFRECORD" "Reader-Macros"
+		  "General" "Index" "Meter-Analysis" "Breakdown"))
+  (:READ-COMPILE-LOAD Main))
+

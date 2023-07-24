@@ -1,0 +1,33 @@
+;-*- Mode:Lisp; Package:User; Base:8. -*-
+
+
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+;;; *****
+;;; LMI is sending us Lambda's that think they are CADR's!
+;;; *****
+
+(COND ((Y-OR-N-P "Is this a Lambda?  ")
+       (SSTATUS NOFEATURE CADR)
+       (SSTATUS FEATURE LAMBDA)))
+
+;;; *****
+;;; Patches
+;;; *****
+
+(LOAD "lm: interlisp-release; Patches.SYSTEM")
+(MAKE-SYSTEM 'Patches ':NOCONFIRM)
+
+;;; *****
+;;; Interlisp
+;;; *****
+
+(LOAD "lm: interlisp-release; Interlisp.SYSTEM")
+(MAKE-SYSTEM 'Interlisp ':NOCONFIRM)
+

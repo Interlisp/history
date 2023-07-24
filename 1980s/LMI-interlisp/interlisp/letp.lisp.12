@@ -1,0 +1,137 @@
+; -*- Mode:LISP; Package:COMPILERSUPPORTPACKAGE; Base:10; Readtable:INTERLISP -*-
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;     ** (c) Copyright 1981, Systems Cognition Corporation
+
+;;; LETP is a macro that is used in the backquote readmacro.  Its purpose is only to bind
+;;; those forms that cannot be reevaluated and to substitute in the rest.  Its format is the
+;;; same as LET with the exception that all the variables in Vars are prefixed by commas.
+;;;
+;;; The purpose of LETP is for the automatic building of code in macros, e.g.:
+;;; (DEFMACRO CopyCar/Cdr (Arg) `(LETP (,Arg) (CONS (CAR ,Arg) (CDR ,Arg))))
+;;; (CopyCar/Cdr x) -> (CONS (CAR x) (CDR x)) ; Doesn't bind since its simple.
+;;; (CopyCar/Cdr (CADR x)) -> (CONS (CAR (CADR x)) (CDR (CADR x))) ; Still considered simple.
+;;; (CopyCar/Cdr (Foo)) -> (LET ((G0000 (Foo))) (CONS (CAR G0000) (CDR G0000))) ; Bound since
+;;;                                                                                not simple.
+;;
+;;; LETP has a list of functions that it knows can be reevaluated and their associated
+;;; weights for reevaluation. If the acculumation of these weights times the number of times
+;;; this form will be used in the substitution exceeds ReevaluateThreshold then the form will
+;;; be bound even though it has no side effects.
+;;;
+;;; (AddLETPWeight Fn Weight) Allows one to notify LETP about a new function that can be
+;;; reevaluated and its associated weight. The weight of 0 will cause Fn to be no longer
+;;; recongonized by LETP as side-effect-free.
+
+
+(SPECIAL Complexity)
+
+(DEFCONST ReevaluateThreshold 9)
+
+(DEFCONST ReevaluateThreshold+1 (1+ ReevaluateThreshold)) 
+
+(DEFCONST KnownSimpleLetpFunctions
+	  '(CAR CDR ATOM NULL NOT AND OR SYMEVAL BOUNDP FBOUNDP + - // * < <= 
+            > >=  =  EQ NEQ ZEROP SYMBOLP STRINGP NLISTP LISTP))
+		
+(DEFVAR SpecialLetpVariableFunctions NIL)
+
+(DEFMACRO LETP (Vars &BODY Forms)
+						; Make a copy of Forms' toplevel.
+  (SETQ Forms (COPYLIST Forms))
+  (SETQ Vars (bind temp for var in Vars join
+		   (COND ((AND (LISTP var)
+			       (SETQ temp (ASSQ (CAR var) SpecialLetpVariableFunctions)))
+			  (FUNCALL (CDR temp) var))
+			 (T (NCONS var)))))
+  ;; Build the binding list for the forms that cannot be reevaluated or are too complex to
+  ;; reevaluate.
+  (SETQ Vars
+	(for Var in Vars when (CannotReevaluateP Var Forms) collect (LIST (GENSYM) Var)))
+  
+  ;; Build the resulting expression depending upon VARS. If VARS is non-NIL then we need to
+  ;; do some binding; otherwise we simply return a PROGN, if necessary.
+  (COND (Vars   	; We need to do some binding, build the corresponding LET expression.
+	 (for Var in Vars do (NSUBST (CAR Var) (CADR Var) Forms))
+	 `(LET ,Vars . ,Forms))
+	((CDR Forms) `(PROGN . ,Forms))		; We need to PROGN this.
+	(T (CAR Forms))))
+
+
+;;; Return a NON-NIL value if Form occurs in Forms more than once and it cannot be
+;;; reevaluated.
+(DEFUN CannotReevaluateP (Form Forms)
+  (LET ((Count (CountItem Form Forms))
+	(Complexity 0))
+    (COND ((ZEROP Count)			; Complain: The mentioned form cannot be found
+						; in the body.
+	   (FORMAT T "LETP: ~S cannot be found in ~S.~%"
+		   Form `(LETP ** . ,Forms))))
+    ;; Analyze this form and if AnalyzeReevaluate sets the special variable Complexity
+    ;; above ReevaluateThreshold return a non-NIL value meaning that Form cannot be
+    ;; reevaluated.
+    (AnalyzeReevaluate Form)
+    (> (* Complexity Count) ReevaluateThreshold)))
+
+;;; Analyze a form for side effects without crossing functional boundaries.
+(DEFUN AnalyzeReevaluate (Form)
+  (PROG ()
+     Loop					; Get any macros out of our way.
+	(SETQ Form (MACROEXPAND Form))
+	   (COND ((ATOM Form) (RETURN))
+		 ((MEMQ (CAR Form) KnownSimpleLetpFunctions)
+		  ;; These are simple functions without any side effects. Analyze the rest of
+		  ;; their arguments.
+					; The complexity is the sum of their arguments.
+		  (SETQ Complexity (+ Complexity (LENGTH (CDR Form))))
+					; Check their args.
+		  (for Form in (CDR Form) do (AnalyzeReevaluate Form))
+		  (RETURN)))
+	   ;; Handle the special cases.
+	   (SELECTQ (CAR Form)
+	     ((NTH NTHCDR)
+	      (SETQ Complexity (+ Complexity 4))	; NTH/NTHCDR weight for entry.
+	      (COND ((NUMBERP (CADDR Form))	; From a number we can compute immed.
+		     (SETQ Complexity 
+			   (+ Complexity (CADDR Form))))
+		    (T (AnalyzeReevaluate (CADDR Form))))
+	      (AnalyzeReevaluate (CADR Form)))
+	     (SETQ 
+	      ;; For SETQs make sure of a safe binding.
+	      (OR (ZEROP (CountItem (CADR Form) (CADDR Form)))
+		  (RETURN (SETQ Complexity ReevaluateThreshold+1)))
+	      (AnalyzeReevaluate (CADDR Form)))
+	     (COND
+	      (for Clause in (CDR Form) do
+		   (for Form in Clause do (AnalyzeReevaluate Form)))
+	      (RETURN))
+	     (SELECTQ
+	      (AnalyzeReevaluate (CADR Form))
+	       (for Clause in (CDDR Form)
+		    until (OR (EQ (CAR Clause) T) (EQ (CAR Clause) 'OTHERWISE))
+		    do (for Form in (CDR Clause) do
+			    (AnalyzeReevaluate Form))))
+	     (PROGN (for Form in (CDR Form) do (AnalyzeReevaluate Form)))
+	     (Otherwise
+	      (RETURN (SETQ Complexity ReevaluateThreshold+1))))))
+
+;;; Count the number of times Item occurs in Lst.
+(DEFUN CountItem (Item Lst)
+  (COND ((EQ Item Lst) 1)
+	((ATOM Lst) 0)
+	(T (+ (CountItem Item (CAR Lst)) (CountItem Item (CDR Lst))))))
+
+
+

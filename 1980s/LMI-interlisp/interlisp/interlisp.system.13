@@ -1,0 +1,144 @@
+;-*-Mode: Lisp; Package: User -*-
+
+;;; For some mysterious reason, Interlisp (presumaby the NOBOX functions) does something
+;;; sufficiently strange to create pointers in code that point into the compiler's
+;;; temporary areas.  It is not at all clear why this happens.
+(SETQ Compiler:QCOMPILE-TEMPORARY-AREA WORKING-STORAGE-AREA
+      Compiler:QC-FILE-TEMPORARY-AREA WORKING-STORAGE-AREA)
+
+(ADVISE sys:RESET-TEMPORARY-AREA AROUND "IgnorePermanentAreas" NIL
+  (AND (si:AREA-TEMPORARY-P (CAR ARGLIST)) :DO-IT))
+
+(PACKAGE-DECLARE "InterlispPackage" "GLOBAL" 1000.
+		 ()
+		 (SHADOW
+		   ;; Keywords
+		   _ DATUM NEWVALUE BITS $$VAL $$LP $$ITERATE $$OUT BODY I.V.
+		   FLOATING INTEGER of with smashing copying using
+
+		   ;; IterativeStatementPackage
+		   do collect join sum product count always never thereis into
+		   for old bind in on inside when unless loopname
+		   while until repeatwhile repeatuntil
+		   from to by first finally eachtime repeateachtime as *declare
+		   then else thereisva onwithnil
+		   exceptfirst backwardson backwardsin maxval minval ineachof oneachof
+		   scratchcollect inlinesof dunion dintersect bindeachtime cross
+		   I.S.OPR GETDUMMYVAR ARGUMENTS
+
+		   ;; CompilerSupportPackage
+		   LETP SpecialLETPVariableFunctions KnownSimpleLETPFunctions
+
+		   ;; RandomFunctionsPackage
+		   LISTP LBOX CBOX RPLNODE RPLNODE2 NCONC1 SUBPAIR COPY //F MaybeMap
+		   CONSTANT DEFERREDCONSTANT RecomputeDeferredConstants
+		   printout .SP .TAB .TAB0 .PPV .PPF .P1 .P2 .E ?
+		   PrettyPrint pp
+		   POSITION TAB SPACES
+		   HELP PACK PACK* DUNPACK NCHARS
+
+		   ;; ChangeTranPackage
+		   push extend pushnew pushlist conclist add change swap
+	           extend extend-variable EXTEND-NEW-EQUAL
+
+		   ;; RecordPackage
+		   fetch replace create alter type? typename
+		   RecordSegment SeeRecord RecordFieldNames TopLevelFieldNames
+		   pushsegment popsegment topsegment previoussegment
+		   nextsegment allocatesegment
+		   DEFRECORD DATUM MODIFIER NEWVALUE !NumberInstances !Area
+		   Typed StoreIn MakeArray SizeIn NumberInstances Implementation Area
+		   ArrayLeader ArraySegment ArrayLeaderSegment PropertyList
+		   AssociationList HashArray Functional
+		   DeclareTypes
+
+		   ;; ReaderMacroPackage
+		   MakeHardReadMacro
+
+		   ;; Symbols from General that are referenced in macros (for external use
+		   ;; only) inside the previous Interlisp files.
+		   Delete* GETPROPNonNil PUTPROPNonNil tail))
+
+(PACKAGE-DECLARE "InterlispUsers" "InterlispPackage" 5000.
+		 ()
+		 (MYREFNAME "GLOBAL" "InterlispUsers")
+		 (MYREFNAME "GLOBAL" "iu")
+		 (MYREFNAME "InterlispPackage" "iu"))
+
+(PACKAGE-DECLARE "InterlispUserHiddenSymbols" "InterlispPackage" 5000.)
+
+(PACKAGE-DECLARE "IterativeStatementPackage" "InterlispPackage" 500.
+		 ()
+		 (si:EXTERNAL do collect join sum product count always never thereis into
+			   for old bind in on inside when unless loopname
+			   while until repeatwhile repeatuntil
+			   from to by first finally eachtime repeateachtime as *declare
+			   then else thereisval onwithnil
+			   exceptfirst backwardson backwardsin maxval minval ineachof oneachof
+			   scratchcollect inlinesof dunion dintersect bindeachtime cross
+			   I.S.OPR GETDUMMYVAR ARGUMENTS)
+		 (MYREFNAME "GLOBAL" "IterativeStatementPackage")
+		 (MYREFNAME "GLOBAL" "is")
+		 (MYREFNAME "InterlispPackage" "is"))
+
+(PACKAGE-DECLARE "CompilerSupportPackage" "InterlispPackage" 500.
+		 ()
+		 (si:EXTERNAL LETP SpecialLETPVariableFunctions KnownSimpleLETPFunctions)
+		 (MYREFNAME "GLOBAL" "CompilerSupportPackage")
+		 (MYREFNAME "GLOBAL" "cs")
+		 (MYREFNAME "InterlispPackage" "cs"))
+
+(PACKAGE-DECLARE "RandomFunctionsPackage" "InterlispPackage" 500.
+		 ()
+		 (si:EXTERNAL LISTP LBOX CBOX RPLNODE RPLNODE2 NCONC1 SUBPAIR COPY //F
+			   MaybeMap 
+			   CONSTANT DEFERREDCONSTANT RecomputeDeferredConstants
+			   printout .SP .TAB .TAB0 .PPV .PPF .P1 .P2 .E ?
+			   PrettyPrint pp
+			   POSITION TAB SPACES
+			   HELP PACK PACK* DUNPACK NCHARS)
+		 (MYREFNAME "GLOBAL" "RandomFunctionsPackage")
+		 (MYREFNAME "GLOBAL" "rf")
+		 (MYREFNAME "InterlispPackage" "rf"))
+
+(PACKAGE-DECLARE "ChangeTranPackage" "InterlispPackage" 500.
+		 ()
+		 (si:EXTERNAL push pushnew pushlist conclist add change swap
+			      extend extend-variable EXTEND-NEW-EQUAL)
+		 (MYREFNAME "GLOBAL" "ChangeTranPackage")
+		 (MYREFNAME "GLOBAL" "ct")
+		 (MYREFNAME "InterlispPackage" "ct"))
+
+(PACKAGE-DECLARE "RecordPackage" "InterlispPackage" 500.
+		 ()
+		 (si:EXTERNAL fetch replace create alter type? typename RecordSegment
+			   SeeRecord RecordFieldNames TopLevelFieldNames
+			   pushsegment popsegment topsegment previoussegment nextsegment
+			   allocatesegment
+			   DEFRECORD DATUM MODIFIER NEWVALUE !NumberInstances !Area
+			   Typed StoreIn MakeArray SizeIn NumberInstances Implementation Area
+			   ArrayLeader ArraySegment ArrayLeaderSegment PropertyList
+			   AssociationList HashArray Functional
+			   DeclareTypes)
+		 (MYREFNAME "GLOBAL" "RecordPackage")
+		 (MYREFNAME "GLOBAL" "rp")
+		 (MYREFNAME "InterlispPackage" "rp"))
+
+(PACKAGE-DECLARE "ReaderMacrosPackage" "InterlispPackage" 500.
+		 ()
+		 (si:EXTERNAL MakeHardReadMacro)
+                 (MYREFNAME "GLOBAL" "ReaderMacrosPackage")
+		 (MYREFNAME "GLOBAL" "rm")
+		 (MYREFNAME "InterlispPackage" "rm"))
+
+(DEFSYSTEM Interlisp
+  (:NAME "Interlisp")
+  (:SHORT-NAME "IL")
+  (:PATHNAME-DEFAULT "LM:Interlisp-release;")
+;  (:PATCHABLE)
+;  (:INITIAL-STATUS :RELEASED)
+  (:MODULE Main ("Iterate" "LETP" "Random-Functions" "ChangeTran" "DEFRECORD" "Reader-Macros"
+		  "General" "Index" "Meter-Analysis" "Breakdown"))
+  (:READ-COMPILE-LOAD Main))
+
+

@@ -1,0 +1,16 @@
+;-*-Mode: Lisp; Package: User -*-
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+;; Modified by GJC 7/30/84 21:38:54 for correct loading into standard LMI distribution.
+
+(DEFSYSTEM Patches
+  (:NAME "Patches")
+  (:MODULE Main ("inference:interlisp;patch"))
+  (:COMPILE-LOAD Main))
+

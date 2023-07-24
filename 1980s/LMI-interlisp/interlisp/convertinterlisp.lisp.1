@@ -1,0 +1,913 @@
+;;; -*- Mode: LISP; Package: IU; Base: 10. -*-
+
+; User flags
+(DEFVAR OptionalFlg T)
+
+(DEFVAR IgnoreFlg NIL)
+
+; Special read tables
+(DEFVAR ReadingReadtable (COPY-READTABLE SI:INITIAL-READTABLE))
+
+(DEFVAR PrintingReadtable (COPY-READTABLE SI:INITIAL-READTABLE))
+
+(DEFVAR BackQuoteReadtable (COPY-READTABLE SI:INITIAL-READTABLE))
+
+; Suspicions concerning infix operators in code.
+(DEFVAR Suspicions NIL)
+
+; Warnings - These are inserted in the code rather than at the end of the file
+; and are considered serious.
+(DEFVAR Warnings NIL)
+
+; Used to determine when COMS is found for DEFVAR translation.
+(DEFVAR COMSName NIL)
+
+; The Zetalisp package that the converted code should run in.
+(DEFVAR ZPackage 'InterlispUsers)
+
+; Stuff for determining how to convert DECLARE forms into EVAL-WHEN forms.
+; FIRST and NOTFIRST are not used even though they are in the list.
+(DEFCONST ZDeclareTransList '(((COPY DOCOPY) load T)
+			      ((EVAL@COMPILE DOEVAL@COMPILE) compile T)
+			      ((EVAL@LOAD DOEVAL@LOAD) eval T)
+			      ((DONTCOPY) load NIL)
+			      ((DONTEVAL@COMPILE) compile NIL)
+			      ((DONTEVAL@LOAD) eval NIL)
+			      ((FIRST) FIRSTTAG T)
+			      ((NOTFIRST) FIRSTTAG NIL)))
+
+;These flag which EVAL-WHEN options should be used in a given DECLARE form.
+(DEFVAR compile NIL)
+(DEFVAR eval T)
+(DEFVAR load T)
+(DEFVAR loadwhen NIL)
+(DEFVAR FIRSTTAG NIL)
+
+; Functions that reverse their arguments between Interlisp and Zetalisp
+(DEFCONST ReverseTwoArgFunctions '(PUSH PUSHNEW PUSHLIST APPLY ADD MAP MAPC
+					MAPLIST MAPCAR MAPCON MAPCONC))
+
+(DEFVAR TranslationFunctions '((SETA TranslateSET) (SETD TranslateSET) (MATCH TranslateMATCH)
+			       (BQUOTE ConvertBackquotedExpression) (SOME TranslateSomeEvery)
+			       (EVERY TranslateSomeEvery) (PUTD TranslatePUTD)
+			       (NTH TranslateNTH) (FNTH TranslateNTH) (APPEND TranslateAPPEND)
+			       (SPECVARS TranslateSPECVARS) (LOCALVARS TranslateLOCALVARS)
+			       (IF TranslateIfThen)
+			       (LSH ConvertShiftOperations) (RSH ConvertShiftOperations)
+			       (LLSH ConvertShiftOperations) (LRSH ConvertShiftOperations)
+			       (ELT TranslateELT) (ELTD TranslateELT) (EVALV TranslateEVALV)
+			       (TYPENAME TranslateTYPENAME) (TYPENAMEP TranslateTYPENAME)
+			       (L-CASE TranslateCASE) (U-CASE TranslateCASE)
+			       (CHCON TranslateCHCON) (CHCON1 TranslateCHCON1)
+			       (NTHCHARCODE TranslateNTHCHARCODE) (NTHCHAR TranslateNTHCHAR)
+			       (SETQQ TranslateSETQQ) (BITSET TranslateBITSET)
+			       (BITCLEAR TranslateBITCLEAR) (STRPOS TranslateSTRPOS)
+			       (HARRAY TranslateHARRAY) (SUBSTRING TranslateSUBSTRING)
+			       (SUBATOM TranslateSUBATOM)))
+
+(DEFVAR FunctionTranslations NIL)
+
+; Function name translations
+(DEFCONST FunctionNameTranslations '((LITATOM SYMBOLP) (GETPROP GET) (* COMMENT)
+				     (APPLY* FUNCALL) (READC READCH) (PRIN2 PRIN1)
+				     (PRIN1 PRINC) (UNPACK EXPLODE) (PACK IMPLODE)
+				     (DREMOVE DELQ) (FMEMB MEMQ) (GETPROPLIST PLIST)
+				     (CHARACTER ASCII) (FCHARACTER ASCII)
+				     (STREQUAL STRING-EQUAL) 
+				     (FRPLACA RPLACA) (FRPLACD RPLACD) (MAPCONC MAPCAN)
+				     (SMALLP FIXP) (MKATOM INTERN)
+				     (SETPROPLIST SETPLIST)
+				     (FRPLNODE RPLNODE) (FRPLNODE2 RPLNODE2)
+				     (FLAST LAST) (MKLIST MakeIntoList) (FLENGTH LENGTH)
+				     (MEMB MEMQ) (DSUBST NSUBST) (ASSOC ASSQ)
+				     (DSUBLIS NSUBLIS) (FASSOC ASSQ) (SASSOC ASSOC)
+				     (DREVERSE NREVERSE) (CONCAT STRING-APPEND)
+				     (DEPOSITBYTE DEPOSIT-BYTE) (LOADBYTE LOAD-BYTE)
+				     (LISTGET GetProperty) (LISTPUT PutProperty)
+						;Arithmetic translations
+				     (FPLUS +) (IPLUS +) (PLUS +)
+				     (FMINUS -) (IMINUS -) (MINUS -)
+				     (FDIFFERENCE -) (IDIFFERENCE -) (DIFFERENCE -)
+				     (FTIMES *) (ITIMES *) (TIMES *)
+				     (FQUOTIENT //) (IQUOTIENT //) (QUOTIENT //)
+				     (FREMAINDER \) (IREMAINDER \) (REMAINDER \)
+				     (IMOD \)
+				     (FGREATERP >) (IGREATERP >) (GREATERP >)
+				     (FLESSP <) (ILESSP <) (LESSP <)
+				     (GEQ >=) (IGEQ >=)
+				     (LEQ <=) (ILEQ <=)
+				     (FMIN MIN) (IMIN MIN)
+				     (FMAX MAX) (IMAX MAX)
+				     (LOGOR LOGIOR) (BITTEST BIT-TEST)))
+
+(DEFCONST UnsupportedFunctions '(IBOX FBOX DWIMIFY ADDTOVAR
+				      USEDFREE RESETVARS RESETSAVE
+				      DATATYPES HARRAYP EQP EQUALALL
+				      GETTOPVAL SETTOPVAL GETATOMVAL SETATOMVAL
+				      ADDPROP REMPROPLIST CHANGEPROP PROPNAMES
+				      DEFLIST GETLIS U-CASEP
+				      GENNUM PACKC DCHCON
+				      CHARCODE SELCHARQ ATTACH TCONC
+				      LCONC DOCOLLECT ENDCOLLECT COPYALL HCOPYALL
+				      LASTN EQLENGTH COUNT
+				      COUNTDOWN EQUALN LDIFFERENCE EQMEMB LSUBST
+				      PUTASSOC LISTGET1
+				      LISTPUT1 ALLOCSTRING MKSTRING GNC GLC
+				      CONCATLIST RPLSTRING RPLCHARCODE
+				      STRPOSL MAKEBITTABLE ARRAYTYP
+				      ARRAYORIG COPYARRAY ARRAYBEG
+				      HARRAYSIZE REHASH DMPHASH OVERFLOW
+				      INTEGERLENGTH POWEROFTWOP))
+
+(DEFVAR MacroTypes '(MACRO DMACRO 10MACRO VAXMACRO JMACRO))
+
+; Functions for mapping atom and character replacements.
+(DEFVAR AtomConversionFunctions '(AtomTranslation InfixTranslation))
+
+; Atoms that need to change in Zetalisp
+(DEFCONST AtomTranslations '((edited/: edited)
+			     (~= )
+			     (%. /.)))
+
+(DEFCONST InfixOperators '(#/: #/_ #/^))
+
+#|
+(DEFCONST SpecialCharacters '(#/,))
+
+(DEFCONST SlashifiedCharTable '(#/: #/, #// #/; #/#))
+|#
+
+; Translate the Interlisp infix operators to Compatibility package operators.
+(DEFCONST SingleCharacterTranslations '((#/_ #/) (#/^ #/) (#/: #/)))
+
+(DEFVAR OutputFile)
+
+;;; Main entry to translation program.
+(DEFUN ConvertInterlispFile (InputFileName OutputFileName &AUX Expression PreviousReadtable)
+  (SETQ :IBASE (SETQ :BASE 10.))
+  (SETQ Suspicions NIL)  
+  (SETQ Warnings NIL)
+  (UNWIND-PROTECT
+    (PROGN
+      (SETQ ReadingReadTable (MakeReadingReadtable))
+      (SETQ PrintingReadTable (MakePrintingReadTable))
+      (SETQ BackQuoteReadTable (MakeBackQuoteReadTable))
+      (SETQ PreviousReadtable READTABLE)
+      (SETQ READTABLE PrintingReadTable)
+      (WITH-OPEN-FILE (InputFile (FS:MERGE-PATHNAME-DEFAULTS InputFileName) '(:IN))
+        (WITH-OPEN-FILE (OutputFile (FS:MERGE-PATHNAME-DEFAULTS OutputFileName
+								InputFileName "lisp") '(:OUT))
+; For the most part, these are top level forms only.
+; Exceptions are RECORD and PUTPROP declarations which can occur in DECLARE forms
+; and comments which can occur anywhere.
+	  (loop until (EQUAL (SETQ Expression (LET ((READTABLE ReadingReadTable))
+						(READ InputFile))) 'STOP) do
+		(COND ((ATOM (CAR Expression))
+		       (SELECTOR (Atm (CAR Expression)) STRING-EQUAL
+			 (('FILECREATED) (PrintModeLine Expression))
+			 (('PRETTYCOMPRINT) (SETQ COMSName (CADR Expression)))
+			 (('DEFINEQ) (PrintFunctionDefinitions Expression))
+			 (('RPAQQ 'RPAQ 'RPAQ?) (PrintVariableDefinitions Expression))
+			 (('DECLARE/:) (PrintDeclareForms Expression))
+			 (('PUTPROP 'PUTPROPS 'SAVEPUT)
+			  (PrintPropertyDeclarations Expression))
+			 (('RECORD 'TYPERECORD 'ARRAYRECORD 'ATOMRECORD
+			   'PROPRECORD 'ACCESSFNS)
+			  (PrintRecordDeclarations Expression))
+			 (('*) (PrintComment Expression))
+			 (('ADDTOVAR) (RecordWarning
+					`(Conversion of ,(CAR Expression) is not supported.))
+				      (GrindInterlisp Expression))
+			 (T (GrindInterlisp Expression))))
+		      (T (GrindInterlisp Expression))))
+	  (PrintSuspicions))))
+    (SETQ READTABLE PreviousReadtable)))
+
+; Comma must not be special because it can exist in Interlisp comments which Zetalisp
+; does not recognize. Thus, it does no good to have backquote special.
+
+;NOTE: . is out because of CONS. Is this OK?
+(DEFUN MakeReadingReadtable ()
+  (SETQ ReadingReadTable (COPY-READTABLE SI:INITIAL-READTABLE))
+  (SET-SYNTAX-FROM-DESCRIPTION #/: 'SI:ALPHABETIC ReadingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/| 'SI:ALPHABETIC ReadingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/, 'SI:ALPHABETIC ReadingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/. 'SI:ALPHABETIC ReadingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/; 'SI:ALPHABETIC ReadingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/% 'SI:SLASH ReadingReadtable)
+  (MakeHardReadMacro #/` 'BackQuoteReaderMacro ReadingReadtable)
+  (for i from #/a to #/z do (SETF (si:RDTBL-TRANS ReadingReadtable i) i))
+  ReadingReadtable)
+
+; Interlisp can use either BQUOTE or the backquote character and can apparently
+; accept commas anywhere. Therefore, comma has to be alphabetic and, thus, backquote
+; also. This kludge reads ` as BQUOTE so that it can be turned into ` again.
+(DEFUN BackQuoteReaderMacro (ListSoFar Stream)
+  (LIST 'BQUOTE (READ Stream)))
+
+; Characters to slashify: # , / (; :)
+; None of the converted characters should be special in this readtable.
+; Any character that should be slashified should be circlecross.
+; As long as you don't have any translations, you won't get vertical bars.
+; Its probably not cool to put circlecrosses in the ReadingReadTable, only for printing.
+(DEFUN MakePrintingReadtable ()
+  (SETQ PrintingReadTable (COPY-READTABLE SI:INITIAL-READTABLE))
+  (SET-SYNTAX-FROM-DESCRIPTION #/% 'SI:SLASH PrintingReadtable)
+  (SET-CHARACTER-TRANSLATION #/% #// PrintingReadTable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/ 'SI:ALPHABETIC PrintingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/ 'SI:ALPHABETIC PrintingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/. 'SI:ALPHABETIC PrintingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #// 'SI:CIRCLECROSS PrintingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/, 'SI:CIRCLECROSS PrintingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/# 'SI:CIRCLECROSS PrintingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/; 'SI:CIRCLECROSS PrintingReadtable)
+  (SET-SYNTAX-FROM-DESCRIPTION #/: 'SI:CIRCLECROSS PrintingReadtable)
+  ; Get rid of those translations.
+  (for i from #/a to #/z do (SETF (si:RDTBL-TRANS PrintingReadtable i) i))
+  PrintingReadtable)
+
+; A regular readtable is needed for reading back in backquote expression using
+; Interlisp BQUOTE. But we still have to catch lowercase.
+(DEFUN MakeBackQuoteReadtable ()
+  (SETQ BackQuoteReadTable (COPY-READTABLE SI:INITIAL-READTABLE))
+  (for i from #/a to #/z do (SETF (si:RDTBL-TRANS BackQuoteReadtable i) i))
+  BackQuoteReadtable)
+
+(DEFUN PrintModeLine (FileCreatedExpression)
+  (PRINC ";-*- Mode:LISP; Package:" OutputFile)
+  (PRIN1 ZPackage OutputFile)
+  (PRINC "; Base:" OutputFile)
+  (PRIN1 10. OutputFile)
+  (PRINC " -*-" OutputFile)
+  (TERPRI OutputFile)
+  (TERPRI OutputFile)
+  (PRINC "; Converted from " OutputFile)
+  (PRIN1 (CADDR FileCreatedExpression) OutputFile)
+  (PRINC " created on " OutputFile)
+  (PRIN1 (CADR FileCreatedExpression) OutputFile)
+  (TERPRI OutputFile)
+  (PRINC "; Conversion done on " OutputFile)
+  (TIME:PRINT-CURRENT-TIME OutputFile)
+  (TERPRI OutputFile)
+  (TERPRI OutputFile)
+  (TERPRI OutputFile))
+
+; Typical Interlisp function: (FunctionName (LAMBDA (ArgList) Body...
+(DEFUN PrintFunctionDefinitions (FunctionDefinitions &AUX ClispDec LambdaType
+							  ArgList Body)
+  (loop for FunctionDefinition in (CDR FunctionDefinitions) do
+	(SETQ LambdaType (CAADR FunctionDefinition))
+	(SETQ ArgList (CADADR FunctionDefinition))
+	(SETQ Body (CDDADR FunctionDefinition))
+	(COND ((AND (STRING-EQUAL (Atm LambdaType) 'LAMBDA)
+		    (ATOM ArgList)
+		    (NOT (NULL ArgList)))
+	       (SETQ Body (TranslateLambdaNospread Body))))
+	(COND ((AND (STRING-EQUAL
+		      (Atm (CAR (SETQ ClispDec (CADR (CDADR FunctionDefinition))))) '*)
+		    (MEM #'STRING-EQUAL (Atm (CADR ClispDec))
+			 '(DECLARATIONS/: CLISP/:)))
+	       (loop for Dec in (CDDR ClispDec) do
+		     (SELECTOR (Atm (CAR Dec)) STRING-EQUAL
+		       (('RECORD 'TYPERECORD 'ARRAYRECORD 'ATOMRECORD 'PROPRECORD 'ACCESSFNS)
+			(PrintRecordDeclarations Dec))
+		       (T (GrindInterlisp Dec))))
+	       (SETQ FunctionDefinition
+		     (CONS 'DEFUN
+			   (CONS (CAR FunctionDefinition)
+				 (CONS (AddLambdaListKeywords ArgList LambdaType)
+				       (CDR Body))))))
+	      (T (SETQ FunctionDefinition
+		       (CONS 'DEFUN
+			     (CONS (CAR FunctionDefinition)
+				   (CONS (AddLambdaListKeywords ArgList LambdaType)
+					 Body))))))
+	(TERPRI OutputFile)
+	(GrindInterlisp FunctionDefinition)
+	(TERPRI OutputFile)))
+
+; Add something to make &REST IGNORE only show up in Spread functions.
+(DEFUN AddLambdaListKeywords (ArgumentList LambdaType &AUX RestFlag)
+  (COND ((NULL ArgumentList) ArgumentList)
+; Lambda-Nospread
+	((AND (STRING-EQUAL (Atm LambdaType) 'LAMBDA)
+	      (ATOM ArgumentList))
+	 ArgumentList)
+	(T (APPEND (COND (OptionalFlg '(&OPTIONAL)))
+		   (COND ((STRING-EQUAL (Atm LambdaType) 'NLAMBDA)
+; Nlambda-Nospread
+			  (COND ((ATOM ArgumentList)
+				 (SETQ RestFlag T)
+				 '(&QUOTE &REST))
+; Nlambda-Spread
+				(T '(&QUOTE)))))
+		   (COND ((ATOM ArgumentList)
+			  (LIST ArgumentList))
+			 (T ArgumentList))
+		   (COND ((AND (NULL RestFlag)
+			       (NOT (ATOM ArgumentList))
+			       IgnoreFlg)
+			  '(&REST IGNORE)))))))
+
+(DEFUN TranslateLambdaNospread (Body)
+  (COND ((STRING-EQUAL (Atm (CAR Body)) 'ARG)
+	 (LIST (CAR Body)
+	       (CADDR Body)))
+	((STRING-EQUAL (Atm (CAR Body)) 'SETARG)
+	 (LIST (CAR Body)
+	       (CADDR Body)
+	       (CADDDR Body)))
+	(T (loop for Form in Body collect
+		 (COND ((ATOM Form) Form)
+		       (T (TranslateLambdaNospread Form)))))))
+
+(DEFUN PrintVariableDefinitions (VariableDefinition)
+  (COND ((STRING-EQUAL (Atm (CADR VariableDefinition)) COMSName)
+	 (SETQ VariableDefinition (ProcessCOMS VariableDefinition))))
+  (SELECTOR (Atm (CAR VariableDefinition)) STRING-EQUAL
+    (('RPAQ) (GrindInterlisp `(DEFCONST ,(CADR VariableDefinition)
+					,(CADDR VariableDefinition))))
+    (('RPAQ?) (GrindInterlisp `(DEFVAR ,(CADR VariableDefinition)
+				       ,(CADDR VariableDefinition))))
+    (('RPAQQ) (GrindInterlisp `(DEFCONST ,(CADR VariableDefinition)
+					 ',(CADDR VariableDefinition)))))
+  (TERPRI OutputFile))
+
+(DEFUN PrintRecordDeclarations (RecordDeclaration)
+  (GrindInterlisp (ProcessRecordDeclarations RecordDeclaration)))
+
+; ATOMRECORD might be PropertyList. DATATYPE might be Array(Typed).
+(DEFUN ProcessRecordDeclarations (RecordDeclaration)
+  (COND ((MEM #'STRING-EQUAL (Atm (CAR RecordDeclaration))
+	      '(ARRAYBLOCK DATATYPE HASHLINK ASSOCRECORD))
+	 (RecordWarning `(,(CAR RecordDeclaration) not supported in Zetalisp.)))
+	(T (RecordSuspicion `(,(CAR RecordDeclaration) redeclared as a DEFRECORD.))))
+  `(DEFRECORD ,(CADR RecordDeclaration)
+	      ,(CADDR RecordDeclaration)
+     ,@(ProcessRecordTail (CDDDR RecordDeclaration))
+     ,@(SELECTOR (Atm (CAR RecordDeclaration)) STRING-EQUAL
+	 (('RECORD) '((Implementation List)))
+	 (('TYPERECORD) '((Implementation List) Typed))
+	 (('ARRAYRECORD) '((Implementation Array)))
+	 (('ATOMRECORD) '((Implementation PropertyList)))
+	 (('PROPRECORD) '((Implementation PropertyList)))
+	 (('ACCESSFNS) '((Implementation Functional)))
+	 (T '((Implementation List))))))
+
+(DEFUN ProcessRecordTail (RecordTail)
+  (loop for Form in RecordTail collect
+	(COND ((LISTP Form)
+	       (COND ((MEM #'STRING-EQUAL (Atm (CAR Form))
+			   '(RECORD TYPERECORD ARRAYRECORD ATOMRECORD PROPRECORD ACCESSFNS))
+		      (COND ((ATOM (CADDR Form))
+			     `(DEFRECORD ,(CADR Form) ,(CADDR Form)))
+			    (T (ProcessRecordDeclarations Form))))
+		     ((STRING-EQUAL (Atm (CAR Form)) 'SUBRECORD)
+		      `(DEFRECORD ,(CADR Form) ,(CADR Form)))
+		     (T Form)))
+	      (T Form))))
+
+(DEFUN PrintPropertyDeclarations (PropertyDeclaration)
+  (SELECTOR (Atm (CAR PropertyDeclaration)) STRING-EQUAL
+    (('PUTPROP 'SAVEPUT) (GrindInterlisp (ProcessPropertyDeclarations PropertyDeclaration)))
+    (('PUTPROPS) (loop for Property in (ProcessPropertyDeclarations PropertyDeclaration)
+		    do (GrindInterlisp Property)))))
+
+(DEFUN ProcessPropertyDeclarations (PropertyDeclaration)
+  (SELECTOR (Atm (CAR PropertyDeclaration)) STRING-EQUAL
+    (('PUTPROP 'SAVEPUT) `(PUTPROP ,(CADR PropertyDeclaration)
+				   ,(CADDDR PropertyDeclaration)
+				   ,(CADDR PropertyDeclaration)))
+    (('PUTPROPS) (loop for PropertyTail on (CDDR PropertyDeclaration) by 'CDDR
+		       collect (COND ((MEM #'STRING-EQUAL (Atm (CAR PropertyTail)) MacroTypes)
+				      (ProcessMacroDefinition (LIST 'PUTPROPS
+								    (CADR PropertyDeclaration)
+								    (CAR PropertyTail)
+								    (CADR PropertyTail))))
+				     (T `(DEFPROP ,(CADR PropertyDeclaration)
+						  ,(CADR PropertyTail)
+						  ,(CAR PropertyTail))))))
+    (T PropertyDeclaration)))
+
+; (PUTPROPS FOOMACRO MACRO ((ARG1 ARG2) BODY....
+(DEFUN ProcessMacroDefinition (MacroDeclaration
+			       &AUX (MacroName (CADR MacroDeclaration))
+			       (MacroDefinition (CADDDR MacroDeclaration))
+			       (MacroType (COND ((LISTP MacroDefinition)
+						 (CAR MacroDefinition))
+						(T MacroDefinition))))
+  (COND ((OR (LISTP MacroType)
+	     (NULL MacroType))
+	 `(DEFSUBST ,MacroName
+		    ,@MacroDefinition))
+	((STRING-EQUAL (Atm MacroType) 'LAMBDA)
+	 `(DEFILISPLAMBDAMACRO ,MacroName
+			  ,(CADR MacroDefinition)
+	    ,@(CDDR MacroDefinition)))
+	((STRING-EQUAL (Atm MacroType) 'NLAMBDA)
+	 `(DEFILISPNLAMBDAMACRO ,MacroName		
+			   ,(CADR MacroDefinition)
+	    ,@(CDDR MacroDefinition)))
+	((STRING-EQUAL (Atm MacroType) '=)
+	 `(DEFF ,MacroName (FUNCTION ,(CADDR MacroDefinition))))
+	((STRING-EQUAL (Atm MacroType) 'OPENLAMBDA)
+	 (RecordWarning "OPENLAMBDA macros are not supported.")
+	 MacroDeclaration)
+	((STRING-EQUAL (Atm MacroType) T)
+	 (RecordWarning "T macros are not supported.")
+	 MacroDeclaration)
+	((ATOM MacroType)
+	 `(DEFMACRO ,MacroName
+		    ,(LIST '&REST MacroType)
+	    ,@(CDR MacroDefinition)))
+	(T MacroDeclaration)))
+
+(DEFUN ProcessCOMS (COMSDefinition)
+  (LIST (CAR COMSDefinition)
+	(CADR COMSDefinition)
+	(loop for Form in (CADDR COMSDefinition) nconc
+	      (COND ((STRING-EQUAL (Atm (CAR Form)) 'DECLARE/:)
+		     (SETQ Form (ProcessDeclareForm (CDR Form)))
+		     (COND (Form (LIST Form))
+			   (T NIL)))
+		    (T (LIST Form))))))
+
+(DEFUN ProcessDeclareForm (DeclareTail &AUX Temp)
+  (MULTIPLE-VALUE-BIND (compile eval load FIRSTTAG)
+    (DetermineAppropriateEvalWhenTags DeclareTail)
+    (COND ((SETQ Temp
+		 (loop for Form in DeclareTail when (LISTP Form) nconc
+		       (SELECTOR (Atm (CAR Form)) STRING-EQUAL
+			 (('ADDVARS) (SETQ Form (DealWithNLAMs (CDR Form)))
+				  (COND (Form (LIST Form))
+					(T NIL)))
+			 (('PUTPROP 'PUTPROPS) (ProcessPropertyDeclarations Form))
+			 (('RECORD 'TYPERECORD 'ARRAYRECORD 'ATOMRECORD
+			   'PROPRECORD 'ACCESSFNS)
+			  (LIST (ProcessRecordDeclarations Form)))
+			 (T (LIST Form)))))
+	   `(eval-when ,(loop for Tag in `(,compile ,eval ,load)
+			      as RTag in '(:compile :eval :load)
+			      when Tag collect
+			      RTag)
+	      ,@ Temp))
+	  (T NIL))))
+
+(DEFUN DetermineAppropriateEvalWhenTags (DeclareTail &AUX Temp)
+  (SETQ eval (SETQ load T))
+  (SETQ compile (SETQ loadwhen (SETQ FIRSTTAG NIL)))
+  (loop for Tag in DeclareTail when (ATOM Tag) do
+	(COND ((SETQ Temp
+		     (CAR (SOME ZDeclareTransList
+				(FUNCTION (LAMBDA (X)
+					    (MEM #'STRING-EQUAL (Atm Tag) (CAR X)))))))
+	       (SET (CADR Temp) (CADDR Temp)))
+	      (T (RecordWarning `(The DECLARE/: tag ,Tag is not supported.))))
+	finally (COND (loadwhen (SETQ compile (SETQ eval (SETQ load T)))))
+	        (RETURN (VALUES compile eval load FIRSTTAG))))
+
+(DEFUN PrintDeclareForms (DeclareForm)
+  (COND ((AND (STRING-EQUAL (Atm (CADR DeclareForm)) 'DONTCOPY)
+	      (LISTP (CADDR DeclareForm))
+	      (STRING-EQUAL (Atm (CAADDR DeclareForm)) 'FILEMAP)))
+	(T (TERPRI OutputFile)
+	   (GrindInterlisp (ProcessDeclareForm (CDR DeclareForm)))
+	   (TERPRI OutputFile))))
+					  
+; Hand this function the CDR of an ADDVARS form
+(DEFUN DealWithNLAMs (ADDVARSTail)
+  (SUBSET (FUNCTION (LAMBDA (X) (NOT (MEM #'STRING-EQUAL (Atm (CAR X)) '(NLAMA NLAML LAMA)))))
+	  ADDVARSTail))
+
+(DEFUN PrintComment (Comment)
+  (GrindInterlisp `(COMMENT ,.(CDR Comment))))
+
+(DEFUN TranslateIfThen (IfThen &AUX FormList (TranslatedIfThen (LIST (CAR IfThen)))
+			            IfThenState)
+  (COND ((STRING-EQUAL (Atm (CAR IfThen)) 'IF)
+	 (SETQ IfThenState 'IF)
+	 (loop for Forms on (CDR IfThen) do
+	       (COND ((ATOM (CAR Forms))
+		      (SELECTOR (Atm (CAR Forms)) STRING-EQUAL
+			(('IF) (PrintIfThenWarning) (RETURN IfThen))	;abort
+			(('THEN) (COND ((STRING-EQUAL IfThenState 'IF)
+				     (SETQ IfThenState 'THEN)
+				     (SETQ TranslatedIfThen
+					   (InsertIfThenForm FormList
+							     TranslatedIfThen))
+				     (SETQ FormList NIL))
+				    (T (PrintIfThenWarning)
+				       (RETURN IfThen))))
+			(('ELSE) (COND ((STRING-EQUAL IfThenState 'IF)
+					(RETURN
+					  `(COND ,(InsertIfThenForm FormList NIL)
+						 ,@(CDR Forms))))
+				       ((AND (STRING-EQUAL IfThenState 'THEN)
+					     (NULL FormList))
+					(RETURN
+					  `(COND
+					     ,(InsertIfThenForm (CDR TranslatedIfThen) NIL)
+						 ,@(CDR Forms))))
+				       ((STRING-EQUAL IfThenState 'THEN)
+					(RETURN
+					  (APPEND (InsertIfThenForm FormList
+								    TranslatedIfThen)
+						  (CDR Forms))))
+				       (T (PrintIfThenWarning)
+					  (RETURN IfThen))))
+			(('ELSEIF) (COND ((STRING-EQUAL IfThenState 'IF)
+					  (RETURN
+					    `(COND ,(InsertIfThenForm FormList NIL)
+						   (T ,(CONS (CAR IfThen) (CDR Forms))))))
+					 ((AND (STRING-EQUAL IfThenState 'THEN)
+					       (NULL FormList))
+					  (RETURN
+					    `(COND
+					       ,(InsertIfThenForm (CDR TranslatedIfThen) NIL)
+					       (T ,(CONS (CAR IfThen) (CDR Forms))))))
+					 ((STRING-EQUAL IfThenState 'THEN)
+					  (RETURN
+					    (APPEND
+					      (InsertIfThenForm FormList
+								TranslatedIfThen)
+					      (LIST (CONS (CAR IfThen) (CDR Forms))))))
+					 (T (PrintIfThenWarning)
+					    (RETURN IfThen))))
+			(T (SETQ FormList (APPEND FormList (LIST (CAR Forms)))))))
+		     (T (COND ((STRING-EQUAL (Atm (CAAR Forms)) '*)
+			       (RecordWarning "COMMENT used as part of If-then statement.")))
+			(SETQ FormList (APPEND FormList (LIST (CAR Forms))))))
+	       finally (RETURN (APPEND TranslatedIfThen
+				       (COND ((AND (STRING-EQUAL IfThenState 'THEN)
+						   (CDR FormList))
+					      (LIST `(PROGN ,@FormList)))
+					     (T FormList))))))
+	(T (PrintIfThenWarning)
+	   IfThen)))
+
+(DEFUN InsertIfThenForm (FormList IfThen)
+  (COND ((CDR FormList)
+	 (SETQ IfThen (APPEND IfThen (LIST (CONS 'PROGN FormList)))))
+	(T (SETQ IfThen (APPEND IfThen FormList)))))
+							 
+(DEFUN PrintIfThenWarning () 
+  (RecordWarning "Ill formed If-Then statement."))
+
+; Can't handle something like (dbrelation . dbobjects).
+(DEFUN ConvertExpression (Expression &AUX Translation TFunction)
+  (COND ((ATOM (CAR Expression))
+; Takes care of functions with reversed arguments.
+	 (loop for FunctionName in ReverseTwoArgFunctions
+	       when (STRING-EQUAL (CAR Expression) FunctionName)
+	       do (RecordSuspicion `(Reversed arguments for ,FunctionName))
+	       (COND ((MEM #'STRING-EQUAL FunctionName '(MAP MAPC))
+		      (RecordWarning `(,FunctionName returns NIL in Interlisp and the list in
+				       Zetalisp.))))
+	       (COND ((CDDDR Expression)
+		      (RecordWarning
+			`(A call to ,FunctionName has three arguments/; only two retained.))))
+	       (RETURN (SETQ Expression
+			     (LIST (CAR Expression)
+				   (CADDR Expression)
+				   (CADR Expression)))))
+; Takes care of functions with different names.
+	 (COND ((SETQ Translation (ASS #'STRING-EQUAL (CAR Expression)
+				       FunctionNameTranslations))
+		(RecordSuspicion `(,(CAR Translation) translated to ,(CADR Translation)))
+		(SETQ Expression (APPEND (CDR Translation) (CDR Expression)))))
+; Flag unsupported functions.
+	 (COND ((MEM #'STRING-EQUAL (CAR Expression) UnsupportedFunctions)
+		(RecordWarning `(Conversion of ,(CAR Expression) is not supported.))))
+; Internal Translations.
+	 (COND ((SETQ TFunction
+		      (CADR (ASS #'STRING-EQUAL (CAR Expression) TranslationFunctions)))
+		(SETQ Expression (FUNCALL TFunction Expression))))
+; User Translation Hook.
+	 (COND ((SETQ TFunction
+		      (CADR (ASS #'STRING-EQUAL (CAR Expression) FunctionTranslations)))
+		(SETQ Expression (FUNCALL TFunction Expression))))))
+; Basic translation. Check for CONSs (later).
+  (COND ((EQ (Atm (CAR Expression)) 'COMMENT)
+	 Expression)
+	(T (loop for Element in Expression collect
+		 (COND ((LISTP Element)
+			(ConvertExpression Element))
+		       ((ATOM Element) (TranslateAtom Element))
+		       (T Element))))))
+
+; This assumes that backquoting is identical in Interlisp and Zetalisp except for the
+; BQUOTE function itself.
+; The form is read back in to invoke the backquote reader macro.
+(DEFUN ConvertBackquotedExpression (Expression)
+  (LET ((READTABLE BackQuoteReadTable))
+    (READ-FROM-STRING (FORMAT NIL "`~A" (CADR Expression)))))
+
+; Generate Interlisp SUBSTRING command so that it can be translated recursively.
+(DEFUN TranslateSUBATOM (Expression)
+  `(INTERN (SUBSTRING ,(CADR Expression) ,(CADDR Expression) ,(CADDDR Expression))))
+
+(DEFUN TranslateSUBSTRING (Expression)
+  `(,(CAR Expression) ,(CADR Expression) (1- ,(CADDR Expression)) ,(CADDDR Expression)))
+
+(DEFUN TranslateHARRAY (Expression)
+  (RecordWarning "The size of Zetalisp hash arrays is designated in entries not keys.")
+  `(MAKE-HASH-TABLE ':SIZE ,(CADR Expression)))
+
+(DEFUN TranslateSTRPOS (Expression)
+  (COND ((CDDDDR Expression)
+	 (RecordWarning "The 4th, 5th and 6th arguments to STRPOS are not supported.")))
+  (COND ((CDDDR Expression)
+	 `(1+ (STRING-SEARCH ,(CADR Expression) ,(CADDR Expression)
+			     (1- ,(CADDDR Expression)))))
+	(T `(1+ (STRING-SEARCH ,(CADR Expression) ,(CADDR Expression))))))
+
+(DEFUN TranslateBITSET (Expression)
+  `(LOGIOR ,(CADR Expression) ,(CADDR Expression)))
+
+(DEFUN TranslateBITCLEAR (Expression)
+  `(LOGAND ,(CADR Expression) (LOGNOT ,(CADDR Expression))))
+
+(DEFUN TranslateSETQQ (Expression)
+  `(SETQ ,(CADR Expression) ',(CADDR Expression)))
+
+(DEFUN TranslateNTHCHAR (Expression)
+  `(ASCII (AREF (STRING ,(CADR Expression)) (1- ,(CADDR Expression)))))
+
+(DEFUN TranslateNTHCHARCODE (Expression)
+  `(AREF (STRING ,(CADR Expression)) (1- ,(CADDR Expression))))
+
+(DEFUN TranslateCHCON (Expression)
+  (COND ((CDDR Expression)
+	 (RecordWarning "Second and third arguments to CHCON unsupported.")))
+  `(LISTARRAY (STRING ,(CADR Expression))))
+
+(DEFUN TranslateCHCON1 (Expression)
+  `(AREF (STRING ,(CADR Expression)) 0))
+
+(DEFUN TranslateCASE (Expression)
+  (SELECTOR (CAR Expression) STRING-EQUAL
+    (('L-CASE) (COND ((CDDR Expression)
+		      (RecordWarning "First letter flag in L-CASE not supported.")))
+     `(STRING-DOWNCASE ,(CADR Expression)))
+    (('U-CASE) `(STRING-UPCASE ,(CADR Expression)))))
+
+(DEFUN TranslateTYPENAME (Expression)
+  (RecordWarning `(,(CAR Expression) translated to TYPEP which returns Lisp Machine types.))
+  (SELECTOR (Atm (CAR Expression)) STRING-EQUAL
+    (('TYPENAME) `(TYPEP ,(CADR Expression)))
+    (('TYPENAMEP) `(TYPEP ,(CADR Expression) ,(CADDR Expression)))))
+
+(DEFUN TranslateEVALV (Expression)
+  (RecordSuspicion "EVALV translated to SYMEVAL which generates error for unbound symbol.")
+  (COND ((CDDR Expression)
+	 (RecordWarning "Second argument to EVALV removed in translation to SYMEVAL.")))
+  `(SYMEVAL ,(CADR Expression)))
+
+; Use Interlisp TIMES so that it will recursively be translated to Zetalisp *.
+(DEFUN TranslateELT (Expression)
+  (SELECTOR (Atm (CAR Expression)) STRING-EQUAL
+    (('ELT) `(AREF ,(CADR Expression) (TIMES (1- ,(CADDR Expression)) 2)))
+    (('ELTD) `(AREF ,(CADR Expression) (1- (TIMES ,(CADDR Expression) 2))))
+    (T Expression)))
+
+; Use Interlisp TIMES so that it will recursively be translated to Zetalisp *.
+(DEFUN TranslateSET (Expression)
+  (SELECTOR (Atm (CAR Expression)) STRING-EQUAL
+    (('SETA) `(ASET ,(CADDDR Expression)
+		    ,(CADR Expression)
+		    (TIMES (1- ,(CADDR Expression) 2))))
+    (('SETD) `(ASET ,(CADDDR Expression)
+		    ,(CADR Expression)
+		    (1- (TIMES ,(CADDR Expression) 2))))))
+
+(DEFUN TranslateSPECVARS (Expression)
+  (COND ((STRING-EQUAL (Atm (CADDR Expression)) T) Expression)
+	(T (CONS 'SPECIAL (CDR Expression)))))
+
+(DEFUN TranslateLOCALVARS (Expression)
+  (COND ((STRING-EQUAL (Atm (CADDR Expression)) T) Expression)
+	(T (CONS 'UNSPECIAL (CDR Expression)))))
+
+(DEFUN TranslateAPPEND (Expression)
+  (COND ((CDDR Expression) Expression)
+	(T `(COPYLIST ,(CADR Expression)))))
+
+(DEFUN TranslateNTH (Expression)
+  `(NTHCDR (1- ,(CADDR Expression)) ,(CADR Expression)))
+
+(DEFUN TranslatePUTD (Expression)
+  `(SETF (FSYMEVAL ,(CADR Expression)) ,(CADDR Expression)))
+
+(DEFUN TranslateSomeEvery (Expression)
+  (RecordWarning
+    `(Predicate function for ,(CAR Expression) has only one argument in Zetalisp.))
+  Expression)
+
+(DEFUN TranslateMATCH (Expression)
+  (RecordWarning "The Interlisp pattern match compiler is not supported in Zetalisp.")
+  Expression)
+
+(DEFUN ConvertShiftOperations (ShiftForm)
+  (SELECTOR (Atm (CAR ShiftForm)) STRING-EQUAL
+    (('LSH) `(ASH ,@(CDR ShiftForm)))
+    (('RSH) `(ASH ,(CADR ShiftForm) (MINUS ,(CADDR ShiftForm))))
+    (('LLSH) `(LSH ,@(CDR ShiftForm)))
+    (('LRSH) `(LSH ,(CADR ShiftForm) (MINUS ,(CADDR ShiftForm))))
+    (T ShiftForm)))
+
+(DEFUN TranslateAtom (Atom &AUX Translation)
+  (COND ((NOT (ATOM Atom))
+	 Atom)
+	((NUMBERP Atom) Atom)      ;STRING-SEARCH-SET won't work on numbers so don't proceed.
+	(T (loop for Function in AtomConversionFunctions until
+		 (SETQ Translation (FUNCALL Function Atom))
+		 finally 
+		 (COND ((NULL Translation) (SETQ Translation Atom))
+		       ((ATOM Translation))
+		       ((STRINGP Translation))
+		       (T (SETQ Translation (loop for Trans in Translation
+						  collect (TranslateAtom Atom)))))
+		 (RETURN Translation)))))
+
+; This and InfixTranslation are the present functions in AtomConversionFunctions which
+; is applied above.
+(DEFUN AtomTranslation (Atom)
+  (CADR (ASS #'STRING-EQUAL Atom AtomTranslations)))
+
+; Need to take care of embedded arithmetic infix operators.
+; Other embedded infix operators can probably be left embedded.
+(DEFUN InfixTranslation (Atom &AUX NewAtom)
+  (COND ((NOT (ATOM Atom)) (FERROR "Infix operator not in an atom"))
+	(T (COND ((STRING-SEARCH-SET InfixOperators Atom)
+		  (COND ((OR (EQUAL (STRING-LENGTH (STRING Atom)) 1)
+			     (STRING-EQUAL (Atm Atom) '/:/:))
+			 (SETQ NewAtom (ReplaceFromCharList Atom SingleCharacterTranslations))
+			 (COND ((NOT (STRING-EQUAL (Atm Atom) '*))
+				(RecordSuspicion `(,NewAtom appears as an isolated atom.))))
+			 NewAtom)
+			(T (SETQ NewAtom (ReplaceFromCharList
+					   Atom SingleCharacterTranslations))
+			   (RecordSuspicion `(,NewAtom contains an infix operator?))
+			   NewAtom)))))))
+
+#|
+; Slashify appropriate characters.
+(DEFUN Slashify (Atom &AUX NewPosition (NewAtom ""))
+  (SETQ Atom (STRING Atom))
+  (loop while (SETQ NewPosition (STRING-SEARCH-SET SlashifiedCharTable Atom))
+	do (SETQ NewAtom (STRING-APPEND NewAtom (COND ((SUBSTRING Atom 0 NewPosition))
+						      (T ""))
+					"//"
+					(SUBSTRING Atom NewPosition (1+ NewPosition))))
+	(SETQ Atom (SUBSTRING Atom (1+ NewPosition)))
+	finally (RETURN (INTERN (STRING-APPEND NewAtom Atom)))))
+|#
+
+; Translate infix operators embedded in atoms.
+(DEFUN ReplaceFromCharList (Atom CharPairs)
+  (COND ((ATOM Atom))
+	((STRINGP Atom))
+	(T (RecordWarning `(,Atom is not a string or litatom.))))
+  (loop with AtomString = (COND ((STRINGP Atom) Atom)
+				(T (STRING Atom)))
+	and Translation
+	for I from 0 to (1- (STRING-LENGTH AtomString))
+	when (SETQ Translation (CADR (ASSOC (CHARACTER (SUBSTRING AtomString I (1+ I)))
+					    CharPairs)))
+	do (SETQ AtomString (STRING-APPEND (SUBSTRING AtomString 0 I)
+					   (ASCII Translation)
+					   (SUBSTRING AtomString (1+ I))))
+	finally (RETURN (INTERN AtomString))))
+
+; We must do the ConvertExpression first because it generates the warnings that
+; PrintWarnings prints out!!
+(DEFUN GrindInterlisp (Expression)
+  (SETQ Expression (ConvertExpression Expression))
+  (PrintWarnings)
+  (GRIND-TOP-LEVEL Expression NIL OutputFile))
+
+(DEFUN RecordWarning (Warning)
+  (SETQ Warning `(COMMENT ****** ,Warning ******))
+  (COND ((NOT (MEMBER Warning Warnings))
+	 (PUSH Warning Warnings))))
+
+(DEFUN PrintWarnings ()
+  (loop for Warning in (NREVERSE Warnings) do
+	(GRIND-TOP-LEVEL Warning NIL OutputFile))
+  (SETQ Warnings NIL))
+
+; Right now, these are just infix operator suspicions
+(DEFUN RecordSuspicion (Suspicion)
+  (COND ((NOT (MEMBER Suspicion Suspicions))
+	 (PUSH Suspicion Suspicions))))
+
+(DEFUN PrintSuspicions ()
+  (COND (Suspicions
+	 (TERPRI OutputFile)
+	 (TERPRI OutputFile)
+	 (TERPRI OutputFile)
+	 (FORMAT OutputFile "(COMMENT")
+	 (loop for Suspicion in Suspicions do
+	       (TERPRI OutputFile)
+	       (COND ((STRINGP Suspicion)
+		      (PRINC Suspicion OutputFile))
+		     (T (loop for Word in Suspicion do
+			      (PRIN1 Word OutputFile)
+			      (PRINC " " OutputFile)))))
+	 (TERPRI OutputFile)
+	 (FORMAT OutputFile ")")
+	 (TERPRI OutputFile))))
+
+(DEFPROP COMMENT SI:GRIND-Comment SI:GRIND-MACRO)
+
+; Takes care of converting Interlisp comments to the Zetalisp (COMMENT ... ) form.
+SI:
+(DEFUN GRIND-Comment (EXP LOC)
+  (GRIND-AS-BLOCK EXP (LOCF EXP)))
+
+;;; Preprocess Interlisp files for the translation program.
+; Remove Interlisp super brackets, change bars, and fonting information.
+; Does not remove right brackets that are not paired with left brackets.
+(DEFUN PreprocessInterlispFile (InputFileName OutputFileName &AUX Char Count
+				(CountList NIL)
+				(SpaceCount 0))
+  (WITH-OPEN-FILE (InputFile (FS:MERGE-PATHNAME-DEFAULTS InputFileName) '(:IN))
+    (WITH-OPEN-FILE (OutputFile (FS:MERGE-PATHNAME-DEFAULTS OutputFileName
+							    InputFileName "ilisp") '(:OUT))
+      (loop while (SETQ Char (TYI InputFile NIL)) do
+	    (COND ((AND (NOT (ZEROP SpaceCount))
+			(NEQ Char #/ )
+			(NEQ Char #/|))
+		   (loop for SpaceNumber from 1 to SpaceCount do
+			 (TYO #/  OutputFile))
+		   (SETQ SpaceCount 0)))
+	    (SELECTQ Char
+	      (#/( (SETQ CountList (IncrementListElements CountList))
+	           (TYO #/( OutputFile))
+	      (#/) (SETQ CountList (DecrementListElements CountList))
+	           (TYO #/) OutputFile))
+	      (#/[ (SETQ CountList (IncrementListElements CountList))
+	           (PUSH 1 CountList)
+	           (TYO #/( OutputFile))
+	      (#/] (COND
+		     (CountList (SETQ Count (POP CountList)))
+		     (T (FERROR "Right bracket found without matching left bracket.")))
+	           (loop for I from 1 to Count do
+			 (TYO #/) OutputFile))
+		   (SETQ CountList (loop for Cnt in CountList collect
+					 (- Cnt Count))))
+	      (#/| (SETQ SpaceCount 0))
+	      (#/  (SETQ SpaceCount (1+ SpaceCount)))
+	      (T (COND ((GREATERP Char 26.) (TYO Char OutputFile)))))))))
+
+#|
+;;; Preprocess Interlisp files for the translation program.
+; Remove Interlisp super brackets, change bars, and fonting information.
+; Does not remove right brackets that are not paired with left brackets.
+(DEFUN PreprocessInterlispFile (InputFileName OutputFileName &AUX Char Line Count
+				(CountList NIL)
+				(SpaceCount 0))
+  (WITH-OPEN-FILE (InputFile (FS:MERGE-PATHNAME-DEFAULTS InputFileName) '(:IN))
+    (WITH-OPEN-FILE (OutputFile (FS:MERGE-PATHNAME-DEFAULTS OutputFileName
+							    InputFileName "ilisp") '(:OUT))
+      (loop while (SETQ Line (SEND InputFile ':LINE-IN)) do
+	    (loop for Char in (EXPLODEN Line) do
+		  (COND ((AND (NOT (ZEROP SpaceCount))
+			      (NEQ Char #/ )
+			      (NEQ Char #/|))
+			 (loop for SpaceNumber from 1 to SpaceCount do
+			       (TYO #/  OutputFile))
+			 (SETQ SpaceCount 0)))
+		  (SELECTQ Char
+		    (#/( (SETQ CountList (IncrementListElements CountList))
+			 (TYO #/( OutputFile))
+		    (#/) (SETQ CountList (DecrementListElements CountList))
+			 (TYO #/) OutputFile))
+		    (#/[ (SETQ CountList (IncrementListElements CountList))
+			 (PUSH 1 CountList)
+			 (TYO #/( OutputFile))
+		    (#/] (COND
+			   (CountList (SETQ Count (POP CountList)))
+			   (T (FERROR "Right bracket found without matching left bracket.")))
+			 (loop for I from 1 to Count do
+			       (TYO #/) OutputFile))
+			 (SETQ CountList (loop for Cnt in CountList collect
+					       (- Cnt Count))))
+		    (#/| (SETQ SpaceCount 0))
+		    (#/  (SETQ SpaceCount (1+ SpaceCount)))
+		    (T (COND ((GREATERP Char 26.) (TYO Char OutputFile))))))
+	    (TYO #\CR OutputFile)))))
+|#
+
+(DEFUN IncrementListElements (List)
+  (loop for Item in List collect
+	(1+ Item)))
+
+(DEFUN DecrementListElements (List)
+  (loop for Item in List collect
+	(1- Item)))
+
+(DEFUN Atm (Atom)
+  (COND ((ATOM Atom) Atom)
+	(T NIL)))
+

@@ -1,0 +1,950 @@
+;-*- Mode:LISP; Package:RECORDPACKAGE; Base:10; Readtable:INTERLISP -*-
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; This program contains confidential information of Inference Corporation.  Use or copying   ;
+; without express written authorization of Inference Corporation is strictly prohibited.     ;
+; Copyright ownership rights hereby asserted by Inference Corporation.  Copyright 1984.      ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
+
+;;; DEFRECORD data structure definition package.
+
+;;; Things to add:
+;      1.  Print and PrintFunction options to DEFRECORD, and (or?) even better, a defining
+;          construct that builds the appropriate DEFSELECT and knows the magic word
+;          :NAMED-STRUCTURE-INVOKE
+;      3.  Default building of the segment array for StoreIn records.
+;      4.  Bit packing primitives.
+;      6.  Subrecord declarations should handle their Implementation's better; e.g., subs
+;          of an ArraySegment should (when the sub is also ArraySegment) be stored in the
+;          same linear array as the parent.
+;;;
+
+;;; *****
+;;; Constants and data structures
+;;; *****
+
+;;; Variable that contains type declarations for global variables.
+(DEFVAR GlobalTypeDeclarations NIL)
+
+;;; These are reserved parameters for use within create statements.  They should NEVER be
+;;; used as user field names!!
+(DEFCONST ReservedCreateFields '(!NumberInstances !Area))
+
+;;; A unique designator for the initialization of an uninitialized field.
+;;; Don't create a new cons if the file is reloaded!!
+(DEFVAR NoInitialization (LIST NIL))
+
+;;; Records is a path (see StorePath and LookupPath) that maps each defined record name
+;;; to its Record description.
+(DEFVAR Records (NCONS NIL))
+
+;;; Accessors maps each defined field name (fully qualified so all are unique) to its Accessor
+(DEFVAR Accessors (NCONS NIL))
+
+;;; By default, records are implemented as arrays.
+(DEFCONST DEFRECORDDefaultImplementation 'Array)
+
+;;; Default percentage increase in an array containing segment records when the array
+;;; overflows.
+(DEFCONST DefaultSegmentGrowth .25)
+
+;;; Mapping of functions to (adders) functions that convert a non area form to an area form,
+;;; to (functions) their area versions, and from their area versions to functions that change
+;;; the area argument.
+(DEFCONST AreaAdders '((CONS . CONSAreaAdder) (NCONS . CONSAreaAdder) (XCONS . CONSAreaAdder)
+		       (LIST . LISTAreaAdder) (LIST* . LISTAreaAdder)))
+(DEFCONST AreaFunctions
+	  '((CONS . CONS-IN-AREA) (NCONS . NCONS-IN-AREA) (XCONS . XCONS-IN-AREA)
+	    (LIST . LIST-IN-AREA) (LIST* . LIST*-IN-AREA)))
+(DEFCONST AreaChangers '((CONS-IN-AREA . CONSAreaChanger) (NCONS-IN-AREA . CONSAreaChanger)
+			 (XCONS-IN-AREA . CONSAreaChanger)
+			 (LIST-IN-AREA . ListAreaChanger) (LIST*-IN-AREA . LISTAreaChanger)
+			 (MAKE-ARRAY . ArrayAreaChanger)))
+
+;;; The MakeArray declaration to DEFRECORD takes a list of arguments (that occupy the CDR
+;;; of the declaration).
+(DEFPROP MakeArray T MultipleDEFRECORDArguments)
+
+;;; (RecordSegment foo bar) has no meaningful value and thus cannot be bound.  However
+;;; the foo and bar forms can be bound and replaced by variables if necessary.
+(global:push '(RecordSegment . RecordSegmentLETPFunction) iu:SpecialLetpVariableFunctions)
+
+;;; Cause DEFRECORD's field name list to be indented as a list rather than a function call.
+(global:push '(DEFRECORD 2) zwei:*indent-not-function-superiors*)
+
+;;; Basic description of a defined record.  Create is an expression that (when the initial
+;;; field values are substituted for the (EQ) field names) when evaluated will produce
+;;; and instance of the record (NIL if the record cannot be created).  Type? is a form that
+;;; will test whether or not an arbitrary item is an instance of this kind of record (NIL if
+;;; this check cannot be made), Fields is the list of fully qualified field names of this
+;;; record (minus those that actually name subrecords).  Segment? if instances are kept
+;;; in a single structure (thus, each instance is an index in this structure).  Type?Segment?
+;;; if type? forms check the contents of such a segment rather than the containing structure.
+;;; SegmentStorage, if nonNIL, is a form that evaluates to a data structure in which instances
+;;; of this record will be stored (==> Segment?).  ReservedCreateDefaultValues, an a-list,
+;;; specifies the default values for any relevent ReservedCreateFields.
+(DEFSTRUCT (Record (:CONC-NAME "RECORD") (:CONSTRUCTOR MakeRecord))
+  Name Create Type? Fields Segment? Type?Segment? SegmentStorage ReservedCreateDefaultValues)
+
+;;; Basic description of a fully qualified field name.  Form will access this field from
+;;; DATUM (and MODIFIER if appropriate to this type of record).  DefaultInitialization is
+;;; a form that is evaluated to initialize this field in create expressions if the field
+;;; is not explicitly supplied.  Name is the fully qualified name of this accessor and is
+;;; EQ to the corresponding entry in this Accessor's Record's Fields.  Segment? is true
+;;; if this accessor takes both a DATUM and a MODIFIER, in which case the MODIFIER is always
+;;; SegmentStorage if nonNIL.
+(DEFSTRUCT (Accessor (:CONC-NAME "ACCESSOR") (:CONSTRUCTOR MakeAccessor))
+  Name Form (DefaultInitialization NoInitialization) Segment? SegmentStorage)
+
+;;; Description of a segment record access form.  Datum is the containing data structure and
+;;; Modifier is the index to the referenced record.  The first element of the list is always
+;;; the atom RecordSegment (NOT SegmentAccessRecordSegment).
+(DEFSTRUCT (SegmentAccess (:CONC-NAME "SEGMENTACCESS") (:TYPE :LIST))
+  RecordSegment Datum Modifier)
+
+;;; Description of a datum of a given type of record.  Used by alter and the segment
+;;; manipulators.
+(DEFSTRUCT (PlaceDescription (:CONC-NAME "PLACEDESCRIPTION") (:TYPE :LIST))
+  RecordName Instance)
+
+
+;;; *****
+;;; Error handling cruft
+;;; *****
+
+(DEFSIGNAL ContinuableError (FERROR ContinuableError) ())
+
+(DEFSIGNAL AmbiguousPath (ERROR AmbiguousPath ContinuableError)
+	   (AmbiguousPath PossibleCompletions))
+
+(DEFSIGNAL NoSuchPath (ERROR NoSuchPath ContinuableError) ())
+
+(DEFMACRO CatchContinuableError (&BODY Body)
+  `(CATCH-ERROR-RESTART (ContinuableError "Continues, ignoring error.") ,@Body))
+
+
+;;; *****
+;;; Record defining routines
+;;; *****
+
+;;; Macro to define a record named Name.  Fields is the list of field names (or a list
+;;; of entries of the form (field-name fetch-form) in the case of Functional
+;;; implementation, or an arbitrary list structure of field names in the case of List
+;;; implementation, or a list of entries of the form (field-name byte-descriptor) in the
+;;; case of Integer implementation), or a record name symbol in which case Declarations
+;;; should be NIL and Name is made to be a synonym for Fields (this is particularly useful
+;;; in subrecord declarations to declare that a given field should contain instances of a
+;;; given record)).
+;;; The currently defined declarations are:
+;;;    Typed -- the Type? form can be used to check if items are instances of this record.
+;;;    (field-name  value) -- value is a form that should be evaluated to get the initial
+;;;                            value of this field in create expression, when the field is
+;;;                            not explicitly specified.
+;;;    (DEFRECORD field-name . etc.) -- This is a subrecord declaration which declares that
+;;;                                     field-name is an instance of record of the given
+;;;                                     description.  Name.field-name is the name of this
+;;;                                     inner record, and its fields are named (in their
+;;;                                     fully qualified form) Name.field-name.inner-field.
+;;;    (Implementation type)  -- type can be List, Array, ArrayLeader, ArraySegment,
+;;;                              ArrayLeaderSegment, PropertyList, AssociationList, HashArray,
+;;;                              or Functional.
+;;;                              The Segment types are for records that are replicated
+;;;                              several times in an Array or ArrayLeader.  Instances of the
+;;;                              record require TWO data to be described, the containing array
+;;;                              and the position of the record (in that order).  The first
+;;;                              is the DATUM and the second is the MODIFIER (These symbols
+;;;                              can be used in the forms of Functional declarations.)  To
+;;;                              describe an instance, use a RecordSegment form, or better,
+;;;                              use the {} reader macros.
+;;;    (StoreIn Form) -- for Segment Implementation's, this declaration will cause created
+;;;                      instances to be stored (by default) in the data structure to which
+;;;                      Form evaluates at run time (Form is generally a symbol).  This makes
+;;;                      specification of a RecordSegment form unnecessary in accesses and
+;;;                      creates (MODIFIER can simply be used as a normal DATUM).
+;;;    (Create form) -- this form will override the default creation form; it should be
+;;;                     written in terms of the field names fully qualified WRT the containing
+;;;                     record declaration.
+;;;    (Type? form)  -- this form will be used for Type? checking, and is written similar to
+;;;                     the create form, except that it may reference DATUM and MODIFIER, and
+;;;                     it cannot reference the field names (such a reference does not make
+;;;                     sense!).
+;;;    (MakeArray . options) -- additional options to MAKE-ARRAY in array-type records.
+;;;                             Option names need not be quoted.
+;;;    (SizeIn variable) -- variable is DEFCONST'd to the number of fields in this record.
+;;;    (NumberInstances n) -- for segment type implementations, creations will (by default)
+;;;                           initially contain room for n copies of the record.  Default is
+;;;                           1.  (The ReservedCreateField !NumberInstances may be
+;;;                           used to override the default at run time.)
+;;;    (Area area-name) -- instances of this record will be created in area-name by default.
+;;;                        (The ReservedCreateField !Area can override.)
+;;;
+(DEFMACRO DEFRECORD (Name Fields &REST Declarations)
+  `(EVAL-WHEN (LOAD COMPILE EVAL)
+	      (DefineRecord ',Name ',Fields ',Declarations)
+	      ',Name))
+
+;;; Actual function that builds the description of a record.  Record is the describing
+;;; Record.  Options is a property list of the declarations.  SubRecords is the list of
+;;; sub-record declarations.  Initializations is the list of field initialization
+;;; declarations.  Create is the compute form to create an instance of this record.
+;;; FieldNames is the computed list of fully qualified field names (including those of inner
+;;; records).  Implementation is the chosen type of implementation.  Header is the full name
+;;; of this record.  OuterHeader is the full name of the record of which this record is a
+;;; subrecord (if applicable).  OuterAccessor (if nonNIL) is the form that should be used
+;;; to access a DATUM (and MODIFIER) to produce the instance that this sub-record describes.
+;;;
+(SPECIAL NewRecord Options SubRecords Initializations ReservedCreateDefaults
+	 Create FieldNames Implementation Header OuterAccessor RecordName)
+(DEFUN DefineRecord (Name Fields Declarations &OPTIONAL OuterHeader OuterAccessor
+			  &AUX FieldNames Create ReservedCreateDefaults DeclarationForm)
+  (CatchContinuableError		;Escape to ignore this declaration.
+    (LET ((NewRecord (MakeRecord)) (Options (NCONS NIL)) SubRecords Initializations
+	   RecordName Implementation Segment? (Header (APPEND OuterHeader (LIST Name))))
+      (SETQ RecordName (ExternalName Header))
+      (SETF (RecordName NewRecord) Header)
+      (SETQ DeclarationForm `(DEFRECORD ,RecordName ,Fields ,.Declarations))
+      (AND (GET RecordName 'RecordDeclaration)
+	   (NOT (EQUAL (GET RecordName 'RecordDeclaration) DeclarationForm))
+	   (FORMAT T "~%~S redefined as a record." RecordName))
+      (PUTPROP RecordName DeclarationForm 'RecordDeclaration)
+      ;; Build the record descriptor node.
+      (StorePath Header Records NewRecord)
+      (COND
+	((AND Fields (SYMBOLP Fields))		;Name should be made a synonym of Fields
+	 (OR (NULL Declarations)
+	     (FERROR 'ContinuableError
+		     "Declarations not handled for synonym records.~%~
+                      Bad record:  ~S~%Continue to ignore its definition."
+		     Header))
+	 (LookupRecordName Fields
+	   (SETQ FieldNames
+		 (bind newfield for field in (RecordFields Record) collect
+		       (SETQ newfield (APPEND Header field NIL))
+		       (LookupFieldName field
+			 (StorePath newfield accessors
+				    (MakeAccessor Name newfield
+						  Form (COND (OuterAccessor
+							      (SUBST OuterAccessor 'DATUM
+								     (AccessorForm Accessor)))
+							     (T (AccessorForm Accessor)))
+						  DefaultInitialization
+						  (AccessorDefaultInitialization Accessor)
+						  Segment? (AccessorSegment? Accessor))))
+		       newfield))
+	   (SETF (RecordFields NewRecord) FieldNames)
+	   (SETQ Create (SETF (RecordCreate NewRecord)
+			      (SUBPAIR (RecordFields Record) FieldNames
+				       (RecordCreate Record))))
+	   (SETF (RecordType? NewRecord) (COPYTREE (RecordType? Record)))
+	   (SETF (RecordSegment? NewRecord) (RecordSegment? Record))
+	   (SETF (RecordType?Segment? NewRecord) (RecordType?Segment? Record))
+	   (SETF (RecordSegmentStorage NewRecord) (RecordSegmentStorage Record))
+	   (SETF (RecordReservedCreateDefaultValues NewRecord)
+		 (RecordReservedCreateDefaultValues Record))))
+	(T ;; Process the declarations into the Options list, etc.
+	 (for decl in Declarations do
+	      (COND ((NLISTP decl)
+		     (PUTPROP Options T decl))
+		    ((EQ 'SETF (CAR decl))	; reads as a SETF expression
+		     (push (CDR decl) Initializations))
+		    ((EQ 'DEFRECORD (CAR decl))
+		     (push (CDR decl) SubRecords))
+		    ((NOT (SYMBOLP (CAR decl)))
+		     (FERROR 'ContinuableError
+			     "Bad DEFRECORD declaration in record ~S:~%~S~%~
+                              Continue to ignore this declaration.  ~
+                              Restart to ignore the entire record."
+			     Header decl))
+		    ((GET (CAR decl) 'MutipleDEFRECORDArguments)
+		     (PUTPROP Options (CDR decl) (CAR decl)))
+		    (T (PUTPROP Options (CADR decl) (CAR decl)))))
+	 ;; Build the accessor forms, the create form, and the list of fully qualified field
+	 ;; names.
+	 (MULTIPLE-VALUE (Create FieldNames)
+	   ;; Any updates to this SETQ MUST be reflected in typename
+	   (SELECTQ (SETQ Implementation (OR (GET Options 'Implementation)
+					     DEFRECORDDefaultImplementation))
+	     (List (GenerateListAccessors Fields Header))
+	     (Array (GenerateSegmentAccessors Fields Header 'AREF))
+	     (ArraySegment (GenerateSegmentAccessors Fields Header 'AREF (SETQ Segment? T)))
+	     (ArrayLeader (GenerateSegmentAccessors Fields Header 'ARRAY-LEADER))
+	     (ArrayLeaderSegment
+	      (GenerateSegmentAccessors Fields Header 'ARRAY-LEADER (SETQ Segment? T)))
+	     (PropertyList (GenerateNamedAccessors Fields Header 'GETPROPNonNil '(LIST NIL)))
+	     (AssociationList (GenerateNamedAccessors Fields Header 'GETASSOC '(LIST NIL)))
+	     (HashArray (GenerateNamedAccessors Fields Header 'GETHASH '(MAKE-HASH-TABLE)))
+	     (Functional (GenerateFunctionalAccessors Fields Header))
+	     (OTHERWISE (FERROR 'ContinuableError
+				"Illegal DEFRECORD implementation in record ~S:  ~S~%~
+                                 Restarting will bypass this record."
+				Header Implementation))))
+	 ;; Build the fields of the record descriptor and the size variable.
+	 (AND (GET Options 'Create)
+	      (SETQ Create (CanonicalizeFieldsIn (Get Options 'Create) RecordName)))
+	 (AND (GET Options 'Area) (SETQ Create (Areaify Create (GET Options 'Area))))
+	 (SETF (RecordCreate NewRecord) Create)
+	 (SETF (RecordFields NewRecord) FieldNames)
+	 (SETF (RecordSegment? NewRecord) Segment?)
+	 (AND (GET Options 'SizeIn)
+	   (EVAL `(DEFCONST ,(GET Options 'SizeIn) ,(LENGTH FieldNames))))
+	 (SETF (RecordType? NewRecord)
+	       (OR (GET Options 'Type?)
+		   (AND (GET Options 'Typed)
+			(SELECTQ Implementation
+			  (List `(EQ ',RecordName (CAR (LISTP ,(Datum)))))
+			  ((Array ArraySegment ArrayLeader ArrayLeaderSegment)
+			   `(EQ ',RecordName (NAMED-STRUCTURE-P ,(Datum))))
+			  (OTHERWISE
+			   (FERROR 'ContinuableError
+				   "Record implementation ~S cannot by Typed!~
+                                    Bad record:  ~S"
+				   Implementation Header))))))
+	 (SETF (RecordType?Segment? NewRecord)
+	       (ItemInTree? 'MODIFIER (RecordType? NewRecord)))
+	 (SETF (RecordSegmentStorage NewRecord) (GET Options 'StoreIn))
+	 (SETF (RecordReservedCreateDefaultValues NewRecord) ReservedCreateDefaults)
+	 ;; Store the user-supplied default initializations.
+	 (for init in Initializations do
+	      (LookupFieldName (APPEND Header (LIST (CAR init)))
+		(SETF (AccessorDefaultInitialization Accessor) (CADR init))))
+	 ;; Process the sub-record declarations.  The sub-defined field can either be
+	 ;; specified directly in a create, or its create expression will be used.
+	 (bind FieldName for sr in SubRecords do
+	       (SETQ FieldName (CAR (MEMBER (APPEND Header (LIST (CAR sr)))
+					    FieldNames)))
+	       (MULTIPLE-VALUE-BIND (InnerCreate InnerFields)
+		   (DefineRecord (CAR sr) (CADR sr) (CDDR sr) Header
+				 (AccessorForm (LookupPath FieldName Accessors)))
+		 (OptionalizeFieldName FieldName InnerCreate Create)
+		 (NCONC FieldNames (COPYLIST InnerFields))))))))
+  (VALUES Create FieldNames))
+
+
+;;; *****
+;;; Record instance manipulation routines.
+;;; *****
+
+(DEFMACRO fetch (Field of Datum) of
+  (SETQ Field (CompleteFieldName Field Datum))
+  (CatchContinuableError
+    (LookupFieldName Field
+      (COND ((AccessorSegment? Accessor)
+	     (COND ((AND (NOT (SegmentAccessForm? Datum))
+			 (AccessorSegmentStorage Accessor))
+		    (SUBLIS `((DATUM . ,(AccessorSegmentStorage Accessor))
+			      (MODIFIER . ,Datum))
+			    (AccessorForm Accessor)))
+		   ((SegmentAccessForm? Datum)
+		    (SUBLIS `((DATUM . ,(SegmentAccessDatum Datum))
+			      (MODIFIER . ,(SegmentAccessModifier Datum)))
+			    (AccessorForm Accessor)))
+		   (T (FERROR 'ContinuableError
+			      "Non-segment fetch of a segment field:  ~S"
+			      Field))))
+	    (T (AND (SegmentAccessForm? Datum)
+		    (FERROR 'ContinuableError
+			    "Segment fetch of a non-segment field:  ~S"
+			    Field))
+	       (SUBST Datum 'DATUM (AccessorForm Accessor)))))))
+
+(DEFMACRO replace (Field of Datum with Value) of with
+  `(SETF (fetch ,Field of ,Datum) ,Value))
+
+(SPECIAL Substitutions)
+(DEFMACRO create (RecordName &BODY Body &AUX UsingInstance Copy? ExistingStructure
+					     Substitutions)
+  (CatchContinuableError
+    (while (SELECTQ (CAR Body)
+	     (using (pop Body) (SETQ UsingInstance (pop Body)))
+	     (copying (pop Body) (SETQ Copy? T UsingInstance (pop Body)))
+	     (smashing (pop Body) (SETQ ExistingStructure (pop Body))))
+	   do T)
+    (LookupRecordName RecordName
+      (for init in Body do (COND ((MEMQ (CADR init) ReservedCreateFields)
+				  (push (CONS (CADR init) (CADDR init)) Substitutions))
+				 (T (LookupFieldName (LIST RecordName (CADR init))
+				      (push (CONS (AccessorName Accessor) (CADDR init))
+					    Substitutions)))))
+      (for default in (RecordReservedCreateDefaultValues Record)
+	   unless (ASSOC (CAR default) Substitutions)
+	   do (push default Substitutions))
+      (COND (UsingInstance
+	     (bind Form for fn in (RecordFields Record) unless (ASSQ fn Substitutions) do
+		   (push (CONS fn (COND ((NonTerminalField? fn) NoInitialization)
+					(T (SETQ Form `(fetch ,fn of ,UsingInstance))
+					   (COND (Copy? `(COPYTREE ,Form)) (T Form)))))
+			 Substitutions)))
+	    (T (for fn in (RecordFields Record) unless (ASSQ fn Substitutions) do
+		    (LookupFieldName
+		      fn (push (CONS fn (AccessorDefaultInitialization Accessor))
+			       Substitutions)))))
+      (COND (ExistingStructure
+	     `(LETP (,ExistingStructure)
+		,.(for sub in (RemoveRedundantSubstitutions Substitutions)
+		       unless (MEMQ (CAR sub) ReservedCreateFields) collect
+		       `(SETF (fetch ,(CAR sub) of ,ExistingStructure)
+			      ,(AND (NEQ (CDR sub) NoInitialization) (CDR sub))))
+		,ExistingStructure))
+	    (T (CleanUpLET (ProcessCreateForm (COND ((ASSQ '!Area Substitutions)
+						     (Areaify (RecordCreate Record)
+							      (GETASSOC Substitutions '!Area)
+							      T Substitutions))
+						    (T (RecordCreate Record))))))))))
+
+;;; This obscure code removes substitutions in the following cases:
+;;;      1.  If foo is not initialized and foo.bar is, then foo is removed.
+;;;      2.  If foo.bar is not initialized and foo is, then foo.bar is removed.
+;;;      3.  If foo is not initialized and foo.bar is not either, then foo is removed.
+;;;      4.  If both foo and foo.bar are initialized then foo.bar is removed.
+;;; This is the "right" set of rules for the smashing type of create statements.
+(DEFUN RemoveRedundantSubstitutions (Substitutions)
+  (bind field sub (Subs _ (CONS NIL Substitutions)) tail
+	first (SETQ tail Subs) while (CDR tail) do
+	(COND
+	  ((LISTP (SETQ sub (CDADR tail) field (CAADR tail)))
+	   (loopname oloop bind ofield osub (otail _ (CDR tail)) while (CDR otail) do
+		     (COND ((LISTP (SETQ osub (CDADR otail) ofield (CAADR otail)))
+			    (for et on field as oet on ofield always (EQ (CAR et) (CAR oet))
+				 then (COND ((EQ sub NoInitialization)
+					     (COND ((EQ osub NoInitialization)
+						    (COND (et (RPLACD otail (CDDR otail)))
+							  (T (RPLACD tail (CDDR tail))
+							     (RETURN-FROM oloop))))
+						   (T (RPLACD tail (CDDR tail))
+						      (RETURN-FROM oloop))))
+					    ((EQ osub NoInitialization)
+					     (RPLACD otail (CDDR otail)))
+					    (T (COND (et (RPLACD tail (CDDR tail))
+							 (RETURN-FROM oloop))
+						     (T (RPLACD otail (CDDR otail))))))
+				 else (SETQ otail (CDR otail))))
+			   (T (SETQ otail (CDR otail))))
+		     finally (SETQ tail (CDR tail))))
+	  (T (SETQ tail (CDR tail))))
+	finally (RETURN (CDR Subs))))
+
+(SPECIAL Substitutions)
+(DEFUN ProcessCreateForm (Form &AUX Temp)
+  (COND ((SETQ Temp (ASSQ Form Substitutions)) (AND (NEQ (CDR Temp) NoInitialization)
+						    (CDR Temp)))
+	((LISTP Form)
+	 (SELECTQ (CAR Form)
+	   (CreateOption (for element in (CDR Form) thereisval (ProcessCreateForm element)))
+	   (CreateConditional (COND ((NEQ NoInitialization
+					  (CDR (ASSQ (CADR Form) Substitutions)))
+				     (ProcessCreateForm (CADDR Form)))
+				    (T (ProcessCreateForm (CADDDR Form)))))
+	   (OTHERWISE (CONS (ProcessCreateForm (CAR Form))
+			    (ProcessCreateForm (CDR Form))))))
+	(T Form)))
+
+(DEFMACRO alter (Place &BODY Assignments &AUX (RecordName (PlaceDescriptionRecordName Place))
+					       (Instance (PlaceDescriptionInstance Place)))
+  `(LETP (,Instance)
+     ,.(for ass in Assignments collect
+	    `(SETF (fetch (,RecordName ,(CADR ass)) of ,Instance) ,(CADDR ass)))))
+
+(DEFMACRO type? (RecordName Datum &BODY ProtectedForms &AUX TypeCheck DatumSymbol)
+  (CatchContinuableError
+    (SETQ TypeCheck
+	  (LookupRecordName RecordName
+	    (COND ((RecordType?Segment? Record)
+		   (OR (SegmentAccessForm? Datum)
+		       (FERROR 'ContinuableError
+			       "Non-segment type? should be segment:  ~S" RecordName))
+		   (SUBLIS `((DATUM . ,(SegmentAccessDatum Datum))
+			     (MODIFIER . ,(SegmentAccessModifier Datum)))
+			   (RecordType? Record)))
+		  (T (AND (SegmentAccessForm? Datum)
+			  (FERROR 'ContinuableError
+				  "Segment type? should be non-segment:  ~S" RecordName))
+		     (SUBLIS `((DATUM . ,Datum)) (RecordType? Record))))))
+    (COND (ProtectedForms
+	   (COND ((SYMBOLP Datum) (SETQ DatumSymbol Datum))
+		 ((MEMQ (CAR (LISTP Datum)) '(SETQ SETF))
+		  (SETQ DatumSymbol (CADR Datum)))
+		 (T (FERROR 'ContinuableError
+	    "Protected type? require the type tested datum to be a symbol or assingment:  ~S"
+	                    Datum)))
+	   `(AND ,TypeCheck (DeclareTypes ((,RecordName ,DatumSymbol)) ,.ProtectedForms)))
+	  (T TypeCheck))))
+
+(DEFUN typename (Datum)
+  (COND ((LISTP Datum) (CAR Datum))
+	((NAMED-STRUCTURE-P Datum) (NAMED-STRUCTURE-SYMBOL Datum))))
+
+(DEFMACRO DefineSegmentManipulator (Name ArgumentList &BODY Body)
+  `(DEFMACRO ,Name (Place ,@ArgumentList)
+     (CatchContinuableError
+       (LET (RecordName DATUM)
+	 (COND ((LISTP Place)
+		(SETQ RecordName (PlaceDescriptionRecordName Place)
+		      DATUM (PlaceDescriptionInstance Place)))
+	       (T (SETQ RecordName Place)))     
+	 (LookupRecordName RecordName
+	   (OR DATUM (SETQ DATUM (RecordSegmentStorage Record))
+	       (FERROR 'ContinuableError
+		       "No default segment storage for ~S" RecordName))
+	   ,.(COPYLIST Body))))))
+
+(DefineSegmentManipulator pushsegment (&BODY Initializations)
+  `(LETP (,DATUM)
+     (allocatesegment (,RecordName ,DATUM))
+     (create ,RecordName smashing (RecordSegment ,DATUM (topsegment (,RecordName ,DATUM)))
+	     ,.(COPYLIST Initializations))))
+
+(DefineSegmentManipulator allocatesegment NIL
+  `(LETP (,DATUM)
+     (AssureArraySpace ,DATUM ,(RecordSize Record) DefaultSegmentGrowth)
+     (INCF (AREF ,DATUM 0) ,(RecordSize Record))))
+
+(DefineSegmentManipulator popsegment NIL
+  `(DECF (AREF ,DATUM 0) ,(RecordSize Record)))
+
+(DefineSegmentManipulator topsegment (&AUX (Temp (GENSYM)))
+  `(LET ((,Temp (AREF ,DATUM 0)))
+     (AND ( 1 ,Temp) (- ,Temp ,(RecordSize Record)))))
+
+(DefineSegmentManipulator previoussegment (Segment)
+  `(LETP (,Segment) (AND ( ,Segment 1)
+			 (- ,Segment ,(RecordSize Record)))))
+
+(DefineSegmentManipulator nextsegment (Segment)
+  `(LETP (,Segment) (AND ( (AREF ,DATUM 0) (+ ,Segment ,(RecordSize Record)))
+			 (+ ,Segment ,(RecordSize Record)))))
+
+(DEFUN RecordSegmentLETPFunction (Form)
+  (LIST* (SegmentAccessDatum Form) (NCONS (SegmentAccessModifier Form))))
+
+
+;;; *****
+;;; Miscellaneous user routines
+;;; *****
+
+(DEFUN SeeRecord (Name) (GET Name 'RecordDeclaration))
+
+(DEFUN RecordFieldNames (RecordName)
+  (LookupRecordName RecordName (RecordFields Record)))
+
+(DEFUN TopLevelFieldNames (RecordName)
+  (LookupRecordName RecordName
+    (bind (Length _ (1+ (LENGTH Name))) for field in (RecordFields Record)
+	  when (EQ Length (LENGTH field)) collect field)))
+
+
+;;; *****
+;;; Accessor defining routines
+;;; *****
+
+;;; Construct the accessors to the fields in FieldNames (qualified by AccessorHeader) assuming
+;;; they will be implemented in some form of linear array.  AccessorFunction is the actual
+;;; function used for accessing the structure (typically, AREF, or ARRAY-LEADER).  Segment?
+;;; if multiple instances of this record are stored in the same array (in which case, MODIFIER
+;;; is used as the origin of a particular instance).
+;;;
+(SPECIAL Implementation Options ReservedCreateDefaults)
+(DEFUN GenerateSegmentAccessors (FieldNames AccessorHeader AccessorFunction &OPTIONAL Segment?
+				 &AUX FullFieldNames ArraySize Temp)
+  (SETQ ArraySize (SELECTQ Implementation
+		    (Array (LENGTH FieldNames))
+		    (ArraySegment (push (CONS '!NumberInstances
+					      (OR (GET Options 'NumberInstances)
+						  1))
+					ReservedCreateDefaults)
+				  `(1+ (* ,(LENGTH FieldNames) !NumberInstances)))))
+  (bind FieldName Form (StoreIn _ (GET Options 'StoreIn))
+	for name in FieldNames as index from 0 join
+	(SETQ FieldName (APPEND AccessorHeader (LIST name)))
+	(push FieldName FullFieldNames)
+	(SETQ Form `(,AccessorFunction DATUM
+		     ,(COND (Segment? `(+ ,index MODIFIER))
+			    (T index))))
+	(StorePath FieldName Accessors
+		   (MakeAccessor Form (SUBST (OR StoreIn (Datum)) 'DATUM Form)
+				 Name FieldName
+				 Segment? Segment?
+				 SegmentStorage StoreIn))
+	(AND (EQ Implementation 'Array)
+	     (NCONS `(CreateConditional ,FieldName (SETF ,Form ,FieldName))))
+	finally
+	;; Must build the array and then store the initial values of the nonNIL fields.
+	(RETURN
+	  (AND ArraySize
+	       `(LET ((DATUM (MAKE-ARRAY
+			       ,ArraySize
+			       ,.(APPEND
+				   (AND (SETQ Temp (Get Options 'Area))
+					`(':AREA ,Temp))
+				   (AND (SETQ Temp (GET Options 'Typed))
+					`(':NAMED-STRUCTURE-SYMBOL
+					  ',(ExternalName AccessorHeader)
+					  ':LEADER-LENGTH 2))
+				   (AND (SETQ Temp (GET Options 'MakeArray))
+					(for tail on Temp by (CDDR tail) join
+					     (LIST* (COND ((SYMBOLP (CAR tail)) `',(CAR tail))
+							  (T (CADR tail)))
+						    (NCONS (CADR tail)))))))))
+		  ,@(OR $$VAL `((SETF (,AccessorFunction DATUM 0) 1)))
+		  DATUM))
+	  FullFieldNames)))
+
+;;; Construct the accessors for the aribtrary list structure of fields named in
+;;; FieldStructure.  AccessorHeader is their mutual qualification.  Coordinates is the
+;;; list (in reverse order and 1 origin) of accesses (positive for elements and negative for
+;;; tails) that is necessary to reach FieldStructure in the overall structure.
+;;;
+(SPECIAL Options RecordName)
+(DEFUN GenerateListAccessors (FieldStructure AccessorHeader &OPTIONAL Coordinates
+			      &AUX FieldNames FieldName (StartCoordinate 1))
+  (AND (NULL Coordinates)
+       (Get Options 'Typed)
+       (SETQ StartCoordinate 2))
+  (for tail on FieldStructure as position from StartCoordinate collect
+       (COND
+	 ((LISTP tail)
+	  (COND ((LISTP (CAR tail))
+		 (MULTIPLE-VALUE-BIND (InnerCreate InnerFields)
+		     (GenerateListAccessors (CAR tail) AccessorHeader
+					    (CONS position Coordinates))
+		   (SETQ FieldNames (NCONC InnerFields FieldNames))
+		   InnerCreate))
+		(T (push (SETQ FieldName (APPEND AccessorHeader (LIST (CAR tail))))
+			 FieldNames)
+		   (StorePath FieldName Accessors
+			      (MakeAccessor Form (ListAccessor (CONS position Coordinates))
+					    Name FieldName))
+		   FieldName)))
+	 (T (SETQ FieldName (APPEND AccessorHeader (LIST tail)))
+	    (StorePath FieldName Accessors
+		       (MakeAccessor Form (ListAccessor (CONS (- 1 position) Coordinates))
+				     Name FieldName))
+	    (RETURN `(LIST* ,.$$VAL ,FieldName)
+		    (CONS FieldName FieldNames))))
+       finally (RETURN (COND ((AND (NULL Coordinates) (Get Options 'Typed))
+			      `(LIST ',RecordName ,.$$VAL))
+			     (T `(LIST ,.$$VAL)))
+		       FieldNames)))
+
+;;; Both positive and negative coordinates are ONE origin for implementation winnage!!
+(DEFUN ListAccessor (Coordinates)
+  (bind ($$VAL _ (LIST (Datum))) CurrentSpot first (SETQ CurrentSpot $$VAL)
+	while Coordinates do
+	(RPLACA CurrentSpot
+		(CONS (INTERN
+			(CALL #'STRING-APPEND () "C" ':SPREAD
+			      (bind (Sum _ 0) (element _ (CAR Coordinates))
+				    eachtime (COND ((= element 0)
+						    (pop Coordinates)
+						    (OR (SETQ element (CAR Coordinates))
+							(RETURN $$VAL)))) 
+				    while ( 4 (SETQ Sum (1+ Sum)))
+				    collect (COND ((MINUSP element)
+						   (SETQ element (1+ element))
+						   "D")
+						  (T (SETQ element (- 1 element))
+						     "A"))
+				    finally (RPLACA Coordinates element))
+			      () "R"))
+		      (SETQ CurrentSpot (LIST (Datum)))))
+	finally (RETURN (CAR $$VAL))))
+
+(DEFUN GenerateNamedAccessors (FieldNames AccessorHeader AccessorFunction InitializationForm)
+  (bind FieldName for name in FieldNames do
+	(StorePath (SETQ FieldName (APPEND AccessorHeader (LIST name)))
+		   Accessors
+		   (MakeAccessor Name FieldName
+				 Form `(,AccessorFunction ,(Datum)
+							  ',(ExternalName FieldName))))
+    into FullFieldNames collect FieldName
+    into CreateForms collect `(CreateConditional ,FieldName
+				(SETF (,AccessorFunction DATUM ',(ExternalName FieldName))
+				      ,FieldName))
+    finally (RETURN `(LET ((DATUM ,InitializationForm)) ,.CreateForms DATUM)
+		    FullFieldNames)))
+
+(DEFMACRO GETASSOC (AssociationList ItemName) `(CDR (ASSQ ,ItemName ,AssociationList)))
+
+(DEFUN GenerateFunctionalAccessors (FieldSpecifications AccessorHeader)
+  (VALUES
+    NIL
+    (bind FieldName for spec in FieldSpecifications collect
+	  (StorePath (SETQ FieldName (APPEND AccessorHeader (LIST (CAR spec))))
+		     Accessors
+		     (MakeAccessor Name FieldName Form (CADR spec)
+				   Segment? (ItemInTree? 'MODIFIER (CADR spec))))
+	  FieldName)))
+
+
+;;; *****
+;;; Typed declaration facilities
+;;; *****
+
+(DEFPROP DeclareTypes T si:MAY-SURROUND-DEFUN)
+(DEFMACRO DeclareTypes (TypeDeclarations &BODY Code &AUX Variables Functions)
+  (SETQ Variables `(VariableDeclarations
+		     ,.(for decl in TypeDeclarations unless (EQ 'Function (CAR decl)) join
+			    (for variable in (CDR decl) collect (CONS variable (CAR decl))))))
+  (SETQ Functions `(FunctionDeclarations
+		     ,.(for decl in TypeDeclarations when (EQ 'Function (CAR decl)) join
+			    (bind (types _ (OR (LISTP (CADR decl)) (LIST (CADR decl))))
+			      for function in (CDDR decl) collect (CONS function types)))))
+  (COND (Code `(LOCAL-DECLARE (,Variables ,Functions)
+		 ,@Code))
+	(T `(PROGN (push ',Variables ',Functions GlobalTypeDeclarations)
+		   T))))
+
+(DEFUN CompleteFieldName (FieldName Datum &AUX Declaration
+			                       (Internal (InternalName FieldName)))
+  (OR (COND ((LISTP Datum)
+	     (for entry ineachof (LBOX GlobalTypeDeclarations LOCAL-DECLARATIONS)
+	       when (EQ (CAR (LISTP entry)) 'FunctionDeclarations)
+	       thereisval (AND (SETQ Declaration (ASSQ (CAR Datum) (CDR entry)))
+			       (ExtendFieldName (CADR Declaration) Internal))))
+	    ((SYMBOLP Datum)
+	     (for entry ineachof (LBOX GlobalTypeDeclarations LOCAL-DECLARATIONS)
+	       when (EQ (CAR (LISTP entry)) 'VariableDeclarations)
+	       thereisval (AND (SETQ Declaration (ASSQ Datum (CDR entry)))
+			       (ExtendFieldName (CDR Declaration) Internal)))))
+      Internal))
+
+(DEFUN ExtendFieldName (Type InternalName)
+  (COND ((EQ Type (CAR InternalName)) InternalName)
+	(T (CONS Type InternalName))))
+
+
+;;; *****
+;;; Record and field name manipulations
+;;; *****
+
+(SPECIAL NAME)
+
+(DEFMACRO LookupRecordName (Name &BODY Forms)
+  `(LET ((Name (InternalName ,Name)))
+     (CONDITION-BIND ((NoSuchPath (ErrorCondition "No such record name:  ~S" Name))
+		      (AmbiguousPath
+			(ErrorCondition
+			  "Ambiguous record name:  ~S~%To ~S there are multiple paths ~S"
+			  Name (ExternalName (SEND Condition ':AmbiguousPath))
+			  (for rec in (SEND Condition ':PossibleCompletions) collect
+			       (ExternalName (RecordName rec))))))
+       (LET ((Record (LookupPath Name Records)))
+	 ,.(COPYLIST Forms)))))
+
+(DEFMACRO LookupFieldName (Name &BODY Forms)
+  `(LET ((Name (InternalName ,Name)))
+     (CONDITION-BIND ((NoSuchPath (ErrorCondition "No such record field name:  ~S" Name))
+		      (AmbiguousPath
+			(ErrorCondition
+			  "Ambiguous record field name: ~S~%~
+                             To ~S there are multiple paths ~S"
+			  Name (ExternalName (SEND Condition ':AmbiguousPath))
+			  (for acc in (SEND Condition ':PossibleCompletions) collect
+			       (ExternalName (AccessorName acc))))))
+       (LET ((Accessor (LookupPath Name Accessors)))
+	 ,.(COPYLIST Forms)))))
+
+(DEFUN CanonicalizeFieldsIn (Structure &OPTIONAL Record &AUX Temp)
+  (COND ((SYMBOLP Structure) (COND ((SETQ Temp (FieldName? Structure Record))
+				    (AccessorName Temp))
+				   (T Structure)))
+	((LISTP Structure) (CONS (CanonicalizeFieldsIn (CAR Structure) Record)
+				 (CanonicalizeFieldsIn (CDR Structure) Record)))
+	(T Structure)))
+
+(SPECIAL InternalName)
+(DEFUN FieldName? (Symbol &OPTIONAL Record &AUX (InternalName (InternalName Symbol)))
+  (AND Record (OR (MEMQ Record InternalName) (push Record InternalName)))
+  (CONDITION-BIND ((AmbiguousPath
+		     (ErrorCondition
+		       "Ambiguous record field name: ~S~%~
+                        To ~S there are multiple paths ~S"
+		       InternalName (ExternalName (SEND Condition ':AmbiguousPath))
+		       (for acc in (SEND Condition ':PossibleCompletions) collect
+			    (ExternalName (AccessorName acc))))))
+    (LookupPath InternalName Accessors T)))
+
+(DEFUN ExternalName (QualifiedName)
+  (COND ((CDR QualifiedName)
+	 (for tail on QualifiedName join (LIST* (CAR tail) (AND (CDR tail) (NCONS ".")))
+	      finally (RETURN (INTERN (APPLY #'STRING-APPEND (NCONC $$VAL tail))))))
+	(T (CAR QualifiedName))))
+
+(DEFUN InternalName (Name)
+  (COND ((LISTP Name)
+	 (for subname in Name join (InternalName subname)))
+	(T (bind (Result _ NIL) Position
+		 while (SETQ Position (STRING-SEARCH-CHAR #/. Name)) do
+		 (push (INTERN (SUBSTRING Name 0 Position)) Result)
+		 (SETQ Name (SUBSTRING Name (1+ Position)))
+		 finally (RETURN (NREVERSE (CONS (INTERN Name) Result)))))))
+
+
+;;; *****
+;;; General path manipulation
+;;; *****
+
+(DEFUN LookupPath (Path PathStructure &OPTIONAL NoPathOK? &AUX NewStructure)
+  (COND ((NULL Path) (VALUES (CAR PathStructure) T))
+	((SETQ NewStructure (ASSOC (CAR Path) (CDR PathStructure)))
+	 (LookupPath (CDR Path) (CDR NewStructure) NoPathOK?))
+	(T (for element in (CDR PathStructure) join
+		(MULTIPLE-VALUE-BIND (Path Exists?) (LookupPath Path (CDR element) T)
+		  (AND Exists? (NCONS Path)))
+		finally (RETURN (COND ((NULL $$VAL)
+				       (AND (NOT NoPathOK?) (FERROR 'NoSuchPath
+								    "No such path.")))
+				      ((CDR $$VAL)
+				       (FERROR 'AmbiguousPath "Ambiguous path." Path $$VAL))
+				      (T (CAR $$VAL)))
+				$$VAL)))))
+
+(DEFUN StorePath (Path PathStructure Value
+		  &AUX (NewStructure (ASSOC (CAR Path) (CDR PathStructure))))
+  (COND (NewStructure (COND ((NULL (CDR Path))
+			     (RPLACA (CDR NewStructure) Value))
+			    (T (StorePath (CDR Path) (CDR NewStructure) Value))))
+	(T (RPLACD PathStructure (CONS (BuildPath Path Value) (CDR PathStructure))))))
+
+(DEFUN BuildPath (Path Value)
+  (SETQ Path (NREVERSE Path))
+  (bind ($$VAL _ (LIST (CAR Path) Value)) for element in (CDR Path) do
+	(SETQ $$VAL (LIST* element NIL (NCONS $$VAL)))
+	finally (SETQ Path (NREVERSE Path))))
+
+
+;;; *****
+;;; Optimizers for code generated by record statements
+;;; *****
+
+(DEFUN CleanUpLET (Form)
+  (COND ((LISTP Form)
+	 (SELECTQ (CAR Form)
+	   (LET (for element in (CADR Form) when (LISTP element) do
+		 (RPLACA (CDR element) (CleanUpLET (CADR element))))
+	     (bind (tail _ (CDR Form)) while (CDR tail) do
+		   (RPLACA (CDR tail) (CleanUpLET (CADR tail)))
+		   (COND ((CADR tail) (pop tail))
+			 (T (RPLACD tail (CDDR tail)))))
+	     (COND ((AND (EQ 3 (LENGTH Form))
+			 (EQ (CADDR Form) (CAR (LISTP (CAADR Form))))
+			 (NULL (CDADR Form)))
+		    (CADR (CAADR Form)))
+		   (T Form)))
+	   (QUOTE Form)
+	   (OTHERWISE (for tail on Form while (LISTP (CDR tail)) do
+			   (RPLACA (CDR tail) (CleanUpLET (CADR tail))))
+		      Form)))
+	(T Form)))
+
+
+;;; *****
+;;; Miscellaneous utilities
+;;; *****
+
+(DEFUN OptionalizeFieldName (FieldName NonspecifiedOption Form)
+  (COND ((EQ FieldName Form)  `(CreateOption ,FieldName ,NonspecifiedOption))
+	((NLISTP Form) Form)
+	((AND (EQ (CAR Form) 'CreateConditional)
+	      (EQ (CADR Form) FieldName))
+	 (RPLACD (CDDR Form)
+		 (NCONS (OptionalizeFieldName FieldName NonspecifiedOption (CADDR Form))))
+	 Form)
+	(T (RPLACA Form (OptionalizeFieldName FieldName NonspecifiedOption (CAR Form)))
+	   (RPLACD Form (OptionalizeFieldName FieldName NonspecifiedOption (CDR Form))))))
+
+(DEFMACRO RecordSegment (Structure Index) Structure Index
+	  NIL)					;So that various frobs can return instances.
+
+(DEFMACRO ErrorCondition (FormatString &REST Arguments)
+  `#'(LAMBDA (Condition) Condition
+       (FERROR 'ContinuableError
+	       ,FormatString ,.(COPYLIST Arguments))))
+
+(DEFMACRO Datum NIL '(LOCAL-DECLARE ((SPECIAL OuterAccessor))
+		       (OR OuterAccessor 'DATUM)))
+
+(DEFMACRO NonTerminalField? (Field)
+  `(LookupPath ,Field Records T))
+
+(DEFMACRO RecordSize (Record) `(LENGTH (RecordFields ,Record)))
+
+(DEFMACRO SegmentAccessForm? (Form)
+  `(EQ 'RecordSegment (CAR (LISTP ,Form))))
+
+(SPECIAL Area Copy? Untouchables Function)
+(DEFUN Areaify (Form Area &OPTIONAL Copy? Untouchables &AUX Function)
+  (Areaify1 Form))
+
+(SPECIAL Area Copy? Untouchables Function)
+(DEFUN Areaify1 (Form)
+  (COND ((ASSQ Form Untouchables))
+	((LISTP Form)
+	 (AND Copy? (SETQ Form (COPYLIST Form)))
+	 (COND ((SETQ Function (GETASSOC AreaAdders (CAR Form)))
+		(SETQ Form (FUNCALL Function Area
+				    (RPLACA Form (MaybeMap (CAR Form) AreaFunctions)))))
+	       ((SETQ Function (GETASSOC AreaChangers (CAR Form)))
+		(SETQ Form (FUNCALL Function Area Form))))
+	 (SELECTQ (CAR Form)
+	   ((LET LET* PROG PROG*) (AND Copy? (RPLACA (CDR Form) (COPYLIST (CADR Form))))
+				  (for bindtail on (CADR Form) when (LISTP (CAR bindtail)) do
+				       (AND Copy? (RPLACA bindtail (COPYLIST (CAR bindtail))))
+				       (RPLACA (CDAR bindtail) (Areaify1 (CADAR bindtail))))
+				  (for tail on (CDDR Form) while (LISTP tail) do
+				       (RPLACA tail (Areaify1 (CAR tail)))))
+	   (QUOTE)
+	   (OTHERWISE (for tail on (CDR Form) while (LISTP tail) do
+			   (RPLACA tail (Areaify1 (CAR tail))))))))
+  Form)
+
+(DEFUN CONSAreaAdder (Area Form) (NCONC Form (LIST Area)))
+(DEFUN CONSAreaChanger (Area Form) (RPLACA (LAST Form) Area) Form)
+
+(DEFUN LISTAreaAdder (Area Form) (RPLACD Form (CONS Area (CDR Form))))
+(DEFUN LISTAreaChanger (Area Form) (RPLACA (CDR Form) Area) Form)
+
+(DEFUN ArrayAreaChanger (Area Form)
+  (for tail on (CDDR Form) by (CDDR tail) thereis (EQ (CADAR tail) ':AREA)
+       then (RPLACA (CDR tail) Area) else (NCONC Form `(':AREA ,Area)))
+  Form)
+
+(DEFUN ItemInTree? (Item Tree)
+  (OR (EQ Item Tree)
+      (AND (LISTP Tree)
+	   (OR (ItemInTree? Item (CAR Tree))
+	       (ItemInTree? Item (CDR Tree))))))
+
+(DEFUN AssureArraySpace (Array FreeSpace GrowthFactor)
+  (AND (> FreeSpace (- (ARRAY-LENGTH Array) (AREF Array 0)))
+       (ADJUST-ARRAY-SIZE Array
+			  (+ (ARRAY-LENGTH Array)
+			     (MAX FreeSpace (FIX (* (ARRAY-LENGTH Array) GrowthFactor)))))))
+
+;;; *****
+;;; System interface updates
+;;; *****
+
+
+(defun (RecordDeclaration :named-structure-basic-inspect) (nss obj result)
+  (bind (in _ (rp:InternalName NSS)) (size _ -1) length first (SETQ length (LENGTH in))
+	for field in (rp:TopLevelFieldNames NSS) do
+	(SETQ size (MAX size (FLATSIZE (NTH length field))))
+	finally (add 2 size)
+	(for field in (rp:TopLevelFieldNames NSS) do
+	     (push `((:ITEM1 NAMED-STRUCTURE-SLOT ,(NTH length field))
+		     (:COLON ,size)
+		     (:ITEM1 NAMED-STRUCTURE-VALUE
+			     ,(CATCH-ERROR (EVAL `(fetch ,field of ',OBJ))
+					   NIL)))
+		   RESULT)))
+  result)
+
+
