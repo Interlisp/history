@@ -1,0 +1,3 @@
+lp|maui|MAUI|ps|psc|qms:\
+	:lp=:rp=maui:rm=ps-print-server:sd=/usr/spool/maui:
+

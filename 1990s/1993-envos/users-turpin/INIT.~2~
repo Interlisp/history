@@ -1,0 +1,381 @@
+(DEFINE-FILE-INFO READTABLE "INTERLISP" PACKAGE "INTERLISP")
+(FILECREATED "31-May-93 10:15:27" {DSK}<users>turpin>INIT.;2 13580  
+
+      changes to%:  (VARS INITCOMS)
+
+      previous date%: "19-Mar-92 12:54:10" {DSK}<users>turpin>INIT.;1)
+
+
+(* ; "
+Copyright (c) 1993 by Venue.  All rights reserved.
+")
+
+(PRETTYCOMPRINT INITCOMS)
+
+(RPAQQ INITCOMS
+       [(FNS MM PPR JDSINIT)
+        [VARS (CLISPIFTRANFLG)
+              (DWIMIFYCOMPFLG T)
+              (LOGINHOST/DIR '{DSK}/users/turpin/)
+              (SYSOUTGAG T)
+              (PROMPT#FLG T)
+              (CLEANUPOPTIONS '(RC ST))
+              (CLISPIFYENGLSHFLG)
+              (CHANGECHAR)
+              (CHANGESARRAY)
+              (**COMMENT**FLG "  (* --)  ")
+              [COPYRIGHTOWNERS '((BOTH "Venue & Xerox Corporation")
+                                 (SYBALSKY "John Sybalsky")
+                                 (XEROX "Xerox Corporation")
+                                 (VENUE "Venue"]
+              (DEFAULTCOPYRIGHTOWNER 'VENUE)
+              (BREAKDELIMITER ", ")
+              (GRAYSHADE 21930)
+              (WINDOWBACKGROUNDSHADE 14316)
+              [EDITCHARACTERS '(J (H G)
+                                  Z Y N (O NIL]
+              (RECOMPILDEFAULT 'EXPRS)
+              (DEFAULTPRINTINGHOST '(ENGLISH%: TREMOR%:]
+        [COMS                                                (* ; "To defeat the IDLE program")
+              (VARS (IDLE.PROFILE '(TIMEOUT NIL FORGET NIL ALLOWED.LOGINS NIL))
+                    (IDLE.TIMEOUT NIL)
+                    (IDLE.DEFAULTMODE 'UNLOCKED]
+        (ADDVARS (EDITCOMSA (ok . OK)
+                        (pp . PP)
+                        (p . P)
+                        (f . F)
+                        (PPP . PP)
+                        (a . A)
+                        (b . B)
+                        (up . UP)
+                        (mbd . MBD)
+                        (nx . NX)
+                        (n . N))
+               (SPELLINGS2 (ef . EDITF)
+                      (ER . EDITREC)
+                      (er . EDITREC))
+               (INITIALSLST (Turpin Carla cat))
+               (BREAKMACROS (?+ ?=)
+                      (/= ?=))
+               (DIRECTORIES "{dsk}/users/turpin/" "{pele:}<lispcore>sources>" 
+                      "{pele:}<lispcore>library>" "{pele:}<lispcore>internal>library>" 
+                      "{pele:}<lispusers>lispcore>" "{pele:}<lispusers>medley>" 
+                      "{pele:}<doc>pubS>indexing>" "{POGO:}<ROOMS>MEDLEY>USERS>" 
+                      "{dsk}/usr/local/lde/lispcore/sources/" "{dsk}/usr/local/lde/lispcore/library/"
+                      "{dsk}/usr/local/lde/lispcore/internal/library/")
+               (LISPUSERSDIRECTORIES "{pele:}<lispcore>library>" 
+                      "{dsk}/usr/local/lde/lispcore/library/")
+               (DISPLAYFONTDIRECTORIES "{dsk}/users/turpin/sd/" 
+                      "{dsk}/usr/local/lde/Lispcore>XeroxPrivate>Fonts>")
+               (DISPLAYFONTEXTENSIONS AC)
+               (INTERPRESSFONTDIRECTORIES "{dsk}/users/turpin/sd/" 
+                      "{dsk}/usr/local/lde/Lispcore>XeroxPrivate>Fonts>"))
+        (FILES DATABASEFNS CROCK WHO-LINE FILEWATCH LAFITEFIND ARCLEANUP ARHACK PRETTYFILEINDEX 
+               NEATICONS NSPROTECTION NSMAINTAIN POSTSCRIPTSTREAM UNIXPRINT)
+        (COMS (VARS POSTSCRIPT.FONT.ALIST))
+        [COMS                                                (* ; 
+                                                       "Screen set-up & personalizations like that")
+              (P (CHANGEBACKGROUND)
+                 (JDSINIT))
+              (VARS (POSTSCRIPTFONTDIRECTORIES '("{pallas:mv:envos}<fonts>postscript>"))
+                    (UnixPrinterName 'maui]
+        (COMS                                                (* ; "Calendar")
+              (FILES imindex imtedit imtools imtran))
+        [COMS                                                (* ; 
+              "LAFITE SETUP (should come after JDSINIT, so the window locations are set up right).")
+              (VARS (LAFITEFLUSHMAILFLG T)
+                    (LAFITEBROWSERREGION '(30 16 575 360))
+                    (LAFITEDISPLAYREGION '(605 8 544 500))
+                    (LAFITEDEFAULTHOST&DIR "{DSK}/USERS/turpin/"))
+              (P (LAFITEMODE 'NS)
+                 (LAFITE 'ON]
+        [P (MOVD? 'EDITV 'EV)
+           (MOVD? 'EDITF 'EF)
+           (MOVD? 'EDITREC 'ER)
+           (MOVD? 'EDITP 'EP)
+           (MAPC '(AND OR)
+                 (FUNCTION (LAMBDA (X)
+                                  (REMPROP X 'CLISPINFIX]
+        (P (SETINITIALS))
+        (P (DREMOVE 'E LISPXCOMS))
+        (P (RAISE NIL)
+           (GCGAG 500)
+           (CHANGESLICE 100)
+           (XCL:SET-DEFAULT-EXEC-TYPE "IL")
+           (XCL:SET-EXEC-TYPE "IL"))
+        (USERMACROS SWITCH)
+        (DECLARE%: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS (ADDVARS (NLAMA PPR)
+                                                                             (NLAML)
+                                                                             (LAMA])
+(DEFINEQ
+
+(MM
+  [LAMBDA (X)                                            (* ; "Edited 21-Jul-87 18:04 by jds")
+
+    (COND
+       ((LISTP X)
+        (for V in X collect (FTIMES 60.0 V)))
+       (T (FTIMES 60.0 X])
+
+(PPR
+  [NLAMBDA X                                             (* rrb " 9-JUL-81 15:12")
+    (RESETFORM (OUTPUT T)
+           (MAPC (OR (LISTP X)
+                     (LIST X))
+                 (FUNCTION (LAMBDA (R)
+                             [PRINTDEF (OR (APPEND (RECLOOK R)
+                                                  (FIELDLOOK R))
+                                           (CONS R '(not found]
+                             (TERPRI T])
+
+(JDSINIT
+  [LAMBDA NIL                                            (* ; "Edited 19-Mar-92 12:53 by jds")
+
+(* ;;; "Machine dependent initialization stuff")
+
+    (PROG ((MACHINE (MACHINETYPE)))
+          (SETQ LAFITEBROWSERREGION
+           (create REGION
+                  LEFT _ 30
+                  BOTTOM _ 8
+                  HEIGHT _ 500
+                  WIDTH _ 575))
+          (SETQ LAFITEDISPLAYREGION
+           (create REGION
+                  LEFT _ 605
+                  BOTTOM _ 8
+                  HEIGHT _ 500
+                  WIDTH _ (IDIFFERENCE SCREENWIDTH 608)))
+          (SETQ LAFITEEDITORREGION (create REGION
+                                          LEFT _ 605
+                                          BOTTOM _ 513
+                                          HEIGHT _ 200
+                                          WIDTH _ (IDIFFERENCE SCREENWIDTH 608)))
+          (SETQ LAFITESTATUSWINDOWPOSITION (create POSITION
+                                                  XCOORD _ (IDIFFERENCE SCREENWIDTH 200)
+                                                  YCOORD _ (IDIFFERENCE SCREENHEIGHT 30)))
+          (CROCK (create REGION
+                        LEFT _ (IDIFFERENCE SCREENWIDTH 835)
+                        BOTTOM _ (IDIFFERENCE SCREENHEIGHT 80)
+                        WIDTH _ 85
+                        HEIGHT _ 72))
+          (MOVEW PROMPTWINDOW (create REGION
+                                     LEFT _ (IDIFFERENCE SCREENWIDTH 750)
+                                     WIDTH _ 550
+                                     HEIGHT _ 89
+                                     BOTTOM _ (IDIFFERENCE SCREENHEIGHT 89)))
+          (AND LOGOW (CLOSEW LOGOW))
+          (SELECTQ MACHINE
+              (DOVE 
+                    (* ;; "Daybreak.  Set up special key actions for typing convenience.")
+
+                    [KEYACTION 'KEYPAD9 '((57 188 NOLOCKSHIFT) . IGNORE]
+                                                             (* ; "1/4")
+                    [KEYACTION 'KEYPAD6 '((174 189 NOLOCKSHIFT) . IGNORE]
+                                                             (* ; "1/2")
+                    [KEYACTION 'KEYPAD3 '((51 190 NOLOCKSHIFT) . IGNORE]
+                                                             (* ; "3/4")
+                    )
+              (DORADO 
+                      (* ;; "Dorado.  Set up a meta key and some TEdit commands.")
+
+                      (TTYINMETA T)
+                      (TEDIT.SETFUNCTION (CHARCODE %##F)
+                             '\TEDIT.FIND)
+                      (TEDIT.SETFUNCTION (CHARCODE %##f)
+                             '\TEDIT.FIND)
+                      (TEDIT.SETSYNTAX 27 'REDO)
+                      (TEDIT.SETSYNTAX (CHARCODE %##U)
+                             'UNDO)
+                      (TEDIT.SETSYNTAX (CHARCODE %##u)
+                             'UNDO)
+                      (FILESLOAD TEDITDORADOKEYS))
+              (DANDELION)
+              (DOLPHIN)
+              (MAIKO)
+              (SHOULDNT])
+)
+
+(RPAQQ CLISPIFTRANFLG NIL)
+
+(RPAQQ DWIMIFYCOMPFLG T)
+
+(RPAQQ LOGINHOST/DIR {DSK}/users/turpin/)
+
+(RPAQQ SYSOUTGAG T)
+
+(RPAQQ PROMPT#FLG T)
+
+(RPAQQ CLEANUPOPTIONS (RC ST))
+
+(RPAQQ CLISPIFYENGLSHFLG NIL)
+
+(RPAQQ CHANGECHAR NIL)
+
+(RPAQQ CHANGESARRAY NIL)
+
+(RPAQ **COMMENT**FLG "  (* --)  ")
+
+(RPAQQ COPYRIGHTOWNERS ((BOTH "Venue & Xerox Corporation")
+                            (SYBALSKY "John Sybalsky")
+                            (XEROX "Xerox Corporation")
+                            (VENUE "Venue")))
+
+(RPAQQ DEFAULTCOPYRIGHTOWNER VENUE)
+
+(RPAQ BREAKDELIMITER ", ")
+
+(RPAQQ GRAYSHADE 21930)
+
+(RPAQQ WINDOWBACKGROUNDSHADE 14316)
+
+(RPAQQ EDITCHARACTERS (J (H G)
+                             Z Y N (O NIL)))
+
+(RPAQQ RECOMPILDEFAULT EXPRS)
+
+(RPAQQ DEFAULTPRINTINGHOST (ENGLISH%: TREMOR%:))
+
+
+
+(* ; "To defeat the IDLE program")
+
+
+(RPAQQ IDLE.PROFILE (TIMEOUT NIL FORGET NIL ALLOWED.LOGINS NIL))
+
+(RPAQQ IDLE.TIMEOUT NIL)
+
+(RPAQQ IDLE.DEFAULTMODE UNLOCKED)
+
+(ADDTOVAR EDITCOMSA (ok . OK)
+                        (pp . PP)
+                        (p . P)
+                        (f . F)
+                        (PPP . PP)
+                        (a . A)
+                        (b . B)
+                        (up . UP)
+                        (mbd . MBD)
+                        (nx . NX)
+                        (n . N))
+
+(ADDTOVAR SPELLINGS2 (ef . EDITF)
+                         (ER . EDITREC)
+                         (er . EDITREC))
+
+(ADDTOVAR INITIALSLST (Turpin Carla cat))
+
+(ADDTOVAR BREAKMACROS (?+ ?=)
+                          (/= ?=))
+
+(ADDTOVAR DIRECTORIES "{dsk}/users/turpin/" "{pele:}<lispcore>sources>" 
+                                "{pele:}<lispcore>library>" "{pele:}<lispcore>internal>library>" 
+                                "{pele:}<lispusers>lispcore>" "{pele:}<lispusers>medley>" 
+                                "{pele:}<doc>pubS>indexing>" "{POGO:}<ROOMS>MEDLEY>USERS>" 
+                                "{dsk}/usr/local/lde/lispcore/sources/" 
+                                "{dsk}/usr/local/lde/lispcore/library/" 
+                                "{dsk}/usr/local/lde/lispcore/internal/library/")
+
+(ADDTOVAR LISPUSERSDIRECTORIES "{pele:}<lispcore>library>" 
+                                         "{dsk}/usr/local/lde/lispcore/library/")
+
+(ADDTOVAR DISPLAYFONTDIRECTORIES "{dsk}/users/turpin/sd/" 
+                                           "{dsk}/usr/local/lde/Lispcore>XeroxPrivate>Fonts>")
+
+(ADDTOVAR DISPLAYFONTEXTENSIONS AC)
+
+(ADDTOVAR INTERPRESSFONTDIRECTORIES "{dsk}/users/turpin/sd/" 
+                                              "{dsk}/usr/local/lde/Lispcore>XeroxPrivate>Fonts>")
+
+(FILESLOAD DATABASEFNS CROCK WHO-LINE FILEWATCH LAFITEFIND ARCLEANUP ARHACK PRETTYFILEINDEX NEATICONS
+       NSPROTECTION NSMAINTAIN POSTSCRIPTSTREAM UNIXPRINT)
+
+(RPAQQ POSTSCRIPT.FONT.ALIST ((HELVETICA . HELVETICA)
+                                  (HELVETICAD . HELVETICA)
+                                  (TIMESROMAN . NEWCENTURYSCHLBK)
+                                  (TIMESROMAND . NEWCENTURYSCHLBK)
+                                  (COURIER . COURIER)
+                                  (GACHA . COURIER)
+                                  (CLASSIC . TIMES)
+                                  (MODERN . HELVETICA)
+                                  (CREAM . HELVETICA)
+                                  (TERMINAL . COURIER)
+                                  (LOGO . HELVETICA)
+                                  (TITAN . COURIER)))
+
+
+
+(* ; "Screen set-up & personalizations like that")
+
+
+(CHANGEBACKGROUND)
+
+(JDSINIT)
+
+(RPAQQ POSTSCRIPTFONTDIRECTORIES ("{pallas:mv:envos}<fonts>postscript>"))
+
+(RPAQQ UnixPrinterName maui)
+
+
+
+(* ; "Calendar")
+
+
+(FILESLOAD imindex imtedit imtools imtran)
+
+
+
+(* ; "LAFITE SETUP (should come after JDSINIT, so the window locations are set up right).")
+
+
+(RPAQQ LAFITEFLUSHMAILFLG T)
+
+(RPAQQ LAFITEBROWSERREGION (30 16 575 360))
+
+(RPAQQ LAFITEDISPLAYREGION (605 8 544 500))
+
+(RPAQ LAFITEDEFAULTHOST&DIR "{DSK}/USERS/turpin/")
+
+(LAFITEMODE 'NS)
+
+(LAFITE 'ON)
+
+(MOVD? 'EDITV 'EV)
+
+(MOVD? 'EDITF 'EF)
+
+(MOVD? 'EDITREC 'ER)
+
+(MOVD? 'EDITP 'EP)
+
+[MAPC '(AND OR)
+      (FUNCTION (LAMBDA (X)
+                  (REMPROP X 'CLISPINFIX]
+
+(SETINITIALS)
+
+(DREMOVE 'E LISPXCOMS)
+
+(RAISE NIL)
+
+(GCGAG 500)
+
+(CHANGESLICE 100)
+
+(XCL:SET-DEFAULT-EXEC-TYPE "IL")
+
+(XCL:SET-EXEC-TYPE "IL")
+
+(ADDTOVAR EDITCOMSL SWITCH)
+(DECLARE%: DONTEVAL@LOAD DOEVAL@COMPILE DONTCOPY COMPILERVARS 
+
+(ADDTOVAR NLAMA PPR)
+
+(ADDTOVAR NLAML )
+
+(ADDTOVAR LAMA )
+)
+(PUTPROPS INIT COPYRIGHT ("Venue" 1993))
+(DECLARE%: DONTCOPY
+  (FILEMAP (NIL (5086 8846 (MM 5096 . 5320) (PPR 5322 . 5781) (JDSINIT 5783 . 8844)))))
+STOP

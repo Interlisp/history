@@ -1,0 +1,8 @@
+(SEND.FILE.TO.PRINTER (Function) NIL NIL ("29") 1)
+(HARDCOPYW (Function) NIL NIL ("29") 3)
+(PRINTERSTATUS (Function) NIL NIL ("29") 4)
+(DEFAULTPRINTINGHOST%  (Variable) NIL NIL ("29") 4)
+(PRINTFILETYPE (Function) NIL NIL ("29") 4)
+(PRINTERTYPE (Function) NIL NIL ("29") 4)
+(PRINTERTYPES (Variable) NIL NIL ("29") 5)
+(PRINTFILETYPES (Variable) NIL NIL ("29") 6)
